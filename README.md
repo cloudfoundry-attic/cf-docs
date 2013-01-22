@@ -3,7 +3,10 @@ docs
 
 This is the Cloud Foundry documentation - including information about pushing apps, setting up VCAP and BOSH. The repository also feeds cloudfoundry.github.com using Github Pages and [Middleman](http://middlemanapp.com/).
 
-Please contribute via forking it modifying the files in /source/docs and make a pull request.
+If you have a minor change contribute via forking it modifying the files in /source/docs and make a pull request.
+
+If you want to be a docs collaborator - go to [https://www.pivotaltracker.com/projects/713283#](Pivotal Project for CF Docs)
+
 
 **Discussion Groups**
 
