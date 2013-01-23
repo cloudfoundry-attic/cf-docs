@@ -7,7 +7,9 @@ Cloud Foundry Documentation
 
 This set of materials will replace all Cloud Foundry documentation, for cloudfoundry.com, vcap, and bosh, in Q1 of 2013. This information is forward looking and favors 'next generation' components which may not be applicable to existing Cloud Foundry installations.
 
-## [Using Cloud Foundry](using/index.html) For developers pushing applications to Cloud Foundry.
+## [Using Cloud Foundry](using/index.html) 
+
+For developers pushing applications to Cloud Foundry.
 
 * [Deploying Apps](using/deploying-apps/index.html)
   
@@ -37,7 +39,9 @@ This set of materials will replace all Cloud Foundry documentation, for cloudfou
 
   * [RabbitMQ](using/working-with-services/message-queue/rabbit.html)
 
-## [Running Cloud Foundry](running/index.html) For dev/ops people managing instances of Cloud Foundry.
+## [Running Cloud Foundry](running/index.html) 
+
+For dev/ops people managing instances of Cloud Foundry.
 
 * [Cloud Foundry API](running/api/index.html)
 
