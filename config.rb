@@ -51,7 +51,8 @@ set :markdown_engine, :redcarpet
 set :markdown, :layout_engine => :erb, 
                :tables => true, 
                :autolink => true,
-               :smartypants => true 
+               :smartypants => true,
+               :fenced_code_blocks => true
 
 set :css_dir, 'stylesheets'
 
