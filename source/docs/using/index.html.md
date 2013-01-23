@@ -16,8 +16,8 @@ This documentation is forward looking and favors 'next generation' components wh
 
 The following sections contain detailed information on deploying applications to the core Cloud Foundry runtimes, including the frameworks available on each runtime and details on using services with each runtime and framework.
 
-[Java and the JVM](java/index.html)
+[Java and the JVM](deploying-apps/jvm/index.html)
 
-[Node.js](node/index.html)
+[Node.js](deploying-apps/javascript/index.html)
 
-[Ruby](ruby/index.html)
+[Ruby](deploying-apps/ruby/index.html)
