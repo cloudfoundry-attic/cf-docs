@@ -1,7 +1,7 @@
 ---
-title: Running Apps on Cloud Foundry
+title: Running Cloud Foundry
 ---
 
-## Running Apps on Cloud Foundry
+## Running Cloud Foundry
 
 Coming soon...
