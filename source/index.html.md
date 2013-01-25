@@ -13,7 +13,7 @@ For developers pushing applications to Cloud Foundry.
 
   * [Java / jvm based](docs/using/deploying-apps/jvm/index.html)
 
-  * [node.js](docs/using/deploying-apps/javascript/index.html)
+  * [Node.js](docs/using/deploying-apps/javascript/index.html)
 
   * [Ruby](docs/using/deploying-apps/ruby/index.html)
 
