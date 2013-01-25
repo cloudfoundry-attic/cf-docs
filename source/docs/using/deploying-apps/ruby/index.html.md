@@ -2,10 +2,10 @@
 title: Using Cloud Foundry - Ruby
 ---
 
-# Using Cloud Foundry - Ruby
+## Using Cloud Foundry - Ruby
 
 
-## Frameworks 
+### Frameworks
 
 Rails
 

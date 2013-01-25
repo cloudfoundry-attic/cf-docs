@@ -7,13 +7,47 @@
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     
     <!-- Use title if it's in the page YAML frontmatter -->
-    <title><%= data.page.title || "The Middleman" %></title>
+    <title><%= data.page.title || "Cloud Foundry Docs" %></title>
     
     <%= stylesheet_link_tag "style" %>
     <%= javascript_include_tag  "all" %>
+    <!--[if IE 8]>
+    <style>
+        body  {background-color:#85bfe4;background-image:none;}
+    </style>
+    <![endif]-->
   </head>
   
   <body class="<%= page_classes %>">
-    <%= yield %>
+    <div id="main">
+      <div id="logo">
+        <a href="http://www.cloudfoundry.com">
+          <img src="/images/logo_cloudfoundry.png" height="57">
+        </a>
+      </div>
+      <div id="container">
+         <a href="/">
+           <h1>Cloud Foundry Documentation</h1>
+         </a>
+         <br>
+         <div id="bg-content">
+          <%= yield %>
+         </div>
+       </div>
+    </div>
+    <div id="footer">
+      <p>
+      Copyright ©
+      <script>
+        //<![CDATA[
+          //
+            var d = new Date();
+            document.write(d.getFullYear());
+          //
+        //]]>
+      </script>
+      VMware, Inc. All rights reserved.
+      </p>
+    </div>
   </body>
 </html>
