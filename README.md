@@ -24,5 +24,5 @@ If you want to contribute on a larger scale, see the [Pivotal Project for CF Doc
 
 **Support**
 
-[suport.cloudfoundry.com](http://suport.cloudfoundry.com)
+[support.cloudfoundry.com](http://support.cloudfoundry.com)
 

@@ -2,4 +2,6 @@
 title: Deploying Cloud Foundry on OpenStack
 ---
 
-Instructions...
+## Deploying Cloud Foundry on OpenStack
+
+Instructions coming soon...

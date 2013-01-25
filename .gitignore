@@ -12,3 +12,7 @@
 
 # Ignore Sass' cache
 /.sass-cache
+
+.idea
+/vendor
+.DS_Store
