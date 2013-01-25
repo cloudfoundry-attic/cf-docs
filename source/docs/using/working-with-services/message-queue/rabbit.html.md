@@ -2,5 +2,7 @@
 title: RabbitMQ
 ---
 
-Etc.
+## RabbitMQ
+
+Coming soon...
 
