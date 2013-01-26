@@ -1,5 +1,5 @@
 ---
-title: BOSH Components - Micro BOSH
+title: Micro BOSH
 ---
 
 A description of Micro BOSH here

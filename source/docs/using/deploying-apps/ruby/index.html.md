@@ -1,8 +1,6 @@
 ---
-title: Using Cloud Foundry - Ruby
+title: Ruby
 ---
-
-## Using Cloud Foundry - Ruby
 
 
 ### Frameworks

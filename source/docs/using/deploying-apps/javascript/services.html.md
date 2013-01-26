@@ -1,8 +1,6 @@
 ---
-title: Using Cloud Foundry - Node.js - Binding a service
+title: Binding a Service
 ---
-
-# Using Cloud Foundry - Node.js - Binding a service
 
 ### Quick links ###
 * [Introduction](#intro)

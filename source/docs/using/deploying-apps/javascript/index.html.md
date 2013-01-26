@@ -1,8 +1,6 @@
 ---
-title: Using Cloud Foundry - Node.js
+title: Node.js
 ---
-
-# Using Cloud Foundry - Node.js
 
 ### Quick links ###
 * [Introduction](#intro)

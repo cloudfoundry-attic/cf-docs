@@ -1,5 +1,5 @@
 ---
-title: BOSH Components - Health Monitor
+title: Health Monitor
 ---
 
 A description of the Health Monitor in BOSH

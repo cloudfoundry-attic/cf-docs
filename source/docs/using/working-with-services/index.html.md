@@ -1,24 +1,22 @@
 ---
-title: Using Services
+title: Working with Services
 ---
-
-## Using Services
 
 A brief introduction to services
 
 Relational Databases
 
-[MySQL](relational-db/mysql.html)
+[MySQL](mysql.html)
 
-[PostgreSQL](relational-db/postgresql.html)
+[PostgreSQL](postgresql.html)
 
 Key Value Stores
 
-[Redis](key-value-store/redis.html)
+[Redis](redis.html)
 
-[MongoDB](key-value-store/mongodb.html)
+[MongoDB](mongodb.html)
 
 Message Queues
 
-[RabbitMQ](message-queue/rabbit.html)
+[RabbitMQ](rabbit.html)
 

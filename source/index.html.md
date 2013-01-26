@@ -27,15 +27,15 @@ For developers pushing applications to Cloud Foundry.
 
 * [Working with Services](docs/using/working-with-services/index.html)
 
-  * [MySQL](docs/using/working-with-services/relational-db/mysql.html)
+  * [MySQL](docs/using/working-with-services/mysql.html)
 
-  * [PostgreSQL](docs/using/working-with-services/relational-db/postgresql.html)
+  * [PostgreSQL](docs/using/working-with-services/postgresql.html)
 
-  * [Redis](docs/using/working-with-services/key-value-store/redis.html)
+  * [Redis](docs/using/working-with-services/redis.html)
 
-  * [MongoDB](docs/using/working-with-services/key-value-store/mongodb.html)
+  * [MongoDB](docs/using/working-with-services/mongodb.html)
 
-  * [RabbitMQ](docs/using/working-with-services/message-queue/rabbit.html)
+  * [RabbitMQ](docs/using/working-with-services/rabbit.html)
 
 
 ## [Running Cloud Foundry](docs/running/index.html)

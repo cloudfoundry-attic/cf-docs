@@ -1,5 +1,5 @@
 ---
-title: BOSH Components - Blobstore
+title: Blobstore
 ---
 
 A description of the Blobstore

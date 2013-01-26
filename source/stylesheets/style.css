@@ -63,10 +63,41 @@ body {
   overflow: hidden;
 }
 
+/* Breadcrumbs */
+.breadcrumbs ul {
+  margin: 0;
+}
+
+.breadcrumbs li a {
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 12px;
+}
+
+.breadcrumbs li a:hover {
+  text-decoration: underline;
+}
+
+.breadcrumbs li {
+  display: inline;
+}
+
+.breadcrumbs li:after {
+  padding: 0 6px;
+  content: '→';
+}
+
+.breadcrumbs li:last-child:after {
+  content: '';
+}
+
+.breadcrumbs li.active {
+  text-transform: uppercase;
+  font-size: 12px;
+}
+
+/* Footer */
 #footer {
-  /*position: absolute;*/
-  /*bottom: 0;*/
-  /*overflow: hidden;*/
   margin: 30px 0 0 0;
   width: 100%;
   border: 1px solid rgba(0,0,0,.75);
