@@ -2,8 +2,6 @@
 title: Managing Applications
 ---
 
-## Managing Applications
-
 A brief introduction to STS and VMC
 
 [VMC](vmc/index.html)

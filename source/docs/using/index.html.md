@@ -2,8 +2,6 @@
 title: Using Cloud Foundry
 ---
 
-# Using Cloud Foundry 
-
 Cloud Foundry is an open platform as a service, providing a choice of developer frameworks and application services. Cloud Foundry makes it faster and easier to build, test, deploy and scale applications. 
 
 A deployment of the Cloud Foundry platform by a Cloud Foundry provider will include support for a number of runtimes and services. Runtimes and services that are included in the [Cloud Foundry Core Definition](http://core.cloudfoundry.org/definition) are covered in this documentation. Refer to your provider's documentation for information on the runtimes and services they support. 

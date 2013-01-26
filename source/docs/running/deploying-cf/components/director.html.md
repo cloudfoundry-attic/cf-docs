@@ -1,5 +1,5 @@
 ---
-title: BOSH Components - Director
+title: Director
 ---
 
 A description of the BOSH Director

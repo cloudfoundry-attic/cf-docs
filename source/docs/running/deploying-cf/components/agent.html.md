@@ -1,5 +1,5 @@
 ---
-title: BOSH Components - Agent
+title: Agent
 ---
 
 A description of the BOSH agent

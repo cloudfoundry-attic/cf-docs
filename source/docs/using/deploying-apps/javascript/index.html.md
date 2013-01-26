@@ -1,8 +1,6 @@
 ---
-title: Using Cloud Foundry - Node.js
+title: Node.js
 ---
-
-# Using Cloud Foundry - Node.js
 
 ### Quick links ###
 * [Introduction](#intro)
@@ -19,8 +17,8 @@ This quickstart guide is for developers who wish to build applications with the 
 
 ## <a id='prerequisites'></a>Prerequisites ##
 
-* A Cloud Foundry account, you can sign up [here](https://my.cloudfoundry.com/signup)
-* The [VMC](../../managing-apps/) command line tool 
+* A Cloud Foundry account; you can sign up [here](https://my.cloudfoundry.com/signup)
+* The [vmc](../../managing-apps/vmc) command line tool 
 * [Node.js](http://www.nodejs.org) installed using the matching version of Node.js on your Cloud Foundry instance
 * [NPM](http://npmjs.org/) - Node Package Manager, to manage dependencies on your application
 
@@ -28,7 +26,7 @@ This quickstart guide is for developers who wish to build applications with the 
 
 For the purposes of this tutorial we will build a very simple application that makes use of the node.js package, [express](http://expressjs.com).
 
-Open a shell and create a folder for your application in your desired location
+Open a shell and create a folder for your application in your desired location:
 
 <pre class="terminal">
 $ cd ~/Projects
@@ -36,7 +34,7 @@ $ mkdir hello-node
 $ cd hello-node
 </pre>
 
-Create a file called "app.js" with the following contents;
+Create a file called "app.js" with the following contents:
 
 ```javascript
 var express = require("express");
@@ -49,7 +47,7 @@ app.get('/', function(req, res) {
 app.listen(3000);
 ```
 
-Create a file called "package.json" with the following contents;
+Create a file called "package.json" with the following contents:
 
 ```json
 {
@@ -64,11 +62,11 @@ Create a file called "package.json" with the following contents;
 }
 ```
 
-This file tells node which libraries are in use (express, in this case) and what versions to use. The engines configuration can also be used to specify which version of node to use, although this is also selected using VMC when deploying the application. For a more detailed explanation of package.json, take a look at https://npmjs.org/doc/json.html
+This file tells node which libraries are in use (express, in this case) and what versions to use. The engines configuration can also be used to specify which version of node to use, although this is also selected using VMC when deploying the application. For a more detailed explanation of package.json, take a look at the [Node.js documentation](https://npmjs.org/doc/json.html).
 
 ## <a id='dependencies'></a>Dependencies, NPM and package.json ##
 
-Install the modules declared as dependencies in package.json using NPM
+Install the modules declared as dependencies in package.json using NPM:
 
 <pre class="terminal">
 $ npm install
@@ -76,23 +74,23 @@ $ npm install
 
 This should create a "node_modules" folder that contains the application's dependencies.
 
-Start the application as a local and server and check it's output
+Start the application as a local server and check its output:
 
 <pre class="terminal">
 $ node app.js
 </pre>
 
-Open a browser and navigate to http://localhost:3000, or, alternatively use "curl" in another shell
+Open a browser and navigate to http://localhost:3000, or, alternatively use `curl` in another shell:
 
 <pre class="terminal">
 $ curl http://localhost:3000
 </pre>
 
-You should see the output - "Hello from Cloud Foundry"
+You should see the output `Hello from Cloud Foundry`.
 
 ## <a id='deploy-your-app'></a>Deploying your application ##
 
-With VMC installed, target your desired Cloud Foundry instance and login
+With vmc installed, target your desired Cloud Foundry instance and login:
 
 <pre class="terminal">
 $ vmc target api.cloudfoundry.com
@@ -101,8 +99,8 @@ Setting target to https://api.cloudfoundry.com... OK
 $ vmc login
 </pre>
 
-Deploy the application by using the "push" command, notice the URL "hello-node.cloudfoundry.com" was taken, so it was changed to hello-node2.cloudfoundry.com
-All the other options were left as the default by pushing enter.
+Deploy the application by using the `push` command. Notice the URL "hello-node.cloudfoundry.com" was taken, so it was changed to "hello-node2.cloudfoundry.com".
+All the other options were left as the default by pushing enter:
 
 <pre class="terminal">
 $ vmc push
@@ -161,14 +159,14 @@ Finally check your application has deployed correctly, navigating to the configu
 
 ## <a id='checking-node-versions'></a>Node.js version parity ##
 
-It's important to make sure that the version of Node.js used on your computer is the same as the version you use when deploying to Cloud Foundry. Check your local version, like so;
+It is important to make sure that the version of Node.js used on your computer is the same as the version you use when deploying to Cloud Foundry. Check your local version, like so:
 
 <pre class="terminal">
 $ node -v
 v0.8.2
 </pre>
 
-In this instance you can see the installed version is 0.8.2, so when deploying we would select "node08" for the runtime. To see a list of available runtimes using VMC, use the following command;
+In this instance you can see the installed version is 0.8.2, so when deploying we would select "node08" for the runtime. To see a list of available runtimes using VMC, use the following command:
 
 <pre class="terminal">
 $ vmc info --runtimes
