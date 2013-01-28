@@ -2,7 +2,7 @@
 title: BOSH Components
 ---
 
-![fig1](../../../../../../../raw/master/source/docs/running/deploying-cf/components/images/fig1.png)
+![fig1](/images/fig1.png)
 
 - [Director](director.html)
 - [Messaging](messaging.html)

@@ -6,7 +6,7 @@ The Director is the core orchestrating component in BOSH which controls creation
 
 There are specific sub components to manage each of the tasks mentioned above. All these are instances of the following classes referenced from the ApiController.
 
-![director-components](../../../../../../../raw/master/source/docs/running/deploying-cf/components/images/director-components.png)
+![director-components](/images/director-components.png)
 
 ### Deployment Manager ###
 Responsible for creating, updating and deleting the deployments which are specified in the deployment file.
@@ -31,7 +31,7 @@ Some of the functions it performs are
 
 Figure below describes the flow when a user tries to SSH into a VM using Bosh CLI
 
-![director-instance_manager_1](../../../../../../../raw/master/source/docs/running/deploying-cf/components/images/director-instance_manager_1.png)
+![director-instance_manager_1](/images/director-instance_manager_1.png)
 
 ### Problem Manager ###
 This component helps scan a deployment for problems and helps apply resolutions.
@@ -64,13 +64,13 @@ Director routes the request coming at the following endpoints to the release man
 #### Lifecycle of a Release ####
 Figure below shows the interaction between various components of a Director when a release is created/ updated or deleted.
 
-![release-lifecycle](../../../../../../../raw/master/source/docs/running/deploying-cf/components/images/director-release-manager.png)
+![release-lifecycle](/images/director-release-manager.png)
 
 
 ### Stemcell Manager ###
 Stemcell Manager manages the Stem cells. It is responsible for creating, deleting or finding a stemcell.
 
-![director-stemcell-manager](../../../../../../../raw/master/source/docs/running/deploying-cf/components/images/director-stemcell-manager.png)
+![director-stemcell-manager](/images/director-stemcell-manager.png)
 
 Table below shows the endpoints exposed by the director for managing the Stemcells lifecycle
 
@@ -84,7 +84,7 @@ Table below shows the endpoints exposed by the director for managing the Stemcel
 ### Task Manager ###
 Task Manager is responsible for managing the tasks which are created and are being run the Job Runner
 
-![director-task-manager](../../../../../../../raw/master/source/docs/running/deploying-cf/components/images/director-task-manager.png)
+![director-task-manager](/images/director-task-manager.png)
 
 Following Http Endpoints are exposed by the Director to get information about a task
 
@@ -120,5 +120,5 @@ Helps fetch the VM State by creating a task which runs the Hob : VmState
 
 The vm state is fetched by creating a GET request on the `/deployments/:name/vms` endpoint in the Director. `name` is the name of the deployment.
 
-![director-vm-state-manager](../../../../../../../raw/master/source/docs/running/deploying-cf/components/images/director-vm-state-manager.png)
+![director-vm-state-manager](/images/director-vm-state-manager.png)
 
