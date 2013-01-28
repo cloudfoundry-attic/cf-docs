@@ -2,8 +2,6 @@
 title: Managing Applications
 ---
 
-## Managing Applications
-
 This section covers in detail the tools that can be used to manage applications and services running on Cloud Foundry. 
 
 * [vmc](vmc/index.html)

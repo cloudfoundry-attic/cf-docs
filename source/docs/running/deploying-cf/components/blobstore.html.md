@@ -1,9 +1,9 @@
 ---
-title: BOSH Components - Blobstore
+title: Blobstore
 ---
 
-The BOSH Blobstore is used to store the content of Releases (BOSH [Jobs](../reference/jobs.html.md) and [Packages](../reference/packages.html.md) in their source form as well as the compiled image of BOSH Packages.
-[Releases](../reference/releases.html.md) are uploaded by the [BOSH CLI](../reference/bosh-cli.html.md) and inserted into the Blobstore by the [BOSH Director](director.html.md).
+The BOSH Blobstore is used to store the content of Releases (BOSH [Jobs](../reference/jobs.html) and [Packages](../reference/packages.html) in their source form as well as the compiled image of BOSH Packages.
+[Releases](../reference/releases.html) are uploaded by the [BOSH CLI](../reference/bosh-cli.html) and inserted into the Blobstore by the [BOSH Director](director.html).
 When you deploy a Release, BOSH will orchestrate the compilation of packages and store the result in the Blobstore.
 When BOSH deploys a BOSH Job to a VM, the BOSH Agent will pull the specified Job and associated BOSH Packages from the Blobstore.
 

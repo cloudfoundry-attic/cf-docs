@@ -31,20 +31,27 @@
          </a>
          <br>
          <div id="bg-content">
+          <% unless current_page.url == "/" %>
+            <div class="breadcrumbs">
+              <ul>
+                <li>
+                  <a href="/">Home</a>
+                </li>
+                <%= trail_nav %>
+              </ul>
+            </div>
+            <h2><%= current_page.data.title %></h2>
+          <% end %>
           <%= yield %>
          </div>
        </div>
     </div>
     <div id="footer">
       <p>
-      Copyright ©
+      Copyright &#169;
       <script>
-        //<![CDATA[
-          //
-            var d = new Date();
-            document.write(d.getFullYear());
-          //
-        //]]>
+        var d = new Date();
+        document.write(d.getFullYear());
       </script>
       VMware, Inc. All rights reserved.
       </p>

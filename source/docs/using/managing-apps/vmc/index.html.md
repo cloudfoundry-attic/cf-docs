@@ -1,7 +1,5 @@
 ---
-title: Using Cloud Foundry - vmc
+title: vmc
 ---
-
-## Using Cloud Foundry - vmc
 
 Coming soon...

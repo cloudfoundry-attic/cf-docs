@@ -1,8 +1,6 @@
 ---
-title: Using Cloud Foundry - Libraries
+title: Libraries
 ---
-
-## Using Cloud Foundry - Libraries
 
 Coming soon...
 

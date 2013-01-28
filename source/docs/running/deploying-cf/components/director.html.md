@@ -1,5 +1,5 @@
 ---
-title: BOSH Components - Director
+title: Director
 ---
 
 The Director is the core orchestrating component in BOSH which controls creation of VMs, deployment, and other life cycle events of software and services. Command and control is handed over to the the Director-Agent interaction after the CPI has created resources.
