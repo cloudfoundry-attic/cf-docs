@@ -2,13 +2,13 @@
 title: BOSH Components
 ---
 
-[Intro text here]
+![fig1](../../../../../../../raw/master/source/docs/running/deploying-cf/components/images/fig1.png)
 
-- [Director](director.html)
-- [Messaging](messaging.html)
-- [Workers](workers.html)
-- [Health Monitor](health-monitor.html)
-- [Stemcell](stemcell.html)
-- [Agent](agent.html)
-- [Blobstore](blobstore.html)
-- [Micro BOSH](micro-bosh.html)
+- [Director](director.html.md)
+- [Messaging](messaging.html.md)
+- [Workers](workers.html.md)
+- [Health Monitor](health-monitor.html.md)
+- [Stemcell](stemcell.html.md)
+- [Agent](agent.html.md)
+- [Blobstore](blobstore.html.md)
+- [Micro BOSH](micro-bosh.html.md)
