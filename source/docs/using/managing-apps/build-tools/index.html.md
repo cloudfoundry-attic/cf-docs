@@ -1,8 +1,6 @@
 ---
-title: Using Cloud Foundry - Build Tools
+title: Build Tools
 ---
-
-## Using Cloud Foundry - Build Tools
 
 Coming soon...
 
