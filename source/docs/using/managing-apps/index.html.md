@@ -4,9 +4,13 @@ title: Managing Applications
 
 ## Managing Applications
 
-A brief introduction to STS and VMC
+This section covers in detail the tools that can be used to manage applications and services running on Cloud Foundry. 
 
-[VMC](vmc/index.html)
-[STS](sts/index.html)
+* [vmc](vmc/index.html)
 
-A reference to CFoundry README (rubygems?) for those who are Rubyists interested in building their own clients, 
+* [Spring Tool Suite](sts/index.html)
+
+* [Build tools](build-tools/index.html)
+
+* [Libraries](libs/index.html)
+
