@@ -23,7 +23,12 @@ For developers pushing applications to Cloud Foundry.
 
   * [vmc](docs/using/managing-apps/vmc/index.html)
 
-  * [STS](docs/using/managing-apps/sts/index.html)
+  * [Spring Tool Suite](docs/using/managing-apps/sts/index.html)
+  
+  * [Build tools](docs/using/managing-apps/build-tools/index.html)
+
+  * [Libraries](docs/using/managing-apps/libs/index.html)
+
 
 * [Working with Services](docs/using/working-with-services/index.html)
 
