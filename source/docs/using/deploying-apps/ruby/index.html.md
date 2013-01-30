@@ -2,8 +2,6 @@
 title: Ruby
 ---
 
-### Frameworks
-
 Working with Ruby, Rails and Sinatra on Cloud Foundry is easy, 
 
 ## Supported Frameworks 
@@ -12,27 +10,32 @@ Cloud Foundry supports multiple Ruby-based frameworks;
 
 ### Rails
 
-[Rails 3 - Getting Started](./rails-getting-started.html)
+&nbsp;&nbsp;[Getting Started](./rails-getting-started.html)
+- This guide will show you how to create an example application and deploy it to Cloud Foundry.
 
-This guide will show you how to create an example application and deploy it to Cloud Foundry.
+&nbsp;&nbsp;[Service Bindings](./rails-service-bindings.html)
+- This guide will show you how to create and bind a service to a Rails application.
 
-[Rails 3 - Service Bindings](./rails-service-bindings.html)
-This guide will show you how to create and bind a service to a Rails application.
+&nbsp;&nbsp;[Running Worker Tasks](./rails-running-worker-tasks.html)
+- This guide will show you how to create an example application and deploy it to Cloud Foundry.
 
-[Rails 3 - Running Worker Tasks](./rails-service-binding.html)
-This guide will show you how to create an example application and deploy it to Cloud Foundry.
+&nbsp;&nbsp;[Using the console](./rails-using-the-console.html)
+- This guide will show you how to create an example application and deploy it to Cloud Foundry.
 
 ### Rack
-[Rack - Getting Started](./rack-getting-started.html)
-
-[Rack - Service Bindings](./rack-service-binding.html)
+&nbsp;&nbsp;[Rack - Getting Started](./rack-getting-started.html)
+- This guide will show you how to create a simple Rack application and deploy it to Cloud Foundry.
 
 ### Sinatra
 
-[Sinatra - Getting Started](./sinatra-getting-started.html)
-
-[Sinatra - Service Bindings](./sinatra-service-binding.html)
+&nbsp;&nbsp;[Sinatra - Getting Started](./sinatra-getting-started.html)
+- This guide will show you how to create a simple Sinatra application and deploy it to Cloud Foundry.
 
 ### Standalone
 
-[Standalone - Getting Started](./standalone-getting-started.html)
+&nbsp;&nbsp;[Standalone - Getting Started](./standalone-app-getting-started.html)
+- This guide will show you how to create a standalone application that will execute ruby code at a given interval using the Clockwork gem.
+
+## Binding Services
+&nbsp;&nbsp;[Service Bindings](./ruby-service-bindings.html)
+- A general guide to binding services to Ruby applications.

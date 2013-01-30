@@ -6,7 +6,6 @@ title: Rails 3, Using the Console
 * [Introduction](#intro)
 * [Installing the console plugin for VMC](#install)
 * [Invoking the console](#invoke)
-* [Troubleshooting](#troubleshooting)
 
 ## <a id='intro'></a>Introduction ##
 

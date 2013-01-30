@@ -1,5 +1,5 @@
 ---
-title: Sinatra, Getting Started
+title: Rack, Getting Started
 ---
 
 ### Quick links ###
@@ -11,7 +11,7 @@ title: Sinatra, Getting Started
 
 ## <a id='intro'></a>Introduction ##
 
-Cloud Foundry provides support for Sinatra applications. Work through this guide to create a sample application and deploy it to Cloud Foundry.
+Cloud Foundry supports any Rack based application framework. Work through this guide to create a sample application and deploy it to Cloud Foundry.
 
 ## <a id='prerequisites'></a>Prerequisites ##
 
@@ -27,9 +27,9 @@ To complete this quickstart guide, you need to fulfill the following prerequisit
 Create a folder for your Rack application and create a basic application structure.
 
 <pre class="terminal">
-$ mkdir sinatra_hello_world
-$ cd sinatra_hello_world
-$ touch hello_world.rb config.ru Gemfile
+$ mkdir my_rack_app
+$ cd my_rack_app
+$ touch hello_world.rb config.ru
 </pre>
 
 Initialise both files as follows;
@@ -37,11 +37,9 @@ Initialise both files as follows;
 hello_world.rb
 
 ~~~ruby
-require 'sinatra/base'
-
-class HelloWorld < Sinatra::Base
-  get "/" do
-    "Hello, World!"
+class HelloWorld
+  def call(env)
+    [200, {"Content-Type" => "text/plain"}, ["Hello world!"]]
   end
 end
 ~~~
@@ -52,19 +50,6 @@ config.ru
 require './hello_world'
 run HelloWorld.new
 ~~~
-
-Gemfile
-
-~~~ruby
-source :rubygems
-gem 'sinatra'
-~~~
-
-Install the required Sinatra gem using Bundler;
-
-<pre class="terminal">
-$ bundle install
-</pre>
 
 You should be able to run the application locally by using Rackup;
 
@@ -84,7 +69,7 @@ Push the application with VMC;
 <pre class="terminal">
 $ vmc push
 
-Name> sinatra-hello-world
+Name> rack-test
 
 Instances> 1
 
@@ -110,9 +95,9 @@ Memory Limit> 128M
 
 Creating rack-test... OK
 
-1: sinatra-hello-world.cloudfoundry.com
+1: rack-test.cloudfoundry.com
 2: none
-URL> sinatra-hello-world.cloudfoundry.com
+URL> rack-test.cloudfoundry.com
 
 Updating rack-test... OK
 
@@ -122,9 +107,9 @@ Bind other services to application?> n
 
 Save configuration?> n
 
-Uploading sinatra-hello-world... OK
-Starting sinatra-hello-world... OK
-Checking sinatra-hello-world... OK
+Uploading rack-test... OK
+Starting rack-test... OK
+Checking rack-test... OK
 </pre>
 
 Once this is deployed, you should be able to view the application on Cloud Foundry at the URL you chose during the push.

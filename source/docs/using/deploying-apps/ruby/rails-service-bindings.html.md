@@ -5,14 +5,13 @@ title: Rails 3, Service Bindings
 ### Quick links ###
 * [Introduction](#intro)
 * [Prerequisites](#prerequisites)
-* [Auto Configuration](#autoconfig)
 * [Configuring your Gemfile](#gemfile)
 * [Modifying the sample application](#modifying)
 * [Creating and binding the service](#creating-and-binding)
 
 ## <a id='intro'></a>Introduction ##
 
-This guide is for developers who wish to bind a data source to a Rails 3 application deployed and running on Cloud Foundry.
+This guide is for developers who wish to bind an ORM type data source to a Rails 3 application deployed and running on Cloud Foundry. For information on binding other data sources to Rails and other Ruby-based applications see the Ruby [Service Bindings](./ruby-service-bindings.html) page.
 
 ## <a id='prerequisites'></a>Prerequisites ##
 
@@ -25,8 +24,6 @@ To complete this quickstart guide, you need to fulfill the following prerequisit
 * The [VMC](../../managing-apps/) command line tool 
 * A sample application such as the one created in [this](./rails-getting-started.html) tutorial
 
-## <a id='autoconfig'></a>Auto Configuration ##
-
 ## <a id='gemfile'></a>Configuring your Gemfile ##
 
 Depending on which service you plan to bind to your application, you need to make sure the correct gem is included in the project and the bundle has been updated. Edit the file 'Gemfile' and make sure the following gem is made available to the production environment;
@@ -38,8 +35,6 @@ MySQL             mysql2
 PostgreSQL        pg
 MongoDB           mongo_mapper
 
-Redis             redis
-Rabbit            ampq
 </pre>
 
 Add the gems for the bound services and update the bundle

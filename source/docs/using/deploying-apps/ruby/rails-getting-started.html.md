@@ -8,7 +8,6 @@ title: Rails 3, Getting Started
 * [Creating a Sample Project](#sample-project)
 * [Assets, Precompile or Not?](#assets)
 * [Deploying Your Application](#deploying)
-* [Rails Legacy Versions](#rails-legacy-versions)
 * [Next Steps - Binding a service](#next-steps)
 
 
