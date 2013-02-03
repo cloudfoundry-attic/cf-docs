@@ -7,6 +7,23 @@ If you have minor changes, you can contribute by forking this repository, modify
 
 If you want to contribute on a larger scale, see the [Pivotal Project for CF Docs](https://www.pivotaltracker.com/projects/713283#).
 
+## Contributing docs
+
+You can either contribute directly within Github or by cloning the repository to your local machine using git.
+
+## Viewing docs locally
+
+These docs are rendered using [middleman](https://github.com/middleman/middleman). To pull down the raw documentation project and view the docs on your local machine using middleman:
+
+```
+git clone https://github.com/cloudfoundry/docs.git cloudfoundry-docs
+cd cloudfoundry-docs
+bundle
+middleman server
+```
+
+Then view [http://0.0.0.0:4567](http://0.0.0.0:4567) in your browser.
+
 ## More help
 
 ### Twitter
