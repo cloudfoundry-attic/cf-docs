@@ -393,3 +393,10 @@ fieldset legend { font-weight: bold; background: white; padding: 0 3px; margin: 
 .vg { color: #008080 } /* Name.Variable.Global */
 .vi { color: #008080 } /* Name.Variable.Instance */
 .il { color: #009999 } /* Literal.Number.Integer.Long */
+
+#github img {
+  position: absolute;
+  top: 0;
+  right: 0;
+  border: 0;
+}

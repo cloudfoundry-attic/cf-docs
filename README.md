@@ -7,22 +7,43 @@ If you have minor changes, you can contribute by forking this repository, modify
 
 If you want to contribute on a larger scale, see the [Pivotal Project for CF Docs](https://www.pivotaltracker.com/projects/713283#).
 
+## Contributing docs
 
-**Discussion Groups**
+You can either contribute directly within Github or by cloning the repository to your local machine using git.
 
-[Using Cloud Foundry](http://stackoverflow.com/questions/tagged/cloudfoundry)
+## Viewing docs locally
 
-[Running / Setting up Cloud Foundry](https://groups.google.com/a/cloudfoundry.org/forum/?fromgroups#!forum/vcap-dev)
+These docs are rendered using [middleman](https://github.com/middleman/middleman). To pull down the raw documentation project and view the docs on your local machine using middleman:
 
-[Using BOSH](https://groups.google.com/a/cloudfoundry.org/forum/?fromgroups#!forum/bosh-users)
+```
+git clone https://github.com/cloudfoundry/docs.git cloudfoundry-docs
+cd cloudfoundry-docs
+bundle
+middleman server
+```
 
-[Running / Setting up BOSH](https://groups.google.com/a/cloudfoundry.org/forum/?fromgroups#!forum/bosh-dev)
+Then view [http://0.0.0.0:4567](http://0.0.0.0:4567) in your browser.
 
-**Bugs**
+## More help
 
-[cloudfoundry.atlassian.net](http://cloudfoundry.atlassian.net/)
+### Twitter
 
-**Support**
+* Follow the [@cloudfoundry](https://twitter.com/cloudfoundry) twitter account for retweets of blogs and news from the world of Cloud Foundry
 
-[support.cloudfoundry.com](http://support.cloudfoundry.com)
+### Discussion Groups
+
+* [Using Cloud Foundry](http://stackoverflow.com/questions/tagged/cloudfoundry)
+* [Running / Setting up Cloud Foundry](https://groups.google.com/a/cloudfoundry.org/forum/?fromgroups#!forum/vcap-dev)
+* [Using BOSH](https://groups.google.com/a/cloudfoundry.org/forum/?fromgroups#!forum/bosh-users)
+* [Running / Setting up BOSH](https://groups.google.com/a/cloudfoundry.org/forum/?fromgroups#!forum/bosh-dev)
+
+### Bugs
+
+When you are getting started with Cloud Foundry, and are still learning your way around the Cloud Foundry repositories, you can raise bugs with [cloudfoundry.atlassian.net](http://cloudfoundry.atlassian.net/).
+
+As you grow more experienced, you will discover that many of the sub-projects of Cloud Foundry have their own ticket systems via each project's GitHub Issues.
+
+### Support
+
+* [support.cloudfoundry.com](http://support.cloudfoundry.com)
 
