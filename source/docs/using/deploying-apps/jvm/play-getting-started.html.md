@@ -135,3 +135,5 @@ If all goes well, you application should be available at the url you specified d
 ## <a id='next-steps'></a>Next steps - Binding a service ##
 
 Binding and using a service with Play 2.0 is covered [here](./play-service-bindings.html)
+
+
