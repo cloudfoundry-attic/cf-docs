@@ -3,7 +3,7 @@ title: Welcome to Cloud Foundry Documentation
 ---
 
 This set of materials will replace all Cloud Foundry documentation, for cloudfoundry.com, vcap, and bosh, in Q1 of 2013.
-This information is forward looking and favors 'next generation' components which may not be applicable to existing Cloud Foundry installations.
+This information is forward looking and favors 'next generation' components which may not be applicable to existing Cloud Foundry installations. For a look at our roadmap - go [here](docs/roadmap.html).
 
 ## [Using Cloud Foundry](docs/using/index.html)
 
