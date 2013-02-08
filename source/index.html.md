@@ -3,7 +3,12 @@ title: Welcome to Cloud Foundry Documentation
 ---
 
 This set of materials will replace all Cloud Foundry documentation, for cloudfoundry.com, vcap, and bosh, in Q1 of 2013.
-This information is forward looking and favors 'next generation' components which may not be applicable to existing Cloud Foundry installations. For a look at our roadmap - go [here](docs/roadmap.html).
+
+This information is forward-looking and favors 'next generation' components which may not be applicable to existing Cloud Foundry installations. 
+
+Docs are a work in progress and we welcome your [contributions](http://github.com/cloudfoundry/cf-docs).
+
+For a look at our roadmap - go [here](docs/roadmap.html).
 
 ## [Using Cloud Foundry](docs/using/index.html)
 
@@ -11,7 +16,7 @@ For developers pushing applications to Cloud Foundry.
 
 * [Deploying Apps](docs/using/deploying-apps/index.html)
 
-  * [Java / jvm based](docs/using/deploying-apps/jvm/index.html)
+  * [Java / JVM-based](docs/using/deploying-apps/jvm/index.html)
 
   * [Node.js](docs/using/deploying-apps/javascript/index.html)
 
@@ -28,7 +33,6 @@ For developers pushing applications to Cloud Foundry.
   * [Build tools](docs/using/managing-apps/build-tools/index.html)
 
   * [Libraries](docs/using/managing-apps/libs/index.html)
-
 
 * [Working with Services](docs/using/working-with-services/index.html)
 
@@ -68,4 +72,4 @@ For dev/ops people managing instances of Cloud Foundry.
 * [Monitoring Cloud Foundry](docs/running/monitoring/index.html)
 
 
-Docs are a work in progress and we welcome your [help](http://github.com/cloudfoundry/docs).
+
