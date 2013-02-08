@@ -16,7 +16,7 @@ You can either contribute directly within Github or by cloning the repository to
 These docs are rendered using [middleman](https://github.com/middleman/middleman). To pull down the raw documentation project and view the docs on your local machine using middleman:
 
 ```
-git clone https://github.com/cloudfoundry/docs.git cloudfoundry-docs
+git clone https://github.com/cloudfoundry/cf-docs.git cloudfoundry-docs
 cd cloudfoundry-docs
 bundle
 middleman server
