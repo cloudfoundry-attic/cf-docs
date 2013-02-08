@@ -8,7 +8,7 @@ This section of the Cloud Foundry documentation is for developers pushing applic
 
 * [Deploying Apps](deploying-apps/index.html)
 
-  * [Java / JVM based](deploying-apps/jvm/index.html)
+  * [Java / JVM-based](deploying-apps/jvm/index.html)
 
   * [Node.js](deploying-apps/javascript/index.html)
 
