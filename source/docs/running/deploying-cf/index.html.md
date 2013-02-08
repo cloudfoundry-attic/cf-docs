@@ -10,6 +10,7 @@ BOSH was originally developed in the context of the Cloud Foundry Application Pl
 - [Deploying to EC2](ec2/index.html)
 - [Deploying to OpenStack](openstack/index.html)
 - [Deploying to vSphere](vsphere/index.html)
+- [Deploying to vCloud Director](vcloud/index.html)
 - [Monitoring](/docs/running/monitoring/index.html)
 - References
   - [Jobs](reference/jobs.html)
