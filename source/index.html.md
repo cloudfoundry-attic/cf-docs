@@ -46,7 +46,6 @@ For developers pushing applications to Cloud Foundry.
 
   * [RabbitMQ](docs/using/working-with-services/rabbit.html)
 
-
 ## [Running Cloud Foundry](docs/running/index.html)
 
 For dev/ops people managing instances of Cloud Foundry.
@@ -71,5 +70,10 @@ For dev/ops people managing instances of Cloud Foundry.
 
 * [Monitoring Cloud Foundry](docs/running/monitoring/index.html)
 
+## [Community](docs/community/index.html)
 
+Extensions, tools and services provided by the Cloud Foundry community.
 
+  * [Hosting providers](docs/community/hosting-providers.html)
+  * [Consulting](docs/community/consulting.html)
+  * [Contrib](docs/community/contrib.html)
