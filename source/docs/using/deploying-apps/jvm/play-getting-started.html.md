@@ -13,14 +13,14 @@ title: Play, Getting Started
 
 Cloud Foundry supports Play 2.0 as a first-class framework. Play is a lightweight, stateless, web-friendly framework for Java and Scala. Developers can leverage this event-driven non-blocking IO architecture to build highly scalable applications. This guide explains how to get a Play 2.0 application up and running on Cloud Foundry.
 
-## <a id='prerequesites'></a>Prerequesites ##
+## <a id='prerequisites'></a>Prerequisites ##
 
 To complete this quickstart guide, you need to fulfill the following prerequisites;
 
 * A Cloud Foundry account, you can sign up [here](https://my.cloudfoundry.com/signup)
-* [Java JDK >= 6](http://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-1880260.html)
-* [Play 2.0](http://www.playframework.org/download)
-* The [VMC](../../managing-apps/) command line tool 
+* [Java JDK](http://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-1880260.html) 6 or later
+* [Play Framework](http://www.playframework.org/download) 2.0 or later
+* The [vmc](../../managing-apps/vmc) command line tool 
 
 ## <a id='sample-project'></a>Creating a Sample Project ##
 
@@ -36,7 +36,7 @@ $ play new hello-world
              
 play! 2.0.2, http://www.playframework.org
 
-The new application will be created in /Users/danhigham/Projects/play/hello-world
+The new application will be created in [path]/hello-world
 
 What is the application name? 
 > hello-world
@@ -70,23 +70,23 @@ Deploying to Cloud Foundry is straight forward, but as Play uses the Java runtim
 
 <pre class="terminal">
 $ play redist
-[info] Loading project definition from /Users/danhigham/Projects/play/hello-world/project
-[info] Set current project to hello-world (in build file:/Users/danhigham/Projects/play/hello-world/)
-[info] Updating {file:/Users/danhigham/Projects/play/hello-world/}hello-world...
+[info] Loading project definition from [path]/hello-world/project
+[info] Set current project to hello-world (in build file:[path]/hello-world/)
+[info] Updating {file:[path]/hello-world/}hello-world...
 [info] Done updating.                                                                  
-[info] Compiling 6 Scala sources and 1 Java source to /Users/danhigham/Projects/play/hello-world/target/scala-2.9.1/classes...
-[info] Packaging /Users/danhigham/Projects/play/hello-world/target/scala-2.9.1/hello-world_2.9.1-1.0-SNAPSHOT.jar ...
+[info] Compiling 6 Scala sources and 1 Java source to [path]/hello-world/target/scala-2.9.1/classes...
+[info] Packaging [path]/hello-world/target/scala-2.9.1/hello-world_2.9.1-1.0-SNAPSHOT.jar ...
 [info] Done packaging.
 
-Your application is ready in /Users/danhigham/Projects/play/hello-world/dist/hello-world-1.0-SNAPSHOT.zip
+Your application is ready in [path]/dist/hello-world-1.0-SNAPSHOT.zip
 
 [success] Total time: 12 s, completed Feb 4, 2013 2:39:26 PM
 </pre>
 
-Note the penultimate line, specifying the location of distributable zip file. Making sure you are logged in to CloudFoundry, you can deploy, specifying the path of the zip using the 'path' option.
+Note the penultimate line, specifying the location of distributable zip file. Making sure you are logged in to Cloud Foundry, you can deploy the application using the `vmc` command and specifying the path to the zip file using the `--path` option.
 
 <pre class="terminal">
-$ vmc push --path=/Users/danhigham/Projects/play/hello-world/dist/hello-world-1.0-SNAPSHOT.zip
+$ vmc push --path=dist/hello-world-1.0-SNAPSHOT.zip
 Name> play-hello-world
 
 Instances> 1
@@ -130,7 +130,7 @@ Starting play-hello-world... OK
 Checking play-hello-world... OK
 </pre>
 
-If all goes well, you application should be available at the url you specified during the push.
+Note that you will need to provide a different URL than the one in the example, since the URL must be unique on Cloud Foundry. If all goes well, you application should be available at the URL specified during the push.
 
 ## <a id='next-steps'></a>Next steps - Binding a service ##
 
