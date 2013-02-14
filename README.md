@@ -44,11 +44,11 @@ There is also a #cloudfoundry IRC channel on the Freenode network, but that may 
 
 ### Bugs
 
-When you are getting started with Cloud Foundry, and are still learning your way around the repositories, you can raise bugs with [cloudfoundry.atlassian.net](http://cloudfoundry.atlassian.net/).
-
-As you grow more experienced, you will discover that many of the sub-projects of Cloud Foundry have their own ticket systems via each project's GitHub Issues.
+When you are getting started with Cloud Foundry, and are still learning your way around the repositories, you can file bugs in each repo's Github Issue section.
 
 ### Support
+
+Support issues that are particular to the Cloud Foundry public PaaS available at http://cloudfoundry.com can be filed at the address below.
 
 * [support.cloudfoundry.com](http://support.cloudfoundry.com)
 
