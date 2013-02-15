@@ -254,5 +254,4 @@ Copy the below content and paste it in `micro-bosh.yml`
     Enter password: *****
     Logged in as `admin'
 
-**Note:** It will ask for the username and password, enter admin for both.
-**Note:** Create a new BOSH user - the 'admin' will be automatically deleted
+**Note:** It will ask for the username and password, enter admin for both.Also, Create a new BOSH user - the 'admin' will be automatically deleted
