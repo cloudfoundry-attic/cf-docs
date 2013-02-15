@@ -29,35 +29,36 @@ Install Bosh using Micro BOSH on OpenStack
 		% cd stemcells
 		% bosh public stemcells --all
     
-+---------------------------------------------+-----------------------------+
-| Name                                        | Tags                        |
-+---------------------------------------------+-----------------------------+
-| bosh-stemcell-0.3.0.tgz                     | vsphere                     |
-| bosh-stemcell-0.4.4.tgz                     | vsphere                     |
-| bosh-stemcell-0.4.7.tgz                     | vsphere                     |
-| bosh-stemcell-0.5.2.tgz                     | vsphere                     |
-| bosh-stemcell-aws-0.5.1.tgz                 | aws                         |
-| bosh-stemcell-aws-0.6.4.tgz                 | aws, stable                 |
-| bosh-stemcell-aws-0.6.7.tgz                 | aws                         |
-| bosh-stemcell-aws-0.7.0.tgz                 | aws, test                   |
-| bosh-stemcell-openstack-0.6.7.tgz           | openstack                   |
-| bosh-stemcell-openstack-kvm-0.7.0.tgz       | openstack, kvm, test        |
-| bosh-stemcell-vsphere-0.6.1.tgz             | vsphere                     |
-| bosh-stemcell-vsphere-0.6.2.tgz             | vsphere                     |
-| bosh-stemcell-vsphere-0.6.3.tgz             | vsphere                     |
-| bosh-stemcell-vsphere-0.6.4.tgz             | vsphere, stable             |
-| bosh-stemcell-vsphere-0.6.7.tgz             | vsphere, stable             |
-| bosh-stemcell-vsphere-0.7.0.tgz             | vsphere, test               |
-| micro-bosh-stemcell-aws-0.6.4.tgz           | aws, micro, stable          |
-| micro-bosh-stemcell-aws-0.7.0.tgz           | aws, micro, test            |
-| micro-bosh-stemcell-aws-0.8.1.tgz           | aws, micro, test            |
-| micro-bosh-stemcell-openstack-0.7.0.tgz     | openstack, micro, test      |
-| micro-bosh-stemcell-openstack-kvm-0.8.1.tgz | openstack, kvm, micro, test |
-| micro-bosh-stemcell-vsphere-0.6.4.tgz       | vsphere, micro, stable      |
-| micro-bosh-stemcell-vsphere-0.7.0.tgz       | vsphere, micro, test        |
-| micro-bosh-stemcell-vsphere-0.8.1.tgz       | vsphere, micro, test        |
-+---------------------------------------------+-----------------------------+
-		To download use 'bosh download public stemcell <stemcell_name>'.
+        +---------------------------------------------+-----------------------------+
+        | Name                                        | Tags                        |
+        +---------------------------------------------+-----------------------------+
+		| bosh-stemcell-0.3.0.tgz                     | vsphere                     |
+		| bosh-stemcell-0.4.4.tgz                     | vsphere                     |
+		| bosh-stemcell-0.4.7.tgz                     | vsphere                     |
+		| bosh-stemcell-0.5.2.tgz                     | vsphere                     |
+		| bosh-stemcell-aws-0.5.1.tgz                 | aws                         |
+		| bosh-stemcell-aws-0.6.4.tgz                 | aws, stable                 |
+		| bosh-stemcell-aws-0.6.7.tgz                 | aws                         |
+		| bosh-stemcell-aws-0.7.0.tgz                 | aws, test                   |
+		| bosh-stemcell-openstack-0.6.7.tgz           | openstack                   |
+		| bosh-stemcell-openstack-kvm-0.7.0.tgz       | openstack, kvm, test        |
+		| bosh-stemcell-vsphere-0.6.1.tgz             | vsphere                     |
+		| bosh-stemcell-vsphere-0.6.2.tgz             | vsphere                     |
+		| bosh-stemcell-vsphere-0.6.3.tgz             | vsphere                     |
+		| bosh-stemcell-vsphere-0.6.4.tgz             | vsphere, stable             |
+		| bosh-stemcell-vsphere-0.6.7.tgz             | vsphere, stable             |
+		| bosh-stemcell-vsphere-0.7.0.tgz             | vsphere, test               |
+		| micro-bosh-stemcell-aws-0.6.4.tgz           | aws, micro, stable          |
+		| micro-bosh-stemcell-aws-0.7.0.tgz           | aws, micro, test            |
+		| micro-bosh-stemcell-aws-0.8.1.tgz           | aws, micro, test            |
+		| micro-bosh-stemcell-openstack-0.7.0.tgz     | openstack, micro, test      |
+		| micro-bosh-stemcell-openstack-kvm-0.8.1.tgz | openstack, kvm, micro, test |
+		| micro-bosh-stemcell-vsphere-0.6.4.tgz       | vsphere, micro, stable      |
+		| micro-bosh-stemcell-vsphere-0.7.0.tgz       | vsphere, micro, test        |
+		| micro-bosh-stemcell-vsphere-0.8.1.tgz       | vsphere, micro, test        |
+		+---------------------------------------------+-----------------------------+
+
+To download use 'bosh download public stemcell <stemcell_name>'.
 
 
 1. Download a public stemcell. *NOTE, in this case you do not use the micro bosh stemcell.*
