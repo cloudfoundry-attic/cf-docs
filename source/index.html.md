@@ -26,6 +26,8 @@ For developers pushing applications to Cloud Foundry.
 
 * [Managing Apps](docs/using/managing-apps/index.html)
 
+  * [API](docs/reference/api.html)
+
   * [vmc](docs/using/managing-apps/vmc/index.html)
 
   * [Spring Tool Suite](docs/using/managing-apps/sts/index.html)
@@ -70,6 +72,13 @@ For dev/ops people managing instances of Cloud Foundry.
 * [Micro Cloud Foundry](docs/running/micro_cloud_foundry/index.html)
 
 * [Monitoring Cloud Foundry](docs/running/monitoring/index.html)
+
+
+## Reference
+
+Detailed reference materials
+
+* [API](docs/reference/api.html)
 
 
 

@@ -18,6 +18,8 @@ This section of the Cloud Foundry documentation is for developers pushing applic
 
 * [Managing Apps](managing-apps/index.html)
 
+  * [API](../reference/api.html)
+
   * [vmc](managing-apps/vmc/index.html)
 
   * [Spring Tool Suite](managing-apps/sts/index.html)
