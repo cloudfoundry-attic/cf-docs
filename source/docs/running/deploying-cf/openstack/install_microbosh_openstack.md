@@ -146,9 +146,9 @@ This creates the Micro Bosh VM and it shows up in Horizon
 
 ####Create Manifest File
 
-    vim micro-bosh.yml
+    vim micro_bosh.yml
 
-Copy the below content and paste it in `micro-bosh.yml`
+Copy the below content and paste it in `micro_bosh.yml`
 
 
     name: microbosh-openstack
