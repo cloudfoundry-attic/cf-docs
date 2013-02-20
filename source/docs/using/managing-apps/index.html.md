@@ -6,9 +6,9 @@ This section covers in detail the tools that can be used to manage applications 
 
 * [vmc](vmc/index.html)
 
-* [Spring Tool Suite](sts/index.html)
+* [IDE Integration](ide/index.html)
 
-* [Build tools](build-tools/index.html)
+* [Build Tools](build-tools/index.html)
 
-* [Libraries](libs/index.html)
+* [API and Libraries](libs/index.html)
 
