@@ -74,11 +74,11 @@ To download use 'bosh download public stemcell <stemcell_name>'.
 1. You can create a BOSH release or use one of the public releases. The following steps show the use of a public release.
 
 		cd /home/bosh_user
-		gerrit clone ssh://[<your username>@]reviews.cloudfoundry.org:29418/bosh-release.git
+		git clone  git@github.com:cloudfoundry/bosh.git
 
 1. Upload a public release from bosh-release
 
-		cd /home/bosh_user/bosh-release/
+		cd /home/bosh_user/bosh/release/
 		bosh upload release releases/bosh-10.yml
 
 
