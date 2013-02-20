@@ -6,6 +6,8 @@ Cloud Foundry is an open platform as a service, providing a choice of developer 
 
 This section of the Cloud Foundry documentation is for developers pushing applications to Cloud Foundry. If you are interested in deploying and managing your own Cloud Foundry platform, refer to the [Running Cloud Foundry](/docs/running/index.html) section of the documentation. 
 
+* [Application Architecture Considerations](app-arch/index.html)
+
 * [Deploying Apps](deploying-apps/index.html)
 
   * [Java / JVM-based](deploying-apps/jvm/index.html)
