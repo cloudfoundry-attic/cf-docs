@@ -26,15 +26,13 @@ For developers pushing applications to Cloud Foundry.
 
 * [Managing Apps](docs/using/managing-apps/index.html)
 
-  * [API](docs/reference/api.html)
-
   * [vmc](docs/using/managing-apps/vmc/index.html)
 
-  * [Spring Tool Suite](docs/using/managing-apps/sts/index.html)
+  * [IDE Integration](docs/using/managing-apps/ide/index.html)
   
-  * [Build tools](docs/using/managing-apps/build-tools/index.html)
+  * [Build Tools](docs/using/managing-apps/build-tools/index.html)
 
-  * [Libraries](docs/using/managing-apps/libs/index.html)
+  * [API and Libraries](docs/using/managing-apps/libs/index.html)
 
 * [Working with Services](docs/using/working-with-services/index.html)
 
@@ -72,16 +70,17 @@ For dev/ops people managing instances of Cloud Foundry.
 
 * [Monitoring Cloud Foundry](docs/running/monitoring/index.html)
 
-## Reference
+## [Reference](docs/reference/index.html)
 
-Detailed reference materials
+Detailed reference materials.
 
-* [API](docs/reference/api.html)
+* [Cloud Foundry REST API](docs/reference/cc-api.html)
 
 ## [Community](docs/community/index.html)
 
-Extensions, tools and services provided by the Cloud Foundry community.
+Extensions, tools and services provided by the Cloud Foundry community and partners.
 
+  * [Technical Integration](docs/community/integration/index.html)
   * [Hosting providers](docs/community/hosting-providers.html)
   * [Consulting](docs/community/consulting.html)
   * [Contrib](docs/community/contrib.html)
