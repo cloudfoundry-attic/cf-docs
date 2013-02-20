@@ -77,3 +77,11 @@ Change the dea_next code locally, then on the Micro Cloud run:
 <pre class="terminal">
 $ monit restart dea_next
 </pre>
+
+## Logging ##
+
+You can tail the logs on the Micro Cloud Foundry by running:
+
+<pre class="terminal">
+ssh root@&lt;your Micro Cloud domain&gt; 'tail -f /var/vcap/sys/log/**/*.log'
+</pre>
