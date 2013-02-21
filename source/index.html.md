@@ -68,6 +68,8 @@ For dev/ops people managing instances of Cloud Foundry.
 
   * [Deploying to vSphere](docs/running/deploying-cf/vsphere/index.html)
 
+* [Deploying Cloud Foundry with Chef](docs/running/deploying-cf-with-chef/index.html)
+
 * [Micro Cloud Foundry](docs/running/micro_cloud_foundry/index.html)
 
 * [Monitoring Cloud Foundry](docs/running/monitoring/index.html)
