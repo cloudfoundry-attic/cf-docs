@@ -14,6 +14,8 @@ For a look at our roadmap - go [here](docs/roadmap.html).
 
 For developers pushing applications to Cloud Foundry.
 
+* [Application Architecture Considerations](docs/using/app-arch/index.html)
+
 * [Deploying Apps](docs/using/deploying-apps/index.html)
 
   * [Java / JVM-based](docs/using/deploying-apps/jvm/index.html)
