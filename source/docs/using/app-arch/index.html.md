@@ -13,13 +13,13 @@ Applications written using the runtimes and frameworks supported by Cloud Foundr
 
 Applications running on Cloud Foundry should avoid writing files to the local file system. There are a few reasons for this. 
 
-First, local file system storage is ephemeral - it is not guaranteed to persist for the entire life of the application. When an application instance crashes or is stopped, the resources assigned to that instance are reclaimed by the platform. When the instances is re-started, the application could be running on a different virtual machine or physical machine. This means that, although your application is able to write local files while it is running, the files will disappear after the application restarts. 
+First, local file system storage is ephemeral - it is not guaranteed to persist for the entire life of the application. When an application instance crashes or is stopped, the resources assigned to that instance are reclaimed by the platform. When the instance is re-started, the application could be running on a different virtual machine or physical machine. This means that, although your application is able to write local files while it is running, the files will disappear after the application restarts. 
 
 Second, instances of the same application do not share a local file system. The application instances could be running in different DEA nodes, in different virtual machines, and on different physical machines. Because of this, a file written by one instance of an application is not visible to other instances of the same application. 
 
 If the files your application is writing are temporary, then this should not be a problem. However, if your application needs the data in the files to persist across application restarts, or the data needs to be shared across all running instances of the application, then the local file system should not be used. 
 
-There are a few alternatives to using the local file system. One option is to use a Cloud Foundry services such as the MongoDB document database or a supported relational database (MySQL or vFabric Postgres). Another option is to use cloud storage providers such as [Amazon S3](http://aws.amazon.com/s3/), [Google Cloud Storage](https://cloud.google.com/products/cloud-storage), [Dropbox](https://www.dropbox.com/developers), or [Box](http://developers.box.com/).
+There are a few alternatives to using the local file system. One option is to use a Cloud Foundry services such as the MongoDB document database or a supported relational database (MySQL or vFabric Postgres). Another option is to use cloud storage providers such as [Amazon S3](http://aws.amazon.com/s3/), [Google Cloud Storage](https://cloud.google.com/products/cloud-storage), [Dropbox](https://www.dropbox.com/developers), or [Box](http://developers.box.com/). If your application needs to communicate across different instances of itself (for example to share state etc), consider the use of a cache like Redis or make use a messaging-based architecture with RabbitMQ.
 
 ## <a id="sessions"></a>HTTP Sessions ##
 
@@ -33,7 +33,7 @@ Any session data that needs to be available even after an application crashes or
 
 Applications running on Cloud Foundry can only receive requests using the URLs configured for the application, and only on ports 80 (the standard HTTP port) and 443 (the standard HTTPS port).
 
-Services instances (MySQL, vFabric Postres, MongoDB, Redis, RabbitMQ) running on Cloud Foundry can only be accessed by applications running on Cloud Foundry. Service instances can not be accessed by programs running outside of Cloud Foundry, since only ports 80 and 443 are available. The `tunnel` commands provided by [vmc](/docs/using/managing-apps/vmc) provide a way to access service instances only from the machine running vmc.
+Service instances (MySQL, vFabric Postres, MongoDB, Redis, RabbitMQ) running on Cloud Foundry can only be accessed by applications running on Cloud Foundry. Service instances cannot be accessed by programs running outside of Cloud Foundry, since only ports 80 and 443 are available. The `tunnel` commands provided by [vmc](/docs/using/managing-apps/vmc) provide a way to access service instances only from the machine running vmc.
 
 ## <a id="smtp"></a>SMTP ##
 
