@@ -1,4 +1,6 @@
-# BOSH Command Line Interface #
+---
+title: BOSH Command Line Interface
+---
 
 The BOSH command line interface is used to interact with the BOSH director to perform actions on the cloud.  For the most recent documentation on its functions, install BOSH and simply type `bosh`.  Usage:
 
