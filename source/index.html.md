@@ -38,15 +38,17 @@ For developers pushing applications to Cloud Foundry.
 
 * [Working with Services](docs/using/working-with-services/index.html)
 
-  * [MySQL](docs/using/working-with-services/mysql.html)
+  * [MySQL](docs/using/working-with-services/relational-db/mysql.html)
 
-  * [PostgreSQL](docs/using/working-with-services/postgresql.html)
+  * [PostgreSQL](docs/using/working-with-services/relational-db/postgresql.html)
 
-  * [Redis](docs/using/working-with-services/redis.html)
+  * [Redis](docs/using/working-with-services/key-value-store/redis.html)
 
-  * [MongoDB](docs/using/working-with-services/mongodb.html)
+  * [MongoDB](docs/using/working-with-services/key-value-store/mongodb.html)
 
-  * [RabbitMQ](docs/using/working-with-services/rabbit.html)
+  * [RabbitMQ](docs/using/working-with-services/message-queue/rabbit.html)
+
+  * [Service Tunneling](docs/using/working-with-services/tunneling/index.html)
 
 ## [Running Cloud Foundry](docs/running/index.html)
 
@@ -56,17 +58,21 @@ For dev/ops people managing instances of Cloud Foundry.
 
 * [Cloud Foundry Architecture](docs/running/architecture/index.html)
 
-* [Deploying Cloud Foundry](docs/running/deploying-cf/index.html)
+* [BOSH](docs/running/bosh/index.html)
 
-  * [Components](docs/running/deploying-cf/components/index.html)
+  * [Components](docs/running/bosh/components/index.html)
+  * [Local Setup](docs/running/bosh/setup/index.html)
+  * [Reference](docs/running/bosh/reference/index.html)
 
-  * [Understanding Releases](docs/running/deploying-cf/releases/index.html)
+* [Deploying Cloud Foundry with BOSH](docs/running/deploying-cf/index.html)
 
   * [Deploying to EC2](docs/running/deploying-cf/ec2/index.html)
 
   * [Deploying to OpenStack](docs/running/deploying-cf/openstack/index.html)
 
   * [Deploying to vSphere](docs/running/deploying-cf/vsphere/index.html)
+
+  * [Deploying to vCloud Director](docs/running/deploying-cf/vcloud/index.html)
 
 * [Deploying Cloud Foundry with Chef](docs/running/deploying-cf-with-chef/index.html)
 

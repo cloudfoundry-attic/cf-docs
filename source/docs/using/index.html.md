@@ -42,4 +42,5 @@ This section of the Cloud Foundry documentation is for developers pushing applic
 
   * [RabbitMQ](working-with-services/message-queue/rabbit.html)
 
+  * [Service Tunneling](working-with-services/tunneling/index.html)
 
