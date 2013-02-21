@@ -2,7 +2,7 @@
 title: Cloud Foundry API
 ---
 
-_This documents the v2 version of the API.  V1 is documented at http://apidocs.cloudfoundry.com/_
+_This documents the v2 version of the API.  v1 is unofficially documented at http://apidocs.cloudfoundry.com/_
 
 Principles of Operation
 =======================
@@ -12,15 +12,14 @@ Overview
  
 The Cloud Foundry V2 family of APIs follow RESTful principles.
 The primary goal of the V2 API is to support the new entities in
-the Team Edition release, and to address the shortcomings of the V1 in terms
-features and consistency.  The specific high level goals are as follows:
+the Team Edition release, and to address the shortcomings of V1 in terms of features and consistency.
+
+The specific high level goals are as follows:
  
-* **Consistency** accross all resource URLs, parameters, request/response
+* **Consistency** across all resource URLs, parameters, request/response
   bodies, and error responses.
  
-* **Partial updates** of a resource can be performed by providing a subset of
-  the resources' attributes.  This is in contrast to the V1 API which required a
-  read-modify-write cycle to update an attribute.
+* **Partial updates** of a resource can be performed by providing a subset of the resources' attributes.  This is in contrast to the V1 API which required a read-modify-write cycle to update an attribute.
  
 * **Pagination** support for each of the collections.
  
@@ -31,8 +30,7 @@ Authentication
  
 Authentication is performed by providing a UAA Token in the _Authorization_ HTTP header.
  
-**TBD:** insert snippet from Dale about the responses if the Token isn't provided,
-or if is invalid, expired, etc.
+**TBD:** insert snippet from Dale about the responses if the Token isn't provided, or if is invalid, expired, etc.
  
 Versioning
 ----------
@@ -44,24 +42,23 @@ Debugging
 ---------
  
 The V2 API endpoints may optionally return a GUID in the `X-VCAP-Request-ID`
-HTTP header.  The API endpoint will ideally log this GUID on all log lines
-and pass it to associated systems to assist with cross component log collation.
+HTTP header.  The API endpoint will ideally log this GUID on all log lines and pass it to associated systems to assist with cross component log collation.
  
 Basic Operations
 ----------------
  
 Operations on resources follow standard REST conventions.  Requests and
-responses for resources are JSON encoded.  Error responses are also JSON
+responses for resources are JSON-encoded.  Error responses are also JSON
 encoded.
  
 ### Common Attributes in Response Bodies
  
-Reponse bodies have 2 components, a `metadata` and `entity` sections.
+Response bodies have 2 components, `metadata` and `entity` sections.
  
 The following attributes are contained in the `metadata` section:
  
 | Attribute  | Description                                                                         |
-| ---------  | -----------                                                                         |
+| :---------  | :-----------                                                                         |
 | guid       | Stable id for the resource.                                                         |
 | url        | URL for the resource.                                                               |
 | created_at | Date/Timestamp the resource was created, e.g. "2012-01-01 13:42:00 -0700"           |
@@ -72,24 +69,24 @@ The following attributes are contained in the `metadata` section:
  
 `POST /v2/foo_bars` creates a FooBar.
  
-The attributes for new FooBar are specified in a JSON encoded request body.
+The attributes for new FooBar are specified in a JSON-encoded request body.
  
-A successful `POST` results in an HTTP 201 with the `Location`
+A successful `POST` results in HTTP 201 with the `Location`
 header set to the URL of the newly created resource.  The API endpoint should
 return the Etag HTTP header for later use by the client
-in support of opportunistic concurency.
+in support of opportunistic concurrency.
  
-The attributes for the FooBar are returned in a JSON encoded response body.
+The attributes for the FooBar are returned in a JSON-encoded response body.
  
 ### Reading Resources
  
 `GET /v2/foo_bars/:guid` returns the attributes for a specific
 FooBar.
  
-A successful `GET` results in an HTTP 200.  The API endpoint should set the
-Etag HTTP header for later use in opportunistic concurency.
+A successful `GET` results in HTTP 200.  The API endpoint should set the
+Etag HTTP header for later use in opportunistic concurrency.
  
-The attributes for the FooBar are returned in a JSON encoded response body.
+The attributes for the FooBar are returned in a JSON-encoded response body.
  
 ### Listing Resources
  
@@ -97,7 +94,7 @@ The attributes for the FooBar are returned in a JSON encoded response body.
  
 Successful `GET` requests return HTTP 200.
  
-The attributes for the FooBar are returned in a JSON encoded response body.
+The attributes for the FooBar are returned in a JSON-encoded response body.
  
 #### Pagination
  
@@ -106,10 +103,10 @@ All `GET` requests to collections are implicitly paginated, i.e. `GET
  
 ##### Pagination Response Attributes
  
-A paginated reponse contains the following attributes:
+A paginated response contains the following attributes:
  
 | Attribute     | Description                                                                                       |
-| ---------     | -----------                                                                                       |
+| :---------     | :-----------                                                                                       |
 | total_results | Total number of results in the entire data set.                                                   |
 | total_pages   | Total number of pages in the entire dataset.                                                      |
 | prev_url      | URL used to fetch the previous set of results in the paginated response.  null on the first call. |
@@ -128,7 +125,7 @@ included in the query string to `prev_url` or `next_url`.
 | ---------        | -----------                                                                      |
 | page             | Page from which to start iteration                                               |
 | results-per-page | Results to return per page                                                       |
-| urls-only        | If 1, only return a list of urls; do not expand metadata or resource attributues |
+| urls-only        | If 1, only return a list of urls; do not expand metadata or resource attributes |
  
 If the client is going to iterate through the entire dataset, they are
 encouraged to follow `next_url` rather than iterating by setting
@@ -195,7 +192,7 @@ unindexed search.
  
 The caller may specify the `If-Match` HTTP header to enable opportunistic
 concurrency.  This is not required.  If there is an opportunistic concurrency
-failure, the API enpoint should return HTTP 412.
+failure, the API endpoint should return HTTP 412.
  
 A successful `DELETE` operation results in a 204.
  
@@ -203,7 +200,7 @@ A successful `DELETE` operation results in a 204.
  
 `PUT` differs from standard convention.  In order to avoid a read-modify-write
 cycle when updating a single attribute, `PUT` is handled as if the `PATCH` verb
-were used.  Specically, if a resource with URL `/v2/foo_bars/99` has attributes
+were used.  Specifically, if a resource with URL `/v2/foo_bars/99` has attributes
  
 ```json
 {
@@ -220,7 +217,7 @@ were used.  Specically, if a resource with URL `/v2/foo_bars/99` has attributes
 }
 ```
  
-then a `PUT /v2/foo_bars/99` with a requrest body of `{"instances":3}` results
+then a `PUT /v2/foo_bars/99` with a request body of `{"instances":3}` results
 in a resource with the following attributes
  
 ```json
@@ -238,13 +235,13 @@ in a resource with the following attributes
 }
 ```
  
-A sucessful `PUT` results in an HTTP 200.
+A successful `PUT` results in HTTP 200.
  
 The caller may specify the `If-Match` HTTP header to enable opportunistic
 concurrency.  This is not required.  If there is an opportunistic concurrency
-failure, the API enpoint should return HTTP 412.
+failure, the API endpoint should return HTTP 412.
  
-The attributes for the updated FooBar are returned in a JSON encoded response body.
+The attributes for the updated FooBar are returned in a JSON-encoded response body.
  
 Note: version 3 of this API might require `PUT` to contain the full list of required
 attributes and such partial updates might only be supported via the HTTP
@@ -304,9 +301,9 @@ resource, during an update via `PUT`.
 To create the association during a `POST` or to edit it with a `PUT`, supply a
 an array of ids.  For example, in the FooBaz has multiple Bars example
 above, a caller could issue a `POST /v2/foo_baz` with a body of `{ "bar_guid": [1,
-5, 10]}` to make an initial assocation of the new FooBaz with Bars with ids 1,
+5, 10]}` to make an initial association of the new FooBaz with Bars with ids 1,
 5 and 10 (other attributes omitted).  Similarly, a `PUT` will update the
-assocations between the resources to only those provided in the list.
+associations between the resources to only those provided in the list.
  
 Adding and removing elements from a large collection would be onerous if the
 entire list had to be provided every time.
@@ -317,7 +314,7 @@ A `DELETE /v2/foo_baz/1/bars/2` will remove bar with id 2 to from foobaz with
 id 1.
  
 Batching incremental updates may be supported in the future.
-To controll how the list of ids are added to the collection, supply the
+To control how the list of ids are added to the collection, supply the
 following query parameter `collection-method=add`, `collection-method=replace`, or
 `collection-method=delete`.  If the collection-method is not supplied,
 it defaults to replace.  NOTE: this is a future design note.
@@ -326,21 +323,21 @@ collection-method is not currently supported.
  
 ### Inlining Relationships
  
-There are common Cloud Foundary use cases that would require a relatively high
+There are common Cloud Foundry use cases that would require a relatively high
 number of API calls if the relation URLs have to be fetched when traversing a
 set of resources, e.g. when performing the calls necessary to satisfy a `vmc
 apps` command line call.  In these cases, the caller intends to walk the entire
 tree of relationships.
  
 To inline relationships, the caller may specify a `inline-relations-depth` query
-parameter for a `GET` request.  A value of 0 results in the default behavior of
+parameter for a `GET` request.  A value of 0 results in the default behaviour of
 not inlining any of the relations and only URLs as described above are
 returned.  A value of N > 0 results in the direct expansion of relations
 inline in the response, but URLs are provided for the next level of relations.
  
 For example, in the request below a FooBar has a to-many relationship to Bars
 and Bars has a to-one relationship with a Baz.  Setting the
-`inline-relations-depth=1` results in bars being exapanded but not baz.
+`inline-relations-depth=1` results in bars being expanded but not baz.
  
 Request: `GET /v2/FooBar/5?inline-relations-depth=1`
  
@@ -375,7 +372,7 @@ Response:
 }
 ```
  
-Specifiying `inline-releations-depth` > 1 should not result in an circular
+Specifying `inline-releations-depth` > 1 should not result in an circular
 expansion of resources.  For example, if there is a bidirectional relationship
 between two resources, e.g. an Organization has many Users and a User is a
 member of many Organizations, then the response to `GET
@@ -392,12 +389,12 @@ header, i.e. 400 if the request body can not be parsed, 404 if an operation
 is requested on a resource that doesn't exist, etc.
  
 In addition to the HTTP response code, an error response is returned in the
-reponse body.  The error response is json encoded with the following
+response body.  The error response is JSON-encoded with the following
 attributes:
  
 | Attribute    | Description                             |
 | ---------    | -----------                             |
-| code         | Unique numeric resposne code            |
+| code         | Unique numeric response code            |
 | descriptions | Human readable description of the error |
  
 Actions
@@ -413,7 +410,7 @@ to 10, the caller would `PUT /v2/foo_bar/5` with a request body of
  
 ## CC Specific API
  
-NOTE: Like the migrations and the models this is being fleshed out and should be reviewed for hiearchy and relationships only.
+NOTE: Like the migrations and the models this is being fleshed out and should be reviewed for hierarchy and relationships only.
  
 ### LIST Organizations
  
@@ -427,7 +424,7 @@ Returns a paginated response of Organizations.
 | ---------              | -----------                                                                      |
 | limit                  | Maximum number of results to return.                                             |
 | offset                 | Offset from which to start iteration.                                            |
-| urls-only              | If 1, only return a list of urls; do not expand metadata or resource attributues |
+| urls-only              | If 1, only return a list of urls; do not expand metadata or resource attributes |
 | inline-relations-depth | 0 - don't inline any relations and return URLs.  Otherwise, inline to depth N.   |
 | q                      | Search/filter string of the form `<attribute-name>:<value>` |
  
@@ -650,7 +647,7 @@ None
  
 ## CC Specific API
  
-NOTE: Like the migrations and the models this is being fleshed out and should be reviewed for hiearchy and relationships only.
+NOTE: Like the migrations and the models this is being fleshed out and should be reviewed for hierarchy and relationships only.
  
 ### LIST Users
  
@@ -664,7 +661,7 @@ Returns a paginated response of Users.
 | ---------              | -----------                                                                      |
 | limit                  | Maximum number of results to return.                                             |
 | offset                 | Offset from which to start iteration.                                            |
-| urls-only              | If 1, only return a list of urls; do not expand metadata or resource attributues |
+| urls-only              | If 1, only return a list of urls; do not expand metadata or resource attributes |
 | inline-relations-depth | 0 - don't inline any relations and return URLs.  Otherwise, inline to depth N.   |
 | q                      | Search/filter string of the form `<attribute-name>:<value>` |
  
@@ -895,7 +892,7 @@ None
  
 ## CC Specific API
  
-NOTE: Like the migrations and the models this is being fleshed out and should be reviewed for hiearchy and relationships only.
+NOTE: Like the migrations and the models this is being fleshed out and should be reviewed for hierarchy and relationships only.
  
 ### LIST Spaces
  
@@ -1125,7 +1122,7 @@ None
  
 ## CC Specific API
  
-NOTE: Like the migrations and the models this is being fleshed out and should be reviewed for hiearchy and relationships only.
+NOTE: Like the migrations and the models this is being fleshed out and should be reviewed for hierarchy and relationships only.
  
 ### LIST Apps
  
@@ -1405,7 +1402,7 @@ None
  
 ## CC Specific API
  
-NOTE: Like the migrations and the models this is being fleshed out and should be reviewed for hiearchy and relationships only.
+NOTE: Like the migrations and the models this is being fleshed out and should be reviewed for hierarchy and relationships only.
  
 ### LIST Runtimes
  
@@ -1603,7 +1600,7 @@ None
  
 ## CC Specific API
  
-NOTE: Like the migrations and the models this is being fleshed out and should be reviewed for hiearchy and relationships only.
+NOTE: Like the migrations and the models this is being fleshed out and should be reviewed for hierarchy and relationships only.
  
 ### LIST Frameworks
  
@@ -1797,7 +1794,7 @@ None
  
 ## CC Specific API
  
-NOTE: Like the migrations and the models this is being fleshed out and should be reviewed for hiearchy and relationships only.
+NOTE: Like the migrations and the models this is being fleshed out and should be reviewed for hierarchy and relationships only.
  
 ### LIST Services
  
@@ -2032,7 +2029,7 @@ None
  
 ## CC Specific API
  
-NOTE: Like the migrations and the models this is being fleshed out and should be reviewed for hiearchy and relationships only.
+NOTE: Like the migrations and the models this is being fleshed out and should be reviewed for hierarchy and relationships only.
  
 ### LIST ServicePlans
  
@@ -2242,7 +2239,7 @@ None
  
 ## CC Specific API
  
-NOTE: Like the migrations and the models this is being fleshed out and should be reviewed for hiearchy and relationships only.
+NOTE: Like the migrations and the models this is being fleshed out and should be reviewed for hierarchy and relationships only.
  
 ### LIST ServiceInstances
  
@@ -2452,7 +2449,7 @@ None
  
 ## CC Specific API
  
-NOTE: Like the migrations and the models this is being fleshed out and should be reviewed for hiearchy and relationships only.
+NOTE: Like the migrations and the models this is being fleshed out and should be reviewed for hierarchy and relationships only.
  
 ### LIST ServiceBindings
  
@@ -2648,7 +2645,7 @@ None
  
 ## CC Specific API
  
-NOTE: Like the migrations and the models this is being fleshed out and should be reviewed for hiearchy and relationships only.
+NOTE: Like the migrations and the models this is being fleshed out and should be reviewed for hierarchy and relationships only.
  
 ### LIST ServiceAuthTokens
  
