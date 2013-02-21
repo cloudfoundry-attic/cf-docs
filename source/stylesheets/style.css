@@ -400,3 +400,20 @@ fieldset legend { font-weight: bold; background: white; padding: 0 3px; margin: 
   right: 0;
   border: 0;
 }
+
+.command-doc > pre {
+  float : left;
+  margin-right : 10px;
+  width : 450px;
+}
+
+.command-doc > div.break {
+  clear : both;
+  margin: 5px 0;
+}
+
+.command-doc > div {
+  line-height: 1.2em;
+  padding-top: 2px;
+  font-size: 0.9em;
+}
