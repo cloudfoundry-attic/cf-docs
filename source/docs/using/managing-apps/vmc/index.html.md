@@ -402,19 +402,19 @@ This plugin can be used to switch a Micro Cloud Foundry VM between online and of
 The following commands are made available by the plug-in;
 
 <div class="command-doc">
-  <pre class="terminal">$ micro-status [vmx path] [password]</pre>
+  <pre class="terminal">$ vmc micro-status [vmx path] [password]</pre>
   <div>Display Micro Cloud Foundry VM status for a particular VMX path.</div>
   <div class="break"></div>
 </div>
 
 <div class="command-doc">
-  <pre class="terminal">$ micro-offline [vmx path] [password]</pre>
+  <pre class="terminal">$ vmc micro-offline [vmx path] [password]</pre>
   <div>Switch a Micro Cloud Foundry instance to offline mode.</div>
   <div class="break"></div>
 </div>
 
 <div class="command-doc">
-  <pre class="terminal">$ micro-online [vmx path] [password]</pre>
+  <pre class="terminal">$ vmc micro-online [vmx path] [password]</pre>
   <div>Switch a Micro Cloud Foundry instance to online mode.</div>
   <div class="break"></div>
 </div>
@@ -423,4 +423,4 @@ For a more detailed explanation of this plugin see the [micro cloud foundry vmc 
 
 ### Tunnel ###
 
-The tunnel plugin, working in a similar way to console, allows access to a live data service running in the production environment. For more information on how to use this plug-in, please see [Tunneling to a Service](./service-tunneling.html)
+The tunnel plugin, working in a similar way to console, allowing access to a live data service running in the production environment. For more information on how to use this plug-in, please see [Tunneling to a Service](./service-tunneling.html)
