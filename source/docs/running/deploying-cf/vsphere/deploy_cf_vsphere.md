@@ -1,49 +1,39 @@
 # Deploy Cloud Application Platform - Cloud Foundry #
 
-By now the deployment steps should seem somewhat familiar. We'll target our new BOSH Director (deployed when we used Micro BOSH to deploy BOSH,) upload a public BOSH stemcell, upload a cloud foundry appcloud release, configure and set a cloud application platform deployment manifest, and run: `bosh deploy`
+These instructions follow the steps taken in the [deploying BOSH with Micro BOSH](deploying_bosh_with_micro_bosh.html) section.
  
 ## Target New BOSH Director ##
 
-You'll need to target your new BOSH Director. First set the target to Micro BOSH and find out the IP address of BOSH Director as follows:
+<pre class='terminal'>
+$ bosh target 172.20.134.52 #IP address of BOSH Director
+$ bosh status
+</pre>
 
-+ `bosh target 192.168.9.20` #IP address of Micro BOSH
-+ `bosh vms`
+~~~
+Updating director data... done
 
-Output of this command is similar to the listing below
+Director
+  Name      your-director
+  URL       http://172.20.134.52:25555
+  Version   0.7 (release:fb1aebb0 bosh:20f2ca20)
+  User      admin
+  UUID      2250612f-f0e4-41b3-b1b2-3d730e9011a7
+  CPI       vsphere
+  dns       disabled
 
-    $ bosh vms
-      Deployment 'bosh'
-
-      Director task 9
-
-      Task 9 done
-
-      +-----------------+---------+---------------+--------------+
-      | Job/index       | State   | Resource Pool | IPs          |
-      +-----------------+---------+---------------+--------------+
-      | unknown/unknown | running | small         | 192.168.9.27 |
-      | blobstore/0     | running | small         | 192.168.9.25 |
-      | director/0      | running | director      | 192.168.9.24 |
-      | nats/0          | running | small         | 192.168.9.21 |
-      | postgres/0      | running | small         | 192.168.9.22 |
-      | redis/0         | running | small         | 192.168.9.23 |
-      +-----------------+---------+---------------+--------------+
-
-      VMs total: 6
-
-The first time you target the Director, you'll be asked to provide login credentials. These were specified in your BOSH deployment manifest.
-
-+ `bosh target 192.168.9.24:25555 # Note the default port setting`
-
+Deployment
+  not set
+~~~
 
 ## Upload Stemcell ##
 
-Your new Director needs a stemcell in order to deploy your cloud application platform. The steps should seem familiar now. Use your existing public stemcell in the `~/stemcells` directory. Do not use your Micro BOSH stemcell in this case.
+The Director needs a stemcell in order to deploy Cloud Foundry. Use the existing public stemcell in your `~/stemcells` directory. Do not use the Micro BOSH stemcell.
 
-+ `bosh upload stemcell ~/stemcells/bosh-stemcell-vsphere-0.6.4.tgz`
+<pre class="terminal">
+$ bosh upload stemcell ~/stemcells/bosh-stemcell-vsphere-0.6.7.tgz
+</pre>
 
-Output of this command is shown below
-
+~~~
 	Verifying stemcell...
 	File exists and readable                                     OK
 	Using cached manifest...
@@ -52,7 +42,7 @@ Output of this command is shown below
 	Stemcell info
 	-------------
 	Name:    bosh-stemcell
-	Version: 0.6.4
+	Version: 0.6.7
 
 	Checking if stemcell already exists...
 	No
@@ -75,21 +65,22 @@ Output of this command is shown below
 	Duration	00:01:14
 
 	Stemcell uploaded and created
+~~~
 
 
 ## Get Cloud Release ##
 
-For this exercise, we'll use a Release from the public repository:
+For this exercise, we'll use a release from the public repository:
 
-+ `gerrit clone ssh://[<your username>@]reviews.cloudfoundry.org:29418/cf-release.git`
+<pre class="terminal">
+$ git clone git@github.com:cloudfoundry/cf-release.git
+$ cd cf-release
+$ bosh upload release releases/appcloud-129.yml # use the highest number available - inspecting the files in this directory
+</pre>
 
-To upload the release to your Director, you'll need to be in a special 'release' directory once more in order to run the command successfully.
+You'll see a flurry of output as BOSH configures and uploads release components.
 
-1. ` cd cf-release`
-
-1. `bosh upload release releases/appcloud-106.yml`
-
-You'll see a flurry of output as BOSH configures and uploads release components. 
+<!---  Gabi and Matt stopped here until Monday :) -->
 
 ## Create Cloud Deployment Manifest ##
 
