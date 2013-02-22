@@ -6,9 +6,9 @@ Install Bosh using Micro BOSH on OpenStack
 
 1. Once your micro BOSH instance is deployed, you can target its Director:
 
-  	$ bosh micro status
+	$ bosh micro status
 		...
-		Target         micro (http://11.23.194.100:25555) Ver: 0.3.12 (00000000)
+		Target micro (http://11.23.194.100:25555) Ver: 0.3.12 (00000000)
 
 		$ bosh target http://11.23.194.100:25555
 		Target set to 'micro (http://11.23.194.100:25555) Ver: 0.3.12 (00000000)'
@@ -25,13 +25,12 @@ Install Bosh using Micro BOSH on OpenStack
 
 1. List public stemcells with bosh public stemcells
 
-		% mkdir -p ~/stemcells
-		% cd stemcells
-		% bosh public stemcells --all
-    
-        +---------------------------------------------+-----------------------------+
-        | Name                                        | Tags                        |
-        +---------------------------------------------+-----------------------------+
+		$ mkdir -p ~/stemcells
+		$ cd stemcells
+		$ bosh public stemcells --all
+		+---------------------------------------------+-----------------------------+
+		| Name                                        | Tags                        |
+		+---------------------------------------------+-----------------------------+
 		| bosh-stemcell-0.3.0.tgz                     | vsphere                     |
 		| bosh-stemcell-0.4.4.tgz                     | vsphere                     |
 		| bosh-stemcell-0.4.7.tgz                     | vsphere                     |
@@ -58,7 +57,7 @@ Install Bosh using Micro BOSH on OpenStack
 		| micro-bosh-stemcell-vsphere-0.8.1.tgz       | vsphere, micro, test        |
 		+---------------------------------------------+-----------------------------+
 
-To download use 'bosh download public stemcell <stemcell_name>'.
+To download use 'bosh download public stemcell stemcell_name'.
 
 
 1. Download a public stemcell. *NOTE, in this case you do not use the micro bosh stemcell.*

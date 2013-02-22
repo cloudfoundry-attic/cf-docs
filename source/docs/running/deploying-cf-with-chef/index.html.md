@@ -2,8 +2,7 @@
 title: Deploying Cloud Foundry with Chef
 ---
 
-A set of Chef cookbooks exist that allow you to set up a production-ready
-Cloud Foundry PaaS.
+This means of deploying Cloud Foundry is an ongoing effort maintained by the Cloud Foundry Community to set up a production ready PaaS. Alternatively, operations professionals are encouraged to use [BOSH](../bosh/index.html) as VMware and EMC's supported way of providing and consuming publicly available releases.
 
 ### Requirements
 
