@@ -147,4 +147,4 @@ At this point, the application should be available to view at the URL specified 
 
 ## <a id='next-steps'></a>Next steps - Binding a service ##
 
-Binding and using a service with Rails 3 is covered [here](./rails-service-bindings.html)
+Binding and using a service with Rails 3 is covered [here](./ruby-service-bindings.html)

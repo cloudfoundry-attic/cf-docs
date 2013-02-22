@@ -13,9 +13,6 @@ Cloud Foundry supports multiple Ruby-based frameworks;
 &nbsp;&nbsp;[Getting Started](./rails-getting-started.html)
 - This guide will show you how to create an example application and deploy it to Cloud Foundry.
 
-&nbsp;&nbsp;[Service Bindings](./rails-service-bindings.html)
-- This guide will show you how to create and bind a service to a Rails application.
-
 &nbsp;&nbsp;[Running Worker Tasks](./rails-running-worker-tasks.html)
 - This guide will show you how to create an example application and deploy it to Cloud Foundry.
 
