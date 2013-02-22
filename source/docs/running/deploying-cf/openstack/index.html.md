@@ -2,6 +2,8 @@
 title: Deploying Cloud Foundry on OpenStack
 ---
 
+[Installing the BOSH CLI](../../bosh/setup/index.html)
+
 [Install OpenStack -Essex](install_openstack.html)
 
 [Install Micro BOSH on OpenStack](install_microbosh_openstack.html)
