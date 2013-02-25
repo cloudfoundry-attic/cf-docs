@@ -36,3 +36,6 @@ Cloud Foundry supports multiple Ruby-based frameworks;
 ## Binding Services
 &nbsp;&nbsp;[Service Bindings](./ruby-service-bindings.html)
 - A general guide to binding services to Ruby applications.
+
+&nbsp;&nbsp;[CF Runtime](./ruby-cf-runtime.html)
+- A guide to the "cf-runtime" Ruby Gem.
