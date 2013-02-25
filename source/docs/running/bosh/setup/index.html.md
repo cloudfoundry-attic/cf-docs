@@ -2,47 +2,40 @@
 title: Local Setup
 ---
 
-BOSH CLI is a command line interface used to interact with MicroBOSH and BOSH. 
-Before we can use MicroBOSH or BOSH we need to install BOSH Command Line Interface.
+BOSH CLI is a command line interface used to interact with MicroBOSH and BOSH. Before you can use MicroBOSH or BOSH you need to install BOSH Command Line Interface. The following steps install BOSH CLI. You can install on either a physical or Virtual Machine.
 
-## Installing BOSH Command Line Interface ##
+## Prerequistes ##
 
-The following steps install BOSH CLI on Ubuntu 12.04.1 LTS. You can install on either a physical or Virtual Machine.
+* Ruby and RubyGems must be installed before installing BOSH CLI. Refer to the [Installing Ruby](/docs/common/install_ruby.html) page for help with Ruby installation. 
+* A Git client must be installed in order to pull down the BOSH repository from GitHub. Refer to the [Installing Git](/docs/common/install_git.html) page for help with Git installation. 
 
-### Install Ruby ###
+## Install Local BOSH ##
 
-Ruby can be installed using either rbenv or rvm. Please refer to the following documents for more details
+Install the BOSH CLI gem:
 
-1. [Install ruby using rvm](../../common/install_ruby_rvm.html)
-2. [Install ruby using rbenv](../../common/install_ruby_rbenv.html)
+<pre class="terminal">
+$ gem install bosh_cli
+</pre>
 
+If you are using the rbenv Ruby environment manager, refresh the list of gems that rbenv knows about: 
 
-### Install Local BOSH and BOSH Releases ###
+<pre class="terminal">
+$ rbenv rehash
+</pre>
 
-1. Install the BOSH CLI
+## Install BOSH Releases ##
 
-		gem install bosh_cli
+Clone the BOSH and bosh-release repositories using git:
 
-1. If you are using rbenv run `rbenv rehash`command
-		
+<pre class="terminal">
+$ git clone git@github.com:cloudfoundry/bosh.git
+$ git clone git@github.com:cloudfoundry/bosh-release.git
+</pre>
 
-1. Clone the BOSH and bosh-release repositories using git
+Get release 11 from a branch of bosh-release (we are using an old commit during transition to new release functionality):
 
-		git clone git@github.com:cloudfoundry/bosh.git
-
-		git clone git@github.com:cloudfoundry/bosh-release.git
-
-1. Get release 11 from a branch of bosh-release (we are using an old commit during transition to new release functionality)
-
-		cd bosh-release
-		git checkout 9e0b649da80a563ba64229069299c57f72ab54ad
-
-1. Continue by deploying to your infrastructure referring to one of the following sections
-
-- ec2 (coming soon)
-- [OpenStack](../../deploying-cf/openstack/index.html)
-- [vcloud](../../deploying-cf/vcloud/index.html)
-- [vsphere](../../deploying-cf/vsphere/index.html)
-
-
+<pre class="terminal">
+$ cd bosh-release
+$ git checkout 9e0b649da80a563ba64229069299c57f72ab54ad
+</pre>
 

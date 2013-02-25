@@ -65,11 +65,7 @@ Login to vm
 
 ##Step 3 : Install Ruby
 
-Ruby can be installed using either rbenv or rvm. Please refer to the following documents for more details
-
-1. [Install ruby using rvm](../common/install_ruby_rvm.html)
-2. [Install ruby using rbenv](../common/install_ruby_rbenv.html)
-
+Install Ruby and RubyGems following the instructions on the [Installing Ruby](/docs/common/install_ruby.html) page.
  
 ##Step 4 : Install BOSH CLI 
 
