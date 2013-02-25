@@ -39,3 +39,7 @@ Cloud Foundry supports multiple Ruby-based frameworks;
 ## Binding Services
 &nbsp;&nbsp;[Service Bindings](./ruby-service-bindings.html)
 - A general guide to binding services to Ruby applications.
+
+## Migrating to Buildpacks
+&nbsp;&nbsp;[Buildpacks](./migrating-to-buildpacks.html)
+- Tips for moving an existing deployment to buildpacks.
