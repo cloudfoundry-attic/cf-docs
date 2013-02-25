@@ -46,10 +46,12 @@ since cloudfoundry would only put credentials for bound database services
 in the 'production' section of database.yml. That time is past, and code
 like below will break everything and should be removed:
 
-        # CloudFoundry only puts credentials in database.yml's production section
-        if ENV.has_key?("VMC_APP_VERSION")
-          ActiveRecord::Base.establish_connection("production")
-        end
+~~~ruby
+# CloudFoundry only puts credentials in database.yml's production section
+if ENV.has_key?("VMC_APP_VERSION")
+  ActiveRecord::Base.establish_connection("production")
+end
+~~~
 
 ### Clean up other cruft ###
 Now is also a good time to remove other old hacks and workarounds for
