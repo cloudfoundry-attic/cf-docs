@@ -2,7 +2,30 @@
 title: Install OpenStack
 ---
 
-### OpenStack Code Names
+This page will guide you throught the installation of OpenStack, in preparation for deplying Cloud Foundry. 
+
+* [OpenStack Code Names](#codenames)
+* [Version](#version)
+* [Prerequisites](#prerequisites)
+  * [Hardware Requirements](#pre-hardware)
+  * [Multi Node Installation (types of nodes required)](#pre-nodes)
+  * [Networking Topology](#pre-network)
+* [Install OpenStack ](#openstack)
+  * [Prepare System](#prepare)
+    * [Update and upgrade the system](#update)
+    * [Update networking configuration](#network)
+  * [Install MySQL](#mysql)
+  * [Install Keystone](#keystone)
+  * [Install Glance](#glance)
+  * [Install Nova](#nova)
+  * [Install Horizon](#horizon)
+* [Install Additional Compute Nodes](#additionalnodes)
+  * [Prepare System](#add-prepare)
+  * [Update network configuration](#add-network)
+  * [Install NTP](#add-ntp)
+  * [Install Nova](#add-nova)
+
+## <a id="codenames"></a>OpenStack Code Names
 
 Each OpenStack service has a code name. Code Names used in this document are: 
 
@@ -15,46 +38,48 @@ Each OpenStack service has a code name. Code Names used in this document are:
 | Object Storage          | Swift                           |
 | Networking              | Quantum                         |
 
-## Version
+## <a id="version"></a>Version
 
      OpenStack Essex(2012.1) Ubuntu 12.04
 
-## Prerequisites
+## <a id="prerequisites"></a>Prerequisites
 
-### Hardware Requirements
+### <a id="pre-hardware"></a>Hardware Requirements
    
 * A Box with virtualization enabled
 * 64 GB RAM (32 GB is sufficient for deploying Micro BOSH and Wordpress)
 * 12 processing cores
 * 2 hard drives
-* 2 ethernet cards.
+* 2 ethernet cards
 
-### Multi Node Installation (types of nodes required)
+### <a id="pre-nodes"></a>Multi Node Installation (types of nodes required)
  
 * 1 Controller 
 * x Compute Nodes 
 * No special Storage service (Swift) needed
 * Nova Volume and Glance will be used for storage 
 
-### Networking Topology
+### <a id="pre-network"></a>Networking Topology
 
 * Flat DHCP (Nova Network service running on Controller Node)
 
-## Prepare System
+## <a id="openstack"></a>Install OpenStack
 
-### Update and upgrade the system
+### <a id="prepare"></a>Prepare System
+
+#### <a id="update"></a>Update and upgrade the system
 
 <pre class="terminal">
-$ sudo s
+$ sudo su
 $ apt-get update
 $ apt-get upgrade
 </pre>
 
-Install the `vim` text editor.
+Install the `vim` text editor. This is not stictly required for installation, but examples in this document use this editor.
 
 <pre class="terminal">
 $ apt-get install vim
-</pre>
+</pre>0
 
 Download the script [here](openstack_scripts/openstack_base_1.sh) and run it: 
 
@@ -68,9 +93,9 @@ This script will install the following programs:
 * `tgt` - features an iscsi target, needed for the Nova volume service
 * `openiscsi-client` - required to run the Nova compute service
 
-### Update networking configuration
+#### <a id="network"></a>Update networking configuration
 
-As stated earlier we need 2 network interfaces. The `eth0` interface is the machine's link to the outside world, and `eth1` is the interface used for the virtual machines. We'll also make Nova bridge clients via `eth0` into the internet.
+As stated earlier we need two network interfaces. The `eth0` interface is the machine's link to the outside world, and `eth1` is the interface used for the virtual machines. We'll also make Nova bridge clients via `eth0` into the internet.
 
 Edit the file `/etc/network/interfaces`:
 
@@ -98,7 +123,7 @@ Change the contents of the file to match this example configuration:
 
 *Note:* Make sure that you have given the actual machine IP under `eth0` as `address`. In this example `10.0.0.2` is the machine IP, which is the OpenStack Controller.
 
-Points to remember:
+There are two IP addresses from this step that will be used in subsequent steps:
 
 * Controller Node IP - `10.0.0.2` (we will be using this IP while installing Keystone and Nova)
 * `eth1` IP series - `192.168.22.1`
@@ -109,7 +134,7 @@ Restart the networking interface:
 $ /etc/network/interfaces restart
 </pre>
 
-Download the script [here](openstack_scripts/openstack_base_2.sh) and run it: 
+Next, download the script [here](openstack_scripts/openstack_base_2.sh) and run it: 
 
 <pre class="terminal">
 $ ./openstack_base_2.sh
@@ -129,7 +154,7 @@ INFO: /dev/kvm exists
 KVM acceleration can be used
 </pre>
 
-## Install MySQL
+### <a id="mysql"></a>Install MySQL
 
 Nova and Glance will use MySQL to store their runtime data.
  
@@ -153,7 +178,7 @@ $ mysql -u keystone -pvmware keystone
 $ mysql -u glance -pvmware glance
 </pre>
 
-## Install Keystone
+### <a id="keystone"></a>Install Keystone
 
 The Keystone service manages users and tenants (accounts or projects), and offers a common identity system for all the OpenStack components.
 
@@ -225,7 +250,7 @@ Restart the Keystone service:
 $ service keystone restart
 </pre>
 
-## Install Glance
+### <a id="glance"></a>Install Glance
 
 Glance is Openstack's image manager service.
 
@@ -281,7 +306,7 @@ $ glance index
 
 The output should display the newly added image.
 
-## Install Nova
+### <a id="nova"></a>Install Nova
 
 The OpenStack compute service, codenamed Nova, is the most important OpenStack component. 
 
@@ -328,7 +353,7 @@ $ nova-manage version list
 2012.1.3-dev (2012.1.3-LOCALBRANCH:LOCALREVISION)
 </pre>
 
-## Install Horizon
+### <a id="horizon"></a>Install Horizon
  
 Download the script [here](openstack_scripts/openstack_horizon.sh) and run it:
 
@@ -348,14 +373,14 @@ You can test the Dashboard by entering the URL `http://10.0.0.2` in a browser wi
 
 ~~~
     User ID : admin
-    password : vmware
+    Password : vmware
 ~~~
 
-# Install Additional Compute Nodes
+## <a id="additionalnodes"></a>Install Additional Compute Nodes
 
-If you want to install additional compute nodes to OpenStack, follow these instructions on a server running 64 bit version of Ubuntu server 12.04.
+If you want to install additional compute nodes to OpenStack, follow these instructions on a server running the 64 bit version of Ubuntu Server 12.04.
 
-## Prepare your System
+### <a id="add-prepare"></a>Prepare System
 
 Update and upgrade the system:
 
@@ -365,13 +390,13 @@ $ apt-get update
 $ apt-get upgrade
 </pre>
 
-Install the `vim` text editor.
+Install the `vim` text editor. This is not stictly required for installation, but examples in this document use this editor.
 
 <pre class="terminal">
 $ apt-get install vim
 </pre>
 
-## Update network configuration
+### <a id="add-network"></a>Update network configuration
 
 Install bridge-utils:
 
@@ -409,9 +434,9 @@ Restart the network:
 
 <pre class="terminal">
 $ /etc/init.d/networking restart
-</pre)
+</pre>
 
-## Install NTP
+### <a id="add-ntp"></a>Install NTP
 
 To keep all the services in sync across multiple machines, install NTP.
 
@@ -439,7 +464,7 @@ Restart the NTP service:
 $ service ntp restart
 </pre>
 
-## Install Nova
+### <a id="add-nova"></a>Install Nova
 
 Install the nova-components and dependencies
 
