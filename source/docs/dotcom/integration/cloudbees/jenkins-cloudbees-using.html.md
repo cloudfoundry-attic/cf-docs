@@ -21,21 +21,21 @@ Follow these steps to configure an existing Jenkins job to push an application t
 
 Starting from the Jenkins Dashboard, click on the project name to view the project details:
 
-![Jenkins Dashboard](community/integration/cloudbees/jenkins-dashboard.png)
+![Jenkins Dashboard](dotcom/integration/cloudbees/jenkins-dashboard.png)
 
 From the project page, click on the "Configure" link: 
 
-![Jenkins Project Page](community/integration/cloudbees/jenkins-project.png)
+![Jenkins Project Page](dotcom/integration/cloudbees/jenkins-project.png)
 
 Scroll to the bottom of the project configuration page. Click on the "Add post-build action" button, and select "Deploy applications" from the presented list.
 
-![Jenkins Configure Page](community/integration/cloudbees/jenkins-project-configure-1.png)
+![Jenkins Configure Page](dotcom/integration/cloudbees/jenkins-project-configure-1.png)
 
-![Jenkins Configure Page](community/integration/cloudbees/jenkins-project-configure-2.png)
+![Jenkins Configure Page](dotcom/integration/cloudbees/jenkins-project-configure-2.png)
 
 Look for the "Cloud Foundry" section added to the page:
 
-![Jenkins Configure Page](community/integration/cloudbees/jenkins-project-configure-3.png)
+![Jenkins Configure Page](dotcom/integration/cloudbees/jenkins-project-configure-3.png)
 
 Fill out the form fields as follows:
 
@@ -51,7 +51,7 @@ Fill out the form fields as follows:
 
 If the application requires services (a database, document store, key-value store, or messaging system), click on the "Add service" button. Additional fields will be added to the form: 
 
-![Jenkins Configure Page](community/integration/cloudbees/jenkins-project-configure-4.png)
+![Jenkins Configure Page](dotcom/integration/cloudbees/jenkins-project-configure-4.png)
 
 Fill out the additional form fields as follows: 
 
@@ -65,8 +65,14 @@ After you are done adding the Cloud Foundry configuration to the Jenkins job, pr
 
 ## <a id='troubleshooting'></a>Troubleshooting ##
 
-* If you receive a "Operation not permitted" exception, your Cloud Foundry authorization may have expired. In such an event, you should receive an email from CloudBees informing you of this. Regardless, you can login to [cloudfoundry.cloudbees.com](https://cloudfoundry.cloudbees.com) and re-authorize CloudBees to deploy applications on your behalf.
+### "Operation not permitted" error ###
 
-* If you receive an error stating that "External URIs are not enabled for this account", double check the format and contents of the "Deployment URL" of your Cloud Foundry Jenkins deployer configuration. This host name must be under the cloudfoundry.com domain, and must not contain illegal characters.
+If you receive an "Operation not permitted" exception when pushing an application from Jenkins, your Cloud Foundry authorization may have expired. In such an event, you should receive an email from CloudBees informing you of this. Regardless, you can login to [cloudfoundry.cloudbees.com](https://cloudfoundry.cloudbees.com) and re-authorize CloudBees to deploy applications on your behalf.
 
-* If you have problems with your CloudBees Jenkins, you can ask questions on the [CloudBees Stackoverflow tag](http://stackoverflow.com/tags/cloudbees). Other DEV@cloud support options are available in the "More" tab of the toolbar located at the top of each Jenkins screen.
+### "External URIs are not enabled for this account" error ###
+
+If you receive an HTTP error code 503 with a message stating "External URIs are not enabled for this account" when pushing an application from Jenkins, double check the format and contents of the "Deployment URL" field in your Cloud Foundry Jenkins deployer configuration. This URL must include the "cloudfoundry.com" domain, and must not contain illegal characters.
+
+### Support ###
+
+If you have problems with your CloudBees Jenkins, you can ask questions on the [CloudBees Stackoverflow tag](http://stackoverflow.com/tags/cloudbees). Other DEV@cloud support options are available in the "More" tab of the toolbar located at the top of each Jenkins screen.
