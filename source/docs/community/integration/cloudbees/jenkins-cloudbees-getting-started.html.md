@@ -64,4 +64,4 @@ Click on the "X" in the corner of the box in the middle of the page to disable t
 
 ![CloudBees configure page](community/integration/cloudbees/cloudbees-revoke.png)
 
-You can easily re-emable the integration by click on the "Enable" button. 
+You can easily re-enable the integration by clicking on the "Enable" button. 

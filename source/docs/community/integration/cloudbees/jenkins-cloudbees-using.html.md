@@ -65,5 +65,8 @@ After you are done adding the Cloud Foundry configuration to the Jenkins job, pr
 
 ## <a id='troubleshooting'></a>Troubleshooting ##
 
-*TODO*: anything to put here?
+* If you receive a "Operation not permitted" exception, your Cloud Foundry authorization may have expired. In such an event, you should receive an email from CloudBees informing you of this. Regardless, you can login to [cloudfoundry.cloudbees.com](https://cloudfoundry.cloudbees.com) and re-authorize CloudBees to deploy applications on your behalf.
 
+* If you receive an error stating that "External URIs are not enabled for this account", double check the format and contents of the "Deployment URL" of your Cloud Foundry Jenkins deployer configuration. This host name must be under the cloudfoundry.com domain, and must not contain illegal characters.
+
+* If you have problems with your CloudBees Jenkins, you can ask questions on the [CloudBees Stackoverflow tag](http://stackoverflow.com/tags/cloudbees). Other DEV@cloud support options are available in the "More" tab of the toolbar located at the top of each Jenkins screen.
