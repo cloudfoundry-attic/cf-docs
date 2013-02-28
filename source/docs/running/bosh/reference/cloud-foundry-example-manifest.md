@@ -1,5 +1,5 @@
 ---
-title: Cloud Foundry Example Manifest
+title: Cloud Foundry Example Manifest 
 ---
 
 ~~~yaml

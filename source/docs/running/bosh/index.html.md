@@ -12,4 +12,6 @@ BOSH was originally developed in the context of the Cloud Foundry Application Pl
   * [Jobs](reference/jobs.html)
   * [Packages](reference/packages.html)
   * [Releases](reference/releases.html)
-  * [BOSH CLI](reference/bosh-cli.html) 
+  * [BOSH CLI](reference/bosh-cli.html)
+  * [BOSH example manifest](reference/bosh-example-manifest.html)
+  * [Cloud Foundry example manifest](cloud-foundry-example-manifest.html)
