@@ -2,7 +2,7 @@
 title: BOSH Example Manifest
 ---
 
-This is an example manifest for deploying BOSH via Micro BOSH. The next step would be to deploy Cloud Foundry, which uses the [Cloud Foundry Example Manifest](cloud-foundry-example-manifest.html).
+This is an example manifest for deploying BOSH via Micro BOSH. The next step would be to deploy Cloud Foundry, which uses the [Cloud Foundry Example Manifest](./cloud-foundry-example-manifest.html).
 
     ---
     name: example1
