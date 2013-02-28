@@ -1,3 +1,7 @@
+---
+title: Deploying BOSH with Micro BOSH
+---
+
 # Deploy BOSH as an application using micro BOSH. #
 
 1. Deploy micro BOSH. See the steps in the [previous section](deploying_micro_bosh.html)

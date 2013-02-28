@@ -80,6 +80,8 @@ For dev/ops people managing instances of Cloud Foundry.
 
 * [Monitoring Cloud Foundry](docs/running/monitoring/index.html)
 
+* [Managing Users](docs/running/managing-users/index.html)
+
 ## [Reference](docs/reference/index.html)
 
 Detailed reference materials.

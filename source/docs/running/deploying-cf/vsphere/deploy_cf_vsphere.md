@@ -1,4 +1,6 @@
-# Deploy Cloud Application Platform - Cloud Foundry #
+---
+title: Deploying Cloud Foundry with BOSH
+---
 
 These instructions follow the steps taken in the [deploying BOSH with Micro BOSH](deploying_bosh_with_micro_bosh.html) section.
  
