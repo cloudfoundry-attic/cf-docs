@@ -66,7 +66,7 @@ resource_pools:
   env:
     bosh:
       # password generated using mkpasswd -m sha-512
-      password: $6$66pTgip9$1FgWAj2uKEUUQj1cnJKXm9xdnhd.jJKmERB/o4Mc/8PPOp8ba6FTv206M3RzPOuZdPlifNjLJaGzysz0OfXxV0
+      password: $6$leYJSesP$fPm2lwx4Pw/5ZmafFH3h0sMjnMhdH02uC4K7Te0Bu48YhS7o3PFxfsv.V/is.Ty29Ol1j2lvWLcMiE99AvoMy/
 
 - name: deas
   network: default
@@ -81,7 +81,7 @@ resource_pools:
   env:
     bosh:
       # password generated using mkpasswd -m sha-512
-      password: $6$66pTgip9$1FgWAj2uKEUUQj1cnJKXm9xdnhd.jJKmERB/o4Mc/8PPOp8ba6FTv206M3RzPOuZdPlifNjLJaGzysz0OfXxV0
+      password: $6$leYJSesP$fPm2lwx4Pw/5ZmafFH3h0sMjnMhdH02uC4K7Te0Bu48YhS7o3PFxfsv.V/is.Ty29Ol1j2lvWLcMiE99AvoMy/
 
 - name: services_3gb
   network: default
@@ -96,7 +96,7 @@ resource_pools:
   env:
     bosh:
       # password generated using mkpasswd -m sha-512
-      password: $6$66pTgip9$1FgWAj2uKEUUQj1cnJKXm9xdnhd.jJKmERB/o4Mc/8PPOp8ba6FTv206M3RzPOuZdPlifNjLJaGzysz0OfXxV0
+      password: $6$leYJSesP$fPm2lwx4Pw/5ZmafFH3h0sMjnMhdH02uC4K7Te0Bu48YhS7o3PFxfsv.V/is.Ty29Ol1j2lvWLcMiE99AvoMy/
 
 - name: services_13gb
   network: default
@@ -111,7 +111,7 @@ resource_pools:
   env:
     bosh:
       # password generated using mkpasswd -m sha-512
-      password: $6$66pTgip9$1FgWAj2uKEUUQj1cnJKXm9xdnhd.jJKmERB/o4Mc/8PPOp8ba6FTv206M3RzPOuZdPlifNjLJaGzysz0OfXxV0
+      password: $6$leYJSesP$fPm2lwx4Pw/5ZmafFH3h0sMjnMhdH02uC4K7Te0Bu48YhS7o3PFxfsv.V/is.Ty29Ol1j2lvWLcMiE99AvoMy/
 
 - name: services_21gb
   network: default
@@ -126,7 +126,7 @@ resource_pools:
   env:
     bosh:
       # password generated using mkpasswd -m sha-512
-      password: $6$66pTgip9$1FgWAj2uKEUUQj1cnJKXm9xdnhd.jJKmERB/o4Mc/8PPOp8ba6FTv206M3RzPOuZdPlifNjLJaGzysz0OfXxV0
+      password: $6$leYJSesP$fPm2lwx4Pw/5ZmafFH3h0sMjnMhdH02uC4K7Te0Bu48YhS7o3PFxfsv.V/is.Ty29Ol1j2lvWLcMiE99AvoMy/
 
 jobs:
 
