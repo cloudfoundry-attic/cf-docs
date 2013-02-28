@@ -1,5 +1,5 @@
 ---
-title: BOSH Reference
+title: BOSH Reference 
 ---
 
 * [Jobs](jobs.html)
