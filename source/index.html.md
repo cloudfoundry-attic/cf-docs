@@ -6,7 +6,7 @@ This set of materials will replace all Cloud Foundry documentation, for cloudfou
 
 This information is forward-looking and favors 'next generation' components which may not be applicable to existing Cloud Foundry installations. 
 
-Docs are a work in progress and we welcome your [contributions](http://github.com/cloudfoundry/cf-docs).
+Docs are a work in progress. We welcome your [contributions](http://github.com/cloudfoundry/cf-docs).
 
 For a look at our roadmap - go [here](docs/roadmap.html).
 
