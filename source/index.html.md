@@ -80,17 +80,24 @@ For dev/ops people managing instances of Cloud Foundry.
 
 * [Monitoring Cloud Foundry](docs/running/monitoring/index.html)
 
+* [Managing Users](docs/running/managing-users/index.html)
+
 ## [Reference](docs/reference/index.html)
 
 Detailed reference materials.
 
 * [Cloud Foundry REST API](docs/reference/cc-api.html)
 
+## [CloudFoundry.com](docs/dotcom/index.html)
+
+Cloud Foundry features running on CloudFoundry.com.
+
+  * [Technical Integration](docs/dotcom/integration/index.html)
+
 ## [Community](docs/community/index.html)
 
 Extensions, tools and services provided by the Cloud Foundry community and partners.
 
-  * [Technical Integration](docs/community/integration/index.html)
   * [Hosting providers](docs/community/hosting-providers.html)
   * [Consulting](docs/community/consulting.html)
   * [Contrib](docs/community/contrib.html)

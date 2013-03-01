@@ -1,5 +1,5 @@
 ---
-title: BOSH 
+title: BOSH
 ---
 
 Cloud Foundry BOSH is an open source tool chain for release engineering, deployment and lifecycle management of large scale distributed services. In this manual we describe the architecture, topology, configuration, and use of BOSH, as well as the structure and conventions used in packaging and deployment.
@@ -12,4 +12,4 @@ BOSH was originally developed in the context of the Cloud Foundry Application Pl
   * [Jobs](reference/jobs.html)
   * [Packages](reference/packages.html)
   * [Releases](reference/releases.html)
-  * [BOSH CLI](reference/bosh-cli.html) 
+  * [BOSH CLI](reference/bosh-cli.html)

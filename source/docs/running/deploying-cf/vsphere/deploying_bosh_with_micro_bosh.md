@@ -1,3 +1,7 @@
+---
+title: Deploying BOSH with Micro BOSH
+---
+
 # Deploy BOSH as an application using micro BOSH. #
 
 1. Deploy micro BOSH. See the steps in the [previous section](deploying_micro_bosh.html)
@@ -78,7 +82,7 @@ _Note: Create a new user using `bosh create user` which overrides the default us
 
 ### Setup a BOSH deployment manifest and deploy ###
 
-1. Create and setup a BOSH deployment manifest. Look at the [BOSH example manifest](../../bosh/reference/bosh-example-manifest.html). 
+1. Create and setup a BOSH deployment manifest. Look at the [BOSH example manifest](./bosh-example-manifest.html). 
 
 1. Deploy bosh. (the following assumes your manifest is named `bosh.yml` in `/home/bosh_user`).
 
