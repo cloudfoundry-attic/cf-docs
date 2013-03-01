@@ -6,6 +6,7 @@ title: Node.js
 * [Introduction](#intro)
 * [Prerequisites](#prerequisites)
 * [Create your application](#create-your-app)
+* [Autoconfiguration](#autoconfiguration)
 * [Dependencies](#dependencies)
 * [Deploying your application](#deploy-your-app)
 * [Node.js version parity](#checking-node-versions)
@@ -63,6 +64,54 @@ Create a file called "package.json" with the following contents:
 ```
 
 This file tells node which libraries are in use (express, in this case) and what versions to use. The engines configuration can also be used to specify which version of node to use, although this is also selected using VMC when deploying the application. For a more detailed explanation of package.json, take a look at the [Node.js documentation](https://npmjs.org/doc/json.html).
+
+
+## <a id='autoconfiguration'></a>Autoconfiguration ##
+
+At the moment the application is set to listen to port 3000. To be able to deploy the application unmodified a dependency on the cf-autoconfig node module has to be added to the project. Make the following two modifications, add cf-autoconfig to package.json
+
+~~~json
+
+{
+  "name": "hello-node",
+  "version": "0.0.1",
+  "dependencies": {
+    "express": "*",
+    "cf-autoconfig", "*"
+  },
+  "engines": {
+    "node": "0.8.x"
+  }
+}
+~~~
+
+and then require the library at the start of the application;
+
+~~~javascript
+require("cf-autoconfig");
+var express = require("express");
+var app = express();
+
+app.get('/', function(req, res) {
+    res.send('Hello from Cloud Foundry');
+});
+
+app.listen(3000);
+~~~
+
+Deploy the application as normal and the port will automatically be assigned, along with any bound data connections. If you do not wish to use auto configuration then just change the app to look for the bound port using environment variables;
+
+~~~javascript
+require("cf-autoconfig");
+var express = require("express");
+var app = express();
+
+app.get('/', function(req, res) {
+    res.send('Hello from Cloud Foundry');
+});
+
+app.listen(process.env.VCAP_APP_PORT || 3000);
+~~~
 
 ## <a id='dependencies'></a>Dependencies, NPM and package.json ##
 
