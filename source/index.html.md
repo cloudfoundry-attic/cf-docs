@@ -98,6 +98,3 @@ Cloud Foundry features running on CloudFoundry.com.
 
 Extensions, tools and services provided by the Cloud Foundry community and partners.
 
-  * [Hosting providers](docs/community/hosting-providers.html)
-  * [Consulting](docs/community/consulting.html)
-  * [Contrib](docs/community/contrib.html)
