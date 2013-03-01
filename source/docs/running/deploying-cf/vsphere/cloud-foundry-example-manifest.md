@@ -908,5 +908,5 @@ properties:
       users:
       - your-admin@your-org.com|your-admin-password|scim.write,scim.read,openid,cloud_controller.admin
       - dash-user|dash-password|openid,dashboard.user
-
 ~~~
+
