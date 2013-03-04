@@ -20,15 +20,13 @@ This section of the Cloud Foundry documentation is for developers pushing applic
 
 * [Managing Apps](managing-apps/index.html)
 
-  * [API](../reference/api.html)
-
   * [vmc](managing-apps/vmc/index.html)
 
   * [Spring Tool Suite](managing-apps/sts/index.html)
  
   * [Build tools](managing-apps/build-tools/index.html)
 
-  * [Libraries](managing-apps/libs/index.html)
+  * [API and Libraries](managing-apps/libs/index.html)
 
 * [Working with Services](working-with-services/index.html)
 
