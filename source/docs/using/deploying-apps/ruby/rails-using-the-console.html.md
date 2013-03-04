@@ -2,11 +2,6 @@
 title: Rails 3, Using the Console
 ---
 
-### Quick links ###
-* [Introduction](#intro)
-* [Installing the console plugin for VMC](#install)
-* [Invoking the console](#invoke)
-
 ## <a id='intro'></a>Introduction ##
 
 From debugging issues on a production application to managing data, the Rails console is an invaluable tool. VMC makes it very simple to get a connection to a Rails console up and running.

@@ -2,20 +2,6 @@
 title: Spring - Service Bindings
 ---
 
-### Quick links ###
-* [Introduction](#intro)
-* [Auto-Reconfiguration](#auto)
-    * [Opting out of Auto-Reconfiguration](#optout)
-* [Manual Configuration](#manual)
-    * [Cloud Namespace](#namespace)
-    * [Property Placeholders](#properties)
-    * [Profiles](#profiles)
-* [Service-specific Details](#services)
-    * [MySQL and vFabric Postgres](#rdbms)
-    * [MongoDB](#mongodb)
-    * [Redis](#redis)
-    * [RabbitMQ](#rabbitmq)
-
 ## <a id='intro'></a>Introduction ##
 
 Cloud Foundry provides extensive support for connecting a Spring application to services such as MySQL, vFabric Postgres, MongoDB, Redis, and RabbitMQ. In many cases, Cloud Foundry can automatically configure a Spring application without any code changes. For more advanced cases, you can control service connection parameters yourself. 

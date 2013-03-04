@@ -2,13 +2,6 @@
 title: Sinatra, Getting Started
 ---
 
-### Quick links ###
-* [Introduction](#intro)
-* [Prerequisites](#prerequisites)
-* [Creating a Sample Project](#sample-project)
-* [Deploying Your Application](#deploying)
-* [Next Steps - Binding a service](#next-steps)
-
 ## <a id='intro'></a>Introduction ##
 
 Cloud Foundry provides support for Sinatra applications. Work through this guide to create a sample application and deploy it to Cloud Foundry.

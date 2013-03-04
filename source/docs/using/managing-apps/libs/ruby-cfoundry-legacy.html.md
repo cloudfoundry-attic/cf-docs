@@ -2,16 +2,6 @@
 title: Using the CFoundry Ruby Gem to manage applications (Classic / Legacy Cloud Foundry)
 ---
 
-### Quick links ###
-* [Introduction](#intro)
-* [Connecting to Cloud Foundry](#connecting)
-* [Persisting Authentication (Using vmc tokens)](#persist-authentication)
-* [Services](#services)
-* [Runtimes and Frameworks](#runtimes-and-frameworks)
-* [Applications](#applications)
-* [Environment Variables](#env-vars)
-* [Domains](#domains)
-
 ## <a id='intro'></a>Introduction ##
 
 This is a guide to using the CFoundry Ruby Gem to manage an account on a Cloud Foundry instance.

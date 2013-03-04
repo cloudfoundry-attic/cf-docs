@@ -2,12 +2,6 @@
 title: VMC (VMware Cloud) console interface
 ---
 
-### Quick links ###
-* [Introduction](#intro)
-* [Installing](#installing)
-* [Commands](#commands)
-* [Plug-ins](#plug-ins)
-
 ## <a id='intro'></a>Introduction ##
 
 VMC is Cloud Foundry's console-based interface. Using this tool you can deploy and manage applications running on most Cloud Foundry based environments including CloudFoundry.com. 

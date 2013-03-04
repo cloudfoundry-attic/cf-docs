@@ -2,13 +2,6 @@
 title: Rails 3, Service Bindings
 ---
 
-### Quick links ###
-* [Introduction](#intro)
-* [Prerequisites](#prerequisites)
-* [Configuring your Gemfile](#gemfile)
-* [Modifying the sample application](#modifying)
-* [Creating and binding the service](#creating-and-binding)
-
 ## <a id='intro'></a>Introduction ##
 
 This guide is for developers who wish to bind an ORM type data source to a Rails 3 application deployed and running on Cloud Foundry. For information on binding other data sources to Rails and other Ruby-based applications see the Ruby [Service Bindings](./ruby-service-bindings.html) page.

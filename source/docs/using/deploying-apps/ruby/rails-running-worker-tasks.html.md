@@ -2,14 +2,6 @@
 title: Rails 3, Running Worker Tasks
 ---
 
-### Quick links ###
-* [Introduction](#intro)
-* [Choosing a worker task library](#worker-libs)
-* [Creating an example application](#example-app)
-* [Deploying once, deploying twice...](#deploy)
-* [Testing the application](#test)
-* [Scale your workers](#scale)
-
 ## <a id='intro'></a>Introduction ##
 
 Often when developing a Rails 3 application, you may want delay certain tasks so as not to consume resource that could be used for servicing requests from your user.

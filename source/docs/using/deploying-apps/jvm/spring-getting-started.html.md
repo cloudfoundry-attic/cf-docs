@@ -2,13 +2,6 @@
 title: Spring - Getting started
 ---
 
-### Quick links ###
-* [Introduction](#intro)
-* [Prerequisites](#prerequisites)
-* [Packaging a Sample Project](#sample-project)
-* [Deploying Your Application](#deploying)
-* [Next Steps - Binding services](#next-steps)
-
 ## <a id='intro'></a>Introduction ##
 
 This guide explains how to deploy a simple Java application using Spring Framework to Cloud Foundry. It assumes a basic knowledge and understanding of Spring Framework. For help getting started with Spring Framework, see the [Spring Framework web site](http://www.springsource.org/get-started).

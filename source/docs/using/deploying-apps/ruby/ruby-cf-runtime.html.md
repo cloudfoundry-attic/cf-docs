@@ -2,14 +2,6 @@
 title: Ruby, CF-Runtime
 ---
 
-### Quick links ###
-* [Introduction](#intro)
-* [Prerequisites](#prerequisites)
-* [Connecting to a named service](#connecting-to-a-named-service)
-* [Connecting to the only instance of a service](#connecting-to-one-instance)
-* [Obtaining connection properties](#obtaining-connection-properties)
-* [Other handy methods](#other-handy-methods)
-
 ## <a id='intro'></a>Introduction ##
 
 The 'cf-runtime' gem provides helper functions to allow easy configuration of connections to any service that is bound to an application. 

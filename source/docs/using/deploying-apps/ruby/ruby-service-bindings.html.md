@@ -2,16 +2,6 @@
 title: Ruby, Service Bindings
 ---
 
-### Quick links ###
-* [Introduction](#intro)
-* [Creating and binding the service](#creating-and-binding)
-* [Auto Configuration](#autoconfig)
-* [Connecting to the service (Auto configuration)](#connecting-auto)
-* [VCAP_SERVICES Environmental Variables](#env-vars)
-* [Connecting to the service (Manual configuration)](#connecting-manual)
-* [Connecting Rails (Auto configuration)](#rails-auto)
-* [Connecting Rails (Manual configuration)](#rails-manual)
-
 ## <a id='intro'></a>Introduction ##
 
 This guide is for developers who wish to bind a data source to a Ruby application deployed and running on Cloud Foundry.

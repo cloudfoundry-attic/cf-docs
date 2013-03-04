@@ -2,18 +2,6 @@
 title: Binding a service
 ---
 
-### Quick links ###
-* [Introduction](#intro)
-* [Prerequisites](#prerequisites)
-* [Auto Configuration](#autoconfig)
-* [Modifying the sample application](#modifying)
-* [Adding support for the correct module](#module-support)
-* [MongoDB](#mongodb)
-* [Redis](#redis)
-* [MySQL](#mysql)
-* [Rabbit MQ](#rabbitmq)
-* [Creating and binding the service](#creating-and-binding)
-
 ## <a id='intro'></a>Introduction ##
 
 This guide is for developers who wish to bind a data source to a Node.js application deployed and running on Cloud Foundry.

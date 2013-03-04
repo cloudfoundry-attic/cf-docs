@@ -2,15 +2,6 @@
 title: Rails 3, Getting Started
 ---
 
-### Quick links ###
-* [Introduction](#intro)
-* [Prerequisites](#prerequisites)
-* [Creating a Sample Project](#sample-project)
-* [Assets, Precompile or Not?](#assets)
-* [Deploying Your Application](#deploying)
-* [Next Steps - Binding a service](#next-steps)
-
-
 ## <a id='intro'></a>Introduction ##
 
 Cloud Foundry has comprehensive support for Rails 3, including legacy versions. Work through this guide to create a sample application and deploy it to Cloud Foundry.

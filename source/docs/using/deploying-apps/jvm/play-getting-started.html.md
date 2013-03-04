@@ -2,13 +2,6 @@
 title: Play, Getting Started
 ---
 
-### Quick links ###
-* [Introduction](#intro)
-* [Prerequisites](#prerequisites)
-* [Creating a Sample Project](#sample-project)
-* [Deploying Your Application](#deploying)
-* [Next Steps - Binding a service](#next-steps)
-
 ## <a id='intro'></a>Introduction ##
 
 Cloud Foundry supports Play 2.0 as a first-class framework. Play is a lightweight, stateless, web-friendly framework for Java and Scala. Developers can leverage this event-driven non-blocking IO architecture to build highly scalable applications. This guide explains how to get a Play 2.0 application up and running on Cloud Foundry.

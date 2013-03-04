@@ -2,13 +2,6 @@
 title: Standalone, Getting Started
 ---
 
-### Quick links ###
-* [Introduction](#intro)
-* [Prerequisites](#prerequisites)
-* [Creating a Sample Project](#sample-project)
-* [Deploying Your Application](#deploying)
-* [Next Steps - Binding a service](#next-steps)
-
 ## <a id='intro'></a>Introduction ##
 
 Cloud Foundry supports running standalone applications. This guide will show you how to create a standalone application that will execute ruby code at a given interval using the Clockwork gem.

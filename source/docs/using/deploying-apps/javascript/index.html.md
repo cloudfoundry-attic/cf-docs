@@ -2,16 +2,6 @@
 title: Node.js
 ---
 
-### Quick links ###
-* [Introduction](#intro)
-* [Prerequisites](#prerequisites)
-* [Create your application](#create-your-app)
-* [Autoconfiguration](#autoconfiguration)
-* [Dependencies](#dependencies)
-* [Deploying your application](#deploy-your-app)
-* [Node.js version parity](#checking-node-versions)
-* [Next Steps - Binding a service](#next-steps)
-
 ## <a id='intro'></a>Introduction ##
 
 This quickstart guide is for developers who wish to build applications with the [Node.js](http://www.nodejs.org) Javascript framework and deploy to Cloud Foundry.

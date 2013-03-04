@@ -2,13 +2,6 @@
 title: Grails - Getting started
 ---
 
-### Quick links ###
-* [Introduction](#intro)
-* [Prerequisites](#prerequisites)
-* [Creating a Sample Project](#sample-project)
-* [Deploying Your Application](#deploying)
-* [Next Steps - Binding a service](#next-steps)
-
 ## <a id='intro'></a>Introduction ##
 
 [Grails](http://grails.org/) is a framework for rapidly developing web applications that can be deployed to any Java servlet container, such as Tomcat. Based on the dynamic language [Groovy](http://groovy.codehaus.org/) and the [Spring Framework](http://www.springsource.org/), it brings the paradigm of Convention over Configuration to the Java platform with the expressiveness of a Java-like dynamic language.
