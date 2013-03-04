@@ -22,6 +22,8 @@ This section of the Cloud Foundry documentation is for developers pushing applic
 
   * [vmc](managing-apps/vmc/index.html)
 
+  * [Organizations & Spaces](managing-apps/orgs-and-spaces.html)
+  
   * [Spring Tool Suite](managing-apps/sts/index.html)
  
   * [Build tools](managing-apps/build-tools/index.html)

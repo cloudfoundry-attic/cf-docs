@@ -59,6 +59,30 @@ module Navigation
       return content_tag :ul, menu_content, options
     end
 
+    def quick_links()
+      links = []
+      page_src = File.read(current_page.source_file)
+      sections = page_src.scan /\n##[^#]+##\n/
+
+      sections.each do |s|
+        
+        next if s.match(/id='(.+)'/).nil? or s.match(/<\/a>(.+)##/).nil?
+
+        anchor_name = s.match(/id='(.+)'/)[1]
+        title = s.match(/<\/a>(.+)##/)[1].strip!
+        
+        link = content_tag :a, title, :href => "##{anchor_name}"
+        list_item = content_tag :li, link
+
+        links << list_item
+      end
+      
+      [
+        content_tag(:h3, "Quick Links"),
+        content_tag(:ul, links.join("\n"))
+      ].join
+    end
+
     # create an <ul> list with links to all the parent pages down to the root
     def trail_nav()  # removed sep
       p = current_page

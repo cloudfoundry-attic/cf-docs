@@ -30,6 +30,8 @@ For developers pushing applications to Cloud Foundry.
 
   * [vmc](docs/using/managing-apps/vmc/index.html)
 
+  * [Organizations & Spaces](managing-apps/orgs-and-spaces.html)
+
   * [IDE Integration](docs/using/managing-apps/ide/index.html)
   
   * [Build Tools](docs/using/managing-apps/build-tools/index.html)
