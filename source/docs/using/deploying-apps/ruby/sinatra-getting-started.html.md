@@ -49,7 +49,7 @@ run HelloWorld.new
 Gemfile
 
 ~~~ruby
-source :rubygems
+source 'https://rubygems.org'
 gem 'sinatra'
 ~~~
 
