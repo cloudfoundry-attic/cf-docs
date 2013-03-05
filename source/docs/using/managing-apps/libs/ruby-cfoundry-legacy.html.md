@@ -12,7 +12,7 @@ First of all make sure you have included the cfoundry gem as part of your applic
 
 ~~~ruby
 
-source :rubygems
+source 'https://rubygems.org'
 gem 'cfoundry'
 
 ~~~
