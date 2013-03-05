@@ -30,7 +30,7 @@ Initialise both files as follows;
 Gemfile
 
 ~~~ruby
-source :rubygems
+source 'https://rubygems.org'
 gem 'clockwork'
 ~~~
 
