@@ -6,9 +6,9 @@ Installation of BOSH is done using micro BOSH, which is a single VM that include
 
 A good way to think about this two step process is to consider that BOSH is a distributed system in itself. Since BOSH's core purpose is to deploy and manage distributed systems, it makes sense that we would use it to deploy itself. On the BOSH team, we gleefully refer to this as [Inception](http://en.wikipedia.org/wiki/Inception).
 
-## BOSH Bootstrap ##
+## <a id="bootstrap"></a>BOSH Bootstrap ##
 
-### Prerequisites ###
+### <a id="prerequisites"></a>Prerequisites ###
 
 We recommend that you run the BOSH bootstrap from Ubuntu since it is the distribution used by the BOSH team, and has been thoroughly tested.
 
@@ -46,7 +46,7 @@ Micro
 	micro apply <spec>        Apply spec
 </pre>
 
-### Configuration ###
+### <a id="config"></a>Configuration ###
 
 For a minimal vSphere configuration example, see [here](https://github.com/cloudfoundry/bosh/blob/master/bosh_deployer/spec/assets/test-bootstrap-config.yml). Note that `disk_path` is `BOSH_Deployer` rather than `BOSH_Disks`. A datastore folder other than `BOSH_Disks` is required if your vCenter hosts other Directors. The `disk_path` folder needs to be created manually. Also, your configuration must live inside a `deployments` directory and follow the convention of having a `$name` subdir containing `micro_bosh.yml`, where `$name` is your deployment name.
 
@@ -61,7 +61,7 @@ deployments/dev33/micro_bosh.yml
 
 Deployment state is persisted to `deployments/bosh-deployments.yml`.
 
-### vCenter Configuration ###
+### <a id="config-vcenter"></a>vCenter Configuration ###
 
 The vCenter configuration section looks like the following:
 
@@ -134,7 +134,7 @@ If you have 2 datastores called "vnx:1" and "vnx:2", and you would like to separ
                allow_mixed_datastores: false
 ~~~
 
-## Deployment ##
+## <a id="deploy"></a>Deployment ##
 
 Download a micro BOSH Stemcell:
 
@@ -175,7 +175,7 @@ Update an existing micro BOSH instance. The existing persistent disk will be att
 $ bosh micro deploy ~/stemcells/micro-bosh-stemcell-0.6.4.tgz --update
 </pre>
 
-### Deleting a Micro BOSH Deployment ###
+### <a id="delete"></a>Deleting a Micro BOSH Deployment ###
 
 The `delete` command will delete the VM, Stemcell, and persistent disk:
 
@@ -183,7 +183,7 @@ The `delete` command will delete the VM, Stemcell, and persistent disk:
 $ bosh micro delete
 </pre>
 
-### Checking Status of a Micro BOSH Deploy ###
+### <a id="verify"></a>Checking Status of a Micro BOSH Deploy ###
 
 The `status` command will show the persisted state for a given micro BOSH instance.
 
@@ -198,7 +198,7 @@ Deployment     /home/user/cloudfoundry/deployments/micro_bosh/micro_bosh.yml
 Target         http://192.168.9.20:25555 #IP Address of the Director
 </pre>
 
-### Listing Deployments ###
+### <a id="listing"></a>Listing Deployments ###
 
 The `deployments` command prints a table view of `deployments/bosh-deployments.yml`:
 
@@ -208,7 +208,7 @@ $ bosh micro deployments
 
 The files in the `deployments` directory need to be saved if you later want to be able to update your micro BOSH instance. They are all text files, so you can commit them to a git repository to make sure they are safe in case your bootstrap VM goes away.
 
-### Applying a Specification ###
+### <a id="apply-spec"></a>Applying a Specification ###
 
 The micro-bosh-stemcell includes an embedded `apply_spec.yml`. This command can be used to apply a different spec to an existing instance. The `apply_spec.yml` properties are merged with your Deployment's `network.ip` and `cloud.properties.vcenters` properties.
 
@@ -216,7 +216,7 @@ The micro-bosh-stemcell includes an embedded `apply_spec.yml`. This command can 
 $ bosh micro apply apply_spec.yml
 </pre>
 
-### Sending Messages to the Micro BOSH Agent ###
+### <a id="send-message"></a>Sending Messages to the Micro BOSH Agent ###
 
 The `bosh` CLI can send messages over HTTP to the agent using the `agent` command.
 

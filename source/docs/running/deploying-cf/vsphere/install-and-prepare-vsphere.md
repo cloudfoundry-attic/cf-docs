@@ -10,21 +10,21 @@ Before starting a Cloud Foundry deployment, a vSphere cluster must be set up. Th
 4. Switch 
 5. Network: IP ranges at least 100 IPs
 
-## Install ESXi and vCenter ##
+## <a id="install"></a>Install ESXi and vCenter ##
 
 Follow the standard ESXi and vCenter installation process. After installation your ESXi will look like the image below:
 
 ![esxi](/images/running/deploying-cf/vsphere/esxi5.png)
 
-## Prepare vCenter for Cloud Foundry Deployment ##
+## <a id="prepare"></a>Prepare vCenter for Cloud Foundry Deployment ##
 
-### Create a Datacenter ###
+### <a id="prepare-datacenter"></a>Create a Datacenter ###
 
 In vCenter, go to `Hosts and Clusters` then click on `Create a Datacenter`. A new datacenter will be created in the left panel. Give a suitable name and press the Enter key. 
 
 ![datacenter](/images/running/deploying-cf/vsphere/datacenter.png)
 
-### Create a Cluster ###
+### <a id="prepare-cluster"></a>Create a Cluster ###
 
 Next, create a cluster and add ESXi hosts to the cluster.
 
@@ -36,11 +36,11 @@ Once finished, you can see the new cluster created in the left panel.
 
 ![cluster1](/images/running/deploying-cf/vsphere/cluster1.png)
 
-### Create a Resource Pool ###
+### <a id="prepare-pool"></a>Create a Resource Pool ###
 
 Create a resource pool.
 
-### Add the ESXi hosts to the cluster ###
+### <a id="prepare-hosts"></a>Add the ESXi hosts to the cluster ###
 
 1. Select the cluster created in the step above.
 2. Click on the `Add a Host` link.
@@ -50,11 +50,11 @@ Once you finish you can see the newly added host in the left panel.
 
 ![host1](/images/running/deploying-cf/vsphere/add_host.png)
 
-## Create the Folders for VMs, Templates and Disk Path##
+## <a id="folders"></a>Create the Folders for VMs, Templates and Disk Path ##
 
 Micro BOSH and BOSH use predefined locations for VMs, templates and disk path that you will define in the deployment manifest.
 
-### Create the VM and Templates Folder ###
+### <a id="folders-vm"></a>Create the VM and Templates Folder ###
 
 1. Click on Inventory, `Select Vms and Templates`.
 2. Select the datacenter created in the step above.
@@ -65,7 +65,7 @@ Micro BOSH and BOSH use predefined locations for VMs, templates and disk path th
 
 ![vms_and_folders](/images/running/deploying-cf/vsphere/vms_templates.png)
 
-### Create the Disk Path ###
+### <a id="folders-disk"></a>Create the Disk Path ###
 
 1. Click on Inventory, then `Datastore and Datastore Clusters`.
 2. Right click the datastore in which you want to store the disks of VMs. Select `Browse Datastore`. The datastore will open in a new window.
@@ -76,7 +76,7 @@ Micro BOSH and BOSH use predefined locations for VMs, templates and disk path th
 
 ![datastore1](/images/running/deploying-cf/vsphere/datastore.png)
 
-## Summary ##
+## <a id="summary"></a>Summary ##
 
 The vSphere 5.x cluster is ready for Cloud Foundry deployment.
 
