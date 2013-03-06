@@ -6,7 +6,7 @@ The following steps and sections provide more detail on installing Cloud Foundry
 
 [Hardware Requirement](hardware_spec.html)
 
-[Install and Set up vSphere and vCenter 5.0/5.1](Install_and_prepare_vsphere.html)
+[Install and Set up vSphere and vCenter 5.0/5.1](install-and-prepare-vsphere.html)
 
 [Install BOSH CLI and Get a Release](../../bosh/setup/index.html)
 
