@@ -67,7 +67,7 @@ At the moment the application is set to listen to port 3000. To be able to deplo
   "version": "0.0.1",
   "dependencies": {
     "express": "*",
-    "cf-autoconfig", "*"
+    "cf-autoconfig": "*"
   },
   "engines": {
     "node": "0.8.x"
