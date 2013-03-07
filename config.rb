@@ -48,6 +48,7 @@
 # end
 
 require 'navigation'
+require 'quicklinks'
 
 set :markdown_engine, :redcarpet
 set :markdown, :layout_engine => :erb, 
@@ -90,6 +91,9 @@ activate :syntax
 
 # For navigation breadcrumbs
 activate :navigation
+
+# For generated intra-page links
+activate :quicklinks
 
 helpers do
   class Middleman::Sitemap::Page

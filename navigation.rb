@@ -1,8 +1,5 @@
 # mostly from https://github.com/multiscan/middleman-navigation but modified slightly
 module Navigation
-
-  require 'redcarpet'
-
   class << self
     def registered(app)
       app.helpers HelperMethods
@@ -60,30 +57,6 @@ module Navigation
       options.delete(:li_class)
       options.delete(:wrapper)
       return content_tag :ul, menu_content, options
-    end
-
-    def quick_links()
-      links = []
-      page_src = File.read(current_page.source_file)
-      sections = page_src.scan /\n\#{2,3}[^#]+\#{2,3}\n/
-
-      markdown = ''
-
-      sections.each do |s|
-        
-        next if s.match(/id='(.+)'/).nil? or s.match(/<\/a>([^#.]+)\#{2,3}/).nil?
-
-        anchor_name = s.match(/id='(.+)'/)[1]
-        title = s.match(/<\/a>([^#.]+)\#{2,3}/)[1].strip!
-        indent = (s.count('#') / 2) - 2
-
-        markdown << '  ' * indent
-        markdown << "* [#{title}](##{anchor_name})\n"
-
-      end
-      
-      md = Redcarpet::Markdown.new(Redcarpet::Render::HTML)
-      md.render(markdown)
     end
 
     # create an <ul> list with links to all the parent pages down to the root
