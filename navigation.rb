@@ -83,7 +83,8 @@ module Navigation
       end
       
       md = Redcarpet::Markdown.new(Redcarpet::Render::HTML)
-      md.render(markdown)
+      result = md.render(markdown)
+      "<div class=\"quick-links\">#{result}</div>"
     end
 
     # create an <ul> list with links to all the parent pages down to the root

@@ -2,6 +2,8 @@
 title: Micro Cloud Foundry
 ---
 
+* [Developing Cloud Foundry with Micro Cloud Foundry](developing_cf.html)
+
 ## <a id='intro'></a>Introduction ##
 
 Micro Cloud Foundry is your own portable instance of Cloud Foundry, delivered as a virtual machine image for use with VMWare Workstation, Player or Fusion.
@@ -452,5 +454,3 @@ ipconfig /flushdns
 ### <a id='cannot-connect'></a>"Cannot connect to cloudfoundry.com" Message When Configuring Micro Cloud VM ###
 
 When you configure the Micro Cloud VM to use DHCP it is assigned an address from the network's DHCP pool. If you continuously create/destroy VMs, for example in a testing environment, and your DHCP addresses have a lease life of 12 to 24 hours, it is possible to exhaust the DHCP pool. You will see a message during the configuration process that you cannot connect to cloudfoundry.com, although you are able to reach cloudfoundry.com with a browser. Restarting your DHCP server should return unused leases to the pool so they can be reused before the lease life expires.
-
-* [Developing Cloud Foundry with Micro Cloud Foundry](developing_cf.html)
