@@ -1,6 +1,0 @@
----
-title: RabbitMQ
----
-
-Coming soon...
-

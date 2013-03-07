@@ -30,17 +30,4 @@ This section of the Cloud Foundry documentation is for developers pushing applic
 
   * [API and Libraries](managing-apps/libs/index.html)
 
-* [Working with Services](working-with-services/index.html)
-
-  * [MySQL](working-with-services/relational-db/mysql.html)
-
-  * [PostgreSQL](working-with-services/relational-db/postgresql.html)
-
-  * [Redis](working-with-services/key-value-store/redis.html)
-
-  * [MongoDB](working-with-services/key-value-store/mongodb.html)
-
-  * [RabbitMQ](working-with-services/message-queue/rabbit.html)
-
-  * [Service Tunneling](working-with-services/tunneling/index.html)
-
+* [Tunnelling with Services](tunnelling-with-services.html)
