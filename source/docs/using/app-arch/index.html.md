@@ -4,11 +4,6 @@ title: Application Architecture Considerations
 
 Applications written using the runtimes and frameworks supported by Cloud Foundry will often run unmodified on Cloud Foundry, provided the design and architecture of an application follows a few simple guidelines. Following these guidelines will make an application cloud-friendly, and ease the deployment of an application to Cloud Foundry and other cloud platforms. 
 
-* [Local File System Storage](#filesystem)
-* [HTTP Sessions](#sessions)
-* [Ports](#ports)
-* [SMTP](#smtp)
-
 ## <a id="filesystem"></a>Local File System Storage ##
 
 Applications running on Cloud Foundry should avoid writing files to the local file system. There are a few reasons for this. 
