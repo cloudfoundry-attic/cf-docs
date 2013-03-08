@@ -15,14 +15,14 @@ $ gem install cf-uaac
 
 3. Target your UAA and obtain a token for the admin client
 <pre class="terminal">
-$ uaac target <your uaa url>
-$ uaac token client get admin -s <admin client_secret>
+$ uaac target uaa.your_domain.com
+$ uaac token client get admin -s admin_client_secret
 </pre class="terminal"> 
 
 4. Create an admin user and add them to the admin group
 <pre class="terminal">
-$ uaac user add <username> -p <password> --emails <email address>
-$ uaac member add cloud_controller.admin <username>
+$ uaac user add admin_username -p admin_password --emails admin_user_email_address
+$ uaac member add cloud_controller.admin admin_username
 </pre class="terminal">
 
 ## Creating users
