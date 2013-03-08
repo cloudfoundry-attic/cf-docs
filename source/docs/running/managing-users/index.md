@@ -6,7 +6,7 @@ This document is a temporary description for Cloud Foundry operators and dev / o
 
 ## Creating admin users
 
-1. Refer to your deployment manifest for the uaa:admin:client_secret
+1. Refer to your deployment manifest for the uaa:admin:client_secret ([example manifest](../deploying-cf/vsphere/cloud-foundry-example-manifest.html)).
 
 2. Install the UAA CLI, uaac
 <pre class="terminal">
