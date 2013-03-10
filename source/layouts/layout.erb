@@ -10,7 +10,7 @@
     <title><%= data.page.title || "Cloud Foundry Docs" %></title>
     
     <%= stylesheet_link_tag "style" %>
-    <%= javascript_include_tag  "all" %>
+   
     <!--[if IE 8]>
     <style>
         body  {background-color:#85bfe4;background-image:none;}
@@ -23,6 +23,9 @@
       <img alt="Fork me on GitHub" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png">
     </a>
     <div id="main">
+      <div id="search-box">
+          <gcse:searchbox-only></gcse:searchbox-only> 
+      </div>
       <div id="logo">
         <a href="http://www.cloudfoundry.com">
           <img src="/images/logo_cloudfoundry.png" height="57">
@@ -59,5 +62,7 @@
       VMware, Inc. All rights reserved.
       </p>
     </div>
+    <%= javascript_include_tag  "all" %>
+    <%= javascript_include_tag  "google-custom-search" %>
   </body>
 </html>
