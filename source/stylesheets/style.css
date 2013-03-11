@@ -202,6 +202,8 @@ pre.terminal {
 p { font-family: inherit; font-weight: normal; font-size: 14px; line-height: 1.6; margin: 10px 0; }
 p.lead { font-size: 17.5px; line-height: 1.6; margin-bottom: 17px; }
 
+p > img { max-width: 880px; margin : 20px 0;}
+
 aside p { font-size: 13px; line-height: 1.35; font-style: italic; }
 
 h1, h2, h3, h4, h5, h6 { font-family: Helvetica, Arial, sans-serif; font-weight: bold; font-style: normal; color: #333333; text-rendering: optimizeLegibility; line-height: 1.1; margin-bottom: 14px; margin-top: 14px; }

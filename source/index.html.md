@@ -38,19 +38,7 @@ For developers pushing applications to Cloud Foundry.
 
   * [API and Libraries](docs/using/managing-apps/libs/index.html)
 
-* [Working with Services](docs/using/working-with-services/index.html)
-
-  * [MySQL](docs/using/working-with-services/relational-db/mysql.html)
-
-  * [PostgreSQL](docs/using/working-with-services/relational-db/postgresql.html)
-
-  * [Redis](docs/using/working-with-services/key-value-store/redis.html)
-
-  * [MongoDB](docs/using/working-with-services/key-value-store/mongodb.html)
-
-  * [RabbitMQ](docs/using/working-with-services/message-queue/rabbit.html)
-
-  * [Service Tunneling](docs/using/working-with-services/tunneling/index.html)
+* [Tunnelling with Services](docs/using/tunnelling-with-services.html)
 
 ## [Running Cloud Foundry](docs/running/index.html)
 
