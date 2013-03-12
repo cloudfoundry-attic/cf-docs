@@ -7,6 +7,6 @@ Support for Cloud Foundry integration is available in several IDEs, for users no
 
 * [Spring Tool Suite and Groovy/Grails Tool Suite](./sts.html)
 
-* IntelliJ IDEA
+* [IntelliJ IDEA](./intellij.html)
 
 * RubyMine
