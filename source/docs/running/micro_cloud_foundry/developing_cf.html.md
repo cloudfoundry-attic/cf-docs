@@ -69,7 +69,9 @@ $ brew install watch
 
 $ cd ~/src/dea_ng
 
-$ watch -n 2 rsync -avz lib/ root@[your domain]:/var/vcap/packages/dea_next/lib
+$ bundle install
+
+$ watch -n 2 rsync -avz ./ root@[your domain]:/var/vcap/packages/dea_next
 </pre>
 
 Change the dea_next code locally, then on the Micro Cloud run:
