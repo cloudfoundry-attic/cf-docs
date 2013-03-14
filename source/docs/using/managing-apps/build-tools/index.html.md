@@ -2,9 +2,9 @@
 title: Build Tools
 ---
 
-Coming soon...
+It is possible to deploy application using a couple of different JVM build tools, Maven and Gradle.
 
-* Maven plugin
+* [Maven plugin](./maven.html)
 
-* Gradle plugin (unofficial)
+* [Gradle plugin (unofficial)](./gradle.html)
 

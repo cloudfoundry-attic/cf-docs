@@ -24,7 +24,7 @@ Once the artifact has been added, configure the type, resource and services.
 
 <img src="/images/intellij/config-artifact.png" />
 
-## <a id='adding-a-configuration'></a>Deploying ##
+## <a id='deploying'></a>Deploying ##
 
 To deploy the application, select the relevant entry from the top of the "Run" menu. If the configuration was named "Production-CF" then the menu item will be captioned "Production-CF". The output pane of the "Run" tab should show output similar to that illustrated below;
 
