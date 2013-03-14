@@ -903,6 +903,7 @@ properties:
         override: true
         authorized-grant-types: implicit
         authorities: uaa.none
+        redirect-uri: http://uaa.cloudfoundry.com/redirect/vmc,https://uaa.cloudfoundry.com/redirect/vmc
         scope: cloud_controller.read,cloud_controller.write,openid,password.write,cloud_controller.admin,scim.read,scim.write
     scim:
       users:
