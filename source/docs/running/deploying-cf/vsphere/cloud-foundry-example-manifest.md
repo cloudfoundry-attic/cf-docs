@@ -330,12 +330,16 @@ jobs:
 - name: dea_next
   release: appcloud
   template: dea_next
-  instances: 1
+  instances: 4
   resource_pool: deas
   update:
     max_in_flight: 8
   networks:
   - name: default
+  properties:
+    dea_next:
+      stacks:
+      - lucid64
 
 - name: mysql_node_100
   release: appcloud
