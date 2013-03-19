@@ -9,7 +9,7 @@ This guide is for developers who wish to bind a data source to a Node.js applica
 ## <a id='prerequisites'></a>Prerequisites ##
 
 * A Cloud Foundry account, you can sign up [here](https://my.cloudfoundry.com/signup)
-* The [VMC](../../managing-apps/) command line tool 
+* The [CF](../../managing-apps/) command line tool
 * [Node.js](http://www.nodejs.org) installed using the matching version of Node.js on your Cloud Foundry instance
 * [NPM](http://npmjs.org/) - Node Package Manager, to manage dependencies on your application
 * A sample application such as the one created in [this](./index.html) tutorial
@@ -124,7 +124,7 @@ var record_visit = function(req, res){
     res.writeHead(200, {'Content-Type': 'text/plain'});
     res.write(rows[0].time_now);
     res.end('\n');
-    
+
     console.log('The solution is: ', );
   });
 
@@ -174,15 +174,15 @@ app.listen(3000);
 
 ### <a id='creating-and-binding'></a> Creating and binding the service ##
 
-To create a service issue the following command with vmc and answer the interactive prompts;
+To create a service issue the following command with cf and answer the interactive prompts;
 
 ~~~bash
-$ vmc create-service
+$ cf create-service
 ~~~
 
-To bind the service to the application, use the following vmc command;
+To bind the service to the application, use the following cf command;
 
 ~~~bash
-$ vmc bind-service --app [application name] --service [service name]
+$ cf bind-service --app [application name] --service [service name]
 ~~~
 

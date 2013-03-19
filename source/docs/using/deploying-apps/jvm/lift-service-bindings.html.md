@@ -13,7 +13,7 @@ First, add the appropriate drivers to the project. Add the MySQL dependency via 
 ~~~xml
 
 <dependencies>
-    
+
   <dependency>
     <groupId>mysql</groupId>
     <artifactId>mysql-connector-java</artifactId>
@@ -27,7 +27,7 @@ First, add the appropriate drivers to the project. Add the MySQL dependency via 
 
 ## <a id='default-properties'></a>Default properties ##
 
-Edit ./src/main/resources/props/default.props and add the configuration for a local instance of MySQL, the configuration below is for a development instance of MySQL where for localhost, the root password is not set. 
+Edit ./src/main/resources/props/default.props and add the configuration for a local instance of MySQL, the configuration below is for a development instance of MySQL where for localhost, the root password is not set.
 
 ~~~
 db.class=com.mysql.jdbc.Driver
@@ -53,7 +53,7 @@ $ mvn package
 This creates a file in the target folder, in this example, the file is called lift\_hello\_world-1.0.war. Deploy it to Cloud Foundry using the path option to point to the archive file, remembering to create a MySQL service for the application;
 
 <pre class="terminal">
-$ vmc push lift-hello-world --path=./target/lift_hello_world-1.0.war
+$ cf push lift-hello-world --path=./target/lift_hello_world-1.0.war
 Instances> 1
 
 1: lift
@@ -126,7 +126,7 @@ To manually configure the database connection using a bound service in Scala, a 
     <name>SpringSource Milestones Proxy</name>
     <url>https://oss.sonatype.org/content/repositories/springsource-milestones</url>
   </repository>
-    
+
   <repository>
     <id>org.springframework.maven.milestone</id>
     <name>Spring Framework Maven Milestone Repository</name>
@@ -194,5 +194,5 @@ $ mvn clean package
 Then push back to Cloud Foundry
 
 <pre class="terminal">
-$ vmc push lift-hello-world --path=./target/lift_hello_world-1.0.war
+$ cf push lift-hello-world --path=./target/lift_hello_world-1.0.war
 </pre>

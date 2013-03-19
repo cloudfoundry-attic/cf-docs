@@ -4,7 +4,7 @@ title: Welcome to Cloud Foundry Documentation
 
 This set of materials will replace all Cloud Foundry documentation, for cloudfoundry.com, vcap, and bosh, in Q1 of 2013.
 
-This information is forward-looking and favors 'next generation' components which may not be applicable to existing Cloud Foundry installations. 
+This information is forward-looking and favors 'next generation' components which may not be applicable to existing Cloud Foundry installations.
 
 Docs are a work in progress. We welcome your [contributions](http://github.com/cloudfoundry/cf-docs).
 
@@ -28,12 +28,12 @@ For developers pushing applications to Cloud Foundry.
 
 * [Managing Apps](docs/using/managing-apps/index.html)
 
-  * [vmc](docs/using/managing-apps/vmc/index.html)
+  * [cf](docs/using/managing-apps/cf/index.html)
 
   * [Organizations & Spaces](docs/using/managing-apps/orgs-and-spaces.html)
 
   * [IDE Integration](docs/using/managing-apps/ide/index.html)
-  
+
   * [Build Tools](docs/using/managing-apps/build-tools/index.html)
 
   * [API and Libraries](docs/using/managing-apps/libs/index.html)

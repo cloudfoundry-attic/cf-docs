@@ -13,7 +13,7 @@ To complete this quickstart guide, you need to fulfill the following prerequisit
 * A Cloud Foundry account, you can sign up [here](https://my.cloudfoundry.com/signup)
 * [Java JDK](http://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-1880260.html) 6 or later
 * [Play Framework](http://www.playframework.org/download) 2.0 or later
-* The [vmc](../../managing-apps/vmc) command line tool 
+* The [cf](../../managing-apps/cf) command line tool
 
 ## <a id='sample-project'></a>Creating a Sample Project ##
 
@@ -21,20 +21,20 @@ Start off by creating a new Play application;
 
 <pre class="terminal">
 $ play new hello-world
-       _            _ 
+       _            _
  _ __ | | __ _ _  _| |
 | '_ \| |/ _' | || |_|
 |  __/|_|\____|\__ (_)
-|_|            |__/ 
-             
+|_|            |__/
+
 play! 2.0.2, http://www.playframework.org
 
 The new application will be created in [path]/hello-world
 
-What is the application name? 
+What is the application name?
 > hello-world
 
-Which template do you want to use for this new application? 
+Which template do you want to use for this new application?
 
   1 - Create a simple Scala application
   2 - Create a simple Java application
@@ -66,7 +66,7 @@ $ play redist
 [info] Loading project definition from [path]/hello-world/project
 [info] Set current project to hello-world (in build file:[path]/hello-world/)
 [info] Updating {file:[path]/hello-world/}hello-world...
-[info] Done updating.                                                                  
+[info] Done updating.
 [info] Compiling 6 Scala sources and 1 Java source to [path]/hello-world/target/scala-2.9.1/classes...
 [info] Packaging [path]/hello-world/target/scala-2.9.1/hello-world_2.9.1-1.0-SNAPSHOT.jar ...
 [info] Done packaging.
@@ -76,10 +76,10 @@ Your application is ready in [path]/dist/hello-world-1.0-SNAPSHOT.zip
 [success] Total time: 12 s, completed Feb 4, 2013 2:39:26 PM
 </pre>
 
-Note the penultimate line, specifying the location of distributable zip file. Making sure you are logged in to Cloud Foundry, you can deploy the application using the `vmc` command and specifying the path to the zip file using the `--path` option.
+Note the penultimate line, specifying the location of distributable zip file. Making sure you are logged in to Cloud Foundry, you can deploy the application using the `cf` command and specifying the path to the zip file using the `--path` option.
 
 <pre class="terminal">
-$ vmc push --path=dist/hello-world-1.0-SNAPSHOT.zip
+$ cf push --path=dist/hello-world-1.0-SNAPSHOT.zip
 Name> play-hello-world
 
 Instances> 1

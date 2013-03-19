@@ -2,15 +2,15 @@
 title: Deploying Cloud Foundry with BOSH
 ---
 
-This guide describes the process for deploying Cloud Foundry to a vSphere environment using BOSH. 
+This guide describes the process for deploying Cloud Foundry to a vSphere environment using BOSH.
 
 ## <a id="prerequisites"></a>Prerequisites ##
- 
+
 * BOSH should be deployed. See the steps in the [previous section](deploying_bosh_with_micro_bosh.html).
 
 ## <a id="target"></a>Target New BOSH Director ##
 
-Target the Director of the deployed BOSH using `bosh target` and the IP address of the Director. 
+Target the Director of the deployed BOSH using `bosh target` and the IP address of the Director.
 
 <pre class='terminal'>
 $ bosh target 172.20.134.52
@@ -56,11 +56,11 @@ Director task 1
 
 Update stemcell
 extracting stemcell archive (00:00:06)
-verifying stemcell manifest (00:00:00)                                                         
-checking if this stemcell already exists (00:00:00)                                               
-uploading stemcell bosh-stemcell/0.6.4 to the cloud (00:01:08)                                    
-save stemcell: bosh-stemcell/0.6.4 (sc-a85ab3dc-8d3d-4228-83d0-5be2436a1886) (00:00:00)           
-Done                    5/5 00:01:14                                                                
+verifying stemcell manifest (00:00:00)
+checking if this stemcell already exists (00:00:00)
+uploading stemcell bosh-stemcell/0.6.4 to the cloud (00:01:08)
+save stemcell: bosh-stemcell/0.6.4 (sc-a85ab3dc-8d3d-4228-83d0-5be2436a1886) (00:00:00)
+Done                    5/5 00:01:14
 Task 1 done
 Started		2012-09-26 10:14:26 UTC
 Finished	2012-09-26 10:15:40 UTC
@@ -98,7 +98,7 @@ Deployment set to '/home/user/deployments/cloudfoundry.yml'
 
 ## <a id="deploy"></a>Deploy Cloud Foundry ##
 
-Now deploy Cloud Foundry using `bosh deploy`. This example shows only part of the expected output: 
+Now deploy Cloud Foundry using `bosh deploy`. This example shows only part of the expected output:
 
 <pre class="terminal">
 $ bosh deploy
@@ -127,7 +127,7 @@ $ bosh deploy
 
 Execute the `bosh vms` command to see all the vas deployed.
 
-Output of this command will similar to the listing below. Make sure the "State" of all the jobs is "running".	
+Output of this command will similar to the listing below. Make sure the "State" of all the jobs is "running".
 
 <pre class="terminal">
 $ bosh vms
@@ -137,7 +137,7 @@ Director task 30
 
 
 Task 30 done
-	
+
 +-----------------------------+---------+----------------+---------------+
 | Job/index                   | State   | Resource Pool  | IPs           |
 +-----------------------------+---------+----------------+---------------+
@@ -195,4 +195,4 @@ Task 30 done
 VMs total: 50
 </pre>
 
-The Cloud Foundry deployment should now be ready to use. You can now follow the instructions in the [Using](/docs/using) section of these docs to install the [vmc](/docs/using/managing-apps/vmc) command-line tool and push an application. 
+The Cloud Foundry deployment should now be ready to use. You can now follow the instructions in the [Using](/docs/using) section of these docs to install the [cf](/docs/using/managing-apps/cf) command-line tool and push an application.

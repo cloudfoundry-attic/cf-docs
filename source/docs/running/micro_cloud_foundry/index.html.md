@@ -20,17 +20,17 @@ At this point, MCF will ask for a domain configuration token. You can generate t
 
 ## <a id='using-mcf'></a>Using Micro Cloud Foundry ##
 
-Once this is installed the VM should display the main menu for MCF, note the "Current Configuration" section at the top. With VMC installed, target the MCF installation using the address displayed in the VM console;
+Once this is installed the VM should display the main menu for MCF, note the "Current Configuration" section at the top. With CF installed, target the MCF installation using the address displayed in the VM console;
 
 <pre class="terminal">
-$ vmc target http://api.<mcf domain name>.cloudfoundry.me
-Setting target to http://api.<mcf domain name>.cloudfoundry.me... OK 
-</pre> 
+$ cf target http://api.<mcf domain name>.cloudfoundry.me
+Setting target to http://api.<mcf domain name>.cloudfoundry.me... OK
+</pre>
 
 Now register the admin account, the email address assigned as the admin account should also be displayed in the "Current Configuration" section;
 
 <pre class="terminal">
-$ vmc register <admin email>
+$ cf register <admin email>
 
 Password> ********
 
@@ -232,7 +232,7 @@ request and returning a response to the client. The client browser and
 application interact with the network in exactly the same way they do in
 production, except the cloud is running on the same host.
 
-Development and deployment tools - `vmc` and STS - also work with Micro Cloud
+Development and deployment tools - `cf` and STS - also work with Micro Cloud
 Foundry just as they work with CloudFoundry.com or any local or hosted Cloud
 Foundry instance.
 
@@ -276,7 +276,7 @@ If you use Micro Cloud Foundry in offline mode and still have an active Internet
 
 ### <a id='configuring-for-offline'></a>Configuring Micro Cloud Foundry for Offline Mode ###
 
-You can configure offline mode manually or use the `vmc micro` command. VMC version 0.3.16.beta4 or higher is required to use the `vmc micro` command. See [Using the VMC micro Command](#using-the-vmc-micro-command) for instructions.
+You can configure offline mode manually or use the `cf micro` command. CF version 0.3.16.beta4 or higher is required to use the `cf micro` command. See [Using the CF micro Command](#using-the-cf-micro-command) for instructions.
 
 The remainder of this section describes how to configure offline mode manually.
 
@@ -321,16 +321,16 @@ Follow these steps  whether you configured Micro Cloud Foundry with DHCP or a st
 + Right-click VMware Virtual Ethernet Adapter for VMnet8, and choose Properties.
 + Set the preferred DNS server to 172.16.52.136.
 
-## <a id='vmc-micro-command'></a>Using the VMC Micro Command ##
+## <a id='cf-micro-command'></a>Using the CF Micro Command ##
 
-The `vmc micro` command automates the steps described in the previous section. Review that section to understand how the command changes your configuration.
+The `cf micro` command automates the steps described in the previous section. Review that section to understand how the command changes your configuration.
 
-Install the vmc gem, or upgrade it if needed. You need version 0.3.16.beta4 or greater. See [VMC Installation](/tools/vmc/installing-vmc.html) for instructions.
+Install the cf gem, or upgrade it if needed. You need version 0.3.16.beta4 or greater. See [CF Installation](/tools/cf/installing-cf.html) for instructions.
 
-Here is the syntax for the `vmc micro` command:
+Here is the syntax for the `cf micro` command:
 
 ```bash
-Usage: vmc micro [options] command
+Usage: cf micro [options] command
 
 Options
   --password          VCAP user password
@@ -344,12 +344,12 @@ Commands
   status              Display current status
 ```
 
-To reconfigure and control the virtual machine, vmc needs paths to the .vmx file and the vmrun command. It may find the vmrun command on your path, but the first time you run it you must provide the path to the micro.vmx file using the --vmx option. The paths are saved in the .vmc_micro file in your home directory so you do not have to specify the options again on future runs.
+To reconfigure and control the virtual machine, cf needs paths to the .vmx file and the vmrun command. It may find the vmrun command on your path, but the first time you run it you must provide the path to the micro.vmx file using the --vmx option. The paths are saved in the .cf_micro file in your home directory so you do not have to specify the options again on future runs.
 
-In the following example, the path to the micro.vmx file is specified. vmc discovers that the VM is not running and offers to start it. It reports the status and asks whether to save the password for future runs.
+In the following example, the path to the micro.vmx file is specified. cf discovers that the VM is not running and offers to start it. It reports the status and asks whether to save the password for future runs.
 
 ```bash
-$ vmc micro --vmx /home/mcf/micro.vmx status
+$ cf micro --vmx /home/mcf/micro.vmx status
 Please enter your Micro Cloud Foundry VM password (vcap user)
 Password: ********
 Confirmation: ********
@@ -361,18 +361,18 @@ IP Address: 192.168.255.134
 Do you want to save your password? n
 ```
 
-Execute `vmc micro offline` to work offline.
+Execute `cf micro offline` to work offline.
 
 ```bash
-$ vmc micro offline
+$ cf micro offline
 ```
 
 This puts the VM in offline mode (the same as selecting option 6 from the menu) and sets the DNS on your host to query the VM. For actions that require administrative or root privilege, you may be prompted to authenticate.
 
-Execute `vmc micro online` to work online.
+Execute `cf micro online` to work online.
 
 ```bash
-$ vmc micro online
+$ cf micro online
 ```
 
 This puts the VM in online mode and reverses the DNS configuration change on your host computer. For actions that require administrative or root privilege, you may be prompted to authenticate.
@@ -405,7 +405,7 @@ Another proxy related problem occurs when the VM's network adaptor uses bridged 
 If the DNS entry for your Micro Cloud Foundry VM is not up-to-date, accessing your instance can fail. For example:
 
 ```bash
-$ vmc target api.martin.cloudfoundry.me
+$ cf target api.martin.cloudfoundry.me
 Host is not valid: 'http://api.martin.cloudfoundry.me'
 Would you like see the response [yN]? y
 HTTP exception: Errno::ETIMEDOUT:Operation timed out - connect(2)
