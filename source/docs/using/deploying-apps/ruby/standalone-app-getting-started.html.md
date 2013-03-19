@@ -13,7 +13,7 @@ To complete this quickstart guide, you need to fulfill the following prerequisit
 * A Cloud Foundry account, you can sign up [here](https://my.cloudfoundry.com/signup)
 * [Ruby](http://www.ruby-lang.org/en/)
 * [Bundler](http://gembundler.com/)
-* The [VMC](../../managing-apps/) command line tool 
+* The [CF](../../managing-apps/) command line tool
 
 ## <a id='sample-project'></a>Creating a Sample Project ##
 
@@ -43,7 +43,7 @@ require 'bundler/setup'
 require 'clockwork'
 
 class Job
-  
+
   def do_job(frequency)
     puts "Doing job for #{frequency}"
   end
@@ -66,7 +66,7 @@ every(1.week, :week)
 Clockwork::run
 ~~~
 
-As shown in the code above the, every hour, day and week the a job class is created and the method 'do_job' is called. 
+As shown in the code above the, every hour, day and week the a job class is created and the method 'do_job' is called.
 
 Install the required Clockwork gem using bundler
 
@@ -90,12 +90,12 @@ Doing job for week
 
 ## <a id='deploying'></a>Deploying Your Application ##
 
-Push the application with VMC;
+Push the application with CF;
 
 <pre class="terminal">
-$ vmc push
+$ cf push
 
-Name> scheduler  
+Name> scheduler
 
 Instances> 1
 
@@ -133,7 +133,7 @@ Creating scheduler... OK
 
 1: scheduler.cloudfoundry.com
 2: none
-URL> 2                         
+URL> 2
 
 
 Create services for application?> n
@@ -152,7 +152,7 @@ As shown above when asked for the application type, select 'standalone' and then
 Once this is deployed, we can check it is running correctly by viewing the stdout log;
 
 <pre class="terminal">
-$ vmc file scheduler logs/stdout.log
+$ cf file scheduler logs/stdout.log
 Getting file contents... OK
 
 No Redis service bound to app.  Skipping auto-reconfiguration.

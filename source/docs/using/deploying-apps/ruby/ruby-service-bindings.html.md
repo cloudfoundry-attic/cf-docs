@@ -8,21 +8,21 @@ This guide is for developers who wish to bind a data source to a Ruby applicatio
 
 ## <a id='creating-and-binding'></a>Creating and binding the service ##
 
-To create a service issue the following command with vmc and answer the interactive prompts;
+To create a service issue the following command with cf and answer the interactive prompts;
 
 <pre class="terminal">
-$ vmc create-service
+$ cf create-service
 </pre>
 
-To bind the service to the application, use the following vmc command;
+To bind the service to the application, use the following cf command;
 
 <pre class="terminal">
-$ vmc bind-service --app [application name] --service [service name]
+$ cf bind-service --app [application name] --service [service name]
 </pre>
 
 ## <a id='autoconfig'></a>Auto Configuration ##
 
-Cloud Foundry provides auto configuration for Redis, Mongo DB, MySQL, PostgreSQL and RabbitMQ. This means that Cloud Foundry will automatically override connection configuration for any services bound to the application. 
+Cloud Foundry provides auto configuration for Redis, Mongo DB, MySQL, PostgreSQL and RabbitMQ. This means that Cloud Foundry will automatically override connection configuration for any services bound to the application.
 This is limited to one instance of a service of each type and is only really appropriate for development use, it's generally better practice, in production to use the connection details provided by the VCAP_SERVICES environment variables (covered later).
 
 To enable auto configuration, include the following line in your Gemfile
@@ -31,9 +31,9 @@ To enable auto configuration, include the following line in your Gemfile
 gem 'cf-autoconfig', :require => 'cfautoconfig'
 ~~~
 
-Also add the correct gem for your service and make sure the appropriate service is bound to the application. 
+Also add the correct gem for your service and make sure the appropriate service is bound to the application.
 
-Assuming you are using Bundler to manage gem dependencies and depending on which service you plan to bind to your application, you need to make sure the correct gem is included in the project and the bundle has been updated. 
+Assuming you are using Bundler to manage gem dependencies and depending on which service you plan to bind to your application, you need to make sure the correct gem is included in the project and the bundle has been updated.
 
 <pre>
 Service Type      Gem
@@ -68,7 +68,7 @@ PostgreSQL
 conn = PG.connect( dbname: 'localdbname' )
 ~~~
 
-Mongo 
+Mongo
 
 ~~~ruby
 client = MongoClient.new('localhost', 27017)
@@ -124,7 +124,7 @@ MySQL - ENV["mysql-5.1"][0]
 RabbitMQ - ENV["rabbitmq-2.4"][0]
 
 ~~~json
-{ 
+{
   "rabbitmq-2.4": [
     {
       "name": "rabbitmq-baa85",

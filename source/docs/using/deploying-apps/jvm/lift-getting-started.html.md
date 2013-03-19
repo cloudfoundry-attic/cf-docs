@@ -57,11 +57,11 @@ The application should be available at http://127.0.0.1:8080
 
 ## <a id='intro'></a>Deploying to Cloud Foundry ##
 
-Deploying is as simple as creating a web archive with Maven and pushing the output with VMC;
+Deploying is as simple as creating a web archive with Maven and pushing the output with CF;
 
 <pre class="terminal">
 $ mvn package
-$ vmc push --path=./target/lift_hello_world-1.0.war
+$ cf push --path=./target/lift_hello_world-1.0.war
 Name> lift-hello-world
 
 Instances> 1

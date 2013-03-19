@@ -48,7 +48,7 @@ like below will break everything and should be removed:
 
 ~~~ruby
 # CloudFoundry only puts credentials in database.yml's production section
-if ENV.has_key?("VMC_APP_VERSION")
+if ENV.has_key?("CF_APP_VERSION")
   ActiveRecord::Base.establish_connection("production")
 end
 ~~~

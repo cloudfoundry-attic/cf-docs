@@ -38,9 +38,9 @@ client.services.collect { |x| x.description }
 
 ~~~
 
-## <a id='persist-authentication'></a>Persisting Authentication (Using vmc tokens) ##
+## <a id='persist-authentication'></a>Persisting Authentication (Using cf tokens) ##
 
-A far safer way of creating a cfoundry client object without potentially exposing your credentials in source code is to login using vmc and then use the generated auth token to login in. The auth tokens are stored by vmc in ~/.vmc/tokens.yml. The following snippet of ruby code shows how to open this file, select the right auth token and then use it to log in to Cloud Foundry.
+A far safer way of creating a cfoundry client object without potentially exposing your credentials in source code is to login using cf and then use the generated auth token to login in. The auth tokens are stored by cf in ~/.cf/tokens.yml. The following snippet of ruby code shows how to open this file, select the right auth token and then use it to log in to Cloud Foundry.
 
 ~~~ruby
 
@@ -50,14 +50,14 @@ require 'yaml'
 home = ENV['HOME']
 endpoint = 'https://api.cloudfoundry.com'
 
-config = YAML.load File.read("#{home}/.vmc/tokens.yml")
+config = YAML.load File.read("#{home}/.cf/tokens.yml")
 token = CFoundry::AuthToken.from_hash config[endpoint]
 
 client = CFoundry::Client.new endpoint, token
 
 ~~~
 
-Once the client object is created, it can be used in the same fashion as before. 
+Once the client object is created, it can be used in the same fashion as before.
 
 ## <a id='organisations'></a>Organisations ##
 
@@ -68,7 +68,7 @@ An account will always belong to at least one organization. Inspect the organiza
 >> client.organizations
 => [#<CFoundry::V2::Organization '1e3ce9fb-50ac-4d2a-9506-f4d671c00f50'>, #<CFoundry::V2::Organization '77ab28ea-2b6e-4a7f-86c8-2c2df2714535'>]
 
-~~~  
+~~~
 
 ## <a id='spaces'></a>Spaces ##
 
@@ -220,7 +220,7 @@ app.bind client.service_instance_by_name('my_new_redis_service')
 In order for the application to be accessible via http it has to be assigned a route on a domain;
 
 ~~~ruby
-route = client.route 
+route = client.route
 route.domain = client.domains.first # <- pick the first / default route
 route.space = space # <- assign the route to a space
 route.host = 'my-rails-app' # <- this is the part of the url that is prepended to the domain
@@ -254,7 +254,7 @@ Now the application has been uploaded to Cloud Foundry, all that is left is to s
 app.start!
 ~~~~
 
-The call to start is asynchronous, if true and a block is passed to the method then the block gets called with a URL. The url is the location of a real time log that can be requested via HTTP. CFoundry::Client has a method named stream_url which will transfer chunked data from the server; 
+The call to start is asynchronous, if true and a block is passed to the method then the block gets called with a URL. The url is the location of a real time log that can be requested via HTTP. CFoundry::Client has a method named stream_url which will transfer chunked data from the server;
 
 ~~~ruby
 
@@ -264,7 +264,7 @@ app.start!(true) do |url|
 
     while true
       begin
-        client.stream_url(url + "&tail&tail_offset=#{offset}") do |out| 
+        client.stream_url(url + "&tail&tail_offset=#{offset}") do |out|
           offset += out.size
           print out
         end
@@ -297,7 +297,7 @@ app.env['my_env_var'] # <- retrieve the variable
 
 ## <a id='domains'></a>Domains ##
 
-Domains are the base on which routes are created. The default domain for a Cloud Foundry instance is the domain the Cloud Foundry instance is actually on. 
+Domains are the base on which routes are created. The default domain for a Cloud Foundry instance is the domain the Cloud Foundry instance is actually on.
 
 To create a new domain use the 'domain' method on the client class;
 
@@ -305,7 +305,7 @@ To create a new domain use the 'domain' method on the client class;
 
 domain = client.domain
 domain.name = 'mydomain.com' # <- the name of the domain
-domain.wildcard = true 
+domain.wildcard = true
 domain.owning_organization = client.organizations.first # <- set the owning organisation
 domain.create! # <- commit
 

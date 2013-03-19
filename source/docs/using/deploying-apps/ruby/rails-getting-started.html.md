@@ -14,7 +14,7 @@ To complete this quickstart guide, you need to fulfill the following prerequisit
 * [Ruby](http://www.ruby-lang.org/en/)
 * [Rails](http://rubyonrails.org/)
 * [Bundler](http://gembundler.com/)
-* The [VMC](../../managing-apps/) command line tool 
+* The [CF](../../managing-apps/) command line tool
 * A basic understanding of how to create and run Rails applications
 
 ## <a id='sample-project'></a>Creating a Sample Project ##
@@ -40,7 +40,7 @@ $ rm public/index.html
 $ vi config/routes.rb
 </pre>
 
-Also, change the default root for the application to point to the new controller, so it looks like 
+Also, change the default root for the application to point to the new controller, so it looks like
 
 ~~~ruby
 SampleRails::Application.routes.draw do
@@ -64,7 +64,7 @@ To precompile asssets before deployment use the following command;
 rake assets:precompile
 </pre>
 
-Doing this before deployment ensures that staging the application will take less time as the precomplilation task will not need to take place on Cloud Foundry. 
+Doing this before deployment ensures that staging the application will take less time as the precomplilation task will not need to take place on Cloud Foundry.
 
 One potential problem can occur during application initialization. The precompile rake task will run a complete re-initialization of the Rails application. This might trigger some of the initialization procedures and require service connections and environment checks that are unavailable during staging. You can turn this off by adding a configuration option in application.rb:
 
@@ -80,19 +80,19 @@ Rails.application.config.assets.compile = true
 
 ## <a id='deploying'></a>Deploying Your Application ##
 
-With VMC installed, target your desired Cloud Foundry instance and login
+With CF installed, target your desired Cloud Foundry instance and login
 
 <pre class="terminal">
-$ vmc target api.cloudfoundry.com
+$ cf target api.cloudfoundry.com
 Setting target to https://api.cloudfoundry.com... OK
 
-$ vmc login
+$ cf login
 </pre>
 
 Deploy the application by using the "push" command and follow the prompts;
 
 <pre class="terminal">
-$ vmc push rails-3-test
+$ cf push rails-3-test
 Instances> 1
 
 1: rails3
@@ -134,7 +134,7 @@ Starting rails-3-test... OK
 Checking rails-3-test... OK
 </pre>
 
-At this point, the application should be available to view at the URL specified when performing the push. 
+At this point, the application should be available to view at the URL specified when performing the push.
 
 ## <a id='next-steps'></a>Next steps - Binding a service ##
 

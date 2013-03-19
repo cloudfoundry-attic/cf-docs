@@ -2,7 +2,7 @@
 title: Managing Users
 ---
 
-This document is a temporary description for Cloud Foundry operators and dev / ops professionals interested in managing users in a new Cloud Foundry installation. This process is unrefined, and will improve with direct vmc user management in the near future.
+This document is a temporary description for Cloud Foundry operators and dev / ops professionals interested in managing users in a new Cloud Foundry installation. This process is unrefined, and will improve with direct cf user management in the near future.
 
 ## <a id='creating-admin-users'></a> Creating Admin Users ##
 
@@ -17,7 +17,7 @@ $ gem install cf-uaac
 <pre class="terminal">
 $ uaac target uaa.[your-domain].com
 $ uaac token client get admin -s [admin-client-secret]
-</pre class="terminal"> 
+</pre class="terminal">
 
 4. Create an admin user and add them to the admin group:
 <pre class="terminal">
@@ -31,8 +31,8 @@ $ uaac member add cloud_controller.admin [admin-username]
 
 2. Create a new user:
 <pre class="terminal">
-$ vmc login [admin-user-email-address]
+$ cf login [admin-user-email-address]
 ...
-$ vmc create-user [user-email-address]
+$ cf create-user [user-email-address]
 ...
 </pre class="terminal">

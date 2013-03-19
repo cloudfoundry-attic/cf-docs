@@ -1,51 +1,51 @@
 ---
-title: VMC (VMware Cloud) console interface
+title: CF (VMware Cloud) console interface
 ---
 
 ## <a id='intro'></a>Introduction ##
 
-VMC is Cloud Foundry's console-based interface. Using this tool you can deploy and manage applications running on most Cloud Foundry based environments including CloudFoundry.com. 
+CF is Cloud Foundry's console-based interface. Using this tool you can deploy and manage applications running on most Cloud Foundry based environments including CloudFoundry.com.
 
-## <a id='installing'></a>Installing VMC ##
+## <a id='installing'></a>Installing CF ##
 
-To use VMC you will need to install Ruby and Rubygems, if you are unsure how to do this then see [http://www.ruby-lang.org/en/downloads/](http://www.ruby-lang.org/en/downloads/) for instructions on how to install Ruby on your operating system.
+To use CF you will need to install Ruby and Rubygems, if you are unsure how to do this then see [http://www.ruby-lang.org/en/downloads/](http://www.ruby-lang.org/en/downloads/) for instructions on how to install Ruby on your operating system.
 
 For details on how to install the latest version of Rubygems, take a look at the download and install instructions at [http://www.rubygems.org](http://www.rubygems.org)
 
 ## <a id='commands'></a>Commands ##
 
-Commands in VMC are broken up in to managing various concerns on Cloud Foundry; applications, services, organisations, spaces, domains etc. Issue a command by running 'VMC' in the console immediately followed by a command name, for example;
+Commands in CF are broken up in to managing various concerns on Cloud Foundry; applications, services, organisations, spaces, domains etc. Issue a command by running 'CF' in the console immediately followed by a command name, for example;
 
 <pre class="terminal">
-$ vmc push my-new-app
+$ cf push my-new-app
 </pre>
 
 ### Applications ###
 
 #### Management commands
 
-These are the primary application-centric commands for VMC;
+These are the primary application-centric commands for CF;
 
 <div class="command-doc">
-  <pre class="terminal">$ vmc push [application name]</pre>
+  <pre class="terminal">$ cf push [application name]</pre>
   <div>Deploy a new application, or, if the application already exists, upload any changes made since the last push.</div>
   <div class="break"></div>
 </div>
 
 <div class="command-doc">
   <pre class="terminal">$ delete [list of application names]</pre>
-  <div>Delete a single or a list of applications. VMC will ask for confirmation to delete the specified applications and whether or not any services orphaned by removing the application should be removed as well.</div>
+  <div>Delete a single or a list of applications. CF will ask for confirmation to delete the specified applications and whether or not any services orphaned by removing the application should be removed as well.</div>
   <div class="break"></div>
 </div>
 
 <div class="command-doc">
-  <pre class="terminal">$ vmc rename [application name] [new application name]</pre>
+  <pre class="terminal">$ cf rename [application name] [new application name]</pre>
   <div>Rename an application, changing the existing name to the specified new value.</div>
   <div class="break"></div>
 </div>
 
 <div class="command-doc">
-  <pre class="terminal">$ vmc restart [list of application names]</pre>
+  <pre class="terminal">$ cf restart [list of application names]</pre>
   <div>Stop one or more applications and start them again.</div>
   <div class="break"></div>
 </div>
@@ -128,7 +128,7 @@ When trying to resolve issues with a production application, access to the file 
 
 <div class="command-doc">
   <pre class="terminal">$ logs [application name]</pre>
-  <div>Display the staging, stdout and stderr log for an application. Application specific logs can be viewed using the 'vmc file' command.</div>
+  <div>Display the staging, stdout and stderr log for an application. Application specific logs can be viewed using the 'cf file' command.</div>
   <div class="break"></div>
 </div>
 
@@ -160,11 +160,11 @@ When trying to resolve issues with a production application, access to the file 
   Set the number of instances for a application and the amount of memory assigned to each instance.
   To change the number of instances use the --instances flag, this can be used with either and absolute value or a +/- modifier. For example, if an application, called my_app, has one instance and we wish to increase this to three, this could be achieved with either of the following commands;
 
-  'vmc scale my_app --instances +2' or 'vmc my_app scale --instances 3'
+  'cf scale my_app --instances +2' or 'cf my_app scale --instances 3'
 
   To set the assigned memory use the --mem switch, to scale to 512Mb per instance we would use the command;
 
-  'vmc scale my_app --mem 512M'
+  'cf scale my_app --mem 512M'
 </div>
 <br />
 <pre class="terminal">$ stats [application name]</pre>
@@ -174,13 +174,13 @@ When trying to resolve issues with a production application, access to the file 
 ### Services ###
 
 <div class="command-doc">
-  <pre class="terminal">$ vmc service [instance name]</pre>
+  <pre class="terminal">$ cf service [instance name]</pre>
   <div>Show service instance information.</div>
   <div class="break"></div>
 </div>
 
 <div class="command-doc">
-  <pre class="terminal">$ vmc services</pre>
+  <pre class="terminal">$ cf services</pre>
   <div>Lists all provisioned services, showing service type and version.</div>
   <div class="break"></div>
 </div>
@@ -189,7 +189,7 @@ When trying to resolve issues with a production application, access to the file 
 
 <div class="command-doc">
   <pre class="terminal">$ create-service [service type] [instance name]</pre>
-  <div>Create a new service instance. All parameters are optional, you can just choose to follow VMCs interactive prompts to select the type of the service and the instance name.</div>
+  <div>Create a new service instance. All parameters are optional, you can just choose to follow CFs interactive prompts to select the type of the service and the instance name.</div>
   <div class="break"></div>
 </div>
 
@@ -226,31 +226,31 @@ When trying to resolve issues with a production application, access to the file 
 ### Organisations ###
 
 <div class="command-doc">
-  <pre class="terminal">$ vmc create-org [organisation name]</pre>
+  <pre class="terminal">$ cf create-org [organisation name]</pre>
   <div>Create an organization</div>
   <div class="break"></div>
 </div>
 
 <div class="command-doc">
-  <pre class="terminal">$ vmc create-org [organisation name]</pre>
+  <pre class="terminal">$ cf create-org [organisation name]</pre>
   <div>Create an organization</div>
   <div class="break"></div>
 </div>
 
 <div class="command-doc">
-  <pre class="terminal">$ vmc delete-org [organisation name]</pre>
+  <pre class="terminal">$ cf delete-org [organisation name]</pre>
   <div>Delete an organization</div>
   <div class="break"></div>
 </div>
 
 <div class="command-doc">
-  <pre class="terminal">$ vmc org [organisation name]</pre>
+  <pre class="terminal">$ cf org [organisation name]</pre>
   <div>Show organization information</div>
   <div class="break"></div>
 </div>
 
 <div class="command-doc">
-  <pre class="terminal">$ vmc orgs</pre>
+  <pre class="terminal">$ cf orgs</pre>
   <div>List available organizations</div>
   <div class="break"></div>
 </div>
@@ -351,35 +351,35 @@ Routes are the actual mappings between a domain and an application. An example w
 </div>
 
 <div class="command-doc">
-  <pre class="terminal">$ vmc routes</pre>
+  <pre class="terminal">$ cf routes</pre>
   <div>List routes in a space.</div>
   <div class="break"></div>
 </div>
 
 ## <a id='plug-ins'></a>Plug-ins ##
 
-VMC allows the use of plug-ins to extend it's own functionality. The four main plug-ins maintained from the [Cloud Foundry vmc-plugins repository](http://github.com/cloudfoundry/vmc-plugins) are admin, console, mcf and tunnel.
+CF allows the use of plug-ins to extend it's own functionality. The four main plug-ins maintained from the [Cloud Foundry cf-plugins repository](http://github.com/cloudfoundry/cf-plugins) are admin, console, mcf and tunnel.
 
 ### Admin ###
- 
+
 This plugin allows the management of users on a Cloud Foundry instance, this requires an admin account.
 
 The following commands are made available by the plug-in;
 
 <div class="command-doc">
-  <pre class="terminal">$ vmc create-user [email]</pre>
+  <pre class="terminal">$ cf create-user [email]</pre>
   <div>Create a new user account.</div>
   <div class="break"></div>
 </div>
 
 <div class="command-doc">
-  <pre class="terminal">$ vmc delete-user [email]</pre>
+  <pre class="terminal">$ cf delete-user [email]</pre>
   <div>Delete a user account.</div>
   <div class="break"></div>
 </div>
 
 <div class="command-doc">
-  <pre class="terminal">$ vmc passwd [email]</pre>
+  <pre class="terminal">$ cf passwd [email]</pre>
   <div>Set a user's password.</div>
   <div class="break"></div>
 </div>
@@ -391,29 +391,29 @@ The console plug-in allows Rails developers to connect to a Rails console runnin
 
 ### MCF ###
 
-This plugin can be used to switch a Micro Cloud Foundry VM between online and offline mode. Install it with Ruby Gems, the gem name is mcf-vmc-plugin.
+This plugin can be used to switch a Micro Cloud Foundry VM between online and offline mode. Install it with Ruby Gems, the gem name is mcf-cf-plugin.
 
 The following commands are made available by the plug-in;
 
 <div class="command-doc">
-  <pre class="terminal">$ vmc micro-status [vmx path] [password]</pre>
+  <pre class="terminal">$ cf micro-status [vmx path] [password]</pre>
   <div>Display Micro Cloud Foundry VM status for a particular VMX path.</div>
   <div class="break"></div>
 </div>
 
 <div class="command-doc">
-  <pre class="terminal">$ vmc micro-offline [vmx path] [password]</pre>
+  <pre class="terminal">$ cf micro-offline [vmx path] [password]</pre>
   <div>Switch a Micro Cloud Foundry instance to offline mode.</div>
   <div class="break"></div>
 </div>
 
 <div class="command-doc">
-  <pre class="terminal">$ vmc micro-online [vmx path] [password]</pre>
+  <pre class="terminal">$ cf micro-online [vmx path] [password]</pre>
   <div>Switch a Micro Cloud Foundry instance to online mode.</div>
   <div class="break"></div>
 </div>
 
-For a more detailed explanation of this plugin see the [micro cloud foundry vmc plugin](/docs/running/micro-cloud-foundry/vmc_plugin.html) page of the Micro Cloud Foundry section.
+For a more detailed explanation of this plugin see the [micro cloud foundry cf plugin](/docs/running/micro-cloud-foundry/cf_plugin.html) page of the Micro Cloud Foundry section.
 
 ### Tunnel ###
 

@@ -9,15 +9,15 @@ This guide explains how to deploy a simple Java application using Spring Framewo
 ## <a id='prerequisites'></a>Prerequisites ##
 
 * A Cloud Foundry account, you can sign up [here](https://my.cloudfoundry.com/signup)
-* The [vmc](../../managing-apps/vmc) command-line tool 
+* The [cf](../../managing-apps/cf) command-line tool
 * The [Maven](http://maven.apache.org/) build tool
 * The [Git](http://git-scm.com/downloads) command-line tool
 
-There are other options for building, packaging, and managing applications in Cloud Foundry. See the [Managing Apps](../../managing-apps/) section to see the full list of options. 
+There are other options for building, packaging, and managing applications in Cloud Foundry. See the [Managing Apps](../../managing-apps/) section to see the full list of options.
 
 ## <a id='sample-project'></a>Packaging a Sample Project ##
 
-The [Cloud Foundry Samples](https://github.com/cloudfoundry-samples) repository on GitHub contains a simple Spring Framework [sample application](https://github.com/cloudfoundry-samples/springmvc-hibernate-template). The following steps will show how to download, build, and package this sample application for deploying to Cloud Foundry. 
+The [Cloud Foundry Samples](https://github.com/cloudfoundry-samples) repository on GitHub contains a simple Spring Framework [sample application](https://github.com/cloudfoundry-samples/springmvc-hibernate-template). The following steps will show how to download, build, and package this sample application for deploying to Cloud Foundry.
 
 First, download a copy of the code for the application by cloning the GitHub repository using the `git` command-line tool:
 
@@ -32,17 +32,17 @@ A Spring application is typically packaged as a `.war` file for deployment to Cl
 $ mvn package
 </pre>
 
-After this step, there should be a `springmvc31-1.0.0.war` file in the `target` directory. 
+After this step, there should be a `springmvc31-1.0.0.war` file in the `target` directory.
 
 ## <a id='deploying'></a>Deploying Your Application ##
 
-With vmc, target your desired Cloud Foundry instance and login:
+With cf, target your desired Cloud Foundry instance and login:
 
 <pre class="terminal">
-$ vmc target api.cloudfoundry.com
+$ cf target api.cloudfoundry.com
 Setting target to https://api.cloudfoundry.com... OK
 
-$ vmc login
+$ cf login
 target: https://api.cloudfoundry.com
 
 Email> *********
@@ -51,10 +51,10 @@ Password> *******
 Authenticating... OK
 </pre>
 
-Then use vmc to push the application, providing answers to the prompts as shown below (note that you must use a name other than "springmvc31" in the `vmc push` command, since that application name has already been used on cloudfoundry.com):
+Then use cf to push the application, providing answers to the prompts as shown below (note that you must use a name other than "springmvc31" in the `cf push` command, since that application name has already been used on cloudfoundry.com):
 
 <pre class="terminal">
-$ vmc push springmvc31 --path target/springmvc31-1.0.0.war
+$ cf push springmvc31 --path target/springmvc31-1.0.0.war
 Instances> 1
 
 1: spring
@@ -93,7 +93,7 @@ Create services for application?> y
 8: redis 2.2
 What kind?> 4
 
-Name?> spring-postgres 
+Name?> spring-postgres
 
 Creating service spring-postgres... OK
 Binding spring-postgres to springmvc31... OK
