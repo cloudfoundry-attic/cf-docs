@@ -13,7 +13,7 @@ To complete this quickstart guide, you need to fulfill the following prerequisit
 * A Cloud Foundry account, you can sign up [here](https://my.cloudfoundry.com/signup)
 * [Ruby](http://www.ruby-lang.org/en/)
 * [Bundler](http://gembundler.com/)
-* The [VMC](../../managing-apps/) command line tool 
+* The [CF](../../managing-apps/) command line tool
 
 ## <a id='sample-project'></a>Creating a Sample Project ##
 
@@ -72,10 +72,10 @@ View your application at [http://localhost:9292](http://localhost:9292)
 
 ## <a id='deploying'></a>Deploying Your Application ##
 
-Push the application with VMC;
+Push the application with CF;
 
 <pre class="terminal">
-$ vmc push
+$ cf push
 
 Name> sinatra-hello-world
 

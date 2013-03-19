@@ -83,4 +83,4 @@ BUILD SUCCESSFUL
 Total time: 2.543 secs
 </pre>
 
-From this point it should be possible to carry out most tasks available as part of vmc from within Gradle. For more information on configuration options within Gradle, take a look at the gradle-cf-plugin project on Github - https://github.com/melix/gradle-cf-plugin
+From this point it should be possible to carry out most tasks available as part of cf from within Gradle. For more information on configuration options within Gradle, take a look at the gradle-cf-plugin project on Github - https://github.com/melix/gradle-cf-plugin

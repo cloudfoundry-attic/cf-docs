@@ -13,7 +13,7 @@ To complete this quickstart guide, you need to fulfill the following prerequisit
 * A Cloud Foundry account, you can sign up [here](https://my.cloudfoundry.com/signup)
 * [Java JDK](http://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-1880260.html) 6 or later
 * [Grails](http://grails.org/Installation) 2.2.0 or later
-* The [vmc](../../managing-apps/vmc) command line tool 
+* The [cf](../../managing-apps/cf) command line tool
 
 ## <a id='sample-project'></a>Creating a Sample Project ##
 
@@ -25,7 +25,7 @@ $ grails create-app hello-world
 $ cd hello-world
 </pre>
 
-Once in the new project directory, test the app to make sure it compiles and starts locally: 
+Once in the new project directory, test the app to make sure it compiles and starts locally:
 
 <pre class="terminal">
 $ grails run-app
@@ -46,10 +46,10 @@ $ grails prod war
 | Done creating WAR target/hello-world-0.1.war
 </pre>
 
-After running this command, a war file sould be created at the location shown in the output. Making sure you are logged in to Cloud Foundry, you can deploy the application using the `vmc` command and specifying the path to the war file using the `--path` option.
+After running this command, a war file sould be created at the location shown in the output. Making sure you are logged in to Cloud Foundry, you can deploy the application using the `cf` command and specifying the path to the war file using the `--path` option.
 
 <pre class="terminal">
-$ vmc push --path=target/hello-world-0.1.war
+$ cf push --path=target/hello-world-0.1.war
 Name> grails-hello-world
 
 Instances> 1

@@ -38,9 +38,9 @@ client.services.collect { |x| x.description }
 
 ~~~
 
-## <a id='persist-authentication'></a>Persisting Authentication (Using vmc tokens) ##
+## <a id='persist-authentication'></a>Persisting Authentication (Using cf tokens) ##
 
-A far safer way of creating a cfoundry client object without potentially exposing your credentials in source code is to login using vmc and then use the generated auth token to login in. The auth tokens are stored by vmc in ~/.vmc/tokens.yml. The following snippet of ruby code shows how to open this file, select the right auth token and then use it to log in to Cloud Foundry.
+A far safer way of creating a cfoundry client object without potentially exposing your credentials in source code is to login using cf and then use the generated auth token to login in. The auth tokens are stored by cf in ~/.cf/tokens.yml. The following snippet of ruby code shows how to open this file, select the right auth token and then use it to log in to Cloud Foundry.
 
 ~~~ruby
 
@@ -50,14 +50,14 @@ require 'yaml'
 home = ENV['HOME']
 endpoint = 'https://api.cloudfoundry.com'
 
-config = YAML.load File.read("#{home}/.vmc/tokens.yml")
+config = YAML.load File.read("#{home}/.cf/tokens.yml")
 token = CFoundry::AuthToken.from_hash config[endpoint]
 
 client = CFoundry::Client.new endpoint, token
 
 ~~~
 
-Once the client object is created, it can be used in the same fashion as before. 
+Once the client object is created, it can be used in the same fashion as before.
 
 ## <a id='services'></a>Services ##
 
@@ -116,7 +116,7 @@ To create a service instance use the service_instance method;
 
 ~~~ruby
 service = client.service_instance 'my_new_service'
-service.vendor = 'redis' # <- this is the label property of the service 
+service.vendor = 'redis' # <- this is the label property of the service
 service.version = '2.6' # <- if there are multiple versions of the same service, specify the one required
 service.tier = 'free'
 service.create!
@@ -150,7 +150,7 @@ pp client.apps
  #<CFoundry::V1::App 'sidekiq-worker'>,
  #<CFoundry::V1::App 'caldecott'>,
  #<CFoundry::V1::App 'db-sample'>,
- #<CFoundry::V1::App 'go-test'>] 
+ #<CFoundry::V1::App 'go-test'>]
 
 ~~~
 
