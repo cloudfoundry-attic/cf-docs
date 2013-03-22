@@ -2,13 +2,15 @@
 title: Blobs
 ---
 
+## <a id="introduction"></a> Introduction ##
+
 To create final releases you need to configure your release repository with a blobstore. This is where BOSH will upload the final releases to, so that the release can later be retreived from another computer.
 
 To prevent the release repository from becoming bloated with large binary files (source tar-balls), large files can be placed in the `blobs` directory, and then uploaded to the blobstore.
 
 For production releases you should use either the Atmos or S3 blobstore and configure them as described below.
 
-### Atmos ###
+## <a id='atmos'></a> Atmos ##
 
 Atmos is a shared storage solution from EMC. To use Atmos, edit `config/final.tml` and `config/private.yml`, and add the following (replacing the `url`, `uid` and `secret` with your account information):
 
@@ -27,7 +29,7 @@ File `config/private.yml`
     ---
     blobstore_secret: ahye7dAS93kjWOIpqla9as8GBu1=
 
-### S3 ###
+## <a id='s3'></a>S3 ##
 
 To use S3, a shared storage solution from Amazon, edit `config/final.tml` and `config/private.yml`, and add the following (replacing the `access_key_id`, `bucket_name`, `encryption_key` and `secret_access_key` with your account information):
 
@@ -46,7 +48,7 @@ File `config/private.yml`
     ---
     blobstore_secret: kjhasdUIHIkjas765/kjahsIUH54asd/kjasdUSf
 
-### Local ###
+## <a id='local'>Local</a> ##
 
 If you are trying out BOSH and don't have an Atmos or S3 account, you can use the local blobstore provider (which stored the files on disk instead of a remote server).
 
