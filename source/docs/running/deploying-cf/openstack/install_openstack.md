@@ -2,7 +2,7 @@
 title: Install OpenStack
 ---
 
-This page will guide you throught the installation of OpenStack, in preparation for deplying Cloud Foundry. 
+This page will guide you throught the installation of OpenStack, in preparation for deploying Cloud Foundry.
 
 * [OpenStack Code Names](#codenames)
 * [Version](#version)
