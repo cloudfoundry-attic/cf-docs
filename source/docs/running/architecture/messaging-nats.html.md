@@ -1,5 +1,5 @@
 ---
-title: Architecture - Messaging (NATS)
+title: Messaging (NATS)
 ---
 
 This page should describe NATS

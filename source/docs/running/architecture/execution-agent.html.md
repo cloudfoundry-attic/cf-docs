@@ -1,5 +1,5 @@
 ---
-title: Architecture - Execution Agent (DEA)
+title: Execution Agent (DEA)
 ---
 
 This page should describe the DEA 

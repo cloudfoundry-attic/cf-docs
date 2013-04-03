@@ -1,5 +1,5 @@
 ---
-title: Architecture - Cloud Controller
+title: Cloud Controller
 ---
 
 This page should describe the Cloud Controller 

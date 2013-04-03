@@ -1,5 +1,5 @@
 ---
-title: Architecture - Router
+title: Router
 ---
 
 This page should describe the Router

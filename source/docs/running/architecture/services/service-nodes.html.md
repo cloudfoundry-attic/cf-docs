@@ -1,5 +1,5 @@
 ---
-title: Architecture - Service Nodes
+title: Service Nodes
 ---
 
 This page should describe the Service Nodes 

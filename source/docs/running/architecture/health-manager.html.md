@@ -1,5 +1,5 @@
 ---
-title: Architecture - Health Manager
+title: Health Manager
 ---
 
 This page should describe the Health Manager
