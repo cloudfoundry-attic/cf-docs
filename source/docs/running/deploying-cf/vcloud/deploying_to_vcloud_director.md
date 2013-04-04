@@ -4,7 +4,6 @@ In this tutorial we learn how to deploy a simple Wordpress application on vCloud
 
 ##Prerequisites##
 
-
 To get started with BOSH on vCloud you need:
 
 1. An account in a [vCloud organization](http://pubs.vmware.com/vcd-51/topic/com.vmware.vcloud.users.doc_51/GUID-B2D21D95-B37F-4339-9887-F7788D397FD8.html) with [organization administrator](http://pubs.vmware.com/vcd-51/topic/com.vmware.vcloud.users.doc_51/GUID-5B60A9C0-612A-4A3A-9ECE-694C40272505.html) credentials

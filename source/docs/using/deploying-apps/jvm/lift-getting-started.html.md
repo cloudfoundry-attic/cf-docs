@@ -66,15 +66,6 @@ Name> lift-hello-world
 
 Instances> 1
 
-1: lift
-2: other
-Framework> lift
-
-1: java
-2: java7
-3: other
-Runtime> 1
-
 1: 64M
 2: 128M
 3: 256M
