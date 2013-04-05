@@ -99,24 +99,7 @@ Name> scheduler
 
 Instances> 1
 
-1: grails
-2: java_web
-3: lift
-4: node
-5: play
-6: rack
-7: rails3
-8: sinatra
-9: spring
-10: standalone
-Framework> 10
-
 Startup command> bundle exec ./scheduler.rb
-
-1: ruby18
-2: ruby19
-3: other
-Runtime> 2
 
 1: 64M
 2: 128M

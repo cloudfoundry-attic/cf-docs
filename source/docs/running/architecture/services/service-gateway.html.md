@@ -1,5 +1,5 @@
 ---
-title: Architecture - Service Gateway
+title: Service Gateways
 ---
 
 This page should describe the Service Gateway 

@@ -147,16 +147,6 @@ $ cf push
 Name> hello-node
 Instances> 1
 
-1: node
-2: other
-Framework> 1
-
-1: node
-2: node06
-3: node08
-4: other
-Runtime> 3
-
 1: 64M
 2: 128M
 3: 256M
@@ -174,13 +164,6 @@ Creating hello-node... OK
 2: none
 URL> hello-node.cloudfoundry.com
 
-Updating hello-node... FAILED
-The URI: "hello-node.cloudfoundry.com" has already been taken or reserved
-
-1: hello-node.cloudfoundry.com
-2: none
-URL> hello-node2.cloudfoundry.com
-
 Updating hello-node... OK
 
 Create services for application?> n
@@ -195,32 +178,6 @@ Checking hello-node... OK
 </pre>
 
 Finally check your application has deployed correctly, navigating to the configured URL.
-
-## <a id='checking-node-versions'></a>Node.js version parity ##
-
-It is important to make sure that the version of Node.js used on your computer is the same as the version you use when deploying to Cloud Foundry. Check your local version, like so:
-
-<pre class="terminal">
-$ node -v
-v0.8.2
-</pre>
-
-In this instance you can see the installed version is 0.8.2, so when deploying we would select "node08" for the runtime. To see a list of available runtimes using CF, use the following command:
-
-<pre class="terminal">
-$ cf info --runtimes
-
-Getting runtimes... OK
-
-runtime   description
-java      1.6.0_24
-java7     1.7.0_04
-node      0.4.12
-node06    0.6.8
-node08    0.8.2
-ruby18    1.8.7p357
-ruby19    1.9.2p180
-</pre>
 
 ## <a id='next-steps'></a>Next steps - Binding a service ##
 

@@ -1,5 +1,5 @@
 ---
-title: Architecture - Warden
+title: Warden
 ---
 
 This page should describe Warden 

@@ -54,15 +54,6 @@ Name> grails-hello-world
 
 Instances> 1
 
-1: grails
-2: other
-Framework> grails
-
-1: java
-2: java7
-3: other
-Runtime> 2
-
 1: 64M
 2: 128M
 3: 256M

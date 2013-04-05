@@ -66,15 +66,6 @@ Name> rack-test
 
 Instances> 1
 
-1: rack
-2: other
-Framework> rack
-
-1: ruby18
-2: ruby19
-3: other
-Runtime> 2
-
 1: 64M
 2: 128M
 3: 256M

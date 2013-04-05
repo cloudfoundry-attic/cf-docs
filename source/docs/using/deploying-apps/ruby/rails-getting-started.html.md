@@ -95,15 +95,6 @@ Deploy the application by using the "push" command and follow the prompts;
 $ cf push rails-3-test
 Instances> 1
 
-1: rails3
-2: other
-Framework> rails3
-
-1: ruby18
-2: ruby19
-3: other
-Runtime> 2
-
 1: 64M
 2: 128M
 3: 256M

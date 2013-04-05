@@ -57,15 +57,6 @@ Then use cf to push the application, providing answers to the prompts as shown b
 $ cf push springmvc31 --path target/springmvc31-1.0.0.war
 Instances> 1
 
-1: spring
-2: other
-Framework> spring
-
-1: java
-2: java7
-3: other
-Runtime> 2
-
 1: 64M
 2: 128M
 3: 256M
