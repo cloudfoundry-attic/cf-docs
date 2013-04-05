@@ -7,3 +7,4 @@ title: Deploying Cloud Foundry with BOSH
 * [Deploying to OpenStack](openstack/index.html)
 * [Deploying to vSphere](vsphere/index.html)
 * [Deploying to vCloud Director](vcloud/index.html)
+* [Using the latest CF-Release](common/cf-release.html)

@@ -4,11 +4,7 @@ title: Cloud Foundry API
 
 _This documents the v2 version of the API.  v1 is unofficially documented at http://apidocs.cloudfoundry.com/_
 
-Principles of Operation
-=======================
-
-Overview
---------
+## <a id='overview'></a> Overview ##
 
 The Cloud Foundry V2 family of APIs follow RESTful principles.
 The primary goal of the V2 API is to support the new entities in
@@ -25,27 +21,23 @@ The specific high level goals are as follows:
 
 * **Filtering** support for each of the collections.
 
-Authentication
---------------
+## <a id='authentication'></a> Authentication ##
 
 Authentication is performed by providing a UAA Token in the _Authorization_ HTTP header.
 
 **TBD:** insert snippet from Dale about the responses if the Token isn't provided, or if is invalid, expired, etc.
 
-Versioning
-----------
+## <a id='versioning'></a> Versioning ##
 
 The API version is specified in the URL, e.g. `POST /v2/foo_bars` to
 create a new FooBar using version 2 of the API.
 
-Debugging
----------
+## <a id='debugging'></a> Debugging ##
 
 The V2 API endpoints may optionally return a GUID in the `X-VCAP-Request-ID`
 HTTP header.  The API endpoint will ideally log this GUID on all log lines and pass it to associated systems to assist with cross component log collation.
 
-Basic Operations
-----------------
+## <a id='basic-operations'></a> Basic Operations ##
 
 Operations on resources follow standard REST conventions.  Requests and
 responses for resources are JSON-encoded.  Error responses are also JSON
@@ -247,8 +239,7 @@ Note: version 3 of this API might require `PUT` to contain the full list of requ
 attributes and such partial updates might only be supported via the HTTP
 `PATCH` verb.
 
-Associations
-------------
+## <a id='associations'></a> Associations ##
 
 ### N-to-One
 
@@ -381,8 +372,7 @@ should not expand the Organizations a User belongs to.  Doing so would result
 in an expansion loop.  The User expansion should provide a `organizations_url`
 instead.
 
-Errors
-------
+## <a id='errors'></a> Errors ##
 
 Appropriate HTTP response codes are returned as part of the HTTP response
 header, i.e. 400 if the request body can not be parsed, 404 if an operation
@@ -397,16 +387,14 @@ attributes:
 | code         | Unique numeric response code            |
 | descriptions | Human readable description of the error |
 
-Actions
--------
+## <a id='actions'></a> Actions ##
 
 Actions are modeled as an update to desired state in the system, i.e.
 to start a FooBar resource with id 5 and set the instance count
 to 10, the caller would `PUT /v2/foo_bar/5` with a request body of
 `{ "state": "STARTED", "instances": 10 }`.
 
-## Organization
-
+## <a id='organizations'></a> Organizations ##
 
 ## CC Specific API
 
@@ -641,9 +629,7 @@ Deletes a Organization.
 
 None
 
-
-## User
-
+## <a id='user'></a> Users ##
 
 ## CC Specific API
 
@@ -887,7 +873,7 @@ Deletes a User.
 None
 
 
-## Space
+## <a id='spaces'></a> Spaces ##
 
 
 ## CC Specific API
@@ -1116,9 +1102,7 @@ Deletes a Space.
 
 None
 
-
-## App
-
+## <a id='apps'></a> Apps ##
 
 ## CC Specific API
 
@@ -1397,8 +1381,7 @@ Deletes a App.
 None
 
 
-## Runtime
-
+## <a id='runtimes'></a> Runtimes ##
 
 ## CC Specific API
 
@@ -1595,8 +1578,7 @@ Deletes a Runtime.
 None
 
 
-## Framework
-
+## <a id='frameworks'></a> Frameworks ##
 
 ## CC Specific API
 
@@ -1788,8 +1770,7 @@ Deletes a Framework.
 
 None
 
-
-## Service
+## <a id='services'></a> Services ##
 
 
 ## CC Specific API
@@ -2024,8 +2005,7 @@ Deletes a Service.
 None
 
 
-## ServicePlan
-
+## <a id='serviceplans'></a> Service Plans ##
 
 ## CC Specific API
 
@@ -2233,8 +2213,7 @@ Deletes a ServicePlan.
 
 None
 
-
-## ServiceInstance
+## <a id='service-instances'></a> Service Instances ##
 
 
 ## CC Specific API
@@ -2443,9 +2422,7 @@ Deletes a ServiceInstance.
 
 None
 
-
-## ServiceBinding
-
+## <a id='service-bindings'></a> Service Bindings ##
 
 ## CC Specific API
 
@@ -2639,9 +2616,7 @@ Deletes a ServiceBinding.
 
 None
 
-
-## ServiceAuthToken
-
+## <a id='service-auth-tokens'></a> Service Auth Tokens ##
 
 ## CC Specific API
 
