@@ -132,9 +132,11 @@ Set the domain and then the bucket name to something unique, this needs to be un
 
 Run `bosh aws create` to create a gateway, subnets, an RDS database, and a cf_nat_box instance for Cloud Foundry subnet routing.
 
+NOTE: As of April 5 - the gem has a hardcoded domain. Until a new gem is released you must use `~/workspace/bosh/bin/bosh aws create` instead
+
 <pre class="terminal">
 $ cd $BOSH_WORKSPACE
-$ bosh aws create
+$ ~/workspace/bosh/bin/bosh aws create
 </pre>
 
 Note: The RDS database creation may take a while.
@@ -142,7 +144,7 @@ Note: The RDS database creation may take a while.
 
 ## <a id='deploy-microbosh'></a> Deploy MicroBOSH ##
 
-Deploy MicroBOSH from the workspace directory;
+Deploy MicroBOSH from the workspace directory. The username and password are both admin (you can change this later).
 
 <pre class="terminal">
 $ cd $BOSH_WORKSPACE
@@ -154,8 +156,24 @@ Deploying new micro BOSH instance `micro/micro_bosh.yml' to `http://10.10.0.5:25
 
 Deploy Micro BOSH
   using existing stemcell (00:00:00)                                                                
-  creating VM from ami-9027b9f9 (00:00:39)                                                          
-Waiting for the agent               |oooo                    | 2/11 00:01:23  ETA: 00:02:14   
+  creating VM from ami-345ac05d (00:01:15)                                                          
+  waiting for the agent (00:01:34)                                                                  
+  create disk (00:00:01)                                                                            
+  mount disk (00:00:12)                                                                             
+  fetching apply spec (00:00:00)                                                                    
+  stopping agent services (00:00:01)                                                                
+  applying micro BOSH spec (00:00:26)                                                               
+  starting agent services (00:00:00)                                                                
+  waiting for the director (00:01:37)                                                               
+Done                    11/11 00:05:28                                                              
+WARNING! Your target has been changed to `http://54.224.201.39:25555'!
+Deployment set to '~/bosh-deployments/deployments/micro/micro_bosh.yml'
+Deployed `micro/micro_bosh.yml' to `http://10.10.0.6:25555', took 00:05:28 to complete
+Logged in as `admin'
+Enter username: admin
+Enter password: *****
+User `admin' has been created
+Logged in as `admin'
 </pre>
 
 After MicroBOSH has been deployed succesfully, check it's status;
