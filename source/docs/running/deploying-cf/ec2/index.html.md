@@ -108,7 +108,7 @@ Use "source" to set them for the current shell;
 $ source ~/bosh-deployments/bosh_environment
 </pre>
 
-Currently, the standard configuration template is set up for a domain call cloud-app.com, these settings need slight adjustment, edit the file ~/workspace/bosh/bosh_aws_bootstrap/templates/aws_configuration_template.yml.erb. For example, if cloud-app.com was to change to my-cloud.com
+Currently, the standard configuration template is set up for a domain call cloud-app.com, these settings need slight adjustment, edit the file `~/workspace/bosh/bosh_aws_bootstrap/templates/aws_configuration_template.yml.erb`. For example, if cloud-app.com was to change to my-cloud.com
 
 ~~~yaml
 vpc:
