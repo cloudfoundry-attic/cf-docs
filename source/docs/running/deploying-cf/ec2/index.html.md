@@ -1,10 +1,10 @@
 ---
-title: Deploying Cloud Foundry on EC2
+title: Deploying Cloud Foundry on AWS
 ---
 
 ## <a id='intro'></a> Introduction ##
 
-Cloud Foundry provide tools to simplify the process for deploying an instance of Cloud Foundry to a variety for platforms, including Amazon Web Services. This guide will guide you through using BOSH and cf to deploy Cloud Foundry to Amazon Web Services. Currently this guide is only valid for the us-east-1 availability zone.
+Cloud Foundry provide tools to simplify the process for deploying an instance of Cloud Foundry to a variety for platforms, including Amazon Web Services. This guide will guide you through using BOSH and cf to deploy Cloud Foundry to Amazon Web Services. Currently this guide is only valid for the us-east-1 availability zone using fragile internal tools that will solidify with time.
 
 ## <a id='domain-prep'></a> Prepare a domain ##
 
