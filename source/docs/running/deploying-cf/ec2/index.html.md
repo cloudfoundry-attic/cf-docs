@@ -21,69 +21,15 @@ Create a working directory and prepare a bundler Gemfile to install the necessar
 <pre class="terminal">
 $ mkdir ~/bosh-deployments
 $ cd ~/bosh-deployments
-$ touch Gemfile
 </pre>
 
-Put the following content in the Gemfile
+Making sure you are running Ruby 1.9.3, install the required RubyGems:
 
-~~~ruby
-source 'https://rubygems.org'
-source 'https://s3.amazonaws.com/bosh-jenkins-gems/'
-
-gem "bosh_cli", "~>1.5.0.pre.3"
-gem "bootstrap-cf-plugin", :git => "git://github.com/cloudfoundry/bootstrap-cf-plugin"
-gem "cf"
-gem "admin-cf-plugin"
 ~~~
-
-Making sure you are running Ruby 1.9.3, run a bundle install to install the correct gems
-
-<pre class="terminal">
-$ bundle install
-
-Updating git://github.com/cloudfoundry/bootstrap-cf-plugin
-Fetching gem metadata from https://rubygems.org/.........
-Fetching gem metadata from https://s3.amazonaws.com/bosh-jenkins-gems/.
-Fetching full source index from https://s3.amazonaws.com/bosh-jenkins-gems/
-Fetching gem metadata from https://rubygems.org/........
-Using addressable (2.3.3)
-Using multi_json (1.7.2)
-Using cf-uaa-lib (1.3.10)
-Using multipart-post (1.2.0)
-Using rubyzip (0.9.9)
-Using cfoundry (0.6.0)
-Using admin-cf-plugin (0.2.0)
-Using httpclient (2.2.4)
-
-...
-
-Using sequel (3.43.0)
-Using rack (1.4.5)
-Using tilt (1.3.6)
-Using sinatra (1.2.9)
-Using daemons (1.1.9)
-Using eventmachine (1.0.3)
-Using thin (1.5.1)
-Using bosh_registry (1.5.0.pre.446)
-Using rest-client (1.6.7)
-Using ruby_vcloud_sdk (1.5.0.pre.446)
-Using bosh_vcloud_cpi (1.5.0.pre.446)
-Using membrane (0.0.2)
-Using ruby_vim_sdk (1.5.0.pre.446)
-Using bosh_vsphere_cpi (1.5.0.pre.446)
-Using sqlite3 (1.3.7)
-Using bosh_deployer (1.5.0.pre.446)
-Using bosh_aws_bootstrap (1.5.0.pre.446)
-Using interact (0.5.2)
-Using manifests-cf-plugin (0.7.0)
-Using mothership (0.5.1)
-Using caldecott-client (0.0.2)
-Using tunnel-cf-plugin (0.3.0)
-Using cf (0.6.0)
-Using bootstrap-cf-plugin (0.0.1) from git://github.com/cloudfoundry/bootstrap-cf-plugin (at master)
-Using bundler (1.2.3)
-Your bundle is complete! Use `bundle show [gemname]` to see where a bundled gem is installed.
-</pre>
+gem source -a https://s3.amazonaws.com/bosh-jenkins-gems/
+gem install bosh_aws_bootstrap --pre
+gem install cf bootstrap-cf-plugin admin-cf-plugin
+~~~
 
 Next, set environmental variables required for deploying to AWS
 
