@@ -19,6 +19,7 @@ The bosh AWS bootstrapper currently expects the Cloud Foundry / BOSH installatio
 Create a working directory and prepare a bundler Gemfile to install the necessary components.
 
 <pre class="terminal">
+$ git clone https://github.com/cloudfoundry/bosh.git ~/workspace/bosh
 $ mkdir ~/bosh-deployments
 $ cd ~/bosh-deployments
 $ touch Gemfile
@@ -92,10 +93,10 @@ Note: for the availability zones - look at https://console.aws.amazon.com/ec2/v2
 Create a file called bosh_environment and add the following
 
 ~~~
-export BOSH_VPC_SUBDOMAIN=cloud
+export BOSH_VPC_DOMAIN=mycloud.com
 export BOSH_AWS_ACCESS_KEY_ID=your_key_asdv34tdf
 export BOSH_DEPLOYMENT_NAME=cloud
-export BOSH_WORKSPACE= ~/bosh-deployments
+export BOSH_WORKSPACE=~/bosh-deployments
 export BOSH_AWS_SECRET_ACCESS_KEY=your_secret_asdf34dfg
 export BOSH_MICRO_AMI=ami-d024b6b9
 export BOSH_VPC_SECONDARY_AZ=us-east-1a
@@ -108,31 +109,10 @@ Use "source" to set them for the current shell;
 $ source ~/bosh-deployments/bosh_environment
 </pre>
 
-Currently, the standard configuration template is set up for a domain call cloud-app.com, these settings need slight adjustment, edit the file `~/workspace/bosh/bosh_aws_bootstrap/templates/aws_configuration_template.yml.erb`. For example, if cloud-app.com was to change to my-cloud.com
-
-~~~yaml
-vpc:
-  domain: <%= ENV["BOSH_VPC_SUBDOMAIN"] %>.cloud-app.com
-
-s3:
- - bucket_name: <%= (ENV["BOSH_VPC_SUBDOMAIN"] || raise("Missing ENV variable BOSH_VPC_SUBDOMAIN")) + "-bosh-blobstore" %>
-~~~
-
-would change to;
-
-~~~yaml
-vpc:
-  domain: <%= ENV["BOSH_VPC_SUBDOMAIN"] %>.my-cloud.com
-
-s3:
- - bucket_name: <%= (ENV["BOSH_VPC_SUBDOMAIN"] || raise("Missing ENV variable BOSH_VPC_SUBDOMAIN")) + "my-cloud-bosh-blobstore" %>
-~~~
-
-Set the domain and then the bucket name to something unique, this needs to be unique across the entire AWS availability zone.
 
 Run `bosh aws create` to create a gateway, subnets, an RDS database, and a cf_nat_box instance for Cloud Foundry subnet routing.
 
-NOTE: As of April 5 - the gem has a hardcoded domain. Until a new gem is released you must use `~/workspace/bosh/bin/bosh aws create` instead
+NOTE: As of April 5 you must use `~/workspace/bosh/bin/bosh aws create` - once a new gem is released this note will be deleted.
 
 <pre class="terminal">
 $ cd $BOSH_WORKSPACE

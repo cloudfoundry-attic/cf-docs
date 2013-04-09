@@ -56,7 +56,7 @@ For dev/ops people managing instances of Cloud Foundry.
 
 * [Deploying Cloud Foundry with BOSH](docs/running/deploying-cf/index.html)
 
-  * [Deploying to EC2](docs/running/deploying-cf/ec2/index.html)
+  * [Deploying to AWS](docs/running/deploying-cf/ec2/index.html)
 
   * [Deploying to OpenStack](docs/running/deploying-cf/openstack/index.html)
 
