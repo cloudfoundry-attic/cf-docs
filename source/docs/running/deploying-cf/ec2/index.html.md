@@ -96,17 +96,17 @@ Create a file called bosh_environment and add the following
 export BOSH_VPC_DOMAIN=mycloud.com
 export BOSH_AWS_ACCESS_KEY_ID=your_key_asdv34tdf
 export BOSH_DEPLOYMENT_NAME=cloud
-export BOSH_WORKSPACE=~/bosh-deployments
 export BOSH_AWS_SECRET_ACCESS_KEY=your_secret_asdf34dfg
 export BOSH_MICRO_AMI=ami-d024b6b9
 export BOSH_VPC_SECONDARY_AZ=us-east-1a
 export BOSH_VPC_PRIMARY_AZ=us-east-1d
+export BOSH_WORKSPACE=$(pwd)
 ~~~
 
 Use "source" to set them for the current shell;
 
 <pre class="terminal">
-$ source ~/bosh-deployments/bosh_environment
+$ source bosh_environment
 </pre>
 
 
