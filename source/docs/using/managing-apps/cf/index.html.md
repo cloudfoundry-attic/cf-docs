@@ -232,12 +232,6 @@ When trying to resolve issues with a production application, access to the file 
 </div>
 
 <div class="command-doc">
-  <pre class="terminal">$ cf create-org [organisation name]</pre>
-  <div>Create an organization</div>
-  <div class="break"></div>
-</div>
-
-<div class="command-doc">
   <pre class="terminal">$ cf delete-org [organisation name]</pre>
   <div>Delete an organization</div>
   <div class="break"></div>
