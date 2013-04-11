@@ -19,7 +19,6 @@ The bosh AWS bootstrapper currently expects the Cloud Foundry / BOSH installatio
 Create a working directory and prepare a bundler Gemfile to install the necessary components.
 
 <pre class="terminal">
-$ git clone https://github.com/cloudfoundry/bosh.git ~/workspace/bosh
 $ mkdir ~/bosh-deployments
 $ cd ~/bosh-deployments
 $ touch Gemfile
@@ -65,16 +64,16 @@ Using sinatra (1.2.9)
 Using daemons (1.1.9)
 Using eventmachine (1.0.3)
 Using thin (1.5.1)
-Using bosh_registry (1.5.0.pre.446)
+Using bosh_registry (1.5.0.pre.471)
 Using rest-client (1.6.7)
-Using ruby_vcloud_sdk (1.5.0.pre.446)
-Using bosh_vcloud_cpi (1.5.0.pre.446)
+Using ruby_vcloud_sdk (1.5.0.pre.471)
+Using bosh_vcloud_cpi (1.5.0.pre.471)
 Using membrane (0.0.2)
-Using ruby_vim_sdk (1.5.0.pre.446)
-Using bosh_vsphere_cpi (1.5.0.pre.446)
+Using ruby_vim_sdk (1.5.0.pre.471)
+Using bosh_vsphere_cpi (1.5.0.pre.471)
 Using sqlite3 (1.3.7)
-Using bosh_deployer (1.5.0.pre.446)
-Using bosh_aws_bootstrap (1.5.0.pre.446)
+Using bosh_deployer (1.5.0.pre.471)
+Using bosh_aws_bootstrap (1.5.0.pre.471)
 Using interact (0.5.2)
 Using manifests-cf-plugin (0.7.0)
 Using mothership (0.5.1)
@@ -112,11 +111,9 @@ $ source ~/bosh-deployments/bosh_environment
 
 Run `bosh aws create` to create a gateway, subnets, an RDS database, and a cf_nat_box instance for Cloud Foundry subnet routing.
 
-NOTE: As of April 5 you must use `~/workspace/bosh/bin/bosh aws create` - once a new gem is released this note will be deleted.
-
 <pre class="terminal">
 $ cd $BOSH_WORKSPACE
-$ ~/workspace/bosh/bin/bosh aws create
+$ bundle exec bosh aws create
 </pre>
 
 Note: The RDS database creation may take a while.
@@ -124,7 +121,7 @@ Note: The RDS database creation may take a while.
 
 ## <a id='deploy-microbosh'></a> Deploy MicroBOSH ##
 
-Deploy MicroBOSH from the workspace directory. The username and password are both admin (you can change this later).
+Deploy MicroBOSH from the workspace directory. At the end of the process, you will be asked for a username and password.
 
 <pre class="terminal">
 $ cd $BOSH_WORKSPACE
