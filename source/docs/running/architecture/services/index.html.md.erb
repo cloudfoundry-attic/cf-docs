@@ -1,14 +1,14 @@
 ---
 title: Services
 ---
-###Core Services
+###Core Service Architecture
 
-<ul>
-<% for page in current_page.children %>
-  <li><%= link_to page.data.title, page.url %></li>
-<% end %>
-</ul>
+- [Service Gateway](service-gateway.html)
+- [Service Node](service-node.html)
+
+###Connecting existing services to Cloud Foundry
+
+- [Service Connector](service-connector.html)
 
 ###Adding Custom Services to Cloud Foundry
 
-###Connecting existing services to Cloud Foundry
