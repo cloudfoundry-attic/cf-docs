@@ -54,7 +54,7 @@ Binding oracle-db1-3d1c3 to dev-app... OK
 </ol>
 
 ###Architecture
-Service Brokers are separate jobs analogous to Service Gateways. A dedicated CLI is used to authenticate with a Service Gateway to configure it with service offerings. Brokers do not currently support multiple users or roles, nor is UAA used for authentication. Credentials are configured per broker. 
+Service Brokers are separate jobs analogous to Service Gateways. A dedicated CLI is used to authenticate with a broker to configure it with service offerings. Brokers do not currently support multiple users or roles, nor is UAA used for authentication. Credentials are configured per broker. 
 
 Multiple brokers can be deployed, and each can be configured with multiple offerings. Offerings advertised by brokers actually represent service instances which have been pre-provisioned out of band. Brokers register offerings with Cloud Controller. When used with legacy cloud controller, simple ACLs can be configured on the broker to limit what users offerings are available to. CCNG does not currently have support for service ACLs so offerings are available to all users. 
 
