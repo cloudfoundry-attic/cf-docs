@@ -3,7 +3,7 @@ title: Deploying Cloud Foundry with BOSH
 ---
 
 * [Local Setup](../bosh/setup/index.html)
-* [Deploying to AWS](ec2/index.html)
+* [Deploying to AWS VPC](ec2/index.html)
 * [Deploying to OpenStack](openstack/index.html)
 * [Deploying to vSphere](vsphere/index.html)
 * [Deploying to vCloud Director](vcloud/index.html)

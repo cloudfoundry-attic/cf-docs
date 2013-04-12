@@ -10,6 +10,10 @@ Docs are a work in progress. We welcome your [contributions](http://github.com/c
 
 For a look at our roadmap - go [here](docs/roadmap.html).
 
+<table><tr><td>
+NOTE: The "CF" command-line tool is only for use with v2 of Cloud Foundry, for v1 and cloudfoundry.com, please use "VMC"
+</td></tr></table>
+
 ## [Using Cloud Foundry](docs/using/index.html)
 
 For developers pushing applications to Cloud Foundry.

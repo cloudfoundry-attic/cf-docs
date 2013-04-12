@@ -1,10 +1,10 @@
 ---
-title: Deploying Cloud Foundry on AWS
+title: Deploying Cloud Foundry on EC2
 ---
 
 ## <a id='intro'></a> Introduction ##
 
-Cloud Foundry provide tools to simplify the process for deploying an instance of Cloud Foundry to a variety for platforms, including Amazon Web Services. This guide will guide you through using BOSH and cf to deploy Cloud Foundry to Amazon Web Services. Currently this guide is only valid for the us-east-1 availability zone using fragile internal tools that will solidify with time.
+Cloud Foundry provide tools to simplify the process for deploying an instance of Cloud Foundry to a variety for platforms, including Amazon Web Services. This guide will guide you through using BOSH and vmc to deploy Cloud Foundry to Amazon Web Services.
 
 ## <a id='domain-prep'></a> Prepare a domain ##
 
@@ -16,112 +16,64 @@ The bosh AWS bootstrapper currently expects the Cloud Foundry / BOSH installatio
 
 ## <a id='deployment-env-prep'></a> Prepare the deployment environment ##
 
-Create a working directory and prepare a bundler Gemfile to install the necessary components.
+Install the latest development release of vmc and also the admin plugin.
 
 <pre class="terminal">
-$ mkdir ~/bosh-deployments
-$ cd ~/bosh-deployments
-$ touch Gemfile
+$ gem install vmc --pre
+$ gem install admin-vmc-plugin
 </pre>
 
-Put the following content in the Gemfile
-
-~~~ruby
-source 'https://rubygems.org'
-source 'https://s3.amazonaws.com/bosh-jenkins-gems/'
-
-gem "bosh_cli", "~>1.5.0.pre.3"
-gem "bootstrap-cf-plugin", :git => "git://github.com/cloudfoundry/bootstrap-cf-plugin"
-gem "cf"
-gem "admin-cf-plugin"
-~~~
-
-Making sure you are running Ruby 1.9.3, run a bundle install to install the correct gems
+Create a working directory and clone the BOSH repository, this will become the working folder for all BOSH deployments.
 
 <pre class="terminal">
-$ bundle install
-
-Updating git://github.com/cloudfoundry/bootstrap-cf-plugin
-Fetching gem metadata from https://rubygems.org/.........
-Fetching gem metadata from https://s3.amazonaws.com/bosh-jenkins-gems/.
-Fetching full source index from https://s3.amazonaws.com/bosh-jenkins-gems/
-Fetching gem metadata from https://rubygems.org/........
-Using addressable (2.3.3)
-Using multi_json (1.7.2)
-Using cf-uaa-lib (1.3.10)
-Using multipart-post (1.2.0)
-Using rubyzip (0.9.9)
-Using cfoundry (0.6.0)
-Using admin-cf-plugin (0.2.0)
-Using httpclient (2.2.4)
-
-...
-
-Using sequel (3.43.0)
-Using rack (1.4.5)
-Using tilt (1.3.6)
-Using sinatra (1.2.9)
-Using daemons (1.1.9)
-Using eventmachine (1.0.3)
-Using thin (1.5.1)
-Using bosh_registry (1.5.0.pre.471)
-Using rest-client (1.6.7)
-Using ruby_vcloud_sdk (1.5.0.pre.471)
-Using bosh_vcloud_cpi (1.5.0.pre.471)
-Using membrane (0.0.2)
-Using ruby_vim_sdk (1.5.0.pre.471)
-Using bosh_vsphere_cpi (1.5.0.pre.471)
-Using sqlite3 (1.3.7)
-Using bosh_deployer (1.5.0.pre.471)
-Using bosh_aws_bootstrap (1.5.0.pre.471)
-Using interact (0.5.2)
-Using manifests-cf-plugin (0.7.0)
-Using mothership (0.5.1)
-Using caldecott-client (0.0.2)
-Using tunnel-cf-plugin (0.3.0)
-Using cf (0.6.0)
-Using bootstrap-cf-plugin (0.0.1) from git://github.com/cloudfoundry/bootstrap-cf-plugin (at master)
-Using bundler (1.2.3)
-Your bundle is complete! Use `bundle show [gemname]` to see where a bundled gem is installed.
+$ cd ~/workspace
+$ git clone git@github.com:cloudfoundry/bosh.git bosh
+$ cd bosh
+$ bundle install --binstubs --local
+$ mkdir -p tmp/deployments-aws
+$ cd tmp/deployments-aws
 </pre>
 
 Next, set environmental variables required for deploying to AWS
 
 Note: for the availability zones - look at https://console.aws.amazon.com/ec2/v2/home?region=us-east-1 and choose zones that are "operating normally".
 
-Create a file called bosh_environment and add the following
+Create a file called bosh_environment and add the following, changing the value for each line to suit your configuration
 
 ~~~
-export BOSH_VPC_DOMAIN=mycloud.com
+export BOSH_VPC_DOMAIN=mydomain.com 
+export BOSH_VPC_SUBDOMAIN=cloud
 export BOSH_AWS_ACCESS_KEY_ID=your_key_asdv34tdf
-export BOSH_DEPLOYMENT_NAME=cloud
-export BOSH_WORKSPACE=~/bosh-deployments
+export BOSH_WORKSPACE= ~/workspace/bosh/tmp/deployments-aws
 export BOSH_AWS_SECRET_ACCESS_KEY=your_secret_asdf34dfg
-export BOSH_MICRO_AMI=ami-d024b6b9
 export BOSH_VPC_SECONDARY_AZ=us-east-1a
 export BOSH_VPC_PRIMARY_AZ=us-east-1d
+export PATH=~/workspace/bosh/bin:$PATH
 ~~~
 
 Use "source" to set them for the current shell;
 
 <pre class="terminal">
-$ source ~/bosh-deployments/bosh_environment
+$ source ~/workspace/bosh/tmp/deployments-aws/bosh_environment
 </pre>
-
 
 Run `bosh aws create` to create a gateway, subnets, an RDS database, and a cf_nat_box instance for Cloud Foundry subnet routing.
 
 <pre class="terminal">
-$ cd $BOSH_WORKSPACE
-$ bundle exec bosh aws create
+$ bosh aws create
 </pre>
 
-Note: The RDS database creation may take a while.
+Note: The RDS datbase creation may take a while.
 
+<pre class="terminal">
+$ alias bosh='bundle exec bosh'
+$ cd $BOSH_WORKSPACE
+$ bosh aws create
+</pre>
 
 ## <a id='deploy-microbosh'></a> Deploy MicroBOSH ##
 
-Deploy MicroBOSH from the workspace directory. At the end of the process, you will be asked for a username and password.
+Deploy MicroBOSH from the workspace directory;
 
 <pre class="terminal">
 $ cd $BOSH_WORKSPACE
@@ -133,24 +85,8 @@ Deploying new micro BOSH instance `micro/micro_bosh.yml' to `http://10.10.0.5:25
 
 Deploy Micro BOSH
   using existing stemcell (00:00:00)                                                                
-  creating VM from ami-345ac05d (00:01:15)                                                          
-  waiting for the agent (00:01:34)                                                                  
-  create disk (00:00:01)                                                                            
-  mount disk (00:00:12)                                                                             
-  fetching apply spec (00:00:00)                                                                    
-  stopping agent services (00:00:01)                                                                
-  applying micro BOSH spec (00:00:26)                                                               
-  starting agent services (00:00:00)                                                                
-  waiting for the director (00:01:37)                                                               
-Done                    11/11 00:05:28                                                              
-WARNING! Your target has been changed to `http://54.224.201.39:25555'!
-Deployment set to '~/bosh-deployments/deployments/micro/micro_bosh.yml'
-Deployed `micro/micro_bosh.yml' to `http://10.10.0.6:25555', took 00:05:28 to complete
-Logged in as `admin'
-Enter username: admin
-Enter password: *****
-User `admin' has been created
-Logged in as `admin'
+  creating VM from ami-9027b9f9 (00:00:39)                                                          
+Waiting for the agent               |oooo                    | 2/11 00:01:23  ETA: 00:02:14   
 </pre>
 
 After MicroBOSH has been deployed succesfully, check it's status;
@@ -171,25 +107,26 @@ Director
   compiled_package_cachedisabled
 
 Deployment
-  Manifest  ~/bosh-deployments/deployments/micro/micro_bosh.yml
+  Manifest  ~/workspace/bosh/tmp/private-deployments/deployments/micro/micro_bosh.yml
 </pre>
 
 ## <a id='deploy-cloudfoundry'></a> BOSH Deploy Cloud Foundry ##
 
-Cloud Foundry can now be deployed using the cf 'bootstrap' plug-in. Run the bootstrap command with cf through bundler.
+Cloud Foundry can now be deployed using the vmc 'bootstrap' plug-in. Run the bootstrap command with vmc through bundler.
 
 <pre class="terminal">
-$ bundle exec cf bootstrap aws
+$ bundle exec vmc bootstrap aws
 </pre>
 
-This process can take some time, especially during it's first run when it compiles all the jobs for the first time. When Cloud Foundry has installed it should be possible to target the install with cf and login as the admin user with the user name 'admin' and the password 'the\_admin\_pw'.
+This process can take some time, especially during it's first run when it compiles all the jobs for the first time. When Cloud Foundry has installed it should be possible to target the install with vmc and login as the admin user with the user name 'admin' and the password 'the\_admin\_pw'.
 
 As the admin of the installation and before it's possible to push a test application it is important to create an initial organization and space. Create the organization first;
 
 <pre class="terminal">
-$ cf create-org test-org
+$ vmc create-org test-org
 Creating organization test-org... OK
 Switching to organization test-org... OK
+
 
 There are no spaces in test-org.
 You may want to create one with create-space.
@@ -201,16 +138,16 @@ organization: test-org
 As the help text indicates, there are no spaces for 'test-org', create one with the create-space command;
 
 <pre class="terminal">
-$ cf create-space development
+$ vmc create-space development
 Creating space development... OK
 Adding you as a manager... OK
 Adding you as a developer... OK
 </pre>
 
-Tell cf to target the space by using the 'target' command with the --ask-space switch
+Tell vmc to target the space by using the 'target' command with the --ask-space switch
 
 <pre class="terminal">
-$ cf target --ask-space
+$ vmc target --ask-space
 Switching to space development... OK
 
 target: http://ccng.cloud.xxxxxx.xx
@@ -220,7 +157,7 @@ space: development
 
 ## <a id='deploy-notes'></a> BOSH Deployment Notes ##
 
-Once Cloud Foundry has been deployed using the bootstrap cf plugin there will be several files left in the $BOSH_WORKSPACE folder;
+Once Cloud Foundry has been deployed using the bootstrap vmc plugin there will be several files left in the $BOSH_WORKSPACE folder;
 
 <table>
   <tr><th>File</th><th>Purpose</th></tr>
@@ -234,5 +171,5 @@ Once Cloud Foundry has been deployed using the bootstrap cf plugin there will be
   </tr>
 </table>
 
-For more information with regard to managing organizations, spaces and users, go to the [cf](../../../using/managing-apps/cf) page
+For more information with regard to managing organizations, spaces and users, go to the [vmc](../../../using/managing-apps/vmc) page
 
