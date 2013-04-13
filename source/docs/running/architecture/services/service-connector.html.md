@@ -1,8 +1,6 @@
 ---
 title: Service Connector
 ---
-Private Cloud Foundry operators frequently ask how applications pushed to their Cloud Foundry instances can bind with external services such as Oracle.
-
 Service Connector (formerly known as Service Broker), is meant to be a manual solution for the general use case of external services. Service Connector doesn’t do automated provisioning. It only delivers credentials for pre-provisioned external service instances to Cloud Foundry deployed applications.
 
 ###Example Workflow
