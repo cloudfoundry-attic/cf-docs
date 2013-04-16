@@ -1,6 +1,10 @@
 ---
-title: Deploying Cloud Foundry on EC2
+title: Deploying Cloud Foundry on AWS
 ---
+
+<table><tr><td>
+NOTE: As of mid April, 2013 the AWS bootstrap is a moving target / too fragile to be useful. Expect revised and stable instructions in mid May.
+</td></tr></table>
 
 ## <a id='intro'></a> Introduction ##
 

@@ -1,5 +1,5 @@
 ---
-title: SpringSource Tool Suite
+title: Spring Tool Suite
 ---
 
 ## <a id='intro'></a>Introduction ##

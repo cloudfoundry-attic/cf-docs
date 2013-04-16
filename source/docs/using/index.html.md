@@ -24,7 +24,7 @@ This section of the Cloud Foundry documentation is for developers pushing applic
 
   * [Organizations & Spaces](managing-apps/orgs-and-spaces.html)
 
-  * [Spring Tool Suite](managing-apps/sts/index.html)
+  * [Spring Tool Suite](managing-apps/ide/sts.html)
 
   * [Build tools](managing-apps/build-tools/index.html)
 
