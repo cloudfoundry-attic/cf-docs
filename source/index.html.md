@@ -42,6 +42,8 @@ For developers pushing applications to Cloud Foundry.
 
   * [API and Libraries](docs/using/managing-apps/libs/index.html)
 
+* [Using Services](docs/using/services.html)
+
 * [Tunnelling with Services](docs/using/tunnelling-with-services.html)
 
 ## [Running Cloud Foundry](docs/running/index.html)
