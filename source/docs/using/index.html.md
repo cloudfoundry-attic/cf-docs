@@ -30,4 +30,6 @@ This section of the Cloud Foundry documentation is for developers pushing applic
 
   * [API and Libraries](managing-apps/libs/index.html)
 
+* [Using Services](services.html)
+
 * [Tunnelling with Services](tunnelling-with-services.html)
