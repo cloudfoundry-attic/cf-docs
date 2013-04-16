@@ -2,7 +2,7 @@
 title: Cloud Foundry Services
 ---
 
-##Viewing Available Services##
+## <a id='viewing-services'></a> Viewing Available Services ##
 
 After targeting and logging into Cloud Foundry using [cf](/docs/using/managing-apps/cf/index.html), you can view what services are available using:
 
@@ -27,11 +27,9 @@ redis        2.6       core            200                          Redis key-va
 
 <i>Note: This is an example. These services may not be available on the Cloud Foundry service you target.</i>
 
-##Binding Services to an App##
+## <a id='creating-services'></a> Creating a Services ##
 
 Use these commands to create and bind a service to your app.
-
-### Create a Service ###
 
 <pre class="terminal">
 $ cf create-service
@@ -54,7 +52,7 @@ Which plan?> 2
 Creating service mysql-a0a77... OK
 </pre>
 
-### Bind a Service ###
+## <a id='binding'></a> Binding to a Service ##
 
 You can bind an existing service to an existing application as follows:
 
