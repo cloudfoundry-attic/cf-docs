@@ -53,7 +53,7 @@ dependencies {
 
 ## <a id='sample'></a>Sample Code ##
 
-The following is a very simple sample application that connects to a Cloud Foundry instance, logs in, and displays some information about the CloudFoundry account. When running the program, provide the Cloud Foundry target (i.e. http://api.cloudfoundry.com) along with a valid user name and password as command-line parameters. 
+The following is a very simple sample application that connects to a Cloud Foundry instance, logs in, and displays some information about the Cloud Foundry account. When running the program, provide the Cloud Foundry target (i.e. http://api.cloudfoundry.com) along with a valid user name and password as command-line parameters. 
 
 ~~~java 
 package org.cloudfoundry.sample;
@@ -105,3 +105,7 @@ public class JavaSample {
     }
 }
 ~~~
+
+For more details on the Java API, view the [source on GitHub](https://github.com/cloudfoundry/vcap-java-client/tree/master/cloudfoundry-client-lib). The [domain package](https://github.com/cloudfoundry/vcap-java-client/tree/master/cloudfoundry-client-lib/src/main/java/org/cloudfoundry/client/lib/domain) shows the objects that can be queried and inspected.  
+
+The source for the [Cloud Foundry Maven plugin](https://github.com/cloudfoundry/vcap-java-client/tree/master/cloudfoundry-maven-plugin) is also a good example of using the Java client library. 
