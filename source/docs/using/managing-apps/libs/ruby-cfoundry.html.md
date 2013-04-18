@@ -1,5 +1,5 @@
 ---
-title: Using the CFoundry Ruby Gem to manage applications
+title: CFoundry Ruby Gem
 ---
 
 ## <a id='intro'></a>Introduction ##
@@ -8,7 +8,7 @@ This is a guide to using the CFoundry Ruby Gem to manage an account on a Cloud F
 
 ## <a id='connecting'></a>Connecting to Cloud Foundry ##
 
-First of all make sure you have included the cfoundry gem as part of your application, add it the Gemfile if your are using bundler;
+First of all, make sure to include the `cfoundry` gem as part of your application. Add it the application `Gemfile` if your are using Bundler;
 
 ~~~ruby
 

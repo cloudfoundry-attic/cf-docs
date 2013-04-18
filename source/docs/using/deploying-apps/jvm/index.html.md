@@ -37,12 +37,3 @@ Several JVM-based frameworks are supported by CloudFoundry, allowing development
 
 &nbsp;&nbsp;[Service Bindings](./lift-service-bindings.html)
 - This guide will show you how to create and bind a service to a Lift application.
-
-### Standalone
-
-&nbsp;&nbsp;[Getting Started](./standalone-getting-started.html)
-- This guide will show you how to create an example application and deploy it to Cloud Foundry.
-
-&nbsp;&nbsp;[Service Bindings](./standalone-service-bindings.html)
-- This guide will show you how to create and bind a service to a standalone web application.
-
