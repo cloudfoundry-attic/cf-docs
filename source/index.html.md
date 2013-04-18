@@ -22,25 +22,7 @@ For developers pushing applications to Cloud Foundry.
 
 * [Deploying Apps](docs/using/deploying-apps/index.html)
 
-  * [Java / JVM-based](docs/using/deploying-apps/jvm/index.html)
-
-  * [Node.js](docs/using/deploying-apps/javascript/index.html)
-
-  * [Ruby](docs/using/deploying-apps/ruby/index.html)
-
-  * [Custom](docs/using/deploying-apps/custom/index.html)
-
 * [Managing Apps](docs/using/managing-apps/index.html)
-
-  * [cf](docs/using/managing-apps/cf/index.html)
-
-  * [Organizations & Spaces](docs/using/managing-apps/orgs-and-spaces.html)
-
-  * [IDE Integration](docs/using/managing-apps/ide/index.html)
-
-  * [Build Tools](docs/using/managing-apps/build-tools/index.html)
-
-  * [API and Libraries](docs/using/managing-apps/libs/index.html)
 
 * [Using Services](docs/using/services.html)
 
@@ -56,25 +38,11 @@ For dev/ops people managing instances of Cloud Foundry.
 
 * [BOSH](docs/running/bosh/index.html)
 
-  * [Components](docs/running/bosh/components/index.html)
-  * [Local Setup](docs/running/bosh/setup/index.html)
-  * [Reference](docs/running/bosh/reference/index.html)
-
 * [Deploying Cloud Foundry with BOSH](docs/running/deploying-cf/index.html)
-
-  * [Deploying to AWS](docs/running/deploying-cf/ec2/index.html)
-
-  * [Deploying to OpenStack](docs/running/deploying-cf/openstack/index.html)
-
-  * [Deploying to vSphere](docs/running/deploying-cf/vsphere/index.html)
-
-  * [Deploying to vCloud Director](docs/running/deploying-cf/vcloud/index.html)
 
 * [Deploying Cloud Foundry with Chef](docs/running/deploying-cf-with-chef/index.html)
 
 * [Micro Cloud Foundry](docs/running/micro_cloud_foundry/index.html)
-
-* [Monitoring Cloud Foundry](docs/running/monitoring/index.html)
 
 * [Managing Users](docs/running/managing-users/index.html)
 
