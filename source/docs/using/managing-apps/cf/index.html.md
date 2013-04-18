@@ -1,5 +1,5 @@
 ---
-title: CF (VMware Cloud) console interface
+title: CF Console Interface
 ---
 
 ## <a id='intro'></a>Introduction ##
@@ -8,9 +8,19 @@ CF is Cloud Foundry's console-based interface. Using this tool you can deploy an
 
 ## <a id='installing'></a>Installing CF ##
 
-To use CF you will need to install Ruby and Rubygems, if you are unsure how to do this then see [http://www.ruby-lang.org/en/downloads/](http://www.ruby-lang.org/en/downloads/) for instructions on how to install Ruby on your operating system.
+To use CF you will need to install Ruby and RubyGems. See the [Installing Ruby](/docs/common/install_ruby.html) page for more information about installing Ruby and RubyGems. 
 
-For details on how to install the latest version of Rubygems, take a look at the download and install instructions at [http://www.rubygems.org](http://www.rubygems.org)
+With Ruby and RubyGems installed, run the following command to install the latest released version of CF: 
+
+<pre class="terminal">
+$ gem install cf
+</pre>
+
+To install a pre-release version of CF, run the following command: 
+
+<pre class="terminal">
+$ gem install cf --pre
+</pre>
 
 ## <a id='commands'></a>Commands ##
 
