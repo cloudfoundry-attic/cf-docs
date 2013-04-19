@@ -18,6 +18,11 @@ In `cf-release`, the components are all configured in a similar way:
 * The job's main logs are written to a file named `<job-name>.log`.
 * Any output written directly to the job's stdout and stderr is written to `<job-name>.stdout.log` and `<job-name>.stderr.log`, respectively.
 
+### Database Migrations
+
+For the Cloud Controller, database migration logs are written to `db_migrate.stdout.log` and `db_migrate.stderr.log`
+in the same directory.
+
 Log Aggregation
 ---------------
 
