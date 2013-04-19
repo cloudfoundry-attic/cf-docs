@@ -26,15 +26,19 @@ in the same directory.
 Log Aggregation
 ---------------
 
-There is a service called the `syslog_aggregator`, which allows you to view
-logs for all instances of a given job in one place. For example, if your deployment has 60 DEAs,
-rather than looking at their logs individually, you can ssh to the
-`syslog_aggregator` and view the collected logs of all DEAs. The `syslog_aggregator` works as
-follows:
+In cf-release, there is a service called the `syslog_aggregator`, which allows you to view
+the logs of all instances of a given job together. For example, if your deployment has 60 DEAs,
+rather than looking at their logs individually, you can ssh to the `syslog_aggregator` node and
+view the collected logs of all DEAs. The `syslog_aggregator` works as follows:
 
-* For most components, if the `syslog_aggregator` is present in the deployment,
-logs will additionally be sent to a local syslog server which then forwards
-the logs to the `syslog_aggregator`.
-* The aggregated logs can be found on the `syslog_aggregator` under `/var/vcap/store/log` in directories named after the job
-* They are sorted by year, month and day
-* In the top folder `/var/vcap/store/log`, there's a symlink named after each job for that job's current log file
+* Most CF components have the `syslog_aggregator` package as one of the dependencies in their
+job spec. Example: [Cloud Controller job spec](http://github.com/cloudfoundry/cf-release/blob/5bfcdf9498051f410e5f60a8d3af77040e8ee6d7/jobs/cloud_controller_ng/spec#L24)
+* The start script for the component includes the execution of a script in the `syslog_aggregator` package that
+starts a local syslog server. Example: [Cloud Controller start script](http://github.com/cloudfoundry/cf-release/blob/5bfcdf9498051f410e5f60a8d3af77040e8ee6d7/jobs/cloud_controller_ng/templates/cloud_controller_ng_ctl.erb#L104)
+* The component's config file is written such that the component send its logs to this local syslog server in addition to its local log file.
+Example: [Cloud Controller config file](http://github.com/cloudfoundry/cf-release/blob/5bfcdf9498051f410e5f60a8d3af77040e8ee6d7/jobs/cloud_controller_ng/templates/cloud_controller_ng.yml.erb#L55).
+To see how this configuration is used, see the readme for [Steno](http://github.com/cloudfoundry/steno).
+* The local syslog server forwards the logs to the `syslog_aggregator` node: a [job](http://github.com/cloudfoundry/cf-release/tree/5bfcdf9498051f410e5f60a8d3af77040e8ee6d7/jobs/syslog_aggregator) in cf-release.
+* The aggregated logs can be found on the `syslog_aggregator` VM in the `/var/vcap/store/log` directory.
+* That directory contains subdirectories for each job, year, month and day. Example: `/var/vcap/store/log/cloud_controller_ng/2013/4/19`.
+* In the top folder `/var/vcap/store/log`, there's a symlink named after each job for that job's current log file.
