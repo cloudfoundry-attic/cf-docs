@@ -238,6 +238,7 @@ jobs:
     db: ccdb_ng
 
 - name: uaadb
+  db_scheme: postgresql
   release: appcloud
   template: postgres
   instances: 1
