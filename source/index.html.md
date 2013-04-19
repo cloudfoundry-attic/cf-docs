@@ -2,17 +2,7 @@
 title: Welcome to Cloud Foundry Documentation
 ---
 
-This set of materials will replace all Cloud Foundry documentation, for cloudfoundry.com, vcap, and bosh, in Q1 of 2013.
-
-This information is forward-looking and favors 'next generation' components which may not be applicable to existing Cloud Foundry installations.
-
-Docs are a work in progress. We welcome your [contributions](http://github.com/cloudfoundry/cf-docs).
-
-For a look at our roadmap - go [here](docs/roadmap.html).
-
-<table><tr><td>
-NOTE: The "CF" command-line tool is only for use with v2 of Cloud Foundry, for v1 and cloudfoundry.com, please use "VMC"
-</td></tr></table>
+For a look at what is planned - look at our [Roadmap](docs/roadmap.html).
 
 ## [Using Cloud Foundry](docs/using/index.html)
 
