@@ -9,51 +9,185 @@ title: Welcome to Cloud Foundry Documentation
 
 For a look at what is planned - look at our [Roadmap](docs/roadmap.html).
 
-## [Using Cloud Foundry](docs/using/index.html)
 
-For developers pushing applications to Cloud Foundry.
+<div class="column-left">
+  <div class="column-title">
+    <a href="docs/using/index.html">
+      <h4>Using Cloud Foundry</h4>
+    </a>
+  </div>
+  <p>For developers pushing applications to Cloud Foundry.</p>
 
-* [Application Architecture Considerations](docs/using/app-arch/index.html)
+  <hr>
 
-* [Deploying Apps](docs/using/deploying-apps/index.html)
+  <p><a href="docs/using/app-arch/index.html">Application Architecture Considerations</a></p>
 
-* [Managing Apps](docs/using/managing-apps/index.html)
+  <hr>
 
-* [Using Services](docs/using/services.html)
+  <p><a href="docs/using/deploying-apps/index.html">Deploying Applications</a></p>
 
-* [Tunnelling with Services](docs/using/tunnelling-with-services.html)
+  <p>
+    <ul>
+      <li>
+        <a href="docs/using/deploying-apps/jvm/index.html">Java / JVM-based</a>
+      </li>
+      <li>
+        <a href="docs/using/deploying-apps/javascript/index.html">Node.js</a>
+      </li>
+      <li>
+        <a href="docs/using/deploying-apps/ruby/index.html">Ruby</a>
+      </li>
+      <li>
+        <a href="docs/using/deploying-apps/custom/index.html">Custom</a>
+      </li>
+    </ul>
+  </p>
 
-## [Running Cloud Foundry](docs/running/index.html)
+  <hr>
 
-For dev/ops people managing instances of Cloud Foundry.
+  <p><a href="docs/using/managing-apps/index.html">Managing Applications</a></p>
 
-* [Cloud Foundry API](docs/running/api/index.html)
+  <p>
+    <ul>
+      <li>
+        <a href="docs/using/managing-apps/cf/index.html">cf</a>
+      </li>
+      <li>
+        <a href="docs/using/managing-apps/orgs-and-spaces.html">Organizations & Spaces</a>
+      </li>
+      <li>
+        <a href="/docs/using/managing-apps/ide/">IDE Integration</a>
+      </li>
+      <li>      
+       <a href="docs/using/managing-apps/build-tools/index.html">Build Tools</a>
+      </li>
+      <li>
+        <a href="docs/using/managing-apps/libs/index.html">API and Libraries</a>
+      </li>
+    </ul>
+  </p>
 
-* [Cloud Foundry Architecture](docs/running/architecture/index.html)
 
-* [BOSH](docs/running/bosh/index.html)
+  <hr>
 
-* [Deploying Cloud Foundry with BOSH](docs/running/deploying-cf/index.html)
+  <p><a href="docs/using/services.html">Using Services</a></p>
 
-* [Deploying Cloud Foundry with Chef](docs/running/deploying-cf-with-chef/index.html)
+  <hr>
 
-* [Micro Cloud Foundry](docs/running/micro_cloud_foundry/index.html)
+  <p><a href="docs/using/tunnelling-with-services.html">Tunnelling with Services</a></p>
 
-* [Managing Users](docs/running/managing-users/index.html)
+  <hr>
 
-## [Reference](docs/reference/index.html)
+</div>
 
-Detailed reference materials.
+<div class="column-middle">
+  <div class="column-title">
+    <a href="docs/running/index.html">
+      <h4>Running Cloud Foundry</h4>
+    </a>
+  </div>
+  <p>For dev/ops people managing instances of Cloud Foundry.</p>
 
-* [Cloud Foundry REST API](docs/reference/cc-api.html)
+  <hr>
 
-## [CloudFoundry.com](docs/dotcom/index.html)
+  <p><a href="docs/running/api/index.html">Cloud Foundry API</a></p>
 
-Cloud Foundry features running on CloudFoundry.com.
+  <hr>
 
-  * [Technical Integration](docs/dotcom/integration/index.html)
+  <p><a href="docs/running/architecture/index.html">Cloud Foundry Architecture</a></p>
 
-## [Community](docs/community/index.html)
+  <hr>
 
-Extensions, tools and services provided by the Cloud Foundry community and partners.
+  <p><a href="docs/running/bosh/index.html">BOSH</a></p>
+
+  <p>
+    <ul>
+      <li>
+        <a href="docs/running/bosh/components/index.html">Components</a>
+      </li>
+      <li>
+        <a href="docs/running/bosh/setup/index.html">Local Setup</a>
+      </li>
+      <li>
+        <a href="docs/running/bosh/reference/index.html">Reference</a>
+      </li>
+    </ul>
+  </p>
+
+  <hr>
+
+  <p><a href="docs/running/deploying-cf/index.html">Deploying Cloud Foundry with BOSH</a></p>
+
+  <p>
+    <ul>
+      <li>
+        <a href="docs/running/deploying-cf/ec2/index.html">Deploying to AWS</a>
+      </li>
+      <li>
+        <a href="docs/running/deploying-cf/openstack/index.html">Deploying to OpenStack</a>
+      </li>
+      <li>      
+       <a href="docs/running/deploying-cf/vsphere/index.html">Deploying to vSphere</a>
+      </li>
+      <li>
+        <a href="docs/running/deploying-cf/vcloud/index.html">Deploying to vCloud Director</a>
+      </li>
+    </ul>
+  </p>
+
+  <hr>
+
+  <p><a href="docs/running/deploying-cf-with-chef/index.html">Deploying Cloud Foundry with Chef</a></p>
+
+  <hr>
+
+  <p><a href="docs/running/micro_cloud_foundry/index.html">Micro Cloud Foundry</a></p>
+
+  <hr>
+
+  <p><a href="docs/running/monitoring/index.html">Monitoring Cloud Foundry</a></p>
+
+  <hr>
+
+  <p><a href="docs/running/managing-users/">Managing Users</a></p>
+
+  <hr>
+
+</div>
+
+
+<div class="column-right">
+  <div class="column-title">
+    <h4>Other Cloud Foundry Docs</h4>
+  </div>
+
+  <p>
+    <a href="docs/reference/index.html">Reference</a>
+    <br>
+    Detailed reference materials.
+    <br>
+    <a href="docs/reference/cc-api.html">Cloud Foundry REST API</a>
+  </p>
+
+  <hr>
+
+  <p>
+    <a href="docs/dotcom/">CloudFoundry.com</a>
+    <br>
+    Cloud Foundry features running on CloudFoundry.com.
+    <br>
+    <a href="docs/dotcom/integration/">Technical Integration</a>
+  </p>
+
+  <hr>  
+
+  <p>
+    <a href="docs/community/index.html">Community</a>
+    <br>
+    Extensions, tools and services provided by the Cloud Foundry community and partners.
+  </p>
+
+  <hr>
+
+</div>
 

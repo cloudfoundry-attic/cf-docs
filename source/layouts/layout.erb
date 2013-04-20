@@ -9,67 +9,304 @@
     <!-- Use title if it's in the page YAML frontmatter -->
     <title><%= data.page.title || "Cloud Foundry Docs" %></title>
     
+    <%= stylesheet_link_tag "master" %>
     <%= stylesheet_link_tag "style" %>
+    <%= javascript_include_tag  "jquery" %>    
     <%= javascript_include_tag  "all" %>
     <!--[if lt IE 9]>
     <style>
-        body  {background-color:#85bfe4;background-image:none;}
+        #content .container-full {background:  #ebf0fa;}
+        .call-to-contribute-box, .column-left, .column-middle, .column-right {background:#e3e8f2}
+        #footer {background:#000;}  
     </style>
     <![endif]-->
   </head>
   
   <body class="<%= page_classes %>">
-    <a href="http://github.com/cloudfoundry/cf-docs" id="github">
-      <img alt="Fork me on GitHub" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png">
-    </a>
-    <div id="main">
-      <div id="logo">
-        <a href="http://www.cloudfoundry.com">
-          <img src="/images/logo_cloudfoundry.png" height="57">
-        </a>
+    <img id="bg" src="/images/bg-plain-x.jpg">
+    <div id='non_footer'>
+      <div id='header'>
+        <div class='container_wide'>
+          <ul class='actions'>
+            <li class='last'>
+<!--             <a class='register_link' href='http://login.cloudfoundry.com'>My Account</a> -->
+            <a href="http://www.cloudfoundry.com/contact">Contact Us</a>
+            </li>
+          </ul>
+        </div>
       </div>
-      <div id="container">
-         <a href="/">
-           <h1>Cloud Foundry Documentation</h1>
-         </a>
-         <br>
-         <div id="bg-content">
-          <% unless current_page.url == "/" %>
-            <div class="breadcrumbs">
-              <ul>
+      <div id='content'>
+        <div class='logo-main'>
+          <div class='logo'>
+            <a href='http://www.cloudfoundry.com'>
+            <img src='/images/logo-cf-clean.png'>
+            </a>
+          </div>
+          <div class='cta'>
+            <a href='http://my.cloudfoundry.com/signup'>
+            <img src='/images/signup.png'>
+            </a>
+          </div>
+        </div><!-- End of logo-main-->
+        <div class='container-full'>
+          <div id='organization_bar'>
+            <div class='navbar'>
+              <ul class='nav'>
                 <li>
-                  <a href="/">Home</a>
+                <a href='http://www.cloudfoundry.com/use' id='use'>Using Cloud Foundry</a>
                 </li>
-                <%= trail_nav %>
+                <li>
+                <a href='http://www.cloudfoundry.com/run' id='run'>Running Cloud Foundry</a>
+                </li>
+                <li>
+                <a href='http://www.cloudfoundry.com/getinvolved' id='getinvolved'>Get Involved</a>
+                </li>
+                <li id='docs-off'>
+                  <a href='/' id='docs'>
+                    <div id='icon-docs'></div>
+                  </a>
+                  <div id='docs-list'>
+                    <div class="docs-list-list">
+                      <a class="docs-list-th" href='/docs/using/app-arch/'>Using Cloud Foundry</a>
+                      <br>
+                      <a href="/docs/using/app-arch/">Application Architecture Considerations</a>
+                      <br>
+                      <a href='/docs/using/deploying-apps/'>Deploying Apps</a>
+                      <br>
+                      <a href='/docs/using/managing-apps/'>Managing Apps</a>
+                      <br>
+                      <a href='/docs/using/tunnelling-with-services.html'>Tunnelling with Services</a>
+                      <br>
+                      <a class="docs-list-see-all" href="/docs/using/">See all</a>
+                    </div><!-- End of 1st column docs-list-list-->
+                    <div class="hr-vertical"></div>
+                    <div class="docs-list-list">
+                      <a class="docs-list-th" href='/docs/running/'>Running Cloud Foundry</a>
+                      <br>
+                      <a href='/docs/running/api/'>Cloud Foundry API</a>
+                      <br>
+                      <a href='/docs/running/architecture/'>Architecture</a>
+                      <br>
+                      <a href='/docs/running/bosh/'>BOSH</a>
+                      <br>
+                      <a href='/docs/running/deploying-cf/'>Deploying with BOSH</a>
+                      <br>
+                      <a href='/docs/running/deploying-cf-with-chef/'>Deploying with Chef</a>
+                      <br>
+                      <a href='/docs/running/micro_cloud_foundry/'>Micro Cloud Foundry</a>
+                      <br>
+                      <a href='/docs/running/monitoring/'>Monitoring</a>
+                      <br>
+                      <a href='/docs/running/managing-users/'>Managing Users</a>
+                      <br>
+                      <a class="docs-list-see-all" href="/docs/running/">See all</a>
+                    </div><!-- End of column 2 docs-list-list -->
+                    <div class="hr-vertical"></div>
+                    <div class="docs-list-list">
+                      <a class="docs-list-th" href='/docs/reference/'>Reference</a>
+                      <br>
+                      <a href='/docs/reference/cc-api.html'>Cloud Foundry REST API</a>
+                      <br>
+                      <a class="docs-list-th" href='/docs/dotcom/'>CloudFoundry.com</a>
+                      <br>
+                      <a href='/docs/dotcom/integration/'>Technical Integration</a>
+                      <br>
+                      <a class="docs-list-th" href='/docs/community/'>Community</a>
+                    </div><!-- End of column 3 docs-list-list -->
+                  </div><!-- End of docs-list -->
+                </li>
+                <li id='search-off'>
+                  <a id='search'>
+                    <div class='icon-search'></div>
+                  </a>
+                </li>
+                <li id='search-on'>
+                  <a id='search2'>
+                    <form action='http://www.cloudfoundry.com/search' class='search-form' method='get' onsubmit='return submitQuery()'>
+                      <input autocomplete='off' class='search-input' id='search-query' name='q' onfocus="this.placeholder = ''" placeholder='' type='search' value=''>
+                    </form>
+                    <div class="cancel-x"></div>
+                  </a>
+                </li>
               </ul>
-            </div>
-            <br>
-          <!-- don't forget to pull this from the index page as well -->  
-          <table><tr><td style="font-size:9pt">
-          <b>We are in a time of transition:</b>
-          <li>You are reading V2 documentation. The V1 docs are available <a href="http://cf-docs-deprecated.cloudfoundry.com">here</a>. Cloudfoundry.com will be upgraded to V2 in early May. <li>You can browse <b>http://api.{cloudfoundry url}/info</b> to check a Cloud Foundry version.<li>The <b>CF</b> command-line is for Cloud Foundry V2. Use <b>VMC</b> for Cloud Foundry V1.
-          </td></tr></table>
+            </div><!-- End of navbar -->
+          </div><!-- End of organization_bar -->
+          <div class='content_inner'>
+            <a class="forkme" href="http://github.com/cloudfoundry/cf-docs" target="_blank">
+              <img alt="Fork me on GitHub" src="/images/ribbon_forkme.png">
+            </a>
 
-            <h2><%= current_page.data.title %></h2>
+              <h1>Cloud Foundry Documentation</h1>
 
-          <% end %>
+            <% unless current_page.url == "/" %>
+              <div class="breadcrumbs">
+                <ul>
+                  <li>
+                    <a href="/">Home</a>
+                  </li>
+                  <%= trail_nav %>
+                </ul>
+              </div>
+              <br>
+              <table><tr><td style="font-size:9pt">
+                        <b>We are in a time of transition:</b>
+                        <li>You are reading V2 documentation. The V1 docs are available <a href="http://cf-docs-deprecated.cloudfoundry.com">here</a>. Cloudfoundry.com will be upgraded to V2 in early May. <li>You can browse <b>http://api.{cloudfoundry url}/info</b> to check a Cloud Foundry version.<li>The <b>CF</b> command-line is for Cloud Foundry V2. Use <b>VMC</b> for Cloud Foundry V1.
+              </td></tr></table>
 
-          <%= quick_links %>
-
-          <%= yield %>
-         </div>
-       </div>
-    </div>
-    <div id="footer">
-      <p>
-      Copyright &#169;
-      <script>
-        var d = new Date();
-        document.write(d.getFullYear());
-      </script>
-      VMware, Inc. All rights reserved.
-      </p>
-    </div>
+              <h1><%= current_page.data.title %></h1>
+            <% end %>
+            <%= yield %>
+          </div><!-- End of content_inner -->
+        </div><!-- End of container-full -->
+      </div><!-- End of content -->
+    </div><!-- End of non_footer -->
+    <div id='footer'>
+      <div id='container-footer'>
+        <div class='bg_social'>
+          <ul class='social'>
+            <li>
+            <a href='http://twitter.com/cloudfoundry' target='_blank'>
+            <img alt='Twitter' src='/images/twitter_large.png'>
+            </a>
+            </li>
+            <li>
+            <a href='https://plus.google.com/114245065906861739918/posts' target='_blank'>
+            <img alt='Google+' src='/images/g+_large.png'>
+            </a>
+            </li>
+            <li>
+            <a href='http://facebook.com/cloudfoundry' target='_blank'>
+            <img alt='Facebook' src='/images/facebook_large.png'>
+            </a>
+            </li>
+            <li>
+            <a href='http://youtube.com/cloudfoundry' target='_blank'>
+            <img alt='Youtube' src='/images/youtube_large.png'>
+            </a>
+            </li>
+          </ul>
+        </div><!-- End of bg_social -->
+        <ul class='links'>
+          <li>
+          <a href='http://www.cloudfoundry.com/about'>About</a>
+          </li>
+          <li class='disc'>•</li>
+          <li>
+          <a href='http://blog.cloudfoundry.com/'>Blog</a>
+          </li>
+          <li class='disc'>•</li>
+          <li>
+          <a href='http://www.cloudfoundry.com/partners'>Partners</a>
+          </li>
+          <li class='disc'>•</li>
+          <li>
+          <a href='http://stackoverflow.com/questions/tagged/cloudfoundry' target='_blank'>Forums</a>
+          </li>
+          <li class='disc'>•</li>
+          <li>
+          <a href='http://status.cloudfoundry.com/' target='_blank'>Status</a>
+          </li>
+          <li class='disc'>•</li>
+          <li>
+          <a href='http://www.cloudfoundry.com/contact'>Contact</a>
+          </li>
+        </ul>
+        <div id='container-footerth'>
+          <div class='footerth'>
+            <a href='http://www.cloudfoundry.com/use'>Using Cloud Foundry</a>
+            <span class='footerlist'>
+              <a href="/docs/using/app-arch/">Application Architecture</a>
+              <br>
+              <a href='/docs/using/deploying-apps/'>Deploying Apps</a>
+              <br>
+              <a href='/docs/using/managing-apps/'>Managing Apps</a>
+              <br>
+              <a href='/docs/using/tunnelling-with-services.html'>Tunnelling with Services</a>
+            </span>
+          </div>
+          <div class='footerth'>
+            <a href='http://www.cloudfoundry.com/run'>Running Cloud Foundry</a>
+            <span class='footerlist'>
+              <a href='/docs/running/api/'>Cloud Foundry API</a>
+              <br>
+              <a href='/docs/running/architecture/'>Architecture</a>
+              <br>
+              <a href='/docs/running/bosh/'>BOSH</a>
+              <br>
+              <a href='/docs/running/deploying-cf/'>Deploying with BOSH</a>
+              <br>
+              <a href='/docs/running/deploying-cf-with-chef/'>Deploying with Chef</a>
+              <br>
+              <a href='/docs/running/micro_cloud_foundry/'>Micro Cloud Foundry</a>
+              <br>
+              <a href='/docs/running/monitoring/'>Monitoring</a>
+              <br>
+              <a href='/docs/running/managing-users/'>Managing Users</a>
+            </span>
+          </div>
+          <div class='footerth'>
+            <a href='http://www.cloudfoundry.com/getinvolved'>Developer Community</a>
+            <span class='footerlist'>
+              <br>
+              <a href='http://www.cloudfoundry.com/getinvolved'>Get Involved</a>
+              <br>
+              <a href='http://www.cloudfoundry.com/getinvolved'>Contribute</a>
+              <br>
+              <a href='http://github.com/cloudfoundry' target='_blank'>Source Code</a>
+              <br>
+              <a href='https://groups.google.com/a/cloudfoundry.org/groups/dir' target='_blank'>Mailing Lists</a>
+              <br>
+              <a href='http://github.com/cloudfoundry' target='_blank'>Report Issues</a>
+            </span>
+          </div>
+          <div class="footerth">
+            <a href="/">Documentation</a>
+            <span class="footerlist">
+              <br>
+              <a href="/docs/using/">Using Cloud Foundry</a>
+              <br>
+              <a href="/docs/running/">Running Cloud Foundry</a>
+              <br>
+              <a href="/docs/reference/">Reference</a>
+              <br>
+              <a href="/docs/community/">Community</a>
+            </span>
+          </div>
+          <div class='footerth'>
+            <a href='http://www.cloudfoundry.com/getinvolved#events'>Cloud Foundry</a>
+            <span class='footerlist'>
+              <br>
+              <a href='http://www.cloudfoundry.com/getinvolved#events'>Events</a>
+              <br>
+              <a href='http://www.cloudfoundry.com/calendar'>Calendar</a>
+              <br>
+              <a href='http://www.cloudfoundry.com/webinars'>Webinars</a>
+              <br>
+              <a href='http://www.cloudfoundry.com/faq'>FAQ</a>
+              <br>
+              <a href='http://www.cloudfoundry.com/jobs'>Jobs</a>
+            </span>
+          </div>
+        </div><!-- End of container-footerth -->
+        <div class='copyright'>
+          <div class='hr-horizontal-dark'></div>
+          <br>
+          <p>
+            &copy;
+            <script>
+              //<![CDATA[
+                var d = new Date();
+                document.write(d.getFullYear());
+              //]]>
+            </script>
+            EMC & VMware. All rights reserved.
+            <a href='http://www.cloudfoundry.com/terms'>Terms</a>
+            <a href='http://www.cloudfoundry.com/legal'>Legal</a>
+            <a href='http://www.vmware.com/help/privacy.html' target='_blank'>Privacy</a>
+          </p>
+        </div><!-- End of copyright -->
+      </div><!-- End of container-footer -->
+    </div><!-- End of footer -->
     <script type="text/javascript">
 
       var _gaq = _gaq || [];
