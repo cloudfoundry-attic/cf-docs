@@ -41,6 +41,8 @@ For dev/ops people managing instances of Cloud Foundry.
 
 * [Managing Users](docs/running/managing-users/index.html)
 
+* [System Component Logging And Syslog](docs/running/logging/index.html)
+
 ## [Reference](docs/reference/index.html)
 
 Detailed reference materials.
