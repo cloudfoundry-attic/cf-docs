@@ -28,7 +28,7 @@ Any session data that needs to be available even after an application crashes or
 
 Applications running on Cloud Foundry can only receive requests using the URLs configured for the application, and only on ports 80 (the standard HTTP port) and 443 (the standard HTTPS port).
 
-Service instances (MySQL, vFabric Postgres, MongoDB, Redis, RabbitMQ) running on Cloud Foundry can only be accessed by applications running on Cloud Foundry. Service instances cannot be accessed by programs running outside of Cloud Foundry, since only ports 80 and 443 are available. [Service Tunneling](/docs/using/working-with-services/tunneling/index.html) can be used to create a connection from one machine to a service running on Cloud Foundry. 
+Service instances (MySQL, vFabric Postgres, MongoDB, Redis, RabbitMQ) running on Cloud Foundry can only be accessed by applications running on Cloud Foundry. Service instances cannot be accessed by programs running outside of Cloud Foundry, since only ports 80 and 443 are available. [Service Tunneling](/docs/using/tunnelling-with-services.html) can be used to create a connection from one machine to a service running on Cloud Foundry. 
 
 If an application running outside of Cloud Foundry needs access to data stored in a Cloud Foundry service, you should create a web service application to expose the data and run the web service application on Cloud Foundry.
 

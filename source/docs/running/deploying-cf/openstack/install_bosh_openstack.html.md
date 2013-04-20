@@ -1,5 +1,5 @@
 ---
-Install Bosh using Micro BOSH on OpenStack
+title: Install Bosh using Micro BOSH on OpenStack
 ---
 
 1. Deploy micro BOSH on OpenStack. See the steps in the previous section (Installing Micro BOSH on a VM)

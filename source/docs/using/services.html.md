@@ -67,4 +67,4 @@ Which service?> 1
 Binding mysql-a0a77 to my-app... OK
 </pre>
 
-How you utilize a service in the context of your application depends on the framework you employ. Refer to the [Deploying Apps](../deploying-apps/index.html) section for instructions on deploying and binding your apps to services.
+How you utilize a service in the context of your application depends on the framework you employ. Refer to the [Deploying Apps](/docs/using/deploying-apps/index.html) section for instructions on deploying and binding your apps to services.

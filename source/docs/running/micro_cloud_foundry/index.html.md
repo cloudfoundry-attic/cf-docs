@@ -325,7 +325,7 @@ Follow these steps  whether you configured Micro Cloud Foundry with DHCP or a st
 
 The `cf micro` command automates the steps described in the previous section. Review that section to understand how the command changes your configuration.
 
-Install the cf gem, or upgrade it if needed. You need version 0.3.16.beta4 or greater. See [CF Installation](/tools/cf/installing-cf.html) for instructions.
+Install the cf gem, or upgrade it if needed. You need version 0.3.16.beta4 or greater. See [CF Installation](/docs/using/managing-apps/cf/) for instructions.
 
 Here is the syntax for the `cf micro` command:
 

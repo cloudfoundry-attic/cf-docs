@@ -8,7 +8,7 @@ The 'cf-runtime' gem provides helper functions to allow easy configuration of co
 
 ## <a id='prerequisites'></a>Prerequisites ##
 
-This library is a Ruby gem, the only pre-requisite is that you have Ruby installed. For more details on how to install Ruby with RVM or rbenv see the [Installing Ruby](/common/install_ruby.html.md) page.
+This library is a Ruby gem, the only pre-requisite is that you have Ruby installed. For more details on how to install Ruby with RVM or rbenv see the [Installing Ruby](/docs/common/install_ruby.html) page.
 
 ## <a id='connecting-to-a-named-service'></a>Connecting to a named service ##
 
