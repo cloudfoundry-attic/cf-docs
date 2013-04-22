@@ -2,13 +2,14 @@
 title: Deploying Cloud Foundry on AWS
 ---
 
-<table><tr><td>
-NOTE: As of mid April, 2013 the AWS bootstrap is a moving target / too fragile to be useful. Expect revised and stable instructions in mid May.
-</td></tr></table>
+  <br />
+  <table style="width: 70%;"><tr><td>
+  NOTE: As of mid April, 2013 the AWS bootstrap is a moving target / too fragile to be useful. Expect revised and stable instructions in mid May.
+  </td></tr></table>
 
-<table><tr><td>
-WARNING: BOSH AWS DESTROY will kill all S3 buckets, all instances, all everything in your AWS account. Do not use this command unless everything in your AWS account, including stuff that has nothing to do with Cloud Foundry, is expendable.
-</td></tr></table>
+  <table style="width: 70%;"><tr><td>
+  WARNING: BOSH AWS DESTROY will kill all S3 buckets, all instances, all everything in your AWS account. Do not use this command unless everything in your AWS account, including stuff that has nothing to do with Cloud Foundry, is expendable.
+  </td></tr></table>
 
 ## <a id='intro'></a> Introduction ##
 
