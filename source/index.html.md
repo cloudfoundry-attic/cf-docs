@@ -96,7 +96,9 @@ For a look at what is planned - look at our [Roadmap](docs/roadmap.html).
 
   <p><a href="docs/running/architecture/index.html">Cloud Foundry Architecture</a></p>
 
-  <hr>
+  <p><a href="docs/running/logging/index.html">System Component Logging And Syslog</a>
+
+   <hr>
 
   <p><a href="docs/running/bosh/index.html">BOSH</a></p>
 
