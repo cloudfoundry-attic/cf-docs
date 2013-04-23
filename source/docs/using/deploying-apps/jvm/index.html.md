@@ -77,24 +77,3 @@ Several JVM-based frameworks are supported by CloudFoundry, allowing development
 	</div>		
 </div>
 
-<div class="bg-columns">
-	<div class="column">
-		<h2>Standalone</h2>
-		<p><strong>Get Started</strong></p>
-		<p>This guide will show you how to create an example application and deploy it to Cloud Foundry.</p>
-    <div class="blog-more-link">
-      <a href="./standalone-getting-started.html">Get Started</a>
-    </div>
-		<div class="blue-right-arrow "></div>
-		<br>
-		<br>
-		<p><strong>Service Bindings</strong></p>
-		<p>This guide will show you how to create and bind a service to a standalone web application.</p>
-    <div class="blog-more-link">
-      <a href="./standalone-service-bindings.html">Bind Service</a>
-    </div>
-		<div class="blue-right-arrow "></div>		
-	</div>	
-</div>
-
-
