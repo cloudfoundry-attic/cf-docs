@@ -64,6 +64,9 @@ For a look at what is planned - look at our [Roadmap](docs/roadmap.html).
       <li>
         <a href="docs/using/managing-apps/libs/index.html">API and Libraries</a>
       </li>
+      <li>
+        <a href="docs/using/managing-apps/custom-domains/index.html">Custom Domains</a>
+      </li>
     </ul>
   </p>
 
@@ -71,9 +74,6 @@ For a look at what is planned - look at our [Roadmap](docs/roadmap.html).
   <hr>
 
   <p><a href="docs/using/services.html">Using Services</a></p>
-
-  <hr>
-
   <p><a href="docs/using/tunnelling-with-services.html">Tunnelling with Services</a></p>
 
   <hr>
@@ -90,15 +90,9 @@ For a look at what is planned - look at our [Roadmap](docs/roadmap.html).
 
   <hr>
 
-  <p><a href="docs/running/api/index.html">Cloud Foundry API</a></p>
-
-  <hr>
-
   <p><a href="docs/running/architecture/index.html">Cloud Foundry Architecture</a></p>
 
-  <p><a href="docs/running/logging/index.html">System Component Logging And Syslog</a>
-
-   <hr>
+  <hr>
 
   <p><a href="docs/running/bosh/index.html">BOSH</a></p>
 
@@ -147,11 +141,25 @@ For a look at what is planned - look at our [Roadmap](docs/roadmap.html).
 
   <hr>
 
-  <p><a href="docs/running/monitoring/index.html">Monitoring Cloud Foundry</a></p>
+  <p><a href="docs/running/managing-cf/index.html">Managing Cloud Foundry</a></p>
+
+  <p>
+    <ul>
+      <li><a href="docs/running/managing-cf/monitoring.html">Monitoring</a></li>
+      <li><a href="docs/running/managing-cf/logging.html">Logging</a></li>
+      <li><a href="docs/running/managing-cf/managing-users.html">Managing Users</a></li>
+    </ul>
+  </p>
 
   <hr>
-
-  <p><a href="docs/running/managing-users/">Managing Users</a></p>
+ 
+  <p><a href="docs/running/troubleshooting/index.html">Troubleshooting Cloud Foundry</a></p>
+  
+  <p>
+    <ul>
+      <li><a href="docs/running/troubleshooting/troubleshooting-apps.html">Troubleshooting Apps</a></li>
+    </ul>
+  </p>
 
   <hr>
 
@@ -167,8 +175,11 @@ For a look at what is planned - look at our [Roadmap](docs/roadmap.html).
     <a href="docs/reference/index.html">Reference</a>
     <br>
     Detailed reference materials.
-    <br>
-    <a href="docs/reference/cc-api.html">Cloud Foundry REST API</a>
+    <p>
+      <ul>
+        <li><a href="docs/reference/cc-api.html">Cloud Foundry REST API</a></li>
+      </ul>
+    </p>
   </p>
 
   <hr>
@@ -177,8 +188,11 @@ For a look at what is planned - look at our [Roadmap](docs/roadmap.html).
     <a href="docs/dotcom/">CloudFoundry.com</a>
     <br>
     Cloud Foundry features running on CloudFoundry.com.
-    <br>
-    <a href="docs/dotcom/integration/">Technical Integration</a>
+    <p>
+      <ul>
+        <li><a href="docs/dotcom/integration/">Technical Integration</a></li>
+      </ul>
+    </p>
   </p>
 
   <hr>  
@@ -187,6 +201,10 @@ For a look at what is planned - look at our [Roadmap](docs/roadmap.html).
     <a href="docs/community/index.html">Community</a>
     <br>
     Extensions, tools and services provided by the Cloud Foundry community and partners.
+    <p>
+      <ul>
+      </ul>
+    </p>
   </p>
 
   <hr>
