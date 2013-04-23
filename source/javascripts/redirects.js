@@ -58,12 +58,12 @@ if (location.pathname == "/samples/samples.html" || location.pathname == "/sampl
 if (location.pathname == "/services.html" || location.pathname == "/services/mongodb/mongodb.html" || location.pathname == "/services/mysql/mysql-overview.html" || location.pathname == "/services/mysql/mysql.html" || location.pathname == "/services/rabbitmq/rabbitmq.html" || location.pathname == "/services/rabbitmq/faq-rabbitmq.html" || location.pathname == "/services/postgres/postgres.html" || location.pathname == "/services/postgres/postgres-ruby.html" || location.pathname == "/services/redis/redis.html") {
   location.pathname = "/docs/using/services.html"
 };
-if (location.pathname == "/docs/running/monitoring/index.html") {
+if (location.pathname == "/docs/running/monitoring" || location.pathname == "/docs/running/monitoring/index.html") {
   location.href = "/docs/running/managing-cf/monitoring.html"
 }; 
-if (location.pathname == "/docs/running/logging/index.html") {
+if (location.pathname == "/docs/running/logging" || location.pathname == "/docs/running/logging/index.html") {
   location.href = "/docs/running/managing-cf/logging.html"
 }; 
-if (location.pathname == "/docs/running/managing-users/index.html") {
+if (location.pathname == "/docs/running/managing-users" || location.pathname == "/docs/running/managing-users/index.html") {
   location.href = "/docs/running/managing-cf/managing-users.html"
 }; 
