@@ -118,7 +118,7 @@ environments {
         username = dbInfo.userName
         password = dbInfo.password
       } else {
-        url = 'jdbc:postgresql://localhost:5432/petclinic'
+        url = 'jdbc:mysql://localhost:5432/myapp'
         username = 'sa'
         password = ''
       }
