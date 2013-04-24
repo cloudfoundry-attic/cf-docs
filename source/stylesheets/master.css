@@ -83,7 +83,7 @@ h3 {
 	border-radius: 5px;
 	background: none repeat scroll 0 0 rgba(255, 255, 255, 0.3);
 	float:left;
-  padding: 40px 15px 20px;
+  padding: 30px 15px;
   position: relative;
   width: 1200px;
 	margin: 0 auto 50px;
@@ -483,7 +483,7 @@ body#partners .container-bottom {
 }
 
 #container-footerth {
-	padding: 0 40px;
+	padding: 0 30px;
 }
 
 #footer {
@@ -563,7 +563,7 @@ body#partners .container-bottom {
 .footerth {
   margin: 0 30px 30px 0;
   float: left;
-	width: 200px;
+	width: 210px;
 }
 
 .footerth:last-child {
