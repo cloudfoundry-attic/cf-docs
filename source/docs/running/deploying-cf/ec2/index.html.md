@@ -13,7 +13,7 @@ title: Deploying Cloud Foundry on AWS
 
 ## <a id='intro'></a> Introduction ##
 
-Cloud Foundry provide tools to simplify the process for deploying an instance of Cloud Foundry to a variety for platforms, including Amazon Web Services. This guide will guide you through using BOSH and vmc to deploy Cloud Foundry to Amazon Web Services.
+Cloud Foundry provides tools to simplify the process for deploying an instance of Cloud Foundry to a variety for platforms, including Amazon Web Services. This guide will guide you through using BOSH and cf to deploy Cloud Foundry to Amazon Web Services.
 
 ## <a id='domain-prep'></a> Prepare a domain ##
 
@@ -25,14 +25,14 @@ The bosh AWS bootstrapper currently expects the Cloud Foundry / BOSH installatio
 
 ## <a id='deployment-env-prep'></a> Prepare the deployment environment ##
 
-Install the latest development release of vmc and also the admin plugin.
+Install the latest development release of cf and also the admin plugin.
 
 <pre class="terminal">
-$ gem install vmc --pre
-$ gem install admin-vmc-plugin
+$ gem install cf --pre
+$ gem install admin-cf-plugin
 </pre>
 
-Create a working directory and clone the BOSH repository, this will become the working folder for all BOSH deployments.
+Create a working directory and clone the BOSH repository. This will become the working folder for all BOSH deployments.
 
 <pre class="terminal">
 $ cd ~/workspace
@@ -121,18 +121,18 @@ Deployment
 
 ## <a id='deploy-cloudfoundry'></a> BOSH Deploy Cloud Foundry ##
 
-Cloud Foundry can now be deployed using the vmc 'bootstrap' plug-in. Run the bootstrap command with vmc through bundler.
+Cloud Foundry can now be deployed using the cf 'bootstrap' plug-in. Run the bootstrap command with cf through bundler.
 
 <pre class="terminal">
-$ bundle exec vmc bootstrap aws
+$ bundle exec cf bootstrap aws
 </pre>
 
-This process can take some time, especially during it's first run when it compiles all the jobs for the first time. When Cloud Foundry has installed it should be possible to target the install with vmc and login as the admin user with the user name 'admin' and the password 'the\_admin\_pw'.
+This process can take some time, especially during it's first run when it compiles all the jobs for the first time. When Cloud Foundry has installed it should be possible to target the install with cf and login as the admin user with the user name 'admin' and the password 'the\_admin\_pw'.
 
 As the admin of the installation and before it's possible to push a test application it is important to create an initial organization and space. Create the organization first;
 
 <pre class="terminal">
-$ vmc create-org test-org
+$ cf create-org test-org
 Creating organization test-org... OK
 Switching to organization test-org... OK
 
@@ -147,16 +147,16 @@ organization: test-org
 As the help text indicates, there are no spaces for 'test-org', create one with the create-space command;
 
 <pre class="terminal">
-$ vmc create-space development
+$ cf create-space development
 Creating space development... OK
 Adding you as a manager... OK
 Adding you as a developer... OK
 </pre>
 
-Tell vmc to target the space by using the 'target' command with the --ask-space switch
+Tell cf to target the space by using the 'target' command with the --ask-space switch
 
 <pre class="terminal">
-$ vmc target --ask-space
+$ cf target --ask-space
 Switching to space development... OK
 
 target: http://ccng.cloud.xxxxxx.xx
@@ -166,7 +166,7 @@ space: development
 
 ## <a id='deploy-notes'></a> BOSH Deployment Notes ##
 
-Once Cloud Foundry has been deployed using the bootstrap vmc plugin there will be several files left in the $BOSH_WORKSPACE folder;
+Once Cloud Foundry has been deployed using the bootstrap cf plugin there will be several files left in the $BOSH_WORKSPACE folder;
 
 <table>
   <tr><th>File</th><th>Purpose</th></tr>
@@ -180,5 +180,5 @@ Once Cloud Foundry has been deployed using the bootstrap vmc plugin there will b
   </tr>
 </table>
 
-For more information with regard to managing organizations, spaces and users, go to the [vmc](../../../using/managing-apps/vmc) page
+For more information with regard to managing organizations, spaces and users, go to the [cf](../../../using/managing-apps/cf) page
 
