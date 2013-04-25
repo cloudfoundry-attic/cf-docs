@@ -276,7 +276,7 @@ If you use Micro Cloud Foundry in offline mode and still have an active Internet
 
 ### <a id='configuring-for-offline'></a>Configuring Micro Cloud Foundry for Offline Mode ###
 
-You can configure offline mode manually or use the `cf micro` command. CF version 0.3.16.beta4 or higher is required to use the `cf micro` command. See [Using the CF micro Command](#using-the-cf-micro-command) for instructions.
+You can configure offline mode manually or use the `cf micro-offline /home/mcf/micro.vmx` command. See [Using the CF micro Commands](#using-the-cf-micro-command) for instructions.
 
 The remainder of this section describes how to configure offline mode manually.
 
@@ -321,58 +321,52 @@ Follow these steps  whether you configured Micro Cloud Foundry with DHCP or a st
 + Right-click VMware Virtual Ethernet Adapter for VMnet8, and choose Properties.
 + Set the preferred DNS server to 172.16.52.136.
 
-## <a id='cf-micro-command'></a>Using the CF Micro Command ##
+## <a id='using-the-cf-micro-command'></a>Using the CF Micro Commands ##
 
-The `cf micro` command automates the steps described in the previous section. Review that section to understand how the command changes your configuration.
+The `cf micro-status`, `cf micro-online` and `cf micro-offline` commands automate the steps described in the previous section. Review that section to understand how the command changes your configuration.
 
-Install the cf gem, or upgrade it if needed. You need version 0.3.16.beta4 or greater. See [CF Installation](/docs/using/managing-apps/cf/) for instructions.
-
-Here is the syntax for the `cf micro` command:
+Install the cf gem, or upgrade it if needed. See [CF Installation](/docs/using/managing-apps/cf/) for instructions.
 
 ```bash
-Usage: cf micro [options] command
+Usage: 
 
-Options
-  --password          VCAP user password
-  --vmrun             /path/to/vmrun
-  --vmx               /path/to/micro.vmx
-  --save              Save VCAP password
+micro-status  VMX [PASSWORD]   Display Micro Cloud Foundry VM status
+micro-offline VMX [PASSWORD]   Micro Cloud Foundry offline mode
+micro-online  VMX [PASSWORD]   Micro Cloud Foundry online mode
 
-Commands
-  offline             Run Micro Cloud in offline mode
-  online              Run Micro Cloud in online mode
-  status              Display current status
+Options:
+      --password PASSWORD    Cleartext password for guest VM vcap user
+      --vmx VMX              Path to micro.vmx
 ```
 
-To reconfigure and control the virtual machine, cf needs paths to the .vmx file and the vmrun command. It may find the vmrun command on your path, but the first time you run it you must provide the path to the micro.vmx file using the --vmx option. The paths are saved in the .cf_micro file in your home directory so you do not have to specify the options again on future runs.
+To reconfigure and control the virtual machine, cf needs paths to the .vmx file.
 
-In the following example, the path to the micro.vmx file is specified. cf discovers that the VM is not running and offers to start it. It reports the status and asks whether to save the password for future runs.
+In the following example, the path to the micro.vmx file is specified. `cf` discovers that the VM is not running and offers to start it.
 
 ```bash
-$ cf micro --vmx /home/mcf/micro.vmx status
-Please enter your Micro Cloud Foundry VM password (vcap user)
-Password: ********
-Confirmation: ********
-Micro Cloud Foundry is not running. Do you want to start it? y
-Micro Cloud Foundry currently in online mode
+$ cf micro-status micro.vmx
+Please enter your MCF VM password (vcap user) password> *************
+MCF VM is not running. Do you want to start it?> yes
+Starting MCF VM... OK
+Micro Cloud Foundry VM currently in offline mode
 VMX Path: /home/mcf/micro.vmx
 Domain: mydomain.cloudfoundry.me
 IP Address: 192.168.255.134
-Do you want to save your password? n
 ```
 
-Execute `cf micro offline` to work offline.
+Execute `cf micro-offline` to work offline.
 
 ```bash
-$ cf micro offline
+$ cf micro-offline /home/mcf/micro.vmx
 ```
 
 This puts the VM in offline mode (the same as selecting option 6 from the menu) and sets the DNS on your host to query the VM. For actions that require administrative or root privilege, you may be prompted to authenticate.
 
-Execute `cf micro online` to work online.
+
+Execute `cf micro-online` to work online.
 
 ```bash
-$ cf micro online
+$ cf micro-online /home/mcf/micro.vmx
 ```
 
 This puts the VM in online mode and reverses the DNS configuration change on your host computer. For actions that require administrative or root privilege, you may be prompted to authenticate.
