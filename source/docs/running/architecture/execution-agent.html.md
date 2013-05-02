@@ -2,41 +2,23 @@
 title: Execution Agent (DEA)
 ---
 
-The DEA itself is written in Ruby and takes care of managing an
-application instance's lifecycle. It can be instructed by the Cloud Controller (CCNG) to start and stop application instances. It keeps track of all started instances, and periodically broadcasts messages about
-their state over NATS (meant to be picked up by the Health
-Manager).
+The DEA is written in Ruby and takes care of managing an application instance's lifecycle. It can be instructed by the [Cloud Controller](./cloud-controller.html) to start and stop application instances. It keeps track of all started instances, and periodically broadcasts messages about their state over [NATS](./messaging-nats.html) (meant to be picked up by the [Health Manager](./health-manager.html)).
 
-The advantages of this generation of the DEA over the previous (and
-first) generation DEA is that is more modular and has better test
-coverage. A breaking change between the two is that this version of the
-DEA depends on Warden to run application instances.
-
-[CCNG](https://github.com/cloudfoundry/cloud_controller_ng)
-[NATS](https://github.com/derekcollison/nats)
-[Health Manager](https://github.com/cloudfoundry/health_manager)
-[Warden](https://github.com/cloudfoundry/warden)
-
+The advantages of this generation of the DEA over the previous (and first) generation DEA is that is more modular and has better test coverage. A breaking change between the two is that this version of the DEA depends on [Warden](./warden.html) to run application instances.
 
 ### Directory server
 
-The directory server is written in Go and can be found in the `go/`
-directory. It is a replacement for the older directory server that was
-embedded in the DEA itself.
+The directory server is written in Go and can be found in the `go/` directory of the DEA source code repository. It is a replacement for the older directory server that was embedded in the DEA itself.
 
-Requests for directories/files are handled by the DEA, which responds
-with a HTTP redirect to a URL that hits the directory server directly.
-The URL is signed by the DEA, and the directory server checks the
-validity of the URL with the DEA before serving it.
+Requests for directories/files are handled by the DEA, which responds with a HTTP redirect to a URL that hits the directory server directly.  The URL is signed by the DEA, and the directory server checks the validity of the URL with the DEA before serving it.
 
 ## Usage
 
-You can run the dea executable at the command line by passing the path
-to a YAML configuration file:
+You can run the dea executable at the command line by passing the path to a YAML configuration file:
 
-```shell
-bin/dea config/dea.yml
-```
+<pre class="terminal">
+$ bin/dea config/dea.yml
+</pre>
 
 ### Configuration
 
@@ -48,60 +30,56 @@ The following is a partial list of the keys that are read from the YAML file:
 
 ### Running the DEA in the provided Vagrant VM
 
-When contributing to DEA it's useful to run it as a standalone
-component. This test configuration uses Vagrant 1.1x.
+When contributing to DEA it is useful to run it as a standalone component. This test configuration uses Vagrant 1.1x.
 
-[vagrant](http://docs.vagrantup.com/v2/installation/index.html)
+Refer to the [Vagrant documentation](http://docs.vagrantup.com/v2/installation/index.html) for instructions on installing Vagrant.
 
 Follow these steps to set up DEA to run locally on your computer:
 
-```shell
-# clone the repo
-git clone http://github.com/cloudfoundry/dea_ng
-bundle install
+<pre class="terminal">
+$ git clone http://github.com/cloudfoundry/dea_ng
+$ bundle install
 
 # check that your version of vagrant is 1.1 or greater
-vagrant --version
+$ vagrant --version
 
 # create your test VM
-rake test_vm
-```
+$ rake test_vm
+</pre>
 
 Creating the test VM is likely to take a while.
 
-Note that if the rake test_vm step fails and you see an error like
-"undefined method `configure' for Vagrant" or
-"found character that cannot start any token while scanning for the next token"
-it means the version of Vagrant is too old.
-Install Vagrant version 1.1 or higher.
+Note that if the `rake test_vm` step fails and you see an error like "undefined method 'configure' for Vagrant" or "found character that cannot start any token while scanning for the next token" it means the version of Vagrant is too old. Install Vagrant version 1.1 or higher.
 
-```shell
+<pre class="terminal">
 # initialize the test VM
-vagrant up
+$ vagrant up
 
 # shell into the VM
-vagrant ssh
+$ vagrant ssh
 
 # start warden
-cd /warden/warden
-bundle install
-rvmsudo bundle exec rake warden:start[config/test_vm.yml] > /tmp/warden.log &
+$ cd /warden/warden
+$ bundle install
+$ rvmsudo bundle exec rake warden:start[config/test_vm.yml] > /tmp/warden.log &
 
 # start the DEA's dependencies
-cd /vagrant
-bundle install
-git submodule update --init
-foreman start > /tmp/foreman.log &
+$ cd /vagrant
+$ bundle install
+$ git submodule update --init
+$ foreman start > /tmp/foreman.log &
 
 # run the dea tests
-bundle exec rspec
-```
+$ bundle exec rspec
+</pre>
 
 ## Staging
 
-See [staging.rb](https://github.com/cloudfoundry/dea_ng/blob/master/lib/dea/responders/staging.rb) for staging flow.
+See the [How Applications Are Staged](./how-applications-are-staged.html) page for a description of the application staging flow used by DEA.
 
 ### NATS Messaging
+
+These are the messages that DEA will publish on NATS: 
 
 - `staging.advertise`: Stagers (now DEA's) broadcast their capacity/capability
 
@@ -115,8 +93,5 @@ See [staging.rb](https://github.com/cloudfoundry/dea_ng/blob/master/lib/dea/resp
 
 ## Logs
 
-The DEA's logging is handled by [Steno](https://github.com/cloudfoundry/steno).
-The DEA can be configured to log to a file, a syslog server or both. If neither is provided,
-it will log to its stdout. The logging level specifies the verbosity of the logs (e.g. 'warn',
-'info', 'debug' ...).
+The DEA's logging is handled by [Steno](https://github.com/cloudfoundry/steno).  The DEA can be configured to log to a file, a syslog server or both. If neither is provided, it will log to its stdout. The logging level specifies the verbosity of the logs (e.g. `warn`, `info`, `debug`).
 

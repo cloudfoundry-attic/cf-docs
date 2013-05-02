@@ -65,7 +65,7 @@ The BOSH deployer will deploy applications based on files in expected directory 
 
 Micro BOSH configurations are set in the `micro_bosh.yml`, which you need to create.
 
-+ Create `~/deployments/vcloud/micro_bosh.yml` using [this template](../sample-manifest/micro_bosh-vcloud.yml).
++ Create `~/deployments/vcloud/micro_bosh.yml` using [this template](../micro_bosh-vcloud.yml).
 
    1. Update the instance of `x.x.x.x` with one of the IPs from the block assigned to you. Change the other IP addresses `n.n.n.n`  to match your network’s netmask, gateway, DNS and NTP server addresses.
    2. Under the vcds section, replace `v.v.v.v` with the address of the vCloud instance and enter your vCloud credentials.
@@ -149,7 +149,7 @@ Now we download the latest stem cellto upload to our micro BOSH instance.
 
 		bosh status
 
-   2. Copy the file [wordpress-vcloud.yml](../sample-manifest/wordpress-vcloud.yml) in the bosh-sample-release directory and update it to suit your network.
+   2. Copy the file [wordpress-vcloud.yml](../wordpress-vcloud.yml) in the bosh-sample-release directory and update it to suit your network.
 
 
 ##Deploy##
