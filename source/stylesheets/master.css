@@ -439,6 +439,12 @@ body#partners .container-bottom {
 .logo {
   float:left;
 }
+.logo a:hover {
+	text-decoration: none;
+}
+#pivotal-logo {
+	margin-left:-5px;
+}
 .cta {
   float:right;
   margin: 5px 0 0 0;

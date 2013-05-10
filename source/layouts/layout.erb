@@ -49,6 +49,18 @@
         #footer {background:#000;}  
     </style>
     <![endif]-->
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-22181585-1']);
+      _gaq.push(['_setDomainName', 'cloudfoundry.com']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
   </head>
   
   <body class="<%= page_classes %>">
@@ -68,7 +80,10 @@
         <div class='logo-main'>
           <div class='logo'>
             <a href='http://www.cloudfoundry.com'>
-            <img src='/images/logo-cf-clean.png'>
+            <img src='/images/logo-cloudfoundry.png'>
+            </a>
+            <a href='http://www.gopivotal.com' target="_blank">
+            <img id="pivotal-logo" src='/images/logo-pivotal.png'>
             </a>
           </div>
           <div class='cta'>
@@ -323,26 +338,13 @@
                 document.write(d.getFullYear());
               //]]>
             </script>
-            EMC & VMware. All rights reserved.
+            GoPivotal, Inc. All rights reserved.
             <a href='http://www.cloudfoundry.com/terms'>Terms</a>
             <a href='http://www.cloudfoundry.com/legal'>Legal</a>
-            <a href='http://www.vmware.com/help/privacy.html' target='_blank'>Privacy</a>
+            <a href='http://www.gopivotal.com/privacy-policy' target='_blank'>Privacy</a>
           </p>
         </div><!-- End of copyright -->
       </div><!-- End of container-footer -->
     </div><!-- End of footer -->
-    <script type="text/javascript">
-
-      var _gaq = _gaq || [];
-      _gaq.push(['_setAccount', 'UA-22181585-27']);
-      _gaq.push(['_trackPageview']);
-
-      (function() {
-        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-      })();
-
-    </script>
   </body>
 </html>
