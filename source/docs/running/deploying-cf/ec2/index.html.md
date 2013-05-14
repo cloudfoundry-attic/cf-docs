@@ -25,22 +25,18 @@ The bosh AWS bootstrapper currently expects the Cloud Foundry / BOSH installatio
 
 ## <a id='deployment-env-prep'></a> Prepare the deployment environment ##
 
-Install the latest development release of cf and also the admin plugin.
+Install the latest release of cf and also the bootstrap plugin.
 
 <pre class="terminal">
-$ gem install cf --pre
-$ gem install admin-cf-plugin
+$ gem install cf
+$ gem install bootstrap-cf-plugin
 </pre>
 
-Create a working directory and clone the BOSH repository. This will become the working folder for all BOSH deployments.
+Install the latest development release of BOSH.
 
 <pre class="terminal">
-$ cd ~/workspace
-$ git clone git@github.com:cloudfoundry/bosh.git bosh
-$ cd bosh
-$ bundle install --binstubs --local
-$ mkdir -p tmp/deployments-aws
-$ cd tmp/deployments-aws
+$ gem source -a 'https://s3.amazonaws.com/bosh-jenkins-gems/'
+$ gem install bosh_cli_plugin_aws --pre
 </pre>
 
 Next, set environmental variables required for deploying to AWS
@@ -53,17 +49,16 @@ Create a file called bosh_environment and add the following, changing the value 
 export BOSH_VPC_DOMAIN=mydomain.com 
 export BOSH_VPC_SUBDOMAIN=cloud
 export BOSH_AWS_ACCESS_KEY_ID=your_key_asdv34tdf
-export BOSH_WORKSPACE= ~/workspace/bosh/tmp/deployments-aws
+export BOSH_WORKSPACE=~/workspace/deployments-aws
 export BOSH_AWS_SECRET_ACCESS_KEY=your_secret_asdf34dfg
 export BOSH_VPC_SECONDARY_AZ=us-east-1a
 export BOSH_VPC_PRIMARY_AZ=us-east-1d
-export PATH=~/workspace/bosh/bin:$PATH
 ~~~
 
 Use "source" to set them for the current shell;
 
 <pre class="terminal">
-$ source ~/workspace/bosh/tmp/deployments-aws/bosh_environment
+$ source ~/workspace/deployments-aws/bosh_environment
 </pre>
 
 Run `bosh aws create` to create a gateway, subnets, an RDS database, and a cf_nat_box instance for Cloud Foundry subnet routing.
@@ -75,7 +70,6 @@ $ bosh aws create
 Note: The RDS datbase creation may take a while.
 
 <pre class="terminal">
-$ alias bosh='bundle exec bosh'
 $ cd $BOSH_WORKSPACE
 $ bosh aws create
 </pre>
@@ -124,7 +118,7 @@ Deployment
 Cloud Foundry can now be deployed using the cf 'bootstrap' plug-in. Run the bootstrap command with cf through bundler.
 
 <pre class="terminal">
-$ bundle exec cf bootstrap aws
+$ cf bootstrap aws
 </pre>
 
 This process can take some time, especially during it's first run when it compiles all the jobs for the first time. When Cloud Foundry has installed it should be possible to target the install with cf and login as the admin user with the user name 'admin' and the password 'the\_admin\_pw'.
