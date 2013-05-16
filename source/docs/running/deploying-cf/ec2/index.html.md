@@ -2,13 +2,8 @@
 title: Deploying Cloud Foundry on AWS
 ---
 
-  <br />
   <table style="width: 70%;"><tr><td>
-  NOTE: As of mid April, 2013 the AWS bootstrap is a moving target / too fragile to be useful. Expect revised and stable instructions in mid May.
-  </td></tr></table>
-
-  <table style="width: 70%;"><tr><td>
-  WARNING: BOSH AWS DESTROY will kill all S3 buckets, all instances, all everything in your AWS account. Do not use this command unless everything in your AWS account, including stuff that has nothing to do with Cloud Foundry, is expendable.
+  **WARNING**: The command `bosh aws destroy` will destroy all S3 buckets, all instances, all everything in your AWS account. Do not use this command unless everything in your AWS account, including stuff that has nothing to do with Cloud Foundry, is expendable.
   </td></tr></table>
 
 ## <a id='intro'></a> Introduction ##
@@ -17,116 +12,135 @@ Cloud Foundry provides tools to simplify the process for deploying an instance o
 
 ## <a id='domain-prep'></a> Prepare a domain ##
 
-The first thing to do is make sure you have a domain available for use with your Cloud Foundry instance. The BOSH AWS boostrapper expects an AWS Route 53 Hosted Zone to exist for the domain. Go to the Route 53 [control panel](https://console.aws.amazon.com/route53) to create a hosted zone.
+The first thing to do is to pick a DNS domain name for your Cloud Foundry instance. If you pick *cloud.mydomain.com*, your applications will be available as *app-name.cloud.mydomain.com*.
 
-The bosh AWS bootstrapper currently expects the Cloud Foundry / BOSH installation to be available at a third-level domain, e.g - cloud.mydomain.com. Create a Route53 hosted zone for that domain, copy the reported delegation set when the zone has been created. Add an NS record with your domains registrar for each of the name servers in the zone's delegation set.
+Create an AWS Route 53 Hosted Zone for your domain at the [Route 53 control panel](https://console.aws.amazon.com/route53). The control panel will show you a "delegation set" - a list of addresses to which you must delegate DNS authority for your domain. If your domain is *cloud.mydomain.com*, each address in the delegation set should become an NS record in the DNS server for *mydomain.com*.
 
 <img src="/images/bosh-aws/hostedzone.png" />
 
 ## <a id='deployment-env-prep'></a> Prepare the deployment environment ##
 
-Install the latest release of cf and also the bootstrap plugin.
+Ruby 1.9.3 is a prerequisite for the following steps. Install the `bundler` RubyGem first:
 
 <pre class="terminal">
-$ gem install cf
-$ gem install bootstrap-cf-plugin
+$ gem install bundler
 </pre>
 
-Install the latest development release of BOSH.
+Create a working directory from which to deploy the environment. For example, `$HOME/cf`. In that directory, create a file named `Gemfile` with the following contents:
+
+~~~
+source 'https://rubygems.org'
+source 'https://s3.amazonaws.com/bosh-jenkins-gems/'
+
+ruby "1.9.3"
+
+gem "bootstrap-cf-plugin", :git => "git://github.com/cloudfoundry/bootstrap-cf-plugin"
+~~~
+
+Install the latest release of the bootstrap plugin.
 
 <pre class="terminal">
-$ gem source -a 'https://s3.amazonaws.com/bosh-jenkins-gems/'
-$ gem install bosh_cli_plugin_aws --pre
+$ cd $HOME/cf
+~/cf$ bundle install
 </pre>
 
-Next, set environmental variables required for deploying to AWS
-
-Note: for the availability zones - look at https://console.aws.amazon.com/ec2/v2/home?region=us-east-1 and choose zones that are "operating normally".
-
-Create a file called bosh_environment and add the following, changing the value for each line to suit your configuration
+Next, set environment variables required for deploying to AWS. Create a file called bosh_environment and add the following, changing the value for each line to suit your configuration
 
 ~~~
 export BOSH_VPC_DOMAIN=mydomain.com 
 export BOSH_VPC_SUBDOMAIN=cloud
 export BOSH_AWS_ACCESS_KEY_ID=your_key_asdv34tdf
-export BOSH_WORKSPACE=~/workspace/deployments-aws
 export BOSH_AWS_SECRET_ACCESS_KEY=your_secret_asdf34dfg
-export BOSH_VPC_SECONDARY_AZ=us-east-1a
-export BOSH_VPC_PRIMARY_AZ=us-east-1d
+export BOSH_VPC_SECONDARY_AZ=us-east-1a # see note below
+export BOSH_VPC_PRIMARY_AZ=us-east-1d   # see note below
 ~~~
+Note: Choose availability zones which are listed as "operating normally" on the [AWS Console Status Health Section](https://console.aws.amazon.com/ec2/v2/home?region=us-east-1).
 
-Use "source" to set them for the current shell;
+Use `source` to set them for the current shell:
 
 <pre class="terminal">
-$ source ~/workspace/deployments-aws/bosh_environment
+~/cf$ source bosh_environment
 </pre>
 
-Run `bosh aws create` to create a gateway, subnets, an RDS database, and a cf_nat_box instance for Cloud Foundry subnet routing.
+Run `bosh aws create` to create a VPC Internet Gateway, VPC subnets, 3 RDS databases, and a NAT VM for Cloud Foundry subnet routing. The command does not require user input, so start it and grab a coffee at the trendiest place across town!
 
 <pre class="terminal">
-$ bosh aws create
+~/cf$ bosh aws create
+Executing migration CreateKeyPairs
+allocating 1 KeyPair(s)
+Executing migration CreateVpc
+. . .
+details in S3 receipt: aws_rds_receipt and file: aws_rds_receipt.yml
+Executing migration CreateS3
+creating bucket xxxx-bosh-blobstore
+creating bucket xxxx-bosh-artifacts
 </pre>
 
-Note: The RDS datbase creation may take a while.
+Note: RDS database creation may take 20+ minutes to finish.
+
+
+## <a id='deploy-microbosh'></a> Deploy Micro BOSH ##
+
+Deploy Micro BOSH from the workspace directory:
 
 <pre class="terminal">
-$ cd $BOSH_WORKSPACE
-$ bosh aws create
-</pre>
+~/cf$ bosh aws bootstrap micro
 
-## <a id='deploy-microbosh'></a> Deploy MicroBOSH ##
-
-Deploy MicroBOSH from the workspace directory;
-
-<pre class="terminal">
-$ cd $BOSH_WORKSPACE
-$ bosh aws bootstrap micro
-
-WARNING! Your target has been changed to `http://10.10.0.5:25555'!
-Deployment set to '~/workspace/bosh/tmp/private-deployments/deployments/micro/micro_bosh.yml'
-Deploying new micro BOSH instance `micro/micro_bosh.yml' to `http://10.10.0.5:25555' (type 'yes' to continue): yes
+WARNING! Your target has been changed to `https://10.10.0.6:25555'!
+Deployment set to '/Users/pivotal/cf/deployments/micro/micro_bosh.yml'
+Deploying new micro BOSH instance `micro/micro_bosh.yml' to `https://10.10.0.6:25555' (type 'yes' to continue): yes
 
 Deploy Micro BOSH
-  using existing stemcell (00:00:00)                                                                
-  creating VM from ami-9027b9f9 (00:00:39)                                                          
-Waiting for the agent               |oooo                    | 2/11 00:01:23  ETA: 00:02:14   
+  using existing stemcell (00:00:00)
+. . .
+Deployed `micro/micro_bosh.yml' to `https://10.10.0.6:25555', took 00:04:57 to complete
+Logged in as `admin'
+Enter username: foo
+Enter password: ***
+User `foo' has been created
+Logged in as `foo'
+User `hm' has been created
+Logged in as `hm'
 </pre>
 
-After MicroBOSH has been deployed succesfully, check it's status;
+After Micro BOSH has been deployed succesfully, check its status:
 
 <pre class="terminal">
-$ bosh status
+~/cf$ bosh status
 
 Updating director data... done
 
+Config
+             ~/.bosh_config
+
 Director
-  Name      micro-cloud
-  URL       http://x.x.x.x.x:25555
-  Version   1.5.0.pre2 (release:48d80686 bosh:48d80686)
-  User      admin
-  UUID      c7a404fd-bcf8-4eed-ac14-10c162386de6
-  CPI       aws
-  dns       enabled (domain_name: microbosh)
-  compiled_package_cachedisabled
+  Name       micro-xxxx
+  URL        https://x.x.x.x:25555
+  Version    1.5.0.pre.xxx (release:xxxxx bosh:xxxxx)
+  User       hm
+  UUID       xxxxxx-xxxx-xxxx-xxxx-xxxxxxxx
+  CPI        aws
+  dns        enabled (domain_name: microbosh)
+  compiled_package_cache disabled
 
 Deployment
-  Manifest  ~/workspace/bosh/tmp/private-deployments/deployments/micro/micro_bosh.yml
+  Manifest   ~/cf/deployments/micro/micro_bosh.yml
 </pre>
 
-## <a id='deploy-cloudfoundry'></a> BOSH Deploy Cloud Foundry ##
+## <a id='deploy-cloudfoundry'></a>Deploy Cloud Foundry ##
 
-Cloud Foundry can now be deployed using the cf 'bootstrap' plug-in. Run the bootstrap command with cf through bundler.
+Cloud Foundry can now be deployed using the cf 'bootstrap' plugin (be sure to run it via _bundle exec_).
 
 <pre class="terminal">
-$ cf bootstrap aws
+~/cf$ bundle exec cf bootstrap aws
 </pre>
 
-This process can take some time, especially during it's first run when it compiles all the jobs for the first time. When Cloud Foundry has installed it should be possible to target the install with cf and login as the admin user with the user name 'admin' and the password 'the\_admin\_pw'.
+This process can take some time (2-3 hours), especially during its first run when all the jobs are compiled for the first time. When the bootstrap has finished installing Cloud Foundry, it should be possible to target the install with cf and login as an administrator with the user name `admin` and the password `the_admin_pw`.
 
-As the admin of the installation and before it's possible to push a test application it is important to create an initial organization and space. Create the organization first;
+As the admin of the installation and before it's possible to push a test application it is important to create an initial Cloud Foundry Organization and Space. Create the Organization first:
 
 <pre class="terminal">
-$ cf create-org test-org
+~/cf$ cf create-org test-org
 Creating organization test-org... OK
 Switching to organization test-org... OK
 
@@ -138,19 +152,19 @@ target: http://ccng.cloud.xxxxxx.xx
 organization: test-org
 </pre>
 
-As the help text indicates, there are no spaces for 'test-org', create one with the create-space command;
+As the help text indicates, there are no spaces for 'test-org', create one with the `create-space` command:
 
 <pre class="terminal">
-$ cf create-space development
+~/cf$ cf create-space development
 Creating space development... OK
 Adding you as a manager... OK
 Adding you as a developer... OK
 </pre>
 
-Tell cf to target the space by using the 'target' command with the --ask-space switch
+Tell cf to target the space by using the 'target' command with the `--ask-space` switch:
 
 <pre class="terminal">
-$ cf target --ask-space
+~/cf$ cf target --ask-space
 Switching to space development... OK
 
 target: http://ccng.cloud.xxxxxx.xx
@@ -160,17 +174,33 @@ space: development
 
 ## <a id='deploy-notes'></a> BOSH Deployment Notes ##
 
-Once Cloud Foundry has been deployed using the bootstrap cf plugin there will be several files left in the $BOSH_WORKSPACE folder;
+Once Cloud Foundry has been deployed using the bootstrap cf plugin there will be several files left in the `$HOME/cf` folder;
 
 <table>
   <tr><th>File</th><th>Purpose</th></tr>
   <tr>
     <td>cf-aws.yml</td>
-    <td>This is the BOSH manifest file for Cloud Foundry that was used to deploy to AWS. You can use this file to re-deploy the Cloud Foundry instance again. For more information, see <a href="">managing BOSH deployments</a></td>
+    <td>This is the BOSH manifest file for Cloud Foundry that was used to deploy to AWS. You can use this file to re-deploy the Cloud Foundry instance again. For more information, see <a href="">managing BOSH deployments</a>.</td>
+  </tr>
+  <tr>
+    <td>cf-services-aws.yml</td>
+    <td>This is the BOSH manifest file for Cloud Foundry services.
+  </tr>
+  <tr>
+    <td>cf-shared-secrets.yml</td>
+    <td>This is a shared secrets file for usernames and passwords used in various Cloud Foundry components.</td>
+  </tr>
+  <tr>
+    <td>director.key and director.pem</td>
+    <td>This is the self-signed SSL certificate used to encrypt the connection between BOSH CLI and Micro BOSH.</td>
+  </tr>
+  <tr>
+    <td>elb-cfrouter.key and elb-cfrouter.pem</td>
+    <td>This is the self-signed SSL certificate installed on the AWS ELB that fronts the Cloud Foundry routing layer.</td>
   </tr>
   <tr>
     <td>aws_rds_receipt.yml, aws_route53_receipt.yml, aws_vpc_receipt.yml</td>
-    <td>At the end of the MicroBOSH bootstrapping procedure these 'receipt' files are written to provide data used to template the manifest file used for deploying Cloud Foundry</td>
+    <td>At the end of the MicroBOSH bootstrapping procedure these 'receipt' files are written to provide data used to template the manifest file used for deploying Cloud Foundry.</td>
   </tr>
 </table>
 
