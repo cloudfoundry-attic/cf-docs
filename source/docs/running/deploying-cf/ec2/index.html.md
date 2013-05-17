@@ -20,7 +20,7 @@ Create an AWS Route 53 Hosted Zone for your domain at the [Route 53 control pane
 
 ## <a id='deployment-env-prep'></a> Prepare the deployment environment ##
 
-Ruby 1.9.3 is a prerequisite for the following steps. Install the `bundler` RubyGem first:
+Ruby 1.9.3-p327 and git (1.8 or newer) are prerequisites for the following steps. Install the `bundler` RubyGem after Ruby and git are installed:
 
 <pre class="terminal">
 $ gem install bundler
@@ -206,3 +206,8 @@ Once Cloud Foundry has been deployed using the bootstrap cf plugin there will be
 
 For more information with regard to managing organizations, spaces and users, go to the [cf](../../../using/managing-apps/cf) page
 
+## <a id='destroy-environment'></a>Destroying the AWS Environment ##
+  <table style="width: 70%;"><tr><td>
+    **WARNING**: The command `bosh aws destroy` will destroy all S3 buckets, all instances, **all everything** in your AWS account. Do not use this command unless everything in your AWS account, including stuff that has nothing to do with Cloud Foundry, is expendable.
+  </td></tr></table>
+<img id="nuclear" src='/images/nuclear.jpg'>
