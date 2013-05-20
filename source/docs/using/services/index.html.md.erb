@@ -1,0 +1,22 @@
+---
+title: Services
+---
+Binding a service to your application adds credentials for the service instance to the VCAP_SERVICES environment variable. In most cases these credentials are unique to the binding; another app bound to the same service instance would receive different credentials. How your app leverages the contents of environment variables may depend on the framework you employ. Refer to the [Deploying Apps](/docs/using/deploying-apps/index.html) section for more information.
+
+## <a id='managing'></a>Managing Services ##
+* [Managing Services from the Command Line](managing-services.html)
+* [Tunnelling with Services](tunnelling-with-services.html)
+
+## <a id='marketplace'></a>Marketplace ##
+Here we provide documentation specific to each service, such as the format of credentials in VCAP_SERVICES.
+
+<ul>
+  <% for page in current_page.children.select { |x| x.data.category == "marketplace"}.sort_by {|x| x.data.title} %>
+  <li><%= link_to page.data.title, page.url %></li>
+<% end %>
+</ul>
+
+## <a id='support'></a>Support ##
+* [Contacting Third Party Service Providers](contacting-service-providers-for-support.html)
+
+
