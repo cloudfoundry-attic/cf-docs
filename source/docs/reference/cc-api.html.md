@@ -581,7 +581,7 @@ The schema for the `:entity` hash for Organization is:
 
 ### READ Organization
 
-Resource URL: `READ /v2/organizations/:guid`
+Resource URL: `GET /v2/organizations/:guid`
 
 Reads a Organization.
 
@@ -823,7 +823,7 @@ The schema for the `:entity` hash for User is:
 
 ### READ User
 
-Resource URL: `READ /v2/users/:guid`
+Resource URL: `GET /v2/users/:guid`
 
 Reads a User.
 
@@ -1055,7 +1055,7 @@ The schema for the `:entity` hash for Space is:
 
 ### READ Space
 
-Resource URL: `READ /v2/spaces/:guid`
+Resource URL: `GET /v2/spaces/:guid`
 
 Reads a Space.
 
@@ -1324,7 +1324,7 @@ The schema for the `:entity` hash for App is:
 
 ### READ App
 
-Resource URL: `READ /v2/apps/:guid`
+Resource URL: `GET /v2/apps/:guid`
 
 Reads a App.
 
@@ -1535,7 +1535,7 @@ The schema for the `:entity` hash for Runtime is:
 
 ### READ Runtime
 
-Resource URL: `READ /v2/runtimes/:guid`
+Resource URL: `GET /v2/runtimes/:guid`
 
 Reads a Runtime.
 
@@ -1729,7 +1729,7 @@ The schema for the `:entity` hash for Framework is:
 
 ### READ Framework
 
-Resource URL: `READ /v2/frameworks/:guid`
+Resource URL: `GET /v2/frameworks/:guid`
 
 Reads a Framework.
 
@@ -1956,7 +1956,7 @@ The schema for the `:entity` hash for Service is:
 
 ### READ Service
 
-Resource URL: `READ /v2/services/:guid`
+Resource URL: `GET /v2/services/:guid`
 
 Reads a Service.
 
@@ -2169,7 +2169,7 @@ The schema for the `:entity` hash for ServicePlan is:
 
 ### READ ServicePlan
 
-Resource URL: `READ /v2/service_plans/:guid`
+Resource URL: `GET /v2/service_plans/:guid`
 
 Reads a ServicePlan.
 
@@ -2378,7 +2378,7 @@ The schema for the `:entity` hash for ServiceInstance is:
 
 ### READ ServiceInstance
 
-Resource URL: `READ /v2/service_instances/:guid`
+Resource URL: `GET /v2/service_instances/:guid`
 
 Reads a ServiceInstance.
 
@@ -2574,7 +2574,7 @@ The schema for the `:entity` hash for ServiceBinding is:
 
 ### READ ServiceBinding
 
-Resource URL: `READ /v2/service_bindings/:guid`
+Resource URL: `GET /v2/service_bindings/:guid`
 
 Reads a ServiceBinding.
 
@@ -2763,7 +2763,7 @@ The schema for the `:entity` hash for ServiceAuthToken is:
 
 ### READ ServiceAuthToken
 
-Resource URL: `READ /v2/service_auth_tokens/:guid`
+Resource URL: `GET /v2/service_auth_tokens/:guid`
 
 Reads a ServiceAuthToken.
 
