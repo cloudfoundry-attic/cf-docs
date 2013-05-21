@@ -3,7 +3,11 @@ title: SendGrid
 category: marketplace
 ---
 
-### Environment Variables
+## <a id='managing-services'></a>Managing Services ##
+
+[Manage Services from the Command Line](managing-services.html)
+
+## <a id='environment-variable'></a>Environment Variables ##
 
 Format of credentials in VCAP_SERVICES environment variable.
 
@@ -23,14 +27,25 @@ Format of credentials in VCAP_SERVICES environment variable.
 }
 ~~~
 
-## Sample Application
+## <a id='sample-app'></a>Sample Application ##
 
-This app can be used to test your SendGrid service binding. Credentials can be configured in src/main/resources/application.properties.
+This app can be used to test your SendGrid service binding. 
 
 <pre class="terminal">
 $ git clone git@github.com:scottfrederick/spring-sendgrid.git
 $ cd spring-sendgrid
+$ ./gradlew assemble
 $ cf push
 </pre>
+
+When prompted to create a service for your app, select yes and choose SendGrid. This will provision an account on SendGrid and bind it to your app, which stores credentials for the account in the VCAP_SERVICES environment variable. This application will read those credentials and use them when it sends emails.
+
+You can override SMTP credentials by configuring them in src/main/resources/application.properties.
+
+~~~java
+smtp.host=
+smtp.user=
+smtp.password=
+~~~
 
 

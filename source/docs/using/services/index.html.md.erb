@@ -1,14 +1,16 @@
 ---
 title: Services
 ---
-Binding a service to your application adds credentials for the service instance to the VCAP_SERVICES environment variable. In most cases these credentials are unique to the binding; another app bound to the same service instance would receive different credentials. How your app leverages the contents of environment variables may depend on the framework you employ. Refer to the [Deploying Apps](/docs/using/deploying-apps/index.html) section for more information.
+
+Cloud Foundry Services are add-ons which can be provisioned alongside your application. Services might be used directly by your app, such as a data store, but can be anything that requires provisioning, such as an account on a third party SaaS.  
 
 ## <a id='managing'></a>Managing Services ##
+
 * [Managing Services from the Command Line](managing-services.html)
 * [Tunnelling with Services](tunnelling-with-services.html)
 
-## <a id='marketplace'></a>Marketplace ##
-Here we provide documentation specific to each service, such as the format of credentials in VCAP_SERVICES.
+## <a id='marketplace'></a>CloudFoundry.com Services Marketplace ##
+Here we provide documentation specific to services available on CloudFoundry.com.
 
 <ul>
   <% for page in current_page.children.select { |x| x.data.category == "marketplace"}.sort_by {|x| x.data.title} %>
