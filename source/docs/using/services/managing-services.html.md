@@ -92,4 +92,10 @@ Deleting a service will unprovision the service instance. This command is destru
 
 <pre class="terminal">
 $ cf delete-service
+1: mysql-a0a77
+Which service?> 1
+
+Really delete mysql-a0a77?> y
+
+Deleting mysql-a0a77... OK
 </pre>
