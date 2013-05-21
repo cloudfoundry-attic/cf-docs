@@ -20,7 +20,7 @@ Create an AWS Route 53 Hosted Zone for your domain at the [Route 53 control pane
 
 ## <a id='deployment-env-prep'></a> Prepare the deployment environment ##
 
-Ruby 1.9.3-p327 and git (1.8 or newer) are prerequisites for the following steps. Install the `bundler` RubyGem after Ruby and git are installed:
+Ruby 1.9.3 and git (1.8 or newer) are prerequisites for the following steps. Install the `bundler` RubyGem after Ruby and git are installed:
 
 <pre class="terminal">
 $ gem install bundler
@@ -44,11 +44,11 @@ $ cd $HOME/cf
 ~/cf$ bundle install
 </pre>
 
-Next, set environment variables required for deploying to AWS. Create a file called bosh_environment and add the following, changing the value for each line to suit your configuration
+Next, set environment variables required for deploying to AWS. Create a file called `bosh_environment` and add the following, changing the value for each line to suit your configuration:
 
 ~~~
-export BOSH_VPC_DOMAIN=mydomain.com 
-export BOSH_VPC_SUBDOMAIN=cloud
+export BOSH_VPC_DOMAIN=mydomain.com
+export BOSH_VPC_SUBDOMAIN=cloud # Pick something more unique than 'cloud' to work around a temporary shortcoming of the tool
 export BOSH_AWS_ACCESS_KEY_ID=your_key_asdv34tdf
 export BOSH_AWS_SECRET_ACCESS_KEY=your_secret_asdf34dfg
 export BOSH_VPC_SECONDARY_AZ=us-east-1a # see note below
