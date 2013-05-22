@@ -178,6 +178,7 @@ For a look at what is planned - look at our [Roadmap](docs/roadmap.html).
     <p>
       <ul>
         <li><a href="docs/reference/cc-api.html">Cloud Foundry REST API</a></li>
+        <li><a href="docs/reference/cc-arch.html">Cloud Foundry Architecture</a></li>
       </ul>
     </p>
   </p>

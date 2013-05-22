@@ -8,3 +8,7 @@ This section of the Cloud Foundry documentation contains detailed reference info
 
   * [Cloud Controller API](cc-api.html)
 
+## Diagrams ##
+
+  * [Cloud Foundry Architecture](cc-arch.html)
+
