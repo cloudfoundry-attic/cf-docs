@@ -2,19 +2,17 @@
 title: Deploying Cloud Foundry with Chef
 ---
 
-This means of deploying Cloud Foundry is an ongoing effort maintained by the Cloud Foundry Community to set up a production ready PaaS. Alternatively, operations professionals are encouraged to use [BOSH](../bosh/index.html) as VMware and EMC's supported way of providing and consuming publicly available releases.
+This means of deploying Cloud Foundry is an ongoing effort maintained by the Cloud Foundry community to set up a production ready PaaS. Alternatively, operations professionals are encouraged to use [BOSH](../bosh/index.html) as Pivotal's supported way of providing and consuming publicly available releases.
 
 ### Requirements
 
-All the cookbooks work best with Chef client connected to a Chef server; they
-also work with chef-solo but may require more configuration.
+All the cookbooks work best with Chef client connected to a Chef server; they also work with chef-solo but may require more configuration.
 
-The cookbooks have been tested with Chef 10.14.4; they should also work with
-more recent versions in the 10.x series.
+The cookbooks have been tested with Chef 10.14.4; they should also work with more recent versions in the 10.x series.
 
 ### Cookbooks
 
-#### Generic components:
+#### Generic components
 
 <table class="table table-hover table-striped table-bordered table-condensed">
   <thead>
@@ -76,7 +74,7 @@ more recent versions in the 10.x series.
   </thead>
 </table>
 
-#### Runtimes:
+#### Runtimes
 
 <table class="table table-hover table-striped table-bordered table-condensed">
   <thead>
@@ -102,11 +100,12 @@ more recent versions in the 10.x series.
       <td>In progress</td>
       <td></td>
       <td></td>
+      <td></td>
     </tr>
   </tbody>
 </table>
 
-#### Services:
+#### Services
 
 <table class="table table-hover table-striped table-bordered table-condensed">
   <thead>
@@ -156,11 +155,12 @@ more recent versions in the 10.x series.
       <td>In progress</td>
       <td></td>
       <td></td>
+      <td></td>
     </tr>
   </tbody>
 </table>
 
-#### Framework cookbooks:
+#### Framework cookbooks
 
 These cookbooks are required because the other cookbooks depend on them, but
 they usually have no serviceable parts:

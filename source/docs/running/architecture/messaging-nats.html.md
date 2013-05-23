@@ -2,22 +2,22 @@
 title: Messaging (NATS)
 ---
 
-This information was adapted from the [Nats](https://github.com/derekcollison/nats) README. Nats is a lightweight publish-subscribe and distributed queueing messaging system written in Ruby.
+This information was adapted from the [NATS](https://github.com/derekcollison/nats) README. NATS is a lightweight publish-subscribe and distributed queueing messaging system written in Ruby.
 
 ## Getting Started
 
-```bash
-[sudo] gem install nats
-== or ==
-[sudo] rake geminstall
+<pre class="terminal">
+$ gem install nats
+# or
+$ rake geminstall
 
-nats-sub foo &
-nats-pub foo 'Hello World!'
-```
+$ nats-sub foo &
+$ nats-pub foo 'Hello World!'
+</pre>
 
 ## Basic Usage
 
-```ruby
+~~~ruby
 require "nats/client"
 
 NATS.start do
@@ -42,11 +42,11 @@ NATS.start do
   NATS.stop
 
 end
-```
+~~~
 
 ## Wildcard Subscriptions
 
-```ruby
+~~~ruby
 # "*" matches any token, at any level of the subject.
 NATS.subscribe('foo.*.baz') { |msg, reply, sub| puts "Msg received on [#{sub}] : '#{msg}'" }
 NATS.subscribe('foo.bar.*') { |msg, reply, sub| puts "Msg received on [#{sub}] : '#{msg}'" }
@@ -55,20 +55,20 @@ NATS.subscribe('*.bar.*')   { |msg, reply, sub| puts "Msg received on [#{sub}] :
 # ">" matches any length of the tail of a subject and can only be the last token
 # E.g. 'foo.>' will match 'foo.bar', 'foo.bar.baz', 'foo.foo.bar.bax.22'
 NATS.subscribe('foo.>') { |msg, reply, sub| puts "Msg received on [#{sub}] : '#{msg}'" }
-```
+~~~
 
 ## Queues Groups
 
-```ruby
+~~~ruby
 # All subscriptions with the same queue name will form a queue group
 # Each message will be delivered to only one subscriber per queue group, queuing semantics
 # You can have as many queue groups as you wish
 # Normal subscribers will continue to work as expected.
 NATS.subscribe(subject, :queue => 'job.workers') { |msg| puts "Received '#{msg}'" }
-```
+~~~
 
 ## Advanced Usage
-```ruby
+~~~ruby
 # Publish with closure, callback fires when server has processed the message
 NATS.publish('foo', 'You done?') { puts 'msg processed!' }
 
@@ -90,4 +90,4 @@ end
 
 # Form second connection to send message on
 NATS.connect { NATS.publish('test', 'Hello World!') }
-```
+~~~
