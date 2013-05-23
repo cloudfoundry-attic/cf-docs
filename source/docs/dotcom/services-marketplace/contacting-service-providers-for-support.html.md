@@ -1,5 +1,6 @@
 ---
 title: Contacting Service Providers for Support
+category: support
 ---
 
 The first time you create an instance of a given service in a space, an account is created for you on the service provider's system. Because the collaboration model in Cloud Foundry enables transient ownership of orgs and spaces, accounts are created on service provider systems as a user representing the space itself. 

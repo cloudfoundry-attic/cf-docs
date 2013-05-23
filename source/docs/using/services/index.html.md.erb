@@ -4,21 +4,6 @@ title: Services
 
 Cloud Foundry Services are add-ons which can be provisioned alongside your application. Services might be used directly by your app, such as a data store, but can be anything that requires provisioning, such as an account on a third party SaaS.  
 
-## <a id='managing'></a>Managing Services ##
-
 * [Managing Services from the Command Line](managing-services.html)
 * [Tunnelling with Services](tunnelling-with-services.html)
-
-## <a id='marketplace'></a>Marketplace Services ##
-Here we provide documentation specific to services available on CloudFoundry.com.
-
-<ul>
-  <% for page in current_page.children.select { |x| x.data.category == "marketplace"}.sort_by {|x| x.data.title} %>
-  <li><%= link_to page.data.title, page.url %></li>
-<% end %>
-</ul>
-
-## <a id='support'></a>Support ##
-* [Contacting Third Party Service Providers](contacting-service-providers-for-support.html)
-
 
