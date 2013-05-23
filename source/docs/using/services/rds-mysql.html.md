@@ -29,3 +29,7 @@ The format of credentials in the VCAP_SERVICES environment variable
   ]
 }
 ~~~ 
+
+## Sample Application
+
+https://github.com/scottfrederick/spring-music

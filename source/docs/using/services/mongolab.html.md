@@ -21,3 +21,7 @@ Format of credentials in VCAP_SERVICES
   ]
 }
 ~~~
+
+## Sample Application
+
+https://github.com/scottfrederick/spring-music
