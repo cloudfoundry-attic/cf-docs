@@ -73,8 +73,7 @@ For a look at what is planned - look at our [Roadmap](docs/roadmap.html).
 
   <hr>
 
-  <p><a href="docs/using/services.html">Using Services</a></p>
-  <p><a href="docs/using/tunnelling-with-services.html">Tunnelling with Services</a></p>
+  <p><a href="docs/using/services/">Using Services</a></p>
 
   <hr>
 
