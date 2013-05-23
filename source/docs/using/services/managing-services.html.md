@@ -1,5 +1,5 @@
 ---
-title: Cloud Foundry Services
+title: Managing Services
 ---
 
 ## <a id='viewing-services'></a> Viewing Available Services ##
@@ -27,7 +27,7 @@ redis        2.6       core            200                          Redis key-va
 
 <i>Note: This is an example. These services may not be available on the Cloud Foundry service you target.</i>
 
-## <a id='creating-services'></a> Creating a Services ##
+## <a id='create'></a>Creating a Service ##
 
 Use these commands to create and bind a service to your app.
 
@@ -52,7 +52,11 @@ Which plan?> 2
 Creating service mysql-a0a77... OK
 </pre>
 
-## <a id='binding'></a> Binding to a Service ##
+## <a id='bind'></a>Binding a Service ##
+
+Binding a service to your application adds credentials for the service instance to the VCAP_SERVICES environment variable. In most cases these credentials are unique to the binding; another app bound to the same service instance would receive different credentials. You may need to restart your application for it to recognize the change. 
+
+How your app leverages the contents of environment variables may depend on the framework you employ. Refer to the [Deploying Apps](/docs/using/deploying-apps/index.html) section for more information.
 
 You can bind an existing service to an existing application as follows:
 
@@ -67,4 +71,31 @@ Which service?> 1
 Binding mysql-a0a77 to my-app... OK
 </pre>
 
-How you utilize a service in the context of your application depends on the framework you employ. Refer to the [Deploying Apps](/docs/using/deploying-apps/index.html) section for instructions on deploying and binding your apps to services.
+## <a id='unbind'></a>Unbinding a Service ##
+
+Unbinding a service will remove the credentials created for your application from the VCAP_SERVICES environment variable. You may need to restart your application for it to recognize the change. 
+
+<pre class="terminal">
+$ cf unbind-service
+1: my-app
+Which application?> 1
+
+1: mysql-a0a77
+Which service?> 1
+
+Unbinding mysql-a0a77 from my-app... OK
+</pre>
+
+## <a id='delete'></a>Deleting a Service ##
+
+Deleting a service will unprovision the service instance. This command is destructive and will delete all data along with the service instance. 
+
+<pre class="terminal">
+$ cf delete-service
+1: mysql-a0a77
+Which service?> 1
+
+Really delete mysql-a0a77?> y
+
+Deleting mysql-a0a77... OK
+</pre>
