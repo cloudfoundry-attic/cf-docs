@@ -27,7 +27,9 @@ Format of credentials in VCAP_SERVICES environment variable.
 }
 ~~~
 
-## <a id='sample-app'></a>Sample Application ##
+## <a id='sample-app'></a>Sample Applications ##
+
+### Spring
 
 https://github.com/scottfrederick/spring-sendgrid
 
