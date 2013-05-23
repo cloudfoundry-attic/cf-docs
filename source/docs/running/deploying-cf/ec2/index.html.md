@@ -54,6 +54,9 @@ export BOSH_AWS_SECRET_ACCESS_KEY=your_secret_asdf34dfg
 export BOSH_VPC_SECONDARY_AZ=us-east-1a # see note below
 export BOSH_VPC_PRIMARY_AZ=us-east-1d   # see note below
 ~~~
+
+Note: `BOSH_VPC_DOMAIN` and `BOSH_VPC_SUBDOMAIN` must correspond to the DNS domain name you set up when configuring Route 53. The values shown above correspond to the earlier Route 53 example of *cloud.mydomain.com*.
+
 Note: Choose availability zones which are listed as "operating normally" on the [AWS Console Status Health Section](https://console.aws.amazon.com/ec2/v2/home?region=us-east-1).
 
 Use `source` to set them for the current shell:
