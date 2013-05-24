@@ -56,4 +56,6 @@ smtp.user=
 smtp.password=
 ~~~
 
+## <a id='support'></a>Support ##
 
+[Contacting Service Providers for Support](contacting-service-providers-for-support.html)
