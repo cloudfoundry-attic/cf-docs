@@ -2,7 +2,7 @@
 title: How Applications Are Staged
 ---
 
-![app-push-flow-diagram](/images/app_push_flow_diagram.png)
+<img src="/images/app_push_flow_diagram.png" style="width: 100%"/>
 
  1. At the command line, the user goes into the directory holding their application and uses the cf command line tool to issue a push command.
 
