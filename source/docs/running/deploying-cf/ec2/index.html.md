@@ -84,7 +84,7 @@ Note: RDS database creation may take 20+ minutes to finish.
 
 ## <a id='deploy-microbosh'></a> Deploy Micro BOSH ##
 
-Deploy Micro BOSH from the workspace directory:
+Deploy Micro BOSH from the workspace directory, using the `bosh aws bootstrap micro` command:
 
 <pre class="terminal">
 ~/cf$ bosh aws bootstrap micro
@@ -106,7 +106,7 @@ User `hm' has been created
 Logged in as `hm'
 </pre>
 
-After Micro BOSH has been deployed succesfully, check its status:
+After Micro BOSH has been deployed succesfully, you can check its status:
 
 <pre class="terminal">
 ~/cf$ bosh status
@@ -132,7 +132,7 @@ Deployment
 
 ## <a id='deploy-cloudfoundry'></a>Deploy Cloud Foundry ##
 
-Cloud Foundry can now be deployed using the cf 'bootstrap' plugin (be sure to run it via _bundle exec_).
+Cloud Foundry can now be deployed using the `bundle exec cf bootstrap aws` command from the bootstrap-cf-plugin gem.
 
 <pre class="terminal">
 ~/cf$ bundle exec cf bootstrap aws
@@ -140,40 +140,19 @@ Cloud Foundry can now be deployed using the cf 'bootstrap' plugin (be sure to ru
 
 This process can take some time (2-3 hours), especially during its first run when all the jobs are compiled for the first time. When the bootstrap has finished installing Cloud Foundry, it should be possible to target the install with cf and login as an administrator with the user name `admin` and the password `the_admin_pw`.
 
-As the admin of the installation and before it's possible to push a test application it is important to create an initial Cloud Foundry Organization and Space. Create the Organization first:
+If this command fails, it's *usually possible to re-run it again*.  You can also re-run it to deploy the latest version of CF, unless there are changes to the resources created in the "bosh aws create" step above (in which case it should fail).
 
-<pre class="terminal">
-~/cf$ cf create-org test-org
-Creating organization test-org... OK
-Switching to organization test-org... OK
+This bootstrap command runs 2 phases, first several BOSH commands are executed and then several CF commands are executed. At the end of the process, you'll end up with the following primitives:
 
++ 2 BOSH releases: cf-release and cf-services-release, each pulled from the latest "green" release-candidate branch in github.
++ The latest "green" BOSH stemcell, downloaded from our CI server
++ 2 already-deployed BOSH deployments: CF core and CF services, backed by generated manifest files described below
++ 2 CF admin user accounts with randomly-generated passworsd (find in cf-shared-secrets.yml)
++ A default CF organization called "bootstrap-org"
++ A default CF space called "bootstrap-space"
++ CF service-auth-tokens allowing CF core to authenticate to CF services
 
-There are no spaces in test-org.
-You may want to create one with create-space.
-
-target: http://ccng.cloud.xxxxxx.xx
-organization: test-org
-</pre>
-
-As the help text indicates, there are no spaces for 'test-org', create one with the `create-space` command:
-
-<pre class="terminal">
-~/cf$ cf create-space development
-Creating space development... OK
-Adding you as a manager... OK
-Adding you as a developer... OK
-</pre>
-
-Tell cf to target the space by using the 'target' command with the `--ask-space` switch:
-
-<pre class="terminal">
-~/cf$ cf target --ask-space
-Switching to space development... OK
-
-target: http://ccng.cloud.xxxxxx.xx
-organization: test-org
-space: development
-</pre>
+At this point your "cf" command-line tool has been targetted to your CF deployment and authenticated as the admin user, meaning _you're ready to push an app_!
 
 ## <a id='deploy-notes'></a> BOSH Deployment Notes ##
 
