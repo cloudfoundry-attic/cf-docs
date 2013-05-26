@@ -4,7 +4,7 @@ title: Welcome to Cloud Foundry Documentation
 
 <table><tr><td style="font-size:9pt">
           <b>We are in a time of transition:</b>
-          <li>You are reading V2 documentation. The V1 docs are available <a href="http://cf-docs-deprecated.cloudfoundry.com">here</a>. Cloudfoundry.com will be upgraded to V2 in early May. <li>You can browse <b>http://api.{cloudfoundry url}/info</b> to check a Cloud Foundry version.<li>The <b>CF</b> command-line is for Cloud Foundry V2. Use <b>VMC</b> for Cloud Foundry V1.
+          <li>You are reading V2 documentation. The V1 docs are available <a href="http://cf-docs-deprecated.cloudfoundry.com">here</a>. Cloudfoundry.com will be upgraded to V2 in June 2013. <li>You can browse <b>http://api.{cloudfoundry url}/info</b> to check a Cloud Foundry version.<li>The <b>cf</b> command-line is for Cloud Foundry V2. Use <b>vmc</b> for Cloud Foundry V1. <a href="docs/running/api/version.html">See these examples</a> for detail on detecting the difference between a v1 and a v2 system.
 </td></tr></table>
 
 For a look at what is planned - look at our [Roadmap](docs/roadmap.html).
