@@ -142,14 +142,6 @@ This process can take some time (2-3 hours), especially during its first run whe
 
 If this command fails, it's *usually possible to re-run it again*.  You can also re-run it to deploy the latest version of CF, unless there are changes to the resources created in the "bosh aws create" step above (in which case it should fail).
 
-If this command fails with the following error -  **Error 400007: `service_gateways/0' is not running after update** - your networking is probably not setup correctly. You can check that with the following command (substituting your own subdomain and domain).
-
-<pre class="terminal">
-~/cf$ curl api.subdomain.domain/info
-</pre>
-
-If that is successful it should return the information as json. Otherwise, you should check your networking. *Tip* - make sure your domain has an NS record for your subdomain.
-
 This bootstrap command runs 2 phases, first several BOSH commands are executed and then several CF commands are executed. At the end of the process, you'll end up with the following primitives:
 
 + 2 BOSH releases: cf-release and cf-services-release, each pulled from the latest "green" release-candidate branch in github.
