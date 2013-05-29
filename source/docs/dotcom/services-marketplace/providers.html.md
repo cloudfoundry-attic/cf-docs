@@ -1,7 +1,12 @@
 ---
-title: Managing Docs and Sample Apps
+title: Documentation for Service Providers
 category: 
 ---
+
+## Google Group
+
+Join our Google Group to receive announcements regarding integration with Cloud Foundry.
+https://groups.google.com/forum/?hl=en&fromgroups#!forum/cloud-foundry-partners
 
 ## <a id='docs'></a>Documentation ##
 
