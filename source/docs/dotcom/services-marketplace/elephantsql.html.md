@@ -3,7 +3,11 @@ title: ElephantSQL
 category: marketplace
 ---
 
-### Environment Variable
+## <a id='managing-services'></a>Managing Services ##
+
+[Manage Services from the Command Line](managing-services.html)
+
+## <a id='integration'></a>Integrating the Service With Your App ###
 
 Format of credentials in VCAP_SERVICES
 
@@ -25,3 +29,15 @@ Format of credentials in VCAP_SERVICES
 ## Sample Application
 
 https://github.com/scottfrederick/spring-music
+
+## <a id='support'></a>Support ##
+
+[Contacting Service Providers for Support](contacting-service-providers-for-support.html
+
+* Support - http://www.elephantsql.com/support.html
+
+## <a id='external-links'></a>External Links ##
+
+* Website - http://www.elephantsql.com/
+* Documentation - http://www.elephantsql.com/docs.html
+
