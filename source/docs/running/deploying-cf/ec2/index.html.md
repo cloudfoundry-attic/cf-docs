@@ -200,5 +200,5 @@ For more information with regard to managing organizations, spaces and users, go
   <table style="width: 70%;"><tr><td>
     **WARNING**: The command `bosh aws destroy` will destroy all S3 buckets, all instances, **all everything** in your AWS account. Do not use this command unless everything in your AWS account, including stuff that has nothing to do with Cloud Foundry, is expendable.
   </td></tr></table>
-<img id="nuclear" src='/images/nuclear.jpg'>
-Photo: Creative Commons / CTBTO Photostream at http://www.flickr.com/photos/ctbto/6476282811/
+<img id="nuclear" src='/images/nuclear2.jpg'>
+<br clear="left">Photo: Creative Commons / CTBTO Photostream at http://www.flickr.com/photos/ctbto/6476282811/
