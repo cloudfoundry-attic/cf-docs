@@ -10,7 +10,7 @@ The Cloud Foundry V2 family of APIs follow RESTful principles.
 The primary goal of the V2 API is to support the new entities in
 the Team Edition release, and to address the shortcomings of V1 in terms of features and consistency.
 
-The specific high level goals are as follows:
+The goals are as follows:
 
 * **Consistency** across all resource URLs, parameters, request/response
   bodies, and error responses.
