@@ -5,7 +5,7 @@ category: marketplace
 
 ## <a id='managing-services'></a>Managing Services ##
 
-[Manage Services from the Command Line](managing-services.html)
+[Manage Services from the Command Line](/docs/using/services/managing-services.html)
 
 ## <a id='integration'></a>Integrating the Service With Your App ###
 
