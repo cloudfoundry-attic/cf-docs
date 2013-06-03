@@ -3,6 +3,13 @@ title: Documentation for Service Providers
 category: 
 ---
 
+## Integrating With Cloud Foundry
+
+Cloud Foundry has partnered with AppDirect for services integration with our public PaaS. Service providers interested in adding their service to the Cloud Foundry Marketplace should contact [Nima Badiey](mailto:nbadiey@gopivotal.com) for more information. 
+
+Documentation on AppDirect's API for Cloud Foundry can be found here:
+http://info.appdirect.com/developer/docs/cloud-foundry/
+
 ## Google Group
 
 Join our Google Group to receive announcements regarding integration with Cloud Foundry.
