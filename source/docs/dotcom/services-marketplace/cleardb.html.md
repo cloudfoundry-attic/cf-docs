@@ -40,7 +40,7 @@ https://github.com/scottfrederick/spring-music
 
 ## <a id='support'></a>Support ##
 
-[Contacting Service Providers for Support](contacting-service-providers-for-support.html
+[Contacting Service Providers for Support](contacting-service-providers-for-support.html)
 
 ## <a id='external-links'></a>External Links ##
 
