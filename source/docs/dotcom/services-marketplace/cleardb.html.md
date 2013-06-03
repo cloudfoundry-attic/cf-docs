@@ -16,7 +16,7 @@ Format of credentials in VCAP_SERVICES
       plan: "spark",
       credentials: {
         jdbcUrl: "jdbc:mysql://bb76fcb43f807b:6776566b@us-cdbr-aws-east-105.cleardb.net:3306/ad_033c9629217c759",
-        mysqlUrl: "mysql://bb76fcb43f807b:6776566b@us-cdbr-aws-east-105.cleardb.net:3306/ad_033c9629217c759",
+        uri: "mysql://bb76fcb43f807b:6776566b@us-cdbr-aws-east-105.cleardb.net:3306/ad_033c9629217c759",
         name: "ad_033c9629217c759",
         hostname: "us-cdbr-aws-east-105.cleardb.net",
         host: "us-cdbr-aws-east-105.cleardb.net",
