@@ -51,7 +51,7 @@ Links and documentation for a sample app which a Cloud Foundry user could use to
 
 ## <a id='support'></a>Support ##
 
-[Contacting Service Providers for Support](contacting-service-providers-for-support.html
+[Contacting Service Providers for Support](contacting-service-providers-for-support.html)
 
 Provider Support Instructions
 
