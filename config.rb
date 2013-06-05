@@ -51,8 +51,8 @@ require 'navigation'
 require 'quicklinks'
 
 set :markdown_engine, :redcarpet
-set :markdown, :layout_engine => :erb, 
-               :tables => true, 
+set :markdown, :layout_engine => :erb,
+               :tables => true,
                :autolink => true,
                :smartypants => true,
                :fenced_code_blocks => true
@@ -94,6 +94,9 @@ activate :navigation
 
 # For generated intra-page links
 activate :quicklinks
+
+# For live reload
+activate :livereload
 
 helpers do
   class Middleman::Sitemap::Page
