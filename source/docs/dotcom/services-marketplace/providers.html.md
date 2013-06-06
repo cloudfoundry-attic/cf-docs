@@ -1,5 +1,5 @@
 ---
-title: Documentation for Service Providers
+title: Provider Documentation
 category: 
 ---
 
@@ -36,7 +36,7 @@ Providing a sample application that works out of the box provides an excellent u
 
 If your service is bindable, it means that in response to the bind API call, you will return credentials which can be consumed by an application. We write these credentials to the environment variable VCAP_SERVICES.
 
-Please choose from these credentials if possible. You can provide fields in addition, or if the credential you return is not covered by any of these fields. This convention allows us to provide end user developers with libraries which parse VCAP_SERVICES and delivers credentials to applications more easily. You can provide `uri` or the individual credential fields, or both. 
+Please choose from the following credentials if possible. You can provide additionals fields as appropriate, or if the credential you return is not covered by any of these fields. This convention allows us to provide end user developers with libraries which parse VCAP_SERVICES and delivers credentials to applications more easily. You can provide `uri` or the discrete credential fields, or both. 
 
 | credentials   | description |
 |---------------|-------------|
