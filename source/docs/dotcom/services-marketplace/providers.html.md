@@ -48,7 +48,7 @@ Please choose from these credentials if possible. You can provide fields in addi
 | username      | Server user |
 | password      | Server password |
 
-Here's an example output of `ENV['VCAP_SERVICES']`. Note that ClearDB chooses to return both discrete credentials, a uri, as well as another field. CloudAMQP chooses to return just the uri, and RedisCloud retursn only discrete credentials.
+Here's an example output of `ENV['VCAP_SERVICES']`. Note that ClearDB chooses to return both discrete credentials, a uri, as well as another field. CloudAMQP chooses to return just the uri, and RedisCloud returns only discrete credentials.
 
 ~~~
 VCAP_SERVICES=
