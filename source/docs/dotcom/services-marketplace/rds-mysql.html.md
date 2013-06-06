@@ -5,6 +5,10 @@ category: marketplace
 
 When an instance of this service is created, a database is provisioned on a large multi-tenant instance of Amazon's RDS service. 
 
+## <a id='managing-services'></a>Managing Services ##
+
+[Manage Services from the Command Line](/docs/using/services/managing-services.html)
+
 ### Environment Variables
 
 The format of credentials in the VCAP_SERVICES environment variable
@@ -33,3 +37,8 @@ The format of credentials in the VCAP_SERVICES environment variable
 ## Sample Application
 
 https://github.com/scottfrederick/spring-music
+
+## <a id='support'></a>Support ##
+
+[Contacting Service Providers for Support](contacting-service-providers-for-support.html)
+

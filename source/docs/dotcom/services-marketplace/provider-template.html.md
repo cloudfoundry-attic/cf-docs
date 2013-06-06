@@ -1,6 +1,6 @@
 ---
 title: Your Service
-category: marketplace
+category: 
 ---
 
 Some description of what the service is good for.
