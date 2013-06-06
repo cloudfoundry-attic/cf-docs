@@ -2,7 +2,7 @@
 title: Deploying Cloud Foundry on AWS
 ---
 
-  <table style="width: 70%;"><tr><td>
+  <table style="width: 64%;"><tr><td>
   **WARNING**: The command `bosh aws destroy` will destroy all S3 buckets, all instances, all everything in your AWS account. Do not use this command unless everything in your AWS account, including stuff that has nothing to do with Cloud Foundry, is expendable.
   </td></tr></table>
 

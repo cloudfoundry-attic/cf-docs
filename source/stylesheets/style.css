@@ -1,4 +1,9 @@
 /* Breadcrumbs */
+.breadcrumbs {
+  float: left;
+  margin-bottom: 10px;
+}
+
 .breadcrumbs ul {
   margin: 0;
 }
@@ -304,6 +309,10 @@ td {
   min-height: 820px;
 }
 
+.column-left li, .column-middle li, .column-right li {
+  list-style-type: none;
+}
+
 .column-title a {
   color: #333;
 }
@@ -316,7 +325,7 @@ td {
 
 .forkme {
   float: right;
-  margin-right: -43px;
+  margin: 10px -43px 0 0;
 }
 
 .bg-columns {
@@ -353,7 +362,7 @@ td {
   background-image: -webkit-linear-gradient(bottom, #212f3d 0%, #314050 100%);
   background-image: linear-gradient(bottom, #212f3d 0%, #314050 100%);
   float: right;
-  margin: 0 0 0 60px;
+  margin: 0 0 20px 60px;
   -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
   border-radius: 4px;
@@ -430,6 +439,35 @@ a#docs, .pale-blue-bg {
 input[type="search"]:focus {
   background: url(/images/ico-search.png) 10px 9px white no-repeat;
 }
+
+input[type="search-docs"]:focus {
+  background: url(/images/ico-search.png) 10px 5px white no-repeat;
+}
+
+.main-title {
+  float: left;
+  width: 500px;
+}
+
+.search-docs-form {
+  float: left;
+  margin-top: 15px;
+}
+
+.search-docs-form .search-docs-input {
+  background: url(/images/ico-search.png) 10px 5px white no-repeat;
+  font-size:14px;
+  color:#333;
+  text-shadow:none;
+  width: 400px;
+  margin-top: -3px;
+  height: 30px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  padding-left: 50px;
+}
+
 
 
 

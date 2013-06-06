@@ -176,7 +176,10 @@
               <img alt="Fork me on GitHub" src="/images/ribbon_forkme.png">
             </a>
 
-            <h1>Cloud Foundry Documentation</h1>
+            <h1 class="main-title">Cloud Foundry Documentation</h1>
+            <form action='http://www.cloudfoundry.com/search' class='search-docs-form' method='get' onsubmit='return submitQuery()'>
+              <input autocomplete='off' class='search-docs-input' id='search-query' name='q' onfocus="this.placeholder = 'more:docs '" placeholder='' type='search-docs' value='more:docs '>
+            </form>            
             
             <% unless current_page.url == "/" %>
               <div class="breadcrumbs">
@@ -339,7 +342,7 @@
                 document.write(d.getFullYear());
               //]]>
             </script>
-            GoPivotal, Inc. All rights reserved.
+            Go Pivotal Inc. All rights reserved.
             <a href='http://www.cloudfoundry.com/terms'>Terms</a>
             <a href='http://www.cloudfoundry.com/legal'>Legal</a>
             <a href='http://www.gopivotal.com/privacy-policy' target='_blank'>Privacy</a>
@@ -347,5 +350,27 @@
         </div><!-- End of copyright -->
       </div><!-- End of container-footer -->
     </div><!-- End of footer -->
+    <script type="text/javascript">
+      (function() {
+        var didInit = false;
+        function initMunchkin() {
+          if(didInit === false) {
+            didInit = true;
+            Munchkin.init('625-IUJ-009');
+          }
+        }
+        var s = document.createElement('script');
+        s.type = 'text/javascript';
+        s.async = true;
+        s.src = document.location.protocol + '//munchkin.marketo.net/munchkin.js';
+        s.onreadystatechange = function() {
+          if (this.readyState == 'complete' || this.readyState == 'loaded') {
+            initMunchkin();
+          }
+        };
+        s.onload = initMunchkin;
+        document.getElementsByTagName('head')[0].appendChild(s);
+      })();
+    </script>
   </body>
 </html>
