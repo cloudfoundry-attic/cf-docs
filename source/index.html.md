@@ -21,6 +21,7 @@ For a look at what is planned - look at our [Roadmap](docs/roadmap.html).
   <hr>
 
   <p><a href="docs/using/app-arch/index.html">Application Architecture Considerations</a></p>
+  <p><a href="docs/running/architecture/how-applications-are-staged.html">How Applications Are Staged</a></p>
 
   <hr>
 
@@ -90,6 +91,7 @@ For a look at what is planned - look at our [Roadmap](docs/roadmap.html).
   <hr>
 
   <p><a href="docs/running/architecture/index.html">Cloud Foundry Architecture</a></p>
+  <p><a href="docs/running/architecture/how-applications-are-staged.html">How Applications Are Staged</a></p>
 
   <hr>
 
