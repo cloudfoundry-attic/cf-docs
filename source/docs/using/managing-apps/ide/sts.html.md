@@ -16,11 +16,11 @@ Cloud Foundry support is provided by an Eclipse extension. Select the **Dashboar
 
 ## <a id='register-a-server'></a>Register a Server ##
 
-You can now register Cloud Foundry servers in the servers pane. Right-click the servers pane and select **New > Server**. In the **New Server** dialog, make sure **Cloud Foundry** is selected in the server type list, under the VMWare folder. Click **Next**.
+You can now register Cloud Foundry servers. Right-click the **Servers** pane and select **New > Server**. In the **New Server** dialog, make sure **Cloud Foundry** is selected in the server type list, under the VMWare folder. Click **Next**.
 
 <img src="/images/sts/new_server.png" />
 
-Enter the credentials for the endpoint, select the endpoint type (most likely **VMWare Cloud Foundry**) and click **Finish**. A new entry for the server should appear in the New Server pane, labeled VMWare Cloud Foundry.
+Enter the credentials for the endpoint, select the endpoint type (most likely **VMWare Cloud Foundry**) and click **Finish**. A new entry for the server should appear in the **Servers** pane, labeled VMWare Cloud Foundry.
 
 <img src="/images/sts/enter_credentials.png" />
 
@@ -34,12 +34,12 @@ To deploy an application to a running server, either drag the application on to 
 
 <img src="/images/sts/deploy-1.png" />
 
-Click Next. Usually the extension picks the correct options automatically for the application, but in some cases you may need to adjust the default URL and memory allocation for the application.
+Click **Next**. Usually the extension picks the correct options automatically for the application, but in some cases you may need to adjust the default URL and memory allocation for the application.
 
 <img src="/images/sts/deploy-2.png" />
 
-Select data services that to bind to the application and click **Finish**.
+Select data services to bind to the application and click **Finish**.
 
 <img src="/images/sts/deploy-3.png" />
 
-The application should appear in the **Servers** pane, listed under the associated Cloud Foundry instance and after deployment should also respond to the specified URL.
+The application should appear in the **Servers** pane, listed under the associated Cloud Foundry instance. After deployment it should also respond to the specified URL.
