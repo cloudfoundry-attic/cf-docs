@@ -2,7 +2,6 @@
 title: IntelliJ IDEA
 ---
 
-## <a id='intro'></a>Introduction ##
 
 JetBrains, the creators of IntelliJ IDEA, provides an extension to support running JVM applications on Cloud Foundry. In this procedure it is assumed that you have installed IntelliJ IDEA and have enabled Cloud Foundry support.
 
