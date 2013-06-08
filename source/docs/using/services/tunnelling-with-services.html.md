@@ -1,18 +1,18 @@
 ---
-title: Tunnelling with Services
+title: Tunneling with Services
 ---
 
-## <a id='what-is-tunnelling'></a>What is tunnelling? ##
+## <a id='what-is-tunnelling'></a>What Is Tunneling? ##
 
-Any provisioned service on Cloud Foundry is not directly accessible to the outside world by default. An application that is bound to the service has access, but only because it sits on the same network, behind the Cloud Foundry firewall.
+A provisioned service on Cloud Foundry is not directly accessible to the outside world by default. An application that is bound to the service has access, but only because it sits on the same network, behind the Cloud Foundry firewall.
 
-To gain access to a service from outside of the Cloud Foundry ecosystem, a technique called tunneling is used. This means deploying a special application, called Caldecott, to a Cloud Foundry account. The application then binds and connects to the desired service and proxies a connection over HTTP to the service. Once deployed, Caldecott remains available for the creation of tunnels.
+To gain access to a service from outside he Cloud Foundry ecosystem, you use a technique called tunneling. You deploy a special application, called Caldecott, to a Cloud Foundry account. The application then binds and connects to the desired service and proxies a connection over HTTP to the service. Once deployed, Caldecott remains available for the creation of tunnels.
 
 Once established, the tunnel can be used by a client, most likely cf. The client makes a port on the loopback adapter (127.0.0.1) available to use with a native client of the bound service.
 
-## <a id='creating-a-tunnel'></a>Creating a tunnel ##
+## <a id='creating-a-tunnel'></a>Create a tunnel ##
 
-The following example illustrates creating a tunnel to a MySQL database and then using mysqldump to create a back up of the database, even though it will be empty!
+The following example illustrates how to create a tunnel to a MySQL database and then use mysqldump to create a backup of the database (even though it will be empty).
 
 Create a service instance with cf;
 
@@ -47,7 +47,7 @@ Waiting for local tunnel to become available... OK
 Output file> mydb.sql
 </pre>
 
-The dump is succesfully writen to mydb.sql. At this point the tunnel has closed, however if option one - none is selected then the tunnel will be held open indefinitely supplying the connection details;
+The dump is succesfully writen to mydb.sql. At this point the tunnel has closed. However, if option 1 - none is selected, the tunnel is held open indefinitely supplying the connection details:
 
 <pre class="terminal">
 $ cf tunnel mysql-a7cc7
@@ -69,4 +69,4 @@ use a UI tool to connect using the displayed information.
 Press Ctrl-C to exit...
 </pre>
 
-This allows the use of a native client to connect to the service. Note that in this instance, for MySQL, the connection is available on port 10000 not 3306.
+This allows a native client to connect to the service. Note that in this instance, for MySQL, the connection is available on port 10000, not 3306.

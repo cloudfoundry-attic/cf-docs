@@ -2,7 +2,7 @@
 title: Managing Applications
 ---
 
-This section covers in detail the tools that can be used to manage applications and services running on Cloud Foundry.
+These sections describe the tools that you can use to manage applications and services running on Cloud Foundry.
 
 * [cf](cf/index.html)
 

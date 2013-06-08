@@ -2,7 +2,6 @@
 title: Spring Tool Suite
 ---
 
-## <a id='intro'></a>Introduction ##
 
 Spring Tool Suite™ (STS) provides the best Eclipse-powered development environment for building Spring-powered enterprise applications. STS supplies tools for the latest enterprise Java and Spring releases, and incorporates the latest Eclipse releases.
 

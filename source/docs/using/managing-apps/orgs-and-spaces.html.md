@@ -2,7 +2,7 @@
 title: Organizations and Spaces
 ---
 
-## <a id='introduction'></a>Introduction ##
+
 Organizations and Spaces are the main organizational units in which applications, services, domains, routes, and users are contained. The following illustration shows the organizational units of Cloud Foundry.
 
 <img src="/images/CF-Arch.png" style='margin:50px auto; display: block;'></img>

@@ -2,15 +2,13 @@
 title: Gradle
 ---
 
-## <a id="intro"></a> Introduction ##
+Gradle is a build tool that automates the building, testing, publishing, and deployment of software packages, generated static websites, generated documentation, and more.
 
-Gradle is a build tool, that can "automate the building, testing, publishing, deployment and more of software packages or other types of projects such as generated static websites, generated documentation or indeed anything else."
+The gradle-cf-plugin adds Cloud Foundry-oriented tasks to a Gradle project. 
 
-There is a plugin that adds Cloud Foundry oriented tasks to a gradle project, called "gradle-cf-plugin".
+## <a id="intro"></a> Add the plugin ##
 
-## <a id="intro"></a> Adding the plugin ##
-
-An example Gradle project with the Cloud Foundry plugin installed looks something like this (build.gradle);
+An example Gradle project with the Cloud Foundry plugin installed looks something like this (build.gradle):
 
 ~~~
 
@@ -37,7 +35,7 @@ cloudfoundry {
 
 ~~~
 
-After adding the plugin, running the tasks command should include the following output;
+After you add the plugin, running the tasks command should include the following output:
 
 <pre class="terminal">
 
@@ -83,4 +81,4 @@ BUILD SUCCESSFUL
 Total time: 2.543 secs
 </pre>
 
-From this point it should be possible to carry out most tasks available as part of cf from within Gradle. For more information on configuration options within Gradle, take a look at the gradle-cf-plugin project on Github - https://github.com/melix/gradle-cf-plugin
+From this point it should be possible to carry out most tasks available as part of cf from within Gradle. For more information on configuration options within Gradle, take a look at the gradle-cf-plugin project on Github - https://github.com/melix/gradle-cf-plugin.
