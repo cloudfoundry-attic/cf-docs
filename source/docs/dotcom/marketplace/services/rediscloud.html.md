@@ -1,6 +1,5 @@
 ---
 title: Redis Cloud
-category: marketplace
 ---
 
 ## <a id='managing-services'></a>Managing Services ##

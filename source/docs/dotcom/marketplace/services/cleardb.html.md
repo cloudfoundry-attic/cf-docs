@@ -1,6 +1,5 @@
 ---
 title: ClearDB
-category: marketplace
 ---
 
 ## <a id='managing-services'></a>Managing Services ##
