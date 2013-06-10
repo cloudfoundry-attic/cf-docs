@@ -192,7 +192,7 @@ For a look at what is planned - look at our [Roadmap](docs/roadmap.html).
     <p>
       <ul>
         <li><a href="docs/dotcom/integration/">Technical Integration</a></li>
-        <li><a href="docs/dotcom/services-marketplace/">Services Marketplace</a></li>
+        <li><a href="docs/dotcom/marketplace/">Services Marketplace</a></li>
       </ul>
     </p>
   </p>

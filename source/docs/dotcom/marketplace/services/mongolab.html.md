@@ -1,6 +1,5 @@
 ---
 title: MongoLab
-category: marketplace
 ---
 
 ## <a id='managing-services'></a>Managing Services ##
