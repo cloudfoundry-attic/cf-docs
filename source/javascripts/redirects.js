@@ -66,4 +66,7 @@ if (location.pathname == "/docs/running/logging/" || location.pathname == "/docs
 }; 
 if (location.pathname == "/docs/running/managing-users/" || location.pathname == "/docs/running/managing-users/index.html") {
   location.href = "/docs/running/managing-cf/managing-users.html"
-}; 
+};
+if (location.pathname == "/docs/using/services.html") {
+  location.href = "/docs/using/services/"
+};  
