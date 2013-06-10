@@ -175,7 +175,7 @@ For a look at what is planned - look at our [Roadmap](docs/roadmap.html).
   <p>
     <a href="docs/dotcom/">run.pivotal.io</a>
     <br>
-    Pivotal's Cloud Foundry v2 public PaaS on AWS
+    Cloud Foundry v2 running on AWS.
     <p>
       <ul>
         <li><a href="docs/dotcom/marketplace/">Services Marketplace</a></li>
@@ -186,7 +186,7 @@ For a look at what is planned - look at our [Roadmap](docs/roadmap.html).
   <hr>  
 
   <p>
-    <a href="docs/dotcom-v1/">CloudFoundry.com</a>
+    <a href="docs/dotcom-v1/">cloudfoundry.com</a>
     <br>
     Cloud Foundry v1 running on vSphere. 
     <p>
