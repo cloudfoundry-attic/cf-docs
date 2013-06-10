@@ -4,7 +4,7 @@ title: CloudAMQP
 
 ## <a id='managing-services'></a>Managing Services ##
 
-[Manage Services from the Command Line](/docs/using/services/managing-services.html)
+[Managing Services](/docs/using/services/)
 
 ## <a id='integration'></a>Integrating the Service With Your App ###
 
@@ -29,7 +29,7 @@ Format of credentials in VCAP_SERVICES
 
 ## <a id='support'></a>Support ##
 
-[Contacting Service Providers for Support](contacting-service-providers-for-support.html)
+[Contacting Service Providers for Support](/docs/dotcom/marketplace/contacting-service-providers-for-support.html)
 
 ## <a id='external-links'></a>External Links ##
 
