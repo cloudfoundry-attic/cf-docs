@@ -173,6 +173,32 @@ For a look at what is planned - look at our [Roadmap](docs/roadmap.html).
   </div>
 
   <p>
+    <a href="docs/dotio/">run.pivotal.io</a>
+    <br>
+    Cloud Foundry v2 running on AWS.
+    <p>
+      <ul>
+        <li><a href="docs/dotio/marketplace/">Services Marketplace</a></li>
+      </ul>
+    </p>
+  </p>
+
+  <hr>  
+
+  <p>
+    <a href="docs/dotcom/">cloudfoundry.com</a>
+    <br>
+    Cloud Foundry v1 running on vSphere. 
+    <p>
+      <ul>
+        <li><a href="docs/dotcom/integration/">Technical Integration</a></li>
+      </ul>
+    </p>
+  </p>
+
+  <hr>  
+
+    <p>
     <a href="docs/reference/index.html">Reference</a>
     <br>
     Detailed reference materials.
@@ -185,21 +211,7 @@ For a look at what is planned - look at our [Roadmap](docs/roadmap.html).
 
   <hr>
 
-  <p>
-    <a href="docs/dotcom/">CloudFoundry.com</a>
-    <br>
-    Cloud Foundry features running on CloudFoundry.com.
-    <p>
-      <ul>
-        <li><a href="docs/dotcom/integration/">Technical Integration</a></li>
-        <li><a href="docs/dotcom/services-marketplace/">Services Marketplace</a></li>
-      </ul>
-    </p>
-  </p>
-
-  <hr>  
-
-  <p>
+ <p>
     <a href="docs/community/index.html">Community</a>
     <br>
     Extensions, tools and services provided by the Cloud Foundry community and partners.
