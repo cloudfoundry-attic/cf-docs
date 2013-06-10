@@ -1,5 +1,7 @@
 ---
-title: run.pivotal.io
+title: cloudfoundry.com
 ---
 
-  * [Services Marketplace](marketplace/)
+Cloud Foundry features running on CloudFoundry.com.
+
+  * [Technical Integration](integration/index.html)
