@@ -15,7 +15,7 @@ Select the correct cloud instance and add the credentials for the intended accou
 
 <img src="/images/intellij/credentials.png" />
 
-On the **Deployment** tab and click the **plus button** to add an artifact to deploy. The example shown is a Grails application so the artifact is the generated WAR file.
+On the **Deployment** tab, click the **plus button** to add an artifact to deploy. The example shown is a Grails application so the artifact is the generated WAR file.
 
 <img src="/images/intellij/add-artifact.png" />
 
