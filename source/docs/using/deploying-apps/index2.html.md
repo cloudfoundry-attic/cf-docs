@@ -1,28 +1,32 @@
 ---
-title: Deploying Applications to Cloud Foundry
+title: Using run.pivotal.io, Powered by Cloud Foundry
 ---
 
-## <a id='intro'></a>Introduction ##
+Cloud Foundry allows you to deploy applications without worrying about configuration headaches, making it faster and easier to build, test, deploy and scale your app.
 
-Cloud Foundry allows you, as an application developer, to deploy your application without worrying about configuration headaches.
-There are five steps to getting your application hosted at the publicly available Cloud Foundry hosted at run.pivotal.io:
+This guide walks you through getting started at run.pivotal.io.
+Additional documentation is available at [docs.cloudfoundry.com](http://docs.cloudfoundry.com)
+
+## <a id='intro'></a>Steps to Get Started ##
+
+In order to run your application on run.pivotal.io, you need to:
 
 1. Sign up for an account
-1. Install the command line tool
+1. Install and configure the `cf` command line tool
 1. Prepare your application on your local machine
 1. Push your application code to the cloud
-1. (Optional) Connect your application to one or more services
-
-Other Cloud Foundry instances may have some slight differences.
 
 ## <a id='signup'></a>Sign Up for An Account ##
 
-Before you can deploy your application, you will need a Cloud Foundry account. Your can [sign up here](https://console.run.pivotal.io)
+Before you can deploy your application, you will need an account on run.pivotal.io. If you already had an account on cloudfoundry.com, your account credentials have already been transferred over to run.pivotal.io for you. You can simply [log in to your account](https://login.run.pivotal.io/login).
 
-## <a id='install-cf'></a>Install the cf Command Line Tool ##
+If you do not have an account yet, you can [sign up here](https://console.run.pivotal.io).
 
-You will also need the `cf` command line tool.
-Because `cf` is a Ruby gem, you will need to have Ruby (minimum version 1.8.7) and RubyGems.
+## <a id='install-cf'></a>Install and Configure the cf Command Line Tool ##
+
+You'll use the `cf` command line tool to deploy your application. You can also use it to check on the health of your application, change settings, and stop and restart your app.
+
+Because `cf` is a Ruby gem, you will need to have Ruby (minimum version 1.8.7) and RubyGems. If you do not already have Ruby installed, see [ruby-lang.org](http://www.ruby-lang.org).
 
 To install `cf`, simply type the following at your command line:
 
@@ -30,10 +34,35 @@ To install `cf`, simply type the following at your command line:
 $ gem install cf
 </pre>
 
+When the gem has completed installing you should see a message that says, "Successfully installed." You can now target `cf` at the Cloud Controller for run.pivotal.io:
+
+<pre class="terminal">
+$ cf target api.run.pivotal.io
+Setting target to https://api.run.pivotal.io... OK
+</pre>
+
+Then log in:
+
+<pre class="terminal">
+$ cf login
+email>
+password>
+</pre>
+
+When you log in, `cf` will prompt you to choose a space. In v2 Cloud Foundry, a space is a container for an application and all its associated processes. By default, your account has three spaces:
+
+<pre class="terminal">
+1: development
+2: production
+3: staging
+Space>
+</pre>
+
+You can choose any of these spaces to deploy your application.
+
 ## <a id='prepare-app'></a>Prepare Your Application for Deployment ##
 
 The steps to prepare your application depend on the technology you are using.
-Choose your technology to see what you need to do.
 
 ### JVM-Based Languages
 
@@ -91,172 +120,142 @@ Before you deploy your Node application you need to include cf-autoconfig in you
 
 ## <a id='services'></a>Set Up Your Service(s) ##
 
+If your application depends on an external service such as MySQL or Redis you will need to configure it. `cf` will ask you if you want to do this, however you should set up your services before you deploy your application.
+
 ## <a id='push-app'></a>Push Your Application to the Cloud ##
 
-Before you deploy, you need to decide on the answers to some questions.
+Before you deploy, you need to decide on the answers to some questions:
 
-| Name | Use any series of alpha-numeric characters without spaces |
-| Instances | The number of instances you want running |
-| Memory Limit | The maximum amount of memory each instance is allowed to consume. If an instance goes over the maximum limit, it will be restarted. If it has to be restarted too often, it will be terminated. So make sure you are generous in your memory limit. |
-| Start Command | This is the command that Cloud Foundry will use to start each instance of your application. The start command is specific to your framework. Some examples appear below. |
-| URL and Domain | `cf` will prompt you for both a URL and a domain. The URL is the subdomain for your application and it will be hosted at the primary domain you choose. The combination of the URL and domain must be globally unique. |
-| Services | If your application requires a service such as MySQL or Redis you will need to configure it. `cf` will ask you if you want to do this, however you should set up your services . |
+* **Name**: You can use any series of alpha-numeric characters without spaces as the name of your application.
+* **Instances**: The number of instances you want running.
+* **Memory Limit**: The maximum amount of memory that each instance of your application is allowed to consume. If an instance goes over the maximum limit, it will be restarted. If it has to be restarted too often, it will be terminated. So make sure you are generous in your memory limit.
+* **Start Command**: This is the command that Cloud Foundry will use to start each instance of your application. The start command is specific to your framework.
+* **URL and Domain**: `cf` will prompt you for both a URL and a domain. The URL is the subdomain for your application and it will be hosted at the primary domain you choose. The combination of the URL and domain must be globally unique.
+* **Services**: `cf` will ask you if you want to create and bind one or more services such as MySQL or Redis to your application. You need to know which services, if any, your application requires.
 
+## <a id='example-push-app'></a>An Example Transcript ##
 
-### Examples of Start Commands
-
-### Using a Custom Domain
-
-Name> grails-hello-world
-
-Instances> 1
-
-1: 64M
-2: 128M
-3: 256M
-4: 512M
-5: 1G
-6: 2G
-Memory Limit> 512M
-
-Creating grails-hello-world... OK
-
-1: grails-hello-world.cloudfoundry.com
-2: none
-URL> grails-hello-world.cloudfoundry.com
-
-Updating grails-hello-world... OK
-
-Create services for application?> n
-
-Save configuration?> n
-
-Uploading grails-hello-world... OK
-Starting grails-hello-world... OK
-Checking grails-hello-world... OK
-
-Open a command shell and `cd` into the directory where your application files are located.
-The `cf push` command will attempt to upload all the files in your current directory.
-Make sure you aren't in your desktop!
-
-Start deploying your app by typing:
+Here is an example transcript from deploying a Ruby on Rails application.
+Note that in this example, we already provisioned an ElephantSQL instance and named it "elephantpg":
 
 <pre class="terminal">
-$ cf push
+  $ cf push
+  Name> whiteboard
+
+  Instances> 1
+
+  1: 64M
+  2: 128M
+  3: 256M
+  4: 512M
+  5: 1G
+  6: 2G
+  Memory Limit> 256M
+
+  Creating whiteboard... OK
+
+  1: whiteboard
+  2: none
+  Subdomain> whiteboard
+
+  1: cfapps.io
+  2: none
+  Domain> cfapps.io
+
+  Creating route whiteboard.cfapps.io... OK
+  Binding whiteboard.cfapps.io to whiteboard... OK
+
+  Create services for application?> n
+
+  Bind other services to application?> y
+
+  1: elephantpg
+  Which service?> 1
+
+  Binding elephantpg to whiteboard... OK
+  Save configuration?> n
+
+  Uploading whiteboard... OK
+  Starting whiteboard... OK
+  -----> Downloaded app package (224K)
+  Installing ruby.
+  -----> Using Ruby version: ruby-1.9.2
+  -----> Installing dependencies using Bundler version 1.3.2
+         Running: bundle install --without development:test --path vendor/bundle --binstubs vendor/bundle/bin --deployment
+         ...
+         Your bundle is complete! It was installed into ./vendor/bundle
+         Cleaning up the bundler cache.
+  -----> Writing config/database.yml to read from DATABASE_URL
+  -----> Preparing app for Rails asset pipeline
+         Running: rake assets:precompile
+         Asset precompilation completed (41.70s)
+  -----> Rails plugin injection
+         Injecting rails_log_stdout
+         Injecting rails3_serve_static_assets
+  -----> Uploading staged droplet (41M)
+  -----> Uploaded droplet
+  Checking whiteboard...
+  Staging in progress...
+  Staging in progress...
+  Staging in progress...
+  Staging in progress...
+  Staging in progress...
+  Staging in progress...
+  Staging in progress...
+  Staging in progress...
+  Staging in progress...
+    0/1 instances: 1 starting
+    0/1 instances: 1 starting
+    0/1 instances: 1 starting
+    0/1 instances: 1 starting
+    0/1 instances: 1 starting
+    0/1 instances: 1 starting
+    0/1 instances: 1 starting
+    0/1 instances: 1 starting
+    0/1 instances: 1 starting
+    0/1 instances: 1 starting
+    0/1 instances: 1 starting
+    0/1 instances: 1 starting
+    0/1 instances: 1 starting
+    0/1 instances: 1 starting
+    1/1 instances: 1 running
+  OK
 </pre>
-
-`cf` will ask you a series of questions.
-
-
 
 ## <a id='troublshooting'></a>Troubleshooting ##
 
-If your application does not start on Cloud Foundry, try the following:
+If your application does not start on Cloud Foundry, it's a good idea to double-check that your application can run locally.
 
-1. Make sure your application can run locally
-1. Increase the amount of memory specified for your application
+You can troubleshoot your application in the cloud using `cf`.
 
-
-## <a id='service-connect'></a>Connect Your Application to One or More Services ##]
-
-
-Toggle: [run.pivotal.io]
-Create a folder for your Rack application and create a basic application structure.
+To check the health of your application, use
 
 <pre class="terminal">
-$ mkdir sinatra_hello_world
-$ cd sinatra_hello_world
-$ touch hello_world.rb config.ru Gemfile
+  cf health appname
 </pre>
 
-Initialise both files as follows;
-
-hello_world.rb
-
-~~~ruby
-require 'sinatra/base'
-
-class HelloWorld < Sinatra::Base
-  get "/" do
-    "Hello, World!"
-  end
-end
-~~~
-
-config.ru
-
-~~~ruby
-require './hello_world'
-run HelloWorld.new
-~~~
-
-Gemfile
-
-~~~ruby
-source 'https://rubygems.org'
-gem 'sinatra'
-~~~
-
-Install the required Sinatra gem using Bundler;
+To check how much memory your application is using:
 
 <pre class="terminal">
-$ bundle install
+  cf stats appname
 </pre>
 
-You should be able to run the application locally by using Rackup;
+To see the environment variables and recent log entries:
 
 <pre class="terminal">
-$ rackup
->> Thin web server (v1.4.1 codename Chromeo)
->> Maximum connections set to 1024
->> Listening on 0.0.0.0:9292, CTRL+C to stop
+  cf logs appname
 </pre>
 
-View your application at [http://localhost:9292](http://localhost:9292)
-
-## <a id='deploying'></a>Deploying Your Application ##
-
-Push the application with CF;
+To tail your logs:
 
 <pre class="terminal">
-$ cf push
-
-Name> sinatra-hello-world
-
-Instances> 1
-
-1: 64M
-2: 128M
-3: 256M
-4: 512M
-5: 1G
-6: 2G
-7: 4G
-8: 8G
-9: 16G
-Memory Limit> 128M
-
-Creating rack-test... OK
-
-1: sinatra-hello-world.cloudfoundry.com
-2: none
-URL> sinatra-hello-world.cloudfoundry.com
-
-Updating rack-test... OK
-
-Create services for application?> n
-
-Bind other services to application?> n
-
-Save configuration?> n
-
-Uploading sinatra-hello-world... OK
-Starting sinatra-hello-world... OK
-Checking sinatra-hello-world... OK
+  cf tail appname
 </pre>
 
-Once this is deployed, you should be able to view the application on Cloud Foundry at the URL you chose during the push.
+If your application has crashed and you cannot retrieve the logs with `cf logs`, you can retrieve its dying words with:
 
-## <a id='next-steps'></a>Next steps - Binding a service ##
+<pre class="terminal">
+  cf crashlogs appname
+</pre>
 
-Binding and using a service with Ruby is covered [here](./ruby-service-bindings.html)
+
