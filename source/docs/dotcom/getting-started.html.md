@@ -122,6 +122,22 @@ Before you deploy your Node application you need to include cf-autoconfig in you
 
 If your application depends on an external service such as MySQL or Redis you will need to configure it. `cf` will ask you if you want to do this, however you should set up your services before you deploy your application.
 
+You can provision services with the `cf create-service` command.
+
+<pre class="terminal">
+  $ cf create-service
+  1: cleardb n/a, via cleardb
+  2: cloudamqp n/a, via cloudamqp
+  3: elephantsql n/a, via elephantsql
+  4: mongolab n/a, via mongolab
+  5: rediscloud n/a, via garantiadata
+  6: treasuredata n/a, via treasuredata
+  What kind?>
+</pre>
+
+After you choose the service provider, `cf` will ask you to name your service. You can use any series of alpha-numeric characters ([a-z], [A-Z], [0-9]) plus hyphens (-) or underscores (_).
+
+
 ## <a id='push-app'></a>Push Your Application to the Cloud ##
 
 Before you deploy, you need to decide on the answers to some questions:
