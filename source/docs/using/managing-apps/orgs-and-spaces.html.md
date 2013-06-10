@@ -13,7 +13,7 @@ An organization is the top-most meta object within the Cloud Foundry infrastruct
 
 ## <a id='spaces'></a>Spaces ##
 
-An organization can contain multiple spaces. The defaults for a standard Cloud Foundry install are **development**, **test**, and **production**. A domain can be mapped to multiple spaces but a route can be mapped to only one application instance and therefore one space.
+An organization can contain multiple spaces. The defaults for a standard Cloud Foundry install are **development**, **test**, and **production**. A domain can be mapped to multiple spaces but a route can be mapped to only one space.
 
 ## <a id='managmement'></a>Management ##
 
