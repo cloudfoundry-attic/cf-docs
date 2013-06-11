@@ -228,7 +228,9 @@ Create a space in an organization.
 
 #### <a id='create-user'></a> create-user ####
 
-Create a user account. **This command is provided by the `admin` plugin.**
+Create a user account. If you do not supply required options on the command line, cf will prompt for them. 
+
+**This command is provided by the `admin` plugin.**
 
 <div class="command-doc">
   <pre class="terminal">$ cf create-user [email]</pre>
@@ -239,9 +241,9 @@ Create a user account. **This command is provided by the `admin` plugin.**
 
 | Qualifier | Required | Description |
 | :-------- | :------- | :---------- |
-|--email EMAIL | |Email of the new user. |
-|--password PASSWORD | |Password for the new user. |
-|--verify VERIFY | |Supply the password again. |
+|--email EMAIL | y|Email of the new user. |
+|--password PASSWORD |y |Password for the new user. |
+|--verify VERIFY |y |Supply the password again. |
 |-o, --organization, --org ORGANIZATION| |Organization to which to assign the new user. |
 
 #### <a id='delete'></a> delete ####
@@ -436,7 +438,7 @@ For an instance that is running, the following data is returned:
 
 #### <a id='login'></a> login ####
 
-Authenticate with the target.
+Authenticate with the target. If you do not supply required options on the command line, cf will prompt for them. 
 
 <div class="command-doc">
   <pre class="terminal">$ cf login [email]</pre>
@@ -445,10 +447,10 @@ Authenticate with the target.
 
 | Qualifier | Required | Description |
 | :-------- | :------- | :---------- |
-|--password PASSWORD | |Password to use to authenticate. |
-|--username, --email EMAIL  | |Username or email that identifies the user account.|
-|-o, --organization, --org ORGANIZATION | |Use this option so specify the space to switch to upon login. |
-|-s, --space SPACE  | |Use this option so specify the space to switch to upon login. |
+|--password PASSWORD |y |Password to use to authenticate. |
+|--username, --email EMAIL  |y |Username or email that identifies the user account.|
+|-o, --organization, --org ORGANIZATION |n |Use this option to specify the space to switch to upon login. |
+|-s, --space SPACE  |n |Use this option so specify the space to switch to upon login. |
 
 #### <a id='logout'></a> logout ####
 
@@ -635,7 +637,9 @@ Create a user and login.
  | | |
 #### <a id='id'></a> rename ####
 
-Rename an application.
+Rename an application.  If you do not provide the required input on the command line, cf will prompt for it.
+
+Note that after you change an application's name, cf will not recognize the application's previous name if you use it in commands that act upon an application.  If you attempt to 
 
 <div class="command-doc">
   <pre class="terminal">$ cf rename [current application name] [new application name]</pre>
@@ -884,7 +888,7 @@ Watch the file for the specified application and the specified path, and display
 
 #### <a id='target'></a> target ####
 
-Set or display the target cloud, organization, and space. When you run a cf command that reads or writes information about applications or service instances will, by default, access objects in the currently selected target cloud, organization, and space. 
+Set or display the target cloud, organization, and space. When you run a cf command that reads or writes information about applications or service instances, by default the command will  access objects in the currently selected target cloud, organization, and space. 
 
 <div class="command-doc">
   <pre class="terminal">$ cf target [URL]</pre>
