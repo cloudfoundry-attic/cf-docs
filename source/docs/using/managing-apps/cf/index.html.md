@@ -6,7 +6,7 @@ cf is Cloud Foundry's command line interface. You can use cf to deploy and manag
 
 ## <a id='commands'></a>Commands by Functional Category ##
 
-This table below lists all cf commands, including those enabled by cf plug-ins. Click a command in the table for information about command options and functionality. For command options that apply to all cf commands, see [Command Usage and Qualifiers](#usage).
+This table below lists all cf commands, including those enabled by cf plug-ins. Click a command in the table for information about command options and functionality. For options that apply to all cf commands, see [Command Usage and Qualifiers](#usage).
 
 |   |  | |
 | :-------- | :---------- |:---------- |
@@ -403,7 +403,23 @@ The current status of the application, for example "running", "flapping", "stopp
 
 #### <a id='info'></a> info ####
 
-Display information on the current target, user, etc.
+Display information on the target cloud
+
+| Qualifier | Required | Description |
+| :-------- | :------- | :---------- |
+|-a, --all | n| |
+|-s, --services |n |  |
+
+The following information is returned:
+
+* target -- The target Cloud Foundry instance.
+* version -- The Cloud Foundry version.
+* If you use the `--all` or `--services` options, the following information is returned for each available service type:
+    * service -- Type of service.
+    * version -- Version of service
+    * provider -- The company that provides the service.
+    * plans -- Plans under which the service is available.
+    * description -- Description of the service.
 
 #### <a id='instances'></a> instances ####
 List the instances of the specified application.
@@ -537,8 +553,8 @@ The following data is returned:
 * domains -- Domains mapped to the organization.
 * spaces -- The spaces in the organization
 * If the `--full` option is used, the following data is returned for each space in the organization:
-** apps -- Applications that have been deployed to the space.
-** services -- Services in the space.
+     * apps -- Applications that have been deployed to the space.
+     * services -- Services in the space.
 
 #### <a id='orgs'></a> orgs ####
 
@@ -554,8 +570,8 @@ The following data is returned:
 * domains -- Domains mapped to the organization.
 * spaces -- The spaces in the organization
 * If the `--full` option is used, the following data is returned for each space in the organization:
-** apps -- Applications that have been deployed to the space.
-** services -- Services in the space.
+     * apps -- Applications that have been deployed to the space.
+     * services -- Services in the space.
 
 
 | Qualifier | Required | Description |
@@ -596,9 +612,9 @@ After you supply the qualifiers required to push an application, cf will offer y
 | --instances INSTANCES       |          | The  number of instances of the application to start.|
 | --memory MEMORY             |          | The maximum memory to allocate to each application instance.           |
 | --name NAME             | | The name of the application to push. (ask about what happens when no name is supplied.|
-| --plan PLAN              | | Specify which service from the marketplace you wish to provision.  |
+| --plan PLAN              | | Specify the desired plan for the service. (A _plan_ specifies a pricing terms and resource limits for the service.)     |
 |--path | |Path to the application to be pushed. |
-| --reset             | |include if you are changing value, and want to make sure that value supply <br>overrides previously specified (either at command line) |
+| --reset             | |Use this option if you are specifying a new value for one or more `push` options to indicate that the newly supplied value should override previously provided option values. |
 | --stack STACK           | | |
 
 #### <a id='register'></a> register ####
@@ -786,7 +802,7 @@ The following data is returned:
 * services -- Services in the space.
 * domains -- çomains in the space.
 * If the `full` option is used, the following information is returned for applications in the space:
-** status -- ghe current status of the application, for example "stopped", running", "flapping", and so on.
+     * status -- the current status of the application, for example "stopped", running", "flapping", and so on.
 
 #### <a id='spaces'></a> spaces ####
 
@@ -868,12 +884,25 @@ Watch the file for the specified application and the specified path, and display
 
 #### <a id='target'></a> target ####
 
-Set or display the target cloud, organization, and space.
+Set or display the target cloud, organization, and space. When you run a cf command that reads or writes information about applications or service instances will, by default, access objects in the currently selected target cloud, organization, and space. 
 
 <div class="command-doc">
   <pre class="terminal">$ cf target [URL]</pre>
   <div class="break"></div>
 </div>
+
+
+| Qualifier | Required | Description |
+| :-------- | :------- | :---------- |
+| --url URL |n| Use this option to select a different Cloud Foundry instance.|
+|--org ORGANIZATION |n |Use this option to select a different Cloud Foundry organization. |
+|--space SPACE |n |Use this option to select a different Cloud Foundry space. |
+
+If no qualifiers are specified on the command line, the following data is returned:
+
+* target -- The target Cloud Foundry instance.
+* organization -- The currently selected organization.
+* space -- The currently selected space.
 
 #### <a id='targets'></a> targets ####
 
@@ -884,16 +913,12 @@ List known targets.
   <div class="break"></div>
 </div>
 
+The URL for each known Cloud Foundry instance will be returned.
 
-| Qualifier | Required | Description |
-| :-------- | :------- | :---------- |
-| --url URL | | |
-|--org ORGANIZATION | | |
-|--space SPACE | | |
 
 #### <a id='tunnel'></a> tunnel ####
 
-Tunnel to a service instance. You can keep the tunnel open or automatically open a client and connect to the service. For more information on tunneling to a service see [Service Tunneling](./service-tunneling.html). **This command is provided by the `tunnel` plug-in.
+Tunnel to a service instance. You can keep the tunnel open or automatically open a client and connect to the service. For more information on tunneling to a service see [Service Tunneling](./service-tunneling.html). **This command is provided by the `tunnel` plug-in.**
 
 <div class="command-doc">
   <pre class="terminal">$ cf tunnel [instance name] [application name]</pre>
