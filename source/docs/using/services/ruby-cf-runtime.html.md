@@ -1,5 +1,5 @@
 ---
-title: Ruby, CF-Runtime
+title: Ruby - CF-Runtime
 ---
 
 ## <a id='intro'></a>Introduction ##

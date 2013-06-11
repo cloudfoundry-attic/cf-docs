@@ -1,5 +1,5 @@
 ---
-title: Ruby, Service Bindings
+title: Ruby - Service Bindings
 ---
 
 ## <a id='intro'></a>Introduction ##
