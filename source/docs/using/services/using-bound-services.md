@@ -4,33 +4,41 @@ title: Using Bound Services
 
 ## <a id='environment-variable'></a> Services Environment Variable ##
 
-Binding a service to your application may add credentials to the VCAP_SERVICES environment variable that is visible to the application process. You can see the contents of the VCAP_SERVICES environment variable in the following ways.
+Binding a service to your application may add credentials to the VCAP\_SERVICES environment variable which are visible to your application process. You can see the contents of VCAP\_SERVICES in several ways.
+
+### View contents of VCAP_SERVICES using CLI 
+
+This command will show all environment variables including VCAP_SERVICES if it is set.
 
 <pre class="terminal">
 $ cf files APP_NAME_HERE logs/env.log
 </pre>
 
-This command will show all environment variables including VCAP_SERVICES if it is set.
+### View contents of VCAP_SERVICES from your application
 
-Alternatively, you can use code in an application to access the environment variables and either use it, print it, log it, etc.
+Alternatively, you can use code in an application to access the environment variable and either use it, print it, log it, etc.
 
-Java:
+#### Java
 
 ```
-System.getenv( "VCAP_SERVICES");
+System.getenv("VCAP_SERVICES");
 ```
 
-Ruby:
+#### Ruby
 
 ```
 ENV['VCAP_SERVICES']
 ```
 
-Node.js:
+#### Node.js
 
 ```
 process.env.VCAP_SERVICES
 ```
+
+## <a id='example'></a>Example Contents ##
+
+This example shows an example value of VCAP\_SERVICES. In this example, we've created and bound four service instances. One ClearDB, two CloudAMQP, and one Redis Cloud. 
 
 ~~~
 VCAP_SERVICES=
@@ -84,4 +92,12 @@ VCAP_SERVICES=
 }
 ~~~
 
-For developer convenience, Cloud Foundry also has libraries for many languages that parse the environment variable and return useful objects. For more detail please see LINK HERE.
+## <a id='libraries'></a>Client Libraries ##
+
+For developer convenience, Cloud Foundry also has libraries for many languages that parse the environment variable and return useful objects. For more detail please see the following pages.
+
+* [Java and the JVM](../deploying-apps/jvm/)
+* [Ruby](../deploying-apps/ruby/)
+* [Node.js](../deploying-apps/javascript/)
+
+
