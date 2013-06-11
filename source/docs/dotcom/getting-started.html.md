@@ -1,11 +1,10 @@
 ---
-title: Using run.pivotal.io, Powered by Cloud Foundry
+title: Getting Started
 ---
 
 Cloud Foundry allows you to deploy applications without worrying about configuration headaches, making it faster and easier to build, test, deploy and scale your app.
 
-This guide walks you through getting started at run.pivotal.io.
-Additional documentation is available at [docs.cloudfoundry.com](http://docs.cloudfoundry.com)
+This guide walks you through getting started at run.pivotal.io, powered by Cloud Foundry.
 
 ## <a id='intro'></a>Steps to Get Started ##
 
@@ -118,54 +117,6 @@ Before you deploy your Node application you need to include cf-autoconfig in you
 
 * Run npm install to install your dependencies locally
 
-## <a id='services'></a>Set Up Your Service(s) ##
-
-If your application depends on an external service such as MySQL or Redis you will need to configure it. `cf` will ask you if you want to do this, however you should set up your services before you deploy your application.
-
-You can provision services with the `cf create-service` command.
-
-<pre class="terminal">
-  $ cf create-service
-  1: cleardb n/a, via cleardb
-  2: cloudamqp n/a, via cloudamqp
-  3: elephantsql n/a, via elephantsql
-  4: mongolab n/a, via mongolab
-  5: rediscloud n/a, via garantiadata
-  6: treasuredata n/a, via treasuredata
-  What kind?>
-</pre>
-
-After you choose the service provider, `cf` will ask you to name your service. You can use any series of alpha-numeric characters ([a-z], [A-Z], [0-9]) plus hyphens (-) or underscores (_).
-
-Once you have your services set up, you need to configure your application to use the correct credentials for your service. The credentials are created for you and are accessible through the VCAP_SERVICES environment variable that Cloud Foundry sets within your runtime context.
-
-The VCAP_SERVICES environment variable holds a JSON string with the connection details. You need to read the JSON and extract out the username and password.
-
-## Ruby on Rails
-
-You set your database connection information for a Rails app in the database.yml file.
-If you were using elephantsql-n/a Here's how
-~~~yml
-
-<%
-  db = JSON.parse(ENV['VCAP_SERVICES'])["elephantsql-n/a"]
-  credentials = db.first["credentials"]
-%>
-
-production:
-  adapter: mysql2
-  encoding: utf8
-  reconnect: false
-  pool: 5
-  host: <%= credentials["host"] %>
-  username: <%= credentials["username"] %>
-  password: <%= credentials["password"] %>
-  database: <%= credentials["database"] %>
-  port: <%= credentials["port"] %>
-
-~~~
-
-
 ## <a id='push-app'></a>Push Your Application to the Cloud ##
 
 Before you deploy, you need to decide on the answers to some questions:
@@ -175,7 +126,7 @@ Before you deploy, you need to decide on the answers to some questions:
 * **Memory Limit**: The maximum amount of memory that each instance of your application is allowed to consume. If an instance goes over the maximum limit, it will be restarted. If it has to be restarted too often, it will be terminated. So make sure you are generous in your memory limit.
 * **Start Command**: This is the command that Cloud Foundry will use to start each instance of your application. The start command is specific to your framework.
 * **URL and Domain**: `cf` will prompt you for both a URL and a domain. The URL is the subdomain for your application and it will be hosted at the primary domain you choose. The combination of the URL and domain must be globally unique.
-* **Services**: `cf` will ask you if you want to create and bind one or more services such as MySQL or Redis to your application. You need to know which services, if any, your application requires.
+* **Services**: `cf` will ask you if you want to create and bind one or more services such as MySQL or Redis to your application. For the purposes of this guide, you can answer no when prompted to add a service. Services are addressed in the next guide, [Adding a Service](adding-a-service.html).
 
 ## <a id='example-push-app'></a>An Example Transcript ##
 
@@ -302,4 +253,6 @@ If your application has crashed and you cannot retrieve the logs with `cf logs`,
   cf crashlogs appname
 </pre>
 
+## <a id='binding-a-service'></a>Next Step - Binding a service ##
 
+Binding and using a service is covered in our guide, [Adding a Service](adding-a-service.html).
