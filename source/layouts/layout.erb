@@ -39,6 +39,10 @@
         $('li#docs-off').hoverIntent(function () {
           $('#docs-list').slideToggle(500);
         });
+        $(".togglebutton").click(function () {
+        var divname= this.value;
+          $("#"+divname).show("slow").siblings().hide("slow");
+        });
       });
     </script>
 

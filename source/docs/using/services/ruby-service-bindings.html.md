@@ -14,26 +14,17 @@ To create a service issue the following command with cf and answer the interacti
 $ cf create-service
 </pre>
 
-To bind the service to the application, use the following cf command;
+To bind the service to the application so that Cloud Foundry associates the service and your app, use the following cf command;
 
 <pre class="terminal">
 $ cf bind-service --app [application name] --service [service name]
 </pre>
 
-## <a id='autoconfig'></a>Auto Configuration ##
+## <a id='connecting'></a>Connecting Your Application to Your New Service ##
 
-Cloud Foundry provides auto configuration for Redis, Mongo DB, MySQL, PostgreSQL and RabbitMQ. This means that Cloud Foundry will automatically override connection configuration for any services bound to the application.
-This is limited to one instance of a service of each type and is only really appropriate for development use, it's generally better practice, in production to use the connection details provided by the VCAP_SERVICES environment variables (covered later).
+In order to use your new service, you need to configure your application to connect to it.
 
-To enable auto configuration, include the following line in your Gemfile
-
-~~~ruby
-gem 'cf-autoconfig', :require => 'cfautoconfig'
-~~~
-
-Also add the correct gem for your service and make sure the appropriate service is bound to the application.
-
-Assuming you are using Bundler to manage gem dependencies and depending on which service you plan to bind to your application, you need to make sure the correct gem is included in the project and the bundle has been updated.
+First, make sure that your application includes the correct adapter gem in your Gemfile:
 
 <pre>
 Service Type      Gem
@@ -41,247 +32,94 @@ Service Type      Gem
 MySQL             <a href="https://github.com/brianmario/mysql2">mysql2</a>
 PostgreSQL        <a href="https://rubygems.org/gems/pg">pg</a>
 MongoDB           <a href="http://mongomapper.com/">mongo_mapper</a> (ORM), <a href="https://github.com/mongodb/mongo-ruby-driver">mongo</a>
-
 Redis             <a href="https://github.com/redis/redis-rb">redis</a>
 Rabbit            <a href="https://github.com/ruby-amqp/amqp">ampq</a>
+
 </pre>
 
-Add the gems for the bound services and update the bundle
+Be sure to run `bundle install` to generate an updated Gemfile.lock.
+
+Next, tell your application how to connect to the service.
+There are two ways to do this.
+
+You can use the cf-autoconfig gem. This option is appropriate only for applications with a single service and only works for Redis, Mongo DB, MySQL, PostgreSQL and RabbitMQ.
+
+You can configure your application manually. Use this option if you want more control over how your application connects to the service. We recommend manual configuration. It's not as easy as the automatic configuration, but it provides you greater control and flexibility.
+
+## <a id='autoconfig'></a>Auto Configuration ##
+
+To use auto configuration, simply include the following line in your Gemfile.
+
+~~~ruby
+gem 'cf-autoconfig'
+~~~
+
+As with any change to your Gemfile, be sure to run `bundle install` to generate an updated Gemfile.lock.
+
+The auto configuration will overwrite your database connection information in your application. So, for example, if you are writing a Rails application, cf-autoconfig will overwrite your database.yml file.
+If you don't want your database.yml file to be overwritten, you need to configure your services manually.
+
+## <a id='manual'></a>Manual Configuration ##
+
+We recommend manually configuring your application to connect to services.
+Doing so gives you more control and more flexibility.
+
+To configure your connection, you'll use the VCAP\_SERVICES environment variable.
+VCAP\_SERVICES contains JSON describing all the services bound to your application and the credentials you need to connect to them.
+
+In Ruby, you can read the entire contents of VCAP\_SERVICES with "ENV" and parse it into a JSON object.
+For example:
+
+~~~ruby
+
+my_services = JSON.parse(ENV['VCAP_SERVICES'])
+
+~~~
+
+To pull out the credentials from the VCAP\_SERVICES JSON, first you need to know the string to use as a key for the hash.
+You can use `cf services` to list the available services to find the correct string.
+
+For example:
 
 <pre class="terminal">
-$ bundle update
+  cf services
+  Getting services in production... OK
+
+  name           service           provider      version   plan     bound apps
+  myservice      elephantsql       elephantsql   n/a       turtle   myapp
+
 </pre>
 
-## <a id='connecting-auto'></a>Connecting to the service (Auto configuration) ##
+The general format of this string is *provider-version*.
+In this case the provider is "elephantsql" and the version is "n/a" so the hash key will be "elephantsql-n/a".
 
-When using an autoconfigured service it should be sufficient to deploy the application in the same state as it is for development. So, for example, if connecting to a MySQL instance, in development the connection may look like this;
-
-~~~ruby
-client = Mysql2::Client.new(:host => "localhost", :username => "root")
-~~~
-
-When deployed to production, even though the connection is set for a local instance, it is overriden to connect to the bound instance of MySQL. For the sake of brevity, here follow examples of other service types;
-
-PostgreSQL
+Given this example, you can pull the credentials for your service with these ruby statements:
 
 ~~~ruby
-conn = PG.connect( dbname: 'localdbname' )
+  db = JSON.parse(ENV['VCAP_SERVICES'])["elephantsql-n/a"]
+  credentials = db.first["credentials"]
+  host = credentials["host"]
+  username = credentials["username"]
+  password = credentials["password"]
+  database = credentials["database"]
+  port = credentials["port"]
 ~~~
 
-Mongo
+To configure your Rails application, you would change your database.yml to use
+erb syntax to programmatically set the connection values using the credentials
+information from VCAP_SERVICES.
 
-~~~ruby
-client = MongoClient.new('localhost', 27017)
-~~~
-
-Redis
-
-~~~ruby
-redis = Redis.new()
-~~~
-
-Rabbit (ampq)
-
-~~~ruby
-connection = AMQP.connect(:host => '127.0.0.1')
-~~~
-
-## <a id='env-vars'></a>VCAP_SERVICES Environmental Variables ##
-
-As mentioned before, auto configuration is not particularly appropriate for a production environment. There are overheads involved in configuring connections automatically, it is far better to configure them directly.
-When a service is bound to an application, enviromental variables become available to the application that describe the connections available.
-
-Setting the connection for your service is as simple as reading the values from the environmental variable VCAP_SERVICES using 'ENV', examples for each service are shown below;
-
-MySQL - ENV["mysql-5.1"][0]
-
-~~~json
-{
-  "mysql-5.1": [
-    {
-      "name": "mysql-adeb7",
-      "label": "mysql-5.1",
-      "plan": "free",
-      "tags": [
-        "relational",
-        "mysql-5.1",
-        "mysql"
-      ],
-      "credentials": {
-        "name": "d7e35ab8839384283a39a50ccc15b2b16",
-        "hostname": "172.30.48.30",
-        "host": "172.30.48.30",
-        "port": 3306,
-        "user": "uB8UU9ypglJQz",
-        "username": "uB8UU9ypglJQz",
-        "password": "pHXtkygIrogQA"
-      }
-    }
-  ]
-}
-~~~
-
-RabbitMQ - ENV["rabbitmq-2.4"][0]
-
-~~~json
-{
-  "rabbitmq-2.4": [
-    {
-      "name": "rabbitmq-baa85",
-      "label": "rabbitmq-2.4",
-      "plan": "free",
-      "tags": [
-        "message-queue",
-        "amqp",
-        "rabbitmq-2.4",
-        "rabbitmq"
-      ],
-      "credentials": {
-        "name": "b45b0423-dcab-4c65-b277-e8e6064be0ce",
-        "hostname": "172.30.48.108",
-        "host": "172.30.48.108",
-        "port": 10055,
-        "vhost": "v941f54bc62264ecdac6cf65976c65fd5",
-        "username": "uIBTXkZzoUox4",
-        "user": "uIBTXkZzoUox4",
-        "password": "p4gM2O60JrSNZ",
-        "pass": "p4gM2O60JrSNZ",
-        "url": "amqp://uIBTXkZzoUox4:p4gM2O60JrSNZ@172.30.48.108:10055/v941f54bc62264ecdac6cf65976c65fd5"
-      }
-    }
-  ]
-}
-~~~
-
-Redis - ENV["redis-2.6"][0]
-
-~~~json
-{
-  "redis-2.6": [
-    {
-      "name": "redis-6b10d",
-      "label": "redis-2.6",
-      "plan": "free",
-      "tags": [
-        "key-value",
-        "nosql",
-        "redis-2.6",
-        "redis"
-      ],
-      "credentials": {
-        "hostname": "172.30.48.41",
-        "host": "172.30.48.41",
-        "port": 5162,
-        "password": "d3150626-10d9-4910-8ae5-90670b2cc936",
-        "name": "bf0f470b-0418-4088-a3a3-8520508e3e41"
-      }
-    }
-  ]
-}
-~~~
-
-MongoDB - ENV["mongodb-2.0"][0]
-
-~~~json
-{
-  "mongodb-2.0": [
-    {
-      "name": "mongodb-3894a",
-      "label": "mongodb-2.0",
-      "plan": "free",
-      "tags": [
-        "nosql",
-        "document",
-        "mongodb-2.0",
-        "mongodb"
-      ],
-      "credentials": {
-        "hostname": "172.30.48.66",
-        "host": "172.30.48.66",
-        "port": 25219,
-        "username": "702f1d22-eb33-4b9b-b46c-fa58ce2d062a",
-        "password": "238083e0-152d-4a97-800d-1f35cd0163e4",
-        "name": "f5ffcb64-eca3-45f8-b3bb-e0d90a389fdc",
-        "db": "db",
-        "url": "mongodb://702f1d22-eb33-4b9b-b46c-fa58ce2d062a:238083e0-152d-4a97-800d-1f35cd0163e4@172.30.48.66:25219/db"
-      }
-    }
-  ]
-}
-~~~
-
-PostgreSQL - ENV["postgresql-9.0"][0]
-
-~~~json
-{
-  "postgresql-9.0": [
-    {
-      "name": "postgresql-e7870",
-      "label": "postgresql-9.0",
-      "plan": "free",
-      "tags": [
-        "relational",
-        "postgresql-9.0",
-        "postgresql"
-      ],
-      "credentials": {
-        "name": "d2c96bd9b1c54479cabdb9d887e881c23",
-        "host": "172.30.48.127",
-        "hostname": "172.30.48.127",
-        "port": 5432,
-        "user": "u55b9102d75dc487c9d147c46b7c3c4be",
-        "username": "u55b9102d75dc487c9d147c46b7c3c4be",
-        "password": "p595dddcca41343d29d25186ee6fe6f94"
-      }
-    }
-  ]
-}
-~~~
-
-## <a id='connecting-manual'></a>Connecting to the service (Manual configuration) ##
-
-Creating a connection to a bound service using environmental variables is a simple task. For example, for a MySQL connection;
-
-~~~ruby
-
-mysql_dbs = JSON.parse(ENV['VCAP_SERVICES'])["mysql-5.1"]
-credentials = mysql_dbs.first["credentials"]
-
-mysql_creds = {
-  :host => credentials["host"],
-  :username => credentials["username"],
-  :password => credentials["password"],
-  :database => credentials["name"],
-  :port => credentials["port"]
-}
-
-client = Mysql2::Client.new mysql_creds
-
-~~~
-## <a id='rails-auto'></a>Connecting Rails (Auto configuration) ##
-
-Making sure the correct gem for the bound service is included in the Gemfile and the following gem also;
-
-~~~ruby
-gem 'cf-autoconfig', :require => 'cfautoconfig'
-~~~
-
-When you push the application to Cloud Foundry, the connection should be configured automatically.
-
-
-## <a id='rails-manual'></a>Connecting Rails (Manual configuration) ##
-
-Configuring ActiveRecord to read values from ENV is straight forward. For example, to use MySQL, modify config/database.yml to look use values from ENV;
+If you were using the ElephantSQL Postgres service, your database.yml file might look like:
 
 ~~~yaml
 
 <%
-  mysql_dbs = JSON.parse(ENV['VCAP_SERVICES'])["mysql-5.1"]
-  credentials = mysql_dbs.first["credentials"]
+  mydb = JSON.parse(ENV['VCAP_SERVICES'])["elephantsql-n/a"]
+  credentials = mydb.first["credentials"]
 %>
 
 production:
-  adapter: mysql2
+  adapter: pg
   encoding: utf8
   reconnect: false
   pool: 5
@@ -292,5 +130,96 @@ production:
   port: <%= credentials["port"] %>
 
 ~~~
+
+If you are not using Active Record or another ORM and are instead instantiating your adapter client
+directly, you would write your code something like this:
+
+~~~ruby
+
+mysqldb = JSON.parse(ENV['VCAP_SERVICES'])["cleardb-n/a"]
+credentials = {
+  :host => credentials["host"],
+  :username => credentials["username"],
+  :password => credentials["password"],
+  :database => credentials["name"],
+  :port => credentials["port"]
+}
+
+client = Mysql2::Client.new credentials
+
+~~~
+
+Note that your actual code may be different depending on the key in your VCAP_SERVICES environment
+variable and syntax for instantiating your database adapter client.
+
+## <a id='database-migration'></a>Database Migrations ##
+
+Before you can use your database for the first time, you need to run a migration script to
+create the tables and insert any seed data.
+
+If you are using Rails, you would usually set up your database schema by running a command
+like:
+
+<pre class="terminal">
+  $ bundle exec rake db:create db:migrate
+</pre>
+
+You still need to do this with your application on Cloud Foundry.
+You'll use the `cf push --command` flag.
+For example:
+
+<pre class="terminal">
+  $ cf push --command "bundle exec rake db:create db:migrate" myapp
+</pre>
+
+If you are using a cf manifest.yml file, be sure to use the --reset flag to override
+the command setting in the manifest.
+
+Once you have migrated your database, you will then need to push your application a second time
+to set the start command back.
+
+To set the start command back to the default, use this command:
+
+<pre class="terminal">
+  $ cf push --command "" myapp
+</pre>
+
+If you want to set a custom start command, you'll need
+to include the PORT environment variable.
+For example:
+
+<pre class="terminal">
+  $ cf push --command 'bundle exec rackup -p$PORT' myapp
+</pre>
+
+## <a id='troubleshooting'></a>Troublshooting ##
+
+If you have trouble connecting to your service, use the `cf logs` command.
+It not only displays a log, it also shows you the value of all the environment
+variables available to your application including VCAP_SERVICES as shown
+in the example below:
+
+<pre class="terminal">
+  $ cf logs myapp
+  Reading logs/console.log... OK
+  Starting console on port 64868...
+
+  Reading logs/env.log... OK
+  VCAP_SERVICES={
+    "elephantsql-n/a":[{
+      "name":"elephant-postgres",
+      "label":"elephantsql-n/a",
+      "plan":"turtle",
+      "credentials":{"uri":"postgres://username:password@server.example.com:5432/uniqid"}}]
+  }
+  ...more environment variables and values will show here...
+
+  Reading logs/staging_task.log... OK
+  ...output from the staging process displayed here...
+
+  Reading logs/console.log
+  ...output from running the application displayed here...
+  --
+</pre>
 
 
