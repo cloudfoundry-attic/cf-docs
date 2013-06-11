@@ -137,6 +137,34 @@ You can provision services with the `cf create-service` command.
 
 After you choose the service provider, `cf` will ask you to name your service. You can use any series of alpha-numeric characters ([a-z], [A-Z], [0-9]) plus hyphens (-) or underscores (_).
 
+Once you have your services set up, you need to configure your application to use the correct credentials for your service. The credentials are created for you and are accessible through the VCAP_SERVICES environment variable that Cloud Foundry sets within your runtime context.
+
+The VCAP_SERVICES environment variable holds a JSON string with the connection details. You need to read the JSON and extract out the username and password.
+
+## Ruby on Rails
+
+You set your database connection information for a Rails app in the database.yml file.
+If you were using elephantsql-n/a Here's how
+~~~yml
+
+<%
+  db = JSON.parse(ENV['VCAP_SERVICES'])["elephantsql-n/a"]
+  credentials = db.first["credentials"]
+%>
+
+production:
+  adapter: mysql2
+  encoding: utf8
+  reconnect: false
+  pool: 5
+  host: <%= credentials["host"] %>
+  username: <%= credentials["username"] %>
+  password: <%= credentials["password"] %>
+  database: <%= credentials["database"] %>
+  port: <%= credentials["port"] %>
+
+~~~
+
 
 ## <a id='push-app'></a>Push Your Application to the Cloud ##
 
