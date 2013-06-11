@@ -2,9 +2,17 @@
 title: Ruby
 ---
 
-Working with Ruby, Rails and Sinatra on Cloud Foundry is easy! 
+Cloud Foundry supports Ruby frameworks such as Rails, Sinatra, and Rack.
 
-## <a id='frameworks'></a>Supported Frameworks ##
+## <a id='package'></a>Package ##
+
+We recommend that you use bundler to manage your gem dependencies.
+
+You need to run `bundle install` locally before you deploy your app to make sure that your Gemfile.lock is consistent with your Gemfile.
+
+## <a id='deploy'></a> Deploy ##
+
+How you deploy your `.war` depends on the Cloud Foundry you are targeting. For run.pivotal.io, you can follow the Getting Started document [here](../../getting-started.html).
 
 Cloud Foundry supports multiple Ruby-based frameworks.
 
