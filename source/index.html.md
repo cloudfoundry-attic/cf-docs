@@ -12,6 +12,32 @@ For a look at what is planned - look at our [Roadmap](docs/roadmap.html).
 
 <div class="column-left">
   <div class="column-title">
+    <h4>run.pivotal.io</h4>
+  </div>
+  <p>Documentation specific to Pivotal's public Cloud Foundry PaaS on AWS.</p>
+
+  <hr>
+ 
+  <p>
+    Getting Started Guides
+    <ul>
+      <li><a href="docs/dotcom/getting-started.html">Getting Started</a></li>
+      <li><a href="docs/dotcom/adding-a-service.html">Adding A Service</a></li>
+    </ul>
+  </p>
+
+  <hr>
+
+   <p>
+    <a href="docs/dotcom/marketplace/">Services Marketplace</a>
+  </p>
+
+ <hr>
+
+</div>
+
+<div class="column-middle">
+  <div class="column-title">
     <a href="docs/using/index.html">
       <h4>Using Cloud Foundry</h4>
     </a>
@@ -21,7 +47,6 @@ For a look at what is planned - look at our [Roadmap](docs/roadmap.html).
   <hr>
 
   <p><a href="docs/using/app-arch/index.html">Application Architecture Considerations</a></p>
-  
 
   <hr>
 
@@ -74,19 +99,32 @@ For a look at what is planned - look at our [Roadmap](docs/roadmap.html).
 
   <hr>
 
-  <p><a href="docs/using/services/">Using Services</a></p>
+  <p><a href="docs/using/services/">Services</a></p>
 
-  <hr>
+  <hr>  
+
+    <p>
+    <a href="docs/reference/index.html">Reference</a>
+    <br>
+    Detailed reference materials.
+    <p>
+      <ul>
+        <li><a href="docs/reference/cc-api.html">Cloud Foundry REST API</a></li>
+      </ul>
+    </p>
+  </p>
+
+   <hr>
 
 </div>
 
-<div class="column-middle">
+<div class="column-right">
   <div class="column-title">
     <a href="docs/running/index.html">
       <h4>Running Cloud Foundry</h4>
     </a>
   </div>
-  <p>For dev/ops people managing instances of Cloud Foundry.</p>
+  <p>For operators deploying and managing instances of Cloud Foundry.</p>
 
   <hr>
 
@@ -167,49 +205,4 @@ For a look at what is planned - look at our [Roadmap](docs/roadmap.html).
 </div>
 
 
-<div class="column-right">
-  <div class="column-title">
-    <h4>Other Cloud Foundry Docs</h4>
-  </div>
-
-  <p>
-    <a href="docs/reference/index.html">Reference</a>
-    <br>
-    Detailed reference materials.
-    <p>
-      <ul>
-        <li><a href="docs/reference/cc-api.html">Cloud Foundry REST API</a></li>
-      </ul>
-    </p>
-  </p>
-
-  <hr>
-
-  <p>
-    <a href="docs/dotcom/">CloudFoundry.com</a>
-    <br>
-    Cloud Foundry features running on CloudFoundry.com.
-    <p>
-      <ul>
-        <li><a href="docs/dotcom/integration/">Technical Integration</a></li>
-        <li><a href="docs/dotcom/services-marketplace/">Services Marketplace</a></li>
-      </ul>
-    </p>
-  </p>
-
-  <hr>  
-
-  <p>
-    <a href="docs/community/index.html">Community</a>
-    <br>
-    Extensions, tools and services provided by the Cloud Foundry community and partners.
-    <p>
-      <ul>
-      </ul>
-    </p>
-  </p>
-
-  <hr>
-
-</div>
 
