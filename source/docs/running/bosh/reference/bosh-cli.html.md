@@ -2,7 +2,7 @@
 title: BOSH Command Line Interface
 ---
 
-The BOSH command line interface is used to interact with the BOSH director to perform actions on the cloud.  For the most recent documentation on its functions, install BOSH and simply type `bosh`.  Usage:
+Use the BOSH command line interface to interact with the BOSH director and perform actions on the cloud.  For the most recent documentation on its functions, install BOSH and simply type `bosh`.  Usage:
 <pre class="terminal">
     Usage: bosh [&lt;options&gt;] <command> [&lt;args&gt;]
         -c, --config FILE                Override configuration file. Also can be overridden by BOSH\_CONFIG environment variable. Defaults to $HOME/.bosh_config. Override precedence is command-line option, then environment variable, then home directory.

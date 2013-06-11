@@ -1,13 +1,13 @@
 ---
-title: Local Setup
+title: BOSH Local Setup
 ---
 
-BOSH CLI is a command line interface used to interact with MicroBOSH and BOSH. Before you can use MicroBOSH or BOSH you need to install BOSH Command Line Interface. The following steps install BOSH CLI. You can install on either a physical or Virtual Machine.
+BOSH CLI is a command line interface used to interact with MicroBOSH and BOSH. Before you can use MicroBOSH or BOSH you need to install BOSH Command Line Interface. The following steps install BOSH CLI. You can install on either a physical or virtual machine.
 
 ## Prerequistes ##
 
-* Ruby and RubyGems must be installed before installing BOSH CLI. Refer to the [Installing Ruby](/docs/common/install_ruby.html) page for help with Ruby installation. 
-* A Git client must be installed in order to pull down the BOSH repository from GitHub. Refer to the [Installing Git](/docs/common/install_git.html) page for help with Git installation. 
+* [Install Ruby and RubyGems](/docs/common/install_ruby.html). 
+* [Install a Git client](/docs/common/install_git.html) to pull down the BOSH repository from GitHub. 
 
 ## Install Local BOSH ##
 
@@ -25,7 +25,7 @@ $ rbenv rehash
 
 ## Install BOSH Releases ##
 
-Clone the BOSH and bosh-release repositories using git:
+Clone the BOSH and bosh-release repositories in git:
 
 <pre class="terminal">
 $ git clone git@github.com:cloudfoundry/bosh.git

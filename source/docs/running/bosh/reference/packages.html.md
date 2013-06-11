@@ -2,11 +2,9 @@
 title: Packages
 ---
 
-## <a id="introduction"></a> Introduction ##
+A package is a collection of source code along with a script that contains instructions for how to compile the code to binary format and install the package, with optional dependencies on other prerequisite packages.
 
-A package is a collection of source code along with a script that contains instruction how to compile it to binary format and install it, with optional dependencies on other pre-requisite packages.
-
-## <a id="package-complication"></a> Package Compilation ##
+## <a id="package-compilation"></a> Package Compilation ##
 
 Packages are compiled on demand during the deployment. The [director](#bosh-director) first checks to see if there already is a compiled version of the package for the stemcell version it is being deployed to, and if it doesn't already exist a compiled version, the director will instantiate a compile VM (using the same stemcell version it is going to be deployed to) which will get the package source from the blobstore, compile it, and then package the resulting binaries and store it in the blobstore.
 
@@ -22,7 +20,7 @@ When the package is installed a symlink is created from `/var/vcap/packages/<pac
 
 There is an optional `pre_packaging` script, which is run when the source of the package is assembled during the `bosh create release`. It can for instance be used to limit which parts of the source that get packages up and stored in the blobstore. It gets the environment variable `BUILD_DIR` set by the BOSH CLI which is the directory containing the source to be packaged.
 
-## <a id='package-specs'>Package specs</a> ##
+## <a id="package-specs"></a>Package Specs ##
 
 The package contents are specified in the `spec` file, which has three sections:
 
@@ -35,7 +33,7 @@ The package contents are specified in the `spec` file, which has three sections:
 `files`
 : A list of files this package contains, which can contain globs. A `*` matches any file and can be restricted by other values in the glob, e.g. `*.rb` only matches files ending with `.rb`. A `**` matches directories recursively.
 
-## <a id='dependencies'>Dependencies</a> ##
+## <a id="dependencies"></a>Dependencies ##
 
 The package `spec` file contains a section which lists other packages the current package depends on. These dependencies are compile time dependencies, as opposed to the job dependencies which are runtime dependencies.
 
