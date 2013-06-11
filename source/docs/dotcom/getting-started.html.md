@@ -10,10 +10,10 @@ This guide walks you through getting started at run.pivotal.io, powered by Cloud
 
 In order to run your application on run.pivotal.io, you need to:
 
-1. Sign up for an account
-1. Install and configure the `cf` command line tool
-1. Prepare your application on your local machine
-1. Push your application code to the cloud
+1. [Sign up for an account](#signup)
+1. [Install and configure the `cf` command line tool](#install)
+1. [Prepare your application on your local machine](#prepare-app)
+1. [Push your application code to the cloud](#push-app)
 
 ## <a id='signup'></a>Sign Up for An Account ##
 
