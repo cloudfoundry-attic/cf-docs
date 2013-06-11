@@ -2,11 +2,11 @@
 title: cf Console Interface
 ---
 
-cf is Cloud Foundry's console-based interface. You can use cf to deploy and manage applications running on most Cloud Foundry based environments including CloudFoundry.com.
+cf is Cloud Foundry's command line interface. You can use cf to deploy and manage applications running on most Cloud Foundry based environments including CloudFoundry.com.
 
 ## <a id='commands'></a>Commands by Functional Category ##
 
-This table below lists all cf commands, including those enabled by cf plug-ins. Click a command in the table for information about command options and functionality. For command options that apply to all cf commands, see [Command Usage and Qualifiers](commands).
+This table below lists all cf commands, including those enabled by cf plug-ins. Click a command in the table for information about command options and functionality. For command options that apply to all cf commands, see [Command Usage and Qualifiers](#usage).
 
 |   |  | |
 | :-------- | :---------- |:---------- |
@@ -103,7 +103,9 @@ The following data is returned for each application:
 
 #### <a id='bind-service'></a> bind-service ####
 
-Bind a service to an application.
+Bind a service to an application. Binding a service to your application adds credentials for the service instance to the `VCAP_SERVICES` environment variable. You may need to restart the application for the binding to take effect.
+
+Note that you can bind a service to an application at the time you create the service, as described in [create-service](#create-service).
 
 <div class="command-doc">
   <pre class="terminal">$ cf bind-service [instance name] [application name]</pre>
@@ -169,7 +171,11 @@ Create an organization.
 
 #### <a id='create-service'></a> create-service ####
 
-Create a new service instance.  cf prompts for service attributes not provided on the comannd line.
+Create a new service instance, and optionally, bind it to an application. If you do not bind a service to an application at creation, you can do it later with the [bind-service](#bind-service) command.
+
+To list service instances that already exist, use the [services](#services) command.
+
+cf prompts for service attributes not provided on the command line. 
 
 <div class="command-doc">
   <pre class="terminal">$ cf create-service [service type] [instance name]</pre>
@@ -178,12 +184,12 @@ Create a new service instance.  cf prompts for service attributes not provided o
 
 | Qualifier | Required | Description |
 | :-------- | :------- | :---------- |
-| --app, --bind APP   |  n       | Use this option to specify an application to which to bind the service          |
+| --app, --bind APP   |  n       | Use this option to specify an application to which to bind the service.         |
 | --name     |   y       | The name you assign to the service.           |
 |--offering | y| The type of the service to create, for example, "redis", "mysql", and so on. |
-|--plan | |The service plan. |
-|--provider | |The service provider. |
-|--version | |The service version. |
+|--plan | y|The service plan. |
+|--provider | n|The service provider. |
+|--version |n |The service version. |
 
 #### <a id='create-service-auth-token'></a> create-service-auth-token ####
 
@@ -714,14 +720,14 @@ Display service instance information.
 
 #### <a id='services'></a> services ####
 
-Display service type and version for all provisioned services.
+Display information about provisioned services in the current space.
 
 <div class="command-doc">
   <pre class="terminal">$ cf services</pre>
   <div class="break"></div>
 </div>
 
-The following data is returned for each provision service:
+The following data is returned for each service:
 
 * name -- The name assigned to the service instance when it was created.
 * service -- The type of service, for example, "cleardb" or "rediscloud".
@@ -975,9 +981,9 @@ cf Plugins extend the cf command line interface with additional commands; they a
 
 * console -- This plugin allows you to open a Rails console and connect to a Rails application.
 
-* mcf -- This plugin can be used to switch a Micro Cloud Foundry VM between online and offline mode. Install it with Ruby Gems, the gem name is mcf-cf-plugin. For a more detailed explanation of this plugin see the [micro cloud foundry cf plugin](/docs/running/micro-cloud-foundry/cf_plugin.html) page of the Micro Cloud Foundry section.
+* mcf -- This plugin can be used to switch a Micro Cloud Foundry VM between online and offline mode. Install it with Ruby Gems, the gem name is `mcf-cf-plugin`. For more information, see [Micro Cloud Foundry](/docs/running/micro_cloud_foundry).
 
-* tunnel -- This plugin allows access to a live data service running in the production environment. For more information on how to use this plug-in, please see [Tunneling to a Service](./service-tunneling.html)
+* tunnel -- This plugin allows access to a live data service running in the production environment. For more information on how to use this plug-in, please see [Tunneling to a Service](/docs/using/services/tunnelling-with-services.html).
 
 
 
