@@ -2,10 +2,12 @@
 title: Services
 ---
 
-Cloud Foundry Services are add-ons that can be provisioned alongside your application. Services such as a database that can be used directly by your app, but they can be anything that requires provisioning, such as an account on a third-party SaaS provider. Some services also support the concept of "binding" with an application. When a service is bound to an application, connection information and credentials specific to that service instance are placed in an environment variable `VCAP_SERVICES` in JSON format that are visible to the application process.
+Cloud Foundry Services are add-ons that can be provisioned alongside your application. Services such as a database that can be used directly by your app, but they can be anything that requires provisioning, such as an account on a third-party SaaS provider. 
 
 * [Managing Services from the Command Line](managing-services.html)
 * [Tunnelling with Services](tunnelling-with-services.html)
+
+Some services also support the concept of "binding" with an application. When a service is bound to an application, connection information and credentials specific to that service instance are placed in an environment variable `VCAP_SERVICES` in JSON format that are visible to the application process.
 
 * [Using Bound Services with an Application](using-bound-services.html)
 
@@ -22,5 +24,5 @@ Cloud Foundry Services are add-ons that can be provisioned alongside your applic
 
 ### Node.js
 
-* [Node.js Service Bindings](javascript-services.html)
+* [Node.js Service Bindings](node-service-bindings.html)
 
