@@ -380,7 +380,7 @@ Install the `vim` text editor. This is not stictly required for installation, bu
 $ apt-get install vim
 </pre>
 
-### <a id="add-network"></a>Update network configuration
+### <a id="add-network"></a>Update Network Configuration
 
 Install bridge-utils:
 

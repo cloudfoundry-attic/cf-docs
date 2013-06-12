@@ -2,7 +2,7 @@
 
 ## <a id="prerequisites"></a>Prerequisites ##
 
- *  [Install OpenStack](install_openstack.html).
+[Install OpenStack](install_openstack.html).
  
 
 ## <a id="step1"></a>Step 1: Create an Inception VM ##
@@ -113,7 +113,7 @@ If this is the first time you have run Bosh, create the release in the release r
 
     apt-get install libpq-dev
 
-####Install OpenStack registry
+####Install OpenStack Registry
 
     cd /home/ubuntu/bosh/openstack_registry
     bundle install --without=development test
@@ -140,7 +140,7 @@ Output will be like this:
     cp /var/tmp/bosh/agent-x.y.z-nnnnn/work/work/micro-bosh-stemcell-openstack-x.y.z.tgz .
 
 
-## <a id="step6"></a>Step 6: Deploy Micro Bosh stemcell to Glance ##
+## <a id="step6"></a>Step 6: Deploy Micro Bosh Stemcell to Glance ##
 
 This creates the Micro Bosh VM and it shows up in Horizon 
 
