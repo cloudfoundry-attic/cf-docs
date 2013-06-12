@@ -43,8 +43,8 @@ title: Welcome to Cloud Foundry Documentation
 
   <p>Client Tools<br>
   <a href="docs/using/managing-apps/cf/index.html">cf command line</a><br>
-  <a href="docs/using/managing-apps/ide/index.html">Eclipse IDE</a><br>
-  <a href="docs/using/managing-apps/build-tools/index.html">Maven and Gradle Build Tools</a>
+  <a href="docs/using/managing-apps/ide/index.html">IDE Integration</a><br>
+  <a href="docs/using/managing-apps/build-tools/index.html">Build Tool Integration</a>
   </p>
 
   <hr>
