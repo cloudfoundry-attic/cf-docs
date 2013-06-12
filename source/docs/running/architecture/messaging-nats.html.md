@@ -1,5 +1,6 @@
 ---
 title: Messaging (NATS)
+description: Lightweight publish-subscribe and distributed queueing messaging system.
 ---
 
 This information was adapted from the [NATS](https://github.com/derekcollison/nats) README. NATS is a lightweight publish-subscribe and distributed queueing messaging system written in Ruby.

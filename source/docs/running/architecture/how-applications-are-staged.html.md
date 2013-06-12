@@ -1,5 +1,6 @@
 ---
 title: How Applications Are Staged
+description: Click on the link to view the diagram.
 ---
 
 <img src="/images/app_push_flow_diagram.png" style="width: 100%"/>

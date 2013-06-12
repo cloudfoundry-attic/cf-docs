@@ -1,5 +1,5 @@
 ---
-title: VCAP_SERVICES
+title: Using Bound Services
 ---
 
 Binding a service to your application may add credentials to the VCAP\_SERVICES environment variable which are visible to your application process. You can see the contents of VCAP\_SERVICES in several ways.

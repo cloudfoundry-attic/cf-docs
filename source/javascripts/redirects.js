@@ -2,52 +2,52 @@ if (location.pathname == "/getting-started.html" || location.pathname == "/tools
   location.pathname = "/index.html"
 };
 if (location.pathname == "/frameworks.html" || location.pathname == "/tools/deploying-apps.html") {
-  location.pathname = "/docs/using/deploying-apps/"
+  location.pathname = "/index.html"
 };
 if (location.pathname == "/docs/using/deploying-apps/jvm/spring-getting-started.html") {
-  location.pathname = "/docs/using/deploying-apps/"
+  location.pathname = "/index.html"
 };
 if (location.pathname == "/docs/using/deploying-apps/jvm/") {
-  location.pathname = "/docs/using/deploying-apps/"
+  location.pathname = "/index.html"
 };
 if (location.pathname == "/docs/using/deploying-apps/ruby/") {
-  location.pathname = "/docs/using/deploying-apps/"
+  location.pathname = "/index.html"
 };
 if (location.pathname == "/docs/using/deploying-apps/ruby/rails-getting-started.html") {
-  location.pathname = "/docs/using/deploying-apps/"
+  location.pathname = "/index.html"
 };
 if (location.pathname == "/docs/using/deploying-apps/ruby/sinatra-getting-started.html") {
-  location.pathname = "/docs/using/deploying-apps/"
+  location.pathname = "/index.html"
 };
 if (location.pathname == "/docs/using/deploying-apps/javascript/") {
-  location.pathname = "/docs/using/deploying-apps/"
+  location.pathname = "/index.html"
 };
 if (location.pathname == "/docs/using/deploying-apps/jvm/grails-getting-started.html") {
-  location.pathname = "/docs/using/deploying-apps/"
+  location.pathname = "/index.html"
 };
 if (location.pathname == "/docs/using/deploying-apps/jvm/play-getting-started.html") {
-  location.pathname = "/docs/using/deploying-apps/"
+  location.pathname = "/index.html"
 };
 if (location.pathname == "/frameworks/java/spring/spring.html" || location.pathname == "/frameworks/java/spring/spring-insight.html" || location.pathname == "/frameworks/java/spring/tutorials/springmvc-jpa-postgres/spring-getting-started-with-sts.html" || location.pathname == "/frameworks/java/spring/tutorials/springmvc-jpa-postgres/springmvc-template-project.html" || location.pathname == "/frameworks/java/spring/tutorials/springmvc-jpa-postgres/spring-expensereport-app-tutorial.html" || location.pathname == "/frameworks/java/spring/tutorials/springmvc-jpa-postgres/expensereport-app-with-spring-security.html") {
-  location.pathname = "/docs/using/deploying-apps/"
+  location.pathname = "/index.html"
 };  
 if (location.pathname == "/frameworks/java/spring/grails.html") {
-  location.pathname = "/docs/using/deploying-apps/"
+  location.pathname = "/index.html"
 };
 if (location.pathname == "/frameworks/scala/scala.html" || location.pathname == "/frameworks/scala/lift.html") {
-  location.pathname = "/docs/using/deploying-apps/"
+  location.pathname = "/index.html"
 };  
 if (location.pathname == "/frameworks/play/play.html" || location.pathname == "/frameworks/play/java-getting-started.html" || location.pathname == "/frameworks/play/scala-getting-started.html" || location.pathname == "/frameworks/play/java-mysql.html" || location.pathname == "/frameworks/play/java-postgresql.html" || location.pathname == "/frameworks/play/java-mongodb.html") {
-  location.pathname = "/docs/using/deploying-apps/"
+  location.pathname = "/index.html"
 }; 
 if (location.pathname == "/frameworks/nodejs/nodejs.html" || location.pathname == "/frameworks/nodejs/nodeAutoReconfig.html") {
-  location.pathname = "/docs/using/deploying-apps/"
+  location.pathname = "/index.html"
 }; 
 if (location.pathname == "/frameworks/ruby/ruby-rails-sinatra.html" || location.pathname == "/frameworks/ruby/ruby.html" || location.pathname == "/frameworks/ruby/ruby-cf.html" || location.pathname == "/frameworks/ruby/installing-ruby.html" || location.pathname == "/frameworks/ruby/ruby-simple.html" || location.pathname == "/frameworks/ruby/rails-3-0.html" || location.pathname == "/frameworks/ruby/rails-3-1.html") {
-  location.pathname = "/docs/using/deploying-apps/"
+  location.pathname = "/index.html"
 };
 if (location.pathname == "/frameworks/ruby/sinatra.html") {
-  location.pathname = "/docs/using/deploying-apps/"
+  location.pathname = "/index.html"
 }; 
 if (location.pathname == "/infrastructure/micro/mcf.html" || location.pathname == "/infrastructure/micro/installing-mcf.html" || location.pathname == "/infrastructure/micro/using-mcf.html") {
   location.pathname = "/docs/running/micro_cloud_foundry/"

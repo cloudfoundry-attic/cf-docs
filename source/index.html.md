@@ -12,7 +12,7 @@ title: Welcome to Cloud Foundry Documentation
    <p>Available at <a href="http://run.pivotal.io">run.pivotal.io</a></p>
    <hr>
   <p><a href="docs/dotcom/getting-started.html">Getting Started</a></p>
-  <p><a href="docs/dotcom/adding-a-service.html">Adding A Service</a></p>
+  <p><a href="docs/dotcom/adding-a-service.html">Adding a Service</a></p>
   </p>
 
   <hr>
@@ -37,19 +37,19 @@ title: Welcome to Cloud Foundry Documentation
 
   <hr>
 
-  <p><a href="docs/using/deploying-apps/index.html">Deploy your App</a></p>
+  <p><a href="docs/using/deploying-apps/index.html">Deploy Your App</a></p>
 
   <hr>
 
   <p>Client Tools<br>
   <a href="docs/using/managing-apps/cf/index.html">cf command line</a><br>
-  <a href="docs/using/managing-apps/ide/index.html">Eclipse IDE</a><br>
-  <a href="docs/using/managing-apps/build-tools/index.html">Maven and Gradle Build Tools</a>
+  <a href="docs/using/managing-apps/ide/index.html">IDE Integration</a><br>
+  <a href="docs/using/managing-apps/build-tools/index.html">Build Tool Integration</a>
   </p>
 
   <hr>
-  <p>Managing Orgs and Domains<br>
-  <a href="docs/using/managing-apps/orgs-and-spaces.html">Orgs and Spaces</a><br>
+  <p>Managing Organizations and Domains<br>
+  <a href="docs/using/managing-apps/orgs-and-spaces.html">Organizations and Spaces</a><br>
   <a href="docs/using/managing-apps/custom-domains/index.html">Custom Domains</a>
   </p>
   <hr>
@@ -90,7 +90,7 @@ title: Welcome to Cloud Foundry Documentation
   <a href="docs/running/deploying-cf/ec2/index.html">Deploying to AWS</a><br>
   <a href="docs/running/deploying-cf/openstack/index.html">Deploying to OpenStack</a><br>   
   <a href="docs/running/deploying-cf/vsphere/index.html">Deploying to vSphere</a><br>
-  <a href="docs/running/deploying-cf/vcloud/index.html">Deploying to vCloud Director</a><br>
+  <a href="docs/running/deploying-cf/vcloud/deploying_to_vcloud_director.html">Deploying to vCloud Director</a><br>
   <a href="docs/running/deploying-cf-with-chef/index.html">Deploying with Chef</a>
   </p>
 
@@ -109,7 +109,7 @@ title: Welcome to Cloud Foundry Documentation
   <p>
   Troubleshooting<br>
   <a href="docs/running/troubleshooting/troubleshooting-apps.html">Apps</a><br>
-  <a href="docs/running/troubleshooting/troubleshooting-apps.html">Warden Services</a>
+  <a href="docs/running/troubleshooting/troubleshooting-warden-services.html">Warden Services</a>
   </p>
 
 </div>
