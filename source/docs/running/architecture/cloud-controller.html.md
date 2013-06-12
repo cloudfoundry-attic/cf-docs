@@ -1,5 +1,6 @@
 ---
 title: Cloud Controller
+description: Maintains a database with tables for orgs, spaces, apps, services, service instances, user roles, and more.
 ---
 
 The Cloud Controller is written in Ruby and provides REST API endpoints for clients to access the system. The Cloud Controller maintains a database with tables for orgs, spaces, apps, services, service instances, user roles, and more.

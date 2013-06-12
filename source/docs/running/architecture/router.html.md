@@ -1,5 +1,6 @@
 ---
 title: (Go)Router
+description: Routes incoming traffic to the appropriate component, usually the cloud controller or a running application on a DEA node.
 ---
 
 The Router routes traffic coming into Cloud Foundry to the appropriate component - usually [Cloud Controller](./cloud-controller.html) or a running application on a [DEA](./execution-agent.html) node. The router is implemented in Go. Implementing a custom router in Go gives full control over every connection to the router, which makes it easier to support WebSockets and other types of traffic (e.g.  via HTTP CONNECT). All routing logic is contained in a single process,
