@@ -53,7 +53,11 @@ title: Welcome to Cloud Foundry Documentation
   <a href="docs/using/managing-apps/custom-domains/index.html">Custom Domains</a>
   </p>
   <hr>
-  <p><a href="docs/using/services/">Services</a></p>
+  <p>Services<br>
+  <a href="docs/using/services/">Using Services Overview</a></br>
+  <a href="/docs/using/services/managing-services.html">Managing Services</a></br>
+  <a href="/docs/using/services/tunnelling-with-services.html">Tunneling with Services</br>
+  <a href="/docs/using/services/using-bound-services.html">Using Bound Services</a></br></p>
 
   <hr>
 
