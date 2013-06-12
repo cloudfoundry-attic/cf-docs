@@ -3,8 +3,7 @@ title: Welcome to Cloud Foundry Documentation
 ---
 
 <table><tr><td style="font-size:9pt">
-          <b>We are in a time of transition:</b>
-          <li>You are reading V2 documentation. The V1 docs are available <a href="http://cf-docs-deprecated.cloudfoundry.com">here</a>. Cloudfoundry.com will be upgraded to V2 in June 2013. <li>You can browse <b>http://api.{cloudfoundry url}/info</b> to check a Cloud Foundry version.<li>The <b>cf</b> command-line is for Cloud Foundry V2. Use <b>vmc</b> for Cloud Foundry V1. <a href="docs/running/api/version.html">See these examples</a> for detail on detecting the difference between a v1 and a v2 system.
+          <li>You are reading V2 documentation. The V1 docs are available <a href="http://cf-docs-deprecated.cloudfoundry.com">here</a>.
 </td></tr></table>
 
 For a look at what is planned - look at our [Roadmap](docs/roadmap.html).
@@ -12,18 +11,12 @@ For a look at what is planned - look at our [Roadmap](docs/roadmap.html).
 
 <div class="column-left">
   <div class="column-title">
-    <h4>run.pivotal.io</h4>
+  <h4>Pivotal's Cloud Foundry PaaS</h4>
   </div>
-  <p>Documentation specific to Pivotal's public Cloud Foundry PaaS on AWS.</p>
-
-  <hr>
- 
-  <p>
-    Getting Started Guides
-    <ul>
-      <li><a href="docs/dotcom/getting-started.html">Getting Started</a></li>
-      <li><a href="docs/dotcom/adding-a-service.html">Adding A Service</a></li>
-    </ul>
+   <p>Available at <a href="http://run.pivotal.io">run.pivotal.io</a></p>
+   <hr>
+  <p><a href="docs/dotcom/getting-started.html">Getting Started</a></p>
+  <p><a href="docs/dotcom/adding-a-service.html">Adding A Service</a></p>
   </p>
 
   <hr>
@@ -38,83 +31,33 @@ For a look at what is planned - look at our [Roadmap](docs/roadmap.html).
 
 <div class="column-middle">
   <div class="column-title">
-    <a href="docs/using/index.html">
       <h4>Using Cloud Foundry</h4>
-    </a>
   </div>
-  <p>For developers pushing applications to Cloud Foundry.</p>
+  <p>For pushing apps to Cloud Foundry.</p>
 
   <hr>
 
-  <p><a href="docs/using/app-arch/index.html">Application Architecture Considerations</a></p>
+  <p><a href="docs/using/app-arch/index.html">Pre-deploy Considerations</a></p>
 
   <hr>
 
-  <p><a href="docs/using/deploying-apps/index.html">Deploying Applications</a></p>
-
-  <p>
-    <ul>
-      <li>
-        <a href="docs/using/deploying-apps/jvm/index.html">Java / JVM-based</a>
-      </li>
-      <li>
-        <a href="docs/using/deploying-apps/javascript/index.html">Node.js</a>
-      </li>
-      <li>
-        <a href="docs/using/deploying-apps/ruby/index.html">Ruby</a>
-      </li>
-      <li>
-        <a href="docs/using/deploying-apps/custom/index.html">Custom</a>
-      </li>
-    </ul>
-  </p>
+  <p><a href="docs/using/deploying-apps/index.html">Deploy your App</a></p>
 
   <hr>
 
-  <p><a href="docs/using/managing-apps/index.html">Managing Applications</a></p>
+  <p><a href="docs/using/managing-apps/index.html">Managing Apps, Orgs, and Domains</a></p>
 
-  <p>
-    <ul>
-      <li>
-        <a href="docs/using/managing-apps/cf/index.html">cf</a>
-      </li>
-      <li>
-        <a href="docs/using/managing-apps/orgs-and-spaces.html">Organizations & Spaces</a>
-      </li>
-      <li>
-        <a href="/docs/using/managing-apps/ide/">IDE Integration</a>
-      </li>
-      <li>      
-       <a href="docs/using/managing-apps/build-tools/index.html">Build Tools</a>
-      </li>
-      <li>
-        <a href="docs/using/managing-apps/libs/index.html">API and Libraries</a>
-      </li>
-      <li>
-        <a href="docs/using/managing-apps/custom-domains/index.html">Custom Domains</a>
-      </li>
-    </ul>
-  </p>
+  <p><a href="docs/using/managing-apps/cf/index.html">cf command line tool</a></p>
 
+  <p><a href="/docs/using/managing-apps/ide/">IDE Integration</a></p>
+
+  <p><a href="docs/using/managing-apps/build-tools/index.html">Build Tools</a></p> 
 
   <hr>
 
   <p><a href="docs/using/services/">Services</a></p>
 
-  <hr>  
-
-    <p>
-    <a href="docs/reference/index.html">Reference</a>
-    <br>
-    Detailed reference materials.
-    <p>
-      <ul>
-        <li><a href="docs/reference/cc-api.html">Cloud Foundry REST API</a></li>
-      </ul>
-    </p>
-  </p>
-
-   <hr>
+  <hr>
 
 </div>
 
@@ -124,7 +67,7 @@ For a look at what is planned - look at our [Roadmap](docs/roadmap.html).
       <h4>Running Cloud Foundry</h4>
     </a>
   </div>
-  <p>For operators deploying and managing instances of Cloud Foundry.</p>
+  <p>For managing your own Cloud Foundry.</p>
 
   <hr>
 

@@ -180,11 +180,10 @@
               <img alt="Fork me on GitHub" src="/images/ribbon_forkme.png">
             </a>
 
-            <h1 class="main-title">Cloud Foundry Documentation</h1>
             <form action='http://www.cloudfoundry.com/search' class='search-docs-form' method='get' onsubmit='return submitQuery()'>
               <input autocomplete='off' class='search-docs-input' id='search-query' name='q' onfocus="this.placeholder = 'more:docs '" placeholder='' type='search-docs' value='more:docs '>
             </form>
-
+            <br clear="left">
             <% unless current_page.url == "/" %>
               <div class="breadcrumbs">
                 <ul>
@@ -194,12 +193,9 @@
                   <%= trail_nav %>
                 </ul>
               </div>
-              <br>
+              <br clear="left">
 
-			<table><tr><td style="font-size:9pt">
-			          <b>We are in a time of transition:</b>
-			          <li>You are reading V2 documentation. The V1 docs are available <a href="http://cf-docs-deprecated.cloudfoundry.com">here</a>. Cloudfoundry.com will be upgraded to V2 in June 2013. <li>You can browse <b>http://api.{cloudfoundry url}/info</b> to check a Cloud Foundry version.<li>The <b>cf</b> command-line is for Cloud Foundry V2. Use <b>vmc</b> for Cloud Foundry V1. <a href='/docs/running/api/version.html'>See these examples</a> for detail on detecting the difference between a v1 and a v2 system.
-			</td></tr></table>
+			
 
               <%= quick_links %>
 

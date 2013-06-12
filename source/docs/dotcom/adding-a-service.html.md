@@ -87,13 +87,12 @@ Binding cleardb-e2006 to myapp... OK
 
 Once you have a service instance created and bound to your app, you will need to configure your application to use the correct credentials for your service.
 
-There are three ways of binding services on Cloud Foundry.
+Two ways of binding services on Cloud Foundry are:
 
 | Binding Strategy    | Description       | 
 | :-------------------  |:--------------------  | 
 | Auto-Reconfiguration  |  For databases only. Cloud Foundry creates a service connection for you.        | 
 | cfruntime     | Creates an object with the location and settings of your services. Set your service connections based on the values in that object.       | 
-| Manually        | Use Cloud Foundry Environment Variables to set your service connections. See [Using Bound Services](../using/services/using-bound-services.html). |
 
 Auto-Reconfiguration and cfruntime are used differently depending on your framework:
 
@@ -102,3 +101,5 @@ Auto-Reconfiguration and cfruntime are used differently depending on your framew
 | Javascript          | <li>[Node.js](../services/node-service-bindings.html) |
 | Java / JVM        | <li>[Lift](../services/lift-service-bindings.html) <li>[Grails](../services/grails-service-bindings.html)<li>[Spring](../services/spring-service-bindings.html) |
 | Ruby            | <li>[Rack, Rails, or Sinatra](../services/ruby-service-bindings.html) |
+
+ In addition to using Auto-reconfiguration, and cfruntime, you can also bind your service using a JSON object that is exposed via Cloud Foundry Environment Variables. See [Using Bound Services](../using/services/using-bound-services.html).
