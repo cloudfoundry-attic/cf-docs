@@ -1,8 +1,10 @@
 ---
-title: Build Tools
+title: Build Tool Integration
 ---
 
-It is possible to deploy application using a couple of different JVM build tools, Maven and Gradle.
+It is possible to deploy application using a couple of different JVM build tools - Maven and Gradle.
+
+> **The Gradle and Maven plugins will be updated in the coming weeks to support Cloud Foundry v2, including support for organizations, spaces, and custom buildpacks.**
 
 ## <a id='gradle'></a>Gradle ##
 
@@ -10,7 +12,7 @@ Gradle is a build tool that automates the building, testing, publishing, and dep
 
 The gradle-cf-plugin adds Cloud Foundry-oriented tasks to a Gradle project. 
 
-## <a id="intro"></a> Add the plugin ##
+### <a id="gradle-install"></a> Install the plugin ###
 
 An example Gradle project with the Cloud Foundry plugin installed looks something like this (build.gradle):
 
@@ -92,9 +94,9 @@ From this point it should be possible to carry out most tasks available as part 
 
 Using the cf-maven-plugin plugin, you can deploy an application directly from Maven. This is useful as it means being able to store the Cloud Foundry application manifest in pom.xml.
 
-## <a id='install-the-plugin'></a>Install the Plugin ##
+### <a id='maven-install'></a>Install the Plugin ###
 
-Add the following to the plugins node of pom.xml:
+Add the following to the `plugins` node of your `pom.xml`:
 
 ~~~xml
 <plugin>
@@ -143,12 +145,10 @@ Create a file in ~/.m2/settings.xml or if the file exists, edit and add:
 
 Set the server/id node to correspond to the server name set in the pom.xml file and also set the username and password for the desired account.
 
-Then use Maven to package and deploy!
+Then use Maven to package and deploy.
 
 <pre class="terminal">
 $ mvn clean package
 $ mvn cf:push
 </pre>
-
-
 

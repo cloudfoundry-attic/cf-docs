@@ -2,6 +2,7 @@
 title: Spring Tool Suite
 ---
 
+> **The Spring Tool Suite™ plugin for Cloud Foundry will be updated in the coming weeks to support Cloud Foundry v2, including support for organizations, spaces, and custom buildpacks.**
 
 Spring Tool Suite™ (STS) provides the best Eclipse-powered development environment for building Spring-powered enterprise applications. STS supplies tools for the latest enterprise Java and Spring releases, and incorporates the latest Eclipse releases.
 
