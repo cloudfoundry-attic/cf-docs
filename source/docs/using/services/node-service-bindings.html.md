@@ -14,6 +14,14 @@ This guide is for developers who wish to bind a data source to a Node.js applica
 * [NPM](http://npmjs.org/) - Node Package Manager, to manage dependencies on your application
 * A sample application such as the one created in [this](./index.html) tutorial
 
+### <a id='creating'></a> Creating a service ##
+
+To create a service issue the following command with cf and answer the interactive prompts;
+
+~~~bash
+$ cf create-service
+~~~
+
 ## <a id='autoconfig'></a>Auto Configuration ##
 
 When any of the service types mentioned below are bound to a Node.js application, configuration for that data source will be configured automatically by Cloud Foundry.
@@ -58,7 +66,6 @@ app.listen(3000);
 Deploy the application as normal and the port will automatically be assigned, along with any bound data connections. If you do not wish to use auto configuration then just change the app to look for the bound port using environment variables;
 
 ~~~javascript
-require("cf-autoconfig");
 var express = require("express");
 var app = express();
 
@@ -69,9 +76,9 @@ app.get('/', function(req, res) {
 app.listen(process.env.VCAP_APP_PORT || 3000);
 ~~~
 
-## <a id='modifying'></a> Modifying the sample application ##
+## <a id='Connecting'></a> Connecting to a Service ##
 
-For the purpose of demonstrating how you should use each module within the context of auto configuration, we will add a function to the application called record_visit, this, for some examples, will record the visitors IP address and the date and for the others will simply demonstrate connectivity.
+Let's add a function to the application called record_visit, this, for some examples, will record the visitors IP address and the date and for the others will simply demonstrate connectivity.
 
 ### <a id='module-support'></a> Adding support for the correct module ###
 
@@ -83,6 +90,7 @@ Edit package.json and add the intended module to dependencies section, normally 
   "version": "0.0.1",
   "dependencies": {
     "express": "*",
+    "cf-autoconfig": "*",
     "mongodb": "*",
     "mongoose": "*",
     "mysql": "*",
@@ -101,6 +109,7 @@ Next, edit app.js as appropriate for the intended module, passing in blank conne
 ### <a id='mongodb'></a> Mongodb ##
 
 ~~~javascript
+require("cf-autoconfig");
 var express = require("express");
 var app = express();
 
@@ -127,6 +136,7 @@ app.listen(3000);
 ### <a id='mongodb'></a> Redis ##
 
 ~~~javascript
+require("cf-autoconfig");
 var express = require("express");
 var app = express();
 
@@ -153,6 +163,7 @@ app.listen(3000);
 ### <a id='mysql'></a> MySQL ##
 
 ~~~javascript
+require("cf-autoconfig");
 var express = require("express");
 var app = express();
 
@@ -186,6 +197,7 @@ app.listen(3000);
 ### <a id='rabbitmq'></a> Rabbit MQ ##
 
 ~~~javascript
+require("cf-autoconfig");
 var express = require("express");
 var app = express();
 
@@ -217,13 +229,7 @@ app.get('/', function(req, res) {
 app.listen(3000);
 ~~~~
 
-### <a id='creating-and-binding'></a> Creating and binding the service ##
-
-To create a service issue the following command with cf and answer the interactive prompts;
-
-~~~bash
-$ cf create-service
-~~~
+### <a id='binding'></a> Binding a service ##
 
 To bind the service to the application, use the following cf command;
 
