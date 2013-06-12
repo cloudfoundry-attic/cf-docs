@@ -9,6 +9,7 @@ Cloud Foundry Services are any type of add-on that can be provisioned alongside 
 
 Some services also support the concept of "binding" with an application. When a service is bound to an application, connection information and credentials specific to that service instance are placed in an environment variable `VCAP_SERVICES` in JSON format that are visible to the application process. See [Using Bound Services with an Application](using-bound-services.html) and the following sections.
 
+* [VCAP_SERVICES Environment Variable](environment-variable.html)
 
 ### Java/JVM
 
@@ -25,5 +26,6 @@ Some services also support the concept of "binding" with an application. When a 
 * [Node.js Service Bindings](node-service-bindings.html)
 
 ### Connecting External Services to Cloud Foundry
+
 Private Cloud Foundry operators frequently ask how applications pushed to their Cloud Foundry instances can bind with external services, such as Oracle, which they operate themselves. See [Service Connector](/docs/running/architecture/services/service-connector.html).
 

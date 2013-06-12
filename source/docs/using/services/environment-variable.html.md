@@ -1,5 +1,5 @@
 ---
-title: Using Bound Services
+title: VCAP_SERVICES Environment Variable
 ---
 
 Binding a service to your application may add credentials to the VCAP\_SERVICES environment variable which are visible to your application process. You can see the contents of VCAP\_SERVICES in several ways.
@@ -90,3 +90,10 @@ VCAP_SERVICES=
 }
 ~~~
 
+## <a id='database_url'></a>DATABASE_URL ##
+
+If your application depends on DATABASE_URL being set to the connection string for your service, and we're not setting this for you automatically (the Rails buildpack should), you can set this variable manually.
+
+<pre class="terminal">
+$ cf set-env myapp DATABASE_URL mysql://b5d435f40dd2b2:ebfc00ac@us-cdbr-east-03.cleardb.com:3306/ad_c6f4446532610ab
+</pre>
