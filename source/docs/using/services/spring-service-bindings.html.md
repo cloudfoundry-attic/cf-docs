@@ -21,10 +21,7 @@ For more information on auto-reconfiguration of specific services types, see the
 
 ### <a id='optout'></a>Opting out of Auto-Reconfiguration ###
 
-Sometimes you may not want Cloud Foundry to auto-reconfigure your Spring application. There are two ways to opt out of auto-reconfiguration:
-
-* When you deploy your application, specify that the framework is `JavaWeb` instead of `Spring`. Note that in this case Cloud Foundry will not automatically set the `cloud` profile as described in [Profiles](#profiles) section and the Cloud Foundry properties will not be automatically exposed to Spring [property placeholders](#properties).
-* Use the [`<cloud:>` namespace](#namespace) elements in your Spring application context file to explicitly create a bean that represents a service. This makes auto-reconfiguration unnecessary. 
+Sometimes you may not want Cloud Foundry to auto-reconfigure your Spring application. To opt out of auto-reconfiguration, use the [`<cloud:>` namespace](#namespace) elements in your Spring application context file to explicitly create a bean that represents a service. This makes auto-reconfiguration unnecessary. 
 
 ## <a id='manual'></a>Manual Configuration ##
 
