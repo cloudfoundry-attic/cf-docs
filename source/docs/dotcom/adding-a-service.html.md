@@ -98,8 +98,8 @@ Auto-Reconfiguration and cfruntime are used differently depending on your framew
 
 | Runtime               | Framework                   |
 | :-------------        |:-------------               |
-| Javascript          | <li>[Node.js](../services/node-service-bindings.html) |
-| Java / JVM        | <li>[Lift](../services/lift-service-bindings.html) <li>[Grails](../services/grails-service-bindings.html)<li>[Spring](../services/spring-service-bindings.html) |
-| Ruby            | <li>[Rack, Rails, or Sinatra](../services/ruby-service-bindings.html) |
+| Javascript          | <li>[Node.js](../using/services/node-service-bindings.html) |
+| Java / JVM        | <li>[Lift](../using/services/lift-service-bindings.html) <li>[Grails](../services/grails-service-bindings.html)<li>[Spring](../using/services/spring-service-bindings.html) |
+| Ruby            | <li>[Rack, Rails, or Sinatra](../using/services/ruby-service-bindings.html) |
 
  In addition to using Auto-reconfiguration, and cfruntime, you can also bind your service using a JSON object that is exposed via Cloud Foundry Environment Variables. See [Using Bound Services](../using/services/using-bound-services.html).
