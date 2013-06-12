@@ -1,5 +1,5 @@
 ---
-title: Services
+title: Roadmap to Using Services
 ---
 
 Cloud Foundry Services are any type of add-on that can be provisioned alongside your application; for example, a database or an account on a third-party SaaS provider. Cloud Foundry services are implemented with a common architecture that uses gateways and nodes.
@@ -7,15 +7,14 @@ Cloud Foundry Services are any type of add-on that can be provisioned alongside 
 * [Managing Services from the Command Line](managing-services.html)
 * [Tunnelling with Services](tunnelling-with-services.html)
 
-Some services also support the concept of "binding" with an application. When a service is bound to an application, connection information and credentials specific to that service instance are placed in an environment variable `VCAP_SERVICES` in JSON format that are visible to the application process. See 
+Some services also support the concept of "binding" with an application. When a service is bound to an application, connection information and credentials specific to that service instance are placed in an environment variable `VCAP_SERVICES` in JSON format that are visible to the application process. See [Using Bound Services with an Application](using-bound-services.html) and the following sections.
 
-* [Using Bound Services with an Application](using-bound-services.html)
 
 ### Java/JVM
 
-* [Spring](spring-service-bindings.html)
-* [Grails](grails-service-bindings.html) 
-* [Lift](lift-service-bindings.html)
+* [Spring Service Bindings](spring-service-bindings.html)
+* [Grails Service Bindings](grails-service-bindings.html) 
+* [Lift Service BIndings](lift-service-bindings.html)
 
 ### Ruby
 
@@ -24,4 +23,7 @@ Some services also support the concept of "binding" with an application. When a 
 ### Node.js
 
 * [Node.js Service Bindings](node-service-bindings.html)
+
+### Connecting External Services to Cloud Foundry
+Private Cloud Foundry operators frequently ask how applications pushed to their Cloud Foundry instances can bind with external services, such as Oracle, which they operate themselves. See [Service Connector](/docs/running/architecture/services/service-connector.html).
 
