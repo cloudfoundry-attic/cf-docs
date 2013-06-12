@@ -62,6 +62,8 @@ Not all services provide bindable service instances. Binding requires an additio
 
 For services that offer bindable service instances, the binding operation put credentials for the service instance in the environment variable VCAP\_SERVICES, where your application can consume them.
 
+For more information about the VCAP\_SERVICES environment variable and how to use it, see [VCAP_SERVICES](../using/services/vcap-services.html)
+
 You can bind a service to an application with the command `cf bind-service`. You will first be asked for the application to bind the service to.
 
 <pre class="terminal">
