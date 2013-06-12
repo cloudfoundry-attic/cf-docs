@@ -1,6 +1,7 @@
 ---
-title: How Cloud Operators can navigate to a specific app running in a Warden container
+title: Troubleshooting Apps
 ---
+
 ### Retrieve an example backend (internal DEA network host:port) for a particular URL
 
 Send a X-Vcap-Trace header on your request to an app with the appropriate secret key, and the router will add a X-Vcap-Backend response header identifying the DEA that was used to service the request.

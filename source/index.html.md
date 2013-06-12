@@ -5,10 +5,6 @@ title: Welcome to Cloud Foundry Documentation
 <table><tr><td style="font-size:9pt">
           <li>You are reading V2 documentation. The V1 docs are available <a href="http://cf-docs-deprecated.cloudfoundry.com">here</a>.
 </td></tr></table>
-
-For a look at what is planned - look at our [Roadmap](docs/roadmap.html).
-
-
 <div class="column-left">
   <div class="column-title">
   <h4>Pivotal's Cloud Foundry PaaS</h4>
@@ -37,7 +33,7 @@ For a look at what is planned - look at our [Roadmap](docs/roadmap.html).
 
   <hr>
 
-  <p><a href="docs/using/app-arch/index.html">Pre-deploy Considerations</a></p>
+  <p><a href="docs/using/app-arch/index.html">App Design for the Cloud</a></p>
 
   <hr>
 
@@ -45,16 +41,18 @@ For a look at what is planned - look at our [Roadmap](docs/roadmap.html).
 
   <hr>
 
-  <p><a href="docs/using/managing-apps/index.html">Managing Apps, Orgs, and Domains</a></p>
-
-  <p><a href="docs/using/managing-apps/cf/index.html">cf command line tool</a></p>
-
-  <p><a href="/docs/using/managing-apps/ide/">IDE Integration</a></p>
-
-  <p><a href="docs/using/managing-apps/build-tools/index.html">Build Tools</a></p> 
+  <p>Client Tools<br>
+  <a href="docs/using/managing-apps/cf/index.html">cf command line</a><br>
+  <a href="docs/using/managing-apps/ide/index.html">Eclipse IDE</a><br>
+  <a href="docs/using/managing-apps/build-tools/index.html">Maven and Gradle Build Tools</a>
+  </p>
 
   <hr>
-
+  <p>Managing Orgs and Domains<br>
+  <a href="docs/using/managing-apps/orgs-and-spaces.html">Orgs and Spaces</a><br>
+  <a href="docs/using/managing-apps/custom-domains/index.html">Custom Domains</a>
+  </p>
+  <hr>
   <p><a href="docs/using/services/">Services</a></p>
 
   <hr>
@@ -71,81 +69,50 @@ For a look at what is planned - look at our [Roadmap](docs/roadmap.html).
 
   <hr>
 
-  <p><a href="docs/running/architecture/index.html">Cloud Foundry Architecture</a></p>
-  <p><a href="docs/running/architecture/how-applications-are-staged.html">How Applications Are Staged</a></p>
+  <p>
+  Understanding the Architecture<br>
+  <a href="docs/running/architecture/index.html">A Tour of Each Component</a><br>
+  <a href="docs/running/architecture/how-applications-are-staged.html">How Applications Are Staged</a></p>
 
   <hr>
 
-  <p><a href="docs/running/bosh/index.html">BOSH</a></p>
-
-  <p>
-    <ul>
-      <li>
-        <a href="docs/running/bosh/components/index.html">Components</a>
-      </li>
-      <li>
-        <a href="docs/running/bosh/setup/index.html">Local Setup</a>
-      </li>
-      <li>
-        <a href="docs/running/bosh/reference/index.html">Reference</a>
-      </li>
-    </ul>
+  <p>Understanding BOSH<br>
+  <a href="docs/running/bosh/components/index.html">Components</a><br>
+  <a href="docs/running/bosh/setup/index.html">Local Setup</a><br>
+  <a href="docs/running/bosh/reference/index.html">Reference</a><br>
   </p>
 
   <hr>
 
-  <p><a href="docs/running/deploying-cf/index.html">Deploying Cloud Foundry with BOSH</a></p>
-
   <p>
-    <ul>
-      <li>
-        <a href="docs/running/deploying-cf/ec2/index.html">Deploying to AWS</a>
-      </li>
-      <li>
-        <a href="docs/running/deploying-cf/openstack/index.html">Deploying to OpenStack</a>
-      </li>
-      <li>      
-       <a href="docs/running/deploying-cf/vsphere/index.html">Deploying to vSphere</a>
-      </li>
-      <li>
-        <a href="docs/running/deploying-cf/vcloud/index.html">Deploying to vCloud Director</a>
-      </li>
-    </ul>
+  Deploying Cloud Foundry<br>
+  <a href="docs/running/deploying-cf/index.html">Setting up BOSH</a><br>
+  <a href="docs/running/deploying-cf/ec2/index.html">Deploying to AWS</a><br>
+  <a href="docs/running/deploying-cf/openstack/index.html">Deploying to OpenStack</a><br>   
+  <a href="docs/running/deploying-cf/vsphere/index.html">Deploying to vSphere</a><br>
+  <a href="docs/running/deploying-cf/vcloud/index.html">Deploying to vCloud Director</a><br>
+  <a href="docs/running/deploying-cf-with-chef/index.html">Deploying with Chef</a>
   </p>
-
-  <hr>
-
-  <p><a href="docs/running/deploying-cf-with-chef/index.html">Deploying Cloud Foundry with Chef</a></p>
 
   <hr>
 
   <p><a href="docs/running/micro_cloud_foundry/index.html">Micro Cloud Foundry</a></p>
 
   <hr>
-
-  <p><a href="docs/running/managing-cf/index.html">Managing Cloud Foundry</a></p>
-
   <p>
-    <ul>
-      <li><a href="docs/running/managing-cf/monitoring.html">Monitoring</a></li>
-      <li><a href="docs/running/managing-cf/logging.html">Logging</a></li>
-      <li><a href="docs/running/managing-cf/managing-users.html">Managing Users</a></li>
-    </ul>
+  Managing Cloud Foundry<br>
+  <a href="docs/running/managing-cf/managing-users.html">Users</a><br>
+  <a href="docs/running/managing-cf/monitoring.html">Monitoring</a><br>
+  <a href="docs/running/managing-cf/logging.html">Logging</a>
   </p>
 
-  <hr>
- 
-  <p><a href="docs/running/troubleshooting/index.html">Troubleshooting Cloud Foundry</a></p>
-  
   <p>
-    <ul>
-      <li><a href="docs/running/troubleshooting/troubleshooting-apps.html">Troubleshooting Apps</a></li>
-    </ul>
+  Troubleshooting<br>
+  <a href="docs/running/troubleshooting/troubleshooting-apps.html">Apps</a><br>
+  <a href="docs/running/troubleshooting/troubleshooting-apps.html">Warden Services</a>
   </p>
-
-  <hr>
 
 </div>
 
-
+For a look at what is planned - look at our [Roadmap](docs/roadmap.html).
 
