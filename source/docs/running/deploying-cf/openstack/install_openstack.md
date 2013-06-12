@@ -2,57 +2,39 @@
 title: Install OpenStack
 ---
 
-This page will guide you throught the installation of OpenStack, in preparation for deploying Cloud Foundry.
+This page guides you through the installation of OpenStack, in preparation for deploying Cloud Foundry.
 
-* [OpenStack Code Names](#codenames)
-* [Version](#version)
-* [Prerequisites](#prerequisites)
-  * [Hardware Requirements](#pre-hardware)
-  * [Multi Node Installation (types of nodes required)](#pre-nodes)
-  * [Networking Topology](#pre-network)
-* [Install OpenStack ](#openstack)
-  * [Prepare System](#prepare)
-    * [Update and upgrade the system](#update)
-    * [Update networking configuration](#network)
-  * [Install MySQL](#mysql)
-  * [Install Keystone](#keystone)
-  * [Install Glance](#glance)
-  * [Install Nova](#nova)
-  * [Install Horizon](#horizon)
-* [Install Additional Compute Nodes](#additionalnodes)
-  * [Prepare System](#add-prepare)
-  * [Update network configuration](#add-network)
-  * [Install NTP](#add-ntp)
-  * [Install Nova](#add-nova)
 
-## <a id="codenames"></a>OpenStack Code Names
+## <a id='codenames'></a> OpenStack Code Names ##
 
 Each OpenStack service has a code name. Code Names used in this document are: 
 
-| Service name            | Code name                       |
-| ----------------------- | ------------------------------- |
-| Identity                | Keystone                        |
-| Compute                 | Nova                            |
-| Image                   | Glance                          |
-| Dashboard               | Horizon                         |
-| Object Storage          | Swift                           |
-| Networking              | Quantum                         |
+| Service name            | Code name                    |
+| ----------------------- | ---------------------------- |
+| Identity                | Keystone                     |
+| Compute                 | Nova                         |
+| Image                   | Glance                       |
+| Dashboard               | Horizon                      |
+| Object Storage          | Swift                        |
+| Networking              | Quantum                      |
 
-## <a id="version"></a>Version
 
-     OpenStack Essex(2012.1) Ubuntu 12.04
 
-## <a id="prerequisites"></a>Prerequisites
+## <a id='Prerequisites'></a> Prerequisites ##
+
+### <a id="version"></a> Version 
+
+     OpenStack Essex(2012.1), Ubuntu 12.04
 
 ### <a id="pre-hardware"></a>Hardware Requirements
    
-* A Box with virtualization enabled
+* Box with virtualization enabled
 * 64 GB RAM (32 GB is sufficient for deploying Micro BOSH and Wordpress)
 * 12 processing cores
 * 2 hard drives
 * 2 ethernet cards
 
-### <a id="pre-nodes"></a>Multi Node Installation (types of nodes required)
+### <a id="pre-nodes"></a>Multi-node Installation (types of nodes required)
  
 * 1 Controller 
 * x Compute Nodes 
@@ -63,11 +45,10 @@ Each OpenStack service has a code name. Code Names used in this document are:
 
 * Flat DHCP (Nova Network service running on Controller Node)
 
-## <a id="openstack"></a>Install OpenStack
 
-### <a id="prepare"></a>Prepare System
 
-#### <a id="update"></a>Update and upgrade the system
+## <a id='update-upgrade-system'></a> Update and Upgrade the System ##
+
 
 <pre class="terminal">
 $ sudo su
@@ -87,15 +68,16 @@ Download the script [here](openstack_scripts/openstack_base_1.sh) and run it:
 $ ./openstack_base_1.sh
 </pre>
 
-This script will install the following programs: 
+The script installs the following programs: 
 
-* `ntp` - keeps all the services in sync across multiple machines
-* `tgt` - features an iscsi target, needed for the Nova volume service
-* `openiscsi-client` - required to run the Nova compute service
+* `ntp`. Keeps all the services in sync across multiple machines.
+* `tgt`. Features an iscsi target, needed for the Nova volume service.
+* `openiscsi-client`. Required to run the Nova compute service.
 
-#### <a id="network"></a>Update networking configuration
+## <a id='update-network-config'></a> Update Networking Configuration ##
 
-As stated earlier we need two network interfaces. The `eth0` interface is the machine's link to the outside world, and `eth1` is the interface used for the virtual machines. We'll also make Nova bridge clients via `eth0` into the internet.
+
+You need two network interfaces. The `eth0` interface is the machine's link to the outside world, and `eth1` is the interface used for the virtual machines. You'll also make Nova bridge clients via `eth0` into the Internet.
 
 Edit the file `/etc/network/interfaces`:
 
@@ -121,9 +103,9 @@ Change the contents of the file to match this example configuration:
    netmask 255.255.255.0
 ~~~
 
-*Note:* Make sure that you have given the actual machine IP under `eth0` as `address`. In this example `10.0.0.2` is the machine IP, which is the OpenStack Controller.
+**Note:** Make sure that you have given the actual machine IP under `eth0` as `address`. In this example `10.0.0.2` is the machine IP, which is the OpenStack Controller.
 
-There are two IP addresses from this step that will be used in subsequent steps:
+Two IP addresses from this step will be used in subsequent steps:
 
 * Controller Node IP - `10.0.0.2` (we will be using this IP while installing Keystone and Nova)
 * `eth1` IP series - `192.168.22.1`
@@ -134,19 +116,20 @@ Restart the networking interface:
 $ /etc/network/interfaces restart
 </pre>
 
+## <a id='Install OpenStack'></a> Install OpenStack ##
 Next, download the script [here](openstack_scripts/openstack_base_2.sh) and run it: 
 
 <pre class="terminal">
 $ ./openstack_base_2.sh
 </pre>
 
-This script will install the following programs: 
+This script installs the following programs: 
 
-* `bridge-utils` - bridges the network interfaces
-* `rabbitmq-server`, `memcached`, `python-memcached` - RabbitMQ components required for OpenStack components to communicate each other
-* `kvm`, `libvirt-bin` - used by OpenStack to control virtual machines
+* `bridge-utils`. Bridges the network interfaces.
+* `rabbitmq-server`, `memcached`, `python-memcached`. RabbitMQ components required for OpenStack components to communicate each other.
+* `kvm`, `libvirt-bin`. Used by OpenStack to control virtual machines.
 
-You can now check the support for the virtualization using the below command, shown with the expected output:
+You can now check the support for the virtualization using this command, shown with the expected output:
 
 <pre class="terminal">
 $ kvm-ok.
@@ -154,9 +137,9 @@ INFO: /dev/kvm exists
 KVM acceleration can be used
 </pre>
 
-### <a id="mysql"></a>Install MySQL
+## <a id='install-mysql'></a> Install MySQL ##
 
-Nova and Glance will use MySQL to store their runtime data.
+The compute (Nova) and image (Glance) services use MySQL to store their runtime data.
  
 Download the script [here](openstack_scripts/openstack_mysql.sh) and run it: 
 
@@ -165,11 +148,11 @@ $ ./openstack_mysql.sh
 Enter a password to be used for the OpenStack services to talk to MySQL (users nova, glance, keystone): vmware
 </pre>
 
-This script installs MySQL and creates the OpenStack databases and users. The script will prompt for a password, which will be the password of users and databases MySQL. In this example, the password is `vmware`.
+This script installs MySQL and creates the OpenStack databases and users. The script prompts for a password, which will be the password of users and databases MySQL. In this example, the password is `vmware`.
 
-During the installation process you will be prompted again for a root password for MySQL. At the end of the MySQL installation you will be prompted for this root password one more time. Enter the same password at each of these three prompts.
+During the installation process you are prompted again for a root password for MySQL. At the end of the MySQL installation you are prompted for this root password one more time. Enter the same password at each of these three prompts.
 
-After MySQL is running, you should be able to login with any of the OpenStack users and/or the root admin account by doing the following:
+After MySQL is running, you should be able to log in with any of the OpenStack users and/or the root admin account by doing the following:
 
 <pre class="terminal">
 $ mysql -u root -pvmware
@@ -177,10 +160,11 @@ $ mysql -u nova -pvmware nova
 $ mysql -u keystone -pvmware keystone
 $ mysql -u glance -pvmware glance
 </pre>
+## <a id='install-services'></a> Install Open Stack Services ##
 
-### <a id="keystone"></a>Install Keystone
+### <a id="add-keystone"></a>Install the Identity Service (Keystone)
 
-The Keystone service manages users and tenants (accounts or projects), and offers a common identity system for all the OpenStack components.
+Keystone manages users and tenants (accounts or projects), and offers a common identity system for all OpenStack components.
 
 Download the script [here](openstack_scripts/openstack_keystone.sh) and run it:
 
@@ -191,7 +175,7 @@ Enter the password you used for the MySQL users (nova, glance, keystone): vmware
 Enter the email address for service accounts (nova, glance, keystone): user@email.com
 </pre>
 
-This script installs Keystone. The script will prompt for a token, the MySQL password provided during the MySQL installation, and your email address. The email address is used to populate the user's information in the database.
+This script installs Keystone. The script prompts for a token, the MySQL password provided during the MySQL installation, and your email address. The email address is used to populate the user's information in the database.
 
 Set the environment variables using the following command, shown with the expected output:
 
@@ -250,11 +234,11 @@ Restart the Keystone service:
 $ service keystone restart
 </pre>
 
-### <a id="glance"></a>Install Glance
+### <a id="install-glance"></a>Install the Image Service (Glance)
 
 Glance is Openstack's image manager service.
 
-Set up a logical volume for Nova to use for creating snapshots and volumes. Here you need secondary Hard Disk attached to the server. The `lvm2` (logical Volume Manager) program is used to create volumes:
+Set up a logical volume for Nova to use for creating snapshots and volumes. Here you need a secondary hard disk attached to the server. The `lvm2` (logical Volume Manager) program is used to create volumes:
 
 <pre class="terminal">
 $ apt-get install lvm2
@@ -296,7 +280,7 @@ Download the script [here](openstack_scripts/openstack_glance.sh) and run it:
 $ ./openstack_glance.sh
 </pre>
 
-The script will download an Ubuntu 12.04 LTS cloud image from StackGeek's S3 bucket. 
+The script downloads an Ubuntu 12.04 LTS cloud image from StackGeek's S3 bucket. 
 
 Now test Glance:
 
@@ -306,11 +290,11 @@ $ glance index
 
 The output should display the newly added image.
 
-### <a id="nova"></a>Install Nova
+### <a id="install-nova"></a>Install the Compute Service (Nova)
 
 The OpenStack compute service, codenamed Nova, is the most important OpenStack component. 
 
-Create a script called `nova-restart.sh` containing the content below and place it exactly where `install-nova.sh` resides. The `install-nova.sh` script uses this script to restart Nova services. We will execute this file whenever we need to restart nova.
+Create a script called `nova-restart.sh` containing the content below and place it exactly where `install-nova.sh` resides. The `install-nova.sh` script uses this script to restart Nova services. You will execute this file whenever you need to restart nova.
 
 ~~~
 #!/bin/bash
@@ -353,7 +337,7 @@ $ nova-manage version list
 2012.1.3-dev (2012.1.3-LOCALBRANCH:LOCALREVISION)
 </pre>
 
-### <a id="horizon"></a>Install Horizon
+### <a id="install-horizon"></a>Install the Dashboard Service (Horizon)
  
 Download the script [here](openstack_scripts/openstack_horizon.sh) and run it:
 
@@ -376,7 +360,7 @@ You can test the Dashboard by entering the URL `http://10.0.0.2` in a browser wi
     Password : vmware
 ~~~
 
-## <a id="additionalnodes"></a>Install Additional Compute Nodes
+## <a id='install-compute-nodes'></a> Install Additional Compute Nodes ##
 
 If you want to install additional compute nodes to OpenStack, follow these instructions on a server running the 64 bit version of Ubuntu Server 12.04.
 
@@ -396,7 +380,7 @@ Install the `vim` text editor. This is not stictly required for installation, bu
 $ apt-get install vim
 </pre>
 
-### <a id="add-network"></a>Update network configuration
+### <a id="add-network"></a>Update Network Configuration
 
 Install bridge-utils:
 
@@ -499,6 +483,6 @@ $ nova-manage service list
     nova-compute             compute-node        nova             enabled    :-)   2012-04-21 10:22:27
 </pre>
 
-*Note:* You can run this command either on controller or compute node.
+*Note:* You can run this command on either controller or compute node.
 
 

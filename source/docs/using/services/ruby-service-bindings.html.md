@@ -44,7 +44,7 @@ If you don't want your database.yml file to be overwritten, you need to configur
 
 ## <a id='cf-runtime'></a>CF Runtime Gem ##
 
-The 'cf-runtime' gem provides helper functions to allow easy configuration of connections to any service that is bound to an application. 
+The 'cf-runtime' gem provides helper functions to allow easy configuration of connections to any service that is bound to an application.
 
 ### <a id='prerequisites'></a>Prerequisites ###
 
@@ -91,7 +91,7 @@ If only one instance of a particular service type is bound to an application, yo
 ~~~ruby
 
 require 'cfruntime'
-connection = CFRuntime::MongoClient.create 
+connection = CFRuntime::MongoClient.create
 db = connection.db
 
 ~~~
@@ -302,6 +302,14 @@ in the example below:
   Reading logs/console.log
   ...output from running the application displayed here...
   --
+</pre>
+
+If you encounter the error "a fatal error has occurred. Please see the Bundler troubleshooting documentation" try updating your version of bundler and then running bundle install again.
+
+<pre class="terminal">
+  $ gem update bundler
+  $ gem update --system
+  $ bundle install
 </pre>
 
 
