@@ -4,6 +4,30 @@ if (location.pathname == "/getting-started.html" || location.pathname == "/tools
 if (location.pathname == "/frameworks.html" || location.pathname == "/tools/deploying-apps.html") {
   location.pathname = "/docs/using/deploying-apps/"
 };
+if (location.pathname == "/docs/using/deploying-apps/jvm/spring-getting-started.html") {
+  location.pathname = "/docs/using/deploying-apps/"
+};
+if (location.pathname == "/docs/using/deploying-apps/jvm/") {
+  location.pathname = "/docs/using/deploying-apps/"
+};
+if (location.pathname == "/docs/using/deploying-apps/ruby/") {
+  location.pathname = "/docs/using/deploying-apps/"
+};
+if (location.pathname == "/docs/using/deploying-apps/ruby/rails-getting-started.html") {
+  location.pathname = "/docs/using/deploying-apps/"
+};
+if (location.pathname == "/docs/using/deploying-apps/ruby/sinatra-getting-started.html") {
+  location.pathname = "/docs/using/deploying-apps/"
+};
+if (location.pathname == "/docs/using/deploying-apps/javascript/") {
+  location.pathname = "/docs/using/deploying-apps/"
+};
+if (location.pathname == "/docs/using/deploying-apps/jvm/grails-getting-started.html") {
+  location.pathname = "/docs/using/deploying-apps/"
+};
+if (location.pathname == "/docs/using/deploying-apps/jvm/play-getting-started.html") {
+  location.pathname = "/docs/using/deploying-apps/"
+};
 if (location.pathname == "/frameworks/java/spring/spring.html" || location.pathname == "/frameworks/java/spring/spring-insight.html" || location.pathname == "/frameworks/java/spring/tutorials/springmvc-jpa-postgres/spring-getting-started-with-sts.html" || location.pathname == "/frameworks/java/spring/tutorials/springmvc-jpa-postgres/springmvc-template-project.html" || location.pathname == "/frameworks/java/spring/tutorials/springmvc-jpa-postgres/spring-expensereport-app-tutorial.html" || location.pathname == "/frameworks/java/spring/tutorials/springmvc-jpa-postgres/expensereport-app-with-spring-security.html") {
   location.pathname = "/docs/using/deploying-apps/"
 };  
