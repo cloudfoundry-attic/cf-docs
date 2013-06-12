@@ -1,38 +1,36 @@
 #Installing Micro BOSH on a VM
 
-##Prerequisites:
+## <a id="prerequisites"></a>Prerequisites ##
 
- *	You should have OpenStack Installed. Please refer to [install_openstack.html](install_openstack.html) for installation steps.
- *	Create a VM using horizon and you should be able to SSH into that VM- this is also called inception VM.
+ *  [Install OpenStack](install_openstack.html).
+ 
 
+## <a id="step1"></a>Step 1: Create an Inception VM ##
 
-##Step 1: Create Inception VM
-
-1. Login to dashboard as admin.
+1. Log in to dashboard (Horizon) as admin.
 2. Select Project tab - > admin project.
 3. Click on Access & Security - > Click on Create Keypair button.
-4. Enter keypair name as admin-keypair and click on Create Keypair.
+4. Enter the keypair name as admin-keypair and click on Create Keypair.
 5. Save the keypair to some location like: /home/<username>/openstack/admin-keypair.pem
 6. Copy the admin-keypair.pem to Inception VM.
 
 		scp -i /root/.ssh/admin-keypair.pem  /root/.ssh/admin-keypair.pem ubuntu@192.168.22.34:/home/ubuntu
 
-**Note:** Remember the keypair location. we would use this pair many times later.
+**Note:** Remember the keypair location. You would use this pair many times later.
 
-##Step 2: Login to vm
+## <a id="step2"></a>Step 2: Log in to the VM ##
 
     sudo su
     (Enter password and hit Enter)
 
-Check whether SSH Installed or not
-
+Check whether SSH is installed:
     /etc/init.d/ssh status
 
-If not installed install SSH
+If necessary, install SSH:
 
     apt-get install ssh
 
-Create SSH Keys
+Create SSH keys:
 
     ssh-keygen -t rsa
 
@@ -47,15 +45,18 @@ Output
     The key fingerprint is:
     01:0f:f4:3b:ca:85:d6:17:a1:7d:f0:68:9d:f0:a2:db
 
+
 Copy admin-keypair to /root/.ssh
 
     cp /home/<username>/openstack/admin-keypair.pem /root/.ssh/.
 
-Change permissions
+
+Change permissions:
 
 	chmod -R 600 /root/.ssh/.
 
-Login to vm
+
+Log in to vm:
 
     ssh -i /root/.ssh/admin-keypair.pem ubuntu@192.168.22.34
 
@@ -63,17 +64,23 @@ Login to vm
 **Note:** 192.168.22.34 is the Inception VM IP Address.
 
 
-##Step 3 : Install Ruby
+## <a id="step3"></a>Step 3: Install Ruby ##
 
 Install Ruby and RubyGems following the instructions on the [Installing Ruby](/docs/common/install_ruby.html) page.
  
-##Step 4 : Install BOSH CLI 
+
+## <a id="step4"></a>Step 4: Install Bosh CLI ##
+
+Install the BOSH command line interface.
+
 
     gem install bosh_deployer --no-ri --no-rdoc
 
-##Step 5 : Create Custom Micro Bosh Stemcell
 
-Install the below dependencies before you run the below commands.
+
+## <a id="step5"></a>Step 5: Create Custom Micro Bosh Stemcell ##
+
+Install the dependencies before you run the commands that follow.
     root@inception-vm:/home/ubuntu/# apt-get install libpq-dev debootstrap kpartx qemu -y
 
 Download the BOSH release and build it
@@ -90,7 +97,7 @@ Download the BOSH release and build it
 
     bosh create release --with-tarball
 
-If this is the first time you run bosh create release in the release repo, it will ask you to name the release, e.g. "bosh".
+If this is the first time you have run Bosh, create the release in the release repo. You are asked to name the release, for example, "bosh".
 
     Output will be like this:
     Release version: x.y-dev
@@ -133,7 +140,7 @@ Output will be like this:
     cp /var/tmp/bosh/agent-x.y.z-nnnnn/work/work/micro-bosh-stemcell-openstack-x.y.z.tgz .
 
 
-##Step 7 : Deploy Micro Bosh stemcell to Glance  ##
+## <a id="step6"></a>Step 6: Deploy Micro Bosh stemcell to Glance ##
 
 This creates the Micro Bosh VM and it shows up in Horizon 
 
@@ -250,4 +257,4 @@ Copy the below content and paste it in `micro_bosh.yml`
     Enter password: *****
     Logged in as `admin'
 
-**Note:** It will ask for the username and password, enter admin for both.Also, Create a new BOSH user - the 'admin' will be automatically deleted
+**Note:** You are prompted for the username and password; enter admin for both. Also, create a new BOSH user - the 'admin' is automatically deleted.

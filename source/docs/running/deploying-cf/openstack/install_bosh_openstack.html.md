@@ -1,10 +1,10 @@
 ---
-title: Install Bosh using Micro BOSH on OpenStack
+title: Install Bosh on OpenStack Using Micro BOSH
 ---
 
-1. Deploy micro BOSH on OpenStack. See the steps in the previous section (Installing Micro BOSH on a VM)
+1. Install Micro BOSH on OpenStack. See [Installing Micro BOSH on a VM](install_microbosh_openstack.html).
 
-1. Once your micro BOSH instance is deployed, you can target its Director:
+1. Once your Micro BOSH instance is deployed, you can target its Director:
 
 	$ bosh micro status
 		...
@@ -23,7 +23,7 @@ title: Install Bosh using Micro BOSH on OpenStack
 
 ### Download a BOSH stemcell
 
-1. List public stemcells with bosh public stemcells
+1. List public stemcells with bosh public stemcells:
 
 		$ mkdir -p ~/stemcells
 		$ cd stemcells
@@ -68,27 +68,27 @@ To download use 'bosh download public stemcell stemcell_name'.
 
 		bosh upload stemcell bosh-stemcell-openstack-0.6.7.tgz
 
-### Upload a BOSH release ###
+### Upload a BOSH Release ###
 
-1. You can create a BOSH release or use one of the public releases. The following steps show the use of a public release.
+1. You can create a BOSH release or use one of the public releases. The following steps show a public release.
 
 		cd /home/bosh_user
 		git clone  git@github.com:cloudfoundry/bosh.git
 
-1. Upload a public release from bosh-release
+1. Upload a public release from bosh-release:
 
 		cd /home/bosh_user/bosh/release/
 		bosh upload release releases/bosh-10.yml
 
 
-### Setup a BOSH deployment manifest and deploy ###
+### Setup a BOSH Deployment Manifest and Deploy ###
 
-1. Create and setup a BOSH deployment manifest. Look at the sample BOSH manifest in (https://gist.github.com/rsgoodman/4279969) and enter your settings. Assuming you have created a `bosh.yml` in `/home/bosh_user`.
+1. Create and set up a BOSH deployment manifest. Look at the sample BOSH manifest in (https://gist.github.com/rsgoodman/4279969) and enter your settings. Assuming you have created a `bosh.yml` in `/home/bosh_user`.
 
 		cd /home/bosh_user
 		bosh deployment ./bosh.yml
 
-1. Deploy BOSH
+1. Deploy BOSH:
 
 		bosh deploy.
 

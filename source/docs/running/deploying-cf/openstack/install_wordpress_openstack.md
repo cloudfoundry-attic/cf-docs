@@ -1,10 +1,10 @@
 #Installing Wordpress
 
-##Prerequisites:
+##Prerequisites
 
- *	You should have OpenStack Installed on. Please refer to this [document](https://github.com/rajdeepd/oss-docs/tree/master/bosh/documentation/install_openstack.md) for installation steps.
- *	BOSH CLI Installation on a VM
- *	Micro BOSH Installed on the Open Stack
+ *	[Install OpenStack](install_openstack.html)
+ *	[Install the BOSH CLI](../../bosh/setup/index.html)
+ *	[Install Micro BOSH on a VM](install_microbosh_openstack.html)
    
 
 ##Step 1 : Download the latest BOSH stem cell for OpenStack
@@ -259,4 +259,4 @@ Copy the below content and paste it in `wordpress-openstack.yml`
     Deployed `wordpress-openstack.yml' to `microbosh-openstack'
 
 
-This completes the deployment of WordPress of OpenStack Essex using MicroBOSH
+This completes the deployment of WordPress of OpenStack Essex using Micro BOSH.
