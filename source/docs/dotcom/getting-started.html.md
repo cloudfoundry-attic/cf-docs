@@ -61,80 +61,27 @@ You can choose any of these spaces to deploy your application.
 
 ## <a id='prepare-app'></a>Prepare Your Application for Deployment ##
 
-The steps to prepare your application depend on the technology you are using.
+Package apps for JVM and Ruby frameworks:
 
-<input type="button" class="togglebutton" value="JVM"> <input type="button" class="togglebutton" value="Ruby"> <input type="button" class="togglebutton" value="Node">
-
-<div>
-
-<div id="JVM" style="display:none">
-
-<h3>JVM-Based Languages</h3>
-
-Cloud Foundry supports most JVM-based frameworks such as Java Spring, Grails, Scala Lift, and Play.
-If your application can be packaged as a `.war` file and deployed to Apache Tomcat,
-then it should also run on Cloud Foundry without changes.
-However, before you can deploy, you need to compile your application.
-
-If you are using Spring or Lift, you can use maven:
-
+Spring or Lift:
 <pre class="terminal">
 $ mvn package
 </pre>
 
-If you are using play:
-
+Play:
 <pre class="terminal">
 $ play redist
 </pre>
 
-If you are using Grails:
-
+Grails:
 <pre class="terminal">
 $ grails prod war
 </pre>
-<hr>
-</div>
 
-<div id="Ruby" style="display:none">
-
-<h3>Ruby</h3>
-
-Cloud Foundry supports most popular Ruby frameworks such as Rails, Sinatra, and Rack.
-
-We recommend that you use bundler to manage your gem dependencies.
-
-You need to run `bundle install` locally before you deploy your app to make sure that your Gemfile.lock is consistent with your Gemfile.
-<hr>
-</div>
-
-<div id="Node" style="display:none">
-
-<h3> Node </h3>
-
-Before you deploy your Node application you need to include cf-autoconfig in your package.json and require it in your app.
-
-Add cf-autoconfig to your dependencies in package.json:
-
-<br><br>
-<pre><code>
-  "dependencies": {
-    ...other dependencies...
-    "cf-autoconfig": "*"
-  }
-</code></pre>
-<br>
-Add the require statement to the top of your app file:
-<br><br>
-<pre><code>
-  require("cf-autoconfig");
-</code></pre>
-<br>
-Run npm install to install your dependencies locally
-<hr>
-</div>
-
-</div>
+Ruby:
+<pre class="terminal">
+$ bundle install
+</pre>
 
 ## <a id='push-app'></a>Push Your Application to the Cloud ##
 
@@ -143,9 +90,11 @@ Before you deploy, you need to decide on the answers to some questions:
 * **Name**: You can use any series of alpha-numeric characters without spaces as the name of your application.
 * **Instances**: The number of instances you want running.
 * **Memory Limit**: The maximum amount of memory that each instance of your application is allowed to consume. If an instance goes over the maximum limit, it will be restarted. If it has to be restarted too often, it will be terminated. So make sure you are generous in your memory limit.
-* **Start Command**: This is the command that Cloud Foundry will use to start each instance of your application. The start command is specific to your framework.
+* **Start Command**: This is the command that Cloud Foundry will use to start each instance of your application. The start command is specific to your framework.<br><i>Node.js</i> applications must use the start command `node [application script name]`
 * **URL and Domain**: `cf` will prompt you for both a URL and a domain. The URL is the subdomain for your application and it will be hosted at the primary domain you choose. The combination of the URL and domain must be globally unique.
 * **Services**: `cf` will ask you if you want to create and bind one or more services such as MySQL or Redis to your application. For the purposes of this guide, you can answer no when prompted to add a service. Services are addressed in the next guide, [Adding a Service](adding-a-service.html).
+
+If you use Rails you might be interested in running [rails worker tasks](ruby/rails-running-worker-tasks.html), or using the [rails console](ruby/rails-using-the-console.html).
 
 ## <a id='example-push-app'></a>An Example Transcript ##
 

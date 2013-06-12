@@ -85,28 +85,20 @@ Binding cleardb-e2006 to myapp... OK
 
 ## <a id='using'></a>Using Service Instances with your Application ##
 
-Once you have a service instance created and bound to your app, you will need to configure your application to use the correct credentials for your service. Credentials are accessible as a JSON string in the VCAP\_SERVICES environment variable that Cloud Foundry sets within your runtime context.  You need to read the JSON and extract out the username and password.
+Once you have a service instance created and bound to your app, you will need to configure your application to use the correct credentials for your service.
 
-For more information, see [Using Bound Services](../using/services/using-bound-services.html).
- 
-### Ruby on Rails
+There are three ways of binding services on Cloud Foundry.
 
-You set your database connection information for a Rails app in the database.yml file. Using ElephantSQL as an example, here's how:
+| Binding Strategy    | Description       | 
+| :-------------------  |:--------------------  | 
+| Auto-Reconfiguration  |  For databases only. Cloud Foundry creates a service connection for you.        | 
+| cfruntime     | Creates an object with the location and settings of your services. Set your service connections based on the values in that object.       | 
+| Manually        | Use Cloud Foundry Environment Variables to set your service connections. See [Using Bound Services](../using/services/using-bound-services.html). |
 
-~~~
-<%
-  db = JSON.parse(ENV['VCAP_SERVICES'])["elephantsql-n/a"]
-  credentials = db.first["credentials"]
-%>
+Auto-Reconfiguration and cfruntime are used differently depending on your framework:
 
-production:
-  adapter: mysql2
-  encoding: utf8
-  reconnect: false
-  pool: 5
-  host: <%= credentials["host"] %>
-  username: <%= credentials["username"] %>
-  password: <%= credentials["password"] %>
-  database: <%= credentials["database"] %>
-  port: <%= credentials["port"] %>
-~~~
+| Runtime               | Framework                   |
+| :-------------        |:-------------               |
+| Javascript          | <li>[Node.js](../services/node-service-bindings.html) |
+| Java / JVM        | <li>[Lift](../services/lift-service-bindings.html) <li>[Grails](../services/grails-service-bindings.html)<li>[Spring](../services/spring-service-bindings.html) |
+| Ruby            | <li>[Rack, Rails, or Sinatra](../services/ruby-service-bindings.html) |
