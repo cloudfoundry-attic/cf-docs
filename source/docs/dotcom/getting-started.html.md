@@ -11,7 +11,7 @@ This guide walks you through getting started at run.pivotal.io, powered by Cloud
 In order to run your application on run.pivotal.io, you need to:
 
 1. [Sign up for an account](#signup)
-1. [Install and configure the `cf` command line tool](#install)
+1. [Install and configure the `cf` command line tool](#install-cf)
 1. [Prepare your application on your local machine](#prepare-app)
 1. [Push your application code to the cloud](#push-app)
 
@@ -21,7 +21,7 @@ Before you can deploy your application, you will need an account on run.pivotal.
 
 If you do not have an account yet, you can [sign up here](https://console.run.pivotal.io).
 
-## <a id='install-cf'></a>Install and Configure the cf Command Line Tool ##
+## <a id='install-cf'></a>Install cf Command Line Tool ##
 
 You'll use the `cf` command line tool to deploy your application. You can also use it to check on the health of your application, change settings, and stop and restart your app.
 
@@ -94,7 +94,7 @@ Before you deploy, you need to decide on the answers to some questions:
 * **URL and Domain**: `cf` will prompt you for both a URL and a domain. The URL is the subdomain for your application and it will be hosted at the primary domain you choose. The combination of the URL and domain must be globally unique.
 * **Services**: `cf` will ask you if you want to create and bind one or more services such as MySQL or Redis to your application. For the purposes of this guide, you can answer no when prompted to add a service. Services are addressed in the next guide, [Adding a Service](adding-a-service.html).
 
-If you use Rails you might be interested in running [rails worker tasks](ruby/rails-running-worker-tasks.html), or using the [rails console](ruby/rails-using-the-console.html).
+If you use Rails you might be interested in running [rails worker tasks](../using/deploying-apps/ruby/rails-running-worker-tasks.html), or using the [rails console](../using/deploying-apps/ruby/rails-using-the-console.html).
 
 ## <a id='example-push-app'></a>An Example Transcript ##
 
