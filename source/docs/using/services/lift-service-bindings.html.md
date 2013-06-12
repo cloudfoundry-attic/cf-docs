@@ -6,126 +6,15 @@ title: Lift - Service Bindings
 
 This guide shows how to adapt the standard example lift application to use a bound service on Cloud Foundry.
 
-## <a id='drivers'></a>Drivers ##
+> **The Lift auto-reconfiguration support library will be updated in the coming weeks to support Marketplace services on Cloud Foundry v2. Until a new version of the library is released, Lift apps will need to use the [manual configuration](#manual) method to connect to Marketplace services.**
 
-First, add the appropriate drivers to the project. Add the MySQL dependency via Maven in the pom.xml file;
+## <a id='auto'></a>Auto-reconfiguration ##
 
-~~~xml
+By default, Cloud Foundry will detect service connections in a Lift application and configure them to use the credentials provided in the Cloud Foundry environment. Auto-reconfiguration will only happen if there is a single service of any of the supported types - relational database (MySQL or Postgres), MongoDB, Redis, or RabbitMQ. If you application has more than one service of those types, or you want more control over the configuration, you can manually configure the service connections as described in following section.
 
-<dependencies>
+## <a id='manual'></a>Manual Configuration ##
 
-  <dependency>
-    <groupId>mysql</groupId>
-    <artifactId>mysql-connector-java</artifactId>
-    <version>5.1.6</version>
-  </dependency>
-
-  ...
-
-</dependencies>
-~~~
-
-## <a id='default-properties'></a>Default properties ##
-
-Edit ./src/main/resources/props/default.props and add the configuration for a local instance of MySQL, the configuration below is for a development instance of MySQL where for localhost, the root password is not set.
-
-~~~
-db.class=com.mysql.jdbc.Driver
-db.url=jdbc:mysql://localhost/lift_hello_world?user=root
-~~~
-
-Test the configuration by having maven clean the project and then run Jetty;
-
-<pre class="terminal">
-$ mvn clean jetty:run
-</pre>
-
-The application should be available at http://127.0.0.1:8080/
-
-## <a id='auto'></a>Deployment using automatic service configuration ##
-
-Use maven to create a web archive release of the application;
-
-<pre class="terminal">
-$ mvn package
-</pre>
-
-This creates a file in the target folder, in this example, the file is called lift\_hello\_world-1.0.war. Deploy it to Cloud Foundry using the path option to point to the archive file, remembering to create a MySQL service for the application;
-
-<pre class="terminal">
-$ cf push lift-hello-world --path=./target/lift_hello_world-1.0.war
-Instances> 1
-
-1: 64M
-2: 128M
-3: 256M
-4: 512M
-5: 1G
-6: 2G
-7: 4G
-8: 8G
-9: 16G
-Memory Limit> 512M
-
-Creating lift-hello-world... OK
-
-1: lift-hello-world.cloudfoundry.com
-2: none
-Domain> lift-hello-world.cloudfoundry.com
-
-Updating lift-hello-world... OK
-
-Create services for application?> y
-
-1: blob 0.51
-2: mongodb 2.0
-3: mysql 5.1
-4: postgresql 9.0
-5: rabbitmq 2.4
-6: redis 2.2
-7: redis 2.4
-8: redis 2.6
-What kind?> 3
-
-Name?> mysql-ed53e
-
-Creating service mysql-ed53e... OK
-Binding mysql-ed53e to lift-hello-world... OK
-Create another service?> n
-
-Bind other services to application?> n
-
-Save configuration?> n
-
-Uploading lift-hello-world... OK
-Starting lift-hello-world... OK
-Checking lift-hello-world...
-  0/1 instances: 1 starting
-  0/1 instances: 1 starting
-  0/1 instances: 1 starting
-  1/1 instances: 1 running
-OK
-</pre>
-
-## <a id='manual'></a>Deployment using manual service configuration ##
-
-To manually configure the database connection using a bound service in Scala, a few more dependencies need to be added to the project, add the following to the repositories node of pom.xml
-
-~~~xml
-  <repository>
-    <id>springsource-milestones</id>
-    <name>SpringSource Milestones Proxy</name>
-    <url>https://oss.sonatype.org/content/repositories/springsource-milestones</url>
-  </repository>
-
-  <repository>
-    <id>org.springframework.maven.milestone</id>
-    <name>Spring Framework Maven Milestone Repository</name>
-    <url>http://maven.springframework.org/milestone</url>
-  </repository>
-~~~
-
-Add the following dependencies to the dependencies node;
+To manually configure the database connection using a bound service in Scala, a few more dependencies need to be added to the project. First, add the `spring-core` and `cloudfoundry-runtime` dependencies, as shown in the following Maven `pom.xml` example. **For Cloud Foundry v2 support, the version of `cloudfoundry-runtime` must be at least `0.8.4`**:
 
 ~~~xml
   <dependency>
@@ -137,20 +26,21 @@ Add the following dependencies to the dependencies node;
   <dependency>
     <groupId>org.cloudfoundry</groupId>
     <artifactId>cloudfoundry-runtime</artifactId>
-    <version>${org.cloudfoundry-version}</version>
+    <version>0.8.4</version>
   </dependency>
 ~~~
 
-Note the org.cloudfoundry-version property in the last dependency, this needs to be added to the project/properties node;
+You will also need to add the Spring milestones repository to the project configuration, as in this Maven example: 
 
 ~~~xml
-<properties>
-  ...
-  <org.cloudfoundry-version>0.8.2</org.cloudfoundry-version>
-</properties>
+  <repository>
+    <id>org.springframework.maven.milestone</id>
+    <name>Spring Framework Maven Milestone Repository</name>
+    <url>http://maven.springframework.org/milestone</url>
+  </repository>
 ~~~
 
-Now set the Connection Manager in ./src/main/scala/bootstrap/liftweb/Boot.scala, import the following namespaces first.
+Now set the Connection Manager in `./src/main/scala/bootstrap/liftweb/Boot.scala`. Import the following namespaces first:
 
 ~~~scala
   import org.cloudfoundry.runtime.env._
@@ -158,11 +48,11 @@ Now set the Connection Manager in ./src/main/scala/bootstrap/liftweb/Boot.scala,
   import scala.collection.JavaConversions._
 ~~~
 
-Then replace the existing code at the start of the boot method with the following. This will use the cloudfoundry-runtime library to find the correct service using the set name at the start of the code and then create and set the connection manager for the project.
+Then replace the existing code at the start of the boot method with the following. This will use the `cloudfoundry-runtime` library to find the correct service using the set name at the start of the code and then create and set the connection manager for the project.
 
 ~~~scala
   val serviceName = "lift-db"
-  val service = new CloudEnvironment().getServices().toList.find { service => service.get("name") == serviceName }
+  val service = new CloudEnvironment().getServiceDataByName("name")
   val creds = service.get("credentials").asInstanceOf[java.util.LinkedHashMap[String, Object]]
 
   val password = Box[String](creds.get("password").toString)
@@ -176,14 +66,3 @@ Then replace the existing code at the start of the boot method with the followin
   DB.defineConnectionManager(DefaultConnectionIdentifier, vendor)
 ~~~
 
-Re-package the application
-
-<pre class="terminal">
-$ mvn clean package
-</pre>
-
-Then push back to Cloud Foundry
-
-<pre class="terminal">
-$ cf push lift-hello-world --path=./target/lift_hello_world-1.0.war
-</pre>
