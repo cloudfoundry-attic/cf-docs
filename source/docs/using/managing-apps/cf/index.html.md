@@ -94,6 +94,8 @@ The following data is returned for each application:
 * usage -- memory allocated to the application, and the number of instances.
 * url -- URL of the application
 
+The table below lists supported command qualifiers.  
+
 | Qualifier | Required | Description |
 | :-------- | :------- | :---------- |
 | --full     |   n       | Verbose output format.            |
@@ -103,9 +105,11 @@ The following data is returned for each application:
 
 #### <a id='bind-service'></a> bind-service ####
 
-Bind a service to an application. Binding a service to your application adds credentials for the service instance to the `VCAP_SERVICES` environment variable. You may need to restart the application for the binding to take effect.
+Bind a service to an application. Some service types are bindable, some are not. If a service supports binding, binding it to an application adds credentials for the service instance to the `VCAP_SERVICES` environment variable. You may need to restart the application for the binding to take effect.
 
 Note that you can bind a service to an application at the time you create the service, as described in [create-service](#create-service).
+
+
 
 <div class="command-doc">
   <pre class="terminal">$ cf bind-service [instance name] [application name]</pre>
@@ -164,30 +168,28 @@ Create an organization.
 | :-------- | :------- | :---------- |
 | --[no-]add-self     |     n    | Use this option to specify that you do (or do not) want to add yourself to the organization.            |
 | --name     |   y       | The name to assign to the organization.           |
-|  -t, --[no-]target    | n         | Use this option to specify that you do (or do not) want to switch to the organization after creation.           |
-
-
-
+|  -t, --[no-]target    | n         | Use this option to specify that you do (or do not) want to switch to the organization after creation. |
 
 #### <a id='create-service'></a> create-service ####
 
-Create a new service instance, and optionally, bind it to an application. If you do not bind a service to an application at creation, you can do it later with the [bind-service](#bind-service) command.
+Create a new service instance, and optionally, bind it to an application. If you do not bind a service to an application when you create, you can do it later with the [bind-service](#bind-service) command.
 
 To list service instances that already exist, use the [services](#services) command.
 
-cf prompts for service attributes not provided on the command line. 
 
 <div class="command-doc">
   <pre class="terminal">$ cf create-service [service type] [instance name]</pre>
   <div class="break"></div>
 </div>
 
+The table below lists supported command qualifiers. cf prompts for required qualifiers not provided on the command line. 
+
 | Qualifier | Required | Description |
 | :-------- | :------- | :---------- |
 | --app, --bind APP   |  n       | Use this option to specify an application to which to bind the service.         |
-| --name     |   y       | The name you assign to the service.           |
-|--offering | y| The type of the service to create, for example, "redis", "mysql", and so on. |
-|--plan | y|The service plan. |
+| --name     |   y       | The name you assign to the service. When you run `create-service` interactively, cf will supply a default instance name at the prompt, which you can override with another value. The name can can contain alpha-numeric characters ([a-z], [A-Z], [0-9]), hyphens (-), and underscores (_).            |
+|--offering | y| The type of the service to create, for example, "rediscloud", "mongolab", and so on. If you run `create-service` interactively, cf will present a list of available service types, along with the service version and provider. |
+|--plan | y |The service plan. A service plan defines a set of service features and resource levels. If you run `create-service` interactively, cf will present a list of the plans that the service provider offers. |
 |--provider | n|The service provider. |
 |--version |n |The service version. |
 
@@ -635,7 +637,7 @@ Create a user and login.
 |--password PASSWORD  | | |
 |--verify VERIFY
  | | |
-#### <a id='id'></a> rename ####
+#### <a id='register'></a> rename ####
 
 Rename an application.  If you do not provide the required input on the command line, cf will prompt for it.
 
@@ -729,7 +731,7 @@ The following data is returned for each token:
 * guid -- The GUID for the service type.
 * provider -- The vendor or supplier of the service.
 
-#### <a id='id'></a> service ####
+#### <a id='service'></a> service ####
 
 Display service instance information.
 
@@ -740,23 +742,38 @@ Display service instance information.
 
 #### <a id='services'></a> services ####
 
-Display information about provisioned services in the current space.
+Display information about service instances in the current space.
 
 <div class="command-doc">
   <pre class="terminal">$ cf services</pre>
   <div class="break"></div>
 </div>
 
-The following data is returned for each service:
+The table below defines command qualifiers.
+
+| Qualifier | Required | Description |
+| :-------- | :------- | :---------- |
+| --app APP | n | List only services instances that are bound to the specified application.  |
+| --full | n | Provide verbose output.  |
+| --name NAME | n |List only service instances whose names match the specified string.  |
+| --plan PLAN | n | List only service instances provisioned under a plan that matches the specified string. |
+|--provider PROVIDER   | n |List only service instances provisioned by a service from the the provider that matches the specified string.   |
+|--service SERVICE   |n  |List only service instances provisioned by a service that matches the specified string.   |
+| --space SPACE |  |List only service instances in the specified space.  |
+| --version VERSION |  |List only services instances whose version matches the specified string.  |
+
+      
+The following data is returned for each service instance:
 
 * name -- The name assigned to the service instance when it was created.
 * service -- The type of service, for example, "cleardb" or "rediscloud".
 * provider -- The service vendor or supplier.
 * version -- The version of the service.
 * plan -- The provider plan under which the service was obtained.
+* description -- This attribute, a description of the plan, is returned if you run the command with the `--full` option.
 * bound apps -- The applications to which the service is bound.
 
-#### <a id='id'></a> set-env ####
+#### <a id='env'></a> set-env ####
 
 Set an environment variable.
 
@@ -770,6 +787,7 @@ Set an environment variable.
 |--app APP | |The application for which you are defining the variable. |
 |--name NAME    | |The name of the environment variable. |
 |--value VALUE   | |The value of the environment variable. |
+
 #### <a id='set-quota'></a> set-quota ####
 
 Define the quota for an organization. **This command is provided by the `admin` plugin.**
@@ -872,7 +890,7 @@ Switch to a different space.
 <div class="command-doc">
   <pre class="terminal">$ cf switch-space [space name]</pre>
 </div>
-#### <a id='id'></a> tail ####
+#### <a id='tail'></a> tail ####
 
 Watch the file for the specified application and the specified path, and display changes as they occur. (Similar to the \*nix  'tail' command.)
 
