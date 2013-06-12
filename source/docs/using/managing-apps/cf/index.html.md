@@ -10,7 +10,7 @@ This table below lists all cf commands, including those enabled by cf plug-ins. 
 
 |   |  | |
 | :-------- | :---------- |:---------- |
-| **Basics** <br>[info](#info) <br>[login EMAIL](#login) <br>[logout](#logout) <br>[target URL](#target) <br>[targets](#targets) <br> <br> **Manage Users** <br> [users](#users) <br>  [create-user EMAIL](#create-user) <br>   [passwd](#passwd) <br> [register EMAIL](#register) <br><br> **Manage Apps** <br>[app APP](#app) <br> [apps](#apps) <br> [delete APP](#delete) <br>[push NAME](#push) <br>[rename APP APP](#rename) <br>[restart APP](#restart) <br>[start APPS](#start) <br>[stop APPS](#stop) <br>[console APP](#console) <br> [set-env APP NAME VALUE](#set-env) <br> [unset-env APP NAME](#unset-env) <br>[bind-service SVC APP](#bind-service) <br>[unbind-service SVC APP](#unbind-service) <br> [scale APP](#sca;e) <br>[map APP HOST DOMAIN](#map) <br> [unmap URL APP](#unmap)  <br> <br> | **Get Information About Apps**  <br>[crashes APPS](#crashes)   <br> [env APP](#env)  <br> [file APP PATH](#file)  <br> [files APP PATH](#file)  <br>[tail APP PATH](#tail)  <br>[health APP](#health) <br>[instances APP](#instances) <br>[logs APP](#logs)  <br>[crashlogs APP](#crashlogs)  <br>[stats APP](#stats)  <br> <br>  **Manage Services** <br>[create-service OFFERING NAME](#create-service) <br>[delete-service SVC](#delete-service) <br>[rename-service SVC SVC](#rename-service) <br>[bind-service SVC APP](#bind-service) <br>[unbind-service SVC APP](#unbind-service) <br>[tunnel INSTANCE CLIENT](#tunnel) <br>[create-service-auth-token LABEL PROVIDER](#create-service-auth-token) <br>[update-service-auth-token TOKEN](#update-service-auth-token)  <br>[delete-service-auth-token TOKEN](#delete-service-auth-token) <br> <br>**Get Information about Services**<br>[service SERVICE](#service) <br>[services](#services) <br> [service-auth-tokens](#service-auth-tokens) <br>[info --service](#info)  |**Manage Organizations and Spaces** <br>[create-org ORG](#create-org)   <br>  [delete-org ORG](#delete-org) <br>[rename-org ORG ORG](#rename-org) <br>[create-space NAME ORG](#create-space) <br>[delete-space SPACE](#delete-space) <br>[rename-space SPACE SPACE](#rename-space) <br>[switch-space SPACE](#switch-space) <br> <br> **Get Information About Organizations and Spaces** <br>[org ORG](#org)  <br>[orgs](#orgs)  <br>[space SPACE](#space)  <br> [spaces ORG](#spaces) <br> [switch-space SPACE](#switch-spaces) <br> <br>**Manage Domains and Routes**  <br>[unmap-domain DOMAIN](#unmap-domain ) <br>[routes](#routes) <br> [domains SPACE](#domains) <br>
+| **Basics** <br>[info](#info) <br>[login EMAIL](#login) <br>[logout](#logout) <br>[target URL](#target) <br>[targets](#targets) <br> <br> **Manage Users** <br> [users](#users) <br>  [create-user EMAIL](#create-user) <br>   [passwd](#passwd) <br> [register EMAIL](#register) <br><br> **Manage Apps** <br>[app APP](#app) <br> [apps](#apps) <br> [delete APP](#delete) <br>[push NAME](#push) <br>[rename APP APP](#rename) <br>[restart APP](#restart) <br>[start APPS](#start) <br>[stop APPS](#stop) <br>[console APP](#console) <br> [set-env APP NAME VALUE](#set-env) <br> [unset-env APP NAME](#unset-env) <br>[bind-service SVC APP](#bind-service) <br>[unbind-service SVC APP](#unbind-service) <br> [scale APP](#scale) <br>[map APP HOST DOMAIN](#map) <br> [unmap URL APP](#unmap)  <br> <br> | **Get Information About Apps**  <br>[crashes APPS](#crashes)   <br> [env APP](#env)  <br> [file APP PATH](#file)  <br> [files APP PATH](#file)  <br>[tail APP PATH](#tail)  <br>[health APP](#health) <br>[instances APP](#instances) <br>[logs APP](#logs)  <br>[crashlogs APP](#crashlogs)  <br>[stats APP](#stats)  <br> <br>  **Manage Services** <br>[create-service OFFERING NAME](#create-service) <br>[delete-service SVC](#delete-service) <br>[rename-service SVC SVC](#rename-service) <br>[bind-service SVC APP](#bind-service) <br>[unbind-service SVC APP](#unbind-service) <br>[tunnel INSTANCE CLIENT](#tunnel) <br>[create-service-auth-token LABEL PROVIDER](#create-service-auth-token) <br>[update-service-auth-token TOKEN](#update-service-auth-token)  <br>[delete-service-auth-token TOKEN](#delete-service-auth-token) <br> <br>**Get Information about Services**<br>[service SERVICE](#service) <br>[services](#services) <br> [service-auth-tokens](#service-auth-tokens) <br>[info --service](#info)  |**Manage Organizations and Spaces** <br>[create-org ORG](#create-org)   <br>  [delete-org ORG](#delete-org) <br>[rename-org ORG ORG](#rename-org) <br>[create-space NAME ORG](#create-space) <br>[delete-space SPACE](#delete-space) <br>[rename-space SPACE SPACE](#rename-space) <br>[switch-space SPACE](#switch-space) <br> <br> **Get Information About Organizations and Spaces** <br>[org ORG](#org)  <br>[orgs](#orgs)  <br>[space SPACE](#space)  <br> [spaces ORG](#spaces) <br> [switch-space SPACE](#switch-spaces) <br> <br>**Manage Domains and Routes**  <br>[unmap-domain DOMAIN](#unmap-domain ) <br>[routes](#routes) <br> [domains SPACE](#domains) <br>
 |  | |
 
 ## <a id='installing'></a>Installing cf ##
@@ -68,7 +68,7 @@ The following qualifiers apply to all cf commands.
 ## <a id='details'></a>Detailed Command Documentation ##
 
 #### <a id='app'></a> app ####
-List the application with the name supplied on the command line.
+List information about an application.
 
 <div class="command-doc">
   <pre class="terminal">$ cf app [application name]</pre>
@@ -77,8 +77,9 @@ List the application with the name supplied on the command line.
 The following data is returned:
 
 * status -- status of the app, for example, "running"
-* usage -- memory allocated to the application, and the number of instances.
+* usage -- memory allocated to the application, and the number of instances
 * urls -- URLs mapped to the application
+* services --- service instances bound to the application
 
 #### <a id='apps'></a> apps ####
 List the applications in the current space.
@@ -107,7 +108,8 @@ The table below lists supported command qualifiers.
 
 Bind a service to an application. Some service types are bindable, some are not. If a service supports binding, binding it to an application adds credentials for the service instance to the `VCAP_SERVICES` environment variable. You may need to restart the application for the binding to take effect.
 
-Note that you can bind a service to an application at the time you create the service, as described in [create-service](#create-service).
+Note that you can bind a service to an application at the time you create the service, as described in [create-service](#create-service). For more information about creating and binding service instances, see [Getting Started - Adding a Service](/docs/dotcom/adding-a-service.html).
+
 
 
 
@@ -144,7 +146,6 @@ For the for the specified list of applications, list instances that are unrespon
   <div class="break"></div>
 </div>
 
-The following data is returned for each application:
 
 #### <a id='crashlogs'></a> crashlogs ####
 
@@ -172,7 +173,7 @@ Create an organization.
 
 #### <a id='create-service'></a> create-service ####
 
-Create a new service instance, and optionally, bind it to an application. If you do not bind a service to an application when you create, you can do it later with the [bind-service](#bind-service) command.
+Create a new service instance, and optionally, bind it to an application. If you do not bind a service to an application when you create, you can do it later with the [bind-service](#bind-service) command. For more information about creating and binding service instances, see [Getting Started - Adding a Service](/docs/dotcom/adding-a-service.html).
 
 To list service instances that already exist, use the [services](#services) command.
 
@@ -181,6 +182,8 @@ To list service instances that already exist, use the [services](#services) comm
   <pre class="terminal">$ cf create-service [service type] [instance name]</pre>
   <div class="break"></div>
 </div>
+
+
 
 The table below lists supported command qualifiers. cf prompts for required qualifiers not provided on the command line. 
 
@@ -250,7 +253,7 @@ Create a user account. If you do not supply required options on the command line
 
 #### <a id='delete'></a> delete ####
 
-Delete the specifed application. cf will ask you to confirm that you wish to delete the applications and whether you want to also delete the services bound to the application.
+Delete an application. cf will ask you to confirm that you wish to delete the application and whether you want to also delete the services bound to the application.
 
 <div class="command-doc">
   <pre class="terminal">$ cf delete [list of application names]</pre>
@@ -259,9 +262,9 @@ Delete the specifed application. cf will ask you to confirm that you wish to del
 
 | Qualifier | Required | Description |
 | :-------- | :------- | :---------- |
-|--all |n|Delete all applications in the current space. |
-|--apps, --app APPS |y | A |
-|--routes | |Delete the routes associated with the application to be deleted |
+|--all |n |Delete all applications in the current space. |
+|--apps, --app APPS |y | The name of the application to delete. |
+|--routes | n |Delete the routes associated with the application to be deleted |
 |-o, --delete-orphaned DELETE_ORPHANED |n | |
 
 #### <a id='delete-org'></a> delete-org ####
@@ -608,17 +611,17 @@ After you supply the qualifiers required to push an application, cf will offer y
 | --[no-]bind-services                |  | Use this qualifier to indicate that you do (or do not) want to specify services to bind to the application. <br>If you indicate that you want bind services, you will be prompted to select the service type to bind. |
 | --[no-]create-services         |   |Use this qualifier to indicate that you do (or do not) want to create one or more <br>services.  |
 | --[no-]restart              |  | Restart app after updating? |
-| --[no-]start      |          |Use this qualifier to to indicate that you do or do not want the application to be started upon <br>deployment. |
+| --[no-]start      |          |Use this qualifier to to indicate that you do (or do not) want the application to be started upon <br>deployment. |
 | --buildpack BUILDPACK         |          | Specify the URL of a buildpack to be used to stage the application. |
 | --command COMMAND        |         |The command to use to start the application.  |
 | --domain DOMAIN              |          | The top level internet domain for the application. |
-| --host HOST    |        |The subdomain, leave blank if specifying custom domain (check)            |
+| --host HOST    |        |The subdomain, leave blank if specifying custom domain.            |
 | --instances INSTANCES       |          | The  number of instances of the application to start.|
 | --memory MEMORY             |          | The maximum memory to allocate to each application instance.           |
-| --name NAME             | | The name of the application to push. (ask about what happens when no name is supplied.|
-| --plan PLAN              | | Specify the desired plan for the service. (A _plan_ specifies a pricing terms and resource limits for the service.)     |
+| --name NAME             | | The name of the application to push. |
+| --plan PLAN              | | Specify the desired plan for the service. (A _plan_ specifies a pricing terms and resource <BR>limits for the service.)     |
 |--path | |Path to the application to be pushed. |
-| --reset             | |Use this option if you are specifying a new value for one or more `push` options to indicate that the newly supplied value should override previously provided option values. |
+| --reset             | |Use this option if you are specifying a new value for one or more `push` options to indicate <BR>that the newly supplied value should override previously provided option values. |
 | --stack STACK           | | |
 
 #### <a id='register'></a> register ####
@@ -637,11 +640,11 @@ Create a user and login.
 |--password PASSWORD  | | |
 |--verify VERIFY
  | | |
-#### <a id='register'></a> rename ####
+#### <a id='rename'></a> rename ####
 
 Rename an application.  If you do not provide the required input on the command line, cf will prompt for it.
 
-Note that after you change an application's name, cf will not recognize the application's previous name if you use it in commands that act upon an application.  If you attempt to 
+Note that after you change an application's name, cf will not recognize the application's previous name if you use it in commands that act upon an application.  
 
 <div class="command-doc">
   <pre class="terminal">$ cf rename [current application name] [new application name]</pre>
@@ -683,9 +686,9 @@ Stop an application and then start it.
 
 | Qualifier | Required | Description |
 | :-------- | :------- | :---------- |
-|--all | | |
-|--app APP | | |
-
+|--all | |Delete all applications in the current space. |
+|--app APP | |The name of the application to delete. |
+|-d, --debug-mode DEBUG_MODE  | |Use this option to specify a debug mode to use when restarting the application. |
 
 #### <a id='routes'></a> routes ####
 
@@ -711,7 +714,7 @@ Set the number of instances for a application and the amount of memory assigned 
 | :-------- | :------- | :---------- |
 |--[no-]restart | |Use this option to indicate that you do (or do not) want to restart the application after updating it. |
 |--app APP | |Application to update. |
-|--disk DISK | |Amound of disk space to allocate tot he application. |
+|--disk DISK | |Amound of disk space to allocate to the application. |
 |--instances INSTANCES | |Number of instances to run. |
 |--memory MEMORY | |Amount of memory to allocate to the application. |
 |--plan PLAN | |Application plan. |
@@ -773,9 +776,9 @@ The following data is returned for each service instance:
 * description -- This attribute, a description of the plan, is returned if you run the command with the `--full` option.
 * bound apps -- The applications to which the service is bound.
 
-#### <a id='env'></a> set-env ####
+#### <a id='set-env'></a> set-env ####
 
-Set an environment variable.
+Set an environment variable. For information about removing an environment variable see [set-env](#set-env).
 
 <div class="command-doc">
   <pre class="terminal">$ cf set-env [App] [Variable] [Value]</pre>
@@ -783,10 +786,10 @@ Set an environment variable.
 
 | Qualifier | Required | Description |
 | :-------- | :------- | :---------- |
-|--[no-]restart | |Use this option to indicate that you do (or do not) want to restart the application after updating it. |
-|--app APP | |The application for which you are defining the variable. |
-|--name NAME    | |The name of the environment variable. |
-|--value VALUE   | |The value of the environment variable. |
+|--[no-]restart |n |Use this option to indicate that you do (or do not) want to restart the application after updating it. |
+|--app APP | y |The application for which you are defining the variable. |
+|--name NAME    | y |The name of the environment variable. |
+|--value VALUE   | y |The value of the environment variable. |
 
 #### <a id='set-quota'></a> set-quota ####
 
@@ -798,8 +801,8 @@ Define the quota for an organization. **This command is provided by the `admin` 
 
 | Qualifier | Required | Description |
 | :-------- | :------- | :---------- |
-|--organization ORG | | |
-|--quota-definition | | |
+|--quota-definition QUOTA-DEFINITION| y| Allowable values are: "free", "paid", "runaway", and "trial"|
+|--organization ORG |y |The organization for which to set the quota. |
 
 
 #### <a id='space'></a> space ####
@@ -956,7 +959,7 @@ Tunnel to a service instance. You can keep the tunnel open or automatically open
 
 #### <a id='unbind-service'></a> unbind-service ####
 
-Remove a service binding from an application.
+Remove a service binding from an application. cf will prompt for required qualifiers not supplied on the command line.
 
 <div class="command-doc">
   <pre class="terminal">$ cf unbind-service [instance name] [application name]</pre>
@@ -998,11 +1001,18 @@ Disassociate a URL from an application.
 | | | |
 #### <a id='unset-env'></a> unset-env ####
 
-Remove an environment variable.
+Remove an environment variable. For information about defining an environment variable see [set-env](#set-env).
 
 <div class="command-doc">
   <pre class="terminal">$ cf unset-env [application name] [variable name]</pre>
 </div>
+
+
+| Qualifier | Required | Description |
+| :-------- | :------- | :---------- |
+|--[no-]restart |n |Use this option to indicate that you do (or do not) want to restart the application after updating it. |
+|--app APP | y |The application from which you are defining the variable. |
+|--name NAME    | y |The name of the environment variable to remove. |
 
 #### <a id='update-service-auth-token'></a> update-service-auth-token ####
 
