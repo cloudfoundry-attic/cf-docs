@@ -93,4 +93,7 @@ if (location.pathname == "/docs/running/managing-users/" || location.pathname ==
 };
 if (location.pathname == "/docs/using/services.html") {
   location.href = "/docs/using/services/"
-};  
+}; 
+if (location.pathname == "/docs/dotcom/services-marketplace/") {
+    location.href = "/docs/dotcom/marketplace/"
+}; 
