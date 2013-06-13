@@ -7,7 +7,7 @@ title: Welcome to Cloud Foundry Documentation
 </td></tr></table>
 <div class="column-left">
   <div class="column-title">
-  <h4>Pivotal's Cloud Foundry PaaS</h4>
+  <h4>Hosted Developer Edition</h4>
   </div>
    <p>Available at <a href="http://run.pivotal.io">run.pivotal.io</a></p>
    <hr>
