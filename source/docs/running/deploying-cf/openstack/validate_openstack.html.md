@@ -4,7 +4,7 @@ title: Validate your OpenStack
 
 This page aims to help you validate your target OpenStack in preparation for installing bosh and deploying Cloud Foundry.
 
-## Access to OpenStack API ##
+## Can access to OpenStack API ##
 
 You can verify that you have your OpenStack API credentials and can make API calls. Credentials are a combination of your user name, password, and what tenant (or project) your cloud is running under.
 
@@ -35,7 +35,24 @@ Note: it is recommended that you deploy bosh and Cloud Foundry in a dedicated te
 
 There is more information on [OpenStack API docs](http://docs.openstack.org/api/quick-start/content/).
 
-## Create a large volume ##
+## Can send large number of API calls
+
+Your OpenStack might have API throttling (devstack enables throttling by default) which may mean that bosh requests to OpenStack fail dramatically, or perhaps fail temporarily (whilst waiting for the API throttle to expire).
+
+Try the following to see if you may be affected by API throttling:
+
+<pre class="terminal">
+$ gem install fog
+>> 100.times { p OpenStack.servers }
+</pre>
+
+If you are running **devstack**, add the following to your `localrc` and at the end of this page you will recreate your devstack without API throttling:
+
+<pre class="bash">
+API_RATE_LIMIT=False
+</pre>
+
+## Can create a large volume ##
 
 The [devstack](http://devstack.org/) OpenStack distributions defaults to a very small total volume size (5G). Alternately, your tenancy/project might have only been granted a small quota for volume sizes.
 
