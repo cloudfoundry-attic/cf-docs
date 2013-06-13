@@ -4,17 +4,17 @@ title: Using the latest CF-Release
 
 ## <a id='intro'></a> Introduction ##
 
-[CF-Release][https://github.com/cloudfoundry/cf-release] is the BOSH release repository for Cloud Foundry. Use this with a custom manifest for your environment to deploy Cloud Foundry. 
+[CF-Release](https://github.com/cloudfoundry/cf-release) is the BOSH [release](/docs/running/bosh/reference#bosh-release) repository for Cloud Foundry. Use this with a custom manifest for your environment to deploy Cloud Foundry. 
 
-This short guide shows how to, after bootstrapping an initial instance of Cloud Foundry, deploy an update instance of CF-Release.
+This short guide shows how to, after [bootstrapping Bosh](/docs/running/deploying-cf/), create a Cloud Foundry release ready to deploy to your environment. 
 
 ## <a id='clone'></a> Clone CF-Release ##
 
-Create / find a folder to keep your clone of the CF-Release repository and clone it from Github.
+Create / find a folder to keep your clone of the CF-Release repository and clone it from Github;
 
 <pre class="terminal">
 $ mkdir -p ~/src/cloudfoundry && cd ~/src/cloudfoundry
-$ git clone git://github.com/cloudfoundry/cf-release.git && cd cf-release
+$ git clone -b release-candidate git://github.com/cloudfoundry/cf-release.git && cd cf-release
 
 </pre>
 
@@ -64,7 +64,8 @@ This is a very simple script that just runs a 'git pull' on the repository and t
 
 ## <a id='build-the-release'></a> Build the release ##
 
-At this point if the bosh_cli Ruby gem is not installed on the local system and targeted at a BOSH / MicroBOSH instance, do so, if necessary use this install [guide](../../bosh/setup/). Build the release;
+At this point if the Bosh CLI is not installed on the local system and targeted at a BOSH / MicroBOSH instance, do so, 
+if necessary use this install [guide](/docs/running/bosh/setup/). Build the release;
 
 <pre class="terminal">
 $ bosh create release
@@ -109,7 +110,7 @@ Release version: 130.2-dev
 Release manifest: /private/tmp/cf-release/dev_releases/bosh-release-130.2-dev.yml
 </pre>
 
-## <a id='build-the-release'></a> Build the release ##
+## <a id='upload-the-release'></a> Upload the release ##
 
 Once the build is complete, the latest development release (that was just generated), can be uploaded to the BOSH / MicroBOSH instance;
 
@@ -146,8 +147,4 @@ $ bosh releases
 Releases total: 1
 </pre>
 
-Thie release is now ready to use against a release
-
-
-
-
+This release is now ready to deploy using a custom manifest.
