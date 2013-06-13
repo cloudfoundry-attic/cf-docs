@@ -23,7 +23,7 @@ $ sudo apt-get -y install libsqlite3-dev genisoimage
 * Install the BOSH Deployer Ruby gem.
 
 <pre class="terminal">
-$ gem install bosh_deployer
+$ gem install bosh_cli_plugin_micro --version "~> 1.5.0.pre" --source https://s3.amazonaws.com/bosh-jenkins-gems/
 </pre>
 
 Once you have installed the deployer, you will see some extra commands appear after typing `bosh` on your command line.
