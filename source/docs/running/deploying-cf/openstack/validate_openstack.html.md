@@ -78,6 +78,24 @@ If you are running **devstack**, add the following to your `localrc` and at the 
 VOLUME_BACKING_FILE_SIZE=70000M
 </pre>
 
+## Do instance flavors have ephemeral storage? ##
+
+Bosh can only use flavors that are available to you, but it requires that you only use flavors that have an ephemeral disk.
+
+To see the list of available flavors that have ephemeral disks:
+
+<pre class="terminal">
+$ fog openstack
+>> OpenStack.flavors.select {|s| s.ephemeral > 0}.map(&:name)
+["m1.small", "m1.medium", "m1.microbosh"]
+</pre>
+
+You can create flavors using the `nova` tool. For example, to create an `m1.small` with 1 CPU, 2G RAM and 20G ephemeral disk:
+
+<pre class="terminal">
+$ nova flavor-create m1.small 2 2048 20 1 --ephemeral 20 --rxtx-factor 1 --is-public true
+</pre>
+
 ## Can access the Internet from within instances? ##
 
 Your deployment of Cloud Foundry will need outbound access to the Internet (for example, the Ruby buildpack will run `bundle install` on users' applications to fetch RubyGems). You can verify now that your OpenStack is configured correctly to allow outbound access to the Internet.
@@ -86,12 +104,10 @@ From your OpenStack dashboard, create an VM and open the console into it (the "C
 
 <pre class="terminal">
 $ curl google.com
-<HTML><HEAD><meta http-equiv="content-type" content="text/html;charset=utf-8">
-<TITLE>301 Moved</TITLE></HEAD><BODY>
-<H1>301 Moved</H1>
+...
+&lt;H1>301 Moved&lt;/H1>
 The document has moved
-<A HREF="http://www.google.com/">here</A>.
-</BODY></HTML>
+...
 </pre>
 
 If you do not see the output above, please consult the OpenStack documentation (or the documentation for your OpenStack distribution) to diagnose and resolve networking issues.
@@ -102,4 +118,5 @@ If you are running **devstack**, perhaps check that you have an `eth0` and `eth1
 PUBLIC_INTERFACE=eth1
 FLAT_INTERFACE=eth0
 </pre>
+
 
