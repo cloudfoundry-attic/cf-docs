@@ -4,7 +4,7 @@ title: Validate your OpenStack
 
 This page aims to help you validate your target OpenStack in preparation for installing bosh and deploying Cloud Foundry.
 
-## Can access to OpenStack API ##
+## Can access your OpenStack API? ##
 
 You can verify that you have your OpenStack API credentials and can make API calls. Credentials are a combination of your user name, password, and what tenant (or project) your cloud is running under.
 
@@ -35,7 +35,7 @@ Note: it is recommended that you deploy bosh and Cloud Foundry in a dedicated te
 
 There is more information on [OpenStack API docs](http://docs.openstack.org/api/quick-start/content/).
 
-## Can send large number of API calls
+## Can invoke large number of API calls? ##
 
 Your OpenStack might have API throttling (devstack enables throttling by default) which may mean that bosh requests to OpenStack fail dramatically, or perhaps fail temporarily (whilst waiting for the API throttle to expire).
 
@@ -52,7 +52,7 @@ If you are running **devstack**, add the following to your `localrc` and at the 
 API_RATE_LIMIT=False
 </pre>
 
-## Can create a large volume ##
+## Can create a large volume? ##
 
 The [devstack](http://devstack.org/) OpenStack distributions defaults to a very small total volume size (5G). Alternately, your tenancy/project might have only been granted a small quota for volume sizes.
 
@@ -76,5 +76,30 @@ If you are running **devstack**, add the following to your `localrc` and at the 
 
 <pre class="bash">
 VOLUME_BACKING_FILE_SIZE=70000M
+</pre>
+
+## Can access the Internet from within instances? ##
+
+Your deployment of Cloud Foundry will need outbound access to the Internet (for example, the Ruby buildpack will run `bundle install` on users' applications to fetch RubyGems). You can verify now that your OpenStack is configured correctly to allow outbound access to the Internet.
+
+From your OpenStack dashboard, create an VM and open the console into it (the "Console" tab on its "Instance Detail" page). Wait for the terminal to appear and login.
+
+<pre class="terminal">
+$ curl google.com
+<HTML><HEAD><meta http-equiv="content-type" content="text/html;charset=utf-8">
+<TITLE>301 Moved</TITLE></HEAD><BODY>
+<H1>301 Moved</H1>
+The document has moved
+<A HREF="http://www.google.com/">here</A>.
+</BODY></HTML>
+</pre>
+
+If you do not see the output above, please consult the OpenStack documentation (or the documentation for your OpenStack distribution) to diagnose and resolve networking issues.
+
+If you are running **devstack**, perhaps check that you have an `eth0` and `eth1` network interface when running `ifconfig`. If you only have `eth1` perhaps try adding the following lines to your `localrc` file before recreating your devstack:
+
+<pre class="bash">
+PUBLIC_INTERFACE=eth1
+FLAT_INTERFACE=eth0
 </pre>
 
