@@ -25,4 +25,4 @@ A route, based on a domain with an optional host as a prefix, may be associated 
 
 ## <a id='managmement'></a>Management ##
 
-You can manage spaces and organizations with the [CF](/docs/using/managing-apps/cf/index.html) console interface, [API libraries](libs/), or [IDEs](ide/).
+You can manage spaces and organizations with the [CF](/docs/using/managing-apps/cf/index.html) command line interface, [API libraries](libs/), or [IDEs](ide/).

@@ -1,5 +1,5 @@
 ---
-title: cf Console Interface
+title: cf Command Line Interface
 ---
 
 cf is Cloud Foundry's command line interface. You can use cf to deploy and manage applications running on most Cloud Foundry based environments including CloudFoundry.com.
