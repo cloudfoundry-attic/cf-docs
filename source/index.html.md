@@ -93,7 +93,7 @@ title: Welcome to Cloud Foundry Documentation
 
   <p>
   Deploying Cloud Foundry<br>
-  <a href="docs/running/deploying-cf/index.html">Setting up BOSH</a><br>
+  <a href="docs/running/bosh/setup/index.html">Setting Up BOSH</a><br>
   <a href="docs/running/deploying-cf/ec2/index.html">Deploying to AWS</a><br>
   <a href="docs/running/deploying-cf/openstack/index.html">Deploying to OpenStack</a><br>   
   <a href="docs/running/deploying-cf/vsphere/index.html">Deploying to vSphere</a><br>
