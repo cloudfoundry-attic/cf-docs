@@ -75,7 +75,7 @@ title: Welcome to Cloud Foundry Documentation
 
   <p>
   Understanding the Architecture<br>
-  <a href="docs/running/architecture/index.html">A Tour of Each Component</a><br>
+  <a href="docs/running/architecture/">A Tour of Each Component</a><br>
   <a href="docs/running/architecture/how-applications-are-staged.html">How Applications Are Staged</a></p>
 
   <hr>

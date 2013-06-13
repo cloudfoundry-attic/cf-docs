@@ -10,7 +10,7 @@ This table below lists all cf commands, including those enabled by cf plug-ins. 
 
 |   |  | |
 | :-------- | :---------- |:---------- |
-| **Basics** <br>[info](#info) <br>[login EMAIL](#login) <br>[logout](#logout) <br>[target URL](#target) <br>[targets](#targets) <br> <br> **Manage Users** <br> [users](#users) <br>  [create-user EMAIL](#create-user) <br>   [passwd](#passwd) <br> [register EMAIL](#register) <br><br> **Manage Apps** <br>[app APP](#app) <br> [apps](#apps) <br> [delete APP](#delete) <br>[push NAME](#push) <br>[rename APP APP](#rename) <br>[restart APP](#restart) <br>[start APPS](#start) <br>[stop APPS](#stop) <br>[console APP](#console) <br> [set-env APP NAME VALUE](#set-env) <br> [unset-env APP NAME](#unset-env) <br>[bind-service SVC APP](#bind-service) <br>[unbind-service SVC APP](#unbind-service) <br> [scale APP](#scale) <br>[map APP HOST DOMAIN](#map) <br> [unmap URL APP](#unmap)  <br> <br> | **Get Information About Apps**  <br>[crashes APPS](#crashes)   <br> [env APP](#env)  <br> [file APP PATH](#file)  <br> [files APP PATH](#file)  <br>[tail APP PATH](#tail)  <br>[health APP](#health) <br>[instances APP](#instances) <br>[logs APP](#logs)  <br>[crashlogs APP](#crashlogs)  <br>[stats APP](#stats)  <br> <br>  **Manage Services** <br>[create-service OFFERING NAME](#create-service) <br>[delete-service SVC](#delete-service) <br>[rename-service SVC SVC](#rename-service) <br>[bind-service SVC APP](#bind-service) <br>[unbind-service SVC APP](#unbind-service) <br>[tunnel INSTANCE CLIENT](#tunnel) <br>[create-service-auth-token LABEL PROVIDER](#create-service-auth-token) <br>[update-service-auth-token TOKEN](#update-service-auth-token)  <br>[delete-service-auth-token TOKEN](#delete-service-auth-token) <br> <br>**Get Information about Services**<br>[service SERVICE](#service) <br>[services](#services) <br> [service-auth-tokens](#service-auth-tokens) <br>[info --service](#info)  |**Manage Organizations and Spaces** <br>[create-org ORG](#create-org)   <br>  [delete-org ORG](#delete-org) <br>[rename-org ORG ORG](#rename-org) <br>[create-space NAME ORG](#create-space) <br>[delete-space SPACE](#delete-space) <br>[rename-space SPACE SPACE](#rename-space) <br>[switch-space SPACE](#switch-space) <br> <br> **Get Information About Organizations and Spaces** <br>[org ORG](#org)  <br>[orgs](#orgs)  <br>[space SPACE](#space)  <br> [spaces ORG](#spaces) <br> [switch-space SPACE](#switch-spaces) <br> <br>**Manage Domains and Routes**  <br>[unmap-domain DOMAIN](#unmap-domain ) <br>[routes](#routes) <br> [domains SPACE](#domains) <br>
+| **Basics** <br>[info](#info) <br>[login EMAIL](#login) <br>[logout](#logout) <br>[targets](#targets) <br>[target URL](#target)  <br> <br> **Manage Users** <br>  [create-user EMAIL](#create-user)  <br>   [passwd](#passwd) <br> [register EMAIL](#register) <br> [users](#users)<br><br> **Manage Apps** <br>[app APP](#app) <br> [apps](#apps) <br>[bind-service SVC APP](#bind-service)<br> [console APP](#console) <br>[delete APP](#delete) <br>[map APP HOST DOMAIN](#map) <br>[push NAME](#push) <br>[rename APP APP](#rename) <br>[restart APP](#restart) <br> [scale APP](#scale) <br> [set-env APP NAME VALUE](#set-env)<br>[start APPS](#start) <br>[stop APPS](#stop) <br>[unbind-service SVC APP](#unbind-service)   <br> [unmap URL APP](#unmap) <br> [unset-env APP NAME](#unset-env)    <br> <br> | **Get Information About Apps**  <br>[crashes APPS](#crashes) <br>[crashlogs APP](#crashlogs)  <br> [env APP](#env)  <br> [file APP PATH](#file)  <br> [files APP PATH](#file) <br> [guid TYPE NAME](#guid) <br>[health APP](#health) <br>[instances APP](#instances) <br>[logs APP](#logs) <br>[stats APP](#stats) <br>[tail APP PATH](#tail)        <br> <br>  **Manage Services** <br>[bind-service SVC APP](#bind-service) <br>[create-service-auth-token LABEL PROVIDER](#create-service-auth-token)<br>[create-service OFFERING NAME](#create-service) <br>[delete-service-auth-token TOKEN](#delete-service-auth-token)<br>[delete-service SVC](#delete-service) <br>[rename-service SVC SVC](#rename-service) <br>[tunnel INSTANCE CLIENT](#tunnel)  <br>[unbind-service SVC APP](#unbind-service)  <br>[update-service-auth-token TOKEN](#update-service-auth-token)   <br> <br>**Get Information about Services** <br>[info --service](#info) <br> [service-auth-tokens](#service-auth-tokens) <br>[service SERVICE](#service) <br>[services](#services)   |**Manage Organizations and Spaces** <br>[create-org ORG](#create-org) <br>[create-space NAME ORG](#create-space)  <br>  [delete-org ORG](#delete-org) <br>[delete-space SPACE](#delete-space)   <br>[rename-org ORG ORG](#rename-org)   <br>[rename-space SPACE SPACE](#rename-space) <br> [set-quota QUOTA ORG](#set-quota) <br>[switch-space SPACE](#switch-space) <br> <br> **Get Information About Organizations and Spaces** <br> [guid TYPE NAME](#guid) <br>[org ORG](#org)  <br>[orgs](#orgs)  <br>[space SPACE](#space)  <br> [spaces ORG](#spaces)  <br> <br>**Manage Domains and Routes** <br>[domains SPACE](#domains) <br> [guid TYPE NAME](#guid)<br>[routes](#routes) <br>[unmap-domain DOMAIN](#unmap-domain )  <br>
 |  | |
 
 ## <a id='installing'></a>Installing cf ##
@@ -198,7 +198,7 @@ The table below lists supported command qualifiers. cf prompts for required qual
 
 #### <a id='create-service-auth-token'></a> create-service-auth-token ####
 
-Create a service authorization token.
+Create a service authorization token. **This command is provided by the `admin` plugin.**
 
 <div class="command-doc">
   <pre class="terminal">$ cf create-service-auth-token [label] [provider]</pre>
@@ -297,7 +297,7 @@ Delete a route.
 
 #### <a id='delete-service-auth-token'></a> delete-service-auth-token ####
 
-Delete a service authorization token.
+Delete a service authorization token. **This command is provided by the `admin` plugin.**
 
 <div class="command-doc">
   <pre class="terminal">$ cf delete-service-auth-token [service auth token]</pre>
@@ -722,7 +722,7 @@ Set the number of instances for a application and the amount of memory assigned 
 
 #### <a id='service-auth-token'></a> service-auth-token ####
 
-List service authorization tokens.
+List service authorization tokens. **This command is provided by the `admin` plugin.**
 
 <div class="command-doc">
   <pre class="terminal">$ cf service-auth-token</pre>
