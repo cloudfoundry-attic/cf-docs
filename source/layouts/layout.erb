@@ -29,16 +29,7 @@
           $('#organization_bar .navbar .nav>li#docs-off .docs-list-list a').css("padding","0");
           $('#search-on').hide();
           $('#search-off').show();
-        });
-        $('#docs-list, #docs-off, a#docs').mouseenter(function () {
-          $('#icon-docs').css("background-position","0 -30px");
-        });
-        $('#docs-list, #docs-off, a#docs').mouseleave(function () {
-          $('#icon-docs').css("background-position","0 0");
-        });
-        $('li#docs-off').hoverIntent(function () {
-          $('#docs-list').slideToggle(500);
-        });
+        });f
         $(".togglebutton").click(function () {
         var divname= this.value;
           $("#"+divname).show("slow").siblings().hide("slow");
@@ -74,8 +65,10 @@
         <div class='container_wide'>
           <ul class='actions'>
             <li class='last'>
-<!--             <a class='register_link' href='http://login.cloudfoundry.com'>My Account</a> -->
-            <a href="http://www.cloudfoundry.com/contact">Contact Us</a>
+              <a href="http://www.cloudfoundry.com/contact">Contact Us</a>
+            </li>
+            <li>
+              <a class='register_link' href='http://login.run.pivotal.io/login'>My Account</a>            
             </li>
           </ul>
         </div>
@@ -91,8 +84,8 @@
             </a>
           </div>
           <div class='cta'>
-            <a href='http://my.cloudfoundry.com/signup'>
-            <img src='/images/signup.png'>
+            <a href='https://console.run.pivotal.io/register'>
+            <img src='/images/signup_freetrial.png'>
             </a>
           </div>
         </div><!-- End of logo-main-->
@@ -246,90 +239,25 @@
           </li>
           <li class='disc'>•</li>
           <li>
-          <a href='http://stackoverflow.com/questions/tagged/cloudfoundry' target='_blank'>Forums</a>
+          <a href='http://docs.cloudfoundry.com'>Docs</a>
           </li>
           <li class='disc'>•</li>
           <li>
-          <a href='http://status.run.pivotal.io/' target='_blank'>Status</a>
+          <a href='http://www.cloudfoundry.com/faq'>FAQ</a>
           </li>
           <li class='disc'>•</li>
           <li>
-          <a href='http://www.cloudfoundry.com/contact'>Contact</a>
+          <a href='http://www.cloudfoundry.com/getinvolved'>Get Involved</a>
+          </li>
+          <li class='disc'>•</li>
+          <li>
+          <a href='http://status.cloudfoundry.com/'>Status</a>
+          </li>
+          <li class='disc'>•</li>
+          <li>
+          <a href='http://www.cloudfoundry.com/support'>Support</a>
           </li>
         </ul>
-        <div id='container-footerth'>
-          <div class='footerth'>
-            <a href='http://www.cloudfoundry.com/use'>Using Cloud Foundry</a>
-            <span class='footerlist'>
-              <a href="/docs/using/app-arch/">Application Architecture</a>
-              <br>
-              <a href='/docs/using/deploying-apps/'>Deploying Apps</a>
-              <br>
-              <a href='/docs/using/managing-apps/'>Managing Apps</a>
-              <br>
-              <a href='/docs/using/services.html'>Using Services</a>
-            </span>
-          </div>
-          <div class='footerth'>
-            <a href='http://www.cloudfoundry.com/run'>Running Cloud Foundry</a>
-            <span class='footerlist'>
-              <a href='/docs/running/architecture/'>Architecture</a>
-              <br>
-              <a href='/docs/running/bosh/'>BOSH</a>
-              <br>
-              <a href='/docs/running/deploying-cf/'>Deploying with BOSH</a>
-              <br>
-              <a href='/docs/running/deploying-cf-with-chef/'>Deploying with Chef</a>
-              <br>
-              <a href='/docs/running/micro_cloud_foundry/'>Micro Cloud Foundry</a>
-              <br>
-              <a href='/docs/running/managing-cf/index.html'>Managing Cloud Foundry</a>
-            </span>
-          </div>
-          <div class='footerth'>
-            <a href='http://www.cloudfoundry.com/getinvolved'>Developer Community</a>
-            <span class='footerlist'>
-              <br>
-              <a href='http://www.cloudfoundry.com/getinvolved'>Get Involved</a>
-              <br>
-              <a href='http://www.cloudfoundry.com/getinvolved'>Contribute</a>
-              <br>
-              <a href='http://github.com/cloudfoundry' target='_blank'>Source Code</a>
-              <br>
-              <a href='https://groups.google.com/a/cloudfoundry.org/groups/dir' target='_blank'>Mailing Lists</a>
-              <br>
-              <a href='http://github.com/cloudfoundry' target='_blank'>Report Issues</a>
-            </span>
-          </div>
-          <div class="footerth">
-            <a href="/">Documentation</a>
-            <span class="footerlist">
-              <br>
-              <a href="/docs/using/">Using Cloud Foundry</a>
-              <br>
-              <a href="/docs/running/">Running Cloud Foundry</a>
-              <br>
-              <a href="/docs/reference/">Reference</a>
-              <br>
-              <a href="/docs/community/">Community</a>
-            </span>
-          </div>
-          <div class='footerth'>
-            <a href='http://www.cloudfoundry.com/getinvolved#events'>Cloud Foundry</a>
-            <span class='footerlist'>
-              <br>
-              <a href='http://www.cloudfoundry.com/getinvolved#events'>Events</a>
-              <br>
-              <a href='http://www.cloudfoundry.com/calendar'>Calendar</a>
-              <br>
-              <a href='http://www.cloudfoundry.com/webinars'>Webinars</a>
-              <br>
-              <a href='http://www.cloudfoundry.com/faq'>FAQ</a>
-              <br>
-              <a href='http://www.cloudfoundry.com/jobs'>Jobs</a>
-            </span>
-          </div>
-        </div><!-- End of container-footerth -->
         <div class='copyright'>
           <div class='hr-horizontal-dark'></div>
           <br>
@@ -341,9 +269,8 @@
                 document.write(d.getFullYear());
               //]]>
             </script>
-            Go Pivotal Inc. All rights reserved.
+            GoPivotal, Inc. All rights reserved.
             <a href='http://www.cloudfoundry.com/terms'>Terms</a>
-            <a href='http://www.cloudfoundry.com/legal'>Legal</a>
             <a href='http://www.gopivotal.com/privacy-policy' target='_blank'>Privacy</a>
           </p>
         </div><!-- End of copyright -->

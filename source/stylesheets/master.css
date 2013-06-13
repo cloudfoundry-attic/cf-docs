@@ -1180,7 +1180,7 @@ filter:progid:dximagetransform.microsoft.gradient(enabled=false);
 
 #icon-docs {
 	width:23px;
-	height: 27px;
+	height: 26px;
 	display: block;
 	background: url('/images/cf-icons.png') no-repeat;
 	background-position: 0 0;
@@ -1188,7 +1188,7 @@ filter:progid:dximagetransform.microsoft.gradient(enabled=false);
 }
 
 #icon-docs:hover {
-	background-position: 0 -30px;
+/*	background-position: 0 -30px;*/
 }
 
 
@@ -1198,17 +1198,17 @@ filter:progid:dximagetransform.microsoft.gradient(enabled=false);
 }
 
 #organization_bar .navbar .nav>li#docs-off:hover {
-	background: #21303c;
+/*	background: #21303c;*/
 }
 
 #organization_bar .navbar .nav>li#docs-off:hover a {
-	background-position: 0 -30px;
-	background-repeat: no-repeat;
+/*	background-position: 0 -30px;
+	background-repeat: no-repeat;*/
 }
 
 
 #organization_bar .navbar .nav>li>a#docs:hover {
-	background: #21303c;
+/*	background: #21303c;*/
 }
 
 #organization_bar .navbar .nav>li#docs-off {
