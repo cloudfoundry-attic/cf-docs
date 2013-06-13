@@ -2,13 +2,16 @@
 title: Deploying Apps
 ---
 
-This section covers the runtimes and frameworks supported by the Cloud Foundry. Select a runtime below to see the frameworks supported for that runtime. 
+Cloud Foundry supports many frameworks and runtimes.
 
-* [Java / JVM based](jvm/index.html)
+| Runtime         			| Framework     							|
+| :-------------  			|:------------- 							|
+| Javascript	     		| Node.js 									|
+| Java / JVM 				| Java Spring, Grails, Scala Lift, and Play |
+| Ruby						| Rack, Rails, Sinatra						|
 
-* [Node.js](javascript/index.html)
+You can also use [Custom Buildpacks](buildpacks.html) for other runtimes and frameworks not in this list.
 
-* [Ruby](ruby/index.html)
+How you deploy your application depends on the Cloud Foundry you are targeting. 
 
-* [Custom](custom/index.html)
-
+For **run.pivotal.io**, you can follow the [Getting Started document here](../../dotcom/getting-started.html).

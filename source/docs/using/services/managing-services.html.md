@@ -2,15 +2,15 @@
 title: Managing Services
 ---
 
-## <a id='viewing-services'></a> Viewing Available Services ##
+## <a id='viewing-services'></a> View Available Services ##
 
-After targeting and logging into Cloud Foundry using [cf](/docs/using/managing-apps/cf/index.html), you can view what services are available using:
+After targeting and logging into Cloud Foundry using [cf](/docs/using/managing-apps/cf/index.html), you can view what services are available:
 
 <pre class="terminal">
 $ cf info --services
 </pre>
 
-This will result in a list of services that can be bound to your applications. The following is an example of those services on a private beta install of Cloud Foundry.
+This command displays a list of services that can be bound to your applications. The following is an example of those services on a private beta install of Cloud Foundry.
 
 <pre class="terminal">
 $ cf info --services
@@ -27,7 +27,7 @@ redis        2.6       core            200                          Redis key-va
 
 <i>Note: This is an example. These services may not be available on the Cloud Foundry service you target.</i>
 
-## <a id='create'></a>Creating a Service ##
+## <a id='create'></a>Create a Service ##
 
 Use these commands to create and bind a service to your app.
 
@@ -52,7 +52,7 @@ Which plan?> 2
 Creating service mysql-a0a77... OK
 </pre>
 
-## <a id='bind'></a>Binding a Service ##
+## <a id='bind'></a>Bind a Service ##
 
 Binding a service to your application adds credentials for the service instance to the VCAP_SERVICES environment variable. In most cases these credentials are unique to the binding; another app bound to the same service instance would receive different credentials. You may need to restart your application for it to recognize the change. 
 
@@ -71,9 +71,9 @@ Which service?> 1
 Binding mysql-a0a77 to my-app... OK
 </pre>
 
-## <a id='unbind'></a>Unbinding a Service ##
+## <a id='unbind'></a>Unbind a Service ##
 
-Unbinding a service will remove the credentials created for your application from the VCAP_SERVICES environment variable. You may need to restart your application for it to recognize the change. 
+Unbinding a service removes the credentials created for your application from the VCAP_SERVICES environment variable. You may need to restart your application for it to recognize the change. 
 
 <pre class="terminal">
 $ cf unbind-service
@@ -86,9 +86,9 @@ Which service?> 1
 Unbinding mysql-a0a77 from my-app... OK
 </pre>
 
-## <a id='delete'></a>Deleting a Service ##
+## <a id='delete'></a>Delete a Service ##
 
-Deleting a service will unprovision the service instance. This command is destructive and will delete all data along with the service instance. 
+Deleting a service unprovisions the service instance and deletes *all data* along with the service instance. 
 
 <pre class="terminal">
 $ cf delete-service

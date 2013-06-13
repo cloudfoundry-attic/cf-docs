@@ -1,5 +1,6 @@
 ---
 title: Warden
+description: Provides a simple API for managing isolated, resource-controlled environments.
 ---
 
 Warden manages isolated, ephemeral, and resource controlled environments.

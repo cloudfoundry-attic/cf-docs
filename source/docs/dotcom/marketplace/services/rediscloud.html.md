@@ -1,3 +1,8 @@
+---
+title: Redis Cloud
+category: marketplace
+---
+
 [Redis Cloud](http://redis-cloud.com) is a fully-managed cloud service for hosting and running your Redis dataset in a highly-available and scalable manner, with predictable and stable top performance. You can quickly and easily get your apps up and running with Redis Cloud through its add-on for Cloud Foundry, just tell us how much memory you need and get started instantly with your first Redis database.
  
 Redis Cloud offers true high-availability with its in-memory dataset replication and instant auto-failover mechanism, combined with its fast storage engine. You can easily import an existing dataset to any of your Redis Cloud databases, from your S3 account or from any other Redis server. Daily backups are performed automatically and in addition, you can backup your dataset manually at any given time. The service guarantees high performance, as if you were running the strongest cloud instances.
@@ -7,9 +12,9 @@ Redis Cloud offers true high-availability with its in-memory dataset replication
 
 Create a Redis Cloud service with the following command:
 
-	cf create-service
+	cf create-service rediscloud
 
-select the 'rediscloud' service and the desired plan.
+and the desired plan.
 
 ## Binding Your Redis Cloud Service
 
@@ -273,7 +278,7 @@ You can continue [managing your services from the command line](http://docs.clou
 ## Support
 
 Any Redis Cloud support issues or product feedbacks are welcome via email at support@garantiadata.com.
-Please make sure you are familiar with [how to manage service on Cloud Foundry](http://docs.cloudfoundry.com/docs/using/services/managing-services.html).
+Please make sure you are familiar with the CloudFoundry method of [contacting service providers for support](http://docs.cloudfoundry.com/docs/dotcom/services-marketplace/contacting-service-providers-for-support.html).
 
 ## Additional resources
 

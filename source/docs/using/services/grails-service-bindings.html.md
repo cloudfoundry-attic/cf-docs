@@ -2,11 +2,11 @@
 title: Grails - Service Bindings
 ---
 
-## <a id='intro'></a>Introduction ##
-
-Cloud Foundry provides extensive support for connecting a Grails application to services such as MySQL, vFabric Postgres, MongoDB, Redis, and RabbitMQ. In many cases, a Grails application running on Cloud Foundry can automatically detect and configure connections to services. For more advanced cases, you can control service connection parameters yourself. 
+Cloud Foundry provides extensive support for connecting a Grails application to services such as MySQL, Postgres, MongoDB, Redis, and RabbitMQ. In many cases, a Grails application running on Cloud Foundry can automatically detect and configure connections to services. For more advanced cases, you can control service connection parameters yourself. 
 
 ## <a id='plugin'></a>Cloud Foundry Grails Plugin ##
+
+> **The Cloud Foundry Grails plugin will be updated in the coming weeks to support Cloud Foundry v2, including support for organizations, spaces, and custom buildpacks, as well as support for Marketplace services. Until a new version of the plugin is released, Grails apps will need to use the [manual configuration](#manual) method to connect to Marketplace services.**
 
 Cloud Foundry provides a [plugin for Cloud Foundry integration](http://grails.org/plugin/cloud-foundry). The Cloud Foundry Grails plugin provides Grails command-line alternatives to the `cf` command line tool, and supports auto-reconfiguration of services in a Grails application. 
 
@@ -80,7 +80,7 @@ The `url`, `host`, `port`, `databaseName`, `username`, and `password` fields in 
 
 If you do not want to use the Cloud Foundry Grails plugin, you can choose to configure the Cloud Foundry service connections manually. 
 
-The best way to do the manual configuration is to use the `cloudfoundry-runtime` library to get the details of the Cloud Foundry environment the application is running in. To use this library, add it to the `dependencies` section in your `BuildConfig.groovy` file. You will also need the Spring Framework Milestone repository in the `repositories` section:
+The best way to do the manual configuration is to use the `cloudfoundry-runtime` library to get the details of the Cloud Foundry environment the application is running in. To use this library, add it to the `dependencies` section in your `BuildConfig.groovy` file. You will also need the Spring Framework Milestone repository in the `repositories` section. **For Cloud Foundry v2 support, the version of this library must be at least `0.8.4`**:
 
 ~~~groovy
   repositories {
@@ -91,7 +91,7 @@ The best way to do the manual configuration is to use the `cloudfoundry-runtime`
   }
 
   dependencies {
-    compile "org.cloudfoundry:cloudfoundry-runtime:0.8.2"
+    compile "org.cloudfoundry:cloudfoundry-runtime:0.8.4"
   }
 ~~~
 

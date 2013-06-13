@@ -1,5 +1,6 @@
 --- 
 title: User Account and Authentication (UAA) Server 
+description: Identity management service for Cloud Foundry.
 ---
 
 The UAA is the identity management service for Cloud Foundry.  Its primary role is as an OAuth2 provider, issuing tokens for client applications to use when they act on behalf of Cloud Foundry users.  It can also authenticate users with their Cloud Foundry credentials, and can act as an SSO service using those credentials (or others). It has endpoints for managing user accounts and for registering OAuth2 clients, as well as various other management functions.

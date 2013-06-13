@@ -4,7 +4,7 @@ title: Releases
 
 The `releases` folder contains the `yml` file declaring the content of the release : `packages` and their dependencies.
 
-Sample release file is show below
+Sample release file:
 
 	--- 
 	packages: 

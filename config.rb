@@ -96,7 +96,7 @@ activate :navigation
 activate :quicklinks
 
 # For live reload
-activate :livereload
+# activate :livereload
 
 helpers do
   class Middleman::Sitemap::Page

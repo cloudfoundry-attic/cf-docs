@@ -2,13 +2,13 @@
 <html>
   <head>
     <meta charset="utf-8">
-    
+
     <!-- Always force latest IE rendering engine or request Chrome Frame -->
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
-    
+
     <!-- Use title if it's in the page YAML frontmatter -->
     <title><%= data.page.title || "Cloud Foundry Docs" %></title>
-    
+
     <%= stylesheet_link_tag "master" %>
     <%= stylesheet_link_tag "style" %>
     <%= javascript_include_tag  "all" %>
@@ -26,18 +26,13 @@
           $('#organization_bar .navbar .nav>li a#docs').css("padding","14px 20px");
           $('#organization_bar .navbar .nav>li a#search2, #organization_bar .navbar .nav>li a#search').css("padding","16px 20px 15px");
           $('#organization_bar .navbar .nav>li a#getinvolved').css("padding","11px 92px 8px");
-          $('#organization_bar .navbar .nav>li#docs-off .docs-list-list a').css("padding","0"); 
+          $('#organization_bar .navbar .nav>li#docs-off .docs-list-list a').css("padding","0");
           $('#search-on').hide();
           $('#search-off').show();
-        });
-        $('#docs-list, #docs-off, a#docs').mouseenter(function () {
-          $('#icon-docs').css("background-position","0 -30px");
-        });
-        $('#docs-list, #docs-off, a#docs').mouseleave(function () {
-          $('#icon-docs').css("background-position","0 0");
-        });
-        $('li#docs-off').hoverIntent(function () {
-          $('#docs-list').slideToggle(500);
+        });f
+        $(".togglebutton").click(function () {
+        var divname= this.value;
+          $("#"+divname).show("slow").siblings().hide("slow");
         });
       });
     </script>
@@ -46,7 +41,7 @@
     <style>
         #content .container-full {background:  #ebf0fa;}
         .call-to-contribute-box, .column-left, .column-middle, .column-right {background:#e3e8f2}
-        #footer {background:#000;}  
+        #footer {background:#000;}
     </style>
     <![endif]-->
     <script type="text/javascript">
@@ -62,7 +57,7 @@
       })();
     </script>
   </head>
-  
+
   <body class="<%= page_classes %>">
     <img id="bg" src="/images/bg-plain-x.jpg">
     <div id='non_footer'>
@@ -70,8 +65,10 @@
         <div class='container_wide'>
           <ul class='actions'>
             <li class='last'>
-<!--             <a class='register_link' href='http://login.cloudfoundry.com'>My Account</a> -->
-            <a href="http://www.cloudfoundry.com/contact">Contact Us</a>
+              <a href="http://www.cloudfoundry.com/contact">Contact Us</a>
+            </li>
+            <li>
+              <a class='register_link' href='http://login.run.pivotal.io/login'>My Account</a>            
             </li>
           </ul>
         </div>
@@ -87,8 +84,8 @@
             </a>
           </div>
           <div class='cta'>
-            <a href='http://my.cloudfoundry.com/signup'>
-            <img src='/images/signup.png'>
+            <a href='https://console.run.pivotal.io/register'>
+            <img src='/images/signup_freetrial.png'>
             </a>
           </div>
         </div><!-- End of logo-main-->
@@ -175,9 +172,10 @@
             <a class="forkme" href="http://github.com/cloudfoundry/cf-docs" target="_blank">
               <img alt="Fork me on GitHub" src="/images/ribbon_forkme.png">
             </a>
-
-            <h1>Cloud Foundry Documentation</h1>
-            
+            <form action='http://www.cloudfoundry.com/search' class='search-docs-form' method='get' onsubmit='return submitQuery()'>
+              <input autocomplete='off' class='search-docs-input' id='search-query' name='q' onfocus="this.placeholder = 'more:docs '" placeholder='' type='search-docs' value='more:docs '>
+            </form>
+            <br clear="left">
             <% unless current_page.url == "/" %>
               <div class="breadcrumbs">
                 <ul>
@@ -187,15 +185,12 @@
                   <%= trail_nav %>
                 </ul>
               </div>
-              <br>
+              <br clear="left">
 
-			<table><tr><td style="font-size:9pt">
-			          <b>We are in a time of transition:</b>
-			          <li>You are reading V2 documentation. The V1 docs are available <a href="http://cf-docs-deprecated.cloudfoundry.com">here</a>. Cloudfoundry.com will be upgraded to V2 in June 2013. <li>You can browse <b>http://api.{cloudfoundry url}/info</b> to check a Cloud Foundry version.<li>The <b>cf</b> command-line is for Cloud Foundry V2. Use <b>vmc</b> for Cloud Foundry V1. <a href='/docs/running/api/version.html'>See these examples</a> for detail on detecting the difference between a v1 and a v2 system.
-			</td></tr></table>
-            
+			
+
               <%= quick_links %>
-            
+
               <h1><%= current_page.data.title %></h1>
 
             <% end %>
@@ -244,90 +239,25 @@
           </li>
           <li class='disc'>•</li>
           <li>
-          <a href='http://stackoverflow.com/questions/tagged/cloudfoundry' target='_blank'>Forums</a>
+          <a href='http://docs.cloudfoundry.com'>Docs</a>
           </li>
           <li class='disc'>•</li>
           <li>
-          <a href='http://status.cloudfoundry.com/' target='_blank'>Status</a>
+          <a href='http://www.cloudfoundry.com/faq'>FAQ</a>
           </li>
           <li class='disc'>•</li>
           <li>
-          <a href='http://www.cloudfoundry.com/contact'>Contact</a>
+          <a href='http://www.cloudfoundry.com/getinvolved'>Get Involved</a>
+          </li>
+          <li class='disc'>•</li>
+          <li>
+          <a href='http://status.cloudfoundry.com/'>Status</a>
+          </li>
+          <li class='disc'>•</li>
+          <li>
+          <a href='http://www.cloudfoundry.com/support'>Support</a>
           </li>
         </ul>
-        <div id='container-footerth'>
-          <div class='footerth'>
-            <a href='http://www.cloudfoundry.com/use'>Using Cloud Foundry</a>
-            <span class='footerlist'>
-              <a href="/docs/using/app-arch/">Application Architecture</a>
-              <br>
-              <a href='/docs/using/deploying-apps/'>Deploying Apps</a>
-              <br>
-              <a href='/docs/using/managing-apps/'>Managing Apps</a>
-              <br>
-              <a href='/docs/using/services.html'>Using Services</a>
-            </span>
-          </div>
-          <div class='footerth'>
-            <a href='http://www.cloudfoundry.com/run'>Running Cloud Foundry</a>
-            <span class='footerlist'>
-              <a href='/docs/running/architecture/'>Architecture</a>
-              <br>
-              <a href='/docs/running/bosh/'>BOSH</a>
-              <br>
-              <a href='/docs/running/deploying-cf/'>Deploying with BOSH</a>
-              <br>
-              <a href='/docs/running/deploying-cf-with-chef/'>Deploying with Chef</a>
-              <br>
-              <a href='/docs/running/micro_cloud_foundry/'>Micro Cloud Foundry</a>
-              <br>
-              <a href='/docs/running/managing-cf/index.html'>Managing Cloud Foundry</a>
-            </span>
-          </div>
-          <div class='footerth'>
-            <a href='http://www.cloudfoundry.com/getinvolved'>Developer Community</a>
-            <span class='footerlist'>
-              <br>
-              <a href='http://www.cloudfoundry.com/getinvolved'>Get Involved</a>
-              <br>
-              <a href='http://www.cloudfoundry.com/getinvolved'>Contribute</a>
-              <br>
-              <a href='http://github.com/cloudfoundry' target='_blank'>Source Code</a>
-              <br>
-              <a href='https://groups.google.com/a/cloudfoundry.org/groups/dir' target='_blank'>Mailing Lists</a>
-              <br>
-              <a href='http://github.com/cloudfoundry' target='_blank'>Report Issues</a>
-            </span>
-          </div>
-          <div class="footerth">
-            <a href="/">Documentation</a>
-            <span class="footerlist">
-              <br>
-              <a href="/docs/using/">Using Cloud Foundry</a>
-              <br>
-              <a href="/docs/running/">Running Cloud Foundry</a>
-              <br>
-              <a href="/docs/reference/">Reference</a>
-              <br>
-              <a href="/docs/community/">Community</a>
-            </span>
-          </div>
-          <div class='footerth'>
-            <a href='http://www.cloudfoundry.com/getinvolved#events'>Cloud Foundry</a>
-            <span class='footerlist'>
-              <br>
-              <a href='http://www.cloudfoundry.com/getinvolved#events'>Events</a>
-              <br>
-              <a href='http://www.cloudfoundry.com/calendar'>Calendar</a>
-              <br>
-              <a href='http://www.cloudfoundry.com/webinars'>Webinars</a>
-              <br>
-              <a href='http://www.cloudfoundry.com/faq'>FAQ</a>
-              <br>
-              <a href='http://www.cloudfoundry.com/jobs'>Jobs</a>
-            </span>
-          </div>
-        </div><!-- End of container-footerth -->
         <div class='copyright'>
           <div class='hr-horizontal-dark'></div>
           <br>
@@ -341,11 +271,32 @@
             </script>
             GoPivotal, Inc. All rights reserved.
             <a href='http://www.cloudfoundry.com/terms'>Terms</a>
-            <a href='http://www.cloudfoundry.com/legal'>Legal</a>
             <a href='http://www.gopivotal.com/privacy-policy' target='_blank'>Privacy</a>
           </p>
         </div><!-- End of copyright -->
       </div><!-- End of container-footer -->
     </div><!-- End of footer -->
+    <script type="text/javascript">
+      (function() {
+        var didInit = false;
+        function initMunchkin() {
+          if(didInit === false) {
+            didInit = true;
+            Munchkin.init('625-IUJ-009');
+          }
+        }
+        var s = document.createElement('script');
+        s.type = 'text/javascript';
+        s.async = true;
+        s.src = document.location.protocol + '//munchkin.marketo.net/munchkin.js';
+        s.onreadystatechange = function() {
+          if (this.readyState == 'complete' || this.readyState == 'loaded') {
+            initMunchkin();
+          }
+        };
+        s.onload = initMunchkin;
+        document.getElementsByTagName('head')[0].appendChild(s);
+      })();
+    </script>
   </body>
 </html>

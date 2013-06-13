@@ -1,5 +1,6 @@
 ---
 title: Health Manager
+description: Monitors application state. Ensures that started applications are running, with correct versions and number of instances.
 ---
 
 Health Manager monitors the state of the applications and ensures that started applications are indeed running, their versions and number of instances correct.
