@@ -14,7 +14,7 @@ BOSH CLI is a command line interface used to interact with MicroBOSH and BOSH. B
 Install the BOSH CLI gem:
 
 <pre class="terminal">
-$ gem install bosh_cli
+$ gem install bosh_cli "~> 1.5.0.pre" --source https://s3.amazonaws.com/bosh-jenkins-gems/
 </pre>
 
 If you are using the rbenv Ruby environment manager, refresh the list of gems that rbenv knows about: 
