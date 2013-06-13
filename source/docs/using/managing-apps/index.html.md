@@ -4,15 +4,15 @@ title: Managing Apps, Orgs and Spaces
 
 Managing Apps
 
-Developers interact with Cloud Foundry using various client tools: `cf`, which is a Ruby based command line interface, Java Eclipse based pluging, or Maven / Gradle build tools.
+Developers can interact with Cloud Foundry using `cf`, which is a Ruby based command line interface. Developers using JVM languages can also use Cloud Foundry plugins for various IDEs and build tools.
 
 Client tools:
 
 * [cf installation and reference](cf/index.html)
 
-* [Eclipse IDE integration](ide/index.html)
+* [IDE integration](ide/index.html)
 
-* [Maven and Gradle build tools](build-tools/index.html)
+* [Build Tool Integration](build-tools/index.html)
 
 Also see:
 

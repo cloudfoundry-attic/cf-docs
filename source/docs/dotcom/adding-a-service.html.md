@@ -60,7 +60,7 @@ Creating service cleardb-e2006... OK
 
 Not all services provide bindable service instances. Binding requires an additional level of integration with a provider, and it doesn't make sense in all cases for the provider to return any credentials for an application's use.
 
-For services that offer bindable service instances, the binding operation put credentials for the service instance in the environment variable VCAP\_SERVICES, where your application can consume them.
+For services that offer bindable service instances, the binding operation puts credentiels for the service instance in the environment variable VCAP_SERVICES, where your application can consume them. For more information, see [VCAP_SERVICES Environment Variable](../using/services/environment-variable.html).
 
 You can bind a service to an application with the command `cf bind-service`. You will first be asked for the application to bind the service to.
 
@@ -102,4 +102,4 @@ Auto-Reconfiguration and cfruntime are used differently depending on your framew
 | Java / JVM        | <li>[Lift](../using/services/lift-service-bindings.html) <li>[Grails](../using/services/grails-service-bindings.html)<li>[Spring](../using/services/spring-service-bindings.html) |
 | Ruby            | <li>[Rack, Rails, or Sinatra](../using/services/ruby-service-bindings.html) |
 
- In addition to using Auto-reconfiguration, and cfruntime, you can also bind your service using a JSON object that is exposed via Cloud Foundry Environment Variables. See [Using Bound Services](../using/services/using-bound-services.html).
+ In addition to auto-reconfiguration and cfruntime, you can also connect to a service instance from your application by parsing the JSON object exposed in the [VCAP_SERVICES Environment Variable](../using/services/environment-variable.html).
