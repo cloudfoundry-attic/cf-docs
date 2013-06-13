@@ -8,6 +8,7 @@ BOSH was originally developed in the context of the Cloud Foundry Application Pl
 
 * [Components](components/index.html)
 * [Local Setup](setup/index.html)
+* [Deploying Cloud Foundry with BOSH](deploying-cf.html)
 * [Reference](reference/index.html)
   * [Jobs](reference/jobs.html)
   * [Packages](reference/packages.html)

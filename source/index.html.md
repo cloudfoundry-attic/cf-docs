@@ -80,10 +80,13 @@ title: Welcome to Cloud Foundry Documentation
 
   <hr>
 
-  <p>Understanding BOSH<br>
+  <p>BOSH<br>
+  <a href="docs/running/bosh/">Understanding BOSH</a><br>
   <a href="docs/running/bosh/components/index.html">Components</a><br>
   <a href="docs/running/bosh/setup/index.html">Local Setup</a><br>
   <a href="docs/running/bosh/reference/index.html">Reference</a><br>
+  <a href="docs/running/bosh/reference/bosh-cli.html">BOSH CLI</a><br>
+  
   </p>
 
   <hr>
