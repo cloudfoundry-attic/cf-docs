@@ -6,8 +6,8 @@ BOSH CLI is a command line interface used to interact with MicroBOSH and BOSH. B
 
 ## Prerequisites ##
 
-* [Install Ruby and RubyGems](/docs/common/install_ruby.html). 
-* [Install a Git client](/docs/common/install_git.html) to pull down the BOSH repository from GitHub. 
+* [Install Ruby and RubyGems](/docs/common/install_ruby.html). Requires Ruby 1.9.3 or Ruby 2.0.0.
+* [Install a Git client](/docs/common/install_git.html) to pull down BOSH repositories from GitHub. 
 
 ## Install Local BOSH ##
 
