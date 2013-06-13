@@ -1,12 +1,12 @@
 ---
-title: Tunneling with Services
+title: Tunneling to Services
 ---
 
 ## <a id='what-is-tunnelling'></a>What Is Tunneling? ##
 
 A provisioned service on Cloud Foundry is not directly accessible to the outside world by default. An application that is bound to the service has access, but only because it sits on the same network, behind the Cloud Foundry firewall.
 
-To gain access to a service from outside he Cloud Foundry ecosystem, you use a technique called tunneling. You deploy a special application, called Caldecott, to a Cloud Foundry account. The application then binds and connects to the desired service and proxies a connection over HTTP to the service. Once deployed, Caldecott remains available for the creation of tunnels.
+To gain access to a service from outside the Cloud Foundry ecosystem, you use a technique called tunneling. You deploy a special application, called Caldecott, to a Cloud Foundry account. The application then binds and connects to the desired service and proxies a connection over HTTP to the service. Once deployed, Caldecott remains available for the creation of tunnels.
 
 Once established, the tunnel can be used by a client, most likely cf. The client makes a port on the loopback adapter (127.0.0.1) available to use with a native client of the bound service.
 

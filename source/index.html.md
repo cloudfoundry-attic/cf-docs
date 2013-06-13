@@ -53,13 +53,13 @@ title: Welcome to Cloud Foundry Documentation
   <a href="docs/using/managing-apps/custom-domains/index.html">Custom Domains</a>
   </p>
   <hr>
-  <p>Services<br>
-  <a href="docs/using/services/">Roadmap to Using Services</a></br>
-  <a href="/docs/using/services/managing-services.html">Managing Services</a></br>
-  <a href="/docs/using/services/tunnelling-with-services.html">Tunneling with Services</br>
-  <a href="/docs/using/services/using-bound-services.html">Using Bound Services</a></br></p>
-
-  <hr>
+  <p>
+  <a href="docs/using/services/">Using Services</a></br>
+  <a href="/docs/using/services/managing-services.html">Managing Services with CLI</a></br>
+  <a href="/docs/using/services/environment-variable.html">VCAP_SERVICES Environment Variable</a></br>
+  <a href="/docs/using/services/tunnelling-with-services.html">Tunneling to Services</a>
+  </p>
+    <hr>
 
 </div>
 
