@@ -429,7 +429,7 @@ a#docs, .pale-blue-bg {
 }
 
 #organization_bar .navbar .nav>li#docs-off:hover a {
-  background: #21303c;
+/*  background: #21303c;*/
 }
 
 .search-form .search-input {
