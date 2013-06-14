@@ -154,7 +154,7 @@ resources:
 ~~~ 
 
 * The `persistent_disk` indicates that a new 16Gb volume will be created and attached to the Micro Bosh vm. On this disk, Micro Bosh will store the data, so in case you reboot or when upgrading the Micro Bosh vm, no data will be lost.
-* The `instance_type` set the OpenStack flavor used for the Micro Bosh vm. This flavor **must** have ephemeral disk (check the [validate your OpenStack](validate_openstack.html#ephemeral) guide) 
+* The `instance_type` set the OpenStack flavor used for the Micro Bosh vm. The `flavor_name` **must** have ephemeral disk (check the [validate your OpenStack](validate_openstack.html#ephemeral) guide) 
 
 #### <a id="cloud_properties"></a>Cloud properties ####
 
@@ -314,6 +314,8 @@ Then you can login with the new user credentials:
     Your username: frodenas
     Enter password: ********
     Logged in as `frodenas'
+
+The `admin` user will be deleted.
 
 ### <a id="microbosh_status"></a>Check status ###
 
