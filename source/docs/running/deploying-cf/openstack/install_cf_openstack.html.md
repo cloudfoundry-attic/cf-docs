@@ -29,3 +29,24 @@ Deployment
   not set
 </pre>
 
+## Upload bosh release ##
+
+You can now upload the Cloud Foundry bosh release ([cf-release](https://github.com/cloudfoundry/cf-release)).
+
+[Follow these instructions.](../common/cf-release.html)
+
+Confirm that you have a release "appcloud" uploaded:
+
+<pre class="terminate">
+$ bosh releases
+
++----------+------------+-------------+
+| Name     | Versions   | Commit Hash |
++----------+------------+-------------+
+| appcloud | 131.1-dev  | de134222+   |
++----------+------------+-------------+
+(*) Currently deployed
+
+Releases total: 1
+</pre>
+

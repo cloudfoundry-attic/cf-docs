@@ -131,17 +131,16 @@ Duration  00:00:07
 Release uploaded
 </pre>
 
-Check the release has been added succesfully by issuing the follow command;
+Check the release has been added successfully by issuing the follow command;
 
 <pre class="terminal">
 $ bosh releases
 
-+--------------+------------+-------------+
-| Name         | Versions   | Commit Hash |
-+--------------+------------+-------------+
-| bosh-release | 130.1-dev* | unknown     |
-|              | 130.2-dev  | unknown     |
-+--------------+------------+-------------+
++----------+------------+-------------+
+| Name     | Versions   | Commit Hash |
++----------+------------+-------------+
+| appcloud | 131.1-dev  | de134222+   |
++----------+------------+-------------+
 (*) Currently deployed
 
 Releases total: 1
