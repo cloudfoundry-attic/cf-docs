@@ -65,11 +65,15 @@ This is a very simple script that just runs a 'git pull' on the repository and t
 ## <a id='build-the-release'></a> Build the release ##
 
 At this point if the Bosh CLI is not installed on the local system and targeted at a BOSH / MicroBOSH instance, do so, 
-if necessary use this install [guide](/docs/running/bosh/setup/). Build the release;
+if necessary use this install [guide](/docs/running/bosh/setup/).
+
+When prompted, name your release `appcloud`:
 
 <pre class="terminal">
-$ bosh create release
+$ bosh create release --force
 Syncing blobs...
+
+Please enter development release name: appcloud
 
 Building DEV release
 ---------------------------------
@@ -89,25 +93,8 @@ Building buildpack_cache...
 
 ...
 
-| vblob_gateway             | 15.1-dev |             |
-| vblob_node                | 8.1-dev  |             |
-| vblob_node_ng             | 13.1-dev |             |
-| vcap_redis                | 6.1-dev  |             |
-+---------------------------+----------+-------------+
-
-Jobs affected by changes in this release
-+--------------------+----------+
-| Name               | Version  |
-+--------------------+----------+
-| dea_next           | 11.2-dev |
-| postgresql_node_ng | 15.2-dev |
-| rabbit_node_ng     | 14.2-dev |
-| micro              | 93.1-dev |
-| postgresql_gateway | 26.1-dev |
-+--------------------+----------+
-
-Release version: 130.2-dev
-Release manifest: /private/tmp/cf-release/dev_releases/bosh-release-130.2-dev.yml
+Release version: 131.1-dev
+Release manifest: /private/tmp/cf-release/dev_releases/appcloud-131.1-dev.yml
 </pre>
 
 ## <a id='upload-the-release'></a> Upload the release ##
