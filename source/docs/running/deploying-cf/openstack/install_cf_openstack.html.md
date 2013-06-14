@@ -4,6 +4,25 @@ title: Install Cloud Foundry on OpenStack
 
 In this page you will run Cloud Foundry on OpenStack.
 
+## What will happen ##
+
+At the end of this page, three `m1.medium` VMs will be running in your OpenStack environment running Cloud Foundry.
+
+You will be able to target it using your own DNS, login, and upload a simple application.
+
+For example, you will be able to:
+
+<pre class="terminal">
+$ cf target api.mycloud.com
+$ cf login admin
+Password> c1oudc0w  (unless you change it in the deployment manifest below)
+$ git clone https://github.com/cloudfoundry-community/cf_demoapp_ruby_rack.git
+$ cd cf_demoapp_ruby_rack
+$ cf push
+$ open http://hello.mycloud.com
+Hello World!
+</pre>
+
 ## Requirements ##
 
 It is assumed that you have [validated your OpenStack](validate_openstack.html.md) and [have a bosh running](deploying_microbosh.html).
@@ -30,6 +49,13 @@ Director
 Deployment
   not set
 </pre>
+
+You will use the `UUID` value above later on this page.
+
+You have two flavors setup **with ephemeral disks**:
+
+* `m1.small` - for example, 1 CPU, 2G RAM, 20G ephemeral disk
+* `m1.medium` - for example, 2 CPU, 4G RAM, 20G ephemeral disk
 
 ## Upload bosh release ##
 
@@ -93,19 +119,40 @@ A deployment manifest can describe 10,000 VMs using a complex set of Quantum sub
 
 There are many different parts of Cloud Foundry that can be deployed. In this section, only the bare basics will be deployed that allow user applications to be run that do not require any services. The minimal set of jobs to be included are:
 
-* dea
-* cloud_controller_ng
-* gorouter
-* nats
-* postgres
-* health_manager_next
-* debian_nfs_server
-* uaa
-* login
+* `dea`
+* `cloud_controller_ng`
+* `gorouter`
+* `nats`
+* `postgres`
+* `health_manager_next`
+* `debian_nfs_server` (see below for using Swift as the droplet blobstore)
+* `uaa`
+* `login`
 
 There are different ways that networking can be configured. If your OpenStack has Quantum running, then you can use advanced compositions of subnets to isolate and protect each job, thus providing greater security. In this section, no advanced networking will be used.
 
 Only a single public floating IP is required. Replace your allocated floating IP with `2.3.4.5` below.
 
+### Initial manifest for OpenStack ###
 
+Create a `deployments` folder and create `deployments/cf.yml` with the initial manifest displayed below.
 
+<pre class="terminal">
+$ mkdir deployments
+$ wget https://gist.github.com/drnic/5785295/raw/ff779dfe7acb7a6caba7bddeafa32b029a17c0d7/cf-openstack-dns-small.yml -O deployments/cf.yml
+</pre>
+
+<script src="https://gist.github.com/drnic/5785295.js"></script>
+
+### Replace values with your values ###
+
+In your `deployments/cf.yml`, replace the following values:
+
+* `YOUR-BOSH-UUID` - with the UUID from running `bosh status`
+* `2.3.4.5` - with your floating IP address
+* `mycloud.com` (many instances) - with your root DNS
+* `c1oudc0w` (many instances) - with a common password used within the system (also the initial `admin` user password)
+
+## Using Swift instead of NFS ##
+
+It is preferable to use Swift as a communal blobstore within Cloud Foundry than to use NFS. If you have OpenStack Swift running, ...
