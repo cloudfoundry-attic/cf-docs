@@ -8,6 +8,8 @@ In this page you will run Cloud Foundry on OpenStack.
 
 It is assumed that you have [validated your OpenStack](validate_openstack.html.md) and [have a bosh running](deploying_microbosh.html).
 
+It is also required that you have provisioned a floating IP address (`2.3.4.5` in the examples below) and setup your DNS to map `*` records to this IP address. For example, if you were using `mycloud.com` domain as the base domain for your Cloud Foundry, you need a `*` A record for this zone mapping to `2.3.4.5`.
+
 Confirm in your local terminal that you have the bosh CLI installed and is targeting your bosh:
 
 <pre class="terminate">
@@ -77,5 +79,11 @@ $ bosh stemcells
 Stemcells total: 1
 </pre>
 
-## Create deployment manifest ##
+## Create a minimal deployment manifest ##
+
+There are many different parts of Cloud Foundry that can be deployed. In this section, only the bare basics will be deployed that allow user applications to be run that do not require any services.
+
+There are different ways that networking can be configured. If your OpenStack has Quantum running, then you can use advanced compositions of subnets to isolate and protect each job, thus providing greater security. In this section, no advanced networking will be used.
+
+Only a single public floating IP is required.
 
