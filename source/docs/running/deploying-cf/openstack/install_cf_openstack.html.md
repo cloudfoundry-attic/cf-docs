@@ -153,6 +153,26 @@ In your `deployments/cf.yml`, replace the following values:
 * `mycloud.com` (many instances) - with your root DNS
 * `c1oudc0w` (many instances) - with a common password used within the system (also the initial `admin` user password)
 
+## Deploying your own Cloud Foundry ##
+
+In this section, your bosh will be instructed to provision 3 VMs (specified in the manifest), binding the router to your floating IP address (which you have already registered with your DNS provider for the `*.mycloud.com` A record), and running the minimal, useful set of jobs mentioned above. In the following section, you well deploy a sample application!
+
+First, target your bosh CLI to your manifest file. Use either:
+
+<pre class="terminal">
+$ bosh deployment cf
+$ bosh deployment deployments/cf.yml
+</pre>
+
+The former use case attempts to find a file `deployments/NAME.yml`. That is, it is an abbreviated version of the latter use case above.
+
+Then, we upload the deployment manifest to your bosh and instruct it to "deploy" your Cloud Foundry service.
+
+<pre class="terminal">
+$ bosh deploy
+</pre>
+
+
 ## Using Swift instead of NFS ##
 
 It is preferable to use Swift as a communal blobstore within Cloud Foundry than to use NFS. If you have OpenStack Swift running, ...
