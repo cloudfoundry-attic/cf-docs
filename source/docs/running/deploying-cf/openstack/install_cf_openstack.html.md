@@ -242,7 +242,106 @@ DEAs (job `dea`) need the NATS (job `core`) and the Cloud Controller (job `api`)
 
 So the deployment manifest is written to start `core` first, then `uaa`, then `api` (`cloud_controller` and the `gorouter`), and finally the `dea`.
 
+When the deployment is finished:
 
-## Using Swift instead of NFS ##
+<pre class="terminal">
+Updating job core
+  core/0 (canary) (00:01:04)                                                                        
+Done                    1/1 00:01:04                                                                
 
-It is preferable to use Swift as a communal blobstore within Cloud Foundry than to use NFS. If you have OpenStack Swift running, ...
+Updating job uaa
+  uaa/0 (canary) (00:00:47)                                                                         
+Done                    1/1 00:00:47                                                                
+
+Updating job api
+  api/0 (canary) (00:01:50)                                                                         
+Done                    1/1 00:01:50                                                                
+
+Updating job dea
+  dea/0 (canary) (00:01:21)                                                                         
+Done                    1/1 00:01:21
+</pre>
+
+## Running example application on Cloud Foundry ##
+
+You can now target and push your first example application, as per the promise at the top of the page.
+
+First, target the Cloud Foundry, create an Organization, and create the first Space within that organization:
+
+<pre class="terminal">
+$ gem install cf
+$ cf target api.mycloud.com
+$ cf login admin
+Password> c1oudc0w  (unless you change it in the deployment manifest below)
+
+$ cf create-org demo
+Creating organization demo... OK
+Switching to organization demo... OK
+There are no spaces. You may want to create one with create-space.
+
+$ cf create-space development
+Creating space development... OK
+Adding you as a manager... OK
+Adding you as a developer... OK
+Space created! Use `cf switch-space development` to target it.
+
+$ cf switch-space development
+Switching to space development... OK
+
+target: http://api.mycloud.com
+organization: demo
+space: development
+</pre>
+
+Finally, clone an example application (that doesn't require any database services) and push it to deploy:
+
+<pre class="terminal">
+$ git clone https://github.com/cloudfoundry-community/cf_demoapp_ruby_rack.git
+$ cd cf_demoapp_ruby_rack
+$ bundle
+$ cf push
+cf push
+Using manifest file manifest.yml
+
+Custom startup command> <strong>none</strong>
+
+Creating hello... OK
+
+1: hello
+2: none
+Subdomain> <strong>hello</strong>
+
+1: mycloud.com
+2: none
+Domain> <strong>mycloud.com</strong>
+
+Creating route hello.mycloud.com... OK
+Binding hello.mycloud.com to hello... OK
+Uploading hello... OK
+Starting hello... OK
+-----> Downloaded app package (4.0K)
+Installing ruby.
+-----> Using Ruby version: ruby-1.9.2
+-----> Installing dependencies using Bundler version 1.3.2
+       Running: bundle install --without development:test --path vendor/bundle --binstubs vendor/bundle/bin --deployment
+       Fetching gem metadata from https://rubygems.org/..........
+       Installing rack (1.5.2)
+       Using bundler (1.3.2)
+       Your bundle is complete! It was installed into ./vendor/bundle
+       Cleaning up the bundler cache.
+-----> Uploading staged droplet (24M)
+-----> Uploaded droplet
+Checking hello...
+Staging in progress...
+  0/1 instances: 1 starting
+  0/1 instances: 1 starting
+  0/1 instances: 1 starting
+  1/1 instances: 1 running
+OK
+
+
+$ open hello.mycloud.com
+Hello World!
+</pre>
+
+Success!
