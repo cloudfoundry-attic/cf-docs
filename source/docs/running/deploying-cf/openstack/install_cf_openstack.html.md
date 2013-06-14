@@ -155,7 +155,7 @@ In your `deployments/cf.yml`, replace the following values:
 
 ## Deploying your own Cloud Foundry ##
 
-In this section, your bosh will be instructed to provision 3 VMs (specified in the manifest), binding the router to your floating IP address (which you have already registered with your DNS provider for the `*.mycloud.com` A record), and running the minimal, useful set of jobs mentioned above. In the following section, you well deploy a sample application!
+In this section, your bosh will be instructed to provision 4 VMs (specified in the manifest), binding the router to your floating IP address (which you have already registered with your DNS provider for the `*.mycloud.com` A record), and running the minimal, useful set of jobs mentioned above. In the following section, you well deploy a sample application!
 
 First, target your bosh CLI to your manifest file. Use either:
 
@@ -194,6 +194,53 @@ git/1, golang/1, imagemagick/2,...  |ooo                     | 4/26 00:02:15  ET
 
 If you visit your OpenStack dashboard, you will see a number of VMs have been provisioned. Each of these VMs is being assigned a single package to compile. When it completes, it uploads the compiled binaries and libraries for that package into the bosh blobstore. These compiled packages can be used over and over and never need compilation again.
 
+Finally, the initial compilation of packages ends (after about 15 minutes in the example below):
+
+<pre class="terminal">
+  ...
+  cloud_controller_ng/12.1-dev (00:01:09)                                                           
+  warden/25.1-dev (00:00:45)                                                                        
+  dea_next/15.1-dev (00:01:31)                                                                      
+  imagemagick/2 (00:15:07)                                                                          
+Done                    26/26 00:15:07                                                              
+</pre>
+
+Next it boots the 4 VMs mentioned in the deployment manifest above (see the `resource_pools` [section](https://gist.github.com/drnic/5785295#file-cf-openstack-dns-small-yml-L34-L51)):
+
+<pre class="terminal">
+Creating bound missing VMs
+  medium/0 (00:00:40)                                                                               
+  medium/1 (00:00:42)                                                                               
+  small/0 (00:00:42)                                                                                
+  small/1 (00:00:45)                                                                                
+Done                    4/4 00:00:45                                                                
+</pre>
+
+Finally it assigns each VM a job (which is a list of one or more job templates from the [cf-release bosh release jobs folder](https://github.com/cloudfoundry/cf-release/tree/master/jobs))
+
+<pre class="terminal">
+Binding instance VMs
+  core/0 (00:00:01)                                                                                 
+  uaa/0 (00:00:01)                                                                                  
+  api/0 (00:00:01)                                                                                  
+  dea/0 (00:00:01)                                                                                  
+Done                    4/4 00:00:01                                                                
+
+Preparing configuration
+  binding configuration (00:00:01)                                                                  
+Done                    1/1 00:00:01                                                                
+
+Updating job core
+core/0 (canary)                     |oooooooooooooooooooo    | 0/1 00:01:09  ETA: --:--:--
+</pre>
+
+First the `core` job is started.
+
+The ordering of the jobs within the deployment manifest - core, uaa, api, dea - is deliberate. It determines the order that the job VMs are started.
+
+DEAs (job `dea`) need the NATS (job `core`) and the Cloud Controller (job `api`). The Cloud Controller needs the UAA (job `uaa`). The Cloud Controller and the UAA need a PostgreSQL database (job `core`).
+
+So the deployment manifest is written to start `core` first, then `uaa`, then `api` (`cloud_controller` and the `gorouter`), and finally the `dea`.
 
 
 ## Using Swift instead of NFS ##
