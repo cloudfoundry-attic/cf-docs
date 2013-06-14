@@ -172,6 +172,29 @@ Then, we upload the deployment manifest to your bosh and instruct it to "deploy"
 $ bosh deploy
 </pre>
 
+### What is happening now? ###
+
+The first time you deploy a bosh release it will compile every package that it needs for your deployment. You will see something like:
+
+<pre class="terminal">
+Compiling packages
+buildpack_cache/0.1-dev, git/1,...  |                        | 0/26 00:00:32  ETA: --:--:--         
+</pre>
+
+And later...
+
+<pre class="terminal">
+Compiling packages
+  insight_agent/2 (00:01:01)                                                                        
+  buildpack_cache/0.1-dev (00:01:56)                                                                
+  rootfs_lucid64/0.1-dev (00:02:04)                                                                 
+  mysqlclient/3 (00:00:03)                                                                          
+git/1, golang/1, imagemagick/2,...  |ooo                     | 4/26 00:02:15  ETA: 00:04:04         
+</pre>
+
+If you visit your OpenStack dashboard, you will see a number of VMs have been provisioned. Each of these VMs is being assigned a single package to compile. When it completes, it uploads the compiled binaries and libraries for that package into the bosh blobstore. These compiled packages can be used over and over and never need compilation again.
+
+
 
 ## Using Swift instead of NFS ##
 
