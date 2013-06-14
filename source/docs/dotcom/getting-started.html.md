@@ -61,27 +61,15 @@ You can choose any of these spaces to deploy your application.
 
 ## <a id='prepare-app'></a>Prepare Your Application for Deployment ##
 
-Package apps for JVM and Ruby frameworks:
+Cloud Foundry supports many frameworks and runtimes. Learn about the preparations for each below:
 
-Spring or Lift:
-<pre class="terminal">
-$ mvn package
-</pre>
+| Runtime                       | Framework                             |
+| :-------------                |:-------------                         |
+| Javascript                  | [Node.js](/docs/using/deploying-apps/javascript/index.html) |
+| Java / JVM                | Java Spring, Grails, Scala Lift, and Play           |
+| Ruby                    | [Rack, Rails, or Sinatra](/docs/using/deploying-apps/ruby/index.html) |
 
-Play:
-<pre class="terminal">
-$ play redist
-</pre>
-
-Grails:
-<pre class="terminal">
-$ grails prod war
-</pre>
-
-Ruby:
-<pre class="terminal">
-$ bundle install
-</pre>
+Cloud Foundry supports these frameworks and runtimes using a buildpack model. Some of the <a href="https://devcenter.heroku.com/articles/third-party-buildpacks">Heroku third party buildpacks</a> will work, but your experience may vary. To push an application using one of these buildpacks use `cf push [appname] --buildpack=[git url]`
 
 ## <a id='push-app'></a>Push Your Application to the Cloud ##
 
@@ -90,11 +78,9 @@ Before you deploy, you need to decide on the answers to some questions:
 * **Name**: You can use any series of alpha-numeric characters without spaces as the name of your application.
 * **Instances**: The number of instances you want running.
 * **Memory Limit**: The maximum amount of memory that each instance of your application is allowed to consume. If an instance goes over the maximum limit, it will be restarted. If it has to be restarted too often, it will be terminated. So make sure you are generous in your memory limit.
-* **Start Command**: This is the command that Cloud Foundry will use to start each instance of your application. The start command is specific to your framework.<br><i>Node.js</i> applications must use the start command `node [application script name]`
+* **Start Command**: This is the command that Cloud Foundry will use to start each instance of your application. The start command is specific to your framework.
 * **URL and Domain**: `cf` will prompt you for both a URL and a domain. The URL is the subdomain for your application and it will be hosted at the primary domain you choose. The combination of the URL and domain must be globally unique.
 * **Services**: `cf` will ask you if you want to create and bind one or more services such as MySQL or Redis to your application. For the purposes of this guide, you can answer no when prompted to add a service. Services are addressed in the next guide, [Adding a Service](adding-a-service.html).
-
-If you use Rails you might be interested in running [rails worker tasks](../using/deploying-apps/ruby/rails-running-worker-tasks.html), or using the [rails console](../using/deploying-apps/ruby/rails-using-the-console.html).
 
 ## <a id='example-push-app'></a>An Example Transcript ##
 

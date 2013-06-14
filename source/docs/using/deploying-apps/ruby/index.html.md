@@ -1,46 +1,84 @@
 ---
-title: Ruby
+title: Deploying Ruby Apps (Rack, Rails, or Sinatra)
 ---
 
-Cloud Foundry supports Ruby frameworks such as Rails, Sinatra, and Rack.
+This page will prepare you for using deploying Rack, Rails, or Sinatra apps via the [getting started guide](../../../dotcom/getting-started.html).
 
-## <a id='package'></a>Package ##
+## <a id='bundler'></a> Do I need to use Bundler?##
 
-We recommend that you use bundler to manage your gem dependencies.
+You need to run <a href="http://gembundler.com/">Bundler</a> to create both a Gemfile and Gemfile.lock. These files must be in your application before you push to Cloud Foundry.
 
-You need to run `bundle install` locally before you deploy your app to make sure that your Gemfile.lock is consistent with your Gemfile.
+## <a id='config'></a> Do I need a Rack config file?##
 
-## <a id='deploy'></a> Deploy ##
+For both **Rack** and **Sinatra** you need a config.ru file like the example below:
 
-How you deploy your `.war` depends on the Cloud Foundry you are targeting. For run.pivotal.io, you can follow the Getting Started document [here](../../getting-started.html).
+config.ru
 
-Cloud Foundry supports multiple Ruby-based frameworks.
+~~~ruby
+require './hello_world'
+run HelloWorld.new
+~~~
 
-### Rails
+## <a id='precompile'></a> Can I use precompilation? ##
 
-* [Getting Started](rails-getting-started.html)
-* [Running Worker Tasks](rails-running-worker-tasks.html)
-* [Using the console](rails-using-the-console.html)
+Cloud Foundry provides support for the Rails asset pipeline. This means that if you don't choose to precompile assets before deployment to Cloud Foundry, precompilation will occur when the application is staged.
+To precompile asssets before deployment use the following command:
 
-### Rack
+Cloud Foundry provides support for the Rails asset pipeline. This means that if you don't choose to precompile assets before deployment to Cloud Foundry, precompilation will occur when the application is staged.
+To precompile asssets before deployment use the following command;
 
-* [Getting Started](rack-getting-started.html)
+<pre class="terminal">
+rake assets:precompile
+</pre>
 
-### Sinatra
+Doing this before deployment ensures that staging the application will take less time as the precomplilation task will not need to take place on Cloud Foundry.
 
-* [Getting Started](sinatra-getting-started.html)
+One potential problem can occur during application initialization. The precompile rake task will run a complete re-initialization of the Rails application. This might trigger some of the initialization procedures and require service connections and environment checks that are unavailable during staging. You can turn this off by adding a configuration option in application.rb:
 
-### Standalone
+~~~ruby
+config.assets.initialize_on_precompile = false
+~~~
 
-* [Getting Started](standalone-app-getting-started.html)
+If the assets:precompile task fails, Cloud Foundry makes use of live compilation mode, this is the alternative to asset precompilation. In this mode, assets are compiled when they are loaded for the first time. This can be enabled by adding a setting to application.rb that forces the live compilation process.
 
-## <a id='binding-services'></a>Binding Services ##
+~~~ruby
+Rails.application.config.assets.compile = true
+~~~
 
-* [Service Bindings](./ruby-service-bindings.html) - A general guide to binding services to Ruby applications.
+## <a id='standalone'></a> Can I run a standalone Ruby script? ##
 
-* [CF Runtime](./ruby-cf-runtime.html) - A guide to the "cf-runtime" Ruby Gem.
+Worker tasks are supported by Cloud Foundry. Follow this [standalone app quick start](rails-running-worker-tasks.html) to understand how it works.
 
-## <a id='buildpacks'></a>Migrating to Buildpacks ##
+## <a id='workers'></a> Can I run workers tasks? ##
 
-[Buildpacks](./migrating-to-buildpacks.html) - Tips for moving an existing deployment to buildpacks.
+Worker tasks are supported by Cloud Foundry. Follow this [Rails workers quick start](rails-running-worker-tasks.html) to understand how it works.
 
+## <a id='console'></a> Can I use the Rails console? ##
+
+Cloud Foundry supports the Rails Console. Follow the [Using the console quick start](rails-using-the-console.html).
+
+## <a id='services'></a> How do I bind services? ##
+
+Refer to the [instructions for Ruby service bindings](../../services/ruby-service-bindings.html).
+
+## <a id='rake'></a> How do I run Rake tasks? ##
+
+To run a rake task for the first time, you need to use the start command in your manifest.yml.
+
+You will be asked if you want to save your configuration the first time you deploy. This will save a `manifest.yml` in your application with the settings you entered during the initial push. Edit the `manifest.yml` file and create a start command as follows:
+
+~~~yaml
+---
+applications:
+- name: my-rails-app
+  command: rake db:migrate && rails s
+... the rest of your settings  ...
+~~~
+
+**Important** Your first migration can only run against an application with one instance. After running the migration, you can scale the application using the `cf scale` command. You could run subsequent migrations using a script that checks for a unique instance number using the JSON formatted environment variable `VCAP_APPLICATION` - which includes an `instance_id` value. 
+
+`VCAP_APPLICATION` works the same way as `VCAP_SERVICES`, which you can read about [here](../../services/environment-variable.html). 
+
+To look at the contents of `VCAP_APPLICATION`, dump it in a Ruby app running in Cloud Foundry via:
+
+`ENV['VCAP_SERVICES']`
