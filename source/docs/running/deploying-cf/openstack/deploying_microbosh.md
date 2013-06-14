@@ -9,7 +9,39 @@ A good way to think about this two step process is to consider that BOSH is a di
 
 ## <a id="prerequisites"></a>Prerequisites ##
 
-WIP
+### <a id="bosh_cli"></a>Bosh CLI ###
+
+Install the [Bosh CLI](/docs/running/bosh/setup).
+
+### <a id="openstack_services"></a>OpenStack Services ###
+
+Micro Bosh needs a running OpenStack environment. Only [Folsom](https://wiki.openstack.org/wiki/ReleaseNotes/Folsom) and [Grizzly](https://wiki.openstack.org/wiki/ReleaseNotes/Grizzly) OpenStack releases are supported.
+
+You will need access to these OpenStack services: 
+
+* [Identity](http://www.openstack.org/software/openstack-shared-services/): MicroBosh will authenticate your credentials trought the identity server and get the endpoint URLs for other OpenStack services.
+* [Compute](http://www.openstack.org/software/openstack-compute/): MicroBosh will boot new vms, assign floating IPs to vm, and create and attach volumes to vms. 
+* [Image](http://www.openstack.org/software/openstack-shared-services/): Micro Bosh will update new images (called [stemcells](/docs/running/bosh/components/stemcell.html) in Bosh terminology).
+
+Although the new [OpenStack Networking](http://www.openstack.org/software/openstack-networking/) service is not required, it is recommended if you want to deploy complex distributed systems.
+
+### <a id="openstack_security_groups"></a>OpenStack Security Groups ###
+
+Check that your OpenStack `default` security group allows SSH (port `22`). Create a new OpenStack security group, name it ie `microbosh`, and open the following ports:
+
+* `4222`: Used by [NATS](/docs/running/bosh/components/messaging.html)
+* `6868`: Used by [Agent](/docs/running/bosh/components/agent.html)
+* `25250`: Used by [Blobstore](/docs/running/bosh/components/blobstore.html)
+* `25555`: Used by [Director](/docs/running/bosh/components/director.html)
+* `25777`: Used by Registry
+
+### <a id="openstack_keypairs"></a>OpenStack Key pairs ###
+
+Create or import a new OpenStack keypair, name it ie `microbosh`. Store the private key in a well know location, as we will need it to deploy Micro Bosh.
+
+### <a id="openstack_validate"></a>Validate your OpenStack ###
+
+[Validate](validate_openstack.html) your target OpenStack environment in preparation for installing Micro Bosh.
 
 ## <a id="deploy_microbosh"></a>Deploying Micro Bosh ##
 
@@ -52,8 +84,8 @@ cloud:
       tenant: <tenant>
       region: <region> # Optional
       default_security_groups: ["default", <microbosh_security_group>]
-      default_key_name: <keypair_name>
-      private_key: <path_to_keypar_private_key>
+      default_key_name: <microbosh_keypair>
+      private_key: <path_to_microbosh_keypar_private_key>
 
 apply_spec:
   properties:
@@ -78,7 +110,7 @@ network:
   vip: <allocated_floating_ip> # Optional
 ~~~        
 
-* The `vip` option is optional, and allows you to associate a floating IP adress to the Micro Bosh vm in case you want to access it from outside of the vm network. If set, it **must** be a previously allocated floating ip.
+* The `vip` option is optional, and allows you to associate a floating IP adress to the Micro Bosh vm in case you want to access it from outside of the vm network. If set, `allocated_floating_ip` **must** be a previously allocated floating ip.
 
 If you are using the new [OpenStack Networking](http://www.openstack.org/software/openstack-networking/) component, adapt the network section with below settings:
 
@@ -92,8 +124,8 @@ network:
     net_id: <network_uuid>
 ~~~ 
 
-* The `vip` option is optional, and allows you to associate a floating IP adress to the Micro Bosh vm in case you want to access it from outside of the vm network. If set, it **must** be a previously allocated floating ip.
-* The `net_id` option sets the OpenStack network to use. It **must** be an existing Network UUID (you can list your OpenStack networks using the command `quantum net-list`).
+* The `vip` option is optional, and allows you to associate a floating IP adress to the Micro Bosh vm in case you want to access it from outside of the vm network. If set, `allocated_floating_ip` **must** be a previously allocated floating ip.
+* The `net_id` option sets the OpenStack network to use. `network_uuid` **must** be an existing Network UUID (you can list your OpenStack networks using the command `quantum net-list`).
 
 1. If you want to set the Micro Bosh IP address manually: 
 
@@ -106,9 +138,9 @@ network:
     net_id: <network_uuid>
 ~~~        
 
-* The `vip` option is optional, and allows you to associate a floating IP adress to the Micro Bosh vm in case you want to access it from outside of the vm network. If set, it **must** be a previously allocated floating ip.
-* The `static_ip` option sets the IP address to assign to the Micro Bosh vm. It **must** be an IP address belowing to the IP range of one of the network subnets set in `net_id`.
-* The `net_id` option sets the OpenStack network to use. It **must** be an existing Network UUID (you can list your OpenStack networks using the command `quantum net-list`).
+* The `vip` option is optional, and allows you to associate a floating IP adress to the Micro Bosh vm in case you want to access it from outside of the vm network. If set, `allocated_floating_ip` **must** be a previously allocated floating ip.
+* The `ip` option sets the IP address to assign to the Micro Bosh vm. `static_ip` **must** be an IP address belowing to the IP range of one of the network subnets set in `net_id`.
+* The `net_id` option sets the OpenStack network to use. `network_uuid` **must** be an existing Network UUID (you can list your OpenStack networks using the command `quantum net-list`).
 
 #### <a id="resources_properties"></a>Resources properties ####
 
@@ -122,7 +154,7 @@ resources:
 ~~~ 
 
 * The `persistent_disk` indicates that a new 16Gb volume will be created and attached to the Micro Bosh vm. On this disk, Micro Bosh will store the data, so in case you reboot or when upgrading the Micro Bosh vm, no data will be lost.
-* The `instance_type` set the OpenStack flavor used for the Micro Bosh vm. Remember that this flavor **must** have ephemeral disk. 
+* The `instance_type` set the OpenStack flavor used for the Micro Bosh vm. This flavor **must** have ephemeral disk (check the [validate your OpenStack](validate_openstack.html#ephemeral) guide) 
 
 #### <a id="cloud_properties"></a>Cloud properties ####
 
@@ -139,15 +171,15 @@ cloud:
       tenant: <tenant>
       region: <region> # Optional
       default_security_groups: ["default", <microbosh_security_group>]
-      default_key_name: <keypair_name>
-      private_key: <path_to_keypar_private_key>
+      default_key_name: <microbosh_keypair>
+      private_key: <path_to_microbosh_keypar_private_key>
 ~~~ 
 
 * The `auth_url` option set your [OpenStack identity](http://www.openstack.org/software/openstack-shared-services/) server.
 * The `username`, `api_key` and `tenant` options sets your OpenStack credentials.
 * The `region` option is optional, and allows you to set the OpenStack region to be used.
-* The `default_security_groups` option set the security groups used by Micro Bosh. The `microbosh_security_group` **must** be an existing security group (check the [prerequisites](#prerequisites) section).
-* The `default_key_name` and `private_key` options sets the key pair used by Micro Bosh. The `keypair_name` **must** be an existing keypair (check the [prerequisites](#prerequisites) section).
+* The `default_security_groups` option set the security groups used by Micro Bosh. The `microbosh_security_group` **must** be an existing security group (check the [prerequisites](#openstack_security_groups) section).
+* The `default_key_name` and `private_key` options sets the key pair used by Micro Bosh. The `microbosh_keypair` **must** be an existing keypair (check the [prerequisites](#openstack_keypairs) section).
 
 
 #### <a id="apply_spec_properties"></a>Apply Spec properties ####
@@ -311,9 +343,19 @@ This command will output:
 
 You can ssh to your Micro Bosh vm using the private key set at the [cloud properties](#cloud_properties) section of your Micro Bosh deployment file: 
 
-    ssh -i <path_to_keypar_private_key> vcap@<microbosh_ip_address>
+    ssh -i <path_to_microbosh_keypar_private_key> vcap@<microbosh_ip_address>
 
 Then you can sudo to get root privileges (default password for root user is `c1oudc0w`). All Bosh data is located at `/var/vcap` directory.
+
+If you want to change the default root password, add this section at the [manifest](#manifest_file) file before deploying Micro Bosh:
+
+~~~yaml
+env:
+  bosh:
+    password: <hash_password>
+~~~
+
+* `hash_password` **must** be a [sha-512](https://en.wikipedia.org/wiki/SHA-2) hashed password (You can generate it using the [mkpasswd](https://www.mkpasswd.net/) utility).
 
 
 ## <a id="delete_microbosh"></a>Deleting your Micro Bosh ##

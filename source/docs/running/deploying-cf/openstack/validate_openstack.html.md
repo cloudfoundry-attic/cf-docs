@@ -78,7 +78,7 @@ If you are running **devstack**, add the following to your `localrc` and at the 
 VOLUME_BACKING_FILE_SIZE=70000M
 </pre>
 
-## Do instance flavors have ephemeral storage? ##
+## <a id="ephemeral"></a>Do instance flavors have ephemeral storage? ##
 
 Bosh can only use flavors that are available to you, but it requires that you only use flavors that have an ephemeral disk.
 
