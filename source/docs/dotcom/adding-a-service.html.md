@@ -87,19 +87,20 @@ Binding cleardb-e2006 to myapp... OK
 
 Once you have a service instance created and bound to your app, you will need to configure your application to use the correct credentials for your service.
 
-Two ways of binding services on Cloud Foundry are:
+There are three ways of consuming service instance credentials within your application.
 
 | Binding Strategy    | Description       | 
 | :-------------------  |:--------------------  | 
 | Auto-Reconfiguration  |  For databases only. Cloud Foundry creates a service connection for you.        | 
 | cfruntime     | Creates an object with the location and settings of your services. Set your service connections based on the values in that object.       | 
-
+| Manual | Parse the JSON credentials object yourself from the [VCAP_SERVICES Environment Variable](../using/services/environment-variable.html). |
+ 
+### Auto-Reconfiguration & cfruntime
+ 
 Auto-Reconfiguration and cfruntime are used differently depending on your framework:
 
 | Runtime               | Framework                   |
 | :-------------        |:-------------               |
-| Javascript          | <li>[Node.js](../using/services/node-service-bindings.html) |
 | Java / JVM        | <li>[Lift](../using/services/lift-service-bindings.html) <li>[Grails](../using/services/grails-service-bindings.html)<li>[Spring](../using/services/spring-service-bindings.html) |
 | Ruby            | <li>[Rack, Rails, or Sinatra](../using/services/ruby-service-bindings.html) |
-
- In addition to auto-reconfiguration and cfruntime, you can also connect to a service instance from your application by parsing the JSON object exposed in the [VCAP_SERVICES Environment Variable](../using/services/environment-variable.html).
+| Javascript          | <li>[Node.js](../using/services/node-service-bindings.html) |
