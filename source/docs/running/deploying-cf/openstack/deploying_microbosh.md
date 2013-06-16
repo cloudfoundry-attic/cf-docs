@@ -29,11 +29,9 @@ Although the new [OpenStack Networking](http://www.openstack.org/software/openst
 
 Check that your OpenStack `default` security group allows SSH (port `22`). Create a new OpenStack security group, name it ie `microbosh`, and open the following ports:
 
-* `4222`: Used by [NATS](/docs/running/bosh/components/messaging.html)
-* `6868`: Used by [Agent](/docs/running/bosh/components/agent.html)
-* `25250`: Used by [Blobstore](/docs/running/bosh/components/blobstore.html)
-* `25555`: Used by [Director](/docs/running/bosh/components/director.html)
-* `25777`: Used by Registry
+* All ports (from `1` to `65535`) where the source group is the current security group 
+* Port `6868` from source 0.0.0.0/0 (CIDR): Used by [Agent](/docs/running/bosh/components/agent.html)
+* Port `25555` from source 0.0.0.0/0 (CIDR): Used by [Director](/docs/running/bosh/components/director.html)
 
 ### <a id="openstack_keypairs"></a>OpenStack Key pairs ###
 
@@ -91,6 +89,10 @@ apply_spec:
   properties:
     director:
       max_threads: 3
+      snapshot_schedule: false
+      self_snapshot_schedule: false
+    hm:
+      resurrector_enabled: true
     ntp:
       - 0.north-america.pool.ntp.org
       - 1.north-america.pool.ntp.org
@@ -191,6 +193,10 @@ apply_spec:
   properties:
     director:
       max_threads: 3
+      snapshot_schedule: false
+      self_snapshot_schedule: false
+    hm:
+      resurrector_enabled: true
     ntp:
       - 0.north-america.pool.ntp.org
       - 1.north-america.pool.ntp.org
@@ -198,12 +204,15 @@ apply_spec:
 
 * The `properties` option allows you to add or override the settings to be applied to your Micro Bosh (by default it will use the [micro](https://github.com/cloudfoundry/bosh/blob/master/release/micro/openstack.yml) apply spec).
 
-In this example we override (`director.max_threads`) and add (`ntp`) properties:
+In this example we add/override several properties:
 
 * `director.max_threads` sets the number of concurrent threads Micro Bosh [director](/docs/running/bosh/components/director.html) will use to perform some actions (ie: the number of parallel `create vm` tasks), so set this option according to your OpenStack environment (if not set, the default is 32 concurrent threads). 
+* `director.snapshot_schedule` disables the scheduled snapshot of deployed job's persistent disks. 
+* `director.self_snapshot_schedule` disables the scheduled snapshot of the Micro Bosh persistent disk. 
+* `hm.resurrector_enabled` enables the [Health Monitor](/docs/running/bosh/components/health-monitor.html) resurrector plugin. This plugin will lookup for jobs in a down state, and will try to resurrect (bring up) them.
 * `ntp` sets the [Internet Time Servers](http://www.ntp.org/) to be used to synchronize the clocks of new vms.
 
-### <a id="download_stemcell"></a>Download stemcell ###
+### <a id="download_stemcell"></a>Download Micro Bosh stemcell ###
 
 Create a `stemcells` directory to store your stemcell files:
 
@@ -281,7 +290,7 @@ If for some reason the deploy process gets stucked or fails, you can check the l
 
     D, [2013-06-14T13:07:36.134753 #13692] [0x366ff0] DEBUG -- : Waiting for director to be ready: #<Errno::ECONNREFUSED: Connection refused - connect(2) (https://<microbosh_ip_address>:25555)>
     I, [2013-06-14T13:07:36.171820 #13692] [0x366ff0]  INFO -- : Director is ready: {"name"=>"microbosh-openstack", "uuid"=>"fd581363-02cd-41c6-8bed-87780391cff7", "version"=>"1.5.0.pre.3 (release:bef17df0 bosh:bef17df0)", "user"=>nil, "cpi"=>"openstack", "features"=>{"dns"=>
-    {"status"=>true, "extras"=>{"domain_name"=>"microbosh"}}, "compiled_package_cache"=>{"status"=>false}}}
+    {"status"=>true, "extras"=>{"domain_name"=>"microbosh"}}, "compiled_package_cache"=>{"status"=>false, "extras"=>{"provider"=>nil}}}
 
 ## <a id="test_microbosh"></a>Testing your Micro Bosh ##
 
