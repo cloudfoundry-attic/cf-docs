@@ -26,6 +26,4 @@ Session data that must be available after an application crashes or stops, or th
 
 Applications running on Cloud Foundry receive requests using only the URLs configured for the application, and only on ports 80 (the standard HTTP port) and 443 (the standard HTTPS port).
 
-Unlike Cloud Foundry v1, Cloud Foundry v2 service instances (MySQL, Postgres, MongoDB, Redis, RabbitMQ) running on Cloud Foundry can now be accessed by clients not running on Cloud Foundry. You can retrieve the credentials of a bound service by retrieving the env.log from an application or via the Cloud Foundry API response for services.
-
-
+Unlike the Cloud Foundry v1 hosted instance, the Cloud Foundry v2 hosted service instances (MySQL, Postgres, MongoDB, Redis, RabbitMQ) running on Cloud Foundry can now be accessed by clients not running on Cloud Foundry. You can retrieve the credentials of a bound service by retrieving the env.log from an application or via the Cloud Foundry API response for services.
