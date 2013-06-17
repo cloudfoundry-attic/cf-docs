@@ -24,9 +24,6 @@ run HelloWorld.new
 Cloud Foundry provides support for the Rails asset pipeline. This means that if you don't choose to precompile assets before deployment to Cloud Foundry, precompilation will occur when the application is staged.
 To precompile asssets before deployment use the following command:
 
-Cloud Foundry provides support for the Rails asset pipeline. This means that if you don't choose to precompile assets before deployment to Cloud Foundry, precompilation will occur when the application is staged.
-To precompile asssets before deployment use the following command;
-
 <pre class="terminal">
 rake assets:precompile
 </pre>
@@ -75,9 +72,9 @@ applications:
 ... the rest of your settings  ...
 ~~~
 
-**Important** Your first migration can only run against an application with one instance. After running the migration, you can scale the application using the `cf scale` command. You could run subsequent migrations using a script that checks for a unique instance number using the JSON formatted environment variable `VCAP_APPLICATION` - which includes an `instance_id` value. 
+**Important** Your first migration can only run against an application with one instance. After running the migration, you can scale the application using the `cf scale` command. You could run subsequent migrations using a script that checks for a unique instance number using the JSON formatted environment variable `VCAP_APPLICATION` - which includes an `instance_id` value.
 
-`VCAP_APPLICATION` works the same way as `VCAP_SERVICES`, which you can read about [here](../../services/environment-variable.html). 
+`VCAP_APPLICATION` works the same way as `VCAP_SERVICES`, which you can read about [here](../../services/environment-variable.html).
 
 To look at the contents of `VCAP_APPLICATION`, dump it in a Ruby app running in Cloud Foundry via:
 
