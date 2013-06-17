@@ -133,7 +133,7 @@ app.get('/', function(req, res) {
 app.listen(3000);
 ~~~~
 
-### <a id='mongodb'></a> Redis ##
+### <a id='redis'></a> Redis ##
 
 ~~~javascript
 require("cf-autoconfig");
