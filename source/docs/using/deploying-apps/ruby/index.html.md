@@ -60,7 +60,9 @@ Refer to the [instructions for Ruby service bindings](../../services/ruby-servic
 
 ## <a id='rake'></a> How do I run Rake tasks? ##
 
-To run a rake task for the first time, you need to use the start command in your manifest.yml.
+If the data service (such as a database) you are using with your application is available directly and supports connectivity when not running on Cloud Foundry, then you can run rake tasks locally (not on Cloud Foundry) and perform database migrations and other tasks outside of Cloud Foundry. See further below on how to access the contents of the `VCAP_SERVICES` environment variable that contains bound service connection information.
+
+Alternatively, to run a rake task on Cloud Foundry, you can use the start command in your manifest.yml.
 
 You will be asked if you want to save your configuration the first time you deploy. This will save a `manifest.yml` in your application with the settings you entered during the initial push. Edit the `manifest.yml` file and create a start command as follows:
 
@@ -78,4 +80,31 @@ applications:
 
 To look at the contents of `VCAP_APPLICATION`, dump it in a Ruby app running in Cloud Foundry via:
 
-`ENV['VCAP_SERVICES']`
+`ENV['VCAP_APPLICATION']`
+
+You can also retrieve environment variables logged in the `env.log` with the `cf log APPNAME` command:
+
+~~~
+Reading logs/env.log... OK
+TMPDIR=/home/vcap/tmp
+VCAP_APP_PORT=61169
+VCAP_CONSOLE_IP=0.0.0.0
+USER=vcap
+VCAP_APPLICATION={"application_users":[],"instance_id":"d05ee6e8198d8b8deb51b3a5dcd0f228","instance_index":0,"application_version":"0699019d-51f4-409e-b588-ef6669596c6f","application_name":"railsnew","application_uris":["railsnew.cfapps.io"],"started_at":"2013-06-14 01:46:34 +0000","started_at_timestamp":1371174394,"host":"0.0.0.0","port":61169,"limits":{"mem":256,"disk":1024,"fds":16384},"version":"0699019d-51f4-409e-b588-ef6669596c6f","name":"railsnew","uris":["railsnew.cfapps.io"],"users":[],"start":"2013-06-14 01:46:34 +0000","state_timestamp":1371174394}
+RACK_ENV=production
+PATH=/home/vcap/app/bin:/home/vcap/app/vendor/bundle/ruby/1.9.1/bin:/bin:/usr/bin:/bin:/usr/bin
+PWD=/home/vcap
+LANG=en_US.UTF-8
+VCAP_SERVICES={}
+HOME=/home/vcap/app
+SHLVL=2
+RAILS_ENV=production
+GEM_PATH=/home/vcap/app/vendor/bundle/ruby/1.9.1:
+PORT=61169
+VCAP_APP_HOST=0.0.0.0
+MEMORY_LIMIT=256m
+DATABASE_URL=
+VCAP_CONSOLE_PORT=61170
+_=/usr/bin/env
+
+~~~
