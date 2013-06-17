@@ -57,6 +57,11 @@ You have two flavors setup **with ephemeral disks**:
 * `m1.small` - for example, 1 CPU, 2G RAM, 20G ephemeral disk
 * `m1.medium` - for example, 2 CPU, 4G RAM, 20G ephemeral disk
 
+You have two security groups:
+
+* `default`
+* `cf` - opens all ports (until further understanding of what ports are required for each job of Cloud Foundry)
+
 ## Upload bosh release ##
 
 To deploy Cloud Foundry, your bosh needs to be given the bosh release it will use. This includes all the packages and jobs. The Cloud Foundry bosh release includes dozens of jobs and almost 100 packages. Enforcing consistency and guaranteed output of a deployment is one of the reasons we prefer bosh for deploying a complex system like Cloud Foundry.
