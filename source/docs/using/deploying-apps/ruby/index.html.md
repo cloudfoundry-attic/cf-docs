@@ -52,7 +52,7 @@ Worker tasks are supported by Cloud Foundry. Follow this [Rails workers quick st
 
 ## <a id='console'></a> Can I use the Rails console? ##
 
-Cloud Foundry supports the Rails Console. Follow the [Using the console quick start](rails-using-the-console.html).
+Cloud Foundry v2 does not yet support Rails Console.
 
 ## <a id='services'></a> How do I bind services? ##
 
