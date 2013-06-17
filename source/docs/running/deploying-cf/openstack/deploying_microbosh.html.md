@@ -2,26 +2,25 @@
 title: Deploying Micro BOSH
 ---
 
-Installation of BOSH is done using micro BOSH, which is a single VM that includes all of the BOSH components. If you want to play around with BOSH, or create a simple development setup, you can install micro BOSH using the BOSH Deployer. If you would like to use BOSH in production to manage a distributed system, you also use the BOSH Deployer, install micro BOSH, and then use it as a means to deploy the final distributed system on multiple VMs.
+Installation of BOSH is done using micro BOSH, which is a single VM that includes all of the [BOSH components](/docs/running/bosh/components/). If you want to play around with BOSH, or create a simple development setup, you can install micro BOSH using the BOSH Deployer. If you would like to use BOSH in production to manage a distributed system, you also use the BOSH Deployer, install micro BOSH, and then use it as a means to deploy the final distributed system on multiple VMs.
 
 A good way to think about this two step process is to consider that BOSH is a distributed system in itself. Since BOSH's core purpose is to deploy and manage distributed systems, it makes sense that we would use it to deploy itself. On the BOSH team, we gleefully refer to this as [Inception](http://en.wikipedia.org/wiki/Inception).
 
-
 ## <a id="prerequisites"></a>Prerequisites ##
 
-### <a id="bosh_cli"></a>Bosh CLI ###
+### <a id="bosh_cli"></a>BOSH CLI ###
 
-Install the [Bosh CLI](/docs/running/bosh/setup).
+Install the [BOSH CLI](/docs/running/bosh/setup).
 
 ### <a id="openstack_services"></a>OpenStack Services ###
 
-Micro Bosh needs a running OpenStack environment. Only [Folsom](https://wiki.openstack.org/wiki/ReleaseNotes/Folsom) and [Grizzly](https://wiki.openstack.org/wiki/ReleaseNotes/Grizzly) OpenStack releases are supported.
+Micro BOSH needs a running OpenStack environment. Only [Folsom](https://wiki.openstack.org/wiki/ReleaseNotes/Folsom) and [Grizzly](https://wiki.openstack.org/wiki/ReleaseNotes/Grizzly) OpenStack releases are supported.
 
 You will need access to these OpenStack services: 
 
-* [Identity](http://www.openstack.org/software/openstack-shared-services/): MicroBosh will authenticate your credentials trought the identity server and get the endpoint URLs for other OpenStack services.
-* [Compute](http://www.openstack.org/software/openstack-compute/): MicroBosh will boot new vms, assign floating IPs to vm, and create and attach volumes to vms. 
-* [Image](http://www.openstack.org/software/openstack-shared-services/): Micro Bosh will update new images (called [stemcells](/docs/running/bosh/components/stemcell.html) in Bosh terminology).
+* [Identity](http://www.openstack.org/software/openstack-shared-services/): Micro BOSH will authenticate your credentials trought the identity server and get the endpoint URLs for other OpenStack services.
+* [Compute](http://www.openstack.org/software/openstack-compute/): Micro BOSH will boot new vms, assign floating IPs to vm, and create and attach volumes to vms. 
+* [Image](http://www.openstack.org/software/openstack-shared-services/): Micro BOSH will update new images (called [BOSH Stemcells](/docs/running/bosh/components/stemcell.html) in BOSH terminology).
 
 Although the new [OpenStack Networking](http://www.openstack.org/software/openstack-networking/) service is not required, it is recommended if you want to deploy complex distributed systems.
 
@@ -30,18 +29,21 @@ Although the new [OpenStack Networking](http://www.openstack.org/software/openst
 Check that your OpenStack `default` security group allows SSH (port `22`). Create a new OpenStack security group, name it ie `microbosh`, and open the following ports:
 
 * All ports (from `1` to `65535`) where the source group is the current security group 
-* Port `6868` from source 0.0.0.0/0 (CIDR): Used by [Agent](/docs/running/bosh/components/agent.html)
-* Port `25555` from source 0.0.0.0/0 (CIDR): Used by [Director](/docs/running/bosh/components/director.html)
+* Port `4222` from source 0.0.0.0/0 (CIDR): Used by [NATS](/docs/running/bosh/components/messaging.html)
+* Port `6868` from source 0.0.0.0/0 (CIDR): Used by [BOSH Agent](/docs/running/bosh/components/agent.html)
+* Port `25250` from source 0.0.0.0/0 (CIDR): Used by [BOSH Blobstore](/docs/running/bosh/components/blobstore.html)
+* Port `25555` from source 0.0.0.0/0 (CIDR): Used by [BOSH Director](/docs/running/bosh/components/director.html)
+* Port `25777` from source 0.0.0.0/0 (CIDR): Used by BOSH Registry
 
 ### <a id="openstack_keypairs"></a>OpenStack Key pairs ###
 
-Create or import a new OpenStack keypair, name it ie `microbosh`. Store the private key in a well know location, as we will need it to deploy Micro Bosh.
+Create or import a new OpenStack keypair, name it ie `microbosh`. Store the private key in a well know location, as we will need it to deploy Micro BOSH.
 
 ### <a id="openstack_validate"></a>Validate your OpenStack ###
 
-[Validate](validate_openstack.html) your target OpenStack environment in preparation for installing Micro Bosh.
+[Validate](validate_openstack.html) your target OpenStack environment in preparation for installing Micro BOSH.
 
-## <a id="deploy_microbosh"></a>Deploying Micro Bosh ##
+## <a id="deploy_microbosh"></a>Deploying Micro BOSH ##
 
 ### <a id="manifest_file"></a>Create manifest file ###
 
@@ -102,7 +104,7 @@ Adapt the `micro_bosh.yml` file to your environment settings:
 
 #### <a id="network_properties"></a>Network properties ####
 
-This section sets the network configuration for your Micro Bosh. 
+This section sets the network configuration for your Micro BOSH. 
 
 If you are using nova-network, adapt the network section with below settings:
 
@@ -141,7 +143,7 @@ network:
 ~~~        
 
 * The `vip` option is optional, and allows you to associate a floating IP adress to the Micro Bosh vm in case you want to access it from outside of the vm network. If set, `allocated_floating_ip` **must** be a previously allocated floating ip.
-* The `ip` option sets the IP address to assign to the Micro Bosh vm. `static_ip` **must** be an IP address belowing to the IP range of one of the network subnets set in `net_id`.
+* The `ip` option sets the IP address to assign to the Micro BOSH vm. `static_ip` **must** be an IP address belowing to the IP range of one of the network subnets set in `net_id`.
 * The `net_id` option sets the OpenStack network to use. `network_uuid` **must** be an existing Network UUID (you can list your OpenStack networks using the command `quantum net-list`).
 
 #### <a id="resources_properties"></a>Resources properties ####
@@ -155,12 +157,12 @@ resources:
     instance_type: <flavor_name>
 ~~~ 
 
-* The `persistent_disk` indicates that a new 16Gb volume will be created and attached to the Micro Bosh vm. On this disk, Micro Bosh will store the data, so in case you reboot or when upgrading the Micro Bosh vm, no data will be lost.
-* The `instance_type` set the OpenStack flavor used for the Micro Bosh vm. The `flavor_name` **must** have ephemeral disk (check the [validate your OpenStack](validate_openstack.html#ephemeral) guide) 
+* The `persistent_disk` indicates that a new 16Gb volume will be created and attached to the Micro BOSH vm. On this disk, Micro BOSH will store the data, so in case you reboot or when upgrading the Micro BOSH vm, no data will be lost.
+* The `instance_type` set the OpenStack flavor used for the Micro BOSH vm. The `flavor_name` **must** have ephemeral disk (check the [validate your OpenStack](validate_openstack.html#ephemeral) guide) 
 
 #### <a id="cloud_properties"></a>Cloud properties ####
 
-This section sets the cloud configuration for your Micro Bosh. 
+This section sets the cloud configuration for your Micro BOSH. 
 
 ~~~yaml
 cloud:
@@ -180,13 +182,12 @@ cloud:
 * The `auth_url` option set your [OpenStack identity](http://www.openstack.org/software/openstack-shared-services/) server.
 * The `username`, `api_key` and `tenant` options sets your OpenStack credentials.
 * The `region` option is optional, and allows you to set the OpenStack region to be used.
-* The `default_security_groups` option set the security groups used by Micro Bosh. The `microbosh_security_group` **must** be an existing security group (check the [prerequisites](#openstack_security_groups) section).
-* The `default_key_name` and `private_key` options sets the key pair used by Micro Bosh. The `microbosh_keypair` **must** be an existing keypair (check the [prerequisites](#openstack_keypairs) section).
-
+* The `default_security_groups` option set the security groups used by Micro BOSH. The `microbosh_security_group` **must** be an existing security group (check the [prerequisites](#openstack_security_groups) section).
+* The `default_key_name` and `private_key` options sets the key pair used by Micro BOSH. The `microbosh_keypair` **must** be an existing keypair (check the [prerequisites](#openstack_keypairs) section).
 
 #### <a id="apply_spec_properties"></a>Apply Spec properties ####
 
-This section sets the specification configuration for your Micro Bosh. 
+This section sets the specification configuration for your Micro BOSH. 
 
 ~~~yaml
 apply_spec:
@@ -202,30 +203,30 @@ apply_spec:
       - 1.north-america.pool.ntp.org
 ~~~
 
-* The `properties` option allows you to add or override the settings to be applied to your Micro Bosh (by default it will use the [micro](https://github.com/cloudfoundry/bosh/blob/master/release/micro/openstack.yml) apply spec).
+* The `properties` option allows you to add or override the settings to be applied to your Micro BOSH (by default it will use the [micro](https://github.com/cloudfoundry/bosh/blob/master/release/micro/openstack.yml) apply spec).
 
 In this example we add/override several properties:
 
-* `director.max_threads` sets the number of concurrent threads Micro Bosh [director](/docs/running/bosh/components/director.html) will use to perform some actions (ie: the number of parallel `create vm` tasks), so set this option according to your OpenStack environment (if not set, the default is 32 concurrent threads). 
+* `director.max_threads` sets the number of concurrent threads Micro BOSH [director](/docs/running/bosh/components/director.html) will use to perform some actions (ie: the number of parallel `create vm` tasks), so set this option according to your OpenStack environment (if not set, the default is 32 concurrent threads). 
 * `director.snapshot_schedule` disables the scheduled snapshot of deployed job's persistent disks. 
-* `director.self_snapshot_schedule` disables the scheduled snapshot of the Micro Bosh persistent disk. 
-* `hm.resurrector_enabled` enables the [Health Monitor](/docs/running/bosh/components/health-monitor.html) resurrector plugin. This plugin will lookup for jobs in a down state, and will try to resurrect (bring up) them.
+* `director.self_snapshot_schedule` disables the scheduled snapshot of the Micro BOSH persistent disk. 
+* `hm.resurrector_enabled` enables the [BOSH Health Monitor](/docs/running/bosh/components/health-monitor.html) resurrector plugin. This plugin will lookup for jobs in a down state, and will try to resurrect (bring up) them.
 * `ntp` sets the [Internet Time Servers](http://www.ntp.org/) to be used to synchronize the clocks of new vms.
 
-### <a id="download_stemcell"></a>Download Micro Bosh stemcell ###
+### <a id="download_stemcell"></a>Download Micro BOSH stemcell ###
 
 Create a `stemcells` directory to store your stemcell files:
 
     mkdir -p ~/bosh-workspace/stemcells
     cd ~/bosh-workspace/stemcells
 
-Download the latest OpenStack Micro Bosh stemcell:
+Download the latest OpenStack Micro BOSH stemcell:
 
     wget http://bosh-jenkins-artifacts.s3.amazonaws.com/last_successful_micro-bosh-stemcell-openstack.tgz
 
-### <a id="deploy"></a>Deploy Micro Bosh ###
+### <a id="deploy"></a>Deploy Micro BOSH ###
 
-Set the Micro Bosh deployment file to use:
+Set the Micro BOSH deployment file to use:
 
     cd ~/bosh-workspace/deployments
     bosh micro deployment microbosh-openstack
@@ -235,7 +236,7 @@ This command will output:
     WARNING! Your target has been changed to `https://<microbosh_ip_address>:25555'!
     Deployment set to '~/bosh-workspace/deployments/microbosh-openstack/micro_bosh.yml'
 
-Deploy the Micro Bosh:
+Deploy the Micro BOSH:
 
     bosh micro deploy ~/bosh-workspace/stemcells/last_successful_micro-bosh-stemcell-openstack.tgz
  
@@ -292,13 +293,13 @@ If for some reason the deploy process gets stucked or fails, you can check the l
     I, [2013-06-14T13:07:36.171820 #13692] [0x366ff0]  INFO -- : Director is ready: {"name"=>"microbosh-openstack", "uuid"=>"fd581363-02cd-41c6-8bed-87780391cff7", "version"=>"1.5.0.pre.3 (release:bef17df0 bosh:bef17df0)", "user"=>nil, "cpi"=>"openstack", "features"=>{"dns"=>
     {"status"=>true, "extras"=>{"domain_name"=>"microbosh"}}, "compiled_package_cache"=>{"status"=>false, "extras"=>{"provider"=>nil}}}
 
-## <a id="test_microbosh"></a>Testing your Micro Bosh ##
+## <a id="test_microbosh"></a>Testing your Micro BOSH ##
 
 ### <a id="microbosh_target"></a>Set target ###
 
-To set your Micro Bosh target use the `target` command:
+To set your Micro BOSH target use the `target` command:
 
-    bosh target http://<microbosh_ip_address>
+    bosh target <microbosh_ip_address>
 
 This command will ask for the admin credentials. Enter `admin` when prompted for both `username` and `password`.
 
@@ -328,7 +329,7 @@ The `admin` user will be deleted.
 
 ### <a id="microbosh_status"></a>Check status ###
 
-To check the status of your Micro Bosh use the `status` command:
+To check the status of your Micro BOSH use the `status` command:
 
     bosh status
 
@@ -352,13 +353,13 @@ This command will output:
 
 ### <a id="microbosh_ssh"></a>SSH ###
 
-You can ssh to your Micro Bosh vm using the private key set at the [cloud properties](#cloud_properties) section of your Micro Bosh deployment file: 
+You can ssh to your Micro BOSH vm using the private key set at the [cloud properties](#cloud_properties) section of your Micro BOSH deployment file: 
 
     ssh -i <path_to_microbosh_keypar_private_key> vcap@<microbosh_ip_address>
 
-Then you can sudo to get root privileges (default password for root user is `c1oudc0w`). All Bosh data is located at `/var/vcap` directory.
+Then you can sudo to get root privileges (default password for root user is `c1oudc0w`). All BOSH data is located at `/var/vcap` directory.
 
-If you want to change the default root password, add this section at the [manifest](#manifest_file) file before deploying Micro Bosh:
+If you want to change the default root password, add this section at the [manifest](#manifest_file) file before deploying Micro BOSH:
 
 ~~~yaml
 env:
@@ -368,10 +369,9 @@ env:
 
 * `hash_password` **must** be a [sha-512](https://en.wikipedia.org/wiki/SHA-2) hashed password (You can generate it using the [mkpasswd](https://www.mkpasswd.net/) utility).
 
+## <a id="delete_microbosh"></a>Deleting your Micro BOSH ##
 
-## <a id="delete_microbosh"></a>Deleting your Micro Bosh ##
-
-If you want to delete your Micro Bosh environment (vm, persistent disk and stemcell) use the `micro delete` command:
+If you want to delete your Micro BOSH environment (vm, persistent disk and stemcell) use the `micro delete` command:
 
     cd ~/bosh-workspace/deployments
     bosh micro delete
