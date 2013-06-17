@@ -26,7 +26,7 @@ $ cf create-service
 
 When any of the service types mentioned below are bound to a Node.js application, configuration for that data source will be configured automatically by Cloud Foundry.
 
-* Reddis MQ via the '[ampq](https://github.com/postwait/node-amqp)' module
+* Rabbit MQ via the '[ampq](https://github.com/postwait/node-amqp)' module
 * Mongo via the '[mongodb](http://mongodb.github.com/node-mongodb-native/)' and '[mongoose](http://mongoosejs.com/)' modules
 * MySQL via the '[mysql](https://github.com/felixge/node-mysql)' module
 * Postgres via the '[pg](https://github.com/brianc/node-postgres) module
