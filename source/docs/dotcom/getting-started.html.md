@@ -23,9 +23,9 @@ If you do not have an account yet, you can [sign up here](https://console.run.pi
 
 ## <a id='install-cf'></a>Install cf Command Line Tool ##
 
-You'll use the `cf` command line tool to deploy your application. You can also use it to check on the health of your application, change settings, and stop and restart your app.
+You'll use the `cf` [command line tool](/docs/using/managing-apps/cf) to deploy your application. You can also use it to check on the health of your application, change settings, and stop and restart your app.
 
-Because `cf` is a Ruby gem, you will need to have Ruby (minimum version 1.8.7) and RubyGems. If you do not already have Ruby installed, see [ruby-lang.org](http://www.ruby-lang.org).
+Because `cf` is a Ruby gem, you will need to have Ruby and RubyGems installed. See the [Installing Ruby](/docs/common/install_ruby.html) page for help installing Ruby and RubyGems.
 
 To install `cf`, simply type the following at your command line:
 
@@ -63,11 +63,11 @@ You can choose any of these spaces to deploy your application.
 
 Cloud Foundry supports many frameworks and runtimes. Learn about the preparations for each below:
 
-| Runtime                       | Framework                             |
-| :-------------                |:-------------                         |
-| Javascript                  | [Node.js](/docs/using/deploying-apps/javascript/index.html) |
-| Java / JVM                | Java Spring, Grails, Scala Lift, and Play           |
-| Ruby                    | [Rack, Rails, or Sinatra](/docs/using/deploying-apps/ruby/index.html) |
+| Runtime        | Framework                                                                             |
+| :------------- | :-------------                                                                        |
+| Javascript     | [Node.js](/docs/using/deploying-apps/javascript/index.html)                           |
+| Java / JVM     | [Java Spring, Grails, Scala Lift, and Play](/docs/using/deploying-apps/jvm/index.html)|
+| Ruby           | [Rack, Rails, or Sinatra](/docs/using/deploying-apps/ruby/index.html)                 |
 
 Cloud Foundry supports these frameworks and runtimes using a buildpack model. Some of the <a href="https://devcenter.heroku.com/articles/third-party-buildpacks">Heroku third party buildpacks</a> will work, but your experience may vary. To push an application using one of these buildpacks use `cf push [appname] --buildpack=[git url]`
 

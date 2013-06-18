@@ -89,11 +89,11 @@ Once you have a service instance created and bound to your app, you will need to
 
 There are three ways of consuming service instance credentials within your application.
 
-| Binding Strategy    | Description       | 
-| :-------------------  |:--------------------  | 
-| Auto-Reconfiguration  |  For databases only. Cloud Foundry creates a service connection for you.        | 
-| cfruntime     | Creates an object with the location and settings of your services. Set your service connections based on the values in that object.       | 
-| Manual | Parse the JSON credentials object yourself from the [VCAP_SERVICES Environment Variable](../using/services/environment-variable.html). |
+| Binding Strategy     | Description                                                                                                                            |
+| :------------------- | :--------------------                                                                                                                  |
+| Auto-Reconfiguration | For databases only. Cloud Foundry creates a service connection for you.                                                                |
+| cfruntime            | Creates an object with the location and settings of your services. Set your service connections based on the values in that object.    |
+| Manual               | Parse the JSON credentials object yourself from the [VCAP_SERVICES Environment Variable](../using/services/environment-variable.html). |
  
 ### Auto-Reconfiguration & cfruntime
  
@@ -101,6 +101,6 @@ Auto-Reconfiguration and cfruntime are used differently depending on your framew
 
 | Runtime               | Framework                   |
 | :-------------        |:-------------               |
-| Java / JVM        | <li>[Lift](../using/services/lift-service-bindings.html) <li>[Grails](../using/services/grails-service-bindings.html)<li>[Spring](../using/services/spring-service-bindings.html) |
+| Java / JVM        | <li>[Spring](../using/services/spring-service-bindings.html) <li>[Grails](../using/services/grails-service-bindings.html) <li>[Lift](../using/services/lift-service-bindings.html) |
 | Ruby            | <li>[Rack, Rails, or Sinatra](../using/services/ruby-service-bindings.html) |
 | Javascript          | <li>[Node.js](../using/services/node-service-bindings.html) |
