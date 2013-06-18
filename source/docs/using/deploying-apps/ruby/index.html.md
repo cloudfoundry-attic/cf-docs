@@ -2,24 +2,22 @@
 title: Deploying Ruby Apps (Rack, Rails, or Sinatra)
 ---
 
-This page will prepare you for using deploying Rack, Rails, or Sinatra apps via the [getting started guide](../../../dotcom/getting-started.html).
+This page will prepare you to deploy Rack, Rails, or Sinatra apps via the [getting started guide](../../../dotcom/getting-started.html).
 
-## <a id='bundler'></a> Do I need to use Bundler?##
+## <a id='bundler'></a> Application bundling ##
 
 You need to run <a href="http://gembundler.com/">Bundler</a> to create both a Gemfile and Gemfile.lock. These files must be in your application before you push to Cloud Foundry.
 
-## <a id='config'></a> Do I need a Rack config file?##
+## <a id='config'></a> Rack config file ##
 
-For both **Rack** and **Sinatra** you need a config.ru file like the example below:
-
-config.ru
+For both **Rack** and **Sinatra** you need a `config.ru` file like the example below:
 
 ~~~ruby
 require './hello_world'
 run HelloWorld.new
 ~~~
 
-## <a id='precompile'></a> Can I use precompilation? ##
+## <a id='precompile'></a> Asset precompilation ##
 
 Cloud Foundry provides support for the Rails asset pipeline. This means that if you don't choose to precompile assets before deployment to Cloud Foundry, precompilation will occur when the application is staged.
 To precompile asssets before deployment use the following command:
@@ -42,23 +40,19 @@ If the assets:precompile task fails, Cloud Foundry makes use of live compilation
 Rails.application.config.assets.compile = true
 ~~~
 
-## <a id='standalone'></a> Can I run a standalone Ruby script? ##
-
-Worker tasks are supported by Cloud Foundry. Follow this [standalone app quick start](rails-running-worker-tasks.html) to understand how it works.
-
-## <a id='workers'></a> Can I run workers tasks? ##
+## <a id='workers'></a> Workers tasks ##
 
 Worker tasks are supported by Cloud Foundry. Follow this [Rails workers quick start](rails-running-worker-tasks.html) to understand how it works.
 
-## <a id='console'></a> Can I use the Rails console? ##
+## <a id='console'></a> Rails console ##
 
 Cloud Foundry v2 does not yet support Rails Console.
 
-## <a id='services'></a> How do I bind services? ##
+## <a id='services'></a> Binding to services ##
 
 Refer to the [instructions for Ruby service bindings](../../services/ruby-service-bindings.html).
 
-## <a id='rake'></a> How do I run Rake tasks? ##
+## <a id='rake'></a> Running Rake tasks ##
 
 If the data service (such as a database) you are using with your application is available directly and supports connectivity when not running on Cloud Foundry, then you can run rake tasks locally (not on Cloud Foundry) and perform database migrations and other tasks outside of Cloud Foundry. See further below on how to access the contents of the `VCAP_SERVICES` environment variable that contains bound service connection information.
 
