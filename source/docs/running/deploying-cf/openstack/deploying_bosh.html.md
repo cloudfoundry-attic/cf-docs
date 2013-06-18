@@ -20,14 +20,18 @@ A BOSH Stemcell should be uploaded to the Micro BOSH. See the steps in [Uploadin
 
 Download the BOSH [source code](https://github.com/cloudfoundry/bosh):
 
-    cd ~/bosh-workspace
-    git clone git://github.com/cloudfoundry/bosh.git
+<pre class="terminal">
+cd ~/bosh-workspace
+git clone git://github.com/cloudfoundry/bosh.git
+</pre>
 
 Create a new development BOSH Release:
 
-    cd ~/bosh-workspace/bosh
-    bundle install --local
-    bundle exec rake release:create_dev_release
+<pre class="terminal">
+cd ~/bosh-workspace/bosh
+bundle install --local
+bundle exec rake release:create_dev_release
+</pre>
 
 This command will output:
 
@@ -46,7 +50,9 @@ This command will output:
 
 Upload the BOSH Release generated previously to the Micro BOSH Director:
 
-    bosh upload release /Users/frodenas/bosh-workspace/bosh/release/dev_releases/bosh-13.1-dev.yml
+<pre class="terminal">
+bosh upload release /Users/frodenas/bosh-workspace/bosh/release/dev_releases/bosh-13.1-dev.yml
+</pre>
 
 This command will output:
 
@@ -85,16 +91,22 @@ To confirm that the BOSH Release has been loaded into your BOSH Director use the
 
 Using the `deployments` directory we created when we [deployed Micro BOSH](deploying_microbosh.html#manifest_file), create a `bosh-openstack` subdirectory:
 
-    mkdir -p ~/bosh-workspace/deployments/bosh-openstack
-    cd ~/bosh-workspace/deployments/bosh-openstack
+<pre class="terminal">
+mkdir -p ~/bosh-workspace/deployments/bosh-openstack
+cd ~/bosh-workspace/deployments/bosh-openstack
+</pre>
 
 If you are using nova-network, copy the `dynamic` BOSH example manifest file: 
 
-    cp ~/bosh-workspace/bosh/release/examples/bosh-openstack-dynamic.yml bosh-openstack.yml
+<pre class="terminal">
+cp ~/bosh-workspace/bosh/release/examples/bosh-openstack-dynamic.yml bosh-openstack.yml
+</pre>
 
 If you are using the new [OpenStack Networking](http://www.openstack.org/software/openstack-networking/) service, copy the `manual` BOSH example manifest file: 
 
-    cp ~/bosh-workspace/bosh/release/examples/bosh-openstack-manual.yml bosh-openstack.yml
+<pre class="terminal">
+cp ~/bosh-workspace/bosh/release/examples/bosh-openstack-manual.yml bosh-openstack.yml
+</pre>
 
 Adapt the `bosh-openstack.yml` file to your environment settings. Search for the tag `# CHANGE`:
 
@@ -112,7 +124,9 @@ Adapt the `bosh-openstack.yml` file to your environment settings. Search for the
 
 Set the BOSH deployment file to use:
 
-    bosh deployment ~/bosh-workspace/deployments/bosh-openstack/bosh-openstack.yml
+<pre class="terminal">
+bosh deployment ~/bosh-workspace/deployments/bosh-openstack/bosh-openstack.yml
+</pre>
 
 This command will output:
 
@@ -120,7 +134,9 @@ This command will output:
 
 Deploy the Full BOSH:
 
-    bosh deploy
+<pre class="terminal">
+bosh deploy
+</pre>
 
 This command will output:
 
@@ -247,7 +263,9 @@ To confirm that the BOSH has been deployed use the `bosh deployments` command:
 
 To set your BOSH target use the `target` command:
 
-    bosh target <bosh_ip_address>
+<pre class="terminal">
+bosh target <bosh_ip_address>
+</pre>
 
 This command will ask for the admin credentials. Enter `admin` when prompted for both `username` and `password`.
 
@@ -260,18 +278,22 @@ This command will ask for the admin credentials. Enter `admin` when prompted for
 
 To create a new user use the `create user` command:
 
-    bosh create user
-    Enter new username: frodenas
-    Enter new password: ********
-    Verify new password: ********
-    User `frodenas' has been created
+<pre class="terminal">
+bosh create user
+Enter new username: frodenas
+Enter new password: ********
+Verify new password: ********
+User `frodenas' has been created
+</pre>
 
 Then you can login with the new user credentials:
 
-    bosh login
-    Your username: frodenas
-    Enter password: ********
-    Logged in as `frodenas'
+<pre class="terminal">
+bosh login
+Your username: frodenas
+Enter password: ********
+Logged in as `frodenas'
+</pre>
 
 The `admin` user will be deleted.
 
@@ -279,7 +301,9 @@ The `admin` user will be deleted.
 
 To check the status of your BOSH use the `status` command:
 
-    bosh status
+<pre class="terminal">
+bosh status
+</pre>
 
 This command will output:
 
@@ -342,12 +366,16 @@ env:
 
 If you want to delete your BOSH deployment, target your Micro BOSH and set the BOSH deployment file:
 
-    bosh target <microbosh_ip_address>
-    bosh deployment ~/bosh-workspace/deployments/bosh-openstack/bosh-openstack.yml
+<pre class="terminal">
+bosh target <microbosh_ip_address>
+bosh deployment ~/bosh-workspace/deployments/bosh-openstack/bosh-openstack.yml
+</pre>
 
 Then use the `delete deployment` command:
 
-    bosh delete deployment bosh-openstack
+<pre class="terminal">
+bosh delete deployment bosh-openstack
+</pre>
 
 This command will output:
 

@@ -2,13 +2,15 @@
 title: Validate your OpenStack
 ---
 
-This page aims to help you validate your target OpenStack in preparation for installing bosh and deploying Cloud Foundry.
+This page aims to help you validate your target OpenStack in preparation for installing BOSH and deploying Cloud Foundry.
 
-## Can access your OpenStack API? ##
+You will need a running OpenStack environment. Note that only [Folsom](https://wiki.openstack.org/wiki/ReleaseNotes/Folsom) and [Grizzly](https://wiki.openstack.org/wiki/ReleaseNotes/Grizzly) OpenStack releases are supported.
 
-You can verify that you have your OpenStack API credentials and can make API calls. Credentials are a combination of your user name, password, and what tenant (or project) your cloud is running under.
+## <a id="api_access"></a>Can access to your OpenStack API? ##
 
-Create a `~/.fog` file:
+You can verify that you have your OpenStack API credentials and can make API calls. Credentials are a combination of your user name, password, and what tenant (or project) your cloud is running under. Some providers require also to set the region.
+
+Create a `~/.fog` file and copy the below content:
 
 <pre class="yaml">
 :openstack:
@@ -16,6 +18,7 @@ Create a `~/.fog` file:
   :openstack_api_key:   PASSWORD
   :openstack_username:  USERNAME
   :openstack_tenant:    PROJECT_NAME
+  :openstack_region:    REGION # Optional
 </pre>
 
 NOTE: you need to include `/v2.0/tokens` in the auth URL above.
@@ -25,19 +28,19 @@ Install the `fog` application in your terminal, and run it in interactive mode:
 <pre class="terminal">
 $ gem install fog
 $ fog openstack
->> OpenStack.servers
+>> Compute[:openstack].servers
 []
 </pre>
 
 The `[]` is an empty array in Ruby. You might see a long list of servers being displayed if your OpenStack tenancy/project already contains provisioned servers.
 
-Note: it is recommended that you deploy bosh and Cloud Foundry in a dedicated tenancy. Its easier to keep track of the servers, volumes, security groups and networks that you create. It also allows you to manage user access.
+Note: it is recommended that you deploy BOSH and Cloud Foundry in a dedicated tenancy. Its easier to keep track of the servers, volumes, security groups and networks that you create. It also allows you to manage user access.
 
 There is more information on [OpenStack API docs](http://docs.openstack.org/api/quick-start/content/).
 
-## Can invoke large number of API calls? ##
+## <a id="api_access"></a> Can invoke large number of API calls? ##
 
-Your OpenStack might have API throttling (devstack enables throttling by default) which may mean that bosh requests to OpenStack fail dramatically, or perhaps fail temporarily (whilst waiting for the API throttle to expire).
+Your OpenStack might have API throttling (devstack enables throttling by default) which may mean that BOSH requests to OpenStack fail dramatically, or perhaps fail temporarily (whilst waiting for the API throttle to expire).
 
 Try the following to see if you may be affected by API throttling:
 
@@ -52,7 +55,7 @@ If you are running **devstack**, add the following to your `localrc` and at the 
 API_RATE_LIMIT=False
 </pre>
 
-## Can create a large volume? ##
+## <a id="volumes"></a> Can create a large volume? ##
 
 The [devstack](http://devstack.org/) OpenStack distributions defaults to a very small total volume size (5G). Alternately, your tenancy/project might have only been granted a small quota for volume sizes.
 
@@ -78,9 +81,9 @@ If you are running **devstack**, add the following to your `localrc` and at the 
 VOLUME_BACKING_FILE_SIZE=70000M
 </pre>
 
-## <a id="ephemeral"></a>Do instance flavors have ephemeral storage? ##
+## <a id="ephemeral"></a> Do instance flavors have ephemeral storage? ##
 
-Bosh can only use flavors that are available to you, but it requires that you only use flavors that have an ephemeral disk.
+BOSH can only use flavors that are available to you, but it requires that you only use flavors that have an ephemeral disk.
 
 To see the list of available flavors that have ephemeral disks:
 
@@ -96,7 +99,7 @@ You can create flavors using the `nova` tool. For example, to create an `m1.smal
 $ nova flavor-create m1.small 2 2048 20 1 --ephemeral 20 --rxtx-factor 1 --is-public true
 </pre>
 
-## Can access the Internet from within instances? ##
+## <a id="internet"></a> Can access the Internet from within instances? ##
 
 Your deployment of Cloud Foundry will need outbound access to the Internet (for example, the Ruby buildpack will run `bundle install` on users' applications to fetch RubyGems). You can verify now that your OpenStack is configured correctly to allow outbound access to the Internet.
 
@@ -118,5 +121,3 @@ If you are running **devstack**, perhaps check that you have an `eth0` and `eth1
 PUBLIC_INTERFACE=eth1
 FLAT_INTERFACE=eth0
 </pre>
-
-

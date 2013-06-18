@@ -49,11 +49,12 @@ Create or import a new OpenStack keypair, name it ie `microbosh`. Store the priv
 
 Create a `deployments` directory to store your deployment manifest files:
 
-    mkdir -p ~/bosh-workspace/deployments/microbosh-openstack
-    cd ~/bosh-workspace/deployments/microbosh-openstack
+<pre class="terminal">
+mkdir -p ~/bosh-workspace/deployments/microbosh-openstack
+cd ~/bosh-workspace/deployments/microbosh-openstack
+</pre>
 
 Create a `micro_bosh.yml` file and copy the below content:
-
 
 ~~~yaml
 ---
@@ -217,19 +218,25 @@ In this example we add/override several properties:
 
 Create a `stemcells` directory to store your stemcell files:
 
-    mkdir -p ~/bosh-workspace/stemcells
-    cd ~/bosh-workspace/stemcells
+<pre class="terminal">
+mkdir -p ~/bosh-workspace/stemcells
+cd ~/bosh-workspace/stemcells
+</pre>
 
 Download the latest OpenStack Micro BOSH stemcell:
 
-    wget http://bosh-jenkins-artifacts.s3.amazonaws.com/last_successful_micro-bosh-stemcell-openstack.tgz
+<pre class="terminal">
+wget http://bosh-jenkins-artifacts.s3.amazonaws.com/last_successful_micro-bosh-stemcell-openstack.tgz
+</pre>
 
 ### <a id="deploy"></a>Deploy Micro BOSH ###
 
 Set the Micro BOSH deployment file to use:
 
-    cd ~/bosh-workspace/deployments
-    bosh micro deployment microbosh-openstack
+<pre class="terminal">
+cd ~/bosh-workspace/deployments
+bosh micro deployment microbosh-openstack
+</pre>
 
 This command will output:
 
@@ -238,7 +245,9 @@ This command will output:
 
 Deploy the Micro BOSH:
 
-    bosh micro deploy ~/bosh-workspace/stemcells/last_successful_micro-bosh-stemcell-openstack.tgz
+<pre class="terminal">
+bosh micro deploy ~/bosh-workspace/stemcells/last_successful_micro-bosh-stemcell-openstack.tgz
+</pre>
  
 This command will output:
 
@@ -299,7 +308,9 @@ If for some reason the deploy process gets stucked or fails, you can check the l
 
 To set your Micro BOSH target use the `target` command:
 
-    bosh target <microbosh_ip_address>
+<pre class="terminal">
+bosh target <microbosh_ip_address>
+</pre>
 
 This command will ask for the admin credentials. Enter `admin` when prompted for both `username` and `password`.
 
@@ -312,18 +323,22 @@ This command will ask for the admin credentials. Enter `admin` when prompted for
 
 To create a new user use the `create user` command:
 
-    bosh create user
-    Enter new username: frodenas
-    Enter new password: ********
-    Verify new password: ********
-    User `frodenas' has been created
+<pre class="terminal">
+bosh create user
+Enter new username: frodenas
+Enter new password: ********
+Verify new password: ********
+User `frodenas' has been created
+</pre>
 
 Then you can login with the new user credentials:
 
-    bosh login
-    Your username: frodenas
-    Enter password: ********
-    Logged in as `frodenas'
+<pre class="terminal">
+bosh login
+Your username: frodenas
+Enter password: ********
+Logged in as `frodenas'
+</pre>
 
 The `admin` user will be deleted.
 
@@ -331,7 +346,9 @@ The `admin` user will be deleted.
 
 To check the status of your Micro BOSH use the `status` command:
 
-    bosh status
+<pre class="terminal">
+bosh status
+</pre>
 
 This command will output:
 
@@ -373,8 +390,10 @@ env:
 
 If you want to delete your Micro BOSH environment (vm, persistent disk and stemcell) use the `micro delete` command:
 
-    cd ~/bosh-workspace/deployments
-    bosh micro delete
+<pre class="terminal">
+cd ~/bosh-workspace/deployments
+bosh micro delete
+</pre>
 
 This command will output:
 

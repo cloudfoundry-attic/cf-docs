@@ -12,17 +12,23 @@ A Micro BOSH or Full BOSH should be deployed and targeted. See the steps in [Dep
 
 Using the `stemcells` directory we created when we [deployed Micro BOSH](deploying_microbosh.html#download_stemcell):
 
-    cd ~/bosh-workspace/stemcells
+<pre class="terminal">
+cd ~/bosh-workspace/stemcells
+</pre>
 
 Download the latest OpenStack BOSH Stemcell:
 
-    wget http://bosh-jenkins-artifacts.s3.amazonaws.com/last_successful_bosh-stemcell-openstack.tgz
+<pre class="terminal">
+wget http://bosh-jenkins-artifacts.s3.amazonaws.com/last_successful_bosh-stemcell-openstack.tgz
+</pre>
 
 ## <a id="upload_stemcell"></a>Upload BOSH stemcell ###
 
 Upload the BOSH Stemcell to the BOSH Director using the `bosh upload` command:
 
-    bosh upload stemcell ~/bosh-workspace/stemcells/last_successful_bosh-stemcell-openstack.tgz
+<pre class="terminal">
+bosh upload stemcell ~/bosh-workspace/stemcells/last_successful_bosh-stemcell-openstack.tgz
+</pre>
 
 This command will output:
 
