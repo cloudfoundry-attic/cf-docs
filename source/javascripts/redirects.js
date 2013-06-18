@@ -87,4 +87,7 @@ if (location.pathname == "/docs/using/services.html") {
 }; 
 if (location.pathname == "/docs/dotcom/services-marketplace/") {
     location.href = "/docs/dotcom/marketplace/"
-}; 
+};
+if (location.pathname == "/docs/using/deploying-apps/custom/") {
+    location.href = "/docs/using/deploying-apps/buildpacks.html"
+}
