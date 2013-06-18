@@ -28,7 +28,7 @@ There are two ways to do this.
 
 * You can use the cf-autoconfig gem. For Ruby applications, this option is appropriate only for applications if: (1) the application runs on the Rails framework, (2) the type of service bound to the application is PostgreSQL or MySQL, and (3) not more than one relational database service instance is bound to the application. 
 
-     **Note:** Auto-configuration overwrites the database connection information in anapplication's `database.yml` file -- if this is unacceptable, configure your service manually, rather than using auto-configuration.  
+     **Note:** Auto-configuration overwrites the database connection information in an application's `database.yml` file -- if this is unacceptable, configure your service manually, rather than using auto-configuration.  
      
 * You can configure your application manually. Use this option if you want more control over how your application connects to the service. We recommend manual configuration. It's not as easy as the automatic configuration, but it provides you greater control and flexibility.
 
