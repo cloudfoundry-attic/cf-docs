@@ -2,23 +2,13 @@
 title: Deploying Node.js
 ---
 
-This page will prepare you for using deploying Node.js apps via the [getting started guide](../../../dotcom/getting-started.html).
+This page will prepare you to deploy Node.js apps via the [getting started guide](../../../dotcom/getting-started.html).
 
-<hr>
+## <a id='packagejson'></a> Application package file ##
 
-## <a id='version'></a> Which version of Node? ##
+Cloud Foundry expects a `package.json` in your Node.js application. You can specify the version of Node.js you want to use in the `engine` node of your `package.json` file. As of July, 2013, Cloud Foundry uses 0.10.x as the default.
 
-You can specify different versions of Node.js in your package.json file. As of July, 2013, Cloud Foundry uses 0.10.x as the default.
-
-## <a id='packagejson'></a> Do I need a package file? ##
-
-Yes - Cloud Foundry expects a package.json in your Node.js application.
-
-## <a id='nodemodules'></a> Do I need to run NPM? ##
-
-You do not need to run `npm Install` before deploying your application. Cloud Foundry will run it for you. If you would prefer to run `npm install` and create a node_modules folder inside of your application, this is also supported.
-
-## <a id='start'></a> How do I start my app? ##
+## <a id='start'></a> Application start command ##
 
 Node.js applications require a start command, which is saved with other configurations in `manifest.yml`.
 
@@ -31,6 +21,10 @@ applications:
   command: node my-app.js
 ... the rest of your settings  ...
 ~~~
+
+## <a id='nodemodules'></a> Application bundling ##
+
+You do not need to run `npm install` before deploying your application. Cloud Foundry will run it for you when your application is pushed. If you would prefer to run `npm install` and create a `node_modules` folder inside of your application, this is also supported.
 
 ## <a id='services'></a> How do I bind services? ##
 

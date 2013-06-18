@@ -1,79 +1,53 @@
 ---
-title: Java and the JVM
+title: Deploying JVM Apps (Java, Groovy, Scala) 
 ---
 
-Several JVM-based frameworks are supported by CloudFoundry, allowing development in Java, Groovy or Scala.
+This page will prepare you to deploy applications written in Java, Groovy, or Scala, using the Spring, Grails, Lift, or Play frameworks, via the [getting started guide](../../../dotcom/getting-started.html).
 
-## Supported Frameworks
+## <a id='war'></a> Build a war file ##
 
-<div class="bg-columns">
-	<div class="column">
-		<h2>Spring</h2>
-		<p><strong>Get Started</strong></p>
-		<p>This guide will show you how to create an example application and deploy it to Cloud Foundry.</p>
-    <div class="blog-more-link">
-      <a href="./spring-getting-started.html">Get Started</a>
-    </div>
-		<div class="blue-right-arrow "></div>
-		<br>
-		<br>
-		<p><strong>Service Bindings</strong></p>
-		<p>This guide will show you how to create and bind a service to a Spring application.</p>
-    <div class="blog-more-link">
-      <a href="./spring-service-bindings.html">Bind Service</a>
-    </div>
-		<div class="blue-right-arrow "></div>		
-	</div>
-	<div class="column">
-		<h2>Play</h2>
-		<p><strong>Get Started</strong></p>
-		<p>This guide will show you how to create an example application and deploy it to Cloud Foundry.</p>
-    <div class="blog-more-link">
-      <a href="./play-getting-started.html">Get Started</a>
-    </div>
-		<div class="blue-right-arrow "></div>
-		<br>
-		<br>
-		<p><strong>Service Bindings</strong></p>
-		<p>This guide will show you how to create and bind a service to a Play application.</p>
-    <div class="blog-more-link">
-      <a href="./play-service-bindings.html">Bind Service</a>
-    </div>
-		<div class="blue-right-arrow "></div>		
-	</div>
-	<div class="column">
-		<h2>Grails</h2>
-		<p><strong>Get Started</strong></p>
-		<p>This guide will show you how to create an example application and deploy it to Cloud Foundry.</p>
-    <div class="blog-more-link">
-      <a href="./grails-getting-started.html">Get Started</a>
-    </div>
-		<div class="blue-right-arrow "></div>
-		<br>
-		<br>
-		<p><strong>Service Bindings</strong></p>
-		<p>This guide will show you how to create and bind a service to a Grails application.</p>
-    <div class="blog-more-link">
-      <a href="./grails-service-bindings.html">Bind Service</a>
-    </div>
-		<div class="blue-right-arrow "></div>
-	</div>
-	<div class="column">
-		<h2>Lift</h2>
-		<p><strong>Get Started</strong></p>
-		<p>This guide will show you how to create an example application and deploy it to Cloud Foundry.</p>
-    <div class="blog-more-link">
-      <a href="./lift-getting-started.html">Get Started</a>
-	    </div>
-		<div class="blue-right-arrow "></div>
-		<br>
-		<br>
-		<p><strong>Service Bindings</strong></p>
-		<p>This guide will show you how to create and bind a service to a Lift application.</p>
-    <div class="blog-more-link">
-      <a href="./lift-service-bindings.html">Bind Service</a>
-    </div>
-		<div class="blue-right-arrow "></div>		
-	</div>		
-</div>
+If you are deploying a web application built with Spring, Grails, Lift, or Play, then you should compile the application and assemble a war file for deploying to Cloud Foundry. The path to the war file should then be provided to `cf` using the `--path` option. Below are some examples of doing this with the various frameworks and build tools: 
+
+Spring with Maven
+
+<pre class="terminal">
+$ mvn package
+$ cf push --path target/my-app-1.0.0.war
+</pre>
+
+Spring with Gradle
+
+<pre class="terminal">
+$ gradle assemble
+$ cf push --path build/libs/my-app-1.0.war
+</pre>
+
+Grails
+
+<pre class="terminal">
+$ grails prod war
+$ cf push --path target/my-app-1.0.0.war
+</pre>
+
+Play
+
+<pre class="terminal">
+$ play dist
+$ cf push --path dist/my-app-1.0.war
+</pre>
+
+Lift
+
+<pre class="terminal">
+$ mvn package
+$ cf push --path target/my-app-1.0.0.war
+</pre>
+
+## <a id='services'></a> Binding to Services ##
+
+Information about binding apps to services can be found on the following pages: 
+ 
+* [Spring](../../services/spring-service-bindings.html)
+* [Grails](../../services/grails-service-bindings.html) 
+* [Lift](../../services/lift-service-bindings.html)
 
