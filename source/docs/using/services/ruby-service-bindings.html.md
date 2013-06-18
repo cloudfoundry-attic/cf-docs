@@ -26,8 +26,11 @@ Be sure to run `bundle install` to generate an updated Gemfile.lock.
 Next, tell your application how to connect to the service.
 There are two ways to do this.
 
-1. You can use the cf-autoconfig gem. This option is appropriate only for applications with a single service and only works for Redis, Mongo DB, MySQL, PostgreSQL and RabbitMQ.
-1. You can configure your application manually. Use this option if you want more control over how your application connects to the service. We recommend manual configuration. It's not as easy as the automatic configuration, but it provides you greater control and flexibility.
+* You can use the cf-autoconfig gem. For Ruby applications, this option is appropriate only for applications if: (1) the application runs on the Rails framework, (2) the type of service bound to the application is PostgreSQL or MySQL, and (3) not more than one relational database service instance is bound to the application. 
+
+     **Note:** Auto-configuration overwrites the database connection information in anapplication's `database.yml` file -- if this is unacceptable, configure your service manually, rather than using auto-configuration.  
+     
+* You can configure your application manually. Use this option if you want more control over how your application connects to the service. We recommend manual configuration. It's not as easy as the automatic configuration, but it provides you greater control and flexibility.
 
 ## <a id='autoconfig'></a>Auto Configuration ##
 
@@ -39,8 +42,6 @@ gem 'cf-autoconfig'
 
 As with any change to your Gemfile, be sure to run `bundle install` to generate an updated Gemfile.lock.
 
-The auto configuration will overwrite your database connection information in your application. So, for example, if you are writing a Rails application, cf-autoconfig will overwrite your database.yml file.
-If you don't want your database.yml file to be overwritten, you need to configure your services manually.
 
 ## <a id='cf-runtime'></a>CF Runtime Gem ##
 
