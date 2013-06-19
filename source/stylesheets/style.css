@@ -97,7 +97,7 @@ pre.terminal {
 }
 
 /* Lists ---------------------- */
-ul, ol, dl { font-size: 14px; line-height: 1.6; margin: 0 0 17px 17px; list-style-position: outside; }
+ul, ol, dl { font-size: 16px; line-height: 1.6; margin: 0 0 17px 17px; list-style-position: outside; }
 
 ul li ul, ul li ol { margin-left: 20px; margin-bottom: 0; }
 ul.square, ul.circle, ul.disc { margin-left: 17px; }
