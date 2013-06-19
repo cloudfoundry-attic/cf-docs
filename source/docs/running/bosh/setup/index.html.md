@@ -14,7 +14,7 @@ title: BOSH CLI Local Setup
 Install the BOSH CLI gem:
 
 <pre class="terminal">
-$ gem install bosh_cli_plugin_micro "~> 1.5.0.pre" --source https://s3.amazonaws.com/bosh-jenkins-gems/
+$ gem install bosh_cli_plugin_micro -v "~> 1.5.0.pre" --source http://s3.amazonaws.com/bosh-jenkins-gems/
 </pre>
 
 If you are using the rbenv Ruby environment manager, refresh the list of gems that rbenv knows about: 
