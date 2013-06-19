@@ -14,6 +14,10 @@ Micro BOSH should be deployed and targeted. See the steps in [Deploying Micro BO
 
 A BOSH Stemcell should be uploaded to the Micro BOSH. See the steps in [Uploading a BOSH Stemcell](uploading_bosh_stemcell.html).
 
+### <a id="openstack_floating_ip"></a>OpenStack Floating IPs ###
+
+Allocate two new OpenStack Floating IP to your project. We will use it to access our Bosh Director and PowerDNS instances from outside of our network.
+
 ## <a id="deploy_bosh"></a>Deploying BOSH ##
 
 ### <a id="create_release"></a>Create BOSH Release ###
@@ -111,14 +115,23 @@ cp ~/bosh-workspace/bosh/release/examples/bosh-openstack-manual.yml bosh-opensta
 Adapt the `bosh-openstack.yml` file to your environment settings. Search for the tag `# CHANGE`:
 
 * The `director_uuid` option set the [Bosh Director](/docs/running/bosh/components/director.html) to use. We will use the Micro Bosh Director UUID. You can get it running the command `bosh status`.
-* The `instance_type` option set the OpenStack flavor used for the compilation vms (at the `compilation` section) and jobs vms (at the `resource_pools` section). The `flavor_name` **must** have ephemeral disk (check the [validate your OpenStack](validate_openstack.html#ephemeral) guide) 
+* The `instance_type` option set the OpenStack flavor used for the compilation vms (at the `compilation` section) and jobs vms (at the `resource_pools` section). The `flavor_name` **must** have ephemeral disk (check the [validate your OpenStack](validate_openstack.html#ephemeral) guide). 
+* The `allocated_floating_ip_1` and `allocated_floating_ip_2` allows us to associate a floating IP adress to the Director and PowerDNS instances and **must** be a previously allocated floating ips (check the [prerequisites](#openstack_floating_ip) section).
 * The `dns.recursor` option set the IP address of the [recursor](http://en.wikipedia.org/wiki/Domain_Name_System#Recursive_and_caching_name_server) to query in case PowerDNS can't resolve a hostname. We will use the `microbosh_ip_address`.
 * The `auth_url` option set your [OpenStack identity](http://www.openstack.org/software/openstack-shared-services/) server.
 * The `username`, `api_key` and `tenant` options sets your OpenStack credentials.
 * The `region` option is optional, and allows you to set the OpenStack region to be used.
-* The `default_security_groups` option set the security groups used by vms, and **must** be an existing security group. We will use the `microbosh_security_group` we created when we [deployed Micro Bosh](deploying_microbosh.html#openstack_security_groups).
+* The `default_security_groups` option set the security groups used by vms, and **must** be existing security groups. We will use the `microbosh_security_group` we created when we [deployed Micro Bosh](deploying_microbosh.html#openstack_security_groups).
 * The `default_key_name` option set the key pair used by vms and **must** be an existing keypair. We will use the `microbosh_keypair` we created when we [deployed Micro Bosh](deploying_microbosh.html#openstack_keypairs).
-* WIP: Add missing properties
+
+If you are using the new [OpenStack Networking](http://www.openstack.org/software/openstack-networking/) component, you must also adapt the below settings:    
+
+* The `range` option sets the IP range to use. `subnet_cidr` **must** be a [CIDR](http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing) belonging to one of the network subnets set in `net_id`.
+* The `gateway` option sets subnet gateway.
+* The `reserved` option sets the range of IP addresses (starting at `first_reserved_ip_address` and ending at `last_reserved_ip_address`) that are reserved (so BOSH/OpenStack will not use them when assigning dynamically IP to vms).
+* The `static` option sets range of IP addresses (starting at `first_ip_address_for_vms` and ending at `last_ip_address_for_vms`) that are reserved to be set statically at the jobs section (so BOSH/OpenStack will not use them when assigning dynamically IP to vms).
+* The `net_id` option sets the OpenStack network to use. `network_uuid` **must** be an existing Network UUID (you can list your OpenStack networks using the command `quantum net-list`).      
+* The `ip_address_for_natsl`, `ip_address_for_redis`, `ip_address_for_postgres`, `ip_address_for_powerdns`, `ip_address_for_blobstore`, `ip_address_for_director`, `ip_address_for_registry` and `ip_address_for_health_monitor` sets the IP address to assign to each job. These IP addresses **must** in the range of IP addresses set previously in the  `static` option. 
 
 ### <a id="deploy"></a>Deploy BOSH ###
 
