@@ -1,8 +1,11 @@
 ---
 title: Micro Cloud Foundry
 ---
+**Note: Micro Cloud Foundry is currently only available on Cloud Foundry v1. If you are using v2, try Alturos vagrant or Nise BOSH.**
 
 * [Developing Cloud Foundry with Micro Cloud Foundry](developing_cf.html)
+
+> **The STS and IntelliJ plugins for Cloud Foundry will be updated in the coming weeks to support Cloud Foundry v2, including support for organizations, spaces, and custom buildpacks.**
 
 ## <a id='intro'></a>Introduction ##
 
