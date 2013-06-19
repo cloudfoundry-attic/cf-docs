@@ -1,8 +1,7 @@
 ---
-title: Configure Service Connections for Ruby Applications
----
+title: Configure Service Connections for Ruby 
 
-This page has information about how to configure a Ruby application that is deployed and running on Cloud Foundry to connect to a bound service.
+This page has information about how to configure a Ruby application to connect to a bound service.
 
 ## <a id='options'></a>Options for Configuring Ruby Apps for Services ##
 
@@ -10,7 +9,7 @@ There are several methods for configuring a Ruby application to connect to a ser
 
 * Create a connection object --- You can use the `cfruntime` gem to create a service connection object. This is the recommended approach, as it gives you more control over how the application connects to the service.
 
-* For a database application, you can define the connect in `database.yml` --- You can parse the `VCAP_SERVICES` environment variable, which contains connection information for all services bound to your application, and update the `database.yml` file for your application. 
+* For a database application, you can define the connection in `database.yml` --- You can parse the `VCAP_SERVICES` environment variable, which contains connection information for all services bound to your application, and update the `database.yml` file for your application. 
 
 * Autoconfiguration -- You can autoconfigure the application with the `cf-autoconfig` gem, if: (1) the application runs on the Rails framework, (2) the type of service bound to the application is PostgreSQL or MySQL, and (3) not more than one relational database service instance is bound to the application. 
 
@@ -34,7 +33,6 @@ Ensure that the application includes the correct adapter gem in the Gemfile:
 
 Run `bundle install` to generate an updated `Gemfile.lock`.
 
-For the manual configuration methods, Ruby must be installed. For instructions on how to install Ruby with RVM or rbenv see [Installing Ruby](/docs/common/install_ruby.html).
 
 ## <a id='manual'></a>Manual Configuration with cfruntime</a> ##
 
