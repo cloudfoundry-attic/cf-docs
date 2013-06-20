@@ -47,7 +47,7 @@ This command will output:
 
     ....
 
-    Release version: <13.1>-dev
+    Release version: 13.1-dev
     Release manifest: /Users/frodenas/bosh-workspace/bosh/release/dev_releases/bosh-13.1-dev.yml
 
 ###  <a id="upload_release"></a>Upload BOSH Release ###
@@ -277,7 +277,7 @@ To confirm that the BOSH has been deployed use the `bosh deployments` command:
 To set your BOSH target use the `target` command:
 
 <pre class="terminal">
-bosh target <bosh_ip_address>
+bosh target &lt;bosh_ip_address&gt;
 </pre>
 
 This command will ask for the admin credentials. Enter `admin` when prompted for both `username` and `password`.

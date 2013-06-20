@@ -309,7 +309,7 @@ If for some reason the deploy process gets stucked or fails, you can check the l
 To set your Micro BOSH target use the `target` command:
 
 <pre class="terminal">
-bosh target <microbosh_ip_address>
+bosh target &lt;microbosh_ip_address&gt;
 </pre>
 
 This command will ask for the admin credentials. Enter `admin` when prompted for both `username` and `password`.
@@ -372,7 +372,9 @@ This command will output:
 
 You can ssh to your Micro BOSH vm using the private key set at the [cloud properties](#cloud_properties) section of your Micro BOSH deployment file: 
 
-    ssh -i <path_to_microbosh_keypar_private_key> vcap@<microbosh_ip_address>
+<pre class="terminal">
+ssh -i &lt;path_to_microbosh_keypar_private_key&gt; vcap@&lt;microbosh_ip_address&gt;
+</pre>
 
 Then you can sudo to get root privileges (default password for root user is `c1oudc0w`). All BOSH data is located at `/var/vcap` directory.
 
