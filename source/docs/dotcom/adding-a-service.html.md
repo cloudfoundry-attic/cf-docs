@@ -91,13 +91,13 @@ There are three ways of consuming service instance credentials within your appli
 
 | Binding Strategy     | Description                                                                                                                            |
 | :------------------- | :--------------------                                                                                                                  |
-| Auto-Reconfiguration | For databases only. Cloud Foundry creates a service connection for you.                                                                |
+| Auto-configuration | For databases only. Cloud Foundry creates a service connection for you.                                                                |
 | cfruntime            | Creates an object with the location and settings of your services. Set your service connections based on the values in that object.    |
 | Manual               | Parse the JSON credentials object yourself from the [VCAP_SERVICES Environment Variable](../using/services/environment-variable.html). |
  
-### Auto-Reconfiguration & cfruntime
+### Auto-configuration & cfruntime
  
-Auto-Reconfiguration and cfruntime are used differently depending on your framework:
+Auto-configuration and cfruntime are used differently depending on your framework:
 
 | Runtime               | Framework                   |
 | :-------------        |:-------------               |

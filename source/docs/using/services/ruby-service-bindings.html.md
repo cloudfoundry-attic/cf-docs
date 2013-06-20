@@ -1,5 +1,6 @@
 ---
 title: Configure Service Connections for Ruby 
+---
 
 This page has information about how to configure a Ruby application to connect to a bound service.
 
@@ -11,9 +12,9 @@ There are several methods for configuring a Ruby application to connect to a ser
 
 * For a database application, you can define the connection in `database.yml` --- You can parse the `VCAP_SERVICES` environment variable, which contains connection information for all services bound to your application, and update the `database.yml` file for your application. 
 
-* Autoconfiguration -- You can autoconfigure the application with the `cf-autoconfig` gem, if: (1) the application runs on the Rails framework, (2) the type of service bound to the application is PostgreSQL or MySQL, and (3) not more than one relational database service instance is bound to the application. 
+* Auto-configuration -- You can auto-configure the application with the `cf-autoconfig` gem, if: (1) the application runs on the Rails framework, (2) the type of service bound to the application is PostgreSQL or MySQL, and (3) not more than one relational database service instance is bound to the application. 
 
-     **Note:** Auto-configuration overwrites the database connection information in an application's `database.yml` file -- if this is unacceptable, configure your service manually, rather than using autoconfiguration.  
+     **Note:** Auto-configuration overwrites the database connection information in an application's `database.yml` file -- if this is unacceptable, configure your service manually, rather than using auto-configuration.  
 
 
 ## <a id='prereq'></a>Prerequisites ##
@@ -228,7 +229,7 @@ Your code may vary from the example above, depending on the key in your VCAP_SER
 ## <a id='autoconfig'></a>Auto-Configuration ##
 
 
-To use autoconfiguration, include this line in your Gemfile:
+To use auto-configuration, include this line in your Gemfile:
 
 ~~~ruby
 gem 'cf-autoconfig'
