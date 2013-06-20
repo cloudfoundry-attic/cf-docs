@@ -5,7 +5,6 @@ title: Micro Cloud Foundry
 
 * [Developing Cloud Foundry with Micro Cloud Foundry](developing_cf.html)
 
-> **The STS and IntelliJ plugins for Cloud Foundry will be updated in the coming weeks to support Cloud Foundry v2, including support for organizations, spaces, and custom buildpacks.**
 
 ## <a id='intro'></a>Introduction ##
 
