@@ -1,7 +1,7 @@
 ---
 title: Micro Cloud Foundry
 ---
-**Note: Micro Cloud Foundry is currently only available on Cloud Foundry v1. If you are using v2, try Alturos vagrant or Nise BOSH.**
+**Note: Micro Cloud Foundry is currently only available on Cloud Foundry v1. If you are using v2, try Altoros vagrant or Nise BOSH.**
 
 * [Developing Cloud Foundry with Micro Cloud Foundry](developing_cf.html)
 
