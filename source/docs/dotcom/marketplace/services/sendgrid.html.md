@@ -89,7 +89,7 @@ To access your SendGrid dashboard, simply click the 'Manage' button next to the 
 
 ## Managing Services
 
-You can continue [managing your services from the command line](http://docs.cloudfoundry.com/docs/using/services/managing-services.html).
+You can continue [managing your services from the command line](http://docs.cloudfoundry.com/docs/dotcom/marketplace/contacting-service-providers-for-support.html).
 
 
 ## <a id='support'></a>Support ##
