@@ -80,7 +80,8 @@ smtp.password=
 ## <a id='dashboard'></a>Dashboard ##
 
 SendGrid offers statistics a number of different metrics to report on what is happening with your messages.
-![Dashboard](https://sendgrid.com/docs/images/delivery_metrics.png)
+![Dashboard](http://static.sendgrid.com.s3.amazonaws.com/images/delivery_metrics.png)
+
 
 To access your SendGrid dashboard, simply click the 'Manage' button next to the SendGrid service on your app space console.
 
