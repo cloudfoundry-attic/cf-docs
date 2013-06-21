@@ -20,7 +20,7 @@ and the desired plan.
 
 Bind your SendGrid service to your app, using the following command:
     
-<pre class="terminal">    
+<pre class="terminal">
 $ cf bind-service [service-name] [app name]
 </pre>
 
