@@ -80,6 +80,7 @@ smtp.password=
 ## <a id='dashboard'></a>Dashboard ##
 
 SendGrid offers statistics a number of different metrics to report on what is happening with your messages.
+
 ![Dashboard](http://static.sendgrid.com.s3.amazonaws.com/images/delivery_metrics.png)
 
 
