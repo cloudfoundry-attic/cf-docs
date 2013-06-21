@@ -73,7 +73,17 @@ Cloud Foundry supports these frameworks and runtimes using a buildpack model. So
 
 ## <a id='push-app'></a>Push Your Application to the Cloud ##
 
-Before you deploy, you need to decide on the answers to some questions:
+### Pushing a rails app
+
+If you push a rails app, you should consider first creating a .cfignore inside your app that ignores your rails app's tmp and log directories:
+
+<pre class="terminal">
+$ cd yourapp && cat > .cfignore
+tmp/
+log/
+</pre>
+
+Also, before you deploy, you need to decide on the answers to some questions:
 
 * **Name**: You can use any series of alpha-numeric characters without spaces as the name of your application.
 * **Instances**: The number of instances you want running.
