@@ -20,8 +20,9 @@ and the desired plan.
 
 Bind your SendGrid service to your app, using the following command:
     
-    $ cf bind-service [service-name] [app name]
-
+<pre class="terminal">    
+$ cf bind-service [service-name] [app name]
+</pre>
 
 Once SendGrid has been added a username, password will be available and will contain the credentials used to access the newly provisioned SendGrid service instance.
 
