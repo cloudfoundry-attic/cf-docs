@@ -1,8 +1,8 @@
 ---
-title: run.pivotal.io
+title: Cloud Foundry Hosted Developer Edition
 ---
 
-Documentation specific to Pivotal’s public Cloud Foundry PaaS on AWS.
+Documentation specific to the Cloud Foundry hosted developer edition provided by Pivotal.
 
 ## <a id='getting-started'></a>Getting Started Guides ##
 
