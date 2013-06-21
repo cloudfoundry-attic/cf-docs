@@ -97,7 +97,7 @@ You can continue [managing your services from the command line](http://docs.clou
 All SendGrid support and runtime issues should be submitted via on of the [Contacting Service Providers for Support](http://docs.cloudfoundry.com/docs/dotcom/marketplace/contacting-service-providers-for-support.html). Any non-support related issues or product feedback is welcome at [http://support.sendgrid.com/home](http://support.sendgrid.com/home).
 
 
-## <a id='additional-resources'></a>Additional resources ##
+## <a id='additional-resources'></a>Additional Resources ##
 
 Additional resources are available at:
 
