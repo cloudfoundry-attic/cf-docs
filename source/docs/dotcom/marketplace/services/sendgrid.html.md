@@ -10,8 +10,9 @@ category: marketplace
 
 SendGrid can be provisioning via the CLI with the following command:
 
-    
+    <pre class="terminal">
     $ cf create-service sendgrid [service-name]
+    </pre>
     
 and the desired plan.    
 
