@@ -6,7 +6,7 @@ category: marketplace
 [SendGrid's](http://sendgrid.com)  cloud-based email infrastructure relieves businesses of the cost and complexity of maintaining custom email systems. SendGrid provides reliable delivery, scalability and real-time analytics along with flexible APIs that make custom integration a breeze.
 
 
-## Creating A SendGrid Service
+## <a id='creating-a-sendgrid-service'></a>Creating A SendGrid Service
 
 SendGrid can be provisioning via the CLI with the following command:
 
@@ -15,7 +15,8 @@ SendGrid can be provisioning via the CLI with the following command:
     
 and the desired plan.    
 
-## Binding Your SendGrid Service
+## <a id='binding-your-sendgrid-service'></a>Binding Your SendGrid Service
+
 Bind your SendGrid service to your app, using the following command:
     
     $ cf bind-service [service-name] [app name]
@@ -24,7 +25,7 @@ Bind your SendGrid service to your app, using the following command:
 Once SendGrid has been added a username, password will be available and will contain the credentials used to access the newly provisioned SendGrid service instance.
 
 
-## <a id='environment-variable'></a>Environment Variables ##
+## <a id='environment-variable'></a>Environment Variables
 
 Format of credentials in VCAP_SERVICES environment variable.
 
@@ -45,7 +46,7 @@ Format of credentials in VCAP_SERVICES environment variable.
 
 
 
-## <a id='sample-app'></a>Sample Applications ##
+## <a id='sample-app'></a>Sample Applications
 
 ### Spring
 
@@ -74,7 +75,8 @@ smtp.user=
 smtp.password=
 ~~~
 
-## Dashboard
+## <a id='dashboard'></a>Dashboard
+
 SendGrid offers statistics a number of different metrics to report on what is happening with your messages.
 ![Dashboard](https://sendgrid.com/docs/images/delivery_metrics.png)
 
@@ -86,12 +88,12 @@ To access your SendGrid dashboard, simply click the 'Manage' button next to the 
 You can continue [managing your services from the command line](http://docs.cloudfoundry.com/docs/using/services/managing-services.html).
 
 
-## <a id='support'></a>Support ##
+## <a id='support'></a>Support
 
 All SendGrid support and runtime issues should be submitted via on of the [Contacting Service Providers for Support](http://docs.cloudfoundry.com/docs/dotcom/services-marketplace/contacting-service-providers-for-support.html). Any non-support related issues or product feedback is welcome at [http://support.sendgrid.com/home](http://support.sendgrid.com/home).
 
 
-## Additional resources
+## <a id='additional-resources'></a>Additional resources
 
 Additional resources are available at:
 
