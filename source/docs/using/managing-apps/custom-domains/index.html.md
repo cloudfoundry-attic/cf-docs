@@ -23,7 +23,7 @@ Once the name servers are configured with the registrar, use the `cf map-domain`
 
     cf map-domain somedomain.com
     cf map sinatra-hello foo somedomain.com
-	cf sinatra-hello restart
+    cf restart sinatra-hello
 
 *Note the restart command. If the application is already running, the new route will not be active until the application is restarted.*
 
