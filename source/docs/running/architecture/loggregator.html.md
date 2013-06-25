@@ -3,7 +3,7 @@ title: Loggregator
 description: User application logging subsystem.  Allows application developers to access the logs from their applications and spaces.
 ---
 
-Loggregator is the user application logging subsystem for Cloud Foundry.
+Loggregator is the user application logging subsystem for Cloud Foundry.  The codebase can be found at [cloudfoundry/loggregator](/cloudfoundry/loggregator).
 
 ## Features
 
