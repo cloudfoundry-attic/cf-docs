@@ -57,18 +57,20 @@ environments {
       username = 'user'
       password = "password"
     }
-    mongo {
-      host = 'localhost'
-      port = 27107
-      databaseName = "foo"
-      username = 'user'
-      password = 'password'
-    }
-    redis {
-      host = 'localhost'
-      port = 6379
-      password = 'password'
-      timeout = 2000
+    grails {
+      mongo {
+        host = 'localhost'
+        port = 27107
+        databaseName = "foo"
+        username = 'user'
+        password = 'password'
+      }
+      redis {
+        host = 'localhost'
+        port = 6379
+        password = 'password'
+        timeout = 2000
+      }
     }
   }
 }
@@ -123,32 +125,35 @@ environments {
         password = ''
       }
     }
-    mongo {
-      if (cloudEnv.isCloudFoundry()) {
-        def mongoInfo = cloudEnv.getServiceInfo('myapp-mongodb', MongoServiceInfo.class)
-        host = mongoInfo.host
-        port = mongoInfo.port
-        databaseName = mongoInfo.database
-        username = mongoInfo.userName
-        password = mongoInfo.password
-      } else {
-        host = 'localhost'
-        port = 27107
-        databaseName = 'foo'
-        username = 'user'
-        password = 'password'
+    
+    grails {
+      mongo {
+        if (cloudEnv.isCloudFoundry()) {
+          def mongoInfo = cloudEnv.getServiceInfo('myapp-mongodb', MongoServiceInfo.class)
+          host = mongoInfo.host
+          port = mongoInfo.port
+          databaseName = mongoInfo.database
+          username = mongoInfo.userName
+          password = mongoInfo.password
+        } else {
+          host = 'localhost'
+          port = 27107
+          databaseName = 'foo'
+          username = 'user'
+          password = 'password'
+        }
       }
-    }
-    redis {
-      if (cloudEnv.isCloudFoundry()) {
-        def redisInfo = cloudEnv.getServiceInfo('myapp-redis', RedisServiceInfo.class)
-        host = redisInfo.host
-        port = redisInfo.port
-        password = redisInfo.password
-      } else {
-        host = 'localhost'
-        port = 6379
-        password = 'password'
+      redis {
+        if (cloudEnv.isCloudFoundry()) {
+          def redisInfo = cloudEnv.getServiceInfo('myapp-redis', RedisServiceInfo.class)
+          host = redisInfo.host
+          port = redisInfo.port
+          password = redisInfo.password
+        } else {
+          host = 'localhost'
+          port = 6379
+          password = 'password'
+        }
       }
     }
   }
