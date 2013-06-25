@@ -102,10 +102,11 @@ title: Welcome to Cloud Foundry Documentation
   </p>
 
   <hr>
-
+<!---
   <p><a href="docs/running/micro_cloud_foundry/index.html">Micro Cloud Foundry</a></p>
 
   <hr>
+  -->
   <p>
   Managing Cloud Foundry<br>
   <a href="docs/running/managing-cf/managing-users.html">Users</a><br>
