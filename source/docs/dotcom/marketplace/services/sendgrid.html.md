@@ -54,7 +54,7 @@ Format of credentials in VCAP_SERVICES environment variable.
 
 This Java program will build a multi-part MIME email and send it through SendGrid. Java already has built in libraries to send and receive emails. This example uses [javamail] (https://java.net/projects/javamail/pages/Home).
 
-
+```java
     import javax.mail.*;
     import javax.mail.internet.*;
     import javax.mail.Authenticator;
@@ -117,8 +117,38 @@ This Java program will build a multi-part MIME email and send it through SendGri
             }
         }
     }
-
+```
 A sample application for using Spring Framework and SendGrid on Cloud Foundry: https://github.com/scottfrederick/spring-sendgrid
+
+### Ruby / Rails ###
+#### ActionMailer ####
+Edit `config/environment.rb` file:
+```ruby
+    ActionMailer::Base.smtp_settings = {
+      :address        => 'smtp.sendgrid.net',
+      :port           => '587',
+      :authentication => :plain,
+      :user_name      => '<sendgrid_username>',
+      :password       => '<sendgrid_password>',
+      :domain         => 'heroku.com',
+      :enable_starttls_auto => true
+    }
+```
+#### Mail ####
+```ruby
+    Mail.defaults do
+      delivery_method :smtp, {
+        :address => 'smtp.sendgrid.net',
+        :port => '587',
+        :domain => 'heroku.com',
+        :user_name => ENV['SENDGRID_USERNAME'],
+        :password => ENV['SENDGRID_PASSWORD'],
+        :authentication => :plain,
+        :enable_starttls_auto => true
+      }
+    end
+```
+A sample application for using Ruby on Rails and SendGrid on Cloud Foundry: https://github.com/laur-craciun/sendgrid-cloudfoundry-rails
 
 ## <a id='dashboard'></a>Dashboard ##
 
