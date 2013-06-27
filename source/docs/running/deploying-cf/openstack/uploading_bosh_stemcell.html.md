@@ -19,7 +19,7 @@ cd ~/bosh-workspace/stemcells
 Download the latest OpenStack BOSH Stemcell:
 
 <pre class="terminal">
-wget http://bosh-jenkins-artifacts.s3.amazonaws.com/last_successful_bosh-stemcell-openstack.tgz
+wget http://bosh-jenkins-artifacts.s3.amazonaws.com/bosh-stemcell/openstack/latest-bosh-stemcell-openstack.tgz
 </pre>
 
 ## <a id="upload_stemcell"></a>Upload BOSH stemcell ###
@@ -27,7 +27,7 @@ wget http://bosh-jenkins-artifacts.s3.amazonaws.com/last_successful_bosh-stemcel
 Upload the BOSH Stemcell to the BOSH Director using the `bosh upload` command:
 
 <pre class="terminal">
-bosh upload stemcell ~/bosh-workspace/stemcells/last_successful_bosh-stemcell-openstack.tgz
+bosh upload stemcell ~/bosh-workspace/stemcells/latest-bosh-stemcell-openstack.tgz
 </pre>
 
 This command will output:
