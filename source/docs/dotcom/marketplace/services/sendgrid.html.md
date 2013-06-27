@@ -118,7 +118,7 @@ This Java program will build a multi-part MIME email and send it through SendGri
         }
     }
 ```
-A sample application for using Spring Framework and SendGrid on Cloud Foundry: https://github.com/scottfrederick/spring-sendgrid
+A sample application for using Spring Framework and SendGrid on Cloud Foundry can be found [here](https://github.com/scottfrederick/spring-sendgrid).
 
 ### Ruby / Rails ###
 ##### ActionMailer #####
@@ -136,21 +136,7 @@ Edit `config/environment.rb`:
       :enable_starttls_auto => true
     }
 ```
-##### Mail #####
-```ruby
-    Mail.defaults do
-      delivery_method :smtp, {
-        :address => 'smtp.sendgrid.net',
-        :port => '587',
-        :domain => 'yourdomain.com',
-        :user_name => '[sendgrid_username]',
-        :password => '[sendgrid_password]',
-        :authentication => :plain,
-        :enable_starttls_auto => true
-      }
-    end
-```
-A sample application for using Ruby on Rails and SendGrid on Cloud Foundry: https://github.com/laur-craciun/sendgrid-cloudfoundry-rails
+A sample application for using Ruby on Rails and SendGrid on Cloud Foundry can be found [here](https://github.com/laur-craciun/sendgrid-cloudfoundry-rails).
 
 ## <a id='dashboard'></a>Dashboard ##
 
