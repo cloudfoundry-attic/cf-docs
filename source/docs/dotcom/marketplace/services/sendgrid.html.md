@@ -125,12 +125,12 @@ A sample application for using Spring Framework and SendGrid on Cloud Foundry: h
 Edit config/environmentrb file
 ```ruby
     ActionMailer::Base.smtp_settings = {
-      :address        => 'smtp.sendgrid.net',
-      :port           => '587',
+      :address => 'smtp.sendgrid.net',
+      :port => '587',
       :authentication => :plain,
-      :user_name      => '[sendgrid_username]',
-      :password       => '[sendgrid_password]',
-      :domain         => 'yourdomain.com',
+      :user_name => '[sendgrid_username]',
+      :password => '[sendgrid_password]',
+      :domain => 'yourdomain.com',
       :enable_starttls_auto => true
     }
 ```
