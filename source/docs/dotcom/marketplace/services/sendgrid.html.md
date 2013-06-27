@@ -39,6 +39,7 @@ Format of credentials in `VCAP_SERVICES` environment variable.
           label: "sendgrid-n/a",
           plan: "free",
           credentials: {
+            smtp_host: "smtp.sendgrid.net",
             username: "QvsXMbJ3rK",
             password: "HCHMOYluTv"
           }
