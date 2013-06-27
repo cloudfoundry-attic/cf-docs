@@ -122,7 +122,7 @@ A sample application for using Spring Framework and SendGrid on Cloud Foundry: h
 
 ### Ruby / Rails ###
 #### ActionMailer ####
-Edit `config/environment.rb` file
+Edit config/environment.rb file:
 ```ruby
     ActionMailer::Base.smtp_settings = {
       :address        => 'smtp.sendgrid.net',
