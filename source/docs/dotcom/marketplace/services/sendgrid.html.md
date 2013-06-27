@@ -128,8 +128,8 @@ Edit config/environment.rb file:
       :address        => 'smtp.sendgrid.net',
       :port           => '587',
       :authentication => :plain,
-      :user_name      => '<sendgrid_username>',
-      :password       => '<sendgrid_password>',
+      :user_name      => '[sendgrid_username]',
+      :password       => '[sendgrid_password]',
       :domain         => 'heroku.com',
       :enable_starttls_auto => true
     }
