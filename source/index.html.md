@@ -36,9 +36,11 @@ title: Welcome to Cloud Foundry Documentation
   <p><a href="docs/using/app-arch/index.html">App Design for the Cloud</a></p>
 
   <hr>
+  <p>Application Deployment<br>
 
-  <p><a href="docs/using/deploying-apps/index.html">Deploy Your App</a></p>
-
+  <a href="docs/using/deploying-apps/index.html">Deploy Your App</a><br>
+  <a href="docs/using/deploying-apps/manifest.html">Application Manifests (manifest.yml)</a>  
+  </p>
   <hr>
 
   <p>Client Tools<br>
