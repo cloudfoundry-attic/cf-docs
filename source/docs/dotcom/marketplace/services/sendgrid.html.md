@@ -121,7 +121,7 @@ This Java program will build a multi-part MIME email and send it through SendGri
 A sample application for using Spring Framework and SendGrid on Cloud Foundry: https://github.com/scottfrederick/spring-sendgrid
 
 ### Ruby / Rails ###
-#### ActionMailer ####
+##### ActionMailer #####
 Edit `config/environment.rb`:
 
 ```ruby
@@ -135,7 +135,7 @@ Edit `config/environment.rb`:
       :enable_starttls_auto => true
     }
 ```
-#### Mail ####
+##### Mail #####
 ```ruby
     Mail.defaults do
       delivery_method :smtp, {
