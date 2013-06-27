@@ -29,7 +29,7 @@ Once SendGrid has been added a username, password will be available and will con
 
 ## <a id='environment-variable'></a>Environment Variables ##
 
-Format of credentials in VCAP_SERVICES environment variable.
+Format of credentials in `VCAP_SERVICES` environment variable.
 
 
     {
@@ -121,17 +121,32 @@ This Java program will build a multi-part MIME email and send it through SendGri
 A sample application for using Spring Framework and SendGrid on Cloud Foundry can be found [here](https://github.com/scottfrederick/spring-sendgrid).
 
 ### Ruby / Rails ###
-##### ActionMailer #####
+Get SendGrid credentials from `VCAP_SERVICES` environment variable
+
+```ruby
+    credentials = host = username = password = ''
+    if !ENV['VCAP_SERVICES'].blank?
+      JSON.parse(ENV['VCAP_SERVICES']).each do |k,v|
+        if !k.scan("sendgrid").blank?
+          credentials = v.first.select {|k1,v1| k1 == "credentials"}["credentials"]
+          host = credentials["smtp_host"]
+          username = credentials["username"]
+          password = credentials["password"]
+        end
+      end
+    end
+```    
+
 The following settings are necessary for apps using ActionMailer.
 Edit `config/environment.rb`:
 
 ```ruby
     ActionMailer::Base.smtp_settings = {
-      :address => 'smtp.sendgrid.net',
+      :address => '<smtp_host>',
       :port => '587',
       :authentication => :plain,
-      :user_name => '[sendgrid_username]',
-      :password => '[sendgrid_password]',
+      :user_name => '<sendgrid_username>',
+      :password => '<sendgrid_password>',
       :domain => 'yourdomain.com',
       :enable_starttls_auto => true
     }
