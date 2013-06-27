@@ -54,7 +54,7 @@ Format of credentials in VCAP_SERVICES environment variable.
 
 This Java program will build a multi-part MIME email and send it through SendGrid. Java already has built in libraries to send and receive emails. This example uses [javamail] (https://java.net/projects/javamail/pages/Home).
 
-```java
+
     import javax.mail.*;
     import javax.mail.internet.*;
     import javax.mail.Authenticator;
@@ -117,7 +117,7 @@ This Java program will build a multi-part MIME email and send it through SendGri
             }
         }
     }
-```
+
 A sample application for using Spring Framework and SendGrid on Cloud Foundry: https://github.com/scottfrederick/spring-sendgrid
 
 ## <a id='dashboard'></a>Dashboard ##
