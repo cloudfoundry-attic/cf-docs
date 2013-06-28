@@ -156,7 +156,7 @@ A sample application for using Ruby on Rails and SendGrid on Cloud Foundry can b
 
 ## <a id='dashboard'></a>Dashboard ##
 
-SendGrid offers statistics for a number of different metrics to report on what is happening with your messages.
+SendGrid offers statistics a number of different metrics to report on what is happening with your messages.
 
 ![Dashboard](http://static.sendgrid.com.s3.amazonaws.com/images/delivery_metrics.png)
 
