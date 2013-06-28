@@ -94,13 +94,15 @@ title: Welcome to Cloud Foundry Documentation
   <hr>
 
   <p>
-  Deploying Cloud Foundry<br>
-  <a href="docs/running/bosh/setup/index.html">Setting Up BOSH</a><br>
-  <a href="docs/running/deploying-cf/ec2/index.html">Deploying to AWS</a><br>
-  <a href="docs/running/deploying-cf/openstack/index.html">Deploying to OpenStack</a><br>   
-  <a href="docs/running/deploying-cf/vsphere/index.html">Deploying to vSphere</a><br>
-  <a href="docs/running/deploying-cf/vcloud/deploying_to_vcloud_director.html">Deploying to vCloud Director</a><br>
-  <a href="docs/running/deploying-cf-with-chef/index.html">Deploying with Chef</a>
+  Deploy Cloud Foundry<br>
+  <a href="docs/running/bosh/setup/index.html">Set Up BOSH</a><br>
+  <a href="docs/running/deploying-cf/ec2/index.html">Deploy  to AWS</a><br>
+  <a href="docs/running/deploying-cf/openstack/index.html">Deploy to OpenStack</a><br>   
+  <a href="docs/running/deploying-cf/vsphere/index.html">Deploy to vSphere</a><br>
+  <a href="docs/running/deploying-cf/vcloud/deploying_to_vcloud_director.html">Deploy to vCloud Director</a><br>
+  <a href="docs/running/deploying-cf-with-chef/index.html">Deploy with Chef</a><br>
+  <a href="docs/running/deploying-cf/run-local.html">Run a Local Cloud Foundry Instance</a>
+
   </p>
 
   <hr>
