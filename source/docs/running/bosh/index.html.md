@@ -2,9 +2,11 @@
 title: BOSH
 ---
 
-Cloud Foundry BOSH is an open source tool chain for release engineering, deployment, and lifecycle management of large-scale distributed services. These sections describe the architecture, topology, configuration, and use of BOSH, as well as the structure and conventions used in packaging and deployment.
+BOSH is an open source tool chain for release engineering, deployment, and lifecycle management of large-scale distributed services.
 
-BOSH was originally developed in the context of the Cloud Foundry Application Platform as a Service. However, the framework is general purpose, and you can use it to deploy other distributed services on Infrastructure as a Service (IaaS) products such as VMware vSphere, vCloud Director, Amazon Web Services EC2, and OpenStack.
+BOSH was developed to deploy Cloud Foundry, however it has a more general purpose - it can be used to deploy other distributed services. BOSH can deploy these services on Infrastructure as a Service (IaaS) providers such as VMware vSphere, vCloud Director, Amazon Web Services EC2, and OpenStack.
+
+These sections describe the architecture, topology, configuration, and use of BOSH, as well as the structure and conventions used in packaging and deployment.
 
 * [Components](components/index.html)
 * [Local Setup](setup/index.html)
