@@ -2,9 +2,6 @@
 title: Welcome to Cloud Foundry Documentation
 ---
 
-<table><tr><td style="font-size:9pt">
-          <li>You are reading V2 documentation. The V1 docs are available <a href="http://cf-docs-deprecated.cloudfoundry.com">here</a>.
-</td></tr></table>
 <div class="column-left">
   <div class="column-title">
   <h4>Hosted Developer Edition</h4>
