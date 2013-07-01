@@ -6,7 +6,7 @@ cf is Cloud Foundry's command line interface. You can use cf to deploy and manag
 
 ## <a id='commands'></a>Commands by Functional Category ##
 
-This table below lists all cf commands, including those enabled by cf plug-ins. Click a command in the table for information about command options and functionality. For options that apply to all cf commands, see [Command Usage and Qualifiers](#usage).
+This table below lists all cf commands. Click a command in the table for information about command options and functionality. For options that apply to all cf commands, see [Command Usage and Qualifiers](#usage).
 
 |   |  | |
 | :-------- | :---------- |:---------- |
@@ -126,7 +126,7 @@ Note that you can bind a service to an application at the time you create the se
 
 #### <a id='console'></a> console ####
 
-Open a Rails console and connect to an application. For information about using the Rails console see [Rails 3, Using the Console](/docs/using/deploying-apps/ruby/rails-using-the-console.html)  in "Deploying Rails Apps".  **This command is provided by the `console` plugin.**
+Open a Rails console and connect to an application. For information about using the Rails console see [Rails 3, Using the Console](/docs/using/deploying-apps/ruby/rails-using-the-console.html)  in "Deploying Rails Apps". **
 
 <div class="command-doc">
   <pre class="terminal">$ cf console  [application name] [port}</pre>
@@ -198,7 +198,7 @@ The table below lists supported command qualifiers. cf prompts for required qual
 
 #### <a id='create-service-auth-token'></a> create-service-auth-token ####
 
-Create a service authorization token. **This command is provided by the `admin` plugin.**
+Create a service authorization token. 
 
 <div class="command-doc">
   <pre class="terminal">$ cf create-service-auth-token [label] [provider]</pre>
@@ -235,7 +235,6 @@ Create a space in an organization.
 
 Create a user account. If you do not supply required options on the command line, cf will prompt for them. 
 
-**This command is provided by the `admin` plugin.**
 
 <div class="command-doc">
   <pre class="terminal">$ cf create-user [email]</pre>
@@ -297,7 +296,7 @@ Delete a route.
 
 #### <a id='delete-service-auth-token'></a> delete-service-auth-token ####
 
-Delete a service authorization token. **This command is provided by the `admin` plugin.**
+Delete a service authorization token. 
 
 <div class="command-doc">
   <pre class="terminal">$ cf delete-service-auth-token [service auth token]</pre>
@@ -338,7 +337,7 @@ Delete a space and its contents.
 
 #### <a id='delete-user'></a> delete-user ####
 
-Delete a user account. **This command is provided by the `admin` plugin.**
+Delete a user account. 
 
 <div class="command-doc">
   <pre class="terminal">$ cf delete-user [email]</pre>
@@ -383,7 +382,7 @@ List an application's files.
 
 #### <a id='guid'></a> guid ####
 
-Get the GUID for the object with the type (for instance, app, organization, space, domain, and so on) and name specified.  **This command is provided by the `admin` plugin.**
+Get the GUID for the object with the type (for instance, app, organization, space, domain, and so on) and name specified. 
 
 <div class="command-doc">
   <pre class="terminal">$ cf guid type [name]</pre>
@@ -513,32 +512,7 @@ Add a domain and assign it to a space.
 | --shared | |Make the domain shared.|
 |--space SPACE | |The space to which to map the domain. If not specified, the domain is mapped to the current space. |
 |-o, --organization, --org ORGANIZATION   | |The organization to which to map the domain. If not specified, the domain is mapped to the current organization. |
-#### <a id='micro-offline'></a> micro-offline ####
 
-Switch a Micro Cloud Foundry instance to offline mode. **This command is provided by the `mcf` plug-in.**
-
-<div class="command-doc">
-  <pre class="terminal">$ cf micro-offline [vmx path] [password]</pre>
-  <div class="break"></div>
-</div>
-
-#### <a id='micro-online'></a> micro-online ####
-
-Switch a Micro Cloud Foundry instance to online mode. **This command is provided by the `mcf` plug-in.**
-
-<div class="command-doc">
-  <pre class="terminal">$ cf micro-online [vmx path] [password]</pre>
-  <div class="break"></div>
-</div>
-
-#### <a id='micro-status'></a> micro-status ####
-
-Display Micro Cloud Foundry VM status for a particular VMX path. **This command is provided by the `mcf` plug-in.**
-
-<div class="command-doc">
-  <pre class="terminal">$ cf micro-status [vmx path] [password]</pre>
-  <div class="break"></div>
-</div>
 
 #### <a id='org'></a> org ####
 
@@ -586,8 +560,7 @@ The following data is returned:
 |--full |n |Return information about spaces in each organization. |
 #### <a id='passwd'></a> passwd ####
 
-Set a user's password. **This command is provided by the `admin` plugin.**
-
+Set a user's password. 
 <div class="command-doc">
   <pre class="terminal">$ cf passwd [email]</pre>
   <div class="break"></div>
@@ -722,7 +695,7 @@ Set the number of instances for a application and the amount of memory assigned 
 
 #### <a id='service-auth-token'></a> service-auth-token ####
 
-List service authorization tokens. **This command is provided by the `admin` plugin.**
+List service authorization tokens. 
 
 <div class="command-doc">
   <pre class="terminal">$ cf service-auth-token</pre>
@@ -793,7 +766,7 @@ Set an environment variable. For information about removing an environment varia
 
 #### <a id='set-quota'></a> set-quota ####
 
-Define the quota for an organization. **This command is provided by the `admin` plugin.**
+Define the quota for an organization. 
 
 <div class="command-doc">
   <pre class="terminal">$ cf set-quota [QUOTA_DEFINITION] [ORGANIZATION]</pre>
@@ -943,7 +916,7 @@ The URL for each known Cloud Foundry instance will be returned.
 
 #### <a id='tunnel'></a> tunnel ####
 
-Tunnel to a service instance. You can keep the tunnel open or automatically open a client and connect to the service. For more information on tunneling to a service see [Service Tunneling](./service-tunneling.html). **This command is provided by the `tunnel` plug-in.**
+Tunnel to a service instance. You can keep the tunnel open or automatically open a client and connect to the service. For more information on tunneling to a service see [Tunneling to Services](../../services/tunnelling-with-services.html). 
 
 <div class="command-doc">
   <pre class="terminal">$ cf tunnel [instance name] [application name]</pre>
@@ -1030,17 +1003,7 @@ List all users.
   <pre class="terminal">$ cf users</pre>
 </div>
 
-## <a id='plugins'></a>About cf Plug-ins ##
 
-cf Plugins extend the cf command line interface with additional commands; they are available from the [Cloud Foundry cf-plugins repository](http://github.com/cloudfoundry/cf-plugins). Available cf Plugins include:
-
-* admin -- Provides commands useful to cloud operators. Made available by the `admin-cf-plugin` gem.
-
-* console -- This plugin allows you to open a Rails console and connect to a Rails application.
-
-* mcf -- This plugin can be used to switch a Micro Cloud Foundry VM between online and offline mode. Install it with Ruby Gems, the gem name is `mcf-cf-plugin`. For more information, see [Micro Cloud Foundry](/docs/running/micro_cloud_foundry).
-
-* tunnel -- This plugin allows access to a live data service running in the production environment. For more information on how to use this plug-in, please see [Tunneling to a Service](/docs/using/services/tunnelling-with-services.html).
 
 
 
