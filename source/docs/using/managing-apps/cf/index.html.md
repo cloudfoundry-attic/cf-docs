@@ -570,9 +570,12 @@ Set a user's password.
 
 Deploy a new application, or, if the application already exists, upload any changes made since the last push.
 
-cf will interactively prompt you for any required qualifiers that you do not supply on the command line.
+You can define deployment options on the command line, interactively, or in manifest file. The first time you run `cf push` for an application, unless you provide deployment options on the command line, cf will look for `manifest.yml` in the current working directory. If the manifest file does not exist, cf will prompt you to supply the deployment settings interactively. After you supply the qualifiers required to push an application, cf will offer you the option to save the configuration. If you accept, the settings you chose will be saved in the current working directory in `manifest.yml`. 
 
-After you supply the qualifiers required to push an application, cf will offer you the option to save the configuration. If you accept, the settings you chose will be saved in a Cloud Foundry manifest file, `manfiest.yml`. If you subsequently do a `cf push` without supplying qualifiers on the command line, cf will use the configuration settings from the saved `manfiest.yml`.
+Note that when you redeploy an application, cf does _not_ refer to `manifest.yml` for deployment settings. Instead, cf will deploy the application with the currently active deployment settings. You must use the `--reset` option to cause the settings in the manifest to be applied on subsequent pushes. For more information see [cf push and the Manifest](../../deploying-apps/manifest.html#push-and-manifest) on the [Application Manifests](../../deploying-apps/manifest.html) page.
+
+
+cf will upload all application files with the exception of version control files with file extensions `svn`, `git`, and `darcs`. If there are other files you wish to exclude from upload, you can specify them in a `.cfcignore` file in the directory where you run the push command. `.cfignore` behaves similarly to `.gitignore`.  
 
 
 <div class="command-doc">
