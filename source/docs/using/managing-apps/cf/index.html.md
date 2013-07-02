@@ -589,7 +589,7 @@ cf will upload all application files with the exception of version control files
 | --[no-]restart              |  | Restart app after updating? |
 | --[no-]start      |          |Use this qualifier to to indicate that you do (or do not) want the application to be started upon <br>deployment. |
 | --buildpack BUILDPACK         |          | Specify the URL of a buildpack to be used to stage the application. |
-| --command COMMAND        |         |The command to use to start the application. **Note:** Although Cloud Foundry buildpacks are analagous to Heroku buildpacks, unlike Heroku, Cloud Foundry does does _not_ look for a `procfile` to determine what start command to use. |
+| --command COMMAND        |         |The command to use to start the application. **Note:** Although Cloud Foundry buildpacks are analogous to Heroku buildpacks, unlike Heroku, Cloud Foundry does does _not_ look for a `procfile` to determine what start command to use. |
 | --domain DOMAIN              |          | The top level internet domain for the application. |
 | --host HOST    |        |The subdomain, leave blank if specifying custom domain.            |
 | --instances INSTANCES       |          | The  number of instances of the application to start.|
