@@ -39,7 +39,7 @@ Format of credentials in `VCAP_SERVICES` environment variable.
           label: "sendgrid-n/a",
           plan: "free",
           credentials: {
-            smtp_host: "smtp.sendgrid.net",
+            hostname: "smtp.sendgrid.net",
             username: "QvsXMbJ3rK",
             password: "HCHMOYluTv"
           }
@@ -130,7 +130,7 @@ Get SendGrid credentials from `VCAP_SERVICES` environment variable
       JSON.parse(ENV['VCAP_SERVICES']).each do |k,v|
         if !k.scan("sendgrid").blank?
           credentials = v.first.select {|k1,v1| k1 == "credentials"}["credentials"]
-          host = credentials["smtp_host"]
+          host = credentials["hostname"]
           username = credentials["username"]
           password = credentials["password"]
         end
