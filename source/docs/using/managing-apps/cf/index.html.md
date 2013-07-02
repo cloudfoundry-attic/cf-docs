@@ -570,12 +570,12 @@ Set a user's password.
 
 Deploy a new application, or, if the application already exists, upload any changes made since the last push.
 
-You can define deployment options on the command line, interactively, or in manifest file. The first time you run `cf push` for an application, unless you provide deployment options on the command line, cf will look for `manifest.yml` in the current working directory. If the manifest file does not exist, cf will prompt you to supply the deployment settings interactively. After you supply the qualifiers required to push an application, cf will offer you the option to save the configuration. If you accept, the settings you chose will be saved in the current working directory in `manifest.yml`. 
+You can define deployment options on the command line, interactively, or in a manifest file. The first time you run `cf push` for an application, unless you provide deployment options on the command line, cf will look for `manifest.yml` in the current working directory. If the manifest file does not exist, cf will prompt you to supply the deployment settings interactively. After you supply the qualifiers required to push an application, cf will offer you the option to save the configuration. If you accept, the settings you chose will be saved in the current working directory in `manifest.yml`. 
 
 Note that when you redeploy an application, cf does _not_ refer to `manifest.yml` for deployment settings. Instead, cf will deploy the application with the currently active deployment settings. You must use the `--reset` option to cause the settings in the manifest to be applied on subsequent pushes. For more information see [cf push and the Manifest](../../deploying-apps/manifest.html#push-and-manifest) on the [Application Manifests](../../deploying-apps/manifest.html) page.
 
 
-cf will upload all application files with the exception of version control files with file extensions `svn`, `git`, and `darcs`. If there are other files you wish to exclude from upload, you can specify them in a `.cfcignore` file in the directory where you run the push command. `.cfignore` behaves similarly to `.gitignore`.  
+cf will upload all application files with the exception of version control files with file extensions `.svn`, `.git`, and `.darcs`. If there are other files you wish to exclude from upload, you can specify them in a `.cfcignore` file in the directory where you run the push command. `.cfignore` behaves similarly to `.gitignore`.  
 
 
 <div class="command-doc">
@@ -589,7 +589,7 @@ cf will upload all application files with the exception of version control files
 | --[no-]restart              |  | Restart app after updating? |
 | --[no-]start      |          |Use this qualifier to to indicate that you do (or do not) want the application to be started upon <br>deployment. |
 | --buildpack BUILDPACK         |          | Specify the URL of a buildpack to be used to stage the application. |
-| --command COMMAND        |         |The command to use to start the application.  |
+| --command COMMAND        |         |The command to use to start the application. **Note:** Although Cloud Foundry buildpacks are analagous to Heroku buildpacks, unlike Heroku, Cloud Foundry does does _not_ look for a `procfile` to determine what start command to use. |
 | --domain DOMAIN              |          | The top level internet domain for the application. |
 | --host HOST    |        |The subdomain, leave blank if specifying custom domain.            |
 | --instances INSTANCES       |          | The  number of instances of the application to start.|
