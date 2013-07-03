@@ -8,7 +8,11 @@ category: marketplace
 Redis Cloud offers true high-availability with its in-memory dataset replication and instant auto-failover mechanism, combined with its fast storage engine. You can easily import an existing dataset to any of your Redis Cloud databases, from your S3 account or from any other Redis server. Daily backups are performed automatically and in addition, you can backup your dataset manually at any given time. The service guarantees high performance, as if you were running the strongest cloud instances.
 
 
-## Creating A Redis Cloud Service
+## <a id='managing'></a>Managing Services ##
+
+[Managing services from the command line](../../../using/services/managing-services.html)
+
+### Creating A Redis Cloud Service
 
 Create a Redis Cloud service with the following command:
 
@@ -16,11 +20,15 @@ Create a Redis Cloud service with the following command:
 
 and the desired plan.
 
-## Binding Your Redis Cloud Service
+### Binding Your Redis Cloud Service
 
 Bind your Redis Cloud service to your app, using the following command:
 
 	cf bind-service <rediscloud_service_name> <app name>
+
+## <a id='using'></a>Using Redis Cloud with your Application ##
+
+See [Using Service Instances with your Application](../../adding-a-service.html#using) and [VCAP_SERVICES Environment Variable](../../../using/services/environment-variable.html).
 
 Once your Redis Cloud service is bound to your app, the service credentials will be stored in the `VCAP_SERVICES` env. variable in the following format:
 	
@@ -39,24 +47,15 @@ Once your Redis Cloud service is bound to your app, the service credentials will
 	  ]
 	}
 
-* [Ruby](#ruby)
-* [Rails](#rails)
-* [Sinatra](#sinatra)
-* [Java](#java)
-* [Python](#python)
-* [Django](#django)
-* [PHP](#php)
-* [Node.js](#node)
+### <a id="ruby"></a>Using Redis from Ruby ###
 
-
-## <a id="ruby"></a>Using Redis from Ruby
 The [redis-rb](https://github.com/redis/redis-rb) is a very stable and mature redis client and the easiest way to access Redis from Ruby. 
 
 Install redis-rb:
 	
 	sudo gem install redis
 
-### <a id="rails"></a>Configuring Redis from Rails
+#### <a id="rails"></a>Configuring Redis from Rails 
 
 For Rails 2.3.3 up to Rails 3.0, update the `config/environment.rb` to include the redis gem:
 	
@@ -76,7 +75,7 @@ Lastly, create a new `redis.rb` initializer in `config/initializers/` and add th
 	credentials = rediscloud_service.first["credentials"]
     	$redis = Redis.new(:host => credentials.hostname, :port => credentials.port, :password => credentials.password)
 
-### <a id="sinatra"></a>Configuring Redis on Sinatra
+#### <a id="sinatra"></a>Configuring Redis on Sinatra 
 
 Add this code snippet to your configure block:
 
@@ -89,19 +88,19 @@ Add this code snippet to your configure block:
         . . .
 	end
 
-### <a id="java"></a>Using Redis on Unicorn
+#### <a id="unicorn"></a>Using Redis on Unicorn 
 
 No special setup is required when using Redis Cloud with a Unicorn server.
 Users running Rails apps on Unicorn should follow the instructions in the [Configuring Redis from Rails](#rails) section and users running Sinatra apps on Unicorn should follow the instructions in the [Configuring Redis on Sinatra](#sinatra) section.
 
-### Testing (Ruby)
+#### <a id='testing-ruby'></a>Testing (Ruby) 
 	
 	$redis.set("foo", "bar")
 	# => "OK"
 	$redis.get("foo")
 	# => "bar"
 	
-## Using Redis from Java
+### <a id='java'></a>Using Redis from Java ###
 
 [Jedis](https://github.com/xetorthio/jedis) is a blazingly small, sane and easy to use Redis java client. You can download the latest build from [github](http://github.com/xetorthio/jedis/downloads)
 or use it as a maven dependency:
@@ -134,7 +133,7 @@ Configure connection to your Redis Cloud service using the `VCAP_SERVICES` envir
 		// vcap_services could not be parsed.
 	} 
 	
-### Testing (Java)
+#### <a id='testing-java'></a>Testing (Java) 
 
 	jedis jedis = pool.getResource();
 	jedis.set("foo", "bar");
@@ -144,7 +143,7 @@ Configure connection to your Redis Cloud service using the `VCAP_SERVICES` envir
 
 (example taken from Jedis docs).
 
-## <a id="python"></a>Using Redis from Python
+### <a id="python"></a>Using Redis from Python ###
 
 [redis-py](https://github.com/andymccurdy/redis-py) is the most common client to access Redis from Python.
  
@@ -164,14 +163,16 @@ Configure connection to your Redis-Cloud service using `VCAP_SERVICES` environme
 	r = redis.Redis(host=credentials['hostname'], port=credentials['port'], password=credentials['password'])
 	
 	
-### Testing (Python):
+#### <a id='testing-python'></a>Testing (Python) 
 	
 	>>> r.set('foo', 'bar')
 	True
 	>>> r.get('foo')
 	'bar'
 
-### <a id="django"></a>[Django-redis-cache](https://github.com/sebleier/django-redis-cache) 
+#### <a id="django"></a>Django 
+
+[Django-redis-cache](https://github.com/sebleier/django-redis-cache) 
 
 Redis can be used as the back-end cache for Django.
 
@@ -198,13 +199,13 @@ Next, configure your `CACHES` in the `settings.py` file:
 	  }
 	}
 
-### Testing (Django)
+#### <a id='testing-django'></a>Testing (Django) 
 
 	from django.core.cache import cache
 	cache.set("foo", "bar")
 	print cache.get("foo")
 	
-## <a id="php"></a>Using Redis from PHP
+### <a id="php"></a>Using Redis from PHP ###
 
 [Predis](https://github.com/nrk/predis) is a flexible and feature-complete PHP client library for Redis.
 
@@ -230,12 +231,12 @@ Configure connection to your Redis Cloud service using `VCAP_SERVICES` environme
 		'password' => $credentials["password"], 
 	));
 	
-### Testing (PHP)
+#### Testing (PHP) 
 
 	$redis->set('foo', 'bar');
 	$value = $redis->get('foo');
 	
-## <a id="node"></a>Using Redis from Node.js
+### <a id="node"></a>Using Redis from Node.js ###
 
 [node_redis](https://github.com/mranney/node_redis) is a complete Redis client for node.js. 
 
@@ -254,14 +255,14 @@ Configure connection to your Redis-Cloud service using `VCAP_SERVICES` environme
 	var client = redis.createClient(credentials.port, credentials.hostname, {no_ready_check: true});
 	client.auth(credentials.password);
 	
-###Testing (Node.js)
+#### Testing (Node.js)
 
 	client.set('foo', 'bar');
 	client.get('foo', function (err, reply) {
         console.log(reply.toString()); // Will print `bar`
     });
 	
-## Dashboard
+## <a id='dashboard'></a>Dashboard ##
 
 Our dashboard presents all performance and usage metrics of your Redis Cloud service on a single screen, as shown below:
 
@@ -271,16 +272,12 @@ To access your Redis Cloud dashboard, simply click the 'Manage' button next to t
 
 You can then find your dashboard under the `MY DATABASES` menu.
 
-## Managing Services
-
-You can continue [managing your services from the command line](http://docs.cloudfoundry.com/docs/using/services/managing-services.html).
-
-## Support
+## <a id='support'></a>Support ##
 
 Any Redis Cloud support issues or product feedbacks are welcome via email at support@garantiadata.com.
 Please make sure you are familiar with the CloudFoundry method of [contacting service providers for support](http://docs.cloudfoundry.com/docs/dotcom/services-marketplace/contacting-service-providers-for-support.html).
 
-## Additional resources
+## <a id='additional'></a>Additional Resources ##
 
 * [Developers Resources](http://redis-cloud.com/redis/developers)
 * [Redis Documentation](http://redis.io/documentation)
