@@ -5,8 +5,11 @@ category: marketplace
 
 [SendGrid's](http://sendgrid.com)  cloud-based email infrastructure relieves businesses of the cost and complexity of maintaining custom email systems. SendGrid provides reliable delivery, scalability and real-time analytics along with flexible APIs that make custom integration a breeze.
 
+## <a id='managing'></a>Managing Services ##
 
-## <a id='creating-a-sendgrid-service'></a>Creating A SendGrid Service ##
+[Managing services from the command line](../../../using/services/managing-services.html)
+
+### Creating A SendGrid Service ##
 
 SendGrid can be provisioned via the CLI with the following command:
 
@@ -16,7 +19,7 @@ $ cf create-service sendgrid [service-name]
     
 and the desired plan.    
 
-## <a id='binding-your-sendgrid-service'></a>Binding Your SendGrid Service ##
+### Binding Your SendGrid Service ##
 
 Bind your SendGrid service to your app, using the following command:
     
@@ -26,8 +29,9 @@ $ cf bind-service [service-name] [app name]
 
 Once SendGrid has been added a username, password will be available and will contain the credentials used to access the newly provisioned SendGrid service instance.
 
+## <a id='using'></a>Using SendGrid with your Application ##
 
-## <a id='environment-variable'></a>Environment Variables ##
+See [Using Service Instances with your Application](../../adding-a-service.html#using) and [VCAP_SERVICES Environment Variable](../../../using/services/environment-variable.html).
 
 Format of credentials in `VCAP_SERVICES` environment variable.
 
@@ -156,7 +160,7 @@ A sample application for using Ruby on Rails and SendGrid on Cloud Foundry can b
 
 ## <a id='dashboard'></a>Dashboard ##
 
-SendGrid offers statistics a number of different metrics to report on what is happening with your messages.
+SendGrid offers statistics for a number of different metrics to report on what is happening with your messages.
 
 ![Dashboard](http://static.sendgrid.com.s3.amazonaws.com/images/delivery_metrics.png)
 
@@ -164,15 +168,12 @@ SendGrid offers statistics a number of different metrics to report on what is ha
 To access your SendGrid dashboard, simply click the 'Manage' button next to the SendGrid service on your app space console.
 
 
-## Managing Services
-
-You can continue [managing your services from the command line](http://docs.cloudfoundry.com/docs/using/services/managing-services.html).
-
 
 ## <a id='support'></a>Support ##
 
-All SendGrid support and runtime issues should be submitted via on of the [Contacting Service Providers for Support](http://docs.cloudfoundry.com/docs/dotcom/marketplace/contacting-service-providers-for-support.html). Any non-support related issues or product feedback is welcome at [http://support.sendgrid.com/home](http://support.sendgrid.com/home).
+Any non-support related issues or product feedback is welcome at [http://support.sendgrid.com/home](http://support.sendgrid.com/home).
 
+[Contacting Service Providers for Support](http://docs.cloudfoundry.com/docs/dotcom/marketplace/contacting-service-providers-for-support.html)
 
 ## <a id='additional-resources'></a>Additional Resources ##
 
