@@ -92,8 +92,6 @@ apply_spec:
   properties:
     director:
       max_threads: 3
-      snapshot_schedule: false
-      self_snapshot_schedule: false
     hm:
       resurrector_enabled: true
     ntp:
@@ -195,8 +193,6 @@ apply_spec:
   properties:
     director:
       max_threads: 3
-      snapshot_schedule: false
-      self_snapshot_schedule: false
     hm:
       resurrector_enabled: true
     ntp:
@@ -208,9 +204,7 @@ apply_spec:
 
 In this example we add/override several properties:
 
-* `director.max_threads` sets the number of concurrent threads Micro BOSH [director](/docs/running/bosh/components/director.html) will use to perform some actions (ie: the number of parallel `create vm` tasks), so set this option according to your OpenStack environment (if not set, the default is 32 concurrent threads). 
-* `director.snapshot_schedule` disables the scheduled snapshot of deployed job's persistent disks. 
-* `director.self_snapshot_schedule` disables the scheduled snapshot of the Micro BOSH persistent disk. 
+* `director.max_threads` sets the number of concurrent threads Micro BOSH [director](/docs/running/bosh/components/director.html) will use to perform some actions (ie: the number of parallel `create vm` tasks), so set this option according to your OpenStack environment (if not set, the default is 32 concurrent threads).
 * `hm.resurrector_enabled` enables the [BOSH Health Monitor](/docs/running/bosh/components/health-monitor.html) resurrector plugin. This plugin will lookup for jobs in a down state, and will try to resurrect (bring up) them.
 * `ntp` sets the [Internet Time Servers](http://www.ntp.org/) to be used to synchronize the clocks of new vms.
 
