@@ -22,9 +22,35 @@ applications:
 ... the rest of your settings  ...
 ~~~
 
+Alternately, specify the `cf push --command` flag.
+
+<pre class="termainl">
+$ cf push --command "node my-app.js"
+</pre>
+
 ## <a id='nodemodules'></a> Application bundling ##
 
 You do not need to run `npm install` before deploying your application. Cloud Foundry will run it for you when your application is pushed. If you would prefer to run `npm install` and create a `node_modules` folder inside of your application, this is also supported.
+
+## <a id='buildpack'></a> Node.js buildpack ##
+
+If Cloud Foundry does not automatically detect that your application is a Node.js application, you can override the auto-detection by specifying the Node.js buildpack.
+
+Either, add the buildpack into your `manifest.yml` and re-run `cf push --reset`
+
+~~~yaml
+---
+applications:
+- name: my-app
+  buildpack: https://github.com/cloudfoundry/heroku-buildpack-nodejs.git
+... the rest of your settings  ...
+~~~
+
+Or, specify the `cf push --buildpack` flag.
+
+<pre class="termainl">
+$ cf push --buildpack https://github.com/cloudfoundry/heroku-buildpack-nodejs.git
+</pre>
 
 ## <a id='services'></a> How do I bind services? ##
 
