@@ -1,7 +1,7 @@
 ---
 title: Application Manifests
 ---
-An application manifest defines a set of application deployment settings, such as the name of an application, the number of instances to deploy, the maximum memory available to an instance, the services it uses, and so on. The default name for a manifest `manifest.yml`.
+An application manifest defines a set of application deployment settings, such as the name of an application, the number of instances to deploy, the maximum memory available to an instance, the services it uses, and so on. The default name for a manifest is `manifest.yml`.
 
 ## <a id='purpose'></a>Purpose of Manifest File ##
 
@@ -24,7 +24,7 @@ applications:
  path: .
 ~~~
 
-Manifests are written in YAML. For information about YAML, see [yaml.org](yaml.org).
+Manifests are written in YAML. For information about YAML, see www.yaml.org.
 
 ## <a id='push-and-manifest'></a>cf Push and the Manifest ##
 
