@@ -4,15 +4,11 @@ title: Grails - Service Bindings
 
 Cloud Foundry provides extensive support for connecting a Grails application to services such as MySQL, Postgres, MongoDB, Redis, and RabbitMQ. In many cases, a Grails application running on Cloud Foundry can automatically detect and configure connections to services. For more advanced cases, you can control service connection parameters yourself. 
 
-## <a id='plugin'></a>Cloud Foundry Grails Plugin ##
+## <a id="auto"></a>Auto-Reconfiguration ##
 
-> **The Cloud Foundry Grails plugin will be updated in the coming weeks to support Cloud Foundry v2, including support for organizations, spaces, and custom buildpacks, as well as support for Marketplace services. Until a new version of the plugin is released, Grails apps will need to use the [manual configuration](#manual) method to connect to Marketplace services.**
+Grails provides plugins for accessing SQL (using [Hibernate](http://grails.org/plugin/hibernate)), [MongoDB](http://www.grails.org/plugin/mongodb), and [Redis](http://grails.org/plugin/redis) services. If you install any of these plugins and configure them in your `Config.groovy` or `DataSource.groovy` file, the Cloud Foundry Grails plugin will re-configure the plugins when the app starts to provide the connection information to the plugins. 
 
-Cloud Foundry provides a [plugin for Cloud Foundry integration](http://grails.org/plugin/cloud-foundry). The Cloud Foundry Grails plugin provides Grails command-line alternatives to the `cf` command line tool, and supports auto-reconfiguration of services in a Grails application. 
-
-### <a id="plugin-install"></a>Installing the Grails Plugin ###
-
-To use the Cloud Foundry Grails plugin in your project, add it as a `compile` dependency in your `BuildConfig.groovy` file. You will also need the Spring Framework Milestone repository in the `repositories` section of `BuildConfig.groovy` to resolve some dependencies:
+To enable auto-reconfiguration of service connections, add the `cloudfoundry-runtime` library to the `dependencies` section in your `BuildConfig.groovy` file, and add the `cloud-foundry` plugin to the `plugins` section. You will also need the Spring Framework Milestone repository in the `repositories` section. **For Cloud Foundry v2 support, the version of `cloudfoundry-runtime` must be at least `0.8.4`**:
 
 ~~~groovy
   repositories {
@@ -22,28 +18,14 @@ To use the Cloud Foundry Grails plugin in your project, add it as a `compile` de
     mavenRepo "http://maven.springframework.org/milestone/"
   }
 
+  dependencies {
+    compile "org.cloudfoundry:cloudfoundry-runtime:0.8.4"
+  }
+
   plugins {
     compile ':cloud-foundry:1.2.3'
   }
 ~~~
-
-The plugin will need information about the Cloud Foundry environment to target and your user account. This information can be added to your application's `Config.groovy` file or `~/.grails/settings.groovy`: 
-
-~~~groovy
-grails.plugin.cloudfoundry.target = 'api.cloudfoundry.com'
-grails.plugin.cloudfoundry.username = 'your.email@server.com'
-grails.plugin.cloudfoundry.password = 'password'
-~~~
-
-See the [plugin documentation](http://grails-plugins.github.io/grails-cloud-foundry/docs/manual/guide/3%20Configuration.html) for a full list of configuration options. 
-
-### <a id="plugin-using"></a>Using the Grails Plugin ###
-
-The Cloud Foundry Grails plugin provides an alternative to using the `cf` command line tool for managing applications, services, and other aspects of your Cloud Foundry account. See the [plugin documentation](http://grails-plugins.github.io/grails-cloud-foundry/docs/manual/guide/4%20Deploying%20applications.html) for more details on the provided commands. 
-
-## <a id="auto"></a>Auto-Reconfiguration ##
-
-Grails provides plugins for accessing SQL (using [Hibernate](http://grails.org/plugin/hibernate)), [MongoDB](http://www.grails.org/plugin/mongodb), and [Redis](http://grails.org/plugin/redis) services. If you install any of these plugins and configure them in your `Config.groovy` or `DataSource.groovy` file, the Cloud Foundry Grails plugin will re-configure the plugins when the app starts to provide the connection information to the plugins. 
 
 If you were using all three types of services, your configuration might look like this: 
 
