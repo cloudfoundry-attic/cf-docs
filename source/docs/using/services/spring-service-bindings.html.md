@@ -8,8 +8,6 @@ Cloud Foundry provides extensive support for connecting a Spring application to 
 
 ## <a id='auto'></a>Auto-Reconfiguration ##
 
-> **The Spring auto-reconfiguration support library will be updated in the coming weeks to support Marketplace services on Cloud Foundry v2. Until a new version of the library is released, Spring apps will need to use the [manual configuration](#manual) method to connect to Marketplace services.**
-
 If your Spring application requires services (such as a database or messaging system), you might be able to deploy your application to Cloud Foundry without changing any code. In this case, Cloud Foundry automatically re-configures the relevant bean definitions to bind them to cloud services. 
 
 Cloud Foundry auto-reconfigures applications only if the following items are true for your application:
@@ -124,18 +122,24 @@ Service properties generally take one of the following forms:
     cloud.services.{service-name}.{property}
 ~~~
 
-where `{service-name}` refers to the name you gave the service when you bound it to your application at deploy time. 
+where `{service-name}` refers to the name you gave the service when you bound it to your application at deploy time, and `{property}` is a field in the credentials section of the `VCAP_SERVICES` environment variable.
 
-For example, assume that in created a Postgres service called `my-postgres` and then bound it to your application; Cloud Foundry exposes the following properties about this service that your application in turn can consume:
+For example, assume that you created a Postgres service called `my-postgres` and then bound it to your application. Assume also that this service exposes credentials in `VCAP_SERVICES` as discrete fields. Cloud Foundry exposes the following properties about this service:
 
 ~~~
-    cloud.services.my-postgres.connection.host
     cloud.services.my-postgres.connection.hostname
     cloud.services.my-postgres.connection.name
     cloud.services.my-postgres.connection.password
     cloud.services.my-postgres.connection.port
-    cloud.services.my-postgres.connection.user
     cloud.services.my-postgres.connection.username
+    cloud.services.my-postgres.plan
+    cloud.services.my-postgres.type
+~~~
+
+If the service exposed the credentials as a single `uri` field, then the following properties would be set up: 
+
+~~~
+    cloud.services.my-postgres.connection.uri
     cloud.services.my-postgres.plan
     cloud.services.my-postgres.type
 ~~~
@@ -349,24 +353,6 @@ The following example shows how to use these advanced data source configuration 
 
 In the preceding example, the JDBC driver is passed the property that specifies that it should use the UTF-8 character set. The minimum and maximum number of connections in the pool at any given time is 5 and 10, respectively. The maximum amount of time that the connection pool waits for a returned connection if there are none available is 2000 milliseconds (2 seconds), after which the JDBC connection pool throws an exception.
 
-#### Cloud Properties ####
-
-The following table lists the services properties that Cloud Foundry exposes to the application when a MySQL or Postgres service is bound:
-
-| Property                                              | Description                                                              |
-| ----------------------------------------------------- | ------------------------------------------------------------------------ |
-| `cloud.services.{service-name}.connection.name`       | Name of the database that Cloud Foundry created.                         |
-| `cloud.services.{service-name}.connection.host`       | Name or IP address of the host on which the database server is running.  |
-| `cloud.services.{service-name}.connection.hostname`   | Name or IP address of the host on which the database server is running.  |
-| `cloud.services.{service-name}.connection.password`   | Password of the user that connects to the database.                      |
-| `cloud.services.{service-name}.connection.port`       | Listen port of the database server.                                      |
-| `cloud.services.{service-name}.connection.user`       | Name of the user that connects to the database.                          |
-| `cloud.services.{service-name}.connection.username`   | Name of the user that connects to the database.                          |
-| `cloud.services.{service-name}.plan`                  | Pay plan for the service, such as `free`.                                |
-| `cloud.services.{service-name}.type`                  | Name and version of the database server.                                 |
-
-See the [Properties Placeholders](#properties) section for information on using these properties.
-
 ### <a id='mongodb'></a>MongoDB ###
 
 #### Auto-Reconfiguration ####
@@ -481,24 +467,6 @@ The `<cloud:mongo-options>` child element takes the following attributes:
 |-----------|-------------|------|---------|
 | connections-per-host | Specifies the maximum number of connections allowed per host for the MongoDB instance. Those connections will be kept in a pool when idle. Once the pool is exhausted, any operation requiring a connection will block while waiting for an available connection. | int | 10 | 
 | max-wait-time | Specifies the maximum wait time (in milliseconds) that a thread waits for a connection to become available. | int | 120,000 (2 minutes) |
-
-#### Cloud Properties ####
-
-The following table lists the services properties that Cloud Foundry exposes to the application when a MongoDB service is bound:
-
-| Property                                              | Description                                                              |
-| ----------------------------------------------------- | ------------------------------------------------------------------------ |
-| `cloud.services.{service-name}.connection.db`         | Name of the database that Cloud Foundry created.                         |
-| `cloud.services.{service-name}.connection.host`       | Name or IP address of the host on which the MongoDB server is running.   |
-| `cloud.services.{service-name}.connection.hostname`   | Name or IP address of the host on which the MongoDB server is running.   |
-| `cloud.services.{service-name}.connection.name`       | Name of the user that connects to the MongoDB database.                  |
-| `cloud.services.{service-name}.connection.password`   | Password of the user that connects to the MongoDB database.              |
-| `cloud.services.{service-name}.connection.port`       | Listen port of the MongoDB server.                                       |
-| `cloud.services.{service-name}.connection.username`   | Name of the user that connects to the MongoDB database.                  |
-| `cloud.services.{service-name}.plan`                  | Pay plan for the service, such as `free`.                                |
-| `cloud.services.{service-name}.type`                  | Name and version of the MongoDB server.                                  |
-
-See the [Properties Placeholders](#properties) section for information on using these properties.
 
 ### <a id='redis'></a>Redis ###
 
@@ -617,22 +585,6 @@ The `<cloud:pool>` child element takes the following attributes:
 </tbody> 
 </table>
 
-#### Cloud Properties ####
-
-The following table lists the services properties that Cloud Foundry exposes to the application when a Redis service is bound:
-
-| Property                                              | Description                                                              |
-| ----------------------------------------------------- | ------------------------------------------------------------------------ |
-| `cloud.services.{service-name}.connection.host`       | Name or IP address of the host on which the Redis server is running.     |
-| `cloud.services.{service-name}.connection.hostname`   | Name or IP address of the host on which the Redis server is running.     |
-| `cloud.services.{service-name}.connection.port`       | Listen port of the Redis server.                                         |
-| `cloud.services.{service-name}.connection.name`       | Name of the user that connects to the Redis database.                    |
-| `cloud.services.{service-name}.connection.password`   | Password of the user that connects to the Redis database.                |
-| `cloud.services.{service-name}.plan`                  | Pay plan for the service, such as `free`.                                |
-| `cloud.services.{service-name}.type`                  | Name and version of the Redis server.                                    |
-
-See the [Properties Placeholders](#properties) section for information on using these properties.
-
 ### <a id='rabbitmq'></a>RabbitMQ ###
 
 #### Auto-Reconfiguration ####
@@ -735,16 +687,4 @@ The following example shows how to use these advanced RabbitMQ configuration opt
 ~~~
 
 The `<cloud:rabbit-options>` child element defines one attribute called `channel-cache-size` which you can set to specify the size of the channel cache size. The default value is `1`.  In the preceding example, the channel cache size of the RabbitMQ connection factory is set to 10.
-
-#### Cloud Properties ####
-
-The following table lists the services properties that Cloud Foundry exposes to the application when a Redis service is bound:
-
-| Property                                              | Description                                                                               |
-| ----------------------------------------------------- | ----------------------------------------------------------------------------------------- |
-| `cloud.services.{service-name}.connection.url`        | URL used to connect to the AMPQ broker. URL includes the host, port, username, and so on. |
-| `cloud.services.{service-name}.plan`                  | Pay plan for the service, such as `free`.                                                 |
-| `cloud.services.{service-name}.type`                  | Name and version of the RabbitMQ server.                                                  |
-
-See the [Properties Placeholders](#properties) section for information on using these properties.
 
