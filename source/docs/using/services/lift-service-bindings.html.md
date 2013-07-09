@@ -6,8 +6,6 @@ title: Lift - Service Bindings
 
 This guide shows how to adapt the standard example lift application to use a bound service on Cloud Foundry.
 
-> **The Lift auto-reconfiguration support library will be updated in the coming weeks to support Marketplace services on Cloud Foundry v2. Until a new version of the library is released, Lift apps will need to use the [manual configuration](#manual) method to connect to Marketplace services.**
-
 ## <a id='auto'></a>Auto-reconfiguration ##
 
 By default, Cloud Foundry will detect service connections in a Lift application and configure them to use the credentials provided in the Cloud Foundry environment. Auto-reconfiguration will only happen if there is a single service of any of the supported types - relational database (MySQL or Postgres), MongoDB, Redis, or RabbitMQ. If you application has more than one service of those types, or you want more control over the configuration, you can manually configure the service connections as described in following section.
