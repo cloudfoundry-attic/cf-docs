@@ -170,15 +170,18 @@ To access your SendGrid dashboard, simply click the 'Manage' button next to the 
 
 ## <a id='support'></a>Support ##
 
-24/7 by phone, web, and live chat:
-
-* http://support.sendgrid.com
-* Toll Free: +1 (877) 969-8647
-* support@sendgrid.com
-
 [Contacting Service Providers for Support](http://docs.cloudfoundry.com/docs/dotcom/marketplace/contacting-service-providers-for-support.html)
 
-Any non-support related issues or product feedback is welcome at [http://support.sendgrid.com/home](http://support.sendgrid.com/home).
+* http://support.sendgrid.com
+* support@sendgrid.com
+* Toll Free: +1 (877) 969-8647
+* Alternate: +1 (303) 552-0653
+
+Support Hours of Operation
+
+* eSupport Chat & Email: 24/7
+* Phone: 7a-5p MST, M-F
+* Critical Incidents: Monitored 24/7
 
 ## <a id='additional-resources'></a>Additional Resources ##
 
