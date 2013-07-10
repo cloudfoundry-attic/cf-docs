@@ -30,11 +30,11 @@ The service name should match the one you provisioned above and the app name sho
 
 Once SendGrid has been added a username and password will be available. These are the credentials you use to access the newly provisioned SendGrid service instance.
 
-## <a id='using'></a>Using SendGrid with your Application ##
+## <a id='using'></a>Using SendGrid within your Application ##
 
-See [Using Service Instances with your Application](../../adding-a-service.html#using) and [VCAP_SERVICES Environment Variable](../../../using/services/environment-variable.html).
+Once your SendGrid service is added to your application, you need to update your [VCAP_SERVICES Environment Variable](../../../using/services/environment-variable.html) to include your credentials.
 
-Format of credentials in `VCAP_SERVICES` environment variable.
+Format your `VCAP_SERVICES` environment variable like so, making sure to include the credentials provided after binding the service.
 
 
     {
@@ -52,9 +52,12 @@ Format of credentials in `VCAP_SERVICES` environment variable.
       ]
     }
 
+The getting started guide has more background on [using service instances with your application](../../adding-a-service.html#using).
 
 
 ## <a id='sample-app'></a>Sample Applications ##
+
+With the SendGrid service provisioned and credentials added to the `VCAP_SERVICES` environment variable, you can now use SendGrid within your applications. You can either use SMTP with your SendGrid credentials or one of the many [SendGrid libraries](http://sendgrid.com/docs/Integrate/libraries.html).
 
 ### Java ###
 
@@ -126,8 +129,11 @@ This Java program will build a multi-part MIME email and send it through SendGri
 ```
 A sample application for using Spring Framework and SendGrid on Cloud Foundry can be found [here](https://github.com/cloudfoundry-samples/spring-sendgrid).
 
-### Ruby / Rails ###
-Get SendGrid credentials from `VCAP_SERVICES` environment variable
+### Ruby on Rails ###
+
+You can quickly get started with SendGrid using Ruby on Rails ActionMailer.
+
+First, get SendGrid credentials from `VCAP_SERVICES` environment variable
 
 ```ruby
     credentials = host = username = password = ''
@@ -143,8 +149,7 @@ Get SendGrid credentials from `VCAP_SERVICES` environment variable
     end
 ```    
 
-The following settings are necessary for apps using ActionMailer.
-Edit `config/environment.rb`:
+You will also need to edit the ActionMailer settings in `config/environment.rb`:
 
 ```ruby
     ActionMailer::Base.smtp_settings = {
