@@ -6,27 +6,29 @@ title: SendGrid
 
 ## <a id='managing'></a>Managing Services ##
 
-[Managing services from the command line](../../../using/services/managing-services.html)
+To create, provision and bind a new SendGrid service, we'll se the [Cloud Foundry command line tool](../../../using/services/managing-services.html).
 
 ### Creating A SendGrid Service ##
 
-SendGrid can be provisioned via the CLI with the following command:
+SendGrid can be provisioned with the following command:
 
 <pre class="terminal">
-$ cf create-service sendgrid [service-name]
+$ cf create-service sendgrid [service-name] [plan-level]
 </pre>
-    
-and the desired plan.    
+
+The service name can be anything you want and the plan level is one of these options: free, bronze, silver, gold, platinum.
 
 ### Binding Your SendGrid Service ##
 
 Bind your SendGrid service to your app, using the following command:
     
 <pre class="terminal">
-$ cf bind-service [service-name] [app name]
+$ cf bind-service [service-name] [app-name]
 </pre>
 
-Once SendGrid has been added a username, password will be available and will contain the credentials used to access the newly provisioned SendGrid service instance.
+The service name should match the one you provisioned above and the app name should be an existing Cloud Foundry app.
+
+Once SendGrid has been added a username and password will be available. These are the credentials you use to access the newly provisioned SendGrid service instance.
 
 ## <a id='using'></a>Using SendGrid with your Application ##
 
