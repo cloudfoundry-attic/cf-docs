@@ -56,7 +56,9 @@ Format of credentials in `VCAP_SERVICES` environment variable.
 
 ### Java ###
 
-This Java program will build a multi-part MIME email and send it through SendGrid. Java already has built in libraries to send and receive emails. This example uses [javamail] (https://java.net/projects/javamail/pages/Home).
+[spring-sendgrid](https://github.com/cloudfoundry-samples/spring-sendgrid) is a sample application using Spring Framework and SendGrid on Cloud Foundry.
+
+The following Java program will build a multi-part MIME email and send it through SendGrid. Java already has built in libraries to send and receive emails. This example uses [javamail](https://java.net/projects/javamail/pages/Home).
 
 ```java
     import javax.mail.*;
@@ -122,9 +124,11 @@ This Java program will build a multi-part MIME email and send it through SendGri
         }
     }
 ```
-A sample application for using Spring Framework and SendGrid on Cloud Foundry can be found [here](https://github.com/cloudfoundry-samples/spring-sendgrid).
 
 ### Ruby / Rails ###
+
+[sendgrid-cloudfoundry-rails](https://github.com/laur-craciun/sendgrid-cloudfoundry-rails) is a sample application using Ruby on Rails and SendGrid on Cloud Foundry.
+
 Get SendGrid credentials from `VCAP_SERVICES` environment variable
 
 ```ruby
@@ -155,7 +159,6 @@ Edit `config/environment.rb`:
       :enable_starttls_auto => true
     }
 ```
-A sample application for using Ruby on Rails and SendGrid on Cloud Foundry can be found [here](https://github.com/laur-craciun/sendgrid-cloudfoundry-rails).
 
 ## <a id='dashboard'></a>Dashboard ##
 
