@@ -56,9 +56,7 @@ Format of credentials in `VCAP_SERVICES` environment variable.
 
 ### Java ###
 
-[spring-sendgrid](https://github.com/cloudfoundry-samples/spring-sendgrid) is a sample application using Spring Framework and SendGrid on Cloud Foundry.
-
-The following Java program will build a multi-part MIME email and send it through SendGrid. Java already has built in libraries to send and receive emails. This example uses [javamail](https://java.net/projects/javamail/pages/Home).
+This Java program will build a multi-part MIME email and send it through SendGrid. Java already has built in libraries to send and receive emails. This example uses [javamail] (https://java.net/projects/javamail/pages/Home).
 
 ```java
     import javax.mail.*;
@@ -124,11 +122,9 @@ The following Java program will build a multi-part MIME email and send it throug
         }
     }
 ```
+A sample application for using Spring Framework and SendGrid on Cloud Foundry can be found [here](https://github.com/cloudfoundry-samples/spring-sendgrid).
 
 ### Ruby / Rails ###
-
-[sendgrid-cloudfoundry-rails](https://github.com/laur-craciun/sendgrid-cloudfoundry-rails) is a sample application using Ruby on Rails and SendGrid on Cloud Foundry.
-
 Get SendGrid credentials from `VCAP_SERVICES` environment variable
 
 ```ruby
@@ -159,6 +155,7 @@ Edit `config/environment.rb`:
       :enable_starttls_auto => true
     }
 ```
+A sample application for using Ruby on Rails and SendGrid on Cloud Foundry can be found [here](https://github.com/laur-craciun/sendgrid-cloudfoundry-rails).
 
 ## <a id='dashboard'></a>Dashboard ##
 
@@ -173,18 +170,15 @@ To access your SendGrid dashboard, simply click the 'Manage' button next to the 
 
 ## <a id='support'></a>Support ##
 
-[Contacting Service Providers for Support](http://docs.cloudfoundry.com/docs/dotcom/marketplace/contacting-service-providers-for-support.html)
+One of SendGrid's best features is its responsive customer service. You can contact SendGrid 24/7 by phone, web, and live chat:
 
-* http://support.sendgrid.com
-* support@sendgrid.com
+* [http://support.sendgrid.com/](http://support.sendgrid.com/)
 * Toll Free: +1 (877) 969-8647
-* Alternate: +1 (303) 552-0653
+* support@sendgrid.com
 
-Support Hours of Operation
+To properly reference your SendGrid account within CloudFoundry, see the information about [contacting service providers for support](http://docs.cloudfoundry.com/docs/dotcom/marketplace/contacting-service-providers-for-support.html).
 
-* eSupport Chat & Email: 24/7
-* Phone: 7a-5p MST, M-F
-* Critical Incidents: Monitored 24/7
+If you have product feedback, or issues unrelated to your account, you can add it to [http://support.sendgrid.com/home](http://support.sendgrid.com/home).
 
 ## <a id='additional-resources'></a>Additional Resources ##
 
