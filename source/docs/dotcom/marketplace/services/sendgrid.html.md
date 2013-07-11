@@ -32,9 +32,7 @@ Once SendGrid has been added a username and password will be available. These ar
 
 ## <a id='using'></a>Using SendGrid within your Application ##
 
-Once your SendGrid service is added to your application, you need to update your [VCAP_SERVICES Environment Variable](../../../using/services/environment-variable.html) to include your credentials.
-
-Format your `VCAP_SERVICES` environment variable like so, making sure to include the credentials provided after binding the service.
+Once your SendGrid service is added to your application, your [VCAP_SERVICES Environment Variable](../../../using/services/environment-variable.html) will be automatically updated to include your credentials. The section of `VCAP_SERVICES` that pertains to SendGrid will look like so:
 
 
     {
