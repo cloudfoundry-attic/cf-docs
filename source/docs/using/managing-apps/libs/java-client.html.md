@@ -31,7 +31,7 @@ After adding the repository, the dependency can be added to your `pom.xml` as fo
     <dependency>
       <groupId>org.cloudfoundry</groupId>
       <artifactId>cloudfoundry-client-lib</artifactId>
-      <version>0.8.3</version>
+      <version>0.8.4</version>
     </dependency>
   </dependencies>
 ~~~ 
@@ -47,13 +47,13 @@ repositories {
 }
 
 dependencies {
-  compile 'org.cloudfoundry:cloudfoundry-client-lib:0.8.3'
+  compile 'org.cloudfoundry:cloudfoundry-client-lib:0.8.4'
 } 
 ~~~
 
 ## <a id='sample'></a>Sample Code ##
 
-The following is a very simple sample application that connects to a Cloud Foundry instance, logs in, and displays some information about the Cloud Foundry account. When running the program, provide the Cloud Foundry target (i.e. http://api.cloudfoundry.com) along with a valid user name and password as command-line parameters. 
+The following is a very simple sample application that connects to a Cloud Foundry instance, logs in, and displays some information about the Cloud Foundry account. When running the program, provide the Cloud Foundry target (i.e. http://api.run.pivotal.io) along with a valid user name and password as command-line parameters. 
 
 ~~~java 
 package org.cloudfoundry.sample;
