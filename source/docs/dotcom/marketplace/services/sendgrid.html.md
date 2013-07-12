@@ -6,33 +6,33 @@ title: SendGrid
 
 ## <a id='managing'></a>Managing Services ##
 
-[Managing services from the command line](../../../using/services/managing-services.html)
+To create and bind a new SendGrid service, see [Managing Services from the Command Line](../../../using/services/managing-services.html).
 
 ### Creating A SendGrid Service ##
 
-SendGrid can be provisioned via the CLI with the following command:
+SendGrid can be provisioned with the following command:
 
 <pre class="terminal">
-$ cf create-service sendgrid [service-name]
+$ cf create-service sendgrid [service-name] [plan-level]
 </pre>
-    
-and the desired plan.    
+
+The service name can be anything you want and the plan level is one of these options: free, bronze, silver, gold, platinum.
 
 ### Binding Your SendGrid Service ##
 
 Bind your SendGrid service to your app, using the following command:
     
 <pre class="terminal">
-$ cf bind-service [service-name] [app name]
+$ cf bind-service [service-name] [app-name]
 </pre>
 
-Once SendGrid has been added a username, password will be available and will contain the credentials used to access the newly provisioned SendGrid service instance.
+The service name should match the one you provisioned above and the app name should be an existing Cloud Foundry app.
 
-## <a id='using'></a>Using SendGrid with your Application ##
+Once SendGrid has been added a username and password will be available. These are the credentials you use to access the newly provisioned SendGrid service instance.
 
-See [Using Service Instances with your Application](../../adding-a-service.html#using) and [VCAP_SERVICES Environment Variable](../../../using/services/environment-variable.html).
+## <a id='using'></a>Using SendGrid within your Application ##
 
-Format of credentials in `VCAP_SERVICES` environment variable.
+Once a SendGrid service instance has been bound to your application, the [VCAP_SERVICES Environment Variable](../../../using/services/environment-variable.html) will be automatically updated to include your credentials. The section of `VCAP_SERVICES` that pertains to SendGrid will look like so:
 
 
     {
@@ -50,9 +50,12 @@ Format of credentials in `VCAP_SERVICES` environment variable.
       ]
     }
 
+The getting started guide has more background on [using service instances with your application](../../adding-a-service.html#using).
 
 
 ## <a id='sample-app'></a>Sample Applications ##
+
+With the SendGrid service provisioned and credentials added to the `VCAP_SERVICES` environment variable, you can now use SendGrid within your applications. You can either use SMTP with your SendGrid credentials or one of the many [SendGrid libraries](http://sendgrid.com/docs/Integrate/libraries.html).
 
 ### Java ###
 
@@ -124,8 +127,11 @@ This Java program will build a multi-part MIME email and send it through SendGri
 ```
 A sample application for using Spring Framework and SendGrid on Cloud Foundry can be found [here](https://github.com/cloudfoundry-samples/spring-sendgrid).
 
-### Ruby / Rails ###
-Get SendGrid credentials from `VCAP_SERVICES` environment variable
+### Ruby on Rails ###
+
+You can quickly get started with SendGrid using Ruby on Rails ActionMailer.
+
+First, get SendGrid credentials from `VCAP_SERVICES` environment variable
 
 ```ruby
     credentials = host = username = password = ''
@@ -141,8 +147,7 @@ Get SendGrid credentials from `VCAP_SERVICES` environment variable
     end
 ```    
 
-The following settings are necessary for apps using ActionMailer.
-Edit `config/environment.rb`:
+You will also need to edit the ActionMailer settings in `config/environment.rb`:
 
 ```ruby
     ActionMailer::Base.smtp_settings = {
