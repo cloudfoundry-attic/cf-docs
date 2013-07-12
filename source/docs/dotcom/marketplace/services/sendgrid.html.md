@@ -6,7 +6,7 @@ title: SendGrid
 
 ## <a id='managing'></a>Managing Services ##
 
-To create, provision and bind a new SendGrid service, we'll se the [Cloud Foundry command line tool](../../../using/services/managing-services.html).
+To create and bind a new SendGrid service, see [Managing Services from the Command Line](../../../using/services/managing-services.html).
 
 ### Creating A SendGrid Service ##
 
@@ -32,7 +32,7 @@ Once SendGrid has been added a username and password will be available. These ar
 
 ## <a id='using'></a>Using SendGrid within your Application ##
 
-Once your SendGrid service is added to your application, your [VCAP_SERVICES Environment Variable](../../../using/services/environment-variable.html) will be automatically updated to include your credentials. The section of `VCAP_SERVICES` that pertains to SendGrid will look like so:
+Once a SendGrid service instance has been bound to your application, the [VCAP_SERVICES Environment Variable](../../../using/services/environment-variable.html) will be automatically updated to include your credentials. The section of `VCAP_SERVICES` that pertains to SendGrid will look like so:
 
 
     {
