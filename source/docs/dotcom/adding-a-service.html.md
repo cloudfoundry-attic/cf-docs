@@ -95,9 +95,9 @@ There are three ways of consuming service instance credentials within your appli
 | cfruntime            | Creates an object with the location and settings of your services. Set your service connections based on the values in that object.    |
 | Manual               | Parse the JSON credentials object yourself from the [VCAP_SERVICES Environment Variable](../using/services/environment-variable.html). |
  
-### Auto-configuration & cfruntime
+## <a id='configuring'></a>Configuring Connections for Different Frameworks ##
  
-Auto-configuration and cfruntime are used differently depending on your framework:
+The procedure for configuring an application to connect to a service varies by framework. Note that auto-configuration is not support for all frameworks. The table below has links instructions for configuring service connections for supported frameworks. 
 
 | Runtime               | Framework                   |
 | :-------------        |:-------------               |
