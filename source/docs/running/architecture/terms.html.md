@@ -1,7 +1,7 @@
 ---
 title: Cloud Foundry Glindex (Glossary + Index)
 ---
-This page provides a brief description of terms that are commonly used in Cloud Foundry documentation. Cross-references to related topics are provided. 
+This page briefly describes a number of terms that are commonly used in Cloud Foundry documentation. For some terms, cross-references to related topics are provided. 
 
 ## <a id='application-manifest'></a>application manifest  ##
 > An application manifest defines application deployment settings, such as the name of an application, the number of instances to deploy, the maximum memory available to an instance, the services it uses, and so on. The default name for a manifest is `manifest.yml`. Use of a manifest automates application deployment`, allowing a user to provide deployment settings in a file rather than at the command line.
@@ -18,7 +18,7 @@ This page provides a brief description of terms that are commonly used in Cloud 
 
 ## <a id='bosh-agent'></a>BOSH Agent ##
 
-> The BOSH Agent is a process that runs on each VM maganged by BOSH and listens for instructions from the BOSH Director. When the director assigns a [job](#job) to an agent, the agent downloads the packages associated with the job from the blobstore and installs and configures them. The agent uses `monit` to start and stops jobs. 
+> The BOSH Agent is a process that runs on each VM maganged by BOSH and listens for instructions from the [BOSH Director](bosh-director). When the director assigns a [job](#job) to an agent, the agent downloads the packages associated with the job from the blobstore and installs and configures them. The agent uses `monit` to start and stops jobs. 
 
 ## <a id='bosh-blobstore'></a> BOSH Blobstore ##
 
@@ -27,12 +27,12 @@ This page provides a brief description of terms that are commonly used in Cloud 
 ## <a id='bosh-cli'></a>BOSH CLI ##
 
 > Command line interface used to interact with the [BOSH Director](#bosh-director). The BOSH CLI provides commands for creating and managing a release and the artifacts it comprises.
-
+<br><br>
 >For more information see [BOSH Command Line Interface](../bosh/reference/bosh-cli.html).
 
 ## <a id='bosh-director'></a>BOSH Director ##
 
-> The BOSH Director orchestrates creation of virtual machines, the compilation of packages, [deployment](#deployment) of a Cloud Foundry instance, and storage of application packages and droplets in the blobstore.  
+> The BOSH Director orchestrates creation of virtual machines, the compilation of packages, deployment of a Cloud Foundry instance, and storage of application packages and droplets in the blobstore.  
 
 
 ## <a id='bosh-health-monitor'></a>BOSH Health Monitor ##
@@ -46,21 +46,22 @@ This page provides a brief description of terms that are commonly used in Cloud 
 ## <a id='bosh-manifest'></a> BOSH manifest ##
 
 > A BOSH manifest is a YAML file that defines deployment settings for a Cloud Foundry instance including: 
+<br> <br>
 
->> VMs to be created
+> - VMs to be created.
 
->> persistent disks to be attached to each VM
+> - Persistent disks to be attached to each VM.
 
->> networks and IP addresses to be bound to each VM
+> - Networks and IP addresses to be bound to each VM.
 
->> templates from the Bosh release to be applied to each VM
+> - Templates from the Bosh release to be applied to each VM.
 
->> custom properties to be applied to configuration files and scripts for each [job template](#job-template)
+> - custom properties to be applied to configuration files and scripts for each [job template](#job-template).
 
 ## <a id='buildpack'></a> buildpack  ##
 
 > A buildpack is a set of scripts that Cloud Foundry runs on an application [package](#package) to create a [droplet](#droplet) that contains everthing the application needs to run. (This process is referred to as [staging](#staging).) A buildpack is specific to a particular framework or runtime environment. Cloud Foundry includes buildpacks for Ruby, Java, and Node.js; when you upload an application, Cloud Foundry examines the application artifacts to determine which buildpack to apply. Cloud Foundry can use remote buildpacks as well; you can specify the URL of the desired buildpack when running the `cf push` command.
-
+<br><br>
 > For more information, see [Introduction to Custom Buildpacks](../../using/deploying-apps/buildpacks.html).
 
 ## <a id='cc'></a>CC  ##
@@ -71,21 +72,27 @@ This page provides a brief description of terms that are commonly used in Cloud 
 
 ## <a id='cf'></a> cf ##
 > cf is a command line interface to the Cloud Controller. It uses the features of the Cloud Controller REST API to enable Cloud Foundry users to deploy and manage applications; provision, bind and manage services; and manage users, organizations, and spaces.  
+<br>
+> For more information, see [cf Command Line Interface](../../using/managing-apps/cf/index.html).
 
 ## <a id='cf-release'></a>CF-Release ##
 >  [CF-Release](https://github.com/cloudfoundry/cf-release) is the BOSH release repository for Cloud Foundry. You use CF-Release with a  manifest customized for your environment to deploy Cloud Foundry.
+<br><br>  
 
->For more information, see [Using the latest CF-Release](../../running/deploying-cf/common/cf-release.html)
+> For more information, see [Using the latest CF-Release](../../running/deploying-cf/common/cf-release.html)
 
 ## <a id='cloud-controller'></a> Cloud Controller##
 
 > Cloud Controller (CC) is the Cloud Foundry component that orchestrates the processing performed by backend components, such as application staging and lifecycle management, and service provisioning and binding operations. Cloud Controller functions and features include:
+<br> <br>
 
- >> Maintainance of a database of information about applications, services, and configurable items such as organizations, spaces, users and roles. 
- >> Storage of application packages and droplets in the blobstore. 
- >> Interaction, via the NATS messaging bus, with other Cloud Foundry components including Droplet Execution Agents (DEAs), Service Gateways, and the Health Manager. 
- >> A REST API that enables client access to backend functionality. 
+> - Maintainance of a database of information about applications, services, and configurable items such as organizations, spaces, users, and roles. 
 
+> - Storage of application packages and droplets in the blobstore.
+
+> - Interaction, via the NATS messaging bus, with other Cloud Foundry components, including Droplet Execution Agents (DEAs), Service Gateways, and the Health Manager. 
+
+> - A REST API that enables client access to backend functionality. 
 
 ## <a id='cpi'></a> Cloud Provider Interface ##
 
@@ -93,69 +100,70 @@ This page provides a brief description of terms that are commonly used in Cloud 
 
 ## <a id='cloud-provider-interface'></a>CPI##
 
->  See [Cloud Provider Interface](#cpi)
+>  See [Cloud Provider Interface](#cpi).
 
 ## <a id='droplet-execution-agent'></a>DEA  
 
-See [Droplet Execution Agent](#dea). 
+> See [Droplet Execution Agent](#dea). 
 
 ## <a id='dea'></a> Droplet Execution Agent ##
-> A Droplet Execution Agent (DEA) is an agent that runs on Cloud Foundry VMs that run applications. A DEA subscribes to the messages that the Cloud Controller publishes when  droplets need to be run. If the DEA host meets the runtime and RAM requirements of a droplet, the DEA responds to the Cloud Controller's request, receives the droplet, and starts it.
+> A Droplet Execution Agent (DEA) is a process that runs on Cloud Foundry VMs that host applications. A DEA subscribes to the messages that the Cloud Controller publishes when droplets need to be run. If the DEA host meets the runtime and RAM requirements of a droplet, the DEA responds to the Cloud Controller's request, receives the droplet, and starts it. Similarly, a DEA stops an application as requested by the Cloud Controller. A DEA keep track of the instances it started and periodically broadcasts messages about their state using [NATS](#nats). 
+<br><br>  
+
+> For more information, see [Droplet Execution Agent](../architecture/execution-agent.html).
 
 ## <a id='droplet'></a>  droplet 
-> A droplet is the result of the application staging process, it is an uploaded application to which a buildpack as been applied. It is the original application, with a wrapper around it that  accepts one input -- the port where it should listen for HTTP requests, and has two methods, a start and a stop. 
+> A droplet is the result of the application [staging](#staging) process, it is an uploaded application to which a buildpack as been applied. It is the original application, with a wrapper around it that accepts one input -- the port where it should listen for HTTP requests, and has two methods, a start and a stop. 
 
 ## <a id=' '></a>flapping ##
-> Flapping is that heath status that Cloud Foundry reports for an application that repeatedly crashes or will not start.   
-
-## <a id='glob'></a>glob ##
-> A pattern, within a filename, that contains wildcard characters. Unix-like operating can expand such filename expressions into a list of matching filenames. 
-
-## <a id='globster'></a>globster ##
-> An unidentified organic mass that washes up on the shoreline of an ocean or other body of water.
+> Flapping is the heath status that Cloud Foundry reports for an application that repeatedly crashes or will not start.   
 
 ## <a id='health-manager'></a>Health Manager ##
 
 > The Health Manager is a daemon that periodically scans the Cloud Controller database  for the expected state of applications that have been deployed and the VMs where they run. The Health Manager compares expected state with actual state, and issues a message to the Cloud Controller when it detects a problem.
-
+<br> <br> 
 > For more information see [Health Manager](health-manager.html).
 
 ## <a id='health-monitor'></a>Health Monitor##
 
->  See [BOSH Health Monitor](#bosh-health-monitor) 
+>  See [BOSH Health Monitor](#bosh-health-monitor). 
 
 ## <a id='job'></a>job ##
 
-> In BOSH, a job is a set of deployment and execution rules and resources for starting and running the processes for a package. Jobs are defined in deployment manifests (both for Bosh and for Cloud Foundry itself.) A job defines, either explicitly or by reference: 
+> In BOSH, a job is a set of deployment and execution rules and resources for starting and running the processes for a package. Jobs are defined in deployment manifests (both for Bosh and for Cloud Foundry itself.) A job defines, either explicitly or by reference to a [resource pool](#resource-pool): <br> <br>
 
->> network settings
->> job template
->> the number of instances to deploy
->> resource allocations (ram, disk, cpu)
+> - Network settings
 
-> The jobs defined in a Cloud Foundry deployment manifest include NFS servers, syslog aggregators, the Go Router, NATS, the Cloud Controller and UAA components and associated databases, and so on.<br> <br> The jobs defined in a BOSH manifest include NATS; the BOSH Director, database, and  blobstore; the Health Monitor, and so on. 
+> - Job template
+
+> - The number of instances to deploy
+
+> - Resource allocations (ram, disk, CPU )
 
 > Jobs are also referred to as roles. 
 
-## Service Gateway ##
-
-> tbd
 
 ## <a id='job-spec'></a>job specification ##
 
-> YAML file that lists templates files, package dependencies, and properties for a [job](#job). 
+> A job specification is YAML file that lists templates files, package dependencies, and properties for a [job](#job). 
 
 ## <a id='job-template'></a>job template ##
 
->  a set of generalized configuration files and scripts for a job. The job uses Ruby ERB templates to generate the final configuration files and scripts when a Stemcell is turned into a job. A job template can be generated with the BOSH CLI. <br<br>When a configuration file is turned into a template, instance-specific information is abstracted into a property that later is provided when the Director starts the job on a VM. Information includes, for example, which port the webserver should run on, or which username and password a databse should use
+>  A set of generalized configuration files and scripts for a [job](#job). The job uses Ruby ERB templates to generate the final configuration files and scripts when a Stemcell is turned into a job. A job template can be generated with the BOSH CLI. 
+<br><br>
+
+> When a configuration file is turned into a template, instance-specific information is abstracted into a property that later is provided when the Director starts the job on a VM. Information includes, for example, which port the webserver should run on, or which username and password a databse should use.
 
 
 
 ## <a id='manifest'></a>manifest ##
->  See [application manifest](#application-manifest) and [BOSH manifest](#              BOSH-manifest).
+>  See [application manifest](#application-manifest) and [BOSH manifest](#bosh-manifest).
 
 ## <a id='micro-bosh'></a>Micro BOSH ##
-> Micro BOSH is a single VM that includes all BOSH components. Micro BOSH is used to install BOSH.  
+> Micro BOSH is a VM that includes all BOSH components. Micro BOSH is used to install BOSH. 
+<br><br>
+
+> For more information see [Deploying BOSH with Micro BOSH](../../running/deploying-cf/vsphere/deploying_bosh_with_micro_bosh.html).
 
 
 ## <a id='nats'></a>NATS  ##
@@ -163,7 +171,10 @@ See [Droplet Execution Agent](#dea).
 
 
 ## <a id='org'></a>Organization ##
-> In Cloud Foundry, an Organization is a group of users that work on the same, or related, applications and services. Users in an Organization can have varying permissions to resources associate with the Organization. 
+> In Cloud Foundry, an organization is a group of users that work on the same, or related, applications and services. Users in an organization can have varying permissions to resources associated with the organization. Organizations contain [Spaces](#space).
+<br><br>
+
+> For more information see [Organizations and Spaces](../../using/managing-apps/orgs-and-spaces.html).
 
 
 ## <a id='package'></a>package ##
@@ -171,7 +182,7 @@ See [Droplet Execution Agent](#dea).
 
 ## <a id='package-spec'></a>package spec ##
 
->  A file that specifies the name of a package, other packages upon which it depends, and the files it contains. Package contents may be specified using globs. 
+>  A file that specifies the name of a package, other packages upon which it depends, and the files it contains. 
 
 
 ## <a id='release'></a> release ##
@@ -179,27 +190,31 @@ See [Droplet Execution Agent](#dea).
 > In BOSH, a release is a set of software and configuration templates that are installed on the VMs created from a stemcell.
 
 
-## <a id='resource pool'></a>resource pool 
+## <a id='resource pool'></a>resource pool ##
 
-> tbd
+> In a BOSH manifest, a resource pool defines the characteristics of a pool of VMs to be created, to which one or more [jobs](#job)can be assigned. The attributes defined for a resource pool include the number of VMs to create and the stemcell from which to create them; the number of CPUs and the amount of RAM and disk space to configure for each VM, and so on.
+<br><br>
+
+> Refer to [Cloud Foundry Example Manifest](../../running/deploying-cf/vsphere/cloud-foundry-example-manifest.html) to see resource pool definitions, and how each job in the manifest is assigned to a resource pool. 
+ 
 
 ## <a id='router'></a>Router ##
 
 >  The Router routes traffic coming into Cloud Foundry to the appropriate component -- usually Cloud Controller or an application running on a DEA node. The router is implemented in Go. Routers listen for the messages that a DEA issues when an application comes online or goes offline, and maintain an in-memory routing table. Incoming requests are load balanced across a pool of Routers.
+<br><br>
 
-
-## <a id='simple-blobstore-server'></a>Simple Blobstore Server ##
-> Cloud Foundry's blobstore. See [BOSH Blobstore](#bosh-blobstore). 
+> For more information, see [Router](router.html).
 
 
 ## <a id='space'></a> Space ##
 
-> In Cloud Foundry, a Space is a logical grouping of applications and services within an [Organization](#org). Examples may include personal Spaces which are similar to a user's home directory in an operating system or shared Spaces like "Development", "Staging", and "Production". Users in an Organization need to be granted specific permissions in a Space in order to access it. 
-
+> In Cloud Foundry, a space is a logical grouping of applications and services within an [organization](#org). Examples may include personal spaces which are similar to a user's home directory in an operating system or shared Spaces like "Development", "Staging", and "Production". Users in an organization must be granted specific permissions in a Space in order to access it. 
+<br><br>
+> For more information see [Organizations and Spaces](../../using/managing-apps/orgs-and-spaces.html).
 
 ## <a id='staging'></a> staging ##
 
->  Staging refers to the processing performed by a DEA on an uploaded application, in accordance with the buildpack selected for use by Cloud Foundry or specified by the user. The result of staging process is a [droplet](#droplet).  
+>  Staging refers to the processing performed by a DEA on an uploaded application, in accordance with the buildpack selected for use by Cloud Foundry or specified by the user. The result of thestaging process is a [droplet](#droplet).  
 
 
 ## <a id='stemcell'></a>stemcell##
@@ -211,16 +226,25 @@ See [Droplet Execution Agent](#dea).
 
 
 ## <a id='uaa'></a> UAA  ##
-> See [User Account and Authentication Service](#uaa) 
+> See [User Account and Authentication Service](#uaa). 
 
 
 ## <a id='uaa'></a>User Account and Authentication Service (UAA)  ##
-> The UAA is the Cloud Foundry component that provides single sign on for web applications and secures Cloud Foundry resources.  The UAA acts as an OAuth 2.0 Authorization Server. It grants access tokens to client applications for use in accessing Resource Servers in the platform, including the Cloud Controller.   
+> In Cloud Foundry, the User Account and Authentication Service (UAA) provides single sign-on for web applications and secures Cloud Foundry resources. The UAA acts as an OAuth 2.0 Authorization Server. It grants access tokens to client applications for use in accessing Resource Servers in the platform, including the Cloud Controller.   
+<br><br>
+
+> For more information, see [User Account and Authentication Service](../architecture/uaa.html).
 
 <!---
 ## <a id='vcap'></a>VCAP ##
 
 > VMware Cloud Application Platform, the first version of Cloud Foundry --> 
+
+## <a id='vcap-services'></a>VCAP_SERVICES##
+
+> An environment variable that contains connection information for all services bound to an application.
+<br><br>
+> For more information, see [VCAP_SERVICES Environment Variable](../../using/services/environment-variable.html)
 
 
 ## <a id='vmc'></a>VMC ##
@@ -228,7 +252,7 @@ See [Droplet Execution Agent](#dea).
 
 
 ## <a id='warden'></a>Warden  ##
-> Warden is a framework within Cloud Foundry for creating and managing isolated environments on Unix. Warden provides an API and a command line interface. Containers created by Warden can be limited in terms of network access as well as CPU, memory, and disk usage. 
+> Warden is a framework within Cloud Foundry for creating and managing isolated environments on Unix. Warden provides an API and a command line interface for creating and managing containers within a VM. Containers created by Warden can be limited in terms of network access as well as CPU, memory, and disk usage. 
 
 
 ## <a id='yaml'></a> YAML ##
@@ -240,9 +264,4 @@ See [Droplet Execution Agent](#dea).
 
 
 
-## <a id='vcap-services'></a>VCAP_SERVICES##
-
-> An environment variable that contains connection information for all services bound to an application.
-<br><br>
-> For more information, see [VCAP_SERVICES Environment Variable](../../using/services/environment-variable.html)
 

@@ -1,11 +1,11 @@
 ---
-title: Execution Agent (DEA)
+title: Droplet Execution Agent
 description: Manages the lifecycle of an application instance. Tracks started instances and broadcasts state messages. 
 ---
 
-The DEA is written in Ruby and takes care of managing an application instance's lifecycle. It can be instructed by the [Cloud Controller](./cloud-controller.html) to start and stop application instances. It keeps track of all started instances, and periodically broadcasts messages about their state over [NATS](./messaging-nats.html) (meant to be picked up by the [Health Manager](./health-manager.html)).
+The Droplet Execution Agent (DEA) is written in Ruby and managing an application instance's lifecycle. It can be instructed by the [Cloud Controller](./cloud-controller.html) to start and stop application instances. It keeps track of all started instances, and periodically broadcasts messages about their state over [NATS](./messaging-nats.html) (meant to be picked up by the [Health Manager](./health-manager.html)).
 
-The advantages of this generation of the DEA over the previous (and first) generation DEA is that is more modular and has better test coverage. A breaking change between the two is that this version of the DEA depends on [Warden](./warden.html) to run application instances.
+The DEA depends on [Warden](./warden.html) to run application instances.
 
 ### Directory server
 
