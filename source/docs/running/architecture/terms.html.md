@@ -222,44 +222,45 @@ This page briefly describes a number of terms that are commonly used in Cloud Fo
 > A stemcell is a VM template with Linux and a BOSH Agent. BOSH uses a stemcell to clone a pool of VMs to which a Cloud Foundry [release](#release) is deployed.
 
 ## <a id='steno'></a>Steno ##
+
 > A lightweight, modular logging library written  to support Cloud Foundry. 
 
 
 ## <a id='uaa'></a> UAA  ##
+
 > See [User Account and Authentication Service](#uaa). 
 
 
 ## <a id='uaa'></a>User Account and Authentication Service (UAA)  ##
+
 > In Cloud Foundry, the User Account and Authentication Service (UAA) provides single sign-on for web applications and secures Cloud Foundry resources. The UAA acts as an OAuth 2.0 Authorization Server. It grants access tokens to client applications for use in accessing Resource Servers in the platform, including the Cloud Controller.   
 <br><br>
 
 > For more information, see [User Account and Authentication Service](../architecture/uaa.html).
 
-<!---
-## <a id='vcap'></a>VCAP ##
-
-> VMware Cloud Application Platform, the first version of Cloud Foundry --> 
-
 ## <a id='vcap-services'></a>VCAP_SERVICES##
 
 > An environment variable that contains connection information for all services bound to an application.
 <br><br>
-> For more information, see [VCAP_SERVICES Environment Variable](../../using/services/environment-variable.html)
+> For more information, see [VCAP_SERVICES Environment Variable](../../using/services/environment-variable.html).
 
 
 ## <a id='vmc'></a>VMC ##
 > VMC was the command line interface in Cloud Foundry v1.  [cf](#cf) replaced VMC in Cloud Foundry v2.
 
 
-## <a id='warden'></a>Warden  ##
+## <a id='warden'></a>Warden ##
+
 > Warden is a framework within Cloud Foundry for creating and managing isolated environments on Unix. Warden provides an API and a command line interface for creating and managing containers within a VM. Containers created by Warden can be limited in terms of network access as well as CPU, memory, and disk usage. 
 
 
 ## <a id='yaml'></a> YAML ##
-> YAML is the format used in application manifests and BOSH manifests in Cloud Foundry. For information about the YAML grammar, see [http:\\www.yaml.org]  
+
+> YAML is the format used in application manifests and BOSH manifests in Cloud Foundry. For information about the YAML grammar, see [http:\\www.yaml.org].  
 
 
 ## <a id='yml'></a>yml ##
+
 >  The file extension for a YAML file. See [YAML](#yaml). 
 
 

@@ -8,13 +8,13 @@ This page has information about how to configure a Ruby application to connect t
 
 There are several methods for configuring a Ruby application to connect to a service:
 
-* Create a connection object --- You can use the `cfruntime` gem to create a service connection object. This is the recommended approach, as it gives you more control over how the application connects to the service.
+* Create a connection object --- You can use the `cfruntime` gem to create a service connection object. This is the recommended approach, as it gives you more control over how the application connects to the service. For more information, see [Manually Configure Connection with cfruntime](#manual) below.
 
-* For a database application, you can define the connection in `database.yml` --- You can parse the `VCAP_SERVICES` environment variable, which contains connection information for all services bound to your application, and update the `database.yml` file for your application. 
+* For a database application, you can define the connection in `database.yml` --- You can parse the `VCAP_SERVICES` environment variable, which contains connection information for all services bound to your application, and update the `database.yml` file for your application. For more information, see [Define Connection in Configuration File](#config-file).
 
-* Auto-configuration -- You can auto-configure the application with the `cf-autoconfig` gem, if: (1) the application runs on the Rails framework, (2) the type of service bound to the application is PostgreSQL or MySQL, and (3) not more than one relational database service instance is bound to the application. 
+* Auto-configuration -- You can auto-configure the application with the `cf-autoconfig` gem, if: (1) the application runs on the Rails framework, (2) the type of service bound to the application is PostgreSQL or MySQL, and (3) not more than one relational database service instance is bound to the application. For more information, see [Auto-Configure Connection with cf-autoconfig](#autoconfig).
 
-     **Note:** Auto-configuration overwrites the database connection information in an application's `database.yml` file -- if this is unacceptable, configure your service manually, rather than using auto-configuration.  
+     **Note:** Auto-configuration for a Ruby on Rails database applicaiton overwrites the database connection information in the application's `database.yml` file -- if this is unacceptable, configure the service manually, rather than using auto-configuration.  
 
 
 ## <a id='prereq'></a>Prerequisites ##
@@ -35,7 +35,7 @@ Ensure that the application includes the correct adapter gem in the Gemfile:
 Run `bundle install` to generate an updated `Gemfile.lock`.
 
 
-## <a id='manual'></a>Manual Configuration with cfruntime</a> ##
+## <a id='manual'></a>Manually Configure Connection with cfruntime</a> ##
 
 This approach to configuring a Ruby application for a service entails updating the application to obtain service connection data using the `cf-runtime` gem.   
 The `cf-runtime` gem provides helper functions that ease configuration of connections to any service bound to an application.
@@ -43,7 +43,7 @@ The `cf-runtime` gem provides helper functions that ease configuration of connec
 
 ### <a id='connecting-to-a-named-service'></a>Connect to a Named Service ###
 
-To create a connection from a named service, use the `create_from_svc` method of the client class for the service type.  The table below lists the connection classes in the cf-runtime library by service type; you can call `create_from_svc` from any of the client classes.
+To create a connection from a named service, use the `create_from_svc` method of the client class for the service type.  The table below lists the connection classes in the `cf-runtime` library by service type; you can call `create_from_svc` from any of the client classes.
 
 <table>
   <tr>
@@ -59,7 +59,7 @@ To create a connection from a named service, use the `create_from_svc` method of
 
 **Example 1**
 
-To create a connection for a MySQL instance named 'mysql-test':
+To create a connection for a MySQL instance named "mysql-test":
 
 ~~~ruby
 
@@ -70,7 +70,7 @@ client = CFRuntime::Mysql2Client.create_from_svc 'mysql-test'
 
 **Example 2**
 
-To create a connection for a MongoDB instance named 'mongo-test':
+To create a connection for a MongoDB instance named "mongo-test":
 
 ~~~ruby
 
@@ -136,7 +136,7 @@ The table below lists other useful methods in the`CFRuntime::Cloudapp` class.
   <tr><td>CFRuntime::CloudApp.running_in_cloud?</td><td>Returns a boolean value, indicating if the application is running on a Cloud Foundry instance</td></tr>
 </table>
 
-## <a id='manual'></a>Define Connection in Configuration File ##
+## <a id='config-file'></a>Define Connection in Configuration File ##
 
 For a Ruby database application, you can configure the database connection information in the application's `database.yml` file. You can determine the connection details from the `VCAP_SERVICES` environment variable, which  contains JSON describing all the services bound to your application and the credentials you need to connect to them. When you bind a service to an application with the `cf bind-service` command, cf writes the service connection details to the `VCAP_SERVICES` environment variable. 
 
@@ -150,7 +150,7 @@ my_services = JSON.parse(ENV['VCAP_SERVICES'])
 
 ~~~
 
-To obtain the credentials from the VCAP\_SERVICES JSON, you need to know the string to use as a key for the hash.
+To obtain the credentials from the `VCAP_SERVICES` JSON, you need to know the string to use as a key for the hash.
 
 You can use `cf services` to list the available services to find the correct string.
 
@@ -226,10 +226,10 @@ client = Mysql2::Client.new credentials
 Your code may vary from the example above, depending on the key in your VCAP_SERVICES environmentvariable and syntax for instantiating your database adapter client.
 
 
-## <a id='autoconfig'></a>Auto-Configuration ##
+## <a id='autoconfig'></a>Auto-Configure Connection with cf-autoconfig ##
 
 
-To use auto-configuration, include this line in your Gemfile:
+To use auto-configuration, currently supported only for Ruby applications running on Rails, include this line in your Gemfile:
 
 ~~~ruby
 gem 'cf-autoconfig'
