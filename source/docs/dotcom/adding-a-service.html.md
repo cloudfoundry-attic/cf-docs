@@ -99,8 +99,8 @@ There are three ways of consuming service instance credentials within your appli
  
 The procedure for configuring an application to connect to a service varies by framework. Note that auto-configuration is not supported for all frameworks. The table below has links to instructions for configuring service connections in different environments.  
 
-| Runtime               | Framework                   |
-| :-------------        |:-------------               |
-| Java / JVM        | <li>[Spring](../using/services/spring-service-bindings.html) <li>[Grails](../using/services/grails-service-bindings.html) <li>[Lift](../using/services/lift-service-bindings.html) |
-| Ruby            | <li>[Rack, Rails, or Sinatra](../using/services/ruby-service-bindings.html) |
-| Javascript          | <li>[Node.js](../using/services/node-service-bindings.html) |
+| Runtime               | Framework                   |Auto-Configuration Support|
+| :-------------        |:-------------               |:-------------            |
+| Java / JVM        | <li>[Spring](../using/services/spring-service-bindings.html) <li>[Grails](../using/services/grails-service-bindings.html) <li>[Lift](../using/services/lift-service-bindings.html) | Not yet available in Cloud Foundry v2. |
+| Ruby            | <li>[Rack, Rails, or Sinatra](../using/services/ruby-service-bindings.html) |  Supported only for Rails, and with some limitations. For more information, <br> see [Options for Configuring Ruby Apps for Services](../using/services/ruby-service-bindings.html#options). | 
+| Javascript          | <li>[Node.js](../using/services/node-service-bindings.html) |Not yet available in Cloud Foundry v2. |
