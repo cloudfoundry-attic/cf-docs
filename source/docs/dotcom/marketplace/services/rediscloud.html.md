@@ -33,15 +33,15 @@ See [Using Service Instances with your Application](../../adding-a-service.html#
 Once your Redis Cloud service is bound to your app, the service credentials will be stored in the `VCAP_SERVICES` env. variable in the following format:
 	
 	{
-	  rediscloud-n/a: [
+	  "rediscloud-n/a": [
 	    {
-	      name: "rediscloud-7487a",
-	      label: "rediscloud-n/a",
-	      plan: "20mb",
-	      credentials: {
-	        port: "19020",
-	        hostname: "pub-redis-19020.us-east-1-4.3.ec2.garantiadata.com",
-	        password: "your_redis_password"
+	      "name": "rediscloud-7487a",
+	      "label": "rediscloud-n/a",
+	      "plan": "20mb",
+	      "credentials": {
+	        "port": "19020",
+	        "hostname": "pub-redis-19020.us-east-1-4.3.ec2.garantiadata.com",
+	        "password": "your_redis_password"
 	      }
 	    }
 	  ]
@@ -49,7 +49,7 @@ Once your Redis Cloud service is bound to your app, the service credentials will
 
 ### <a id="ruby"></a>Using Redis from Ruby ###
 
-The [redis-rb](https://github.com/redis/redis-rb) is a very stable and mature redis client and the easiest way to access Redis from Ruby. 
+The [redis-rb](https://github.com/redis/redis-rb) is a very stable and mature redis client and the easiest way to access Redis from Ruby.
 
 Install redis-rb:
 	
@@ -73,9 +73,9 @@ Lastly, create a new `redis.rb` initializer in `config/initializers/` and add th
 	
 	rediscloud_service = JSON.parse(ENV['VCAP_SERVICES'])["rediscloud-n/a"]
 	credentials = rediscloud_service.first["credentials"]
-    	$redis = Redis.new(:host => credentials.hostname, :port => credentials.port, :password => credentials.password)
+    $redis = Redis.new(:host => credentials["hostname"], :port => credentials["port"], :password => credentials["password"])
 
-#### <a id="sinatra"></a>Configuring Redis on Sinatra 
+#### <a id="sinatra"></a>Configuring Redis on Sinatra
 
 Add this code snippet to your configure block:
 
@@ -84,7 +84,7 @@ Add this code snippet to your configure block:
 		require 'redis'
 		rediscloud_service = JSON.parse(ENV['VCAP_SERVICES'])["rediscloud-n/a"]
 		credentials = rediscloud_service.first["credentials"]
-    	$redis = Redis.new(:host => credentials.hostname, :port => credentials.port, :password => credentials.password)
+    	$redis = Redis.new(:host => credentials["hostname"], :port => credentials["port"], :password => credentials["password"])
         . . .
 	end
 
