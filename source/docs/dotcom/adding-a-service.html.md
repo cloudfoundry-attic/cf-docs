@@ -97,7 +97,7 @@ There are three ways of consuming service instance credentials within your appli
  
 ## <a id='configuring'></a>Configuring Connections for Different Frameworks ##
  
-The procedure for configuring an application to connect to a service varies by framework. Note that auto-configuration is not support for all frameworks. The table below has links instructions for configuring service connections for supported frameworks. 
+The procedure for configuring an application to connect to a service varies by framework. Note that auto-configuration is not supported for all frameworks. The table below has links to instructions for configuring service connections in different environments.  
 
 | Runtime               | Framework                   |
 | :-------------        |:-------------               |

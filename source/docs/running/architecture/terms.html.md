@@ -54,7 +54,7 @@ This page briefly describes a number of terms that are commonly used in Cloud Fo
 
 > - Networks and IP addresses to be bound to each VM.
 
-> - Templates from the Bosh release to be applied to each VM.
+> - Templates from the BOSH release to be applied to each VM.
 
 > - custom properties to be applied to configuration files and scripts for each [job template](#job-template).
 
@@ -98,24 +98,27 @@ This page briefly describes a number of terms that are commonly used in Cloud Fo
 
 > A Cloud Provider Interface (CPI) is an API that BOSH uses to interact with an Infrastructure as a Service (IaaS) provider to create and manage stemcells and VMs. CPIs exist for vSphere, OpenStack, and Amazon Web Services. A CPI abstracts an underlying virtualized infrastructure from the rest of BOSH, and is fundamental to Cloud Foundry's model for deploying and running applications across multiple clouds.   
 
-## <a id='cloud-provider-interface'></a>CPI##
+## <a id='cloud-provider-interface'></a>CPI ##
 
 >  See [Cloud Provider Interface](#cpi).
 
-## <a id='droplet-execution-agent'></a>DEA  
+## <a id='droplet-execution-agent'></a>DEA  ##
 
 > See [Droplet Execution Agent](#dea). 
 
 ## <a id='dea'></a> Droplet Execution Agent ##
-> A Droplet Execution Agent (DEA) is a process that runs on Cloud Foundry VMs that host applications. A DEA subscribes to the messages that the Cloud Controller publishes when droplets need to be run. If the DEA host meets the runtime and RAM requirements of a droplet, the DEA responds to the Cloud Controller's request, receives the droplet, and starts it. Similarly, a DEA stops an application as requested by the Cloud Controller. A DEA keep track of the instances it started and periodically broadcasts messages about their state using [NATS](#nats). 
+
+> A Droplet Execution Agent (DEA) is a process that runs on Cloud Foundry VMs that host applications. A DEA subscribes to the messages that the Cloud Controller publishes when droplets need to be run. If the DEA host meets the runtime and RAM requirements of a droplet, the DEA responds to the Cloud Controller's request, receives the droplet, and starts it. Similarly, a DEA stops an application as requested by the Cloud Controller. A DEA keepS track of the instances it started and periodically broadcasts messages about their state using [NATS](#nats). 
 <br><br>  
 
 > For more information, see [Droplet Execution Agent](../architecture/execution-agent.html).
 
-## <a id='droplet'></a>  droplet 
+## <a id='droplet'></a> droplet ##
+
 > A droplet is the result of the application [staging](#staging) process, it is an uploaded application to which a buildpack as been applied. It is the original application, with a wrapper around it that accepts one input -- the port where it should listen for HTTP requests, and has two methods, a start and a stop. 
 
 ## <a id=' '></a>flapping ##
+
 > Flapping is the heath status that Cloud Foundry reports for an application that repeatedly crashes or will not start.   
 
 ## <a id='health-manager'></a>Health Manager ##
@@ -130,7 +133,7 @@ This page briefly describes a number of terms that are commonly used in Cloud Fo
 
 ## <a id='job'></a>job ##
 
-> In BOSH, a job is a set of deployment and execution rules and resources for starting and running the processes for a package. Jobs are defined in deployment manifests (both for Bosh and for Cloud Foundry itself.) A job defines, either explicitly or by reference to a [resource pool](#resource-pool): <br> <br>
+> In BOSH, a job is a set of deployment and execution rules and resources for starting and running the processes for a package. Jobs are defined in deployment manifests (both for BOSH and for Cloud Foundry itself.) A job defines, either explicitly or by reference to a [resource pool](#resource-pool): <br> <br>
 
 > - Network settings
 
@@ -192,7 +195,7 @@ This page briefly describes a number of terms that are commonly used in Cloud Fo
 
 ## <a id='resource pool'></a>resource pool ##
 
-> In a BOSH manifest, a resource pool defines the characteristics of a pool of VMs to be created, to which one or more [jobs](#job)can be assigned. The attributes defined for a resource pool include the number of VMs to create and the stemcell from which to create them; the number of CPUs and the amount of RAM and disk space to configure for each VM, and so on.
+> In a BOSH manifest, a resource pool defines the characteristics of a pool of VMs to be created, to which one or more [jobs](#job) can be assigned. The attributes defined for a resource pool include the number of VMs to create and the stemcell from which to create them; the number of CPUs and the amount of RAM and disk space to configure for each VM, and so on.
 <br><br>
 
 > Refer to [Cloud Foundry Example Manifest](../../running/deploying-cf/vsphere/cloud-foundry-example-manifest.html) to see resource pool definitions, and how each job in the manifest is assigned to a resource pool. 
@@ -256,7 +259,7 @@ This page briefly describes a number of terms that are commonly used in Cloud Fo
 
 ## <a id='yaml'></a> YAML ##
 
-> YAML is the format used in application manifests and BOSH manifests in Cloud Foundry. For information about the YAML grammar, see [http:\\www.yaml.org].  
+> YAML is the format used in application manifests and BOSH manifests in Cloud Foundry. For information about the YAML grammar, see [www.yaml.org](www.yaml.org).  
 
 
 ## <a id='yml'></a>yml ##
