@@ -2,6 +2,17 @@
 title: Tunneling to Services
 ---
 
+**Tunneling to services is not yet supported in Cloud Foundry v2.**  
+
+You can access a provisioned service using a native connector for the service. For example, you can connect to a mySQL database using a command like this:
+
+`mysql -D [DATABASE_NAME]  -h [HOST_NAME] -P [PORT] -u [USER] -p`
+
+You can determine the connection details for the services bound to an application from the `VCAP_SERVICES` environment variable in the application’s `env.log` file.
+
+For information about `VCAP_SERVICES` and how to view an application’s `env.log` file, see [VCAP_SERVICES Environment Variable](../services/environment-variable.html).
+
+<!---
 ## <a id='what-is-tunnelling'></a>What Is Tunneling? ##
 
 A provisioned service on Cloud Foundry is not directly accessible to the outside world by default. An application that is bound to the service has access, but only because it sits on the same network, behind the Cloud Foundry firewall.
@@ -47,7 +58,7 @@ Waiting for local tunnel to become available... OK
 Output file> mydb.sql
 </pre>
 
-The dump is succesfully writen to mydb.sql. At this point the tunnel has closed. However, if option 1 - none is selected, the tunnel is held open indefinitely supplying the connection details:
+The dump is successfully writen to mydb.sql. At this point the tunnel has closed. However, if option 1 - none is selected, the tunnel is held open indefinitely supplying the connection details:
 
 <pre class="terminal">
 $ cf tunnel mysql-a7cc7
@@ -70,3 +81,5 @@ Press Ctrl-C to exit...
 </pre>
 
 This allows a native client to connect to the service. Note that in this instance, for MySQL, the connection is available on port 10000, not 3306.
+
+-->
