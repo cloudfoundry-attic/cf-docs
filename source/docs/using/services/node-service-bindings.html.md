@@ -2,6 +2,8 @@
 title: Binding a service
 ---
 
+**Note:** The auto-configuration functionality described on this page is not yet supported in Cloud Foundry v2.
+
 ## <a id='intro'></a>Introduction ##
 
 This guide is for developers who wish to bind a data source to a Node.js application deployed and running on Cloud Foundry.

@@ -101,6 +101,6 @@ The procedure for configuring an application to connect to a service varies by f
 
 | Runtime               | Framework                   |Auto-Configuration Support|
 | :-------------        |:-------------               |:-------------            |
-| Java / JVM        | <li>[Spring](../using/services/spring-service-bindings.html) <li>[Grails](../using/services/grails-service-bindings.html) <li>[Lift](../using/services/lift-service-bindings.html) | Not yet available in Cloud Foundry v2. |
-| Ruby            | <li>[Rack, Rails, or Sinatra](../using/services/ruby-service-bindings.html) |  Supported only for Rails, and with some limitations. For more information, <br> see [Options for Configuring Ruby Apps for Services](../using/services/ruby-service-bindings.html#options). | 
+| Java / JVM        | <li>[Spring](../using/services/spring-service-bindings.html) <li>[Grails](../using/services/grails-service-bindings.html) <li>[Lift](../using/services/lift-service-bindings.html) | Supported. |
+| Ruby            | <li>[Rack, Rails, or Sinatra](../using/services/ruby-service-bindings.html) |  Supported only for Rails, with some limitations. For more information, <br> see [Options for Configuring Ruby Apps for Services](../using/services/ruby-service-bindings.html#options). | 
 | Javascript          | <li>[Node.js](../using/services/node-service-bindings.html) |Not yet available in Cloud Foundry v2. |
