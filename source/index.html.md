@@ -49,7 +49,7 @@ title: Welcome to Cloud Foundry Documentation
   <hr>
   <p>Managing Organizations and Domains<br>
   <a href="docs/using/managing-apps/orgs-and-spaces.html">Organizations and Spaces</a><br>
-  <a href="docs/using/managing-apps/custom-domains/index.html">Custom Domains</a>
+  <a href="docs/using/managing-apps/custom-domains/index.html">About Domains, Subdomains and Routes</a>
   </p>
   <hr>
   <p>

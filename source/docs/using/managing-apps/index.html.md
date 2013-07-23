@@ -24,5 +24,5 @@ Cloud Foundry offers the ability to map your applications and domains to differe
 
 * [Orgs and Spaces](orgs-and-spaces.html) provide for both protection and collaboration in an organization.
 
-* [Custom Domains](custom-domains/index.html) are mapped to applications by in your org / space.
+* [About Domains, Subdomains and Routes](custom-domains/index.html) has information about domains, including custom domains, and how the domain and subdomain you assign to an application determine determin its route in Cloud Foundry.
 
