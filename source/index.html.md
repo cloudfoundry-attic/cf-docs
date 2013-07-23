@@ -29,7 +29,9 @@ title: Welcome to Cloud Foundry Documentation
   <p>Push applications to Cloud Foundry.</p>
 
   <hr>
+    <p><a href="docs/using/terms.html">Cloud Foundry Glossary</a></p>
 
+  <hr>
   <p><a href="docs/using/app-arch/index.html">App Design for the Cloud</a></p>
 
   <hr>
