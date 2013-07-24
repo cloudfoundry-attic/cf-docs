@@ -16,7 +16,7 @@ Loggregator allows users to:
 
 ## Constraints
 
-1. Loggregator collects STDIN & STDOUT from the customer's application.  This may require configuration on the developer's side.
+1. Loggregator collects STDOUT & STDERR from the customer's application.  This may require configuration on the developer's side.
 1. A Loggregator outage must not affect the running application.
 1. Loggregator gathers and stores logs in a best-effort manner.  While undesirable, losing the current buffer of application logs is acceptable.
 1. As much as possible, Loggregator should be disconnected from the rest of Cloud Foundry.  Ideally, it's entirely deployable outside of Cloud Foundry.
