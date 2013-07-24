@@ -52,3 +52,4 @@ Support issues that are particular to the Cloud Foundry public PaaS available at
 
 * [support.cloudfoundry.com](http://support.cloudfoundry.com)
 
+[![githalytics.com alpha](https://cruel-carlota.pagodabox.com/49ba659c7aaf1e56a99a845004981aef "githalytics.com")](http://githalytics.com/GarantiaData/cf-docs)
