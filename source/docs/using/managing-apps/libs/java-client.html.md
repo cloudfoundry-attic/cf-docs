@@ -19,7 +19,7 @@ To use the Java client in a Maven project, you first need to add the Spring Fram
     <repository>
       <id>repository.springframework.milestone</id>
       <name>Spring Framework Milestone Repository</name>
-      <url>http://repo.springframework.org/milestone</url>
+      <url>http://repo.springsource.org/milestone</url>
     </repository>
   </repositories>
 ~~~
@@ -31,7 +31,7 @@ After adding the repository, the dependency can be added to your `pom.xml` as fo
     <dependency>
       <groupId>org.cloudfoundry</groupId>
       <artifactId>cloudfoundry-client-lib</artifactId>
-      <version>0.8.4</version>
+      <version>0.8.5</version>
     </dependency>
   </dependencies>
 ~~~ 
