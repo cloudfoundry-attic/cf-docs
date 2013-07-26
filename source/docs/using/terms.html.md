@@ -18,7 +18,7 @@ This page briefly describes a number of terms that are commonly used in Cloud Fo
 
 ## <a id='bosh-agent'></a>BOSH Agent ##
 
-> The BOSH Agent is a process that runs on each VM maganged by BOSH and listens for instructions from the [BOSH Director](bosh-director). When the director assigns a [job](#job) to an agent, the agent downloads the packages associated with the job from the blobstore and installs and configures them. The agent uses `monit` to start and stops jobs. 
+> The BOSH Agent is a process that runs on each VM maganged by BOSH and listens for instructions from the [BOSH Director](#bosh-director). When the director assigns a [job](#job) to an agent, the agent downloads the packages associated with the job from the blobstore and installs and configures them. The agent uses `monit` to start and stops jobs. 
 
 ## <a id='bosh-blobstore'></a> BOSH Blobstore ##
 
