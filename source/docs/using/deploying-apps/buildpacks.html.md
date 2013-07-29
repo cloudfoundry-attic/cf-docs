@@ -111,5 +111,11 @@ Once a custom buildpack has been created and pushed to a public git repository, 
 $ cf push my-new-app --buildpack=git://github.com/johndoe/my-buildpack.git
 </pre>
 
+Or use a private git repository using https as follows:
+
+<pre class="terminal">
+$ cf push my-new-app --buildpack=https://username:password@github.com/johndoe/my-buildpack.git
+</pre>
+
 The application will then be deployed to Cloud Foundry and then the buildpack will be cloned and applied to the application, if the buildpack's bin/detect script returns 0 of course!
 
