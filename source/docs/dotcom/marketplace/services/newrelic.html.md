@@ -22,11 +22,11 @@ Bind the service instance to your app with the following command:
 $ cf bind-service 
 </pre>
 
-## Single Sign On
+### Single Sign On
 
 To log into your New Relic Account via SSO you only need to log into the [run.pivotal.io Web Console](http://console.run.pivotal.io). Find your New Relic service instance on the Space page in which you created it. Clicking the Manage button will log you into New Relic via SSO.
 
-## <a id='using'></a>Using Service Instances with your Application ##
+## <a id='using'></a>Using New Relic with your Application ##
 
 In order for metrics for your application to be reported to New Relic, the following three requirements must be satisfied:
 
