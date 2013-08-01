@@ -4,7 +4,7 @@ title: New Relic
 
 ## <a id='managing'></a>Managing Services ##
 
-[Managing services from the command line](../../../using/services/managing-services.html)
+[Managing services from the command line](../../../../using/services/managing-services.html)
 
 ### Creating a Service Instance ##
 
