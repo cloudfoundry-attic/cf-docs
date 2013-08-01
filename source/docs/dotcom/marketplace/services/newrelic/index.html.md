@@ -78,7 +78,7 @@ For more information, see [VCAP_SERVICES Environment Variable](../../../using/se
 ## <a id='sample-app'></a>Sample Applications ##
 
 <pre class="terminal">
-$ git clone -b newrelic-1 git@github.com:cloudfoundry-samples/rails_sample_app.git
+$ git clone -b newrelic git@github.com:cloudfoundry-samples/rails_sample_app.git
 $ cd rails_sample_app
 $ cf push
 </pre>
