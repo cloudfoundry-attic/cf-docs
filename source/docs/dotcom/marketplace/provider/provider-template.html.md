@@ -1,6 +1,5 @@
 ---
 title: Your Service
-category: 
 ---
 
 Some description of what the service is good for.

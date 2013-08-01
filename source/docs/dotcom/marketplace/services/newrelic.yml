@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html>
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# githubog: http://ogp.me/ns/fb/githubog#">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <title>A New Relic configuration file for use with Ruby on Cloud Foundry</title>
+
+  <meta content="authenticity_token" name="csrf-param" />
+<meta content="GImHpRP4taguRAMgB+Qq+oPhlgAfqFnnHeeD/b7oFuc=" name="csrf-token" />
+  <meta name="viewport" content="width=960">
+
+  <link type="text/plain" rel="author" href="https://github.com/humans.txt" />
+
+  <meta content="gist" name="octolytics-app-id" /><meta content="collector.githubapp.com" name="octolytics-host" />
+
+  <link href="/assets/application-64649181dc896bd5aeed2a3438dcb4a4.css" media="screen, print" rel="stylesheet" />
+  <script src="/assets/application-4fc558fd34d5f84950713717d772ea06.js"></script>
+
+    <meta name="twitter:card" content="summary">
+  <meta name="twitter:site" content="@github">
+  <meta property="og:title" content="scottfrederick/newrelic.yml">
+  <meta property="og:type" content="githubog:gist">
+  <meta property="og:url" content="#{Gists.url}/scottfrederick/6033530">
+  <meta property="og:image" content="https://secure.gravatar.com/avatar/5fecafb1f46cd05cd8caaa6e9a4b9cad?s=140&amp;d=https://github.com/images/gravatars/gravatar-140.png">
+  <meta property="og:site_name" content="GitHub Gists">
+  <meta property="og:description" content="A New Relic configuration file for use with Ruby on Cloud Foundry - Gist is a simple way to share snippets of text and code with others.">
+  <meta name="description" content="A New Relic configuration file for use with Ruby on Cloud Foundry - Gist is a simple way to share snippets of text and code with others.">
+
+</head>
+
+<body class=" ">
+
+  <div id="wrapper">
+
+
+    <div id="header" class="header header-logged-out">
+      <div class="container" class="clearfix">
+        <a class="header-logo-wordmark" href="https://gist.github.com/">
+          <span class="octicon octicon-logo-github"></span>
+          <span class="octicon-logo octicon-logo-gist"></span>
+        </a>
+
+        <div class="header-actions">
+          <a class="button primary" href="https://github.com/signup?return_to=gist">Sign up for a GitHub Account</a>
+          <a class="button" href="https://gist.github.com/login?return_to=/scottfrederick/6033530" data-skip-pjax>Sign in</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="site-content" id="js-pjax-container" data-pjax-container>
+      <div class=" site-container js-site-container" data-url="/scottfrederick/6033530">
+
+  <meta content="true" name="octolytics-dimension-public" /><meta content="6033530" name="octolytics-dimension-gist_id" /><meta content="6033530" name="octolytics-dimension-gist_name" /><meta content="false" name="octolytics-dimension-anonymous" /><meta content="60661" name="octolytics-dimension-owner_id" /><meta content="scottfrederick" name="octolytics-dimension-owner_login" /><meta content="false" name="octolytics-dimension-forked" />
+
+<div class="pagehead repohead">
+  <div class="container">
+    <div class="title-actions-bar">
+      <ul class="pagehead-actions">
+      </ul>
+      <h1 itemscope itemtype="http://data-vocabulary.org/Breadcrumb" class="entry-title public">
+        <span class="repo-label"><span>public</span></span>
+        <span class="mega-octicon octicon-gist" ></span>
+        <div class="meta">
+          <div class="gist-author">
+            <img src="https://secure.gravatar.com/avatar/5fecafb1f46cd05cd8caaa6e9a4b9cad?s=140&amp;d=https://github.com/images/gravatars/gravatar-140.png" width="26" height="26">
+            <span class="author vcard">
+                <span itemprop="title"><a href="/scottfrederick">scottfrederick</a></span>
+            </span> /
+            <strong><a href="/scottfrederick/6033530" class="js-current-repository">newrelic.yml</a></strong>
+          </div>
+          <div class="gist-timestamp">
+              <span class="datetime">Last active <time class="js-relative-date" title="2013-07-19T00:26:58Z" datetime="2013-07-19T00:26:58Z">2013-07-19</time></span>
+          </div>
+      </h1>
+    </div>
+
+  </div>
+</div>
+
+
+
+<div class="gist-description container">
+  <p>A New Relic configuration file for use with Ruby on Cloud Foundry</p>
+</div>
+
+<div class="gist container js-gist-container" data-version="90370a0ceb919ee8fd632f560982b36de2590e07">
+    <div class="root-pane">
+  <div class="menu-container">
+    <ul class="menu gisttabs">
+      <li>
+        <a href="/scottfrederick/6033530" class="selected">
+          Gist Detail
+        </a>
+      </li>
+
+        <li class="revision-count">
+          <a href="/scottfrederick/6033530/revisions" >
+            Revisions
+            <span class="counter">2</span>
+          </a>
+        </li>
+
+
+    </ul>
+  </div>
+
+  <ul class="export-references">
+    <li>
+      <a href="/scottfrederick/6033530/download" class="minibutton" data-skip-pjax="true" rel="nofollow"><span class="octicon octicon-cloud-download"></span>Download Gist</a>
+    </li>
+    <li>
+      <label for="url-field"><strong>Clone</strong> this gist</label>
+      <input type="text" readonly spellcheck="false" class="url-field js-url-field js-cptoggle" name="url-field" value="https://gist.github.com/6033530.git" data-cptoggle-display="/scottfrederick/6033530">
+    </li>
+    <li>
+      <label for="embed-field"><strong>Embed</strong> this gist</label>
+      <input type="text" readonly spellcheck="false" class="url-field js-url-field" name="embed-field" value="&lt;script src=&quot;https://gist.github.com/scottfrederick/6033530.js&quot;&gt;&lt;/script&gt;">
+    </li>
+    <li>
+      <label for="link-field"><strong>Link to</strong> this gist</label>
+      <input type="text" readonly spellcheck="false" class="url-field js-url-field" name="link-field" value="https://gist.github.com/scottfrederick/6033530">
+    </li>
+  </ul>
+</div>
+
+
+  <div class="column files">
+        <div id="file-newrelic-yml" class="bubble">
+          <div class="file-box ">
+            <div class="meta">
+              <div class="file-info">
+                <span class="file-type-icon"><span class="octicon octicon-gist"></span></span>
+                <strong class="file-name js-selectable-text">newrelic.yml</strong>
+              </div>
+              <div class="file-actions">
+                <span class="file-language">YAML</span>
+                <ul class="button-group">
+                  <li><a title="Permalink" href="#file-newrelic-yml" class="file-actions-button tooltipped downwards permalink"><span class="octicon octicon-link"></span></a></li>
+                  <li><a title="View Raw" href="/scottfrederick/6033530/raw/a6eeffbe7b7d3610f91356bdcf5268da932c5f23/newrelic.yml" data-skip-pjax class="file-actions-button tooltipped downwards raw-url"><span class="octicon octicon-code"></span></a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="suppressed">
+              <a class="js-show-suppressed-file">File suppressed. Click to show.</a>
+            </div>
+
+
+
+
+    <div class="file-data">
+      <table cellpadding="0" cellspacing="0" class="lines highlight">
+        <tr>
+          <td class="line-numbers">
+            <span class="line-number" id="file-newrelic-yml-L1" rel="file-newrelic-yml-L1">1</span>
+            <span class="line-number" id="file-newrelic-yml-L2" rel="file-newrelic-yml-L2">2</span>
+            <span class="line-number" id="file-newrelic-yml-L3" rel="file-newrelic-yml-L3">3</span>
+            <span class="line-number" id="file-newrelic-yml-L4" rel="file-newrelic-yml-L4">4</span>
+            <span class="line-number" id="file-newrelic-yml-L5" rel="file-newrelic-yml-L5">5</span>
+            <span class="line-number" id="file-newrelic-yml-L6" rel="file-newrelic-yml-L6">6</span>
+            <span class="line-number" id="file-newrelic-yml-L7" rel="file-newrelic-yml-L7">7</span>
+            <span class="line-number" id="file-newrelic-yml-L8" rel="file-newrelic-yml-L8">8</span>
+            <span class="line-number" id="file-newrelic-yml-L9" rel="file-newrelic-yml-L9">9</span>
+            <span class="line-number" id="file-newrelic-yml-L10" rel="file-newrelic-yml-L10">10</span>
+            <span class="line-number" id="file-newrelic-yml-L11" rel="file-newrelic-yml-L11">11</span>
+            <span class="line-number" id="file-newrelic-yml-L12" rel="file-newrelic-yml-L12">12</span>
+            <span class="line-number" id="file-newrelic-yml-L13" rel="file-newrelic-yml-L13">13</span>
+            <span class="line-number" id="file-newrelic-yml-L14" rel="file-newrelic-yml-L14">14</span>
+            <span class="line-number" id="file-newrelic-yml-L15" rel="file-newrelic-yml-L15">15</span>
+            <span class="line-number" id="file-newrelic-yml-L16" rel="file-newrelic-yml-L16">16</span>
+            <span class="line-number" id="file-newrelic-yml-L17" rel="file-newrelic-yml-L17">17</span>
+            <span class="line-number" id="file-newrelic-yml-L18" rel="file-newrelic-yml-L18">18</span>
+            <span class="line-number" id="file-newrelic-yml-L19" rel="file-newrelic-yml-L19">19</span>
+            <span class="line-number" id="file-newrelic-yml-L20" rel="file-newrelic-yml-L20">20</span>
+            <span class="line-number" id="file-newrelic-yml-L21" rel="file-newrelic-yml-L21">21</span>
+            <span class="line-number" id="file-newrelic-yml-L22" rel="file-newrelic-yml-L22">22</span>
+            <span class="line-number" id="file-newrelic-yml-L23" rel="file-newrelic-yml-L23">23</span>
+            <span class="line-number" id="file-newrelic-yml-L24" rel="file-newrelic-yml-L24">24</span>
+            <span class="line-number" id="file-newrelic-yml-L25" rel="file-newrelic-yml-L25">25</span>
+            <span class="line-number" id="file-newrelic-yml-L26" rel="file-newrelic-yml-L26">26</span>
+            <span class="line-number" id="file-newrelic-yml-L27" rel="file-newrelic-yml-L27">27</span>
+            <span class="line-number" id="file-newrelic-yml-L28" rel="file-newrelic-yml-L28">28</span>
+            <span class="line-number" id="file-newrelic-yml-L29" rel="file-newrelic-yml-L29">29</span>
+            <span class="line-number" id="file-newrelic-yml-L30" rel="file-newrelic-yml-L30">30</span>
+            <span class="line-number" id="file-newrelic-yml-L31" rel="file-newrelic-yml-L31">31</span>
+            <span class="line-number" id="file-newrelic-yml-L32" rel="file-newrelic-yml-L32">32</span>
+            <span class="line-number" id="file-newrelic-yml-L33" rel="file-newrelic-yml-L33">33</span>
+            <span class="line-number" id="file-newrelic-yml-L34" rel="file-newrelic-yml-L34">34</span>
+            <span class="line-number" id="file-newrelic-yml-L35" rel="file-newrelic-yml-L35">35</span>
+            <span class="line-number" id="file-newrelic-yml-L36" rel="file-newrelic-yml-L36">36</span>
+            <span class="line-number" id="file-newrelic-yml-L37" rel="file-newrelic-yml-L37">37</span>
+            <span class="line-number" id="file-newrelic-yml-L38" rel="file-newrelic-yml-L38">38</span>
+            <span class="line-number" id="file-newrelic-yml-L39" rel="file-newrelic-yml-L39">39</span>
+            <span class="line-number" id="file-newrelic-yml-L40" rel="file-newrelic-yml-L40">40</span>
+            <span class="line-number" id="file-newrelic-yml-L41" rel="file-newrelic-yml-L41">41</span>
+            <span class="line-number" id="file-newrelic-yml-L42" rel="file-newrelic-yml-L42">42</span>
+            <span class="line-number" id="file-newrelic-yml-L43" rel="file-newrelic-yml-L43">43</span>
+            <span class="line-number" id="file-newrelic-yml-L44" rel="file-newrelic-yml-L44">44</span>
+            <span class="line-number" id="file-newrelic-yml-L45" rel="file-newrelic-yml-L45">45</span>
+            <span class="line-number" id="file-newrelic-yml-L46" rel="file-newrelic-yml-L46">46</span>
+            <span class="line-number" id="file-newrelic-yml-L47" rel="file-newrelic-yml-L47">47</span>
+            <span class="line-number" id="file-newrelic-yml-L48" rel="file-newrelic-yml-L48">48</span>
+            <span class="line-number" id="file-newrelic-yml-L49" rel="file-newrelic-yml-L49">49</span>
+            <span class="line-number" id="file-newrelic-yml-L50" rel="file-newrelic-yml-L50">50</span>
+            <span class="line-number" id="file-newrelic-yml-L51" rel="file-newrelic-yml-L51">51</span>
+            <span class="line-number" id="file-newrelic-yml-L52" rel="file-newrelic-yml-L52">52</span>
+            <span class="line-number" id="file-newrelic-yml-L53" rel="file-newrelic-yml-L53">53</span>
+            <span class="line-number" id="file-newrelic-yml-L54" rel="file-newrelic-yml-L54">54</span>
+            <span class="line-number" id="file-newrelic-yml-L55" rel="file-newrelic-yml-L55">55</span>
+            <span class="line-number" id="file-newrelic-yml-L56" rel="file-newrelic-yml-L56">56</span>
+            <span class="line-number" id="file-newrelic-yml-L57" rel="file-newrelic-yml-L57">57</span>
+            <span class="line-number" id="file-newrelic-yml-L58" rel="file-newrelic-yml-L58">58</span>
+            <span class="line-number" id="file-newrelic-yml-L59" rel="file-newrelic-yml-L59">59</span>
+            <span class="line-number" id="file-newrelic-yml-L60" rel="file-newrelic-yml-L60">60</span>
+            <span class="line-number" id="file-newrelic-yml-L61" rel="file-newrelic-yml-L61">61</span>
+            <span class="line-number" id="file-newrelic-yml-L62" rel="file-newrelic-yml-L62">62</span>
+            <span class="line-number" id="file-newrelic-yml-L63" rel="file-newrelic-yml-L63">63</span>
+            <span class="line-number" id="file-newrelic-yml-L64" rel="file-newrelic-yml-L64">64</span>
+            <span class="line-number" id="file-newrelic-yml-L65" rel="file-newrelic-yml-L65">65</span>
+            <span class="line-number" id="file-newrelic-yml-L66" rel="file-newrelic-yml-L66">66</span>
+            <span class="line-number" id="file-newrelic-yml-L67" rel="file-newrelic-yml-L67">67</span>
+            <span class="line-number" id="file-newrelic-yml-L68" rel="file-newrelic-yml-L68">68</span>
+            <span class="line-number" id="file-newrelic-yml-L69" rel="file-newrelic-yml-L69">69</span>
+            <span class="line-number" id="file-newrelic-yml-L70" rel="file-newrelic-yml-L70">70</span>
+            <span class="line-number" id="file-newrelic-yml-L71" rel="file-newrelic-yml-L71">71</span>
+            <span class="line-number" id="file-newrelic-yml-L72" rel="file-newrelic-yml-L72">72</span>
+            <span class="line-number" id="file-newrelic-yml-L73" rel="file-newrelic-yml-L73">73</span>
+            <span class="line-number" id="file-newrelic-yml-L74" rel="file-newrelic-yml-L74">74</span>
+            <span class="line-number" id="file-newrelic-yml-L75" rel="file-newrelic-yml-L75">75</span>
+            <span class="line-number" id="file-newrelic-yml-L76" rel="file-newrelic-yml-L76">76</span>
+            <span class="line-number" id="file-newrelic-yml-L77" rel="file-newrelic-yml-L77">77</span>
+            <span class="line-number" id="file-newrelic-yml-L78" rel="file-newrelic-yml-L78">78</span>
+            <span class="line-number" id="file-newrelic-yml-L79" rel="file-newrelic-yml-L79">79</span>
+            <span class="line-number" id="file-newrelic-yml-L80" rel="file-newrelic-yml-L80">80</span>
+            <span class="line-number" id="file-newrelic-yml-L81" rel="file-newrelic-yml-L81">81</span>
+            <span class="line-number" id="file-newrelic-yml-L82" rel="file-newrelic-yml-L82">82</span>
+            <span class="line-number" id="file-newrelic-yml-L83" rel="file-newrelic-yml-L83">83</span>
+            <span class="line-number" id="file-newrelic-yml-L84" rel="file-newrelic-yml-L84">84</span>
+            <span class="line-number" id="file-newrelic-yml-L85" rel="file-newrelic-yml-L85">85</span>
+            <span class="line-number" id="file-newrelic-yml-L86" rel="file-newrelic-yml-L86">86</span>
+            <span class="line-number" id="file-newrelic-yml-L87" rel="file-newrelic-yml-L87">87</span>
+            <span class="line-number" id="file-newrelic-yml-L88" rel="file-newrelic-yml-L88">88</span>
+            <span class="line-number" id="file-newrelic-yml-L89" rel="file-newrelic-yml-L89">89</span>
+            <span class="line-number" id="file-newrelic-yml-L90" rel="file-newrelic-yml-L90">90</span>
+            <span class="line-number" id="file-newrelic-yml-L91" rel="file-newrelic-yml-L91">91</span>
+            <span class="line-number" id="file-newrelic-yml-L92" rel="file-newrelic-yml-L92">92</span>
+            <span class="line-number" id="file-newrelic-yml-L93" rel="file-newrelic-yml-L93">93</span>
+            <span class="line-number" id="file-newrelic-yml-L94" rel="file-newrelic-yml-L94">94</span>
+            <span class="line-number" id="file-newrelic-yml-L95" rel="file-newrelic-yml-L95">95</span>
+            <span class="line-number" id="file-newrelic-yml-L96" rel="file-newrelic-yml-L96">96</span>
+            <span class="line-number" id="file-newrelic-yml-L97" rel="file-newrelic-yml-L97">97</span>
+            <span class="line-number" id="file-newrelic-yml-L98" rel="file-newrelic-yml-L98">98</span>
+            <span class="line-number" id="file-newrelic-yml-L99" rel="file-newrelic-yml-L99">99</span>
+            <span class="line-number" id="file-newrelic-yml-L100" rel="file-newrelic-yml-L100">100</span>
+            <span class="line-number" id="file-newrelic-yml-L101" rel="file-newrelic-yml-L101">101</span>
+            <span class="line-number" id="file-newrelic-yml-L102" rel="file-newrelic-yml-L102">102</span>
+            <span class="line-number" id="file-newrelic-yml-L103" rel="file-newrelic-yml-L103">103</span>
+            <span class="line-number" id="file-newrelic-yml-L104" rel="file-newrelic-yml-L104">104</span>
+            <span class="line-number" id="file-newrelic-yml-L105" rel="file-newrelic-yml-L105">105</span>
+            <span class="line-number" id="file-newrelic-yml-L106" rel="file-newrelic-yml-L106">106</span>
+            <span class="line-number" id="file-newrelic-yml-L107" rel="file-newrelic-yml-L107">107</span>
+            <span class="line-number" id="file-newrelic-yml-L108" rel="file-newrelic-yml-L108">108</span>
+            <span class="line-number" id="file-newrelic-yml-L109" rel="file-newrelic-yml-L109">109</span>
+            <span class="line-number" id="file-newrelic-yml-L110" rel="file-newrelic-yml-L110">110</span>
+            <span class="line-number" id="file-newrelic-yml-L111" rel="file-newrelic-yml-L111">111</span>
+            <span class="line-number" id="file-newrelic-yml-L112" rel="file-newrelic-yml-L112">112</span>
+            <span class="line-number" id="file-newrelic-yml-L113" rel="file-newrelic-yml-L113">113</span>
+            <span class="line-number" id="file-newrelic-yml-L114" rel="file-newrelic-yml-L114">114</span>
+            <span class="line-number" id="file-newrelic-yml-L115" rel="file-newrelic-yml-L115">115</span>
+            <span class="line-number" id="file-newrelic-yml-L116" rel="file-newrelic-yml-L116">116</span>
+            <span class="line-number" id="file-newrelic-yml-L117" rel="file-newrelic-yml-L117">117</span>
+            <span class="line-number" id="file-newrelic-yml-L118" rel="file-newrelic-yml-L118">118</span>
+            <span class="line-number" id="file-newrelic-yml-L119" rel="file-newrelic-yml-L119">119</span>
+            <span class="line-number" id="file-newrelic-yml-L120" rel="file-newrelic-yml-L120">120</span>
+            <span class="line-number" id="file-newrelic-yml-L121" rel="file-newrelic-yml-L121">121</span>
+            <span class="line-number" id="file-newrelic-yml-L122" rel="file-newrelic-yml-L122">122</span>
+            <span class="line-number" id="file-newrelic-yml-L123" rel="file-newrelic-yml-L123">123</span>
+            <span class="line-number" id="file-newrelic-yml-L124" rel="file-newrelic-yml-L124">124</span>
+            <span class="line-number" id="file-newrelic-yml-L125" rel="file-newrelic-yml-L125">125</span>
+            <span class="line-number" id="file-newrelic-yml-L126" rel="file-newrelic-yml-L126">126</span>
+            <span class="line-number" id="file-newrelic-yml-L127" rel="file-newrelic-yml-L127">127</span>
+            <span class="line-number" id="file-newrelic-yml-L128" rel="file-newrelic-yml-L128">128</span>
+            <span class="line-number" id="file-newrelic-yml-L129" rel="file-newrelic-yml-L129">129</span>
+            <span class="line-number" id="file-newrelic-yml-L130" rel="file-newrelic-yml-L130">130</span>
+            <span class="line-number" id="file-newrelic-yml-L131" rel="file-newrelic-yml-L131">131</span>
+            <span class="line-number" id="file-newrelic-yml-L132" rel="file-newrelic-yml-L132">132</span>
+            <span class="line-number" id="file-newrelic-yml-L133" rel="file-newrelic-yml-L133">133</span>
+            <span class="line-number" id="file-newrelic-yml-L134" rel="file-newrelic-yml-L134">134</span>
+            <span class="line-number" id="file-newrelic-yml-L135" rel="file-newrelic-yml-L135">135</span>
+            <span class="line-number" id="file-newrelic-yml-L136" rel="file-newrelic-yml-L136">136</span>
+            <span class="line-number" id="file-newrelic-yml-L137" rel="file-newrelic-yml-L137">137</span>
+            <span class="line-number" id="file-newrelic-yml-L138" rel="file-newrelic-yml-L138">138</span>
+            <span class="line-number" id="file-newrelic-yml-L139" rel="file-newrelic-yml-L139">139</span>
+            <span class="line-number" id="file-newrelic-yml-L140" rel="file-newrelic-yml-L140">140</span>
+            <span class="line-number" id="file-newrelic-yml-L141" rel="file-newrelic-yml-L141">141</span>
+            <span class="line-number" id="file-newrelic-yml-L142" rel="file-newrelic-yml-L142">142</span>
+            <span class="line-number" id="file-newrelic-yml-L143" rel="file-newrelic-yml-L143">143</span>
+            <span class="line-number" id="file-newrelic-yml-L144" rel="file-newrelic-yml-L144">144</span>
+            <span class="line-number" id="file-newrelic-yml-L145" rel="file-newrelic-yml-L145">145</span>
+            <span class="line-number" id="file-newrelic-yml-L146" rel="file-newrelic-yml-L146">146</span>
+            <span class="line-number" id="file-newrelic-yml-L147" rel="file-newrelic-yml-L147">147</span>
+            <span class="line-number" id="file-newrelic-yml-L148" rel="file-newrelic-yml-L148">148</span>
+            <span class="line-number" id="file-newrelic-yml-L149" rel="file-newrelic-yml-L149">149</span>
+            <span class="line-number" id="file-newrelic-yml-L150" rel="file-newrelic-yml-L150">150</span>
+            <span class="line-number" id="file-newrelic-yml-L151" rel="file-newrelic-yml-L151">151</span>
+            <span class="line-number" id="file-newrelic-yml-L152" rel="file-newrelic-yml-L152">152</span>
+            <span class="line-number" id="file-newrelic-yml-L153" rel="file-newrelic-yml-L153">153</span>
+            <span class="line-number" id="file-newrelic-yml-L154" rel="file-newrelic-yml-L154">154</span>
+            <span class="line-number" id="file-newrelic-yml-L155" rel="file-newrelic-yml-L155">155</span>
+            <span class="line-number" id="file-newrelic-yml-L156" rel="file-newrelic-yml-L156">156</span>
+            <span class="line-number" id="file-newrelic-yml-L157" rel="file-newrelic-yml-L157">157</span>
+            <span class="line-number" id="file-newrelic-yml-L158" rel="file-newrelic-yml-L158">158</span>
+            <span class="line-number" id="file-newrelic-yml-L159" rel="file-newrelic-yml-L159">159</span>
+            <span class="line-number" id="file-newrelic-yml-L160" rel="file-newrelic-yml-L160">160</span>
+            <span class="line-number" id="file-newrelic-yml-L161" rel="file-newrelic-yml-L161">161</span>
+            <span class="line-number" id="file-newrelic-yml-L162" rel="file-newrelic-yml-L162">162</span>
+            <span class="line-number" id="file-newrelic-yml-L163" rel="file-newrelic-yml-L163">163</span>
+            <span class="line-number" id="file-newrelic-yml-L164" rel="file-newrelic-yml-L164">164</span>
+            <span class="line-number" id="file-newrelic-yml-L165" rel="file-newrelic-yml-L165">165</span>
+            <span class="line-number" id="file-newrelic-yml-L166" rel="file-newrelic-yml-L166">166</span>
+            <span class="line-number" id="file-newrelic-yml-L167" rel="file-newrelic-yml-L167">167</span>
+            <span class="line-number" id="file-newrelic-yml-L168" rel="file-newrelic-yml-L168">168</span>
+            <span class="line-number" id="file-newrelic-yml-L169" rel="file-newrelic-yml-L169">169</span>
+            <span class="line-number" id="file-newrelic-yml-L170" rel="file-newrelic-yml-L170">170</span>
+            <span class="line-number" id="file-newrelic-yml-L171" rel="file-newrelic-yml-L171">171</span>
+            <span class="line-number" id="file-newrelic-yml-L172" rel="file-newrelic-yml-L172">172</span>
+            <span class="line-number" id="file-newrelic-yml-L173" rel="file-newrelic-yml-L173">173</span>
+            <span class="line-number" id="file-newrelic-yml-L174" rel="file-newrelic-yml-L174">174</span>
+            <span class="line-number" id="file-newrelic-yml-L175" rel="file-newrelic-yml-L175">175</span>
+            <span class="line-number" id="file-newrelic-yml-L176" rel="file-newrelic-yml-L176">176</span>
+            <span class="line-number" id="file-newrelic-yml-L177" rel="file-newrelic-yml-L177">177</span>
+            <span class="line-number" id="file-newrelic-yml-L178" rel="file-newrelic-yml-L178">178</span>
+            <span class="line-number" id="file-newrelic-yml-L179" rel="file-newrelic-yml-L179">179</span>
+            <span class="line-number" id="file-newrelic-yml-L180" rel="file-newrelic-yml-L180">180</span>
+            <span class="line-number" id="file-newrelic-yml-L181" rel="file-newrelic-yml-L181">181</span>
+            <span class="line-number" id="file-newrelic-yml-L182" rel="file-newrelic-yml-L182">182</span>
+            <span class="line-number" id="file-newrelic-yml-L183" rel="file-newrelic-yml-L183">183</span>
+            <span class="line-number" id="file-newrelic-yml-L184" rel="file-newrelic-yml-L184">184</span>
+            <span class="line-number" id="file-newrelic-yml-L185" rel="file-newrelic-yml-L185">185</span>
+            <span class="line-number" id="file-newrelic-yml-L186" rel="file-newrelic-yml-L186">186</span>
+            <span class="line-number" id="file-newrelic-yml-L187" rel="file-newrelic-yml-L187">187</span>
+            <span class="line-number" id="file-newrelic-yml-L188" rel="file-newrelic-yml-L188">188</span>
+            <span class="line-number" id="file-newrelic-yml-L189" rel="file-newrelic-yml-L189">189</span>
+            <span class="line-number" id="file-newrelic-yml-L190" rel="file-newrelic-yml-L190">190</span>
+            <span class="line-number" id="file-newrelic-yml-L191" rel="file-newrelic-yml-L191">191</span>
+            <span class="line-number" id="file-newrelic-yml-L192" rel="file-newrelic-yml-L192">192</span>
+            <span class="line-number" id="file-newrelic-yml-L193" rel="file-newrelic-yml-L193">193</span>
+            <span class="line-number" id="file-newrelic-yml-L194" rel="file-newrelic-yml-L194">194</span>
+            <span class="line-number" id="file-newrelic-yml-L195" rel="file-newrelic-yml-L195">195</span>
+            <span class="line-number" id="file-newrelic-yml-L196" rel="file-newrelic-yml-L196">196</span>
+            <span class="line-number" id="file-newrelic-yml-L197" rel="file-newrelic-yml-L197">197</span>
+            <span class="line-number" id="file-newrelic-yml-L198" rel="file-newrelic-yml-L198">198</span>
+            <span class="line-number" id="file-newrelic-yml-L199" rel="file-newrelic-yml-L199">199</span>
+            <span class="line-number" id="file-newrelic-yml-L200" rel="file-newrelic-yml-L200">200</span>
+            <span class="line-number" id="file-newrelic-yml-L201" rel="file-newrelic-yml-L201">201</span>
+            <span class="line-number" id="file-newrelic-yml-L202" rel="file-newrelic-yml-L202">202</span>
+            <span class="line-number" id="file-newrelic-yml-L203" rel="file-newrelic-yml-L203">203</span>
+            <span class="line-number" id="file-newrelic-yml-L204" rel="file-newrelic-yml-L204">204</span>
+            <span class="line-number" id="file-newrelic-yml-L205" rel="file-newrelic-yml-L205">205</span>
+            <span class="line-number" id="file-newrelic-yml-L206" rel="file-newrelic-yml-L206">206</span>
+            <span class="line-number" id="file-newrelic-yml-L207" rel="file-newrelic-yml-L207">207</span>
+            <span class="line-number" id="file-newrelic-yml-L208" rel="file-newrelic-yml-L208">208</span>
+            <span class="line-number" id="file-newrelic-yml-L209" rel="file-newrelic-yml-L209">209</span>
+            <span class="line-number" id="file-newrelic-yml-L210" rel="file-newrelic-yml-L210">210</span>
+            <span class="line-number" id="file-newrelic-yml-L211" rel="file-newrelic-yml-L211">211</span>
+            <span class="line-number" id="file-newrelic-yml-L212" rel="file-newrelic-yml-L212">212</span>
+            <span class="line-number" id="file-newrelic-yml-L213" rel="file-newrelic-yml-L213">213</span>
+            <span class="line-number" id="file-newrelic-yml-L214" rel="file-newrelic-yml-L214">214</span>
+            <span class="line-number" id="file-newrelic-yml-L215" rel="file-newrelic-yml-L215">215</span>
+            <span class="line-number" id="file-newrelic-yml-L216" rel="file-newrelic-yml-L216">216</span>
+            <span class="line-number" id="file-newrelic-yml-L217" rel="file-newrelic-yml-L217">217</span>
+            <span class="line-number" id="file-newrelic-yml-L218" rel="file-newrelic-yml-L218">218</span>
+            <span class="line-number" id="file-newrelic-yml-L219" rel="file-newrelic-yml-L219">219</span>
+            <span class="line-number" id="file-newrelic-yml-L220" rel="file-newrelic-yml-L220">220</span>
+            <span class="line-number" id="file-newrelic-yml-L221" rel="file-newrelic-yml-L221">221</span>
+            <span class="line-number" id="file-newrelic-yml-L222" rel="file-newrelic-yml-L222">222</span>
+            <span class="line-number" id="file-newrelic-yml-L223" rel="file-newrelic-yml-L223">223</span>
+            <span class="line-number" id="file-newrelic-yml-L224" rel="file-newrelic-yml-L224">224</span>
+            <span class="line-number" id="file-newrelic-yml-L225" rel="file-newrelic-yml-L225">225</span>
+            <span class="line-number" id="file-newrelic-yml-L226" rel="file-newrelic-yml-L226">226</span>
+          </td>
+          <td class="line-data">
+            <pre class="line-pre"><div class="line" id="file-newrelic-yml-LC1"><span class="c1">#</span></div><div class="line" id="file-newrelic-yml-LC2"><span class="c1"># This file configures the New Relic Agent.  New Relic monitors</span></div><div class="line" id="file-newrelic-yml-LC3"><span class="c1"># Ruby, Java, .NET, PHP, and Python applications with deep visibility and low overhead.</span></div><div class="line" id="file-newrelic-yml-LC4"><span class="c1"># For more information, visit www.newrelic.com.</span></div><div class="line" id="file-newrelic-yml-LC5"><span class="c1">#</span></div><div class="line" id="file-newrelic-yml-LC6"><span class="c1"># Generated July 17, 2013</span></div><div class="line" id="file-newrelic-yml-LC7"><span class="c1">#</span></div><div class="line" id="file-newrelic-yml-LC8"><span class="c1"># This configuration file is custom generated for </span></div><div class="line" id="file-newrelic-yml-LC9">&nbsp;</div><div class="line" id="file-newrelic-yml-LC10">&nbsp;</div><div class="line" id="file-newrelic-yml-LC11"><span class="c1"># Here are the settings that are common to all environments</span></div><div class="line" id="file-newrelic-yml-LC12"><span class="l-Scalar-Plain">common</span><span class="p-Indicator">:</span> <span class="nl">&amp;default_settings</span></div><div class="line" id="file-newrelic-yml-LC13">  <span class="c1"># ============================== LICENSE KEY ===============================</span></div><div class="line" id="file-newrelic-yml-LC14">&nbsp;</div><div class="line" id="file-newrelic-yml-LC15">  <span class="c1"># You must specify the license key associated with your New Relic</span></div><div class="line" id="file-newrelic-yml-LC16">  <span class="c1"># account.  This key binds your Agent&#39;s data to your account in the</span></div><div class="line" id="file-newrelic-yml-LC17">  <span class="c1"># New Relic service.</span></div><div class="line" id="file-newrelic-yml-LC18">  <span class="l-Scalar-Plain">license_key</span><span class="p-Indicator">:</span> <span class="s">&#39;&lt;%=</span><span class="nv"> </span><span class="s">JSON.parse(ENV[&quot;VCAP_SERVICES&quot;])[&quot;newrelic-n/a&quot;].first[&quot;credentials&quot;][&quot;licenseKey&quot;]</span><span class="nv"> </span><span class="s">%&gt;&#39;</span></div><div class="line" id="file-newrelic-yml-LC19">&nbsp;</div><div class="line" id="file-newrelic-yml-LC20">  <span class="c1"># Agent Enabled (Ruby/Rails Only)</span></div><div class="line" id="file-newrelic-yml-LC21">  <span class="c1"># Use this setting to force the agent to run or not run.</span></div><div class="line" id="file-newrelic-yml-LC22">  <span class="c1"># Default is &#39;auto&#39; which means the agent will install and run only</span></div><div class="line" id="file-newrelic-yml-LC23">  <span class="c1"># if a valid dispatcher such as Mongrel is running.  This prevents</span></div><div class="line" id="file-newrelic-yml-LC24">  <span class="c1"># it from running with Rake or the console.  Set to false to</span></div><div class="line" id="file-newrelic-yml-LC25">  <span class="c1"># completely turn the agent off regardless of the other settings.</span></div><div class="line" id="file-newrelic-yml-LC26">  <span class="c1"># Valid values are true, false and auto.</span></div><div class="line" id="file-newrelic-yml-LC27">  <span class="c1">#</span></div><div class="line" id="file-newrelic-yml-LC28">  <span class="c1"># agent_enabled: auto</span></div><div class="line" id="file-newrelic-yml-LC29">&nbsp;</div><div class="line" id="file-newrelic-yml-LC30">  <span class="c1"># Application Name Set this to be the name of your application as</span></div><div class="line" id="file-newrelic-yml-LC31">  <span class="c1"># you&#39;d like it show up in New Relic. The service will then auto-map</span></div><div class="line" id="file-newrelic-yml-LC32">  <span class="c1"># instances of your application into an &quot;application&quot; on your</span></div><div class="line" id="file-newrelic-yml-LC33">  <span class="c1"># dashboard page. If you want to map this instance into multiple</span></div><div class="line" id="file-newrelic-yml-LC34">  <span class="c1"># apps, like &quot;AJAX Requests&quot; and &quot;All UI&quot; then specify a semicolon</span></div><div class="line" id="file-newrelic-yml-LC35">  <span class="c1"># separated list of up to three distinct names, or a yaml list.</span></div><div class="line" id="file-newrelic-yml-LC36">  <span class="c1"># Defaults to the capitalized RAILS_ENV or RACK_ENV (i.e.,</span></div><div class="line" id="file-newrelic-yml-LC37">  <span class="c1"># Production, Staging, etc)</span></div><div class="line" id="file-newrelic-yml-LC38">  <span class="c1">#</span></div><div class="line" id="file-newrelic-yml-LC39">  <span class="c1"># Example:</span></div><div class="line" id="file-newrelic-yml-LC40">  <span class="c1">#</span></div><div class="line" id="file-newrelic-yml-LC41">  <span class="c1">#   app_name:</span></div><div class="line" id="file-newrelic-yml-LC42">  <span class="c1">#       - Ajax Service</span></div><div class="line" id="file-newrelic-yml-LC43">  <span class="c1">#       - All Services</span></div><div class="line" id="file-newrelic-yml-LC44">  <span class="c1">#</span></div><div class="line" id="file-newrelic-yml-LC45">  <span class="l-Scalar-Plain">app_name</span><span class="p-Indicator">:</span> <span class="s">&#39;&lt;%=</span><span class="nv"> </span><span class="s">JSON.parse(ENV[&quot;VCAP_APPLICATION&quot;])[&quot;application_name&quot;]</span><span class="nv"> </span><span class="s">%&gt;&#39;</span></div><div class="line" id="file-newrelic-yml-LC46">&nbsp;</div><div class="line" id="file-newrelic-yml-LC47">  <span class="c1"># When &quot;true&quot;, the agent collects performance data about your</span></div><div class="line" id="file-newrelic-yml-LC48">  <span class="c1"># application and reports this data to the New Relic service at</span></div><div class="line" id="file-newrelic-yml-LC49">  <span class="c1"># newrelic.com. This global switch is normally overridden for each</span></div><div class="line" id="file-newrelic-yml-LC50">  <span class="c1"># environment below. (formerly called &#39;enabled&#39;)</span></div><div class="line" id="file-newrelic-yml-LC51">  <span class="l-Scalar-Plain">monitor_mode</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">true</span></div><div class="line" id="file-newrelic-yml-LC52">&nbsp;</div><div class="line" id="file-newrelic-yml-LC53">  <span class="c1"># Developer mode should be off in every environment but</span></div><div class="line" id="file-newrelic-yml-LC54">  <span class="c1"># development as it has very high overhead in memory.</span></div><div class="line" id="file-newrelic-yml-LC55">  <span class="l-Scalar-Plain">developer_mode</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">false</span></div><div class="line" id="file-newrelic-yml-LC56">&nbsp;</div><div class="line" id="file-newrelic-yml-LC57">  <span class="c1"># The newrelic agent generates its own log file to keep its logging</span></div><div class="line" id="file-newrelic-yml-LC58">  <span class="c1"># information separate from that of your application. Specify its</span></div><div class="line" id="file-newrelic-yml-LC59">  <span class="c1"># log level here.</span></div><div class="line" id="file-newrelic-yml-LC60">  <span class="l-Scalar-Plain">log_level</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">info</span></div><div class="line" id="file-newrelic-yml-LC61">&nbsp;</div><div class="line" id="file-newrelic-yml-LC62">  <span class="c1"># Optionally set the path to the log file This is expanded from the</span></div><div class="line" id="file-newrelic-yml-LC63">  <span class="c1"># root directory (may be relative or absolute, e.g. &#39;log/&#39; or</span></div><div class="line" id="file-newrelic-yml-LC64">  <span class="c1"># &#39;/var/log/&#39;) The agent will attempt to create this directory if it</span></div><div class="line" id="file-newrelic-yml-LC65">  <span class="c1"># does not exist.</span></div><div class="line" id="file-newrelic-yml-LC66">  <span class="l-Scalar-Plain">log_file_path</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">/home/vcap/logs</span></div><div class="line" id="file-newrelic-yml-LC67">&nbsp;</div><div class="line" id="file-newrelic-yml-LC68">  <span class="c1"># Optionally set the name of the log file, defaults to &#39;newrelic_agent.log&#39;</span></div><div class="line" id="file-newrelic-yml-LC69">  <span class="c1"># log_file_name: &#39;newrelic_agent.log&#39;</span></div><div class="line" id="file-newrelic-yml-LC70">&nbsp;</div><div class="line" id="file-newrelic-yml-LC71">  <span class="c1"># The newrelic agent communicates with the service via https by default.  This</span></div><div class="line" id="file-newrelic-yml-LC72">  <span class="c1"># prevents eavesdropping on the performance metrics transmitted by the agent.</span></div><div class="line" id="file-newrelic-yml-LC73">  <span class="c1"># The encryption required by SSL introduces a nominal amount of CPU overhead,</span></div><div class="line" id="file-newrelic-yml-LC74">  <span class="c1"># which is performed asynchronously in a background thread.  If you&#39;d prefer</span></div><div class="line" id="file-newrelic-yml-LC75">  <span class="c1"># to send your metrics over http uncomment the following line.</span></div><div class="line" id="file-newrelic-yml-LC76">  <span class="c1"># ssl: false</span></div><div class="line" id="file-newrelic-yml-LC77">&nbsp;</div><div class="line" id="file-newrelic-yml-LC78">  <span class="c1">#============================== Browser Monitoring ===============================</span></div><div class="line" id="file-newrelic-yml-LC79">  <span class="c1"># New Relic Real User Monitoring gives you insight into the performance real users are</span></div><div class="line" id="file-newrelic-yml-LC80">  <span class="c1"># experiencing with your website. This is accomplished by measuring the time it takes for</span></div><div class="line" id="file-newrelic-yml-LC81">  <span class="c1"># your users&#39; browsers to download and render your web pages by injecting a small amount</span></div><div class="line" id="file-newrelic-yml-LC82">  <span class="c1"># of JavaScript code into the header and footer of each page.</span></div><div class="line" id="file-newrelic-yml-LC83">  <span class="l-Scalar-Plain">browser_monitoring</span><span class="p-Indicator">:</span></div><div class="line" id="file-newrelic-yml-LC84">      <span class="c1"># By default the agent automatically injects the monitoring JavaScript</span></div><div class="line" id="file-newrelic-yml-LC85">      <span class="c1"># into web pages. Set this attribute to false to turn off this behavior.</span></div><div class="line" id="file-newrelic-yml-LC86">      <span class="l-Scalar-Plain">auto_instrument</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">true</span></div><div class="line" id="file-newrelic-yml-LC87">&nbsp;</div><div class="line" id="file-newrelic-yml-LC88">  <span class="c1"># Proxy settings for connecting to the New Relic server.</span></div><div class="line" id="file-newrelic-yml-LC89">  <span class="c1">#</span></div><div class="line" id="file-newrelic-yml-LC90">  <span class="c1"># If a proxy is used, the host setting is required.  Other settings</span></div><div class="line" id="file-newrelic-yml-LC91">  <span class="c1"># are optional. Default port is 8080.</span></div><div class="line" id="file-newrelic-yml-LC92">  <span class="c1">#</span></div><div class="line" id="file-newrelic-yml-LC93">  <span class="c1"># proxy_host: hostname</span></div><div class="line" id="file-newrelic-yml-LC94">  <span class="c1"># proxy_port: 8080</span></div><div class="line" id="file-newrelic-yml-LC95">  <span class="c1"># proxy_user:</span></div><div class="line" id="file-newrelic-yml-LC96">  <span class="c1"># proxy_pass:</span></div><div class="line" id="file-newrelic-yml-LC97">&nbsp;</div><div class="line" id="file-newrelic-yml-LC98">  <span class="c1"># The agent can optionally log all data it sends to New Relic servers to a</span></div><div class="line" id="file-newrelic-yml-LC99">  <span class="c1"># separate log file for human inspection and auditing purposes. To enable this</span></div><div class="line" id="file-newrelic-yml-LC100">  <span class="c1"># feature, change &#39;enabled&#39; below to true.</span></div><div class="line" id="file-newrelic-yml-LC101">  <span class="c1"># See: https://newrelic.com/docs/ruby/audit-log</span></div><div class="line" id="file-newrelic-yml-LC102">  <span class="l-Scalar-Plain">audit_log</span><span class="p-Indicator">:</span></div><div class="line" id="file-newrelic-yml-LC103">    <span class="l-Scalar-Plain">enabled</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">false</span></div><div class="line" id="file-newrelic-yml-LC104">&nbsp;</div><div class="line" id="file-newrelic-yml-LC105">  <span class="c1"># Tells transaction tracer and error collector (when enabled)</span></div><div class="line" id="file-newrelic-yml-LC106">  <span class="c1"># whether or not to capture HTTP params.  When true, frameworks can</span></div><div class="line" id="file-newrelic-yml-LC107">  <span class="c1"># exclude HTTP parameters from being captured.</span></div><div class="line" id="file-newrelic-yml-LC108">  <span class="c1"># Rails: the RoR filter_parameter_logging excludes parameters</span></div><div class="line" id="file-newrelic-yml-LC109">  <span class="c1"># Java: create a config setting called &quot;ignored_params&quot; and set it to</span></div><div class="line" id="file-newrelic-yml-LC110">  <span class="c1">#     a comma separated list of HTTP parameter names.</span></div><div class="line" id="file-newrelic-yml-LC111">  <span class="c1">#     ex: ignored_params: credit_card, ssn, password</span></div><div class="line" id="file-newrelic-yml-LC112">  <span class="l-Scalar-Plain">capture_params</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">false</span></div><div class="line" id="file-newrelic-yml-LC113">&nbsp;</div><div class="line" id="file-newrelic-yml-LC114">  <span class="c1"># Transaction tracer captures deep information about slow</span></div><div class="line" id="file-newrelic-yml-LC115">  <span class="c1"># transactions and sends this to the New Relic service once a</span></div><div class="line" id="file-newrelic-yml-LC116">  <span class="c1"># minute. Included in the transaction is the exact call sequence of</span></div><div class="line" id="file-newrelic-yml-LC117">  <span class="c1"># the transactions including any SQL statements issued.</span></div><div class="line" id="file-newrelic-yml-LC118">  <span class="l-Scalar-Plain">transaction_tracer</span><span class="p-Indicator">:</span></div><div class="line" id="file-newrelic-yml-LC119">&nbsp;</div><div class="line" id="file-newrelic-yml-LC120">    <span class="c1"># Transaction tracer is enabled by default. Set this to false to</span></div><div class="line" id="file-newrelic-yml-LC121">    <span class="c1"># turn it off. This feature is only available at the Professional</span></div><div class="line" id="file-newrelic-yml-LC122">    <span class="c1"># and above product levels.</span></div><div class="line" id="file-newrelic-yml-LC123">    <span class="l-Scalar-Plain">enabled</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">true</span></div><div class="line" id="file-newrelic-yml-LC124">&nbsp;</div><div class="line" id="file-newrelic-yml-LC125">    <span class="c1"># Threshold in seconds for when to collect a transaction</span></div><div class="line" id="file-newrelic-yml-LC126">    <span class="c1"># trace. When the response time of a controller action exceeds</span></div><div class="line" id="file-newrelic-yml-LC127">    <span class="c1"># this threshold, a transaction trace will be recorded and sent to</span></div><div class="line" id="file-newrelic-yml-LC128">    <span class="c1"># New Relic. Valid values are any float value, or (default) &quot;apdex_f&quot;,</span></div><div class="line" id="file-newrelic-yml-LC129">    <span class="c1"># which will use the threshold for an dissatisfying Apdex</span></div><div class="line" id="file-newrelic-yml-LC130">    <span class="c1"># controller action - four times the Apdex T value.</span></div><div class="line" id="file-newrelic-yml-LC131">    <span class="l-Scalar-Plain">transaction_threshold</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">apdex_f</span></div><div class="line" id="file-newrelic-yml-LC132">&nbsp;</div><div class="line" id="file-newrelic-yml-LC133">    <span class="c1"># When transaction tracer is on, SQL statements can optionally be</span></div><div class="line" id="file-newrelic-yml-LC134">    <span class="c1"># recorded. The recorder has three modes, &quot;off&quot; which sends no</span></div><div class="line" id="file-newrelic-yml-LC135">    <span class="c1"># SQL, &quot;raw&quot; which sends the SQL statement in its original form,</span></div><div class="line" id="file-newrelic-yml-LC136">    <span class="c1"># and &quot;obfuscated&quot;, which strips out numeric and string literals.</span></div><div class="line" id="file-newrelic-yml-LC137">    <span class="l-Scalar-Plain">record_sql</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">obfuscated</span></div><div class="line" id="file-newrelic-yml-LC138">&nbsp;</div><div class="line" id="file-newrelic-yml-LC139">    <span class="c1"># Threshold in seconds for when to collect stack trace for a SQL</span></div><div class="line" id="file-newrelic-yml-LC140">    <span class="c1"># call. In other words, when SQL statements exceed this threshold,</span></div><div class="line" id="file-newrelic-yml-LC141">    <span class="c1"># then capture and send to New Relic the current stack trace. This is</span></div><div class="line" id="file-newrelic-yml-LC142">    <span class="c1"># helpful for pinpointing where long SQL calls originate from.</span></div><div class="line" id="file-newrelic-yml-LC143">    <span class="l-Scalar-Plain">stack_trace_threshold</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">0.500</span></div><div class="line" id="file-newrelic-yml-LC144">&nbsp;</div><div class="line" id="file-newrelic-yml-LC145">    <span class="c1"># Determines whether the agent will capture query plans for slow</span></div><div class="line" id="file-newrelic-yml-LC146">    <span class="c1"># SQL queries.  Only supported in mysql and postgres.  Should be</span></div><div class="line" id="file-newrelic-yml-LC147">    <span class="c1"># set to false when using other adapters.</span></div><div class="line" id="file-newrelic-yml-LC148">    <span class="c1"># explain_enabled: true</span></div><div class="line" id="file-newrelic-yml-LC149">&nbsp;</div><div class="line" id="file-newrelic-yml-LC150">    <span class="c1"># Threshold for query execution time below which query plans will</span></div><div class="line" id="file-newrelic-yml-LC151">    <span class="c1"># not be captured.  Relevant only when `explain_enabled` is true.</span></div><div class="line" id="file-newrelic-yml-LC152">    <span class="c1"># explain_threshold: 0.5</span></div><div class="line" id="file-newrelic-yml-LC153">&nbsp;</div><div class="line" id="file-newrelic-yml-LC154">  <span class="c1"># Error collector captures information about uncaught exceptions and</span></div><div class="line" id="file-newrelic-yml-LC155">  <span class="c1"># sends them to New Relic for viewing</span></div><div class="line" id="file-newrelic-yml-LC156">  <span class="l-Scalar-Plain">error_collector</span><span class="p-Indicator">:</span></div><div class="line" id="file-newrelic-yml-LC157">&nbsp;</div><div class="line" id="file-newrelic-yml-LC158">    <span class="c1"># Error collector is enabled by default. Set this to false to turn</span></div><div class="line" id="file-newrelic-yml-LC159">    <span class="c1"># it off. This feature is only available at the Professional and above</span></div><div class="line" id="file-newrelic-yml-LC160">    <span class="c1"># product levels.</span></div><div class="line" id="file-newrelic-yml-LC161">    <span class="l-Scalar-Plain">enabled</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">true</span></div><div class="line" id="file-newrelic-yml-LC162">&nbsp;</div><div class="line" id="file-newrelic-yml-LC163">    <span class="c1"># Rails Only - tells error collector whether or not to capture a</span></div><div class="line" id="file-newrelic-yml-LC164">    <span class="c1"># source snippet around the place of the error when errors are View</span></div><div class="line" id="file-newrelic-yml-LC165">    <span class="c1"># related.</span></div><div class="line" id="file-newrelic-yml-LC166">    <span class="l-Scalar-Plain">capture_source</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">true</span></div><div class="line" id="file-newrelic-yml-LC167">&nbsp;</div><div class="line" id="file-newrelic-yml-LC168">    <span class="c1"># To stop specific errors from reporting to New Relic, set this property</span></div><div class="line" id="file-newrelic-yml-LC169">    <span class="c1"># to comma-separated values.  Default is to ignore routing errors,</span></div><div class="line" id="file-newrelic-yml-LC170">    <span class="c1"># which are how 404&#39;s get triggered.</span></div><div class="line" id="file-newrelic-yml-LC171">    <span class="l-Scalar-Plain">ignore_errors</span><span class="p-Indicator">:</span> <span class="s">&quot;ActionController::RoutingError,Sinatra::NotFound&quot;</span></div><div class="line" id="file-newrelic-yml-LC172">&nbsp;</div><div class="line" id="file-newrelic-yml-LC173">  <span class="c1"># If you&#39;re interested in capturing memcache keys as though they</span></div><div class="line" id="file-newrelic-yml-LC174">  <span class="c1"># were SQL uncomment this flag. Note that this does increase</span></div><div class="line" id="file-newrelic-yml-LC175">  <span class="c1"># overhead slightly on every memcached call, and can have security</span></div><div class="line" id="file-newrelic-yml-LC176">  <span class="c1"># implications if your memcached keys are sensitive</span></div><div class="line" id="file-newrelic-yml-LC177">  <span class="c1"># capture_memcache_keys: true</span></div><div class="line" id="file-newrelic-yml-LC178">&nbsp;</div><div class="line" id="file-newrelic-yml-LC179"><span class="c1"># Application Environments</span></div><div class="line" id="file-newrelic-yml-LC180"><span class="c1"># ------------------------------------------</span></div><div class="line" id="file-newrelic-yml-LC181"><span class="c1"># Environment-specific settings are in this section.</span></div><div class="line" id="file-newrelic-yml-LC182"><span class="c1"># For Rails applications, RAILS_ENV is used to determine the environment.</span></div><div class="line" id="file-newrelic-yml-LC183"><span class="c1"># For Java applications, pass -Dnewrelic.environment &lt;environment&gt; to set</span></div><div class="line" id="file-newrelic-yml-LC184"><span class="c1"># the environment.</span></div><div class="line" id="file-newrelic-yml-LC185">&nbsp;</div><div class="line" id="file-newrelic-yml-LC186"><span class="c1"># NOTE if your application has other named environments, you should</span></div><div class="line" id="file-newrelic-yml-LC187"><span class="c1"># provide newrelic configuration settings for these environments here.</span></div><div class="line" id="file-newrelic-yml-LC188">&nbsp;</div><div class="line" id="file-newrelic-yml-LC189"><span class="l-Scalar-Plain">development</span><span class="p-Indicator">:</span></div><div class="line" id="file-newrelic-yml-LC190">  <span class="l-Scalar-Plain">&lt;&lt;</span><span class="p-Indicator">:</span> <span class="nv">*default_settings</span></div><div class="line" id="file-newrelic-yml-LC191">  <span class="c1"># Turn off communication to New Relic service in development mode (also</span></div><div class="line" id="file-newrelic-yml-LC192">  <span class="c1"># &#39;enabled&#39;).</span></div><div class="line" id="file-newrelic-yml-LC193">  <span class="c1"># NOTE: for initial evaluation purposes, you may want to temporarily</span></div><div class="line" id="file-newrelic-yml-LC194">  <span class="c1"># turn the agent on in development mode.</span></div><div class="line" id="file-newrelic-yml-LC195">  <span class="l-Scalar-Plain">monitor_mode</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">false</span></div><div class="line" id="file-newrelic-yml-LC196">&nbsp;</div><div class="line" id="file-newrelic-yml-LC197">  <span class="c1"># Rails Only - when running in Developer Mode, the New Relic Agent will</span></div><div class="line" id="file-newrelic-yml-LC198">  <span class="c1"># present performance information on the last 100 transactions you have</span></div><div class="line" id="file-newrelic-yml-LC199">  <span class="c1"># executed since starting the mongrel.</span></div><div class="line" id="file-newrelic-yml-LC200">  <span class="c1"># NOTE: There is substantial overhead when running in developer mode.</span></div><div class="line" id="file-newrelic-yml-LC201">  <span class="c1"># Do not use for production or load testing.</span></div><div class="line" id="file-newrelic-yml-LC202">  <span class="l-Scalar-Plain">developer_mode</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">true</span></div><div class="line" id="file-newrelic-yml-LC203">&nbsp;</div><div class="line" id="file-newrelic-yml-LC204">  <span class="c1"># Enable textmate links</span></div><div class="line" id="file-newrelic-yml-LC205">  <span class="c1"># textmate: true</span></div><div class="line" id="file-newrelic-yml-LC206">&nbsp;</div><div class="line" id="file-newrelic-yml-LC207"><span class="l-Scalar-Plain">test</span><span class="p-Indicator">:</span></div><div class="line" id="file-newrelic-yml-LC208">  <span class="l-Scalar-Plain">&lt;&lt;</span><span class="p-Indicator">:</span> <span class="nv">*default_settings</span></div><div class="line" id="file-newrelic-yml-LC209">  <span class="c1"># It almost never makes sense to turn on the agent when running</span></div><div class="line" id="file-newrelic-yml-LC210">  <span class="c1"># unit, functional or integration tests or the like.</span></div><div class="line" id="file-newrelic-yml-LC211">  <span class="l-Scalar-Plain">monitor_mode</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">false</span></div><div class="line" id="file-newrelic-yml-LC212">&nbsp;</div><div class="line" id="file-newrelic-yml-LC213"><span class="c1"># Turn on the agent in production for 24x7 monitoring. NewRelic</span></div><div class="line" id="file-newrelic-yml-LC214"><span class="c1"># testing shows an average performance impact of &lt; 5 ms per</span></div><div class="line" id="file-newrelic-yml-LC215"><span class="c1"># transaction, you can leave this on all the time without</span></div><div class="line" id="file-newrelic-yml-LC216"><span class="c1"># incurring any user-visible performance degradation.</span></div><div class="line" id="file-newrelic-yml-LC217"><span class="l-Scalar-Plain">production</span><span class="p-Indicator">:</span></div><div class="line" id="file-newrelic-yml-LC218">  <span class="l-Scalar-Plain">&lt;&lt;</span><span class="p-Indicator">:</span> <span class="nv">*default_settings</span></div><div class="line" id="file-newrelic-yml-LC219">  <span class="l-Scalar-Plain">monitor_mode</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">true</span></div><div class="line" id="file-newrelic-yml-LC220">&nbsp;</div><div class="line" id="file-newrelic-yml-LC221"><span class="c1"># Many applications have a staging environment which behaves</span></div><div class="line" id="file-newrelic-yml-LC222"><span class="c1"># identically to production. Support for that environment is provided</span></div><div class="line" id="file-newrelic-yml-LC223"><span class="c1"># here.  By default, the staging environment has the agent turned on.</span></div><div class="line" id="file-newrelic-yml-LC224"><span class="l-Scalar-Plain">staging</span><span class="p-Indicator">:</span></div><div class="line" id="file-newrelic-yml-LC225">  <span class="l-Scalar-Plain">&lt;&lt;</span><span class="p-Indicator">:</span> <span class="nv">*default_settings</span></div><div class="line" id="file-newrelic-yml-LC226">  <span class="l-Scalar-Plain">monitor_mode</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">true</span></div></pre>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+          </div>
+        </div>
+    <div id="comments" class="new-comments">
+
+    </div>
+      <p class="uncommentable"><span class="octicon octicon-alert"></span> Please <a href="/login?return_to=/scottfrederick/6033530" rel="nofollow">sign in</a> to comment on this gist.</p>
+  </div>
+</div>
+
+  <div class="context-overlay"></div>
+</div>
+
+    </div>
+    <div class="slow-loading-overlay"></div>
+  </div>
+
+  <div id="ajax-error-message" class="flash flash-error">
+    <div class="container">
+      <span class="octicon octicon-alert"></span>
+      Something went wrong with that request. Please try again.
+      <a href="#" class="octicon octicon-remove-close ajax-error-dismiss"></a>
+    </div>
+  </div>
+
+  <footer>
+    <div id="footer">
+  <div class="container clearfix">
+
+    <!-- Served fresh by github-fe103-cp1-prd.iad.github.net -->
+    <p class="right">&copy; 2013 GitHub Inc. All rights reserved.</p>
+    <a class="left" href="/">
+      <span class="mega-octicon octicon-mark-github"></span>
+    </a>
+    <ul id="legal">
+      <li><a href="https://github.com/blog">The GitHub Blog</a></li>
+      <li><a href="mailto:support@github.com">Support</a></li>
+      <li><a href="https://github.com/contact">Contact</a></li>
+    </ul>
+
+  </div><!-- /.container -->
+</div><!-- /.#footer -->
+
+  </footer>
+
+</body>
+</html>
