@@ -1,6 +1,5 @@
 ---
 title: Redis Cloud
-category: marketplace
 ---
 
 [Redis Cloud](http://redis-cloud.com) is a fully-managed cloud service for hosting and running your Redis dataset in a highly-available and scalable manner, with predictable and stable top performance. You can quickly and easily get your apps up and running with Redis Cloud through its add-on for Cloud Foundry, just tell us how much memory you need and get started instantly with your first Redis database.

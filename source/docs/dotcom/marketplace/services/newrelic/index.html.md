@@ -48,7 +48,7 @@ All three of these things can be found by logging into your New Relic account as
   $ bundle install
   </pre>
 
-* Add a New Relic configuration file to your project. This file needs to be configured with your license key, but we've modified New Relic's config file for Ruby to automatically read your license key from the [VCAP_SERVICES](#vcap-services) environment variable. [Download the modified newrelic.yml here](newrelic.yml).
+* Add a New Relic configuration file to your project. This file needs to be configured with your license key, but we've modified New Relic's config file for Ruby to automatically read your license key from the [VCAP_SERVICES](#vcap-services) environment variable. [Download the modified newrelic.yml here](./newrelic.yml).
 
 * All you have left to do is push your app! If you don't already have a New Relic service instance in your space, choose to create one when prompted. If you already have a New Relic service instance in your space, choose to bind to an existing service when prompted. Now generate some usage on your app, and log into New Relic via SSO as described above; you should see data coming through!
 
