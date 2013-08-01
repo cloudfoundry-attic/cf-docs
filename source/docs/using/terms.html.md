@@ -213,7 +213,7 @@ This page briefly describes a number of terms that are commonly used in Cloud Fo
 
 > In Cloud Foundry, a space is a logical grouping of applications and services within an [organization](#org). Examples may include personal spaces which are similar to a user's home directory in an operating system or shared Spaces like "Development", "Staging", and "Production". Users in an organization must be granted specific permissions in a Space in order to access it. 
 <br><br>
-> For more information see [Organizations and Spaces](../../using/managing-apps/orgs-and-spaces.html).
+> For more information see [Organizations and Spaces](../../docs/using/managing-apps/orgs-and-spaces.html).
 
 ## <a id='staging'></a> staging ##
 
@@ -236,10 +236,7 @@ This page briefly describes a number of terms that are commonly used in Cloud Fo
 
 ## <a id='uaa'></a>User Account and Authentication Service (UAA)  ##
 
-> In Cloud Foundry, the User Account and Authentication Service (UAA) provides single sign-on for web applications and secures Cloud Foundry resources. The UAA acts as an OAuth 2.0 Authorization Server. It grants access tokens to client applications for use in accessing Resource Servers in the platform, including the Cloud Controller.   
-<br><br>
-
-> For more information, see [User Account and Authentication Service](../architecture/uaa.html).
+> In Cloud Foundry, the User Account and Authentication Service (UAA) provides single sign-on for web applications and secures Cloud Foundry resources. The UAA acts as an OAuth 2.0 Authorization Server. It grants access tokens to client applications for use in accessing Resource Servers in the platform, including the Cloud Controller. <br><br>For more information, see [User Account and Authentication Service](../architecture/uaa.html).
 
 ## <a id='vcap-services'></a>VCAP_SERVICES##
 
