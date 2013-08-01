@@ -15,7 +15,9 @@ This table below lists all cf commands. Click a command in the table for informa
 
 ## <a id='installing'></a>Installing cf ##
 
-cf requires Ruby and RubyGems. For information about installing Ruby and RubyGems, see [Installing Ruby](/docs/common/install_ruby.html).
+cf requires Ruby and RubyGems. Ruby 1.9.2 or later is required. Ruby 1.9.3 or 2.0 is recommended.
+
+For information about installing Ruby and RubyGems, see [Installing Ruby](/docs/common/install_ruby.html).
 
 After installing Ruby and RubyGems, use this command to install the latest released version of cf:
 
