@@ -1,5 +1,0 @@
----
-title: Lift - Service Bindings
----
-
-

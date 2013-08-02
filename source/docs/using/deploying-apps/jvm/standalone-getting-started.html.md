@@ -1,5 +1,0 @@
----
-title: Standalone - Getting started
----
-
-

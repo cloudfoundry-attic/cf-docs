@@ -4,20 +4,18 @@ In this tutorial we learn how to deploy a simple Wordpress application on vCloud
 
 ##Prerequisites##
 
-
 To get started with BOSH on vCloud you need:
 
 1. An account in a [vCloud organization](http://pubs.vmware.com/vcd-51/topic/com.vmware.vcloud.users.doc_51/GUID-B2D21D95-B37F-4339-9887-F7788D397FD8.html) with [organization administrator](http://pubs.vmware.com/vcd-51/topic/com.vmware.vcloud.users.doc_51/GUID-5B60A9C0-612A-4A3A-9ECE-694C40272505.html) credentials
 2. A vCloud virtual datacenter with an Internet routable network and a block of assigned IP addresses
 3. A Mac or *NIX computer
-
+4. The [BOSH CLI](../../bosh/setup/index.html)
 
 ##Installing the BOSH Deployer##
 
 We assume you already have Ruby (1.9.2) and rubygems (1.8) installed. To install the BOSH deployer gem (which includes the BOSH CLI):
 
 	gem install bosh_deployer
-
 
 ## Micro BOSH Stemcells##
 
@@ -67,7 +65,7 @@ The BOSH deployer will deploy applications based on files in expected directory 
 
 Micro BOSH configurations are set in the `micro_bosh.yml`, which you need to create.
 
-+ Create `~/deployments/vcloud/micro_bosh.yml` using [this template](../sample-manifest/micro_bosh-vcloud.yml).
++ Create `~/deployments/vcloud/micro_bosh.yml` using [this template](../micro_bosh-vcloud.yml).
 
    1. Update the instance of `x.x.x.x` with one of the IPs from the block assigned to you. Change the other IP addresses `n.n.n.n`  to match your network’s netmask, gateway, DNS and NTP server addresses.
    2. Under the vcds section, replace `v.v.v.v` with the address of the vCloud instance and enter your vCloud credentials.
@@ -151,7 +149,7 @@ Now we download the latest stem cellto upload to our micro BOSH instance.
 
 		bosh status
 
-   2. Copy the file [wordpress-vcloud.yml](../sample-manifest/wordpress-vcloud.yml) in the bosh-sample-release directory and update it to suit your network.
+   2. Copy the file [wordpress-vcloud.yml](../wordpress-vcloud.yml) in the bosh-sample-release directory and update it to suit your network.
 
 
 ##Deploy##

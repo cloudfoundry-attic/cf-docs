@@ -1,0 +1,28 @@
+---
+title: Using Services
+---
+
+Cloud Foundry Services are any type of add-on that can be provisioned alongside your application; for example, a database or an account on a third-party SaaS provider.
+
+Some services support the concept of "binding" with an application. When a service is bound to an application, connection information and credentials specific to that service instance are placed in an environment variable `VCAP_SERVICES` in JSON format that are visible to the application process. 
+
+* [Getting Started - Adding a Service](../../dotcom/adding-a-service.html)
+* [Managing Services from the Command Line](managing-services.html)
+* [VCAP_SERVICES Environment Variable](environment-variable.html)
+* [Tunnelling to Services Instances](tunnelling-with-services.html)
+
+## Services Architecture
+
+* [Services Architecture](../../running/architecture/services/)
+
+If you are operating your own instance of Cloud Foundry and are interested in binding applications to services which are external to Cloud Foundry, see [Service Connector](/docs/running/architecture/services/service-connector.html).
+
+## <a id='configuring'></a>Configuring Connections for Different Frameworks ##
+ 
+The procedure for configuring an application to connect to a service varies by framework. Note that auto-configuration is not supported for all frameworks. The table below has links to instructions for configuring service connections in different environments.  
+
+| Runtime               | Framework                   |
+| :-------------        |:-------------               |
+| Java / JVM        | <li>[Spring](spring-service-bindings.html) <li>[Grails](grails-service-bindings.html) <li>[Lift](lift-service-bindings.html) |
+| Ruby            | <li>[Rack, Rails, or Sinatra](ruby-service-bindings.html) |
+| Javascript          | <li>[Node.js](node-service-bindings.html) |

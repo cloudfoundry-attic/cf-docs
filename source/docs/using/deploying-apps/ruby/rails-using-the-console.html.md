@@ -2,31 +2,18 @@
 title: Rails 3, Using the Console
 ---
 
-### Quick links ###
-* [Introduction](#intro)
-* [Installing the console plugin for VMC](#install)
-* [Invoking the console](#invoke)
-
 ## <a id='intro'></a>Introduction ##
 
-From debugging issues on a production application to managing data, the Rails console is an invaluable tool. VMC makes it very simple to get a connection to a Rails console up and running.
-
-## <a id='install'></a>Installing the console plugin for VMC ##
-
-First step, make sure you have the 'tunnel-vmc-plugin' gem installed;
-
-<pre class="terminal">
-$ gem install tunnel-vmc-plugin
-</pre>
+**Rails Console is not yet available for Cloud Foundry v2**.
 
 ## <a id='invoke'></a>Invoking the console ##
 
-Next, invoke the console with the following command;
+Once Rails Console support is available on Cloud Foundry v2, you will be able to invoke the console with a command like:
 
 <pre class="terminal">
-$ vmc console [application name]
+$ cf console [application name]
 Opening console on port 10000... OK
-irb():001:0> 
+irb():001:0>
 </pre>
 
 The familiar IRB-style console should open with a live connection to the Rails application.

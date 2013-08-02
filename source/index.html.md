@@ -2,86 +2,128 @@
 title: Welcome to Cloud Foundry Documentation
 ---
 
-This set of materials will replace all Cloud Foundry documentation, for cloudfoundry.com, vcap, and bosh, in Q1 of 2013.
+<div class="column-left">
+  <div class="column-title">
+  <h4>Hosted Developer Edition</h4>
+  </div>
+   <p>Available at <a href="http://run.pivotal.io">run.pivotal.io</a></p>
+   <hr>
+  <p><a href="docs/dotcom/getting-started.html">Getting Started</a></p>
+  <p><a href="docs/dotcom/adding-a-service.html">Adding a Service</a></p>
+  </p>
 
-This information is forward-looking and favors 'next generation' components which may not be applicable to existing Cloud Foundry installations. 
+  <hr>
 
-Docs are a work in progress and we welcome your [contributions](http://github.com/cloudfoundry/cf-docs).
+   <p>
+    <a href="docs/dotcom/marketplace/">Services Marketplace</a>
+  </p>
 
-For a look at our roadmap - go [here](docs/roadmap.html).
+ <hr>
 
-## [Using Cloud Foundry](docs/using/index.html)
+</div>
 
-For developers pushing applications to Cloud Foundry.
+<div class="column-middle">
+  <div class="column-title">
+      <h4>Using Cloud Foundry</h4>
+  </div>
+  <p>Push applications to Cloud Foundry.</p>
 
-* [Deploying Apps](docs/using/deploying-apps/index.html)
+  <hr>
+    <p><a href="docs/using/terms.html">Cloud Foundry Glossary</a></p>
 
-  * [Java / JVM-based](docs/using/deploying-apps/jvm/index.html)
+  <hr>
+  <p><a href="docs/using/app-arch/index.html">App Design for the Cloud</a></p>
 
-  * [Node.js](docs/using/deploying-apps/javascript/index.html)
+  <hr>
+  <p>Application Deployment<br>
 
-  * [Ruby](docs/using/deploying-apps/ruby/index.html)
+  <a href="docs/using/deploying-apps/index.html">Deploy Your App</a><br>
+  <a href="docs/using/deploying-apps/manifest.html">Application Manifests (manifest.yml)</a><br>  
+  <a href="docs/using/deploying-apps/java-buildpack.html">About the Java Buildpack</a><br> 
+  <a href="docs/using/deploying-apps/ruby-buildpack.html">About the Ruby Buildpack</a><br> 
+  <a href="docs/using/deploying-apps/node-buildpack.html">About the Node.js Buildpack</a><br> 
 
-  * [Custom](docs/using/deploying-apps/custom/index.html)
+  </p>
+  <hr>
 
-* [Managing Apps](docs/using/managing-apps/index.html)
+  <p>Client Tools<br>
+  <a href="docs/using/managing-apps/cf/index.html">cf command line</a><br>
+  <a href="docs/using/managing-apps/ide/index.html">IDE Integration</a><br>
+  <a href="docs/using/managing-apps/build-tools/index.html">Build Tool Integration</a>
+  </p>
 
-  * [API](docs/reference/api.html)
+  <hr>
+  <p>Managing Organizations and Domains<br>
+  <a href="docs/using/managing-apps/orgs-and-spaces.html">Organizations and Spaces</a><br>
+  <a href="docs/using/managing-apps/custom-domains/index.html">About Domains, Subdomains and Routes</a>
+  </p>
+  <hr>
+  <p>
+  <a href="docs/using/services/">Using Services</a></br>
+  <a href="/docs/using/services/managing-services.html">Managing Services with CLI</a></br>
+  <a href="/docs/using/services/environment-variable.html">VCAP_SERVICES Environment Variable</a></br>
+  <a href="/docs/using/services/tunnelling-with-services.html">Tunneling to Services</a>
+  </p>
+    <hr>
 
-  * [vmc](docs/using/managing-apps/vmc/index.html)
+</div>
 
-  * [Spring Tool Suite](docs/using/managing-apps/sts/index.html)
+<div class="column-right">
+  <div class="column-title">
+    <a href="docs/running/index.html">
+      <h4>Running Cloud Foundry</h4>
+    </a>
+  </div>
+  <p>Manage your Cloud Foundry deployment.</p>
+
+  <hr>
+
+  <p>
+  Understanding the Architecture<br>
+  <a href="docs/running/architecture/">A Tour of Each Component</a><br>
+  <a href="docs/running/architecture/how-applications-are-staged.html">How Applications Are Staged</a></p>
+
+  <hr>
+
+  <p>BOSH<br>
+  <a href="docs/running/bosh/">Understanding BOSH</a><br>
+  <a href="docs/running/bosh/components/index.html">Components</a><br>
+  <a href="docs/running/bosh/setup/index.html">Local Setup</a><br>
+  <a href="docs/running/bosh/reference/index.html">Reference</a><br>
+  <a href="docs/running/bosh/reference/bosh-cli.html">BOSH CLI</a><br>
   
-  * [Build tools](docs/using/managing-apps/build-tools/index.html)
+  </p>
 
-  * [Libraries](docs/using/managing-apps/libs/index.html)
+  <hr>
 
-* [Working with Services](docs/using/working-with-services/index.html)
+  <p>
+  Deploy Cloud Foundry<br>
+  <a href="docs/running/bosh/setup/index.html">Set Up BOSH</a><br>
+  <a href="docs/running/deploying-cf/ec2/index.html">Deploy  to AWS</a><br>
+  <a href="docs/running/deploying-cf/openstack/index.html">Deploy to OpenStack</a><br>   
+  <a href="docs/running/deploying-cf/vsphere/index.html">Deploy to vSphere</a><br>
+  <a href="docs/running/deploying-cf/vcloud/deploying_to_vcloud_director.html">Deploy to vCloud Director</a><br>
+  <a href="docs/running/deploying-cf-with-chef/index.html">Deploy with Chef</a><br>
+  <a href="docs/running/deploying-cf/run-local.html">Run a Local Cloud Foundry Instance</a>
 
-  * [MySQL](docs/using/working-with-services/mysql.html)
+  </p>
 
-  * [PostgreSQL](docs/using/working-with-services/postgresql.html)
+  <hr>
+ 
+  <p>
+  Managing Cloud Foundry<br>
+  <a href="docs/running/managing-cf/managing-users.html">Users</a><br>
+  <a href="docs/running/managing-cf/monitoring.html">Monitoring</a><br>
+  <a href="docs/running/managing-cf/logging.html">Logging</a>
+  </p>
 
-  * [Redis](docs/using/working-with-services/redis.html)
+  <p>
+  Troubleshooting<br>
+  <a href="docs/running/troubleshooting/troubleshooting-apps.html">Apps</a><br>
+  <a href="docs/running/troubleshooting/troubleshooting-warden-services.html">Warden Services</a>
+  </p>
 
-  * [MongoDB](docs/using/working-with-services/mongodb.html)
+</div>
 
-  * [RabbitMQ](docs/using/working-with-services/rabbit.html)
+For a look at what is planned - look at our [Roadmap](docs/roadmap.html).
 
-## [Running Cloud Foundry](docs/running/index.html)
-
-For dev/ops people managing instances of Cloud Foundry.
-
-* [Cloud Foundry API](docs/running/api/index.html)
-
-* [Cloud Foundry Architecture](docs/running/architecture/index.html)
-
-* [Deploying Cloud Foundry](docs/running/deploying-cf/index.html)
-
-  * [Components](docs/running/deploying-cf/components/index.html)
-
-  * [Understanding Releases](docs/running/deploying-cf/releases/index.html)
-
-  * [Deploying to EC2](docs/running/deploying-cf/ec2/index.html)
-
-  * [Deploying to OpenStack](docs/running/deploying-cf/openstack/index.html)
-
-  * [Deploying to vSphere](docs/running/deploying-cf/vsphere/index.html)
-
-* [Micro Cloud Foundry](docs/running/micro_cloud_foundry/index.html)
-
-* [Monitoring Cloud Foundry](docs/running/monitoring/index.html)
-
-## Reference
-
-Detailed reference materials
-
-* [API](docs/reference/api.html)
-
-## [Community](docs/community/index.html)
-
-Extensions, tools and services provided by the Cloud Foundry community.
-
-  * [Hosting providers](docs/community/hosting-providers.html)
-  * [Consulting](docs/community/consulting.html)
-  * [Contrib](docs/community/contrib.html)

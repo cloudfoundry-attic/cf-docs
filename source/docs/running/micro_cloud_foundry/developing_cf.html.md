@@ -34,12 +34,12 @@ To test it:
 $ ping something.[your domain]
 </pre>
 
-## Targetting with vmc
+## Targetting with cf
 
 <pre class="terminal">
-$ vmc target ccng.[your domain]
+$ cf target ccng.[your domain]
 
-$ vmc login micro@vcap.me
+$ cf login micro@vcap.me
 </pre>
 
 The password is "micro".
@@ -47,16 +47,16 @@ The password is "micro".
 Create an org and space:
 
 <pre class="terminal">
-$ vmc create-org org1
+$ cf create-org org1
 
-$ vmc logout
-$ vmc login micro@vcap.me
+$ cf logout
+$ cf login micro@vcap.me
 
-$ vmc create-space space1
-$ vmc target ccng.[your domain] --ask-space
+$ cf create-space space1
+$ cf target ccng.[your domain] --ask-space
 </pre>
 
-Push a test app using [vmc](../../using/managing-apps/vmc) or another Cloud Foundry [application management tool](../../using/managing-apps).
+Push a test app using [cf](../../using/managing-apps/cf) or another Cloud Foundry [application management tool](../../using/managing-apps).
 
 ## Proof of concept development workflow
 
@@ -69,7 +69,9 @@ $ brew install watch
 
 $ cd ~/src/dea_ng
 
-$ watch -n 2 rsync -avz lib/ root@[your domain]:/var/vcap/packages/dea_next/lib
+$ bundle install
+
+$ watch -n 2 rsync -avz ./ root@[your domain]:/var/vcap/packages/dea_next
 </pre>
 
 Change the dea_next code locally, then on the Micro Cloud run:

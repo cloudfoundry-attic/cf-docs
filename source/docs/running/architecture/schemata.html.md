@@ -1,5 +1,5 @@
 ---
-title: Architecture - Schemata
+title: Schemata
 ---
 
 This page should describe Schemata

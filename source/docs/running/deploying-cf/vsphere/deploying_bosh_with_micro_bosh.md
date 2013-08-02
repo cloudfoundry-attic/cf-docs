@@ -1,72 +1,162 @@
-# Deploy BOSH as an application using micro BOSH. #
+---
+title: Deploying BOSH with Micro BOSH
+---
 
-1. Deploy micro BOSH. See the steps in the previous section.
+This guide describes the process for deploying BOSH as an application using micro BOSH. 
 
-1. Once your micro BOSH instance is deployed, you can target its Director:
+## <a id="prerequisites"></a>Prerequisites ##
 
-		$ bosh micro status
-		...
-		Target         micro (http://11.23.194.100:25555) Ver: 0.3.12 (00000000)
+* Micro BOSH should be deployed. See the steps in the [previous section](deploying_micro_bosh.html)
 
-		$ bosh target http://11.23.194.100:25555
-		Target set to 'micro (http://11.23.194.100:25555) Ver: 0.3.12 (00000000)'
+## <a id="target"></a>Target Micro BOSH ##
 
-		$ bosh status
-		Updating director data... done
+Once your micro BOSH instance is deployed, you can target its Director:
 
-		Target         micro (http://11.23.194.100:25555) Ver: 0.3.12 (00000000)
-		UUID           b599c640-7351-4717-b23c-532bb35593f0
-		User           admin
-		Deployment     not set
+<pre class="terminal">
+$ bosh micro status
+...
+Target         micro (http://11.23.194.100:25555) Ver: 0.3.12 (00000000)
 
-### Download a BOSH stemcell
+$ bosh target 11.23.194.100
+Target set to 'your-micro-BOSH'
+Your username: admin
+Enter password: *****
+Logged in as 'admin'
 
-1. List public stemcells with bosh public stemcells
+$ bosh status
+Updating director data... done
 
-		% mkdir -p ~/stemcells
-		% cd stemcells
-		% bosh public stemcells
-		+-------------------------------+----------------------------------------------------+
-		| Name                          | Url                                                |
-		+-------------------------------+----------------------------------------------------+
-		| bosh-stemcell-0.4.7.tgz       | https://blob.cfblob.com/rest/objects/4e4e7...h120= |
-		| micro-bosh-stemcell-0.1.0.tgz | https://blob.cfblob.com/rest/objects/4e4e7...5Mms= |
-		| bosh-stemcell-0.3.0.tgz       | https://blob.cfblob.com/rest/objects/4e4e7...mw1w= |
-		| bosh-stemcell-0.4.4.tgz       | https://blob.cfblob.com/rest/objects/4e4e7...r144= |
-		+-------------------------------+----------------------------------------------------+
-		To download use 'bosh download public stemcell <stemcell_name>'.
+Director
+  Name      your-micro-BOSH
+ 	URL       http://11.23.194.100:25555
+ 	Version   0.5.2 (release:ffed4d4a bosh:21e0b0bc)
+ 	User      admin
+ 	UUID      729b6100-4035-4b35-ab9a-cf8299719fe3
+ 	CPI       vsphere
 
+Deployment
+  not set
+</pre>
 
-1. Download a public stemcell. *NOTE, in this case you do not use the micro bosh stemcell.*
+*Note*: Create a new user using `bosh create user` which overrides the default username and password.
 
-		bosh download public stemcell bosh-stemcell-0.1.0.tgz
+## <a id="download-stemcell"></a>Download a BOSH Stemcell ##
 
-1. Upload the downloaded stemcell to micro BOSH.
+List public stemcells with the `bosh public stemcells` command:
 
-		bosh upload stemcell bosh-stemcell-0.1.0.tgz
+<pre class="terminal">
+$ mkdir -p ~/stemcells
+$ cd ~/stemcells
+$ bosh public stemcells
 
-### Upload a BOSH release ###
++---------------------------------------+------------------------+
+| Name                                  | Tags                   |
++---------------------------------------+------------------------+
+| bosh-stemcell-aws-0.6.4.tgz           | aws, stable            |
+| bosh-stemcell-vsphere-0.6.4.tgz       | vsphere, stable        |
+| bosh-stemcell-vsphere-0.6.7.tgz       | vsphere, stable        |
+| micro-bosh-stemcell-aws-0.6.4.tgz     | aws, micro, stable     |
+| micro-bosh-stemcell-vsphere-0.6.4.tgz | vsphere, micro, stable |
++---------------------------------------+------------------------+
+To download use `bosh download public stemcell <stemcell_name>'. For full url use --full.
+</pre>
 
-1. You can create a BOSH release or use one of the public releases. The following steps show the use of a public release.
+Download a public stemcell. *Note*: in this case you do not use the micro bosh stemcell.
 
-		cd /home/bosh_user
-		gerrit clone ssh://[<your username>@]reviews.cloudfoundry.org:29418/bosh-release.git
+<pre class="terminal">
+$ bosh download public stemcell bosh-stemcell-vsphere-0.6.7.tgz 
+</pre>
 
-1. Upload a public release from bosh-release
+Upload the downloaded stemcell to micro BOSH.
 
-		cd /home/bosh_user/bosh-release/
-		bosh upload releases/release bosh-10.yml
+<pre class="terminal">
+$ bosh upload stemcell bosh-stemcell-vsphere-0.6.7.tgz
+</pre>
 
+You can see the uploaded stemcells (on your Micro BOSH) by using `bosh stemcells`:
 
-### Setup a BOSH deployment manifest and deploy ###
+<pre class="terminal">
+$ bosh stemcells
 
-1. Create and setup a BOSH deployment manifest. Look at the sample BOSH manifest in (  https://github.com/cloudfoundry/oss-docs/blob/master/bosh/samples/bosh.yml). Assuming you have created a `bosh.yml` in `/home/bosh_user`.
++---------------+---------+-----------------------------------------+
+| Name          | Version | CID                                     |
++---------------+---------+-----------------------------------------+
+| bosh-stemcell | 0.6.7   | sc-1033810d-f3ff-42b5-8d39-58cb035638fc |
++---------------+---------+-----------------------------------------+
+</pre>
 
-		cd /home/bosh_user
-		bosh deployment ./bosh.yml
+## <a id="upload-release"></a>Upload a BOSH release ##
 
-1. Deploy BOSH
+Rather than creating a new release, we will use the public release from in the [local setup instructions](../../bosh/setup/index.html).
 
-		bosh deploy.
+<pre class="terminal">
+$ cd ~/bosh-release
+$ bosh upload release releases/bosh-11.yml
+</pre>
 
-1. Target the newly deployed bosh director. In the sample `bosh.yml`, the bosh director has the ip address 192.0.2.36. So if you target this director with `bosh target http://192.0.2.36:25555` where 25555 is the default BOSH director port.  Your newly installed BOSH instance is now ready for use.
+## <a id="deploy"></a>Setup a BOSH Deployment Manifest and Deploy ##
+
+Create and setup a BOSH deployment manifest. Look at the [BOSH example manifest](./bosh-example-manifest.html). 
+
+Deploy BOSH. (the following assumes your manifest is named `bosh.yml` in `/home/bosh_user`).
+
+<pre class="terminal">
+$ cd /home/bosh_user
+$ bosh deployment bosh.yml
+		
+Deployment set to `/home/bosh_user/bosh.yml'
+
+$ bosh deploy
+
+Getting deployment properties from director...
+Unable to get properties list from director, trying without it...
+Compiling deployment manifest...
+Cannot get current deployment information from director, possibly a new deployment
+Please review all changes carefully
+Deploying `bosh.yml' to `your-micro-BOSH' (type 'yes' to continue): yes
+
+Director task 5
+
+Preparing deployment
+  binding deployment (00:00:00)                                                                     
+  binding releases (00:00:00)                                                                       
+  binding existing deployment (00:00:00)                                                            
+  binding resource pools (00:00:00)                                                                 
+  binding stemcells (00:00:00)                                                                      
+  binding templates (00:00:00)                                                                      
+  binding unallocated VMs (00:00:00)                                                                
+  binding instance networks (00:00:00)                                                              
+Done                    8/8 00:00:00                                                                
+
+Preparing package compilation
+  finding packages to compile (00:00:00)                                                            
+Done                    1/1 00:00:00                                                                
+
+Preparing DNS
+  binding DNS (00:00:00)                                                                            
+Done                    1/1 00:00:00                                                                
+
+Creating bound missing VMs
+  small/0 (00:00:50)                                                                                
+  small/4 (00:01:02)                                                                                
+  small/1 (00:01:19)                                                                                
+  small/2 (00:01:22)                                                                                
+  small/3 (00:01:24)                                                                                
+  director/0 (00:01:26)                                                                             
+Done                    6/6 00:01:26
+</pre>
+
+*Note*: There will be a lot of status information in addition to the above output.
+
+## <a id="verify"></a>Verification ##
+
+The example BOSH director has the IP address `172.20.134.52`. Targeting this director with `bosh target 172.20.134.52` will verify a successful installation.
+
+<pre class="terminal">
+$ bosh target 172.20.134.52
+Target set to 'your-director'
+Your username: admin	
+Enter password: *****
+Logged in as `admin'
+</pre>
+
