@@ -94,13 +94,13 @@ All three of these things can be found by logging into your New Relic account as
 
 1. Next, we need to get the license key. Log into your New Relic account via SSO [as described above](#sso). Once there, click on Account Settings in the top right. On the right of that page you'll find your New Relic license key. You're going to need it for the next step.
 
-1. Now we're going to set an environment variable to pass system parameters to the jvm. Note, you should replace `<your app name>` and `<your license key>` with actual values.
+1. Now we're going to set an environment variable to pass system parameters to the jvm. Note, you should replace `your_app_name` and `your_license_key` with actual values.
 
 	<pre class="terminal">
 	$ cf set-env <your app name> CATALINA_OPTS "-javaagent:/app/webapps/ROOT/WEB-INF/lib/newrelic-agent-2.19.1.jar 
 		-Dnewrelic.home='/app/webapps/ROOT/WEB-INF/classes' 
-		-Dnewrelic.config.license_key=<your license key> 
-		-Dnewrelic.config.app_name=<your app name>
+		-Dnewrelic.config.license_key='your_license_key' 
+		-Dnewrelic.config.app_name='your_app_name'
 		-Dnewrelic.config.log_file_path='/home/vcap/logs'"
 	</pre>
 
