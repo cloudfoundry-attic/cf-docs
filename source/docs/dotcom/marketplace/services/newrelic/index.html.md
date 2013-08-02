@@ -176,7 +176,7 @@ Format of `VCAP_SERVICES` environment variable:
 ~~~
 For more information, see [VCAP_SERVICES Environment Variable](../../../using/services/environment-variable.html).
 
---
+---
 
 ## <a id='support'></a>Support ##
 
