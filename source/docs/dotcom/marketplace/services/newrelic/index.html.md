@@ -181,3 +181,8 @@ $ cf push
 ## <a id='support'></a>Support ##
 
 [Contacting Service Providers for Support](contacting-service-providers-for-support.html)
+
+* https://support.newrelic.com/
+* support@newrelic.com
+
+Documentation: https://newrelic.com/docs
