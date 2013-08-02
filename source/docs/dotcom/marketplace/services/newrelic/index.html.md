@@ -43,7 +43,7 @@ All three of these things can be found by logging into your New Relic account as
   ~~~xml
   gem 'newrelic_rpm'
   ~~~
-  Rebuild the bundle to download the gem.
+  Rebuild the bundle if you want to test locally, but this isn't required because Cloud Foundry will bundle the gem when you push your app.
   <pre class="terminal">
   $ bundle install
   </pre>
@@ -77,14 +77,13 @@ For more information, see [VCAP_SERVICES Environment Variable](../../../using/se
 
 ## <a id='sample-app'></a>Sample Applications ##
 
+[This rails app](https://github.com/cloudfoundry-samples/rails_sample_app/tree/newrelic) already has the newrelic agent included in the Gemfile, as well as our modified configuration file in config/newrelic.yml. We've even configured manifest.yml to create and bind to a New Relic service instance. All you need to do is clone and push!
+
 <pre class="terminal">
 $ git clone -b newrelic git@github.com:cloudfoundry-samples/rails_sample_app.git
 $ cd rails_sample_app
 $ cf push
 </pre>
-
-This rails app already has the newrelic agent included in the Gemfile, as well as the modified configuration file in config/newrelic.yml. We've even configured manifest.yml to create and bind to a New Relic service instance. All you need to do is clone and push!
-
 
 ## <a id='support'></a>Support ##
 
