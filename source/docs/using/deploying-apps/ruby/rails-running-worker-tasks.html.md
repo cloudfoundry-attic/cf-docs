@@ -2,14 +2,6 @@
 title: Rails 3, Running Worker Tasks
 ---
 
-### Quick links ###
-* [Introduction](#intro)
-* [Choosing a worker task library](#worker-libs)
-* [Creating an example application](#example-app)
-* [Deploying once, deploying twice...](#deploy)
-* [Testing the application](#test)
-* [Scale your workers](#scale)
-
 ## <a id='intro'></a>Introduction ##
 
 Often when developing a Rails 3 application, you may want delay certain tasks so as not to consume resource that could be used for servicing requests from your user.
@@ -79,12 +71,12 @@ $ touch app/workers/thing_worker.rb
 
 ~~~ruby
 class ThingWorker
-  
+
   include Sidekiq::Worker
 
   def perform(count)
-    
-    count.times do 
+
+    count.times do
 
       thing_uuid = UUIDTools::UUID.random_create.to_s
       Thing.create :title => "New Thing (#{thing_uuid})", :description => "This is the description for thing #{thing_uuid}"
@@ -95,7 +87,7 @@ class ThingWorker
 end
 ~~~
 
-This worker will create n number of things, where n is the value passed to the worker. 
+This worker will create n number of things, where n is the value passed to the worker.
 
 Create a controller for 'things';
 
@@ -131,13 +123,13 @@ $ touch app/views/things/index.html.erb
 
 ## <a id='deploy'></a>Deploying once, deploying twice... ##
 
-This application needs to be deployed twice for it to work, once as a Rails web application and once as a standalone Ruby application. The easiest way to do this is to keep separate VMC manifests for each application type;
+This application needs to be deployed twice for it to work, once as a Rails web application and once as a standalone Ruby application. The easiest way to do this is to keep separate CF manifests for each application type;
 
 Web Manifest (save this as web-manifest.yml);
 
 ~~~yaml
---- 
-applications: 
+---
+applications:
 - name: sidekiq
   framework: rails3
   runtime: ruby19
@@ -145,12 +137,12 @@ applications:
   instances: 1
   url: sidekiq.${target-base}
   path: .
-  services: 
-    sidekiq-mysql: 
+  services:
+    sidekiq-mysql:
       vendor: mysql
       version: "5.1"
       tier: free
-    sidekiq-redis: 
+    sidekiq-redis:
       vendor: redis
       version: "2.6"
       tier: free
@@ -159,36 +151,36 @@ applications:
 Worker Manifest (save this as worker-manifest.yml);
 
 ~~~yaml
---- 
-applications: 
+---
+applications:
 - name: sidekiq-worker
   framework: standalone
   runtime: ruby19
   memory: 256M
   instances: 1
-  url: 
+  url:
   path: .
   command: bundle exec sidekiq
-  services: 
-    sidekiq-redis: 
+  services:
+    sidekiq-redis:
       vendor: redis
       version: "2.6"
       tier: free
-    sidekiq-mysql: 
+    sidekiq-mysql:
       vendor: mysql
       version: "5.1"
       tier: free
 ~~~
 
-The url 'sidekiq.cloudfoundry.com' will probably be taken, change it in web-manifest.yml first. 
+The url 'sidekiq.cloudfoundry.com' will probably be taken, change it in web-manifest.yml first.
 Push the application with both manifest files;
 
 <pre class="terminal">
-$ vmc push -m web-manifest.yml
-$ vmc push -m worker-manifest.yml
+$ cf push -m web-manifest.yml
+$ cf push -m worker-manifest.yml
 </pre>
 
-VMC will likely ask for a URL for the worker application, select option 2 - "none".
+CF will likely ask for a URL for the worker application, select option 2 - "none".
 
 ## <a id='test'></a>Testing the application ##
 
@@ -203,6 +195,6 @@ The nice thing about this approach is it makes scaling your Sidekiq workers triv
 Change the number of workers to two;
 
 <pre class="terminal">
-$ vmc scale sidekiq-worker --instances 2
+$ cf scale sidekiq-worker --instances 2
 </pre>
 

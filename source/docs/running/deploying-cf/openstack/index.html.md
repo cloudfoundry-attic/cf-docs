@@ -2,12 +2,20 @@
 title: Deploying Cloud Foundry on OpenStack
 ---
 
-[Install OpenStack -Essex](install_openstack.html)
+Follow these steps to install Cloud Foundry on OpenStack using BOSH.
 
-[Install Micro BOSH on OpenStack](install_microbosh_openstack.html)
+1. [Install the BOSH CLI](/docs/running/bosh/setup/)
 
-[Install Wordpress on OpenStack](install_wordpress_openstack.html)
+1. [Validate your OpenStack](validate_openstack.html)
 
-[Install BOSH on OpenStack using Micro BOSH](install_bosh_openstack.html)
+1. [Deploying Micro BOSH](deploying_microbosh.html)
 
-[Install Cloud Foundry on OpenStack using BOSH](install_cf_openstack.html)
+1. [Uploading a BOSH Stemcell](uploading_bosh_stemcell.html)
+
+1. [Deploying BOSH using Micro BOSH](deploying_bosh.html) *(optional)*
+
+1. [Install Cloud Foundry using BOSH](install_cf_openstack.html)
+
+For another example of using BOSH to deploy a system, follow these instructions: 
+
+[Deploying Wordpress using Micro BOSH](deploying_wordpress.html)

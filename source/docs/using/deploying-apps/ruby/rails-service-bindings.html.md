@@ -2,13 +2,6 @@
 title: Rails 3, Service Bindings
 ---
 
-### Quick links ###
-* [Introduction](#intro)
-* [Prerequisites](#prerequisites)
-* [Configuring your Gemfile](#gemfile)
-* [Modifying the sample application](#modifying)
-* [Creating and binding the service](#creating-and-binding)
-
 ## <a id='intro'></a>Introduction ##
 
 This guide is for developers who wish to bind an ORM type data source to a Rails 3 application deployed and running on Cloud Foundry. For information on binding other data sources to Rails and other Ruby-based applications see the Ruby [Service Bindings](./ruby-service-bindings.html) page.
@@ -21,7 +14,7 @@ To complete this quickstart guide, you need to fulfill the following prerequisit
 * [Ruby](http://www.ruby-lang.org/en/)
 * [Rails](http://rubyonrails.org/)
 * [Bundler](http://gembundler.com/)
-* The [VMC](../../managing-apps/) command line tool 
+* The [CF](../../managing-apps/) command line tool
 * A sample application such as the one created in [this](./rails-getting-started.html) tutorial
 
 ## <a id='gemfile'></a>Configuring your Gemfile ##
@@ -65,19 +58,19 @@ production:
 
 For MongoDB there are a few different gems you can use, however if you are looking for an ActiveRecord-like ORM, best use [Mongo Mapper](http://mongomapper.com/). This requires a few changes to the application itself, all the changes are explained in detail on the "[Rails 3 - Getting Started]" page of the Mongo DB website.
 
-Both 
+Both
 
 ## <a id='creating-and-binding'></a>Creating and binding the service ##
 
-To create a service issue the following command with vmc and answer the interactive prompts;
+To create a service issue the following command with cf and answer the interactive prompts;
 
 <pre class="terminal">
-$ vmc create-service
+$ cf create-service
 </pre>
 
-To bind the service to the application, use the following vmc command;
+To bind the service to the application, use the following cf command;
 
 <pre class="terminal">
-$ vmc bind-service --app [application name] --service [service name]
+$ cf bind-service --app [application name] --service [service name]
 </pre>
 

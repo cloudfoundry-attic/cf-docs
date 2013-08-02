@@ -2,13 +2,6 @@
 title: Sinatra, Getting Started
 ---
 
-### Quick links ###
-* [Introduction](#intro)
-* [Prerequisites](#prerequisites)
-* [Creating a Sample Project](#sample-project)
-* [Deploying Your Application](#deploying)
-* [Next Steps - Binding a service](#next-steps)
-
 ## <a id='intro'></a>Introduction ##
 
 Cloud Foundry provides support for Sinatra applications. Work through this guide to create a sample application and deploy it to Cloud Foundry.
@@ -20,7 +13,7 @@ To complete this quickstart guide, you need to fulfill the following prerequisit
 * A Cloud Foundry account, you can sign up [here](https://my.cloudfoundry.com/signup)
 * [Ruby](http://www.ruby-lang.org/en/)
 * [Bundler](http://gembundler.com/)
-* The [VMC](../../managing-apps/) command line tool 
+* The [CF](../../managing-apps/) command line tool
 
 ## <a id='sample-project'></a>Creating a Sample Project ##
 
@@ -56,7 +49,7 @@ run HelloWorld.new
 Gemfile
 
 ~~~ruby
-source :rubygems
+source 'https://rubygems.org'
 gem 'sinatra'
 ~~~
 
@@ -79,23 +72,14 @@ View your application at [http://localhost:9292](http://localhost:9292)
 
 ## <a id='deploying'></a>Deploying Your Application ##
 
-Push the application with VMC;
+Push the application with CF;
 
 <pre class="terminal">
-$ vmc push
+$ cf push
 
 Name> sinatra-hello-world
 
 Instances> 1
-
-1: rack
-2: other
-Framework> rack
-
-1: ruby18
-2: ruby19
-3: other
-Runtime> 2
 
 1: 64M
 2: 128M

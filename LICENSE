@@ -2,7 +2,7 @@
            Version 2.0, January 2004
         http://www.apache.org/licenses/
 
-		
+
    TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION
 
    1. Definitions.
@@ -206,8 +206,8 @@
 CF Docs 09012012
 
 CF Docs 09012012 : includes a number of subcomponents with
-separate copyright notices and license terms.  The product that 
-includes this file does not necessarily use all the open source 
+separate copyright notices and license terms.  The product that
+includes this file does not necessarily use all the open source
 subcomponents referred to below. Your use of the source
 code for the these subcomponents is subject to the terms and
 conditions of the following licenses.
@@ -234,7 +234,7 @@ SECTION 1: BSD-STYLE, MIT-STYLE, OR SIMILAR STYLE LICENSES
    >>> sinatra-1.3.1
    >>> spruz-0.2.13
    >>> terminal-table-1.4.4
-   >>> vmc-0.3.14
+   >>> cf-0.3.14
 
 
 
@@ -243,8 +243,8 @@ SECTION 2: Apache License, V2.0
    >>> addressable-2.2.6
    >>> addressable-2.2.8
    >>> cfoundry-0.3.40
-   >>> manifests-vmc-plugin-0.4.8
-   >>> tunnel-dummy-vmc-plugin-0.0.1
+   >>> manifests-cf-plugin-0.4.8
+   >>> tunnel-dummy-cf-plugin-0.0.1
 
 
 
@@ -692,7 +692,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 Copyright (c) 2009, Park Heesob
 All rights reserved.
 
-Redistribution and use in source and binary forms, with or without 
+Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are met:
 
 * Redistributions of source code must retain the above copyright notice, this
@@ -700,19 +700,19 @@ modification, are permitted provided that the following conditions are met:
 * Redistributions in binary form must reproduce the above copyright notice
   this list of conditions and the following disclaimer in the documentation
   and/or other materials provided with the distribution.
-* Neither the name of Park Heesob nor the names of its contributors 
-  may be used to endorse or promote products derived from this software 
+* Neither the name of Park Heesob nor the names of its contributors
+  may be used to endorse or promote products derived from this software
   without specific prior written permission.
 
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" 
-AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
-IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE 
-DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE 
-FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL 
-DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR 
-SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER 
-CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, 
-OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE 
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE
+FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 
@@ -801,7 +801,7 @@ The above copyright notice and this permission notice shall be included in all c
 THE SOFTWARE IS PROVIDED AS IS, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 
->>> vmc-0.3.14
+>>> cf-0.3.14
 
 Copyright (c) 2010-2011 VMware Inc, All Rights Reserved
 
@@ -858,24 +858,24 @@ limitations under the License.
 License: Apache 2.0
 
 
->>> manifests-vmc-plugin-0.4.8
+>>> manifests-cf-plugin-0.4.8
 
-VMC-Lib
+cfoundry
 Copyright (c) 2012 VMware, Inc. All Rights Reserved.
 
 VMware copyrighted code, is licensed to you under the Apache License, Version 2.0 (the "License").
 
-In addition to the VMware copyrighted code, VMC includes a number of components with separate copyright notices and license terms. Your use of these components is subject to the terms and conditions of the component's license, as noted in the LICENSE file.
+In addition to the VMware copyrighted code, CF includes a number of components with separate copyright notices and license terms. Your use of these components is subject to the terms and conditions of the component's license, as noted in the LICENSE file.
 
 
->>> tunnel-dummy-vmc-plugin-0.0.1
+>>> tunnel-dummy-cf-plugin-0.0.1
 
-VMC-Lib
+cfoundry
 Copyright (c) 2012 VMware, Inc. All Rights Reserved.
 
 VMware copyrighted code, is licensed to you under the Apache License, Version 2.0 (the "License").
 
-In addition to the VMware copyrighted code, VMC includes a number of components with separate copyright notices and license terms. Your use of these components is subject to the terms and conditions of the component's license, as noted in the LICENSE file.
+In addition to the VMware copyrighted code, CF includes a number of components with separate copyright notices and license terms. Your use of these components is subject to the terms and conditions of the component's license, as noted in the LICENSE file.
 
 
 --------------- SECTION 3: GNU General Public License, V3.0 ----------
@@ -916,7 +916,7 @@ Ruby Clause-6 is applicable to the following component(s).
 
 >>> json_pure-1.5.4
 
-[PLEASE NOTE:  VMWARE, INC. ELECTS TO USE AND DISTRIBUTE THIS COMPONENT UNDER THE TERMS OF THE RUBYCLAUSE-6 LICENSE.  PLEASE SEE BELOW FOR THE FULL TEXT OF THE RUBYCLAUSE-6 LICENSE. THE ORIGINAL LICENSE TERMS ARE REPRODUCED BELOW ONLY AS A REFERENCE.] 
+[PLEASE NOTE:  VMWARE, INC. ELECTS TO USE AND DISTRIBUTE THIS COMPONENT UNDER THE TERMS OF THE RUBYCLAUSE-6 LICENSE.  PLEASE SEE BELOW FOR THE FULL TEXT OF THE RUBYCLAUSE-6 LICENSE. THE ORIGINAL LICENSE TERMS ARE REPRODUCED BELOW ONLY AS A REFERENCE.]
 
 
 JSON-JRuby is copyrighted free software by Daniel Luz <mernen at gmail dot com>,
@@ -966,9 +966,9 @@ version 2 (see the file GPL), or the conditions below:
      For the list of those files and their copying conditions, see the
      file LEGAL.
 
-  5. The scripts and library files supplied as input to or produced as 
+  5. The scripts and library files supplied as input to or produced as
      output from the software do not automatically fall under the
-     copyright of the software, but belong to whomever generated them, 
+     copyright of the software, but belong to whomever generated them,
      and may be sold commercially, and may be aggregated with this
      software.
 
@@ -1063,9 +1063,9 @@ You can redistribute it and/or modify it under either the terms of the
      For the list of those files and their copying conditions, see the
      file LEGAL.
 
-  5. The scripts and library files supplied as input to or produced as 
+  5. The scripts and library files supplied as input to or produced as
      output from the software do not automatically fall under the
-     copyright of the software, but belong to whomever generated them, 
+     copyright of the software, but belong to whomever generated them,
      and may be sold commercially, and may be aggregated with this
      software.
 
@@ -1128,9 +1128,9 @@ You can redistribute it and/or modify it under either the terms of the
      For the list of those files and their copying conditions, see the
      file LEGAL.
 
-  5. The scripts and library files supplied as input to or produced as 
+  5. The scripts and library files supplied as input to or produced as
      output from the software do not automatically fall under the
-     copyright of the software, but belong to whomever generated them, 
+     copyright of the software, but belong to whomever generated them,
      and may be sold commercially, and may be aggregated with this
      software.
 
@@ -1194,9 +1194,9 @@ You can redistribute it and/or modify it under either the terms of the
      For the list of those files and their copying conditions, see the
      file LEGAL.
 
-  5. The scripts and library files supplied as input to or produced as 
+  5. The scripts and library files supplied as input to or produced as
      output from the software do not automatically fall under the
-     copyright of the software, but belong to whomever generated them, 
+     copyright of the software, but belong to whomever generated them,
      and may be sold commercially, and may be aggregated with this
      software.
 
@@ -1206,7 +1206,7 @@ You can redistribute it and/or modify it under either the terms of the
      PURPOSE.
 
 
-=============== APPENDIX. Standard License Files ============== 
+=============== APPENDIX. Standard License Files ==============
 
 
 
@@ -1220,7 +1220,7 @@ You can redistribute it and/or modify it under either the terms of the GPL
      software without restriction, provided that you duplicate all of the
      original copyright notices and associated disclaimers.
 
- 
+
   2. You may modify your copy of the software in any way, provided that
      you do at least ONE of the following:
 
@@ -1237,7 +1237,7 @@ You can redistribute it and/or modify it under either the terms of the GPL
 
        d) make other distribution arrangements with the author.
 
- 
+
   3. You may distribute the software in object code or executable
      form, provided that you do at least ONE of the following:
 
@@ -1253,7 +1253,7 @@ You can redistribute it and/or modify it under either the terms of the GPL
 
        d) make other distribution arrangements with the author.
 
- 
+
   4. You may modify and include the part of the software into any other
      software (possibly commercial).  But some files in the distribution
      are not written by the author, so that they are not under this terms.
@@ -1262,7 +1262,7 @@ You can redistribute it and/or modify it under either the terms of the GPL
      files under the ./missing directory.  See each file for the copying
      condition.
 
- 
+
   5. The scripts and library files supplied as input to or produced as
      output from the software do not automatically fall under the
      copyright of the software, but belong to whomever generated them,
@@ -1275,9 +1275,9 @@ You can redistribute it and/or modify it under either the terms of the GPL
      WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
      PURPOSE.
 
- 
 
- 
+
+
 
 --------------- SECTION 2: GNU General Public License, V3.0 -----------
 

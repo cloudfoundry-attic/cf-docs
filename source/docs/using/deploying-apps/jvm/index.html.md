@@ -1,48 +1,53 @@
 ---
-title: Java and the JVM
+title: Deploying JVM Apps (Java, Groovy, Scala) 
 ---
 
-Several JVM-based frameworks are supported by CloudFoundry, allowing development in Java, Groovy or Scala.
+This page will prepare you to deploy applications written in Java, Groovy, or Scala, using the Spring, Grails, Lift, or Play frameworks, via the [getting started guide](../../../dotcom/getting-started.html).
 
-## Supported Frameworks
+## <a id='war'></a> Build a war file ##
 
-### Spring Framework
+If you are deploying a web application built with Spring, Grails, Lift, or Play, then you should compile the application and assemble a war file for deploying to Cloud Foundry. The path to the war file should then be provided to `cf` using the `--path` option. Below are some examples of doing this with the various frameworks and build tools: 
 
-&nbsp;&nbsp;[Getting Started](./spring-getting-started.html)
-- This guide will show you how to create an example application and deploy it to Cloud Foundry.
+Spring with Maven
 
-&nbsp;&nbsp;[Service Bindings](./spring-service-bindings.html)
-- This guide will show you how to create and bind a service to a Spring application.
+<pre class="terminal">
+$ mvn package
+$ cf push --path target/my-app-1.0.0.war
+</pre>
 
-### Play
+Spring with Gradle
 
-&nbsp;&nbsp;[Getting Started](./play-getting-started.html)
-- This guide will show you how to create an example application and deploy it to Cloud Foundry.
+<pre class="terminal">
+$ gradle assemble
+$ cf push --path build/libs/my-app-1.0.war
+</pre>
 
-&nbsp;&nbsp;[Service Bindings](./play-service-bindings.html)
-- This guide will show you how to create and bind a service to a Play application.
+Grails
 
-### Grails
+<pre class="terminal">
+$ grails prod war
+$ cf push --path target/my-app-1.0.0.war
+</pre>
 
-&nbsp;&nbsp;[Getting Started](./grails-getting-started.html)
-- This guide will show you how to create an example application and deploy it to Cloud Foundry.
+Play
 
-&nbsp;&nbsp;[Service Bindings](./grails-service-bindings.html)
-- This guide will show you how to create and bind a service to a Grails application.
+<pre class="terminal">
+$ play dist
+$ cf push --path dist/my-app-1.0.war
+</pre>
 
-### Lift
+Lift
 
-&nbsp;&nbsp;[Getting Started](./lift-getting-started.html)
-- This guide will show you how to create an example application and deploy it to Cloud Foundry.
+<pre class="terminal">
+$ mvn package
+$ cf push --path target/my-app-1.0.0.war
+</pre>
 
-&nbsp;&nbsp;[Service Bindings](./lift-service-bindings.html)
-- This guide will show you how to create and bind a service to a Lift application.
+## <a id='services'></a> Binding to Services ##
 
-### Standalone
-
-&nbsp;&nbsp;[Getting Started](./standalone-getting-started.html)
-- This guide will show you how to create an example application and deploy it to Cloud Foundry.
-
-&nbsp;&nbsp;[Service Bindings](./standalone-service-bindings.html)
-- This guide will show you how to create and bind a service to a standalone web application.
+Information about binding apps to services can be found on the following pages: 
+ 
+* [Spring](../../services/spring-service-bindings.html)
+* [Grails](../../services/grails-service-bindings.html) 
+* [Lift](../../services/lift-service-bindings.html)
 

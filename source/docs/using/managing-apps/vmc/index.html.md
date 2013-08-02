@@ -1,5 +1,0 @@
----
-title: vmc
----
-
-Coming soon...

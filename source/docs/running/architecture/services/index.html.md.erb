@@ -1,0 +1,17 @@
+---
+title: Services
+description: Any type of add-on that can be provisioned alongside your application; for example, a database or an account on a third-party SaaS provider. Cloud Foundry services are implemented with a common architecture that uses gateways and nodes.
+---
+The Cloud Foundry core team has developed the APIs between services and the Cloud Controller, as well as several services that can be installed with Cloud Foundry. These services are implemented with a common architecture that uses gateways and nodes.
+
+Gateways advertise service offerings to and receive calls from the cloud controller for four functions: create, delete, bind, and unbind. Gateways pass these calls to the service nodes. 
+
+Server processes for services are run on nodes. Nodes receive calls from gateways, execute the four functions, and return credentials to gateways. 
+
+###Adding Custom Cloud Foundry Services
+
+Many members of the Cloud Foundry open source community are developing custom services for their private Cloud Foundry instances. These built-in services are packaged and deployed with Cloud Foundry as jobs and typically support automated provisioning of service instances. [Echo Service](https://github.com/cloudfoundry/vcap-services-sample-release) is a simple example service that shows you how to develop your own Cloud Foundry services.
+
+###Connecting External Services to Cloud Foundry
+
+Private Cloud Foundry operators frequently ask how applications pushed to their Cloud Foundry instances can bind with external services, such as Oracle, which they operate themselves. See [Service Connector](service-connector.html).
