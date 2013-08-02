@@ -6,7 +6,7 @@ title: New Relic
 
 [Managing services from the command line](../../../../using/services/managing-services.html)
 
-### Creating a Service Instance ##
+### <a id='create'></a>Creating a Service Instance ###
 
 An instance of this service can be provisioned via the CLI with the following command:
 
@@ -14,7 +14,7 @@ An instance of this service can be provisioned via the CLI with the following co
 $ cf create-service newrelic
 </pre>
 
-### Binding Your Service Instance ##
+### <a id='bind'></a>Binding Your Service Instance ###
 
 Bind the service instance to your app with the following command:
 
@@ -22,9 +22,11 @@ Bind the service instance to your app with the following command:
 $ cf bind-service 
 </pre>
 
-### Single Sign On
+### <a id='sso'></a>Single Sign On ###
 
 To log into your New Relic Account via SSO you only need to log into the [run.pivotal.io Web Console](http://console.run.pivotal.io). Find your New Relic service instance on the Space page in which you created it. Clicking the Manage button will log you into New Relic via SSO.
+
+---
 
 ## <a id='using'></a>Using New Relic with your Application ##
 
@@ -38,7 +40,7 @@ All three of these things can be found by logging into your New Relic account as
 
 ### <a id='ruby'></a>Ruby / Rails ###
 
-* Add the New Relic agent gem to your Gemfile.
+1. Add the New Relic agent gem to your Gemfile.
 
   ~~~xml
   gem 'newrelic_rpm'
@@ -48,9 +50,69 @@ All three of these things can be found by logging into your New Relic account as
   $ bundle install
   </pre>
 
-* Add a New Relic configuration file to your project. This file needs to be configured with your license key, but we've modified New Relic's config file for Ruby to automatically read your license key from the [VCAP_SERVICES](#vcap-services) environment variable. [Download our modified newrelic.yml here](./newrelic.yml).
+1. Add a New Relic configuration file to your project. This file needs to be configured with your license key and application name, but we've modified New Relic's config file for Ruby to automatically read your application name and license key from environment variables which are set when the app is pushed. [Download our modified newrelic.yml here](./newrelic-cf.yml) and save it to `config/newrelic.yml`.
 
-* All you have left to do is push your app! If you don't already have a New Relic service instance in your space, choose to create one when prompted. If you already have a New Relic service instance in your space, choose to bind to an existing service when prompted. Now generate some usage on your app, and log into New Relic via SSO as described above; you should see data coming through!
+1. All you have left to do is push your app! If you don't already have a New Relic service instance in your space, choose to create one when prompted. If you already have a New Relic service instance in your space, choose to bind to an existing service when prompted.
+	
+	<pre class="terminal">
+	$ cf push
+	</pre> 
+
+1. Now generate some usage on your app and log into New Relic via SSO [as described above](#sso); you should see data coming through!
+
+### <a id='java'></a>Java / Spring ###
+
+1. Add the New Relic agent to your project
+
+  For Maven, add the following to `pom.xml`
+
+  ~~~xml
+  <dependency>
+      <groupId>com.newrelic.agent.java</groupId>
+      <artifactId>newrelic-agent</artifactId>
+      <version>2.19.1</version>
+  </dependency>
+  ~~~
+
+  For Gradle, put the following in `build.gradle`
+
+  ~~~xml
+  dependencies {
+      compile 'com.newrelic.agent.java:newrelic-agent:2.19.1'
+  }
+  ~~~
+
+1. Add a New Relic configuration file to your project. [Download newrelic.yml](./newrelic.yml) and save it with your other app config files (e.g. in `src/main/resources`). No need to populate application name and license key; we'll set an environment variable to pass them as system parameters to the jvm. This will overwrite the same parameters in the config file.
+
+1. Build your app!
+
+1. Push your app to Cloud Foundry. If you don't already have a New Relic service instance in your space, choose to create one when prompted. If you already have a New Relic service instance in your space, choose to bind to an existing service when prompted.
+
+	<pre class="terminal">
+	$ cf push
+	</pre> 
+
+1. Next, we need to get the license key. Log into your New Relic account via SSO [as described above](#sso). Once there, click on Account Settings in the top right. On the right of that page you'll find your New Relic license key. You're going to need it for the next step.
+
+1. Now we're going to set an environment variable to pass system parameters to the jvm. Note, you should replace `<your app name>` and `<your license key>` with actual values.
+
+	<pre class="terminal">
+	$ cf set-env <your app name> CATALINA_OPTS "-javaagent:/app/webapps/ROOT/WEB-INF/lib/newrelic-agent-2.19.1.jar 
+		-Dnewrelic.home='/app/webapps/ROOT/WEB-INF/classes' 
+		-Dnewrelic.config.license_key=<your license key> 
+		-Dnewrelic.config.app_name=<your app name>
+		-Dnewrelic.config.log_file_path='/home/vcap/logs'"
+	</pre>
+
+1. Finally, restart your app. This will trigger the jvm to pick up the system parameters required for the New Relic agent to be started with the correct configuration.
+
+	<pre class="terminal">
+        $ cf restart <your app name>
+        </pre>
+
+1. Now generate some usage on your app and log into New Relic via SSO described above](#sso); you should see data coming through!
+
+####Cloud Foundry is working on improving the developer experience for New Relic and Java. Stay tuned!
 
 ### <a id='vcap-services'></a>VCAP_SERVICES ###
 
@@ -75,15 +137,38 @@ Format of `VCAP_SERVICES` environment variable:
 ~~~
 For more information, see [VCAP_SERVICES Environment Variable](../../../using/services/environment-variable.html).
 
+---
+
 ## <a id='sample-app'></a>Sample Applications ##
 
-[This rails app](https://github.com/cloudfoundry-samples/rails_sample_app/tree/newrelic) already has the newrelic agent included in the Gemfile, as well as our modified configuration file in config/newrelic.yml. We've even configured manifest.yml to create and bind to a New Relic service instance. All you need to do is clone and push!
+### <a id='sample-rails'></a>Rails ###
+
+[This sample Rails app](https://github.com/cloudfoundry-samples/rails_sample_app/tree/newrelic) already has the New Relic agent included in `Gemfile`, as well as our modified configuration file in `config/newrelic.yml`. We've even configured `manifest.yml` to create and bind to a New Relic service instance on push. All you need to do is clone and push!
 
 <pre class="terminal">
 $ git clone -b newrelic git@github.com:cloudfoundry-samples/rails_sample_app.git
 $ cd rails_sample_app
 $ cf push
 </pre>
+
+### <a id='sample-spring'></a>Spring ###
+
+[This sample Spring app](https://github.com/cloudfoundry-samples/spring-music/tree/newrelic) already has the New Relic agent configured as a dependency and the New Relic configuration file in `src/main/resources`. We've also configured `manifest.yml` to set the necessary environment variable when you push the app, but you'll need to edit that file with an actual value for `-Dnewrelic.config.license_key` in `CATALINA_OPTS`. Because we've already got a manifest.yml, we're going to create the New Relic service instance first, update the manifest, then build and push.   
+
+<pre class="terminal">
+$ git clone -b newrelic git@github.com:cloudfoundry-samples/spring-music.git
+$ cd spring-music
+$ cf create-service newrelic --name newrelic --plan standard
+</pre>
+
+Log into your New Relic account via SSO [as described above](#sso). Once there, click on Account Settings in the top right. On the right of that page you'll find your New Relic license key. Add the license key to `-Dnewrelic.config.license_key` for `CATALINA_OPTS` in `manifest.yml`.
+
+<pre class="terminal">
+$ ./gradlew assemble
+$ cf push
+</pre>
+
+--
 
 ## <a id='support'></a>Support ##
 
