@@ -50,7 +50,7 @@ All three of these things can be found by logging into your New Relic account as
   $ bundle install
   </pre>
 
-1. Add a New Relic configuration file to your project. This file needs to be configured with your license key and application name, but we've modified New Relic's config file for Ruby to automatically read your application name and license key from environment variables which are set when the app is pushed. [Download our modified newrelic.yml here](./newrelic-cf.yml) and save it to `config/newrelic.yml`.
+1. Add a New Relic configuration file to your project. This file needs to be configured with your license key and application name, but we've modified New Relic's config file for Ruby to automatically read your application name and license key from environment variables which are set when the app is pushed. [Download our modified newrelic.yml here](./newrelic-ruby.yml) and save it to `config/newrelic.yml`.
 
 1. All you have left to do is push your app! If you don't already have a New Relic service instance in your space, choose to create one when prompted. If you already have a New Relic service instance in your space, choose to bind to an existing service when prompted.
 	
