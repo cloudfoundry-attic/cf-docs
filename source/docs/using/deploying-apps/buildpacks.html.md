@@ -105,7 +105,7 @@ Return metadata for a Rack application might look like this:
 
 ~~~
 
-In this example `default\_process\_types` has a value with the key 'web' containing the command used to start the Rack application.
+In this example `default_process_types` has a value with the key `web` containing the command used to start the Rack application.
 
 ## <a id='deploying-with-custom-buildpacks'></a>Deploying With a Custom Buildpack ##
 
