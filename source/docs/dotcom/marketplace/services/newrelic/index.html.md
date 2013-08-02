@@ -28,6 +28,37 @@ To log into your New Relic Account via SSO you only need to log into the [run.pi
 
 ---
 
+## <a id='sample-app'></a>Sample Applications ##
+
+### <a id='sample-rails'></a>Rails ###
+
+[This sample Rails app](https://github.com/cloudfoundry-samples/rails_sample_app/tree/newrelic) already has the New Relic agent included in `Gemfile`, as well as our modified configuration file in `config/newrelic.yml`. We've even configured `manifest.yml` to create and bind to a New Relic service instance on push. All you need to do is clone and push!
+
+<pre class="terminal">
+$ git clone -b newrelic git@github.com:cloudfoundry-samples/rails_sample_app.git
+$ cd rails_sample_app
+$ cf push
+</pre>
+
+### <a id='sample-spring'></a>Spring ###
+
+[This sample Spring app](https://github.com/cloudfoundry-samples/spring-music/tree/newrelic) already has the New Relic agent configured as a dependency and the New Relic configuration file in `src/main/resources`. We've also configured `manifest.yml` to set the necessary environment variable when you push the app, but you'll need to edit that file with an actual value for `-Dnewrelic.config.license_key` in `CATALINA_OPTS`. Because we've already got a manifest.yml, we're going to create the New Relic service instance first, update the manifest, then build and push.   
+
+<pre class="terminal">
+$ git clone -b newrelic git@github.com:cloudfoundry-samples/spring-music.git
+$ cd spring-music
+$ cf create-service newrelic --name newrelic --plan standard
+</pre>
+
+Log into your New Relic account via SSO [as described above](#sso). Once there, click on Account Settings in the top right. On the right of that page you'll find your New Relic license key. Add the license key to `-Dnewrelic.config.license_key` for `CATALINA_OPTS` in `manifest.yml`.
+
+<pre class="terminal">
+$ ./gradlew assemble
+$ cf push
+</pre>
+
+---
+
 ## <a id='using'></a>Using New Relic with your Application ##
 
 In order for metrics for your application to be reported to New Relic, the following three requirements must be satisfied:
@@ -144,37 +175,6 @@ Format of `VCAP_SERVICES` environment variable:
 }
 ~~~
 For more information, see [VCAP_SERVICES Environment Variable](../../../using/services/environment-variable.html).
-
----
-
-## <a id='sample-app'></a>Sample Applications ##
-
-### <a id='sample-rails'></a>Rails ###
-
-[This sample Rails app](https://github.com/cloudfoundry-samples/rails_sample_app/tree/newrelic) already has the New Relic agent included in `Gemfile`, as well as our modified configuration file in `config/newrelic.yml`. We've even configured `manifest.yml` to create and bind to a New Relic service instance on push. All you need to do is clone and push!
-
-<pre class="terminal">
-$ git clone -b newrelic git@github.com:cloudfoundry-samples/rails_sample_app.git
-$ cd rails_sample_app
-$ cf push
-</pre>
-
-### <a id='sample-spring'></a>Spring ###
-
-[This sample Spring app](https://github.com/cloudfoundry-samples/spring-music/tree/newrelic) already has the New Relic agent configured as a dependency and the New Relic configuration file in `src/main/resources`. We've also configured `manifest.yml` to set the necessary environment variable when you push the app, but you'll need to edit that file with an actual value for `-Dnewrelic.config.license_key` in `CATALINA_OPTS`. Because we've already got a manifest.yml, we're going to create the New Relic service instance first, update the manifest, then build and push.   
-
-<pre class="terminal">
-$ git clone -b newrelic git@github.com:cloudfoundry-samples/spring-music.git
-$ cd spring-music
-$ cf create-service newrelic --name newrelic --plan standard
-</pre>
-
-Log into your New Relic account via SSO [as described above](#sso). Once there, click on Account Settings in the top right. On the right of that page you'll find your New Relic license key. Add the license key to `-Dnewrelic.config.license_key` for `CATALINA_OPTS` in `manifest.yml`.
-
-<pre class="terminal">
-$ ./gradlew assemble
-$ cf push
-</pre>
 
 --
 
