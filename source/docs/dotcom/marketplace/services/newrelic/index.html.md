@@ -42,7 +42,7 @@ $ cf push
 
 ### <a id='sample-spring'></a>Spring ###
 
-[This sample Spring app](https://github.com/cloudfoundry-samples/spring-music/tree/newrelic) already has the New Relic agent configured as a dependency and the New Relic configuration file in `src/main/resources`. We've also configured `manifest.yml` to set the necessary environment variable when you push the app, but you'll need to edit that file with an actual value for `-Dnewrelic.config.license_key` in `CATALINA_OPTS`. Because we've already got a manifest.yml, we're going to create the New Relic service instance first, update the manifest, then build and push.   
+[This sample Spring app](https://github.com/cloudfoundry-samples/spring-music/tree/newrelic) already has the New Relic agent configured as a dependency in `build.gradle` and the New Relic configuration file in `src/main/resources`. We've also configured `manifest.yml` to set the necessary environment variable when you push the app, but you'll need to edit that file with an actual value for `-Dnewrelic.config.license_key` in `CATALINA_OPTS`. Because we've already got a manifest.yml, we're going to create the New Relic service instance first, update the manifest, then build and push.   
 
 <pre class="terminal">
 $ git clone -b newrelic git@github.com:cloudfoundry-samples/spring-music.git
