@@ -181,7 +181,7 @@ One of SendGrid's best features is its responsive customer service. You can cont
 * Toll Free: +1 (877) 969-8647
 * support@sendgrid.com
 
-To properly reference your SendGrid account within CloudFoundry, see the information about [contacting service providers for support](http://docs.cloudfoundry.com/docs/dotcom/marketplace/contacting-service-providers-for-support.html).
+To properly reference your SendGrid account within CloudFoundry, see the information about [contacting service providers for support](../contacting-service-providers-for-support.html).
 
 If you have product feedback, or issues unrelated to your account, you can add it to [http://support.sendgrid.com/home](http://support.sendgrid.com/home).
 

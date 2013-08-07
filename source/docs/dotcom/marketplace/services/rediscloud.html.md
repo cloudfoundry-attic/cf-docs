@@ -274,7 +274,7 @@ You can then find your dashboard under the `MY DATABASES` menu.
 ## <a id='support'></a>Support ##
 
 Any Redis Cloud support issues or product feedbacks are welcome via email at support@garantiadata.com.
-Please make sure you are familiar with the CloudFoundry method of [contacting service providers for support](http://docs.cloudfoundry.com/docs/dotcom/services-marketplace/contacting-service-providers-for-support.html).
+Please make sure you are familiar with the CloudFoundry method of [contacting service providers for support](../contacting-service-providers-for-support.html).
 
 ## <a id='additional'></a>Additional Resources ##
 
