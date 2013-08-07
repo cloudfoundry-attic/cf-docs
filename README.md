@@ -48,7 +48,7 @@ When you are getting started with Cloud Foundry, and are still learning your way
 
 ### Support
 
-Support issues that are particular to the Cloud Foundry public PaaS available at http://cloudfoundry.com can be filed at the address below.
+Support issues that are particular to the Pivotal-hosted Cloud Foundry public PaaS available at http://run.pivotal.io can be filed at the address below.
 
 * [support.cloudfoundry.com](http://support.cloudfoundry.com)
 
