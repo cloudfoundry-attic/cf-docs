@@ -7,7 +7,7 @@ The UAA is the identity management service for Cloud Foundry.  Its primary role 
 
 ## Quick Start
 
-If this works you are in business:
+Fetch and install the UAA from Git:
 
 <pre class="terminal">
 $ git clone git://github.com/cloudfoundry/uaa.git
@@ -15,7 +15,7 @@ $ cd uaa
 $ mvn install
 </pre>
 
-Each module has a `mvn tomcat:run` target to run individually, or you could import them as projects into STS (use 2.8.0 or better if you can). The apps all work together the apps running on the same port (8080) as `/uaa`, `/app` and `/api`.
+Each module has a `mvn tomcat:run` target to run individually. Alternatively, you could import them as projects into STS (use 2.8.0 or better if you can). The apps all work together and run on the same port (8080) with endpoints `/uaa`, `/app` and `/api`.
 
 You will need Maven 3.0.4 or newer.
 
@@ -46,7 +46,7 @@ $ curl -H "Accept: application/json" localhost:8080/uaa/login
 {
   "timestamp":"2012-03-28T18:25:49+0100",
   "commit_id":"111274e",
-  "prompts":{"username":["text","Username"],
+  "prompts":{"username":["text","Email"],
     "password":["password","Password"]
   }
 }
@@ -84,14 +84,14 @@ user_id: ba14fea0-9d87-4f0c-b59e-32aaa8eb1434
 client_id: cf
 ~~~
 
-### Demo of command line usage on cloudfoundry.com
+### Demo of command line usage on run.pivotal.io
 
-The same command line example should work against a UAA running on cloudfoundry.com (except for the token decoding bit because you won't have the client secret). In this case, there is no need to run a local uaa server, so simply ask the external login endpoint to tell you about the system:
+The same command line example should work against a UAA running on `run.pivotal.io` (except for the token decoding bit because you won't have the client secret). In this case, there is no need to run a local uaa server, so simply ask the external login endpoint to tell you about the system:
 
 <pre class="terminal">
-$ curl -H "Accept: application/json" uaa.cloudfoundry.com/login
+$ curl -H "Accept: application/json" uaa.run.pivotal.io/login
 {
-  "prompts":{"username":["text","Username"],
+  "prompts":{"username":["text","Email"],
     "password":["password","Password"]
   }
 }
@@ -101,7 +101,7 @@ You can then try logging in with the UAA Ruby gem.  Make sure you have Ruby 1.9,
 
 <pre class="terminal">
 $ gem install cf-uaac
-$ uaac target uaa.cloudfoundry.com
+$ uaac target uaa.run.pivotal.io
 $ uaac token get [yourusername] [yourpassword]
 </pre>
 
@@ -119,7 +119,7 @@ For individual modules, or for the whole project, you can also run integration t
 $ mvn test -P integration
 </pre>
 
-(This might require an initial `mvn install` from the parent directory to get the wars in your local repo first.)
+(This might require an initial `mvn install` from the parent directory to get the WARs in your local repo first.)
 
 To make the tests work in various environments you can modify the configuration of the server and the tests (e.g. the admin client) using a variety of mechanisms. The simplest is to provide additional Maven profiles on the command line:
 
@@ -127,13 +127,13 @@ To make the tests work in various environments you can modify the configuration 
 $ (cd uaa; mvn test -P vcap)
 </pre>
     
-This will run the integration tests against a uaa server running in a local vcap, so for example the service URL is set to `uaa.vcap.me` (by default).  There are several Maven profiles to play with, and they can be used to run the server, or the tests or both:
+This will run the integration tests against a UAA server running in a local vcap, so for example the service URL is set to `uaa.vcap.me` (by default).  There are several Maven profiles to play with, and they can be used to run the server, or the tests or both:
 
 * `local`: runs the server on the ROOT context `http://localhost:8080/`
 
 * `vcap`: also runs the server on the ROOT context and points the tests at `uaa.vcap.me`.
   
-* `devuaa`: points the tests at `http://devuaa.cloudfoundry.com` (an instance of UAA deployed on cloudfoundry).
+* `devuaa`: points the tests at `http://devuaa.cloudfoundry.com` (an instance of UAA deployed on cloudfoundry) *NB this information is currently outdated*
   
 All these profiles set the `CLOUD_FOUNDRY_CONFIG_PATH` to pick up a `uaa.yml` and (if appropriate) set the context root for running the server (see below for more detail on that).  
 
@@ -178,12 +178,12 @@ $ CLOUD_FOUNDRY_CONFIG_PATH=/tmp mvn test
     
 The integration tests look for a YAML file in the following locations (later entries override earlier ones), and the webapp does the same when it starts up so you can use the same config file for both: 
 
-~~~yaml
+```yaml
 classpath:uaa.yml
 file:${CLOUD_FOUNDRY_CONFIG_PATH}/uaa.yml
 file:${UAA_CONFIG_FILE}
 ${UAA_CONFIG_URL}
-~~~
+```
 
 ### Using Maven with Cloud Foundry or VCAP
 
@@ -211,21 +211,21 @@ All other settings from `uaa.yml` can be overridden individually as system prope
 $ mvn -DargLine=-Duaa.test.username=foo test
 </pre>
 
-will create an account with `userName=foo` for testing (instead using the default setting from `uaa.yml`).
+will create an account with `userName=foo` for testing (instead of using the default setting from `uaa.yml`).
 
 If you prefer environment variables to system properties you can use a custom `uaa.yml` with placeholders for your environment variables, e.g.:
 
-~~~yaml
+```yaml
 uaa:
   test:
     username: ${UAA_TEST_USERNAME:marissa}
-~~~
+```
 
 will look for an environment variable (or system property) `UAA_TEST_USERNAME` before defaulting to `marissa`.  This is the trick used to expose `UAA_ADMIN_CLIENT_SECRET` etc. in the standard configuration.
 
 ### Using Maven with to test with PostgreSQL or MySQL
 
-The default uaa unit tests (`mvn test`) use hsqldb.
+The default UAA unit tests (`mvn test`) use hsqldb.
 
 To run the unit tests using PostgreSQL:
 
@@ -266,23 +266,23 @@ In Cloud Foundry terms
 
 * `app` is a webapp that needs single sign on and access to the `api` service on behalf of users.
 
-* `login` is where Cloud Foundry administrators set up their authentication sources, e.g. LDAP/AD, SAML, OpenID (Google etc.) or social. The cloudfoundry.com platform uses a different implementation of the [login server](https://github.com/cloudfoundry/login-server).
+* `login` is where Cloud Foundry administrators set up their authentication sources, e.g. LDAP/AD, SAML, OpenID (Google etc.) or social. The `run.pivotal.io` platform uses a different implementation of the [login server](https://github.com/cloudfoundry/login-server).
 
 ## UAA Server
 
-The authentication service is `uaa`. It's a plain Spring MVC webapp. Deploy as normal in Tomcat or your container of choice, or execute `mvn tomcat:run` to run it directly from `uaa` directory in the source tree (make sure the common jar is installed first using `mvn install` from the common subdirectory or from the top level directory). When running with maven it listens on port 8080.
+The authentication service is `uaa`. It is a plain Spring MVC webapp. Deploy as normal in Tomcat or your container of choice, or execute `mvn tomcat:run` to run it directly from `uaa` directory in the source tree (make sure the common jar is installed first using `mvn install` from the common subdirectory or from the top level directory). When running with maven it listens on port 8080.
 
 The UAA Server supports the APIs defined in the UAA-APIs document. To summarise:
 
-1. The OAuth2 /authorize and /token endpoints
+1. The OAuth2 `/authorize` and `/token` endpoints
 
-2. A /login_info endpoint to allow querying for required login prompts
+2. A `/login_info` endpoint to allow querying for required login prompts
 
-3. A /check_token endpoint, to allow resource servers to obtain information about an access token submitted by an OAuth2 client.
+3. A `/check_token` endpoint, to allow resource servers to obtain information about an access token submitted by an OAuth2 client.
 
 4. SCIM user provisioning endpoint
 
-5. OpenID connect endpoints to support authentication /userinfo and /check_id (todo). Implemented roughly enough to get it working (so /app authenticates here), but not to meet the spec.
+5. OpenID connect endpoints to support authentication `/userinfo` and `/check_id` (todo). Implemented roughly enough to get it working (so `/app` authenticates here), but not to meet the spec.
 
 Authentication can be performed by command line clients by submitting credentials directly to the `/authorize` endpoint (as described in UAA-API doc).  There is an `ImplicitAccessTokenProvider` in Spring Security OAuth that can do the heavy lifting if your client is Java.
 
@@ -302,9 +302,9 @@ To use Postgresql for user data, activate one of the Spring profiles `hsqldb` or
 
 The active profiles can be configured in `uaa.yml` using
 
-~~~yaml
+```yaml
 spring_profiles: postgresql
-~~~
+```
 
 or by passing the `spring.profiles.active` parameter to the JVM. For, example to run with an embedded HSQL database:
 
@@ -320,7 +320,7 @@ $ mvn -Dspring.profiles.active=postgresql tomcat:run
 
 To bootstrap a microcloud type environment you need an admin client. For this there is a database initializer component that inserts an admin client.  If the default profile is active (i.e. not `postgresql`) there is also a `cf` client so that the gem login works out of the box. You can override the default settings and add additional clients in `uaa.yml`:
 
-~~~yaml
+```yaml
 oauth:
   clients:
     admin:    
@@ -330,7 +330,7 @@ oauth:
       id: admin
       secret: adminclientsecret
       resource-ids: clients
-~~~
+```
 
 The admin client can be used to create additional clients (but not to do anything much else).  A client with read/write access to the `scim` resource will be needed to create user accounts.  The integration tests take care of this automatically, inserting client and user accounts as necessary to make the tests work.
 
@@ -352,7 +352,7 @@ The application can operate in multiple different profiles according to the loca
 
         GET /app/apps
 
-    browser is redirected through a series of authentication and access grant steps (which could be slimmed down to implicit steps not requiring user at some point), and then the photos are shown.
+    Browser is redirected through a series of authentication and access grant steps (which could be slimmed down to implicit steps not requiring user at some point), and then the photos are shown.
 
 2. See the currently logged in user details, a bag of attributes grabbed from the open id provider
 
@@ -364,24 +364,24 @@ A user interface for authentication.  The UAA can also authenticate user account
 
 The login application is actually itself an OAuth2 endpoint provider, but delegates those features to the UAA server.  Configuration for the login application therefore consists of locating the UAA through its OAuth2 endpoint URLs, and registering the login application itself as a client of the UAA.  There is a `login.yml` for the UAA locations, e.g. for a local `vcap` instance:
 
-~~~yaml
+```yaml
 uaa:
   url: http://uaa.vcap.me
   token:
     url: http://uaa.vcap.me/oauth/token
   login:
     url: http://uaa.vcap.me/login.do
-~~~
+```
 
 and there is an environment variable (or Java System property), `LOGIN_SECRET` for the client secret that the app uses when it authenticates itself with the UAA.  The Login app is registered by default in the UAA only if there are no active Spring profiles (so not at all in `vcap`).  In the UAA you can find the registration in the `oauth-clients.xml` config file.  Here's a summary:
 
-~~~yaml
+```yaml
 id: login
 secret: loginsecret
 authorized-grant-types: client_credentials
 authorities: ROLE_LOGIN
 resource-ids: oauth
-~~~
+```
 
 ### Use Cases
 

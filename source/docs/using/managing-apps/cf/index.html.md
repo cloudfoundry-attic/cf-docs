@@ -10,12 +10,12 @@ This table below lists all cf commands. Click a command in the table for informa
 
 |   |  | |
 | :-------- | :---------- |:---------- |
-| **Basics** <br>[info](#info) <br>[login EMAIL](#login) <br>[logout](#logout) <br>[targets](#targets) <br>[target URL](#target)  <br> <br> **Manage Users** <br>  [create-user EMAIL](#create-user)  <br>   [passwd](#passwd) <br> [register EMAIL](#register) <br> [users](#users)<br><br> **Manage Apps** <br>[app APP](#app) <br> [apps](#apps) <br>[bind-service SVC APP](#bind-service)<br> [console APP](#console) <br>[delete APP](#delete) <br>[map APP HOST DOMAIN](#map) <br>[push NAME](#push) <br>[rename APP APP](#rename) <br>[restart APP](#restart) <br> [scale APP](#scale) <br> [set-env APP NAME VALUE](#set-env)<br>[start APPS](#start) <br>[stop APPS](#stop) <br>[unbind-service SVC APP](#unbind-service)   <br> [unmap URL APP](#unmap) <br> [unset-env APP NAME](#unset-env)    <br> <br> | **Get Information About Apps**  <br>[crashes APPS](#crashes) <br>[crashlogs APP](#crashlogs)  <br> [env APP](#env)  <br> [file APP PATH](#file)  <br> [files APP PATH](#file) <br> [guid TYPE NAME](#guid) <br>[health APP](#health) <br>[instances APP](#instances) <br>[logs APP](#logs) <br>[stats APP](#stats) <br>[tail APP PATH](#tail)        <br> <br>  **Manage Services** <br>[bind-service SVC APP](#bind-service) <br>[create-service-auth-token LABEL PROVIDER](#create-service-auth-token)<br>[create-service OFFERING NAME](#create-service) <br>[delete-service-auth-token TOKEN](#delete-service-auth-token)<br>[delete-service SVC](#delete-service) <br>[rename-service SVC SVC](#rename-service) <br>[tunnel INSTANCE CLIENT](#tunnel)  <br>[unbind-service SVC APP](#unbind-service)  <br>[update-service-auth-token TOKEN](#update-service-auth-token)   <br> <br>**Get Information about Services** <br>[info --service](#info) <br> [service-auth-tokens](#service-auth-tokens) <br>[service SERVICE](#service) <br>[services](#services)   |**Manage Organizations and Spaces** <br>[create-org ORG](#create-org) <br>[create-space NAME ORG](#create-space)  <br>  [delete-org ORG](#delete-org) <br>[delete-space SPACE](#delete-space)   <br>[rename-org ORG ORG](#rename-org)   <br>[rename-space SPACE SPACE](#rename-space) <br> [set-quota QUOTA ORG](#set-quota) <br>[switch-space SPACE](#switch-space) <br> <br> **Get Information About Organizations and Spaces** <br> [guid TYPE NAME](#guid) <br>[org ORG](#org)  <br>[orgs](#orgs)  <br>[space SPACE](#space)  <br> [spaces ORG](#spaces)  <br> <br>**Manage Domains and Routes** <br>[domains SPACE](#domains) <br> [guid TYPE NAME](#guid)<br>[routes](#routes) <br>[unmap-domain DOMAIN](#unmap-domain )  <br>
+| **Basics** <br>[login EMAIL](#login) <br>[logout](#logout) <br>[targets](#targets) <br>[target URL](#target)  <br> <br> **Manage Users** <br>  [create-user EMAIL](#create-user)  <br>   [passwd](#passwd) <br> [register EMAIL](#register) <br> [users](#users)<br><br> **Manage Apps** <br>[app APP](#app) <br> [apps](#apps) <br>[bind-service SVC APP](#bind-service)<br> [console APP](#console) <br>[delete APP](#delete) <br>[map APP HOST DOMAIN](#map) <br>[push NAME](#push) <br>[rename APP APP](#rename) <br>[restart APP](#restart) <br> [scale APP](#scale) <br> [set-env APP NAME VALUE](#set-env)<br>[start APPS](#start) <br>[stop APPS](#stop) <br>[unbind-service SVC APP](#unbind-service)   <br> [unmap URL APP](#unmap) <br> [unset-env APP NAME](#unset-env)    <br> <br> | **Get Information About Apps**  <br>[crashlogs APP](#crashlogs)  <br> [env APP](#env)  <br> [events APP](#events)  <br>[file APP PATH](#file)  <br> [files APP PATH](#file) <br> [guid TYPE NAME](#guid) <br>[health APP](#health) <br>[instances APP](#instances) <br>[logs APP](#logs) <br>[stats APP](#stats) <br>[tail APP PATH](#tail)        <br> <br>  **Manage Services** <br>[bind-service SVC APP](#bind-service) <br>[create-service-auth-token LABEL PROVIDER](#create-service-auth-token)<br>[create-service OFFERING NAME](#create-service) <br>[delete-service-auth-token TOKEN](#delete-service-auth-token)<br>[delete-service SVC](#delete-service) <br>[rename-service SVC SVC](#rename-service) <br>[tunnel INSTANCE CLIENT](#tunnel)  <br>[unbind-service SVC APP](#unbind-service)  <br>[update-service-auth-token TOKEN](#update-service-auth-token)   <br> <br>**Get Information about Services** <br> [service-auth-tokens](#service-auth-tokens) <br>[service SERVICE](#service) <br>[services](#services)   |**Manage Organizations and Spaces** <br>[create-org ORG](#create-org) <br>[create-space NAME ORG](#create-space)  <br>  [delete-org ORG](#delete-org) <br>[delete-space SPACE](#delete-space)   <br>[rename-org ORG ORG](#rename-org)   <br>[rename-space SPACE SPACE](#rename-space) <br> [set-quota QUOTA ORG](#set-quota) <br>[switch-space SPACE](#switch-space) <br> <br> **Get Information About Organizations and Spaces** <br> [guid TYPE NAME](#guid) <br>[org ORG](#org)  <br>[orgs](#orgs)  <br>[space SPACE](#space)  <br> [spaces ORG](#spaces)  <br> <br>**Manage Domains and Routes** <br>delete-route SPACE](#delete-route) <br> [domains SPACE](#domains) <br> [guid TYPE NAME](#guid)<br>[routes](#routes) <br>[unmap-domain DOMAIN](#unmap-domain )  <br>
 |  | |
 
 ## <a id='installing'></a>Installing cf ##
 
-cf requires Ruby and RubyGems. Ruby 1.9.2 or later is required. Ruby 1.9.3 or 2.0 is recommended.
+cf requires Ruby and RubyGems. Ruby 1.9.3 or later is required.  
 
 For information about installing Ruby and RubyGems, see [Installing Ruby](/docs/common/install_ruby.html).
 
@@ -139,14 +139,6 @@ Open a Rails console and connect to an application. For information about using 
 | --app     |   y       | The name of the application.            |
 | --port     |  y        | The port where the application is running.           |
 
-#### <a id='crashes'></a> crashes ####
-
-For the for the specified list of applications, list instances that are unresponsive.
-
-<div class="command-doc">
-  <pre class="terminal">$ cf crashes [list of application names]</pre>
-  <div class="break"></div>
-</div>
 
 
 #### <a id='crashlogs'></a> crashlogs ####
@@ -370,6 +362,25 @@ Show all environment variables set for an application. Environment variables are
   <pre class="terminal">$ cf env [application name]</pre>
 </div>
 
+#### <a id='events'></a> env ####
+
+Show events for an application. 
+
+<div class="command-doc">
+  <pre class="terminal">$ cf events [application name]</pre>
+</div>
+
+Example output:
+
+<div class="command-doc">
+  <pre class="terminal">
+
+time                        instance index   description                 exit status
+2013-08-07 16:31:47 +0000   0                out of memory               Failure (255)
+2013-08-07 16:31:48 +0000   0                Hostname not supplied: ''   Failure (-1)
+</pre>
+</div>
+
 #### <a id='file'></a> file ####
 
 Display the contents for a file at a given path, belonging to the specified application.
@@ -408,26 +419,6 @@ Display the health of the specified applications.
 </div>
 
 The current status of the application, for example "running", "flapping", "stopped", is returned. If only a subset of application instances are running, the percentage of instances that are running is shown.
-
-#### <a id='info'></a> info ####
-
-Display information on the target cloud
-
-| Qualifier | Required | Description |
-| :-------- | :------- | :---------- |
-|-a, --all | n| |
-|-s, --services |n |  |
-
-The following information is returned:
-
-* target -- The target Cloud Foundry instance.
-* version -- The Cloud Foundry version.
-* If you use the `--all` or `--services` options, the following information is returned for each available service type:
-    * service -- Type of service.
-    * version -- Version of service
-    * provider -- The company that provides the service.
-    * plans -- Plans under which the service is available.
-    * description -- Description of the service.
 
 #### <a id='instances'></a> instances ####
 List the instances of the specified application.
