@@ -180,7 +180,7 @@ For more information, see [VCAP_SERVICES Environment Variable](../../../using/se
 
 ## <a id='support'></a>Support ##
 
-[Contacting Service Providers for Support](contacting-service-providers-for-support.html)
+[Contacting Service Providers for Support](../../contacting-service-providers-for-support.html)
 
 * https://support.newrelic.com/
 * support@newrelic.com

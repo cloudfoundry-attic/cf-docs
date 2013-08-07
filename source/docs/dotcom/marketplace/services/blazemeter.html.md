@@ -6,11 +6,11 @@ BlazeMeter is a self-service, web and mobile load testing platform (PaaS) provid
 
 ## <a id='managing-services'></a>Managing Services ##
 
-[Managing Services](/docs/using/services/)
+[Managing Services](../../../using/services/)
 
 ## <a id='support'></a>Support ##
 
-[Contacting Service Providers for Support](/docs/dotcom/marketplace/contacting-service-providers-for-support.html)
+[Contacting Service Providers for Support](../contacting-service-providers-for-support.html)
 
 ## <a id='external-links'></a>External Links ##
 

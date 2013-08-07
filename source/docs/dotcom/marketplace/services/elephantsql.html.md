@@ -4,7 +4,7 @@ title: ElephantSQL
 
 ## <a id='managing-services'></a>Managing Services ##
 
-[Managing Services](/docs/using/services/)
+[Managing Services](../../../using/services/)
 
 ## <a id='integration'></a>Integrating the Service With Your App ###
 
@@ -31,7 +31,7 @@ https://github.com/scottfrederick/spring-music
 
 ## <a id='support'></a>Support ##
 
-[Contacting Service Providers for Support](/docs/dotcom/marketplace/contacting-service-providers-for-support.html)
+[Contacting Service Providers for Support](../contacting-service-providers-for-support.html)
 
 * http://www.elephantsql.com/support.html
 
