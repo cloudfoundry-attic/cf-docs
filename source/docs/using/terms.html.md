@@ -228,6 +228,10 @@ This page briefly describes a number of terms that are commonly used in Cloud Fo
 
 > A lightweight, modular logging library written  to support Cloud Foundry. 
 
+## <a id='STS'></a>STS ##
+
+> Spring Tool Suite, an IDE based on Eclipse. STS supports a plugin for deploying Java applications to Cloud Foundry.
+
 
 ## <a id='uaa'></a> UAA  ##
 
@@ -238,7 +242,7 @@ This page briefly describes a number of terms that are commonly used in Cloud Fo
 
 > In Cloud Foundry, the User Account and Authentication Service (UAA) provides single sign-on for web applications and secures Cloud Foundry resources. The UAA acts as an OAuth 2.0 Authorization Server. It grants access tokens to client applications for use in accessing Resource Servers in the platform, including the Cloud Controller. <br><br>For more information, see [User Account and Authentication Service](../architecture/uaa.html).
 
-## <a id='vcap-services'></a>VCAP_SERVICES##
+## <a id='vcap-services'></a>VCAP_SERVICES ##
 
 > An environment variable that contains connection information for all services bound to an application.
 <br><br>
