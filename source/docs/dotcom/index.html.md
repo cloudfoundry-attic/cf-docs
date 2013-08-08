@@ -1,8 +1,8 @@
 ---
-title: Cloud Foundry Hosted Developer Edition
+title: Pivotal CF Hosted
 ---
 
-Documentation specific to the Cloud Foundry hosted developer edition provided by Pivotal.
+Documentation specific to the Pivotal CF Hosted service.
 
 ## <a id='getting-started'></a>Getting Started Guides ##
 

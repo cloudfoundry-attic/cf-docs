@@ -4,7 +4,7 @@ title: Welcome to Cloud Foundry Documentation
 
 <div class="column-left">
   <div class="column-title">
-  <h4>Hosted Developer Edition</h4>
+  <h4>Pivitoal CF Hosted</h4>
   </div>
    <p>Available at <a href="http://run.pivotal.io">run.pivotal.io</a></p>
    <hr>
