@@ -16,12 +16,11 @@ The sample manifest shown below specifies deployment setting for a Node.js appli
 ~~~
 applications:
 - name: nodetestdh01
- runtime: node08
- mem: 64M
- instances: 2
- host: crn
- domain: csapps.io 
- path: .
+  memory: 64M
+  instances: 2
+  host: crn
+  domain: csapps.io 
+  path: .
 ~~~
 
 Manifests are written in YAML. For information about YAML, see www.yaml.org.
@@ -86,7 +85,7 @@ The following sample manifest specifies two services.
 ~~~
 applications:
 - name: mysample
-  mem: 256M
+  memory: 256M
   instances: 1
   host: tapp
   domain: ctapps.io
@@ -160,30 +159,28 @@ The manifest below defines two applications, “publisher” and “subscriber�
 ~~~
 applications: 
 - name: publisher
-  runtime: node08
-  mem: 64M
+  memory: 64M
   path: ./publisher
-  domain: ${target-base}
+  domain: cfapps.io
   host: publisher
-    instances: 1
-    services: 
-      work-queue: 
-        type: rediscloud
-        provider: garantiadata
-        plan: 20mb
+  instances: 1
+  services: 
+    work-queue: 
+      type: rediscloud
+      provider: garantiadata
+      plan: 20mb
   depends-on: ./subscriber
 - name: subscriber
-  runtime: node08
-  mem: 64M
+  memory: 64M
   path: ./subscriber
-  domain: ${target-base}
+  domain: cfapps.io
   host: subscriber
-    instances: 1
-    services: 
-      work-queue: 
-        type: rediscloud
-        provider: garantiadata
-        plan: 20mb
+  instances: 1
+  services: 
+    work-queue: 
+      type: rediscloud
+      provider: garantiadata
+      plan: 20mb
 ~~~
 
 
