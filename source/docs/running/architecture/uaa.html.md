@@ -5,7 +5,7 @@ description: Identity management service for Cloud Foundry.
 
 The UAA is the identity management service for Cloud Foundry.  Its primary role is as an OAuth2 provider, issuing tokens for client applications to use when they act on behalf of Cloud Foundry users.  It can also authenticate users with their Cloud Foundry credentials, and can act as an SSO service using those credentials (or others). It has endpoints for managing user accounts and for registering OAuth2 clients, as well as various other management functions.
 
-## Quick Start
+## <a id='quickstart'></a>Quick Start ##
 
 Fetch and install the UAA from Git:
 
@@ -19,7 +19,7 @@ Each module has a `mvn tomcat:run` target to run individually. Alternatively, yo
 
 You will need Maven 3.0.4 or newer.
 
-### Deploy to Cloud Foundry
+### <a id='deploy'></a>Deploy to Cloud Foundry ###
 
 You can also build the app and push it to Cloud Foundry:
 
@@ -30,7 +30,7 @@ $ cf push myuaa --path uaa/target
 
 (If you do that, choose a unique application id, not `myuaa`.)
 
-### Demo of command line usage on local server
+### <a id='demo-local'></a>Local Command Line Usage ###
 
 First run the UAA server as described above:
 
@@ -60,9 +60,9 @@ $ uaac target http://localhost:8080/uaa
 $ uaac token get marissa koala
 </pre>
 
-(or leave out the username / password to be prompted).
+(If you do not specify username and password you will be prompted to supply them.)
 
-This authenticates and obtains an access token from the server using the OAuth2 implicit grant, similar to the approach intended for a client like `cf`. The token is stored in `~/.uuac.yml`, so dig into that file and pull out the access token for your `cf` target (or use `--verbose` on the login command line above to see it logged to your console).
+This authenticates and obtains an access token from the server using the OAuth2 implicit grant, similar to the approach intended for a client like `cf`. The token is stored in `~/.uuac.yml`; open that file to obtain access token for your `cf` target (or use `--verbose` on the login command line above to see it in the command shell.
 
 Then you can login as a resource server and retrieve the token details:
 
@@ -84,9 +84,11 @@ user_id: ba14fea0-9d87-4f0c-b59e-32aaa8eb1434
 client_id: cf
 ~~~
 
-### Demo of command line usage on run.pivotal.io
+### <a id='demo-hosted'></a>Remote Command Line Usage ###
 
-The same command line example should work against a UAA running on `run.pivotal.io` (except for the token decoding bit because you won't have the client secret). In this case, there is no need to run a local uaa server, so simply ask the external login endpoint to tell you about the system:
+The command line example in the previous section should work against a UAA running on the hosted Pivotal CF instance, although  token encloding is unnecessary as you will not have the client secret. 
+
+In this case, there is no need to run a local uaa server, so simply ask the external login endpoint to tell you about the system:
 
 <pre class="terminal">
 $ curl -H "Accept: application/json" uaa.run.pivotal.io/login
@@ -105,11 +107,11 @@ $ uaac target uaa.run.pivotal.io
 $ uaac token get [yourusername] [yourpassword]
 </pre>
 
-(or leave out the username / password to be prompted).
+(If you do not specify username and password you will be prompted to supply them.)
 
 This authenticates and obtains an access token from the server using the OAuth2 implicit grant, the same as used by a client like `cf`. 
 
-## Integration tests
+## <a id='integration'></a>Integration tests ##
 
 With all apps deployed into a running server on port 8080 the tests will include integration tests (a check is done before each test that the app is running).  You can deploy them in your IDE or using the command line with `mvn tomcat:run` and then run the tests as normal.
 
@@ -137,9 +139,9 @@ This will run the integration tests against a UAA server running in a local vcap
   
 All these profiles set the `CLOUD_FOUNDRY_CONFIG_PATH` to pick up a `uaa.yml` and (if appropriate) set the context root for running the server (see below for more detail on that).  
 
-### Integration tests
+### <a id='integration-tests'></a>Integration Tests ###
 
-There is a really simple cucumber feature spec (`--tag @uaa`) to verify that the UAA server is there.  There is also a rake task to launch the integration tests from the `uaa` submodule in `vcap`.  Typical usage for a local (`uaa.vcap.me`) instance:
+There is a  simple cucumber feature spec (`--tag @uaa`) to verify that the UAA server is there.  There is also a rake task to launch the integration tests from the `uaa` submodule in `vcap`.  Typical usage for a local (`uaa.vcap.me`) instance:
 
 <pre class="terminal">
 $ cd vcap/tests
@@ -150,7 +152,7 @@ You can change the most common important settings with environment variables (se
 
 *Note:* `MAVEN_OPTS` cannot be used to set JVM system properties for the tests, but it can be used to set memory limits for the process etc.
 
-### Custom YAML Configuration
+### <a id='custom-configuration'></a>Custom YAML Configuration ###
 
 To modify the runtime parameters you can provide a `uaa.yml`, like this example:
 
@@ -185,7 +187,7 @@ file:${UAA_CONFIG_FILE}
 ${UAA_CONFIG_URL}
 ```
 
-### Using Maven with Cloud Foundry or VCAP
+### <a id='maven'></a>Using Maven with Cloud Foundry or VCAP ###
 
 To test against a vcap instance use the Maven profile `vcap` (it switches off some of the tests that create random client and user accounts):
 
@@ -223,7 +225,7 @@ uaa:
 
 will look for an environment variable (or system property) `UAA_TEST_USERNAME` before defaulting to `marissa`.  This is the trick used to expose `UAA_ADMIN_CLIENT_SECRET` etc. in the standard configuration.
 
-### Using Maven with to test with PostgreSQL or MySQL
+### <a id='maven-test'></a>Test with PostgreSQL or MySQL ##
 
 The default UAA unit tests (`mvn test`) use hsqldb.
 
@@ -241,34 +243,25 @@ $ SPRING_PROFILES_ACTIVE=test,mysql CLOUD_FOUNDRY_CONFIG_PATH=src/test/resources
 
 The database configuration for the common and scim modules is located at `common/src/test/resources/(mysql|postgresql).properties` and `scim/src/test/resources/(mysql|postgresql).properties`.
 
-## Inventory
+## <a id='projects'></a>UAA Projects ##
 
 There are actually several projects here, the main `uaa` server application and some samples:
 
-0. `common` is a module containing a JAR with all the business logic.  It is used in
+* `common` is a module containing a JAR with all the business logic.  It is used in
 the webapps below.
 
-1. `uaa` is the actual UAA server
+* `uaa` is the actual UAA server.  `uaa` provides an authentication service plus authorized delegation for back-end services and apps (by issuing OAuth2 access tokens).
 
-2. `gem` is a ruby gem (`cf-uaa-client`) for interacting with the UAA server
+* `gem` is a ruby gem (`cf-uaa-client`) for interacting with the UAA server
 
-3. `api` (sample) is an OAuth2 resource service which returns a mock list of deployed apps
+* `api` (sample) is an OAuth2 resource service which returns a mock list of deployed apps. `api` is a service that provides resources that other applications may wish to access on behalf of the resource owner (the end user)
 
-4. `app` (sample) is a user application that uses both of the above
+* `app` (sample) is a user application that uses both of the above. `app` is a webapp that needs single sign on and access to the `api` service on behalf of users.
 
-5. `login` (sample) is an application that performs authentication for the UAA acting as a back end service
+* `login` (sample) is an application that performs authentication for the UAA acting as a back end service. `login` is where Cloud Foundry administrators set up their authentication sources, e.g. LDAP/AD, SAML, OpenID (Google etc.) or social. The `run.pivotal.io` platform uses a different implementation of the [login server](https://github.com/cloudfoundry/login-server).
 
-In Cloud Foundry terms
 
-* `uaa` provides an authentication service plus authorized delegation for back-end services and apps (by issuing OAuth2 access tokens).
-
-* `api` is a service that provides resources that other applications may wish to access on behalf of the resource owner (the end user).
-
-* `app` is a webapp that needs single sign on and access to the `api` service on behalf of users.
-
-* `login` is where Cloud Foundry administrators set up their authentication sources, e.g. LDAP/AD, SAML, OpenID (Google etc.) or social. The `run.pivotal.io` platform uses a different implementation of the [login server](https://github.com/cloudfoundry/login-server).
-
-## UAA Server
+## <a id='uaa-server'></a>UAA Server ##
 
 The authentication service is `uaa`. It is a plain Spring MVC webapp. Deploy as normal in Tomcat or your container of choice, or execute `mvn tomcat:run` to run it directly from `uaa` directory in the source tree (make sure the common jar is installed first using `mvn install` from the common subdirectory or from the top level directory). When running with maven it listens on port 8080.
 
@@ -288,13 +281,13 @@ Authentication can be performed by command line clients by submitting credential
 
 By default `uaa` will launch with a context root `/uaa`. There is a Maven profile `local` to launch with context root `/`, and another called `vcap` to launch at `/` with a PostgreSQL backend.
 
-### Configuration
+### <a id='configuration'></a>Configuration ###
 
 There is a `uaa.yml` file in the application which provides defaults to the placeholders in the Spring XML.  Wherever you see `${placeholder.name}` in the XML there is an opportunity to override it either by providing a System property (`-D` to JVM) with the same name, or a custom `uaa.yml` (as described above).
 
 All passwords and client secrets in the config files are plain text, but they will be inserted into the UAA database encrypted with BCrypt.
 
-### User Account Data
+### <a id='user-account-data'></a>User Account Data ###
 
 The default is to use an in-memory RDBMS user store that is pre-populated with a single test users: `marissa` has password `koala`.
 
@@ -334,19 +327,21 @@ oauth:
 
 The admin client can be used to create additional clients (but not to do anything much else).  A client with read/write access to the `scim` resource will be needed to create user accounts.  The integration tests take care of this automatically, inserting client and user accounts as necessary to make the tests work.
 
-## The API Application
+## <a id='samples'></a>Sample Applications ##
+
+### <a id='api-application'></a>API Application ###
 
 An example resource server.  It hosts a service which returns a list of mock applications under `/apps`.
 
 Run it using `mvn tomcat:run` from the `api` directory (once all other tomcat processes have been shutdown). This will deploy the app to a Tomcat manager on port 8080.
 
-## The App Application
+### <a id='app-application'></a>App Application ###
 
 This is a user interface app (primarily aimed at browsers) that uses OpenId Connect for authentication (i.e. SSO) and OAuth2 for access grants.  It authenticates with the Auth service, and then accesses resources in the API service.  Run it with `mvn tomcat:run` from the `app` directory (once all other tomcat processes have been shutdown).
 
 The application can operate in multiple different profiles according to the location (and presence) of the UAA server and the Login application.  By default it will look for a UAA on `localhost:8080/uaa`, but you can change this by setting an environment variable (or System property) called `UAA_PROFILE`.  In the application source code (`src/main/resources`) you will find multiple properties files pre-configured with different likely locations for those servers.  They are all in the form `application-<UAA_PROFILE>.properties` and the naming convention adopted is that the `UAA_PROFILE` is `local` for the localhost deployment, `vcap` for a `vcap.me` deployment, `staging` for a staging deployment.  The profile names are double barrelled (e.g. `local-vcap` when the login server is in a different location than the UAA server).
 
-### Use Cases
+#### Use Cases ####
 
 1. See all apps
 
@@ -358,7 +353,7 @@ The application can operate in multiple different profiles according to the loca
 
         GET /app
 
-## The Login Application
+### <a id='login-application'></a>Login Application ###
 
 A user interface for authentication.  The UAA can also authenticate user accounts, but only if it manages them itself, and it only provides a basic UI.  The Login app can be branded and customized for non-native authentication and for more complicate UI flows, like user registration and password reset.
 
@@ -383,7 +378,7 @@ authorities: ROLE_LOGIN
 resource-ids: oauth
 ```
 
-### Use Cases
+#### Use Cases ####
 
 1. Authenticate
 

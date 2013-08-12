@@ -15,9 +15,7 @@ This table below lists all cf commands. Click a command in the table for informa
 
 ## <a id='installing'></a>Installing cf ##
 
-cf requires Ruby and RubyGems. Ruby 1.9.3 or later is required.  
-
-For information about installing Ruby and RubyGems, see [Installing Ruby](/docs/common/install_ruby.html).
+cf requires Ruby and RubyGems. Ruby 1.9.3 or later is required. Ruby 1.9.3 is recommended. For information about installing Ruby and RubyGems, see [Installing Ruby](/docs/common/install_ruby.html).
 
 After installing Ruby and RubyGems, use this command to install the latest released version of cf:
 
@@ -30,6 +28,21 @@ To install a pre-release version of cf:
 <pre class="terminal">
 $ gem install cf --pre
 </pre>
+
+## <a id='troubleshooting'></a>Troubleshooting cf Installation ##
+
+*  OS X includes Ruby v1.8.7, which cf does not support. You must upgrade Ruby on OS X to run cf. 
+
+* If you are running Ruby 1.9.3 with a pre-1.9.x gemset, cf installation will fail with a message like this:
+
+<pre class="terminal">
+$ gem install cf
+...
+...
+ERROR: Error installing cf:
+activesupport requires Ruby version >= 1.9.3.
+</pre>
+
 
 ## <a id='usage'></a>Command Usage and Qualifiers ##
 

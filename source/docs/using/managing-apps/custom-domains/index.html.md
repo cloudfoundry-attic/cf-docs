@@ -93,8 +93,8 @@ Subdomain> 1
 3: none
 Domain> 2
 
-Creating route .example.com... OK
-Binding .example.com to myapp... OK
+Creating route myapp.example.com... OK
+Binding myapp.example.com to myapp... OK
 
 </pre>
 
