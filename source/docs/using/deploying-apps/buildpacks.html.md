@@ -16,16 +16,16 @@ At the time of writing, the standard buildpacks include:
 * Java (Java_web, Spring, Grails, Lift and Play)
 * Node
 
-When an application written using one of these languages and frameworks is pushed, the required buildpack is automatically installed on the Cloud Foundry DEA where the application will run.
+When an application written using one of these languages and frameworks is pushed, the required buildpack is automatically installed on the Cloud Foundry Droplet Execution Agent (DEA) where the application will run.
 
 
 ## <a id='custom-buildpacks'></a>Custom Buildpacks ##
 
-Buildpacks were originally devised by Heroku, and the design was released to the community. The structure of a buildpack is actually pretty straightforward. A buildpack repository contains three main scripts, situated in a folder named `bin`
+Buildpacks were originally devised by Heroku, and the design was released to the community. The structure of a buildpack is straightforward. A buildpack repository contains three main scripts, situated in a folder named `bin`.
 
 ### <a id='detect-script'></a>bin/detect ###
 
-The `detect` script is used to determine whether to apply the buildpack to an application or not. The script is called with one argument, the build directory for the application. It returns an exit code of `0` if the application can be supported by the buildpack. If the script does return `0`, it should also print a framework name to STDOUT.
+The `detect` script is used to determine whether or not to apply the buildpack to an application. The script is called with one argument, the build directory for the application. It returns an exit code of `0` if the application can be supported by the buildpack. If the script does return `0`, it should also print a framework name to STDOUT.
 
 Shown below is an example `detect` script written in Ruby that checks for a Ruby application based on the existence of a `Gemfile`:
 
@@ -46,13 +46,13 @@ end
 
 ### <a id='detect-script'></a>bin/compile ###
 
-The `compile` script is responsible for actually building the droplet that will be run by the DEA and will therefore contain all the components necessary to run the application.
+The `compile` script builds the droplet that will be run by the DEA and will therefore contain all the components necessary to run the application.
 
 The script is run with two arguments, the build directory for the application and the cache directory, which is a location the buildpack can use to store assets during the build process.
 
 During execution of this script all output sent to STDOUT will be relayed via CF back to the end user. The generally accepted pattern for this is to break out this functionality in to a 'language_pack'. A good example of this can be seen at [https://github.com/cloudfoundry/cloudfoundry-buildpack-java/blob/master/lib/language_pack/java.rb](https://github.com/cloudfoundry/cloudfoundry-buildpack-java/blob/master/lib/language_pack/java.rb)
 
-A simple example of this script might look like:
+A simple `compile` script is shown below:
 
 ~~~ruby
 
@@ -83,7 +83,7 @@ end
 
 The `release` script provides feedback metadata back to Cloud Foundry. The script is run with one argument, the build location of the application.
 
-The expected format for the return data is YAML. For Cloud Foundry it should include two keys: `config\_vars` and `default\_process\_types`.
+The expected format for the return data is YAML. For Cloud Foundry it should include two keys: `config_vars` and `default_process_types`.
 
 ~~~ruby
 
