@@ -1,64 +1,65 @@
 ---
-title: Deploying Ruby Apps (Rack, Rails, or Sinatra)
+title: Deploy Rack, Rails, or Sinatra Applications
 ---
 
 This page will prepare you to deploy Rack, Rails, or Sinatra apps via the [getting started guide](../../../dotcom/getting-started.html).
 
-## <a id='bundler'></a> Application bundling ##
+## <a id='bundler'></a> Application Vundling ##
 
 You need to run <a href="http://gembundler.com/">Bundler</a> to create both a Gemfile and Gemfile.lock. These files must be in your application before you push to Cloud Foundry.
 
-## <a id='config'></a> Rack config file ##
+## <a id='config'></a> Rack Xonfig File ##
 
-For both **Rack** and **Sinatra** you need a `config.ru` file like the example below:
+For both Rack and Sinatra you need a `config.ru` file like the example below:
 
 ~~~ruby
 require './hello_world'
 run HelloWorld.new
 ~~~
 
-## <a id='precompile'></a> Asset precompilation ##
+## <a id='precompile'></a> Asset Precompilation ##
 
-Cloud Foundry provides support for the Rails asset pipeline. This means that if you don't choose to precompile assets before deployment to Cloud Foundry, precompilation will occur when the application is staged.
+Cloud Foundry supports the Rails asset pipeline. If you do not precompile assets before deploying your application, Cloud Foundry will precompile them when staging the application. 
+
 To precompile asssets before deployment use the following command:
 
 <pre class="terminal">
 rake assets:precompile
 </pre>
 
-Doing this before deployment ensures that staging the application will take less time as the precomplilation task will not need to take place on Cloud Foundry.
+Precompilation before deploying the application reduces the time it  takes to stage the application. 
 
-One potential problem can occur during application initialization. The precompile rake task will run a complete re-initialization of the Rails application. This might trigger some of the initialization procedures and require service connections and environment checks that are unavailable during staging. You can turn this off by adding a configuration option in application.rb:
+Note that the precompile rake task completely re-initializes the Rails application. This might pose a problem if initialization require service connections or environment checks that are unavailable during staging. To prevent re-initialiation duirng precompilation, add the folllowing line to `application.rb`:
 
 ~~~ruby
 config.assets.initialize_on_precompile = false
 ~~~
 
-If the assets:precompile task fails, Cloud Foundry makes use of live compilation mode, this is the alternative to asset precompilation. In this mode, assets are compiled when they are loaded for the first time. This can be enabled by adding a setting to application.rb that forces the live compilation process.
+If the `assets:precompile` task fails, Cloud Foundry uses live compilation mode, the alternative to asset precompilation. In this mode, assets are compiled when they are loaded for the first time. You can force the live compilation by adding this line to `application.rb`.
 
 ~~~ruby
 Rails.application.config.assets.compile = true
 ~~~
 
-## <a id='workers'></a> Workers tasks ##
+## <a id='workers'></a> Worker Tasks ##
 
 Worker tasks are supported by Cloud Foundry. Follow this [Rails workers quick start](rails-running-worker-tasks.html) to understand how it works.
 
-## <a id='console'></a> Rails console ##
+## <a id='console'></a> Rails Console ##
 
 Cloud Foundry v2 does not yet support Rails Console.
 
-## <a id='services'></a> Binding to services ##
+## <a id='services'></a> Binding to Services ##
 
 Refer to the [instructions for Ruby service bindings](../../services/ruby-service-bindings.html).
 
-## <a id='rake'></a> Running Rake tasks ##
+## <a id='rake'></a> Running Rake Tasks ##
 
-If the data service (such as a database) you are using with your application is available directly and supports connectivity when not running on Cloud Foundry, then you can run rake tasks locally (not on Cloud Foundry) and perform database migrations and other tasks outside of Cloud Foundry. See further below on how to access the contents of the `VCAP_SERVICES` environment variable that contains bound service connection information.
+If the data service (such as a database) your application uses is available directly and supports connectivity when not running on Cloud Foundry, then you can run rake tasks locally (not on Cloud Foundry) and perform database migrations and other tasks outside of Cloud Foundry. For information about obtaining service connection information from the `VCAP_SERVICES` environment variable, see [VCAP_SERVICES Environment Variable](/docs/using/services/environment-variable.html).
 
-Alternatively, to run a rake task on Cloud Foundry, you can use the start command in your manifest.yml.
+Alternatively, to run a rake task on Cloud Foundry, you can use define the start command in the application's `manifest.yml` file.
 
-You will be asked if you want to save your configuration the first time you deploy. This will save a `manifest.yml` in your application with the settings you entered during the initial push. Edit the `manifest.yml` file and create a start command as follows:
+You will be asked if you want to save your configuration the first time you deploy.This will save a `manifest.yml` in your application with the settings you entered during the initial push. Edit the `manifest.yml` file and define the start command as follows:
 
 ~~~yaml
 ---
@@ -68,9 +69,8 @@ applications:
 ... the rest of your settings  ...
 ~~~
 
-**Important** Your first migration can only run against an application with one instance. After running the migration, you can scale the application using the `cf scale` command. You could run subsequent migrations using a script that checks for a unique instance number using the JSON formatted environment variable `VCAP_APPLICATION` - which includes an `instance_id` value.
+**Important** Your first migration can only run against an application with one instance. After running the migration, you can scale the application using the `cf scale` command. You could run subsequent migrations using a script that checks for a unique instance number using the JSON formatted environment variable `VCAP_APPLICATION` --- which includes an `instance_id` value.
 
-`VCAP_APPLICATION` works the same way as `VCAP_SERVICES`, which you can read about [here](../../services/environment-variable.html).
 
 To look at the contents of `VCAP_APPLICATION`, dump it in a Ruby app running in Cloud Foundry via:
 
