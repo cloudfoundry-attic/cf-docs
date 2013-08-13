@@ -5,7 +5,7 @@ title: Key Facts About Application Deployment
 
 This page summarizes key Cloud Foundry features and behaviors related to application deployment.
 
-## <a id='push-process'></a>The Cloud Foundry Push Process##
+## <a id='push-process'></a>The Cloud Foundry Push Process ##
 
 You initiate the deployment of an application using the Cloud Foundry CLI `cf push` command. In Cloud Foundry documentation, the deployment process is often referred to as “pushing an application”.
 
@@ -26,7 +26,7 @@ Cloud Foundry also supports custom buildpacks as described by requirements descr
 
 If you do not specify a buildpack when you run `cf push`, Cloud Foundry determines which built-in buildpack to use, using the `bin/detect` script of each buildpack.
 
-##<a id='deploy-options'></a>Application Deployment Options##
+##<a id='deploy-options'></a>Application Deployment Options ##
 
 The details of how an application is deployed are governed by a set of required and optional deployment attributes. For example, you specify the name of the application, the number of instances to run, and how much memory to allocate to the application.  You can supply deployment options on the command line when you run `cf push`, or in an application manifest file. 
 
@@ -36,7 +36,7 @@ The details of how an application is deployed are governed by a set of required 
 
 For general intructions on how to push an application to the Pivotal CF hosted service, see [Getting Started](/docs/dotcom/getting-started.html).
 
-##<a id='start-command'></a>The Application Start Command##
+##<a id='start-command'></a>The Application Start Command ##
 
 There are three ways that Cloud Foundry can obtain the command to use to start an application; they are listed below in order of precedence.
 
@@ -45,7 +45,7 @@ There are three ways that Cloud Foundry can obtain the command to use to start a
 1. The start command (if specified) for the “web” process type, in `default_process_types` section of the `bin/release` script of the buildpack.
 
 
-## <a id='services'></a>Using Services##
+## <a id='services'></a>Using Services ##
 
 An application running on a Cloud Foundry instance can use services that the instance is configured to provision. Such built-in services vary for different Cloud Foundry instances.  
 
