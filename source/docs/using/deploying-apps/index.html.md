@@ -42,7 +42,7 @@ There are three ways that Cloud Foundry can obtain the command to use to start a
 
 1. The value supplied with the `--command` qualifer (or in the application’s `manifest.yml` file). For example, `cf push --command java myapp`.
 1. The value of the `web` key in the procfile, for the application, if it exists. A procfile is a text file named `Procfile`, in the root directory of your application, that lists the process types in an application, and associated start commands. For example, `web: YourStartCommand`
-1. The start command (if specified) for the “web” process type, in `default_process_types` section of the `bin/release` script of the buildpack.
+1. The start command (if specified) for the “web” process type, in `default_process_types` section of the output from the buildpack's `bin/release` script.
 
 
 ## <a id='services'></a>Using Services ##
