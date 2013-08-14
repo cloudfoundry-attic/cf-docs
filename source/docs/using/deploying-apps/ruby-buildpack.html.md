@@ -17,7 +17,7 @@ The table below lists:
 * **Installed by Default** --- The version of each software resource that is installed by default. 
 * **To Install a Different Version** --- How to change the buildpack to install a different version of a software resource.
 
-**This page was last updated on August 2, 2013.**
+**This page was last updated on August 14, 2013.**
 
 
 |Resource |Available Versions |Installed by Default| To Install a Different Version |
