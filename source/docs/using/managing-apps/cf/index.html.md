@@ -79,7 +79,7 @@ The following qualifiers apply to all cf commands.
 
 ## <a id='proxy'></a>Connecting Through a Proxy Server ##
 
-This functionality requres cf v5.2 or later. 
+This functionality requires cf v5.2 or later. 
 
 If you run cf behind a proxy server, you must specify the proxy server address when you run a cf command. Use the `--http-proxy` and `--https-proxy` global command qualifiers, described above in [Command Usage and Qualifiers](#usage). (You can specify the proxy settings to be used when you push an application as environment variables in the application manifest; note however that proxy settings defined in an application manifest will only be used when you push that application using that manifest.)
 
@@ -90,11 +90,11 @@ Specify both `--http-proxy` and `--https-proxy` to ensure that all communication
 cf apps --http-proxy myproxy.myproxydomain:8080 --https-proxy myproxy.myproxydomain:443
 </div>
 
-If your proxy server requires a username and password, to run the `cf apps` command behind a proxy server, enter this command,substituting the appropriate URLs, your username, and your password:
+If your proxy server requires a username and password, to run the `cf apps` command behind a proxy server, enter this command, substituting the appropriate URLs, your username, and your password:
 
 <div class="command-doc">
  <pre class="terminal">
-cf apps --http-proxy myusername:mypassword@myproxy.myproxydomain:8080 --https-proxy username:password@myproxy.myproxydomain:443
+cf apps --http-proxy myusername:mypassword@myproxy.myproxydomain:8080 --https-proxy myusername:mypassword@myproxy.myproxydomain:443
 </div>
 
 
