@@ -6,9 +6,9 @@ title: Lift - Service Bindings
 
 This guide shows how to adapt the standard example lift application to use a bound service on Cloud Foundry.
 
-## <a id='auto'></a>Auto-reconfiguration ##
+## <a id='auto'></a>Auto-Configuration ##
 
-By default, Cloud Foundry will detect service connections in a Lift application and configure them to use the credentials provided in the Cloud Foundry environment. Auto-reconfiguration will only happen if there is a single service of any of the supported types - relational database (MySQL or Postgres), MongoDB, Redis, or RabbitMQ. If you application has more than one service of those types, or you want more control over the configuration, you can manually configure the service connections as described in following section.
+By default, Cloud Foundry will detect service connections in a Lift application and configure them to use the credentials provided in the Cloud Foundry environment. Auto-configuration will only happen if there is a single service of any of the supported types - relational database (MySQL or Postgres), MongoDB, Redis, or RabbitMQ. If you application has more than one service of those types, or you want more control over the configuration, you can manually configure the service connections as described in following section.
 
 ## <a id='manual'></a>Manual Configuration ##
 

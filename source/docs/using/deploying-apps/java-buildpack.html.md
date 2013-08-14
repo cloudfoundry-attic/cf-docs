@@ -24,6 +24,6 @@ The table below lists:
 |Groovy |1.5.0 - 2.1.6 |2.1.+ |Fork the buildpack and edit the `version` property in `config/groovy.yml`. |
 |Tomcat |6.0.0 - 7.0.42 |7.0.+ |Fork the buildpack and edit the `version` property in `config/tomcat.yml`. |
 |Play |Play is compiled into the application |n/a |Install a different version of Play and recompile the application.|
-|Auto-reconfiguration JAR for Spring auto-reconfiguration (Note: This is the same JAR as for Play auto-reconfiguration) |0.6.8 - 0.7.1 |0.+ |Fork the buildpack and edit the `version` property in `config/playautoreconfiguration.yml`  |
-|Auto-reconfiguration JAR for Play auto-reconfiguration (NB. this is the same JAR as for Spring auto-reconfiguration) |0.6.8 - 0.7.1 | 0.+|Fork the buildpack and edit the `version` property in `config/playautoreconfiguration.yml` |
+|Auto-configuration JAR for Spring auto-configuration (Note: This is the same JAR as for Play auto-configuration) |0.6.8 - 0.7.1 |0.+ |Fork the buildpack and edit the `version` property in `config/playautoreconfiguration.yml`  |
+|Auto-configuration JAR for Play auto-configuration (NB. this is the same JAR as for Spring auto-configuration) |0.6.8 - 0.7.1 | 0.+|Fork the buildpack and edit the `version` property in `config/playautoreconfiguration.yml` |
 

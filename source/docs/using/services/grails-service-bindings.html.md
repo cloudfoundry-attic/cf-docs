@@ -4,11 +4,11 @@ title: Grails - Service Bindings
 
 Cloud Foundry provides extensive support for connecting a Grails application to services such as MySQL, Postgres, MongoDB, Redis, and RabbitMQ. In many cases, a Grails application running on Cloud Foundry can automatically detect and configure connections to services. For more advanced cases, you can control service connection parameters yourself. 
 
-## <a id="auto"></a>Auto-Reconfiguration ##
+## <a id="auto"></a>Auto-Configuration ##
 
 Grails provides plugins for accessing SQL (using [Hibernate](http://grails.org/plugin/hibernate)), [MongoDB](http://www.grails.org/plugin/mongodb), and [Redis](http://grails.org/plugin/redis) services. If you install any of these plugins and configure them in your `Config.groovy` or `DataSource.groovy` file, the Cloud Foundry Grails plugin will re-configure the plugins when the app starts to provide the connection information to the plugins. 
 
-To enable auto-reconfiguration of service connections, add the `cloudfoundry-runtime` library to the `dependencies` section in your `BuildConfig.groovy` file, and add the `cloud-foundry` plugin to the `plugins` section. You will also need the Spring Framework Milestone repository in the `repositories` section. **For Cloud Foundry v2 support, the version of `cloudfoundry-runtime` must be at least `0.8.4`**:
+To enable auto-configuration of service connections, add the `cloudfoundry-runtime` library to the `dependencies` section in your `BuildConfig.groovy` file, and add the `cloud-foundry` plugin to the `plugins` section. You will also need the Spring Framework Milestone repository in the `repositories` section. **For Cloud Foundry v2 support, the version of `cloudfoundry-runtime` must be at least `0.8.4`**:
 
 ~~~groovy
   repositories {
@@ -79,7 +79,7 @@ The best way to do the manual configuration is to use the `cloudfoundry-runtime`
   }
 ~~~
 
-Then you can use the `cloudfoundry-runtime` API in your `DataSources.groovy` file to set the connection parameters. If you were using all three types of database services as in the auto-reconfiguration example, and the services were named "myapp-mysql", "myapp-mongodb", and "myapp-redis", your `DataSources.groovy` file might look like the one below. 
+Then you can use the `cloudfoundry-runtime` API in your `DataSources.groovy` file to set the connection parameters. If you were using all three types of database services as in the auto-configuration example, and the services were named "myapp-mysql", "myapp-mongodb", and "myapp-redis", your `DataSources.groovy` file might look like the one below. 
 
 ~~~groovy
 import org.cloudfoundry.runtime.env.CloudEnvironment

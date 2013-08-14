@@ -6,26 +6,26 @@ title: Spring - Service Bindings
 
 Cloud Foundry provides extensive support for connecting a Spring application to services such as MySQL, Postgres, MongoDB, Redis, and RabbitMQ. In many cases, Cloud Foundry can automatically configure a Spring application without any code changes. For more advanced cases, you can control service connection parameters yourself. 
 
-## <a id='auto'></a>Auto-Reconfiguration ##
+## <a id='auto'></a>Auto-Configuration ##
 
 If your Spring application requires services (such as a database or messaging system), you might be able to deploy your application to Cloud Foundry without changing any code. In this case, Cloud Foundry automatically re-configures the relevant bean definitions to bind them to cloud services. 
 
-Cloud Foundry auto-reconfigures applications only if the following items are true for your application:
+Cloud Foundry auto-configures applications only if the following items are true for your application:
 
-* Only one service instance of a given service type is bound to the application. In this context, MySQL and Postgres are considered the same service type (relational database), so if both a MySQL and a Postgres service are bound to the application, auto-reconfiguration will not occur.
+* Only one service instance of a given service type is bound to the application. In this context, MySQL and Postgres are considered the same service type (relational database), so if both a MySQL and a Postgres service are bound to the application, auto-configuration will not occur.
 * Only one bean of a matching type is in the Spring application context. For example, you can have only one bean of type `javax.sql.DataSource`.
 
-With auto-reconfiguration, Cloud Foundry creates the database or connection factory bean itself, using its own values for properties such as host, port, username and so on. For example, if you have a single `javax.sql.DataSource` bean in your application context that Cloud Foundry reconfigures and binds to its own database service, Cloud Foundry doesn’t use the username, password and driver URL you originally specified. Rather, it uses its own internal values. This is transparent to the application, which really only cares about having a relational database to which it can write data but doesn’t really care what the specific properties are that created the database. Also note that if you have customized the configuration of a service (such as the pool size or connection properties), Cloud Foundry auto-reconfiguration ignores the customizations.
+With auto-configuration, Cloud Foundry creates the database or connection factory bean itself, using its own values for properties such as host, port, username and so on. For example, if you have a single `javax.sql.DataSource` bean in your application context that Cloud Foundry auto-configures and binds to its own database service, Cloud Foundry doesn’t use the username, password and driver URL you originally specified. Rather, it uses its own internal values. This is transparent to the application, which really only cares about having a relational database to which it can write data but doesn’t really care what the specific properties are that created the database. Also note that if you have customized the configuration of a service (such as the pool size or connection properties), Cloud Foundry auto-configuration ignores the customizations.
 
-For more information on auto-reconfiguration of specific services types, see the [Service-specific Details](#services) section.
+For more information on auto-configuration of specific services types, see the [Service-specific Details](#services) section.
 
-### <a id='optout'></a>Opting out of Auto-Reconfiguration ###
+### <a id='optout'></a>Opting out of Auto-Configuration ###
 
-Sometimes you may not want Cloud Foundry to auto-reconfigure your Spring application. To opt out of auto-reconfiguration, use the [`<cloud:>` namespace](#namespace) elements in your Spring application context file to explicitly create a bean that represents a service. This makes auto-reconfiguration unnecessary. 
+Sometimes you may not want Cloud Foundry to auto-configure your Spring application. To opt out of auto-configuration, use the [`<cloud:>` namespace](#namespace) elements in your Spring application context file to explicitly create a bean that represents a service. This makes auto-configuration unnecessary. 
 
 ## <a id='manual'></a>Manual Configuration ##
 
-If your Spring application cannot take advantage of Cloud Foundry’s auto-reconfiguration feature, or you want more control over the configuration, the additional steps you must take are very simple. 
+If your Spring application cannot take advantage of Cloud Foundry’s auto-configuration feature, or you want more control over the configuration, the additional steps you must take are very simple. 
 
 To use any of the manual configuration techniques, you need to include the `cloudfoundry-runtime` library in your list of application dependencies. Update your application build file (e.g. Maven `pom.xml` file or Gradle `build.gradle` file) to include a dependency on the `org.cloudfoundry.cloudfoundry-runtime` artifact. For example, if you use Maven to build your application, the following `pom.xml` snippet shows how to add this dependency. **For Cloud Foundry v2 support, the version of this library must be at least `0.8.4`**:
 
@@ -264,13 +264,13 @@ Note that the `<beans profile="value">` element is nested inside the standard ro
 
 ## <a id='services'></a>Service-specific Details ##
 
-The following sections describe Spring auto-reconfiguration and manual configuration for the services supported by Cloud Foundry. 
+The following sections describe Spring auto-configuration and manual configuration for the services supported by Cloud Foundry. 
 
 ### <a id='rdbms'></a>MySQL and Postgres ###
 
-#### Auto-Reconfiguration ####
+#### Auto-Configuration ####
 
-Auto-reconfiguration occurs if Cloud Foundry detects a `javax.sql.DataSource` bean in the Spring application context. The following snippet of a Spring application context file shows an example of defining this type of bean which Cloud Foundry will detect and potentially auto-reconfigure:
+Auto-configuration occurs if Cloud Foundry detects a `javax.sql.DataSource` bean in the Spring application context. The following snippet of a Spring application context file shows an example of defining this type of bean which Cloud Foundry will detect and potentially auto-configure:
 
 ~~~xml
 <bean class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close" id="dataSource">
@@ -355,11 +355,11 @@ In the preceding example, the JDBC driver is passed the property that specifies 
 
 ### <a id='mongodb'></a>MongoDB ###
 
-#### Auto-Reconfiguration ####
+#### Auto-Configuration ####
 
-You must use [Spring Data MongoDB](http://www.springsource.org/spring-data/mongodb) 1.0 M4 or later for auto-reconfiguration to work.
+You must use [Spring Data MongoDB](http://www.springsource.org/spring-data/mongodb) 1.0 M4 or later for auto-configuration to work.
 
-Auto-reconfiguration occurs if Cloud Foundry detects a `org.springframework.data.document.mongodb.MongoDbFactory` bean in the Spring application context. The following snippet of a Spring XML application context file shows an example of defining this type of bean which Cloud Foundry will detect and potentially auto-reconfigure:
+Auto-configuration occurs if Cloud Foundry detects a `org.springframework.data.document.mongodb.MongoDbFactory` bean in the Spring application context. The following snippet of a Spring XML application context file shows an example of defining this type of bean which Cloud Foundry will detect and potentially auto-configure:
 
 ~~~xml
 <mongo:db-factory
@@ -470,11 +470,11 @@ The `<cloud:mongo-options>` child element takes the following attributes:
 
 ### <a id='redis'></a>Redis ###
 
-#### Auto-Reconfiguration ####
+#### Auto-Configuration ####
 
-You must be using [Spring Data Redis](http://www.springsource.org/spring-data/redis) 1.0 M4 or later for auto-reconfiguration to work.
+You must be using [Spring Data Redis](http://www.springsource.org/spring-data/redis) 1.0 M4 or later for auto-configuration to work.
 
-Auto-reconfiguration occurs if Cloud Foundry detects a `org.springframework.data.redis.connection.RedisConnectionFactory` bean in the Spring application context. The following snippet of a Spring XML application context file shows an example of defining this type of bean which Cloud Foundry will detect and potentially auto-reconfigure:
+Auto-configuration occurs if Cloud Foundry detects a `org.springframework.data.redis.connection.RedisConnectionFactory` bean in the Spring application context. The following snippet of a Spring XML application context file shows an example of defining this type of bean which Cloud Foundry will detect and potentially auto-configure:
 
 ~~~xml
 <bean id="redis"
@@ -587,11 +587,11 @@ The `<cloud:pool>` child element takes the following attributes:
 
 ### <a id='rabbitmq'></a>RabbitMQ ###
 
-#### Auto-Reconfiguration ####
+#### Auto-Configuration ####
 
-You must be using [Spring AMQP](http://www.springsource.org/spring-amqp) 1.0 or later for auto-reconfiguration to work. Spring AMQP provides publishing, multi-threaded consumer generation, and message conversion. It also facilitates management of AMQP resources while promoting dependency injection and declarative configuration.
+You must be using [Spring AMQP](http://www.springsource.org/spring-amqp) 1.0 or later for auto-configuration to work. Spring AMQP provides publishing, multi-threaded consumer generation, and message conversion. It also facilitates management of AMQP resources while promoting dependency injection and declarative configuration.
 
-Auto-reconfiguration occurs if Cloud Foundry detects a `org.springframework.amqp.rabbit.connection.ConnectionFactory` bean in the Spring application context. The following snippet of a Spring application context file shows an example of defining this type of bean which Cloud Foundry will detect and potentially auto-reconfigure:
+Auto-configuration occurs if Cloud Foundry detects a `org.springframework.amqp.rabbit.connection.ConnectionFactory` bean in the Spring application context. The following snippet of a Spring application context file shows an example of defining this type of bean which Cloud Foundry will detect and potentially auto-configure:
 
 ~~~xml
 <rabbit:connection-factory
