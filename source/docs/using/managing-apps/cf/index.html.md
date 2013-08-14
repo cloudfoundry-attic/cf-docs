@@ -10,7 +10,7 @@ This table below lists all cf commands. Click a command in the table for informa
 
 |   |  | |
 | :-------- | :---------- |:---------- |
-| **Basics** <br>[login EMAIL](#login) <br>[logout](#logout) <br>[targets](#targets) <br>[target URL](#target)  <br> <br> **Manage Users** <br>  [create-user EMAIL](#create-user)  <br>   [passwd](#passwd) <br> [register EMAIL](#register) <br> [users](#users)<br><br> **Manage Apps** <br>[app APP](#app) <br> [apps](#apps) <br>[bind-service SVC APP](#bind-service)<br> [console APP](#console) <br>[delete APP](#delete) <br>[map APP HOST DOMAIN](#map) <br>[push NAME](#push) <br>[rename APP APP](#rename) <br>[restart APP](#restart) <br> [scale APP](#scale) <br> [set-env APP NAME VALUE](#set-env)<br>[start APPS](#start) <br>[stop APPS](#stop) <br>[unbind-service SVC APP](#unbind-service)   <br> [unmap URL APP](#unmap) <br> [unset-env APP NAME](#unset-env)    <br> <br> | **Get Information About Apps**  <br>[crashlogs APP](#crashlogs)  <br> [env APP](#env)  <br> [events APP](#events)  <br>[file APP PATH](#file)  <br> [files APP PATH](#file) <br> [guid TYPE NAME](#guid) <br>[health APP](#health) <br>[instances APP](#instances) <br>[logs APP](#logs) <br>[stats APP](#stats) <br>[tail APP PATH](#tail)        <br> <br>  **Manage Services** <br>[bind-service SVC APP](#bind-service) <br>[create-service-auth-token LABEL PROVIDER](#create-service-auth-token)<br>[create-service OFFERING NAME](#create-service) <br>[delete-service-auth-token TOKEN](#delete-service-auth-token)<br>[delete-service SVC](#delete-service) <br>[rename-service SVC SVC](#rename-service) <br>[tunnel INSTANCE CLIENT](#tunnel)  <br>[unbind-service SVC APP](#unbind-service)  <br>[update-service-auth-token TOKEN](#update-service-auth-token)   <br> <br>**Get Information about Services** <br> [service-auth-tokens](#service-auth-tokens) <br>[service SERVICE](#service) <br>[services](#services)   |**Manage Organizations and Spaces** <br>[create-org ORG](#create-org) <br>[create-space NAME ORG](#create-space)  <br>  [delete-org ORG](#delete-org) <br>[delete-space SPACE](#delete-space)   <br>[rename-org ORG ORG](#rename-org)   <br>[rename-space SPACE SPACE](#rename-space) <br> [set-quota QUOTA ORG](#set-quota) <br>[switch-space SPACE](#switch-space) <br> <br> **Get Information About Organizations and Spaces** <br> [guid TYPE NAME](#guid) <br>[org ORG](#org)  <br>[orgs](#orgs)  <br>[space SPACE](#space)  <br> [spaces ORG](#spaces)  <br> <br>**Manage Domains and Routes** <br>delete-route SPACE](#delete-route) <br> [domains SPACE](#domains) <br> [guid TYPE NAME](#guid)<br>[routes](#routes) <br>[unmap-domain DOMAIN](#unmap-domain )  <br>
+| **Basics** <br>[login EMAIL](#login) <br>[logout](#logout) <br>[targets](#targets) <br>[target URL](#target)  <br> <br> **Manage Users** <br>  [create-user EMAIL](#create-user)  <br>   [passwd](#passwd) <br> [register EMAIL](#register) <br> [users](#users)<br><br> **Manage Apps** <br>[app APP](#app) <br> [apps](#apps) <br>[bind-service SVC APP](#bind-service)<br> [console APP](#console) <br>[delete APP](#delete) <br>[map APP HOST DOMAIN](#map) <br>[push NAME](#push) <br>[rename APP APP](#rename) <br>[restart APP](#restart) <br> [scale APP](#scale) <br> [set-env APP NAME VALUE](#set-env)<br>[start APPS](#start) <br>[stop APPS](#stop) <br>[unbind-service SVC APP](#unbind-service)   <br> [unmap URL APP](#unmap) <br> [unset-env APP NAME](#unset-env)    <br> <br> | **Get Information About Apps**  <br>[crashlogs APP](#crashlogs)  <br> [env APP](#env)  <br> [events APP](#events)  <br>[file APP PATH](#file)  <br> [files APP PATH](#file) <br> [guid TYPE NAME](#guid) <br>[health APP](#health) <br>[instances APP](#instances) <br>[logs APP](#logs) <br>[stats APP](#stats) <br>[tail APP PATH](#tail)        <br> <br>  **Manage Services** <br>[bind-service SVC APP](#bind-service) <br>[create-service-auth-token LABEL PROVIDER](#create-service-auth-token)<br>[create-service OFFERING NAME](#create-service) <br>[delete-service-auth-token TOKEN](#delete-service-auth-token)<br>[delete-service SVC](#delete-service) <br>[rename-service SVC SVC](#rename-service) <br>[tunnel INSTANCE CLIENT](#tunnel)  <br>[unbind-service SVC APP](#unbind-service)  <br>[update-service-auth-token TOKEN](#update-service-auth-token)   <br> <br>**Get Information about Services** <br> [service-auth-tokens](#service-auth-tokens) <br>[service SERVICE](#service) <br>[services](#services)   |**Manage Organizations and Spaces** <br>[create-org ORG](#create-org) <br>[create-space NAME ORG](#create-space)  <br>  [delete-org ORG](#delete-org) <br>[delete-space SPACE](#delete-space)   <br>[rename-org ORG ORG](#rename-org)   <br>[rename-space SPACE SPACE](#rename-space) <br> [set-quota QUOTA ORG](#set-quota) <br>[switch-space SPACE](#switch-space) <br> <br> **Get Information About Organizations and Spaces** <br> [guid TYPE NAME](#guid) <br>[org ORG](#org)  <br>[orgs](#orgs)  <br>[space SPACE](#space)  <br> [spaces ORG](#spaces)  <br> <br>**Manage Domains and Routes** <br>[delete-route SPACE](#delete-route) <br> [domains SPACE](#domains) <br> [guid TYPE NAME](#guid)<br>[routes](#routes) <br>[unmap-domain DOMAIN](#unmap-domain )  <br>
 |  | |
 
 ## <a id='installing'></a>Installing cf ##
@@ -67,8 +67,8 @@ The following qualifiers apply to all cf commands.
 |  --debug | If the command fails, write the stack trace to the console instead of logging it to ~/.cf/crash. |
 |  --force | Skip prompts and confirmation responses. If you use `--force`, be sure to supply any required qualifiers <br>on the command line; if the command cannot be executed without user input, it may fail.
 |  --help | Display a description of the command and a list of the qualifiers it accepts. |
-| --http-proxy HTTP_PROXY |Connect though an http proxy server. |
-| --https-proxy HTTP_PROXY |Connect though an https proxy server |
+| --http-proxy HTTP_PROXY | If you run cf from behind a proxy server, use this option to specify the proxy server's http connection. See [Connecting Through a Proxy Server](#proxy) for more information.  |
+| --https-proxy HTTP_PROXY |If you run cf from behind a proxy server, use this option to specify the proxy server's https connection. See [Connecting Through a Proxy Server](#proxy) for more information. |
 | --manifest FILE, -m
 |  --quiet, --no-quiet |  Return a minimal response. For example, `cf apps --quiet` will return the `name` attribute for each app, <br>but not `status`, `usage`, and `url`, which would otherwise be listed for each app. The `--quiet` <br>qualifier is useful in cf scripts. |
 | --script |  Run the command with both the `--force` and  `--quiet` qualifiers. Note that cf will automatically apply <br>the `--script` qualifier if you redirect command output or pipe it to another command. To disable this, <br>use the `--no-script` qualifier. |
@@ -77,6 +77,23 @@ The following qualifiers apply to all cf commands.
 |  --version, -v | Display the version of cf. |
 
 
+## <a id='proxy'></a>Connecting Through a Proxy Server ##
+
+If you run cf behind a proxy server, you must specify the proxy server address when you run a cf command. Use the `--http-proxy` and `--https-proxy` global command qualifiers, described above in [Command Usage and Qualifiers](#usage). (You can specify the proxy settings to be used when you push an application as environment variables in the application manifest; note however that proxy setting defined in an application manifest will only be used when you push that application using that manifest.)
+
+Specify both `--http-proxy` and `--https-proxy` to ensure that all communication associate with a cf command can be completed via the proxy server. For example, to run the `cf apps` command behind a proxy server, enter this command, substituting the appropriate URLs:
+
+<div class="command-doc">
+ <pre class="terminal">
+cf apps --http-proxy myproxy.myproxydomain:8080 --https-proxy myproxy.myproxydomain:443
+</div>
+
+If your proxy server requires a username and password, to run the `cf apps` command behind a proxy server, enter this command,substituting the appropriate URLs, your username, and your password:
+
+<div class="command-doc">
+ <pre class="terminal">
+cf apps --http-proxy myusername:mypassword@myproxy.myproxydomain:443 --https-proxy username:password@myproxy.myproxydomain:443
+</div>
 
 
 
@@ -595,7 +612,7 @@ cf will upload all application files with the exception of version control files
 | --[no-]restart              |  | Restart app after updating? |
 | --[no-]start      |          |Use this qualifier to to indicate that you do (or do not) want the application to be started upon <br>deployment. |
 | --buildpack BUILDPACK         |          | Specify the URL of a buildpack to be used to stage the application. |
-| --command COMMAND        |         |The command to use to start the application.  |
+| --command COMMAND        |         |The command to use to start the application. <br><br>If you use this option to specify a script that contains the start command, be sure to include the relative path to the script. For example, if your start script, `start.sh`, is in the `\bin` directory of your application's root directory, specify `--command ./bin.start.sh`.<br><br>For information about how Cloud Foundry starts an application if you do not specify a start command when you push the application, see [The Application Start Command](/docs/using/deploying-apps/index.html#start-command), on [Key Facts About Application Deployment](/docs/using/deploying-apps/index.html). |
 | --domain DOMAIN              |          | The top level internet domain for the application. |
 | --host HOST    |        |The subdomain, leave blank if specifying custom domain.            |
 | --instances INSTANCES       |          | The  number of instances of the application to start.|

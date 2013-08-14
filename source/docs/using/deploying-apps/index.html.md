@@ -22,7 +22,7 @@ Cloud Foundry stages application using framework and and runtime-specific buildp
 * Javascript --- [Deploy Node.js Applications](/docs/using/deploying-apps/javascript/index.html)
 * Java/JVM --- [Deploy Java, Groovy, or Scala Apps that Use the Spring, Grails, Lift, or Play Frameworks](/docs/using/deploying-apps/jvm/index.html)
 
-Cloud Foundry also supports custom buildpacks as described on [Custom Buildpacks](/docs/using/deploying-apps/buildpacks.html).  Some <a href="https://devcenter.heroku.com/articles/third-party-buildpacks">Heroku third party buildpacks</a>  may work with Cloud Foundry, but your experience may vary.  To use a buildpack that is not built-in to Cloud Foundry, you specify the URL of the buildpack when you push an application, using  the `--buildpack` qualifier.  
+Cloud Foundry also supports custom buildpacks as described on [Custom Buildpacks](/docs/using/deploying-apps/buildpacks.html).  Some <a href="https://devcenter.heroku.com/articles/third-party-buildpacks">Heroku third party buildpacks</a> may work with Cloud Foundry, but your experience may vary. See https://github.com/cloudfoundry-community/cf-docs-contrib/wiki/Buildpacks for a list of community-developed buildpacks. To use a buildpack that is not built-in to Cloud Foundry, you specify the URL of the buildpack when you push an application, using the `--buildpack` qualifier.  
 
 If you do not specify a buildpack when you run `cf push`, Cloud Foundry determines which built-in buildpack to use, using the `bin/detect` script of each buildpack.
 
@@ -42,7 +42,8 @@ There are three ways that Cloud Foundry can obtain the command to use to start a
 
 1. The value supplied with the `--command` qualifer (or in the application’s `manifest.yml` file). For example, `cf push --command java myapp`.
 1. The value of the `web` key in the procfile, for the application, if it exists. A procfile is a text file named `Procfile`, in the root directory of your application, that lists the process types in an application, and associated start commands. For example, `web: YourStartCommand`
-1. The start command (if specified) for the “web” process type, in `default_process_types` section of the output from the buildpack's `bin/release` script.
+1. The start command (if specified) for the “web” process type, in `default_process_types` section of the output from the buildpack's `bin/release` script. Note that specifying a start command in this fashion requires customizing the buildpack.
+
 
 
 ## <a id='services'></a>Using Services ##

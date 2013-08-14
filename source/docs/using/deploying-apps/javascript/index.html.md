@@ -1,5 +1,5 @@
 ---
-title: Deploying Node.js
+title: Deploy Node.js Applications
 ---
 
 This page will prepare you to deploy Node.js apps via the [getting started guide](../../../dotcom/getting-started.html).

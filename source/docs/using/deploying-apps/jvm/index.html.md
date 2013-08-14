@@ -1,5 +1,5 @@
 ---
-title: Deploying JVM Apps (Java, Groovy, Scala) 
+title: Deploy Java, Groovy, or Scala Apps
 ---
 
 This page will prepare you to deploy applications written in Java, Groovy, or Scala, using the Spring, Grails, Lift, or Play frameworks, via the [getting started guide](../../../dotcom/getting-started.html).

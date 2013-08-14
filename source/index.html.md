@@ -37,7 +37,7 @@ title: Welcome to Cloud Foundry Documentation
   <hr>
   <p>Application Deployment<br>
 
-  <a href="docs/using/deploying-apps/index.html">Deploy Your App</a><br>
+  <a href="docs/using/deploying-apps/index.html">Key Facts About Application Deployment</a><br>
   <a href="docs/using/deploying-apps/manifest.html">Application Manifests (manifest.yml)</a><br>  
   <a href="docs/using/deploying-apps/java-buildpack.html">About the Java Buildpack</a><br> 
   <a href="docs/using/deploying-apps/ruby-buildpack.html">About the Ruby Buildpack</a><br> 

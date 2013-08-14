@@ -1,5 +1,5 @@
 ---
-title: Getting Started - Adding a Service
+title: Add a Service
 ---
 
 Cloud Foundry allows you to deploy applications without worrying about configuration headaches, making it faster and easier to build, test, deploy and scale your app.
