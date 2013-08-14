@@ -31,7 +31,7 @@ $ gem install cf --pre
 
 ## <a id='troubleshooting'></a>Troubleshooting cf Installation ##
 
-*  OS X includes Ruby v1.8.7, which cf does not support. You must upgrade Ruby on OS X to run cf. 
+* OS X includes Ruby v1.8.7, which cf does not support. On OS X you must upgrade Ruby to 1.9.3 or later to run cf. 
 
 * If you are running Ruby 1.9.3 with a pre-1.9.x gemset, cf installation will fail with a message like this:
 
