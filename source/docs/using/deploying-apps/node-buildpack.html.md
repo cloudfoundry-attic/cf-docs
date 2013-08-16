@@ -1,7 +1,6 @@
 ---
 title: About the Node.js Buildpack  
 ---
-## <a id='design-doc'></a>Ruby Buildpack Documentation ##
 
 For information about using and extending the Node.js buildpack in Cloud Foundry, see https://github.com/cloudfoundry/heroku-buildpack-nodejs.
 

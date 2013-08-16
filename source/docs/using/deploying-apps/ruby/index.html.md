@@ -4,11 +4,11 @@ title: Deploy Rack, Rails, or Sinatra Applications
 
 This page will prepare you to deploy Rack, Rails, or Sinatra apps via the [getting started guide](../../../dotcom/getting-started.html).
 
-## <a id='bundler'></a> Application Vundling ##
+## <a id='bundler'></a> Application Bundling ##
 
 You need to run <a href="http://gembundler.com/">Bundler</a> to create both a Gemfile and Gemfile.lock. These files must be in your application before you push to Cloud Foundry.
 
-## <a id='config'></a> Rack Xonfig File ##
+## <a id='config'></a> Rack Config File ##
 
 For both Rack and Sinatra you need a `config.ru` file like the example below:
 

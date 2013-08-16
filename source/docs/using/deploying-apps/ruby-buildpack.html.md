@@ -1,8 +1,6 @@
 ---
 title: About the Ruby Buildpack  
 ---
-## <a id='design-doc'></a>Ruby Buildpack Documentation ##
-
 For information about using and extending the Ruby buildpack in Cloud Foundry, see https://github.com/cloudfoundry/heroku-buildpack-ruby.
 
 For information about the software installed by the Ruby buildpack, see the following section.
