@@ -7,13 +7,13 @@ title: Managing Services
 After targeting and logging into Cloud Foundry using [cf](/docs/using/managing-apps/cf/index.html), you can view what services are available:
 
 <pre class="terminal">
-$ cf info --services
+$ cf services --marketplace
 </pre>
 
 This command displays a list of services that can be bound to your applications. The following is an example of those services on a private beta install of Cloud Foundry.
 
 <pre class="terminal">
-$ cf info --services
+$ cf services --marketplace
 Getting services... OK
 
 service      version   provider        plans                        description                     
