@@ -10,7 +10,7 @@ Note that terminal output below are mockups.
 <li>An Oracle DBA creates a database on the server and provides credentials for the database instance to a Cloud Foundry operator.</li>
 <li>The Cloud Foundry operator logs into a Service Broker using the Service Broker CLI and configures the broker to advertise a service offering to be known as oracle-db1. Cloud Foundry developers will then see the offering from the command line.
 <pre class="terminal">
-$ cf info --services
+$ cf services --marketplace
 Getting services... OK
 
 service      version   provider        plans                        description                     
