@@ -2,9 +2,9 @@
 title: Adding Services for applications
 ---
 
-In this page, you will add an example service (PostgreSQL) to your Cloud Foundry deployment. All users will be able to provision PostgreSQL databases and bind them to their applications (see [Using Services](../../../using/services/)).
+Here's how we would add an example service (PostgreSQL) to your Cloud Foundry deployment. All users will be able to provision PostgreSQL databases and bind them to their applications (see [Using Services](../../../using/services/)).
 
-The following services can be added to your Cloud Foundry by following this page:
+The following services can be added to your Cloud Foundry by following the techniques on this page:
 
 * elastic search
 * memcached
@@ -23,22 +23,22 @@ This page is written to support the [cf-services-contrib-release](https://github
 
 This page uses Cloud Foundry Services v1 terminology.
 
-* service gateway - a broker for user requests to provision, bind, unbind, un-provision service instances
-* service node - a broker to perform local instantiation/destruction/maintenance upon service instances on a specific VM
-* service instance - dedicated running server of a service, running inside a warden container; or a specific database of a shared running server (PostgreSQL)
+* service gateway - a broker for user requests to provision, bind, unbind and un-provision service instances
+* service node - a broker to perform local instantiation, destruction and maintenance of service instances on a specific VM
+* service instance - a dedicated running server of a service, running inside a warden container; or a specific database of a shared running server (PostgreSQL)
 * [warden](../../architecture/warden.html) - Cloud Foundry's container technology
 * job - a server running within a bosh deployment
-* job template - the description of a single component - perhaps comprised of one or more running processes. For example, could be a service gateway or service node. One or more job templates can be collocated in a single running job instance.
+* job template - the description of a single component - perhaps comprised of one or more running processes. For example, this could be a service gateway or service node. One or more job templates can be collocated in a single running job instance.
 
 ## What will happen ##
 
-At the end of this page, two additional VMs will be provisioned within your cloud.
+By the end of this page, you will have two additional VMs provisioned within your cloud.
 
-You will deploy them with a dedicated bosh deployment (rather than add the configuration and VMs into your existing Cloud Foundry deployment).
+They will be deployed within a dedicated bosh deployment (rather than add the configuration and VMs into your existing Cloud Foundry deployment).
 
-The example below should work for either AWS EC2 or OpenStack (if you have image flavors `m1.small` and `m1.medium`), and modifications (networking) may be required for other Cloud Providers. You may need to adjust the resource pools in your deployment file to select available instance flavors/cloud properties.
+The example below should work for either AWS EC2 or OpenStack (if you have image flavors `m1.small` and `m1.medium`) but modifications (networking) may be required for other Cloud Providers. You may need to adjust the resource pools in your deployment file to select available instance flavors/cloud properties.
 
-One of the VMs will be running a shared PostgreSQL server that will be made available to the applications running on your Cloud Foundry. The isolated PostgreSQL servers can be allocated (via `cf create-service`) and bound (via `cf bind-service`) to applications. This VM will also be running a Cloud Foundry component, the `postgresql_node_ng` job template ([source](https://github.com/cloudfoundry/cf-release/tree/master/jobs/postgresql_node_ng)). It manages the PostgreSQL server on behalf of Cloud Foundry. It connects to the rest of Cloud Foundry via a `postgresql_gateway`.
+One of the VMs will be running a shared PostgreSQL server that will be made available to the applications running on your Cloud Foundry. PostgreSQL databases can be allocated within this shared server (via `cf create-service`) and bound (via `cf bind-service`) to applications. This VM will also be running a Cloud Foundry component, the `postgresql_node_ng` job template ([source](https://github.com/cloudfoundry/cf-release/tree/master/jobs/postgresql_node_ng)), this manages the PostgreSQL server on behalf of Cloud Foundry. It connects to the rest of Cloud Foundry via a `postgresql_gateway`.
 
 The `postgresql_gateway` job ([source](https://github.com/cloudfoundry/cf-release/tree/master/jobs/postgresql_gateway)) runs on the second VM being added. Each different type of service being included in a Cloud Foundry deployment needs a dedicated gateway process.
 
@@ -49,7 +49,7 @@ Each service node can support a single "plan".
 The requirements are:
 
 * the ability to provision two additional VMs, and one new persistent disk/volume
-* bosh running and configured for the target Cloud account
+* bosh running and configured for the target cloud account
 * base stemcell uploaded to bosh
 * bosh CLI installed
 * git installed
@@ -221,9 +221,9 @@ properties:
 
 NOTE: as of writing, the `high_water` & `low_water` values are arbitrary and are not used by any services.
 
-Support for backups will be documented in future. In the deployment file it is disabled.
+Support for backups will be documented in future, in this deployment file it is disabled.
 
-If you want to allow your users provision older versions of PostgreSQL, then you can extend the `supported_versions: ["9.2"]` arrays to include the other PostgreSQL versions to support.
+If you want to allow your users to provision older versions of PostgreSQL, then you can extend the `supported_versions: ["9.2"]` arrays to include the other PostgreSQL versions to support.  Each version you specify will launch its own PostgreSQL 'postmaster' to support those versions, all running on the same node.
 
 ## Deploy
 
@@ -253,7 +253,7 @@ The "Token" value is from `postgresql_gateway.token` in the deployment file.
 $ cf services --marketplace
 Getting services... OK
 
-service      version   provider   plans     description                  
+service      version   provider   plans     description
 postgresql   9.2       core       default   PostgreSQL database (vFabric)
 
 $ cf create-service --version 9.2 --plan default --provider core --name test
