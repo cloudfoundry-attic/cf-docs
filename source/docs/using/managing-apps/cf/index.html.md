@@ -760,14 +760,22 @@ The table below defines command qualifiers.
 | --app APP | n | List only services instances that are bound to the specified application.  |
 | --full | n | Provide verbose output.  |
 | --name NAME | n |List only service instances whose names match the specified string.  |
+| -m --marketplace | n | List service types available from the Services Marketplace. |
 | --plan PLAN | n | List only service instances provisioned under a plan that matches the specified string. |
 |--provider PROVIDER   | n |List only service instances provisioned by a service from the the provider that matches the specified string.   |
 |--service SERVICE   |n  |List only service instances provisioned by a service that matches the specified string.   |
 | --space SPACE |  |List only service instances in the specified space.  |
 | --version VERSION |  |List only services instances whose version matches the specified string.  |
 
-      
-The following data is returned for each service instance:
+If the `--marketplace` qualifier is supplied, the following data is returned for each service available from the Services Marketplace:
+
+* service -- The type of service, for example, "cleardb" or "rediscloud".
+* version -- The version of the service.
+* provider -- The service vendor or supplier.
+* plan -- The provider plans under which the service is available.
+* description -- A description of the service.   
+
+When qualifiers other than `--marketplace` are supplied, the following data is returned for each service instance:
 
 * name -- The name assigned to the service instance when it was created.
 * service -- The type of service, for example, "cleardb" or "rediscloud".
