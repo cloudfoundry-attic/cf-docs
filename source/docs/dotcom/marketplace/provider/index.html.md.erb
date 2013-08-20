@@ -51,7 +51,7 @@ Please choose from the following list of credential fields if possible. You can 
 
 Here's an example output of `ENV['VCAP_SERVICES']`. Note that ClearDB chooses to return both discrete credentials, a uri, as well as another field. CloudAMQP chooses to return just the uri, and RedisCloud returns only discrete credentials.
 
-~~~
+<pre class="highlight xml">
 VCAP_SERVICES=
 {
   cleardb-dev-n/a: [
@@ -101,4 +101,4 @@ VCAP_SERVICES=
     },
   ],
 }
-~~~
+</pre>
