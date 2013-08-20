@@ -21,7 +21,7 @@ This page is written to support the [cf-services-contrib-release](https://github
 
 ## Terminology
 
-This page uses Cloud Foundry Services v1 terminology.
+*Note:* Cloud Foundry v1 had different terminology than v2. The Service Broker was previously called the Service Gateway, and unfortunately it still is in some of the source code and various filenames. So anywhere we say gateway, bear in mind that it's actually a broker. Confusing! Bear with us in the transition.
 
 * service gateway - a broker for user requests to provision, bind, unbind and un-provision service instances
 * service node - a broker to perform local instantiation, destruction and maintenance of service instances on a specific VM
