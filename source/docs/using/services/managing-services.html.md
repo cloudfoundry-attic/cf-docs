@@ -27,20 +27,20 @@ redis        2.6       core            200                          Redis key-va
 
 <i>Note: This is an example. These services may not be available on the Cloud Foundry service you target.</i>
 
-## <a id='create'></a>Create a Service ##
+## <a id='create'></a>Create a Service Instance ##
 
-Use these commands to create and bind a service to your app.
+Use this command to create a service instance.
 
 <pre class="terminal">
 $ cf create-service
-1: mongodb n/a, via mongolab-dev
+1: mongodb n/a, via mongolab
 2: mongodb 2.2
 3: mysql 5.5
 4: postgresql 9.2
 5: rabbitmq 3.0
 6: redis 2.6
-7: redis n/a, via redistogo-dev
-8: smtp n/a, via sendgrid-dev
+7: redis n/a, via redistogo
+8: smtp n/a, via sendgrid
 What kind?> 3
 
 Name?> mysql-a0a77
@@ -52,9 +52,70 @@ Which plan?> 2
 Creating service mysql-a0a77... OK
 </pre>
 
-## <a id='bind'></a>Bind a Service ##
+## <a id='user-provided'></a>Create a User-Provided Service Instance ##
 
-Binding a service to your application adds credentials for the service instance to the VCAP_SERVICES environment variable. In most cases these credentials are unique to the binding; another app bound to the same service instance would receive different credentials. You may need to restart your application for it to recognize the change. 
+User-provided service instances are service instances which have been provisioned outside of Cloud Foundry. For example, a DBA may provide a developer with credentials to an Oracle database managed outside of, and unknown to Cloud Foundry. 
+
+Rather than hard coding credentials for these instances into your applications, you can create a mock service instance in Cloud Foundry to represent an external resource using the familiar `create-service` command, and provide whatever credentials your application requires. 
+
+When creating a user-provided instance, Cloud Foundry will ask you to provide a name for the service instance and the parameters for your credentials. Credential parameters are a comma-delimated list. You'll then be prompted to enter a value for each parameter. 
+
+<pre class="terminal">
+$ cf create-service user-provided
+Name?> mydb
+
+What credential parameters should applications use to connect to this service instance?
+(e.g. hostname, port, password)> hostname, port, username, password, name     
+
+hostname> db.example.com
+
+port> 1234
+
+username> dbuser
+
+password> dbpasswd
+
+name> mydb
+
+Creating service mydb... OK
+</pre>
+
+Once created, user-provided service instances behave just like other service instances. You'll find them listed with your other service instances.
+
+<pre class="terminal">
+$ cf services
+Getting services in test... OK
+
+name               service         provider     version   plan        bound apps     
+cleardb-28472      cleardb         cleardb      n/a       spark       none           
+blazemeter-78fb4   blazemeter      blazemeter   n/a       free-tier   none           
+mydb               user-provided   n/a          n/a       n/a         none
+</pre> 
+
+After [binding](#bind) a user-provided service instance and restarting your app, you'll find that the [VCAP_SERVICES](environment-variable.html) will be updated with your credentials.
+
+~~~
+{
+  user-provided: [
+    {
+      name: "mydb",
+      label: "user-provided",
+      tags: [ ],
+      credentials: {
+        hostname: "db.example.com",
+        port: "1234",
+        username: "dbuser",
+        password: "dbpasswd",
+        name: "mydb"
+      }
+    }
+  ]
+}
+~~~
+
+## <a id='bind'></a>Bind a Service Instance ##
+
+Binding a service to your application adds credentials for the service instance to the [VCAP_SERVICES](environment-variable.html) environment variable. In most cases these credentials are unique to the binding; another app bound to the same service instance would receive different credentials. You may need to restart your application for it to recognize the change. 
 
 How your app leverages the contents of environment variables may depend on the framework you employ. Refer to the [Deploying Apps](/docs/using/deploying-apps/index.html) section for more information.
 
@@ -71,9 +132,9 @@ Which service?> 1
 Binding mysql-a0a77 to my-app... OK
 </pre>
 
-## <a id='unbind'></a>Unbind a Service ##
+## <a id='unbind'></a>Unbind a Service Instance ##
 
-Unbinding a service removes the credentials created for your application from the VCAP_SERVICES environment variable. You may need to restart your application for it to recognize the change. 
+Unbinding a service removes the credentials created for your application from the [VCAP_SERVICES](environment-variable.html) environment variable. You may need to restart your application for it to recognize the change. 
 
 <pre class="terminal">
 $ cf unbind-service
@@ -86,7 +147,7 @@ Which service?> 1
 Unbinding mysql-a0a77 from my-app... OK
 </pre>
 
-## <a id='delete'></a>Delete a Service ##
+## <a id='delete'></a>Delete a Service Instance ##
 
 Deleting a service unprovisions the service instance and deletes *all data* along with the service instance. 
 

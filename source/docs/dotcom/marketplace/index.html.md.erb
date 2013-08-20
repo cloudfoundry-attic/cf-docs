@@ -13,3 +13,11 @@ Cloud Foundry Services are add-ons which can be provisioned alongside your appli
 ## <a id='providers'></a>For Providers ##
 
 * [Provider Documentation](provider/)
+
+## Service Specific Documentation ##
+
+<ul>  
+<% sub_pages('recipes').each do |resource| %>  
+    <li><%= link_to resource.data.title, resource.url %></li>
+<% end %>  
+</ul> 

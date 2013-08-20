@@ -116,4 +116,12 @@ helpers do
   def banner_img(opts={:width=>700, :height=>120})
     image_tag current_page.banner_url, opts
   end
+
+  # Returns all pages under a certain directory.
+  def sub_pages(dir)
+    sitemap.resources.select do |resource|
+      resource.path.start_with?(dir)
+    end
+  end 
+
 end

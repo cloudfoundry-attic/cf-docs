@@ -61,8 +61,9 @@ title: Welcome to Cloud Foundry Documentation
   <a href="docs/using/managing-apps/orgs-and-spaces.html">Organizations and Spaces</a><br>
   <a href="docs/using/managing-apps/custom-domains/index.html">About Domains, Subdomains and Routes</a>
   </p>
+
   <hr>
-  <p>
+  <p>Services<br>
   <a href="docs/using/services/">Using Services</a></br>
   <a href="/docs/using/services/managing-services.html">Managing Services with CLI</a></br>
   <a href="/docs/using/services/environment-variable.html">VCAP_SERVICES Environment Variable</a></br>
