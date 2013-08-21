@@ -390,6 +390,11 @@ The following data is returned for each domain:
 
 Show all environment variables set for an application. Environment variables are a good way to store sensitive data, such as API keys for Amazon S3, outside of an application's source code.
 
+You can set environment variables for an application:
+
+* in the application manifest when deploying the application, as described in [Set Environment Variable in a Manifest](/docs/using/deploying-apps/manifest.html#var) on the "Application Manifests" page, or 
+* after pushing the application, with the [set-env](#set-env) command. 
+
 <div class="command-doc">
   <pre class="terminal">$ cf env [application name]</pre>
 </div>
@@ -421,9 +426,45 @@ Display the contents for a file at a given path, belonging to the specified appl
   <pre class="terminal">$ cf file [application name] [path]</pre>
 </div>
 
+#####Sample Results#####
+
+<div class="command-doc">
+  <pre class="terminal">
+cf file rabbitmq-node staging_info.yml
+Getting file contents... OK
+
+---
+detected_buildpack: Node.js
+start_command: node app.js
+</pre>
+</div>
+
+
 #### <a id='files'></a> files ###
 
 List an application's files.
+
+#####Sample Results#####
+
+<div class="command-doc">
+  <pre class="terminal">
+cf file rabbitmq-node
+Getting file contents... OK
+
+.bash_logout                              220B
+.bashrc                                   3.0K
+.profile                                  675B
+app/                                         -
+logs/                                        -
+nodejs-0.10.15.tgz                        5.3M
+nodejs-0.4.7.tgz                          3.1M
+npm-1.2.30.tgz                            2.2M
+run.pid                                     3B
+scons-1.2.0.tgz                         382.1K
+staging_info.yml                           59B
+tmp/                                         -
+</pre>
+</div>
 
 #### <a id='guid'></a> guid ####
 
@@ -494,7 +535,7 @@ Log out from the target.
 
 Display log files, such as staging, stdout, and stderr, for an application. The log files available for an application vary by type.
 
-To view application-specific logs, use 'cf file'.
+To view the contents of a specific file in the application directory structure, use 'cf file'.
 
 <div class="command-doc">
   <pre class="terminal">$ cf logs [application name]</pre>
@@ -506,6 +547,75 @@ To view application-specific logs, use 'cf file'.
 |--app APP |y |The name of the application. |
 |--instance INSTANCE |n |Use to specify the application instance, for instance "2", whose logs you want to list. <br>If not specified logs for the first instance started ("0") are listed.|
 
+#####Sample Results#####
+
+<div class="command-doc">
+  <pre class="terminal">cf logs rabbitmq-node
+
+Using manifest file manifest.yml
+
+Getting logs for rabbitmq-node #0... OK
+
+Reading logs/env.log... OK
+TMPDIR=/home/vcap/tmp
+VCAP_CONSOLE_IP=0.0.0.0
+VCAP_APP_PORT=61749
+USER=vcap
+VCAP_APPLICATION={"instance_id":"633be93bac16a403721cef6adb8f48f0","instance_index":0,"host":"0.0.0.0","port":61749,"started_at":"2013-08-20 22:32:39 +0000","started_at_timestamp":1377037959,"start":"2013-08-20 22:32:39 +0000","state_timestamp":1377037959,"limits":{"mem":256,"disk":1024,"fds":16384},"application_version":"230091c5-b14b-41d2-94c0-c0149a8ba4b7","application_name":"rabbitmq-node","application_uris":[],"version":"230091c5-b14b-41d2-94c0-c0149a8ba4b7","name":"rabbitmq-node","uris":[],"users":null}
+PATH=/home/vcap/app/bin:/home/vcap/app/node_modules/.bin:/bin:/usr/bin
+PWD=/home/vcap
+VCAP_SERVICES={"cloudamqp-n/a":[{"name":"rabbit-sample","label":"cloudamqp-n/a","tags":[],"plan":"lemur","credentials":{"uri":"amqp://urhyfncz:CvvtPhOUHdk_CFQiUruW6sQDTFBd61Sv@lemur.cloudamqp.com/urhyfncz"}}]}
+SHLVL=1
+HOME=/home/vcap/app
+PORT=61749
+VCAP_APP_HOST=0.0.0.0
+DATABASE_URL=
+MEMORY_LIMIT=256m
+VCAP_CONSOLE_PORT=61750
+_=/usr/bin/env
+
+
+
+Reading logs/staging_task.log... OK
+-----> Downloaded app package (4.0K)
+-----> Resolving engine versions
+
+       WARNING: No version of Node.js specified in package.json, see:
+       https://devcenter.heroku.com/articles/nodejs-versions
+
+       Using Node.js version: 0.10.15
+       Using npm version: 1.2.30
+-----> Fetching Node.js binaries
+-----> Vendoring node into slug
+-----> Installing dependencies with npm
+       npm WARN package.json rabbitmq-node@0.0.2 No repository field.
+       npm http GET https://registry.npmjs.org/amqp
+       npm http GET https://registry.npmjs.org/sanitizer
+       npm http 200 https://registry.npmjs.org/sanitizer
+       npm http GET https://registry.npmjs.org/sanitizer/-/sanitizer-0.0.15.tgz
+       npm http 200 https://registry.npmjs.org/amqp
+       npm http GET https://registry.npmjs.org/amqp/-/amqp-0.1.7.tgz
+       npm http 200 https://registry.npmjs.org/sanitizer/-/sanitizer-0.0.15.tgz
+       npm http 200 https://registry.npmjs.org/amqp/-/amqp-0.1.7.tgz
+       sanitizer@0.0.15 node_modules/sanitizer
+       
+       amqp@0.1.7 node_modules/amqp
+       npm WARN package.json rabbitmq-node@0.0.2 No repository field.
+       amqp@0.1.7 /tmp/staged/app/node_modules/amqp
+       sanitizer@0.0.15 /tmp/staged/app/node_modules/sanitizer
+       Dependencies installed
+-----> Building runtime environment
+
+
+
+Reading logs/stderr.log... OK
+
+
+Reading logs/stdout.log... OK
+Starting ... AMQP URL: amqp://urhyfncz:CvvtPhOUHdk_CFQiUruW6sQDTFBd61Sv@lemur.cloudamqp.com/urhyfncz
+
+  <div class="break"></div>
+</div>
 
 #### <a id='map'></a> map ####
 
@@ -787,7 +897,7 @@ When qualifiers other than `--marketplace` are supplied, the following data is r
 
 #### <a id='set-env'></a> set-env ####
 
-Set an environment variable. For information about removing an environment variable see [set-env](#set-env).
+Set an environment variable. For information about removing an environment variable see [unset-env](#unset-env).
 
 <div class="command-doc">
   <pre class="terminal">$ cf set-env [App] [Variable] [Value]</pre>
