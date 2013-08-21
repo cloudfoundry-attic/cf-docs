@@ -43,9 +43,7 @@ title: Welcome to Cloud Foundry Documentation
   <a href="docs/using/deploying-apps/jvm/index.html">Deploy Java, Groovy, or Scala Apps</a><br>
   <a href="docs/using/deploying-apps/manifest.html">Application Manifests (manifest.yml)</a><br> 
   <a href="docs/using/deploying-apps/buildpacks.html">Buildpacks</a><br> 
-
-
-
+  <a href="/docs/using/services/environment-variable.html">Cloud Foundry Environment Variables</a></br>
 
   </p>
   <hr>
@@ -66,7 +64,6 @@ title: Welcome to Cloud Foundry Documentation
   <p>Services<br>
   <a href="docs/using/services/">Using Services</a></br>
   <a href="/docs/using/services/managing-services.html">Managing Services with CLI</a></br>
-  <a href="/docs/using/services/environment-variable.html">VCAP_SERVICES Environment Variable</a></br>
   <a href="/docs/using/services/tunnelling-with-services.html">Tunneling to Services</a>
   </p>
     <hr>
