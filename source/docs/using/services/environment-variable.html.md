@@ -18,7 +18,7 @@ $ cf files APP_NAME_HERE logs/env.log
 
 ### <a id='app'></a>Access Environment Variables Programmatically ###
 
-The sections below show how to access the `VCAP_SERVICES` environment variable for an application from a program. 
+The sections below show how to access an environment variable from a program. These examples obtain the `VCAP_SERVICES` environment variable
 
 ### Java
 
@@ -48,7 +48,7 @@ Root folder for the deployed application.
 `HOME=/home/vcap/app`
 
 ### <a id='HOME'></a>MEMORY_LIMIT ###
-The maximum amount of memory that each instance of the application can sonsume. This value is set as a result of the value you specify in an application manifest, or at the command line when pushing an application.   
+The maximum amount of memory that each instance of the application can consume. This value is set as a result of the value you specify in an application manifest, or at the command line when pushing an application.   
 
 If an instance goes over the maximum limit, it will be restarted. If it has to be restarted too often, it will be terminated. 
 
@@ -97,7 +97,7 @@ This variable contains useful information about a deployed application. Results 
 |started\_at\_timestamp |Timestamp for the last time the applicaton was started. | 
 |host |IP address of the application instance. | 
 |port |Port of the application instance. | 
-|limits  |The memory, disk, and number of files permitted to the instance. Memory and disk limits are supplied when the application is deployed, either on command line or in the application manifest. The number of files allowed is operator-defined. | 
+|limits  |The memory, disk, and number of files permitted to the instance. Memory and disk limits are supplied when the application is deployed, either on the command line or in the application manifest. The number of files allowed is operator-defined. | 
 |state_timestamp |The timestamp for the time at which the application achieved its current state.| 
 
 ~~~
