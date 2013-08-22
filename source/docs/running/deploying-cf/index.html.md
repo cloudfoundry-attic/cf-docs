@@ -11,4 +11,4 @@ title: Deploying Cloud Foundry with BOSH
 
 Extensions
 
-* [Add Services](services/adding-services.html)
+* [Add Services](services/)
