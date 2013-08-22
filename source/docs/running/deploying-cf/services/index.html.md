@@ -1,5 +1,5 @@
 ---
-title: Adding Services for applications
+title: Adding Services for Applications
 ---
 
 Here's how we would add an example service (PostgreSQL) to your Cloud Foundry deployment. All users will be able to provision PostgreSQL databases and bind them to their applications (see [Using Services](../../../using/services/)).
@@ -21,10 +21,10 @@ This page is written to support the [cf-services-contrib-release](https://github
 
 ## Terminology
 
-This page uses Cloud Foundry Services v1 terminology.
+**Note:** One change in terminology has been made in Cloud Foundry v2. Service Gateways are now called Service Brokers, but unfortunately the term gateway still can be found in some source code and filenames. Wherever you see gateway in the context of Cloud Foundry Services, bear in mind that it's actually a broker. Apologies for the confusion, and thank you for your understanding during the transition.
 
-* service gateway - a broker for user requests to provision, bind, unbind and un-provision service instances
-* service node - a broker to perform local instantiation, destruction and maintenance of service instances on a specific VM
+* service gateway - advertises a catalog of services and plans to cloud controller, responsible for orphan management, and brokers user requests to provision, bind, unbind and un-provision service instances
+* service node - performs local instantiation, destruction and maintenance of service instances on a specific VM
 * service instance - a dedicated running server of a service, running inside a warden container; or a specific database of a shared running server (PostgreSQL)
 * [warden](../../architecture/warden.html) - Cloud Foundry's container technology
 * job - a server running within a bosh deployment
