@@ -60,7 +60,7 @@ Creating service cleardb-e2006... OK
 
 Not all services provide bindable service instances. Binding requires an additional level of integration with a provider, and it doesn't make sense in all cases for the provider to return any credentials for an application's use.
 
-For services that offer bindable service instances, the binding operation puts credentials for the service instance in the environment variable VCAP_SERVICES, where your application can consume them. For more information, see [VCAP_SERVICES Environment Variable](../using/services/environment-variable.html).
+For services that offer bindable service instances, the binding operation puts credentials for the service instance in the environment variable VCAP_SERVICES, where your application can consume them. For more information, see [VCAP_SERVICES Environment Variable](../using/deploying-apps/environment-variable.html).
 
 You can bind a service to an application with the command `cf bind-service`. You will first be asked for the application to bind the service to.
 
@@ -93,7 +93,7 @@ There are three ways of consuming service instance credentials within your appli
 | :------------------- | :--------------------                                                                                                                  |
 | Auto-configuration | Cloud Foundry creates a service connection for you.                                                                |
 | cfruntime            | Creates an object with the location and settings of your services. Set your service connections based on the values in that object.    |
-| Manual               | Parse the JSON credentials object yourself from the [VCAP_SERVICES Environment Variable](../using/services/environment-variable.html). |
+| Manual               | Parse the JSON credentials object yourself from the [VCAP_SERVICES Environment Variable](../using/deploying-apps/environment-variable.html). |
  
 ## <a id='configuring'></a>Configuring Connections for Different Frameworks ##
  

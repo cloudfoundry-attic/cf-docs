@@ -10,7 +10,7 @@ You can access a provisioned service using a native connector for the service. F
 
 You can determine the connection details for the services bound to an application from the `VCAP_SERVICES` environment variable in the application’s `env.log` file.
 
-For information about `VCAP_SERVICES` and how to view an application’s `env.log` file, see [VCAP_SERVICES Environment Variable](../services/environment-variable.html).
+For information about `VCAP_SERVICES` and how to view an application’s `env.log` file, see [VCAP_SERVICES Environment Variable](../deploying-apps/environment-variable.html).
 
 <!---
 ## <a id='what-is-tunnelling'></a>What Is Tunneling? ##
