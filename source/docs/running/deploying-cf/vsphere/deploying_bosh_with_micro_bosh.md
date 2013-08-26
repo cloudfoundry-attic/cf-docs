@@ -91,7 +91,7 @@ Rather than creating a new release, we will use the public release from in the [
 
 <pre class="terminal">
 $ cd ~/bosh-release
-$ bosh upload release releases/bosh-11.yml
+$ bosh upload release releases/bosh-13.yml
 </pre>
 
 ## <a id="deploy"></a>Setup a BOSH Deployment Manifest and Deploy ##
