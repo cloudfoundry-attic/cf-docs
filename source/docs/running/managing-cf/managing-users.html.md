@@ -36,3 +36,19 @@ $ cf login [admin-user-email-address]
 $ cf create-user [user-email-address]
 ...
 </pre class="terminal">
+
+## <a id='changing-passwords'></a> Changing Passwords ##
+
+1. Use the credentials of an admin user created using uaac as above, or refer to your deployment manifest for the email and password of an admin user. The user will be under the `uaa: scim` section. Refer to the bottom of this [manifest](../deploying-cf/vsphere/cloud-foundry-example-manifest.html) as an example.
+
+2. Change a user password:
+<pre class="terminal">
+$ uaac password set [user-email-address]
+</pre class="terminal">
+
+3. Tell the user their temporary new password and ask them to change it using the following commands:
+<pre class="terminal">
+$ cf target api.[your-domain].com
+$ cf login --username EMAIL --password PASSWORD
+$ cf passwd --password PASSWORD
+</pre class="terminal">
