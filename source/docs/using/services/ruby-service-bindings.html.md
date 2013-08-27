@@ -243,6 +243,8 @@ After modifying the Gemfile, run `bundle install` to generate an updated `Gemfil
 
 Before you can use your database for the first time, you must run a migration script to create the tables and insert any seed data.
 
+**Note:** See the following section, [Do Not Migrate Database for Multiple Instances](#migrate-one-instance) before starting the migration process.
+
 If you are using Rails, you would usually set up your database schema by running a command like:
 
 <pre class="terminal">
@@ -250,13 +252,13 @@ If you are using Rails, you would usually set up your database schema by running
 </pre>
 
 The same process is required for your application on Cloud Foundry.
-You provide the command for running the migration script when you push the application, using the 'cf push --command` option. For example:
+You provide the command for running the migration script when you push the application, using the `cf push --command` option. For example:
 
 <pre class="terminal">
   $ cf push --command "bundle exec rake db:create db:migrate" myapp
 </pre>
 
-If you are using a cf manifest.yml file, be sure to use the `--reset` flag to override the command setting in the manifest.
+If you have a previously generated `manifest.yml` file, be sure to use the `--reset` flag to override the command setting in the manifest.
 
 After migrating your database, push your application again to set the start command back.
 
@@ -270,8 +272,15 @@ If you want to set a custom start command, include the PORT environment variable
 For example:
 
 <pre class="terminal">
-  $ cf push --command 'bundle exec rackup -p$PORT' myapp
+  $ cf push --command 'bundle exec rackup -p $PORT' myapp
 </pre>
+
+### <a id='migrate-one-instance'></a>Do Not Migrate Database for Multiple Instances ###
+
+Note that database migration should only be run for a _single_ instance of your application. If you specify the migration command using the `cf push --command` option, do not use the `--instances` qualifier to specify multiple instances. Similarly, if you specify the migration command in a `manifest.yml` file, do not set the `instances` attribute to a value greater than 1, and be sure to redefine the 
+`command` attribute (to remove the database creation and migration commands) after the database migration.
+
+This requirement also applies to database updates you make subsequent to the initial database migration. Make sure to perform migration processes for a single instance.
 
 ## <a id='troubleshooting'></a>Troubleshooting ##
 
