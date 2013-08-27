@@ -125,7 +125,8 @@ The port (on the network interface specified by `VCAP_CONSOLE_IP`) upon which ap
 
 `VCAP_CONSOLE_PORT=61858` 
 
-### <a id='VCAP_SERVICES'></a>VCAP_SERVICES ###
+### <a id='VCAP_SERVICES'></a>VCAP\_SERVICES ###
+
 For most service types, Cloud Foundry will add connection details to the `VCAP_SERVICES` environment variable when you bind the service to the application.
 
 The results are returned as a JSON document that contains an object for each service type of which one or more instances are bound to the application. The service type object contains a child object for each service instance of that type that is bound to the application. The attributes for a service instance vary somewhat by service type. The attributes that describe a bound service are defined in the table below.  Note that not all attributes apply to all service types.  

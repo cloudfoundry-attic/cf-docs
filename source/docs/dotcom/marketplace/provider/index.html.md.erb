@@ -33,7 +33,7 @@ Providing a sample application that works out of the box provides an excellent u
 
 ## <a id='binding-credentials'></a>Binding Credentials ##
 
-If your service is bindable, it means that in response to the bind API call, you will return credentials which can be consumed by an application. We write these credentials to the environment variable [VCAP_SERVICES](../../../using/services/environment-variable.html). In some cases buildpacks will write a subset of these credentials to other environment variables that frameworks may expect. 
+If your service is bindable, it means that in response to the bind API call, you will return credentials which can be consumed by an application. We write these credentials to the environment variable [VCAP_SERVICES](../../../using/deploying-apps/environment-variable.html). In some cases buildpacks will write a subset of these credentials to other environment variables that frameworks may expect. 
 
 Please choose from the following list of credential fields if possible. You can provide additional fields as needed, but if any of these meet your needs you should use them. This convention allows us to provide end user developers with libraries which parse VCAP_SERVICES and deliver useful objects to applications, and other libraries which actually configure applications themselves with a service connection.  
 

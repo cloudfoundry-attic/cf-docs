@@ -55,7 +55,7 @@ Refer to the [instructions for Ruby service bindings](../../services/ruby-servic
 
 ## <a id='rake'></a> Running Rake Tasks ##
 
-If the data service (such as a database) your application uses is available directly and supports connectivity when not running on Cloud Foundry, then you can run rake tasks locally (not on Cloud Foundry) and perform database migrations and other tasks outside of Cloud Foundry. For information about obtaining service connection information from the `VCAP_SERVICES` environment variable, see [VCAP_SERVICES Environment Variable](/docs/using/services/environment-variable.html).
+If the data service (such as a database) your application uses is available directly and supports connectivity when not running on Cloud Foundry, then you can run rake tasks locally (not on Cloud Foundry) and perform database migrations and other tasks outside of Cloud Foundry. For information about obtaining service connection information from the `VCAP_SERVICES` environment variable, see [VCAP_SERVICES Environment Variable](../environment-variable.html).
 
 Alternatively, to run a rake task on Cloud Foundry, you can use define the start command in the application's `manifest.yml` file.
 

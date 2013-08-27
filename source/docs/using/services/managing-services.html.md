@@ -60,7 +60,7 @@ User-provided service instances are service instances which have been provisione
 
 ## <a id='bind'></a>Bind a Service Instance ##
 
-Binding a service to your application adds credentials for the service instance to the [VCAP_SERVICES](environment-variable.html) environment variable. In most cases these credentials are unique to the binding; another app bound to the same service instance would receive different credentials. You may need to restart your application for it to recognize the change. 
+Binding a service to your application adds credentials for the service instance to the [VCAP_SERVICES](../deploying-apps/environment-variable.html) environment variable. In most cases these credentials are unique to the binding; another app bound to the same service instance would receive different credentials. You may need to restart your application for it to recognize the change. 
 
 How your app leverages the contents of environment variables may depend on the framework you employ. Refer to the [Deploying Apps](/docs/using/deploying-apps/index.html) section for more information.
 
@@ -79,7 +79,7 @@ Binding mysql-a0a77 to my-app... OK
 
 ## <a id='unbind'></a>Unbind a Service Instance ##
 
-Unbinding a service removes the credentials created for your application from the [VCAP_SERVICES](environment-variable.html) environment variable. You may need to restart your application for it to recognize the change. 
+Unbinding a service removes the credentials created for your application from the [VCAP_SERVICES](../deploying-apps/environment-variable.html) environment variable. You may need to restart your application for it to recognize the change. 
 
 <pre class="terminal">
 $ cf unbind-service

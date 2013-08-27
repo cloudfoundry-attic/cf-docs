@@ -30,7 +30,7 @@ $ cf bind-service
 
 * Include this section only if your service is bindable. What is the format of the credentials stored in the VCAP_SERVICES environment variable? *
 
-See [Using Service Instances with your Application](../../adding-a-service.html#using) and [VCAP_SERVICES Environment Variable](../../../using/services/environment-variable.html).
+See [Using Service Instances with your Application](../../adding-a-service.html#using) and [VCAP_SERVICES Environment Variable](../../../using/deploying-apps/environment-variable.html).
 
 Format of credentials in `VCAP_SERVICES` environment variable.
 

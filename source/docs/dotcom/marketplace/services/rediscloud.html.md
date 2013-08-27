@@ -27,7 +27,7 @@ Bind your Redis Cloud service to your app, using the following command:
 
 ## <a id='using'></a>Using Redis Cloud with your Application ##
 
-See [Using Service Instances with your Application](../../adding-a-service.html#using) and [VCAP_SERVICES Environment Variable](../../../using/services/environment-variable.html).
+See [Using Service Instances with your Application](../../adding-a-service.html#using) and [VCAP_SERVICES Environment Variable](../../../using/deploying-apps/environment-variable.html).
 
 Once your Redis Cloud service is bound to your app, the service credentials will be stored in the `VCAP_SERVICES` env. variable in the following format:
 	

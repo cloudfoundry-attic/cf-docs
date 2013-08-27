@@ -36,7 +36,7 @@ blazemeter-78fb4   blazemeter      blazemeter   n/a       free-tier   none
 mydb               user-provided   n/a          n/a       n/a         none
 </pre> 
 
-After [binding](managing-services#bind) a user-provided service instance and restarting your app, you'll find that the [VCAP_SERVICES](environment-variable.html) will be updated with your credentials.
+After [binding](managing-services#bind) a user-provided service instance and restarting your app, you'll find that the [VCAP_SERVICES](../deploying-apps/environment-variable.html) will be updated with your credentials.
 
 ~~~
 {
