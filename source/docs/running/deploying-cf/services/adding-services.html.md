@@ -1,5 +1,5 @@
 ---
-title: Adding Services for Applications
+title: Deploying Community Services
 ---
 
 Here's how we would add an example service (PostgreSQL) to your Cloud Foundry deployment. All users will be able to provision PostgreSQL databases and bind them to their applications (see [Using Services](../../../using/services/)).
