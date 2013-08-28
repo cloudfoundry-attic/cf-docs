@@ -4,7 +4,7 @@ title: Troubleshooting Wardenized Services
 
 ## <a id="intro"></a>Introduction
 
-This document shows how to debug a Wardenized service in development or production environment.
+This document shows how to debug a Wardenized service in a development or production environment.
 
 ## <a id=""></a>Debugging
 
@@ -17,7 +17,7 @@ This section includes the following topics, with corresponding examples:
 
 ### <a id="check-status"></a>Checking Status of Warden Server
 
-The status of a Warden server is monitored by monit. You can see the Warden server status using the `monit status` command:
+The status of a Warden server is monitored by monit. You can see the Warden server status by using the `monit status` command:
 
 <pre class="terminal">
 $ monit status
@@ -53,7 +53,7 @@ root     15849  0.0  0.0   7688   844 pts/1    S+   07:10   0:00 grep --color=au
 
 ### <a id="check-log"></a>Checking the log and config of Warden
 
-The config file of Warden normally sits at `/var/vcap/jobs/foo_node_ng/config/warden.yml`:
+The config file of Warden is normally found at `/var/vcap/jobs/foo_node_ng/config/warden.yml`:
 
 <pre class="terminal">
 $ cat /var/vcap/jobs/redis_node_ng/config/warden.yml
@@ -84,9 +84,9 @@ pool_start_uid: 10000
 pool_size: 4096
 </pre>
 
-The rootfs and container depot position is labelled in yellow and they could offer some information on debugging. The Warden log is labelled in green and it records whether Warden server started correctly and how it handled incoming requests. The socket that the Warden server listens on is at `/tmp/warden.sock`.
+The rootfs and container depot position is labelled in yellow and they could offer some information on debugging. The Warden log is labelled in green and it records whether the Warden server started correctly and how it handled incoming requests. The socket that the Warden server listens on is found at `/tmp/warden.sock`.
 
-Warden uses [Steno](https://github.com/cloudfoundry/steno) for logging. You can use `steno-prettify` to make it more human readable. `steno-prettify` is a gem that is installed with Warden so you can it without additional installation after going into the `warden` directory:
+Warden uses [Steno](https://github.com/cloudfoundry/steno) for logging. You can use `steno-prettify` to make it more human readable. `steno-prettify` is a gem that is installed with Warden so you can use it without additional installation after going into the `warden` directory:
 
 <pre class="terminal">
 $ bundle exec steno-prettify /var/vcap/sys/log/warden/warden.log
@@ -122,7 +122,7 @@ hello world
 ...
 </pre>
 
-In order to run operations with root privilege, you can use the `--privileged` option:
+In order to run operations with root privileges, you can use the `--privileged` option:
 
 <pre class="terminal">
 $ ./bin/warden
@@ -131,7 +131,7 @@ hello world
 ...
 </pre>
 
-The `help` option will give more information on how to run a command or script within a Warden container.
+The `help` option will give you more information on how to run a command or script within a Warden container.
 
 There are other ways to check whether the process is running. For example, given that you have a container with handle `16io51f6jri` running `redis-server`, you can find the corresponding process tree:
 
@@ -152,7 +152,7 @@ wshd(5291)───bash(5351)───redis-server(5353)─┬─{redis-server}(
                                              └─{redis-server}(5363)
 </pre>
 
-Its corresponding PID of `wshd` will be put in the corresponding Warden depot directory:
+Its corresponding PID of `wshd` will be put into the corresponding Warden depot directory:
 
 <pre class="terminal">
 $ cat /var/vcap/store/containers/16io51f6jri/run/wshd.pid
@@ -175,7 +175,7 @@ $ ls /var/vcap/sys/service-log/redis/
 2b4e0275-7da1-4da7-88c1-7c907b6b1b8c  5e8bbae6-2c3d-429e-bec7-a5b695d2c4f4
 </pre>
 
-Besides the service log, this directory also contains the `warden_service_ctl.log` and `warden_service_ctl.err.log` (`warden_service_ctl` is a script that controls the start, stop and status of the service instance).
+Besides the service log, this directory also contains the `warden_service_ctl.log` and `warden_service_ctl.err.log`. `warden_service_ctl` is a script that controls the start, stop and status of the service instance.
 
 The local sqlite database also includes valuable information for debugging issues with a service instance. The local sqlite database sits in `/var/vcap/store/#{service_name}/#{service_node.db}`. You can use the pre-installed `sqlite3` binary to look into the sqlite database:
 
@@ -211,13 +211,13 @@ $ ls /var/vcap/store/redis_common/bin/
 utils.sh  warden_service_ctl
 </pre>
 
-Service node code will use `warden_service_ctl` script to start, stop, and ping the status of the service instance. Yyou can also use the script manually with Warden client to start and stop the instance but it is dangerous to do that manually.
+Service node code will use the `warden_service_ctl` script to start, stop, and ping the status of the service instance. You can also use the script manually with Warden client to start and stop the instance but it is dangerous to do that manually.
 
 ## <a id="services"></a>Service specific issue
 
 ### <a id="services-mongo"></a>MongoDB proxy
 
-MongoDB has corresponding proxy and they won’t be able to work without it. Mongodb will have their proxy running within Warden:
+MongoDB has a corresponding proxy and they won’t be able to work without it. Mongodb will have their proxy running within Warden:
 
 <pre class="terminal">
 $ cat /var/vcap/store/containers/16iod87tbpe/run/wshd.pid
@@ -239,5 +239,5 @@ wshd(2398)───bash(2457)───mongod(2459)─┬─proxyctl(2470)─┬�
 
 ### <a id="services-rabbit"></a>RabbitMQ daylimit daemon
 
-RabbitMQ has a daylimit daemon to monitor the bandwidth outside Warden container (monitored by monit) and it will take care of the bandwidth of each RabbitMQ instance. A RabbitMQ instance will be able to work without the daylimit daemon, while daylimit daemon will block an instance when the throughput reaches day limit.
+RabbitMQ has a daylimit daemon to monitor the bandwidth outside Warden container (monitored by monit) and it will take care of the bandwidth of each RabbitMQ instance. A RabbitMQ instance will be able to work without the daylimit daemon, while the daylimit daemon will block an instance when the throughput reaches its day limit.
 
