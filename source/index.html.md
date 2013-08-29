@@ -58,7 +58,9 @@ title: Welcome to Cloud Foundry Documentation
   <p>Managing Organizations and Domains<br>
   <a href="docs/using/managing-apps/orgs-and-spaces.html">Organizations and Spaces</a><br>
   <a href="docs/using/managing-apps/custom-domains/index.html">About Domains, Subdomains and Routes</a>
-  </p>
+  <br>
+  <a href="docs/using/managing-apps/custom-domains/cloudflare.html">Configure an SSL-Enabled Custom Domain</a></p>
+
 
   <hr>
   <p>Services<br>
