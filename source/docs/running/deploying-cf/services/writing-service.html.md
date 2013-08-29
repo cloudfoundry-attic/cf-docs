@@ -47,6 +47,8 @@ A plan is identified by `[service_guid, name]`, which must also be unique.
 Because compound primary keys are annoying to work with, we introduced the concept of `unique_id` string fields, but we made them optional for backwards compatibility.
 Updating a service by `unique_id` allows you to make changes to fields inside the old primary key, like label and provider, without having to create a new service.
 
+To generate a `unique_id`, try this [Online GUID Generator](http://www.guidgenerator.com/ "Online GUID Generator").
+
 _API_
 
 Creating a new service in the catalog: `POST /v2/services`
