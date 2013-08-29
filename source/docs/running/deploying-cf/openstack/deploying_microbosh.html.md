@@ -220,7 +220,7 @@ cd ~/bosh-workspace/stemcells
 Download the latest OpenStack Micro BOSH stemcell:
 
 <pre class="terminal">
-wget http://bosh-jenkins-artifacts.s3.amazonaws.com/micro-bosh-stemcell/openstack/latest-micro-bosh-stemcell-openstack.tgz
+wget http://bosh-jenkins-artifacts.s3.amazonaws.com/bosh-stemcell/openstack/bosh-stemcell-latest-openstack-kvm-ubuntu.tgz
 </pre>
 
 ### <a id="deploy"></a>Deploy Micro BOSH ###
@@ -240,7 +240,7 @@ This command will output:
 Deploy the Micro BOSH:
 
 <pre class="terminal">
-bosh micro deploy ~/bosh-workspace/stemcells/latest-micro-bosh-stemcell-openstack.tgz
+bosh micro deploy ~/bosh-workspace/stemcells/bosh-stemcell-latest-openstack-kvm-ubuntu.tgz
 </pre>
  
 This command will output:
