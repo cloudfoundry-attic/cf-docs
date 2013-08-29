@@ -49,14 +49,11 @@ Check the release has been added successfully by issuing the follow command;
 <pre class="terminal">
 $ bosh releases
 
-+----------+------------+-------------+
-| Name     | Versions   | Commit Hash |
-+----------+------------+-------------+
-| appcloud | 131.1-dev  | de134222+   |
-+----------+------------+-------------+
-(*) Currently deployed
-
-Releases total: 1
++------+----------+-------------+
+| Name | Versions | Commit Hash |
++------+----------+-------------+
+| cf   | 138      | adca9c45    |
++------+----------+-------------+
 </pre>
 
-This release is now ready to deploy using a custom manifest.
+This release is now ready to deploy using a deployment file.

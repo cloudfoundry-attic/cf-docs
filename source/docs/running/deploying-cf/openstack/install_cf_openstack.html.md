@@ -77,21 +77,18 @@ Confirm that you have a release "cf" uploaded:
 <pre class="terminate">
 $ bosh releases
 
-+----------+------------+-------------+
-| Name     | Versions   | Commit Hash |
-+----------+------------+-------------+
-| appcloud | 131.1-dev  | de134222+   |
-+----------+------------+-------------+
-(*) Currently deployed
-
-Releases total: 1
++------+----------+-------------+
+| Name | Versions | Commit Hash |
++------+----------+-------------+
+| cf   | 138      | adca9c45    |
++------+----------+-------------+
 </pre>
 
 ## Upload a base stemcell ##
 
 A cloud provider needs a base image to provision VMs/servers. Bosh explicitly requires that the base image includes the [Agent](../../bosh/components/agent.html). Therefore, we use specific base images which are known to have a bosh agent installed. These base images are called `bosh stemcells`.
 
-To download the latest bosh stemcell and upload it to your bosh:
+To upload the latest bosh stemcell to your bosh:
 
 <pre class="terminate">
 $ wget http://bosh-jenkins-artifacts.s3.amazonaws.com/bosh-stemcell/openstack/latest-bosh-stemcell-openstack.tgz
