@@ -14,13 +14,13 @@ In Cloud Foundry, domains are associated with spaces.
 
 A Cloud Foundry instance defines a default domain that is available to all spaces. For example, in the Pivotal-hosted instance of Cloud Foundry, the `cfapps.io` domain is automatically mapped to all spaces in all organizations.
 
-Cloud Foundry also supports _custom domains_ --- you can map a registered domain of your own to a space in Cloud Foundry, as described below.
+Cloud Foundry also supports _custom domains_ --- you can map a registered domain of your own to a space in Cloud Foundry, as described below. If you want to use SSL with a custom domain, see [Configure an SSL-Enabled Custom Domain](/docs/using/managing-apps/custom-domains/cloudflare.html).
 
 ## <a id='map-domain'></a>Map a Custom Domain to a Space ##
 
 If you want use a registered domain of your own, you must define it in Cloud Foundry and map it the application’s space with the `cf map-domain` command. 
 
-Specify an apex, or top-level domain name, such as `cfapps.io` or `example.com`, where there is one segment to the left of the suffix. The command below maps the custom domain `example.com`  to the “development” space.  
+The command below maps the custom domain `example.com`  to the “development” space.  
 
 `cf map-domain --space development example.com`
 
