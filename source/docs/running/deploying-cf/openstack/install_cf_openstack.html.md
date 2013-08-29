@@ -4,6 +4,8 @@ title: Install Cloud Foundry on OpenStack
 
 In this page you will run Cloud Foundry on OpenStack.
 
+NOTE: These instructions are for v138 release of Cloud Foundry. For newer versions of Cloud Foundry, [please let us know](https://github.com/cloudfoundry/cf-docs/issues/new) if this documentation continues to work or needed some changes.
+
 ## What will happen ##
 
 At the end of this page, three `m1.medium` VMs will be running in your OpenStack environment running Cloud Foundry.
@@ -39,9 +41,9 @@ Config
 Director
   Name       firstbosh
   URL        https://1.2.3.4:25555
-  Version    1.5.0.pre.3 (release:49d2d498 bosh:49d2d498)
+  Version    1.5.0.pre.939 (release:930f73f5 bosh:930f73f5)
   User       admin
-  UUID       7a462ebe-bdb7-4e7c-b096-c42736XXXXXX
+  UUID       18bbfe79-6ccf-4020-b1c7-6f19d67a8c9c
   CPI        openstack
   dns        enabled (domain_name: microbosh)
   compiled_package_cache disabled
@@ -70,7 +72,7 @@ You can now create and upload the Cloud Foundry bosh release ([cf-release](https
 
 [Follow these instructions.](../common/cf-release.html)
 
-Confirm that you have a release "appcloud" uploaded:
+Confirm that you have a release "cf" uploaded:
 
 <pre class="terminate">
 $ bosh releases
