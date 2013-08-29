@@ -18,36 +18,43 @@ bosh upload stemcell http://bosh-jenkins-artifacts.s3.amazonaws.com/bosh-stemcel
 
 This command will output:
 
-    Using remote stemcell `http://bosh-jenkins-artifacts.s3.amazonaws.com/bosh-stemcell/openstack/bosh-stemcell-latest-openstack-kvm-ubuntu.tgz'
+<pre class="terminal">
 
-    Uploading stemcell...
+Using remote stemcell `http://bosh-jenkins-artifacts.s3.amazonaws.com/bosh-stemcell/openstack/bosh-stemcell-latest-openstack-kvm-ubuntu.tgz'
 
-    Director task 1
+Uploading stemcell...
 
-    Update stemcell
-      downloading remote stemcell (00:00:49)
-      extracting stemcell archive (00:00:04)
-      verifying stemcell manifest (00:00:00)
-      checking if this stemcell already exists (00:00:00)
-      uploading stemcell bosh-stemcell/1.5.0.pre.3 to the cloud (00:01:18)
-      save stemcell bosh-stemcell/1.5.0.pre.3 (72f212a7-657c-4bd0-ad6b-ce1fdd454b0f) (00:00:00)
-    Done                    6/6 00:02:11
+Director task 1
 
-    Task 1 done
-    Started		2013-07-01 08:24:10 UTC
-    Finished	2013-07-01 08:26:21 UTC
-    Duration	00:02:11
+Update stemcell
+  downloading remote stemcell (00:00:49)
+  extracting stemcell archive (00:00:04)
+  verifying stemcell manifest (00:00:00)
+  checking if this stemcell already exists (00:00:00)
+  uploading stemcell bosh-stemcell/939 to the cloud (00:00:27)                                      
+  save stemcell bosh-stemcell/939 (2214e824-e420-4a43-ac81-b6f600f25f80) (00:00:00)                 
+Done                    6/6 00:02:11
 
-    Stemcell uploaded and created
+Task 1 done
+Started		2013-07-01 08:24:10 UTC
+Finished	2013-07-01 08:26:21 UTC
+Duration	00:02:11
+
+Stemcell uploaded and created
+</pre>
 
 ## <a id="check_stemcell"></a>Check BOSH Stemcell ###
 
 To confirm that the BOSH Stemcell has been loaded into your BOSH Director use the `bosh stemcells` command:
    
-    +---------------+-------------+--------------------------------------+
-    | Name          | Version     | CID                                  |
-    +---------------+-------------+--------------------------------------+
-    | bosh-stemcell | 1.5.0.pre.3 | 72f212a7-657c-4bd0-ad6b-ce1fdd454b0f |
-    +---------------+-------------+--------------------------------------+
-    
-    Stemcells total: 1
+<pre class="terminal">
+# bosh stemcells
++---------------+---------+--------------------------------------+
+| Name          | Version | CID                                  |
++---------------+---------+--------------------------------------+
+| bosh-stemcell | 939     | 2214e824-e420-4a43-ac81-b6f600f25f80 |
++---------------+---------+--------------------------------------+
+
+Stemcells total: 1
+</pre>
+

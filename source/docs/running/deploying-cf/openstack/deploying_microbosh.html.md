@@ -258,8 +258,8 @@ This command will output:
     
     Stemcell info
     -------------
-    Name:    micro-bosh-stemcell
-    Version: 1.5.0.pre.3
+    Name:    bosh-stemcell
+    Version: 939
     
     
     Deploy Micro BOSH
