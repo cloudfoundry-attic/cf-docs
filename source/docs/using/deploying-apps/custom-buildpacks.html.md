@@ -69,31 +69,27 @@ end
 
 ### <a id='detect-script'></a>bin/release ###
 
-The `release` script provides feedback metadata back to Cloud Foundry. The script is run with one argument, the build location of the application.
+The `release` script provides feedback metadata back to Cloud Foundry indicating how the application should be executed. The script is run with one argument, the build location of the application. The script must generate a YAML file in the following format:
 
-The expected format for the return data is YAML. For Cloud Foundry it should include two keys: `config_vars` and `default_process_types`.
+~~~yaml
+  config_vars:
+    name: value
+  default_process_types:
+    web: commandLine
+~~~
+
+Where `config_vars` is an optional set of environment variables that will be defined in the environment in which the application is executed. `default_process_types` indicates the type of application being run and the command line used to start it. At this time only `web` type of applications are supported.
+
+The following example shows what a Rack application's `release` script might return:
 
 ~~~ruby
 
-{
-  "config_vars" => {}, # environment variables that should be set
-  "default_process_types" => {} #
-}.to_yaml
+config_vars:
+  RACK_ENV: production
+default_process_type:
+  web: bundle exec rackup config.ru -p $PORT
 
 ~~~
-
-Return metadata for a Rack application might look like this:
-
-~~~ruby
-
-{
-  "config_vars" => { "RACK_ENV" => "production" },
-  "default_process_types" => { "web" => "bundle exec rackup config.ru -p $PORT" }
-}.to_yaml
-
-~~~
-
-In this example `default_process_types` has a value with the key `web` containing the command used to start the Rack application.
 
 ## <a id='deploying-with-custom-buildpacks'></a>Deploying With a Custom Buildpack ##
 
