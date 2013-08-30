@@ -109,6 +109,16 @@ $ bosh stemcells
 Stemcells total: 1
 </pre>
 
+## Other preparation
+
+OpenStack uses security groups for restricting/allowing ports to a set of servers.
+
+You need to create a security group `cf`:
+
+* allow all ports to talk to all ports of servers using the same `cf` security group
+* allow port 22 for administrator SSH access
+* allow 80 for HTTP traffic (primarily for the router)
+
 ## Create a minimal deployment file ##
 
 The next step towards deploying Cloud Foundry is to create a `deployment file`. This is a YAML file that describes exactly what will be included in the next deployment. This includes:
@@ -147,7 +157,7 @@ TODO, change the following at the top of the file:
 * replace `root_domain` value with a DNS, say `mycloud.com` that has `*.mycloud.com` mapped to your IP; defaults to using http://xip.io service for DNS
 * replace the `common_password`; even better is to put in lots of different passwords and tokens throughout the deployment file
 
-<pre>
+~~~yaml
 ---
 <%
 director_uuid = "DIRECTOR_UUID"
@@ -474,8 +484,7 @@ properties:
         users:
         - admin|<%= common_password %>|scim.write,scim.read,openid,cloud_controller.admin,uaa.admin,password.write
         - services|<%= common_password %>|scim.write,scim.read,openid,cloud_controller.admin
-
-</pre>
+~~~
 
 NOTE again: this is a deployment file that is known to work with v138 of Cloud Foundry.
 
