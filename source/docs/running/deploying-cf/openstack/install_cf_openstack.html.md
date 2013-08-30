@@ -17,7 +17,7 @@ For example, you will be able to:
 <pre class="terminal">
 $ cf target api.mycloud.com
 $ cf login admin
-Password> c1oudc0w  (unless you change it in the deployment manifest below)
+Password> c1oudc0w  (unless you change it in the deployment file below)
 $ git clone https://github.com/cloudfoundry-community/cf_demoapp_ruby_rack.git
 $ cd cf_demoapp_ruby_rack
 $ cf push
@@ -103,15 +103,15 @@ $ bosh stemcells
 +---------------+---------+--------------------------------------+
 | Name          | Version | CID                                  |
 +---------------+---------+--------------------------------------+
-| bosh-stemcell | 703     | 51c86e1d-2439-45a7-9f8d-870c7f64c61b |
+| bosh-stemcell | 939     | 51c86e1d-2439-45a7-9f8d-870c7f64c61b |
 +---------------+---------+--------------------------------------+
 
 Stemcells total: 1
 </pre>
 
-## Create a minimal deployment manifest ##
+## Create a minimal deployment file ##
 
-The next step towards deploying Cloud Foundry is to create a `deployment manifest`. This is a YAML file that describes exactly what will be included in the next deployment. This includes:
+The next step towards deploying Cloud Foundry is to create a `deployment file`. This is a YAML file that describes exactly what will be included in the next deployment. This includes:
 
 * the VMs to be created
 * the persistent disks to be attached to different VMs
@@ -119,7 +119,7 @@ The next step towards deploying Cloud Foundry is to create a `deployment manifes
 * the one or more job templates from the bosh release to be applied to each VM
 * the custom properties to be applied into configuration files and scripts for each job template
 
-A deployment manifest can describe 10,000 VMs using a complex set of Quantum subnets all the way down to one or more VMs without any complex inter-networking. You can specify one job per VM or colocate multiple jobs for small deployments.
+A deployment file can describe 10,000 VMs using a complex set of Quantum subnets all the way down to one or more VMs without any complex inter-networking. You can specify one job per VM or colocate multiple jobs for small deployments.
 
 There are many different parts of Cloud Foundry that can be deployed. In this section, only the bare basics will be deployed that allow user applications to be run that do not require any services. The minimal set of jobs to be included are:
 
@@ -131,7 +131,6 @@ There are many different parts of Cloud Foundry that can be deployed. In this se
 * `health_manager_next`
 * `debian_nfs_server` (see below for using Swift as the droplet blobstore)
 * `uaa`
-* `login`
 
 There are different ways that networking can be configured. If your OpenStack has Quantum running, then you can use advanced compositions of subnets to isolate and protect each job, thus providing greater security. In this section, no advanced networking will be used.
 
@@ -139,38 +138,358 @@ Only a single public floating IP is required. Replace your allocated floating IP
 
 ### Initial manifest for OpenStack ###
 
-Create a `deployments` folder and create `deployments/cf.yml` with the initial manifest displayed below.
+Create a `~/bosh-workspace/deployments/cf` folder and create `~/bosh-workspace/deployments/cf/demo.yml` with the initial deployment file displayed below.
 
-<pre class="terminal">
-$ mkdir deployments
-$ wget https://gist.github.com/drnic/5785295/raw/ff779dfe7acb7a6caba7bddeafa32b029a17c0d7/cf-openstack-dns-small.yml -O deployments/cf.yml
+TODO, change the following at the top of the file:
+
+* replace `DIRECTOR_UUID` with the UUID from `bosh status`
+* replace `2.3.4.5` with the floating IP you allocated above
+* replace `root_domain` value with a DNS, say `mycloud.com` that has `*.mycloud.com` mapped to your IP; defaults to using http://xip.io service for DNS
+* replace the `common_password`; even better is to put in lots of different passwords and tokens throughout the deployment file
+
+<pre>
+---
+<%
+director_uuid = "DIRECTOR_UUID"
+protocol = "http"
+ip_address = "2.3.4.5"
+common_password = "c1oudc0wc1oudc0w"
+root_domain = "#{ip_address}.xip.io"
+deployment_name = "cf-demo"
+%>
+name: <%= deployment_name %>
+director_uuid: <%= director_uuid %>
+
+releases:
+ - name: cf
+   version: 138
+
+compilation:
+  workers: 3
+  network: default
+  reuse_compilation_vms: true
+  cloud_properties:
+    instance_type: m1.small
+
+update:
+  canaries: 1
+  canary_watch_time: 30000-300000
+  update_watch_time: 30000-300000
+  max_in_flight: 4
+  max_errors: 1
+
+networks:
+  - name: floating
+    type: vip
+    cloud_properties: {}
+  - name: default
+    type: dynamic
+    cloud_properties:
+      security_groups:
+      - cf
+
+resource_pools:
+  - name: common
+    network: default
+    size: 8
+    stemcell:
+      name: bosh-stemcell
+      version: latest
+    cloud_properties:
+      instance_type: m1.small
+
+  - name: large
+    network: default
+    size: 1
+    stemcell:
+      name: bosh-stemcell
+      version: latest
+    cloud_properties:
+      instance_type: m1.large
+
+jobs:
+  - name: syslog_aggregator
+    template:
+      - syslog_aggregator
+    instances: 1
+    resource_pool: common
+    persistent_disk: 65536
+    networks:
+      - name: default
+        default: [dns, gateway]
+
+  - name: postgres
+    template:
+      - postgres
+    instances: 1
+    resource_pool: common
+    persistent_disk: 65536
+    networks:
+      - name: default
+        default: [dns, gateway]
+    properties:
+      db: databases
+
+  - name: nfs_server
+    template:
+      - debian_nfs_server
+    instances: 1
+    resource_pool: common
+    persistent_disk: 65536
+    networks:
+      - name: default
+        default: [dns, gateway]
+
+  - name: nats
+    template:
+      - nats
+    instances: 1
+    resource_pool: common
+    networks:
+      - name: default
+        default: [dns, gateway]
+
+  - name: uaa
+    template:
+      - uaa
+    instances: 1
+    resource_pool: common
+    networks:
+      - name: default
+        default: [dns, gateway]
+
+  - name: cloud_controller
+    template:
+      - cloud_controller_ng
+    instances: 1
+    resource_pool: common
+    networks:
+      - name: default
+        default: [dns, gateway]
+    properties:
+      ccdb: ccdb
+
+  - name: router
+    template:
+      - gorouter
+    instances: 1
+    resource_pool: common
+    networks:
+      - name: default
+        default: [dns, gateway]
+      - name: floating
+        static_ips:
+          - <%= ip_address %>
+
+  - name: health_manager
+    template:
+      - health_manager_next
+    instances: 1
+    resource_pool: common
+    networks:
+      - name: default
+        default: [dns, gateway]
+
+  - name: dea
+    template: dea_next
+    instances: 1
+    resource_pool: large
+    networks:
+      - name: default
+        default: [dns, gateway]
+
+properties:
+  domain: <%= root_domain %>
+  system_domain: <%= root_domain %>
+  system_domain_organization: "demo"
+  app_domains:
+    - <%= root_domain %>
+  support_address: http://support.<%= root_domain %>
+  description: "Cloud Foundry v2 sponsored by Pivotal"
+
+  networks:
+    apps: default
+    management: default
+
+  nats:
+    address: 0.nats.default.<%= deployment_name %>.microbosh
+    port: 4222
+    user: nats
+    password: <%= common_password %>
+    authorization_timeout: 10
+
+  router:
+    status:
+      port: 8080
+      user: gorouter
+      password: <%= common_password %>
+
+  dea: &dea
+    max_memory: 4096
+    memory_mb: 4096
+    memory_overcommit_factor: 4
+    disk_mb: 16384
+    disk_overcommit_factor: 4
+
+  dea_next: *dea
+
+  syslog_aggregator:
+    address: 0.syslog-aggregator.default.<%= deployment_name %>.microbosh
+    port: 54321
+
+  nfs_server:
+    address: 0.nfs-server.default.<%= deployment_name %>.microbosh
+    network: "*.<%= deployment_name %>.microbosh"
+    idmapd_domain: dfw2
+
+  debian_nfs_server:
+    no_root_squash: true
+
+  databases: &databases
+    db_scheme: postgres
+    address: 0.postgres.default.<%= deployment_name %>.microbosh
+    port: 5524
+    roles:
+      - tag: admin
+        name: ccadmin
+        password: <%= common_password %>
+      - tag: admin
+        name: uaaadmin
+        password: <%= common_password %>
+    databases:
+      - tag: cc
+        name: ccdb
+        citext: true
+      - tag: uaa
+        name: uaadb
+        citext: true
+
+  ccdb: &ccdb
+    db_scheme: postgres
+    address: 0.postgres.default.<%= deployment_name %>.microbosh
+    port: 5524
+    roles:
+      - tag: admin
+        name: ccadmin
+        password: <%= common_password %>
+    databases:
+      - tag: cc
+        name: ccdb
+        citext: true
+
+  ccdb_ng: *ccdb
+
+  uaadb:
+    db_scheme: postgresql
+    address: 0.postgres.default.<%= deployment_name %>.microbosh
+    port: 5524
+    roles:
+      - tag: admin
+        name: uaaadmin
+        password: <%= common_password %>
+    databases:
+      - tag: uaa
+        name: uaadb
+        citext: true
+
+  cc_api_version: v2
+
+  cc: &cc
+    logging_level: debug
+    external_host: ccng
+    srv_api_uri: <%= protocol %>://api.<%= root_domain %>
+    cc_partition: default
+    db_encryption_key: <%= common_password %>
+    bootstrap_admin_email: "frodenas@gopivotal.com"
+    bulk_api_password: <%= common_password %>
+    uaa_resource_id: cloud_controller
+    staging_upload_user: upload
+    staging_upload_password: <%= common_password %>
+    resource_pool:
+      resource_directory_key: cf-att-io-cc-resources
+    packages:
+      app_package_directory_key: cf-att-io-cc-packages
+    droplets:
+      droplet_directory_key: cf-att-io-cc-droplets
+    default_quota_definition: runaway
+
+  ccng: *cc
+
+  login:
+    enabled: false
+
+  uaa:
+    url: <%= protocol %>://uaa.<%= root_domain %>
+    no_ssl: <%= protocol == "http" %>
+    catalina_opts: -Xmx768m -XX:MaxPermSize=256m
+    resource_id: account_manager
+    jwt:
+      signing_key: |
+        -----BEGIN RSA PRIVATE KEY-----
+        MIICXAIBAAKBgQDHFr+KICms+tuT1OXJwhCUmR2dKVy7psa8xzElSyzqx7oJyfJ1
+        JZyOzToj9T5SfTIq396agbHJWVfYphNahvZ/7uMXqHxf+ZH9BL1gk9Y6kCnbM5R6
+        0gfwjyW1/dQPjOzn9N394zd2FJoFHwdq9Qs0wBugspULZVNRxq7veq/fzwIDAQAB
+        AoGBAJ8dRTQFhIllbHx4GLbpTQsWXJ6w4hZvskJKCLM/o8R4n+0W45pQ1xEiYKdA
+        Z/DRcnjltylRImBD8XuLL8iYOQSZXNMb1h3g5/UGbUXLmCgQLOUUlnYt34QOQm+0
+        KvUqfMSFBbKMsYBAoQmNdTHBaz3dZa8ON9hh/f5TT8u0OWNRAkEA5opzsIXv+52J
+        duc1VGyX3SwlxiE2dStW8wZqGiuLH142n6MKnkLU4ctNLiclw6BZePXFZYIK+AkE
+        xQ+k16je5QJBAN0TIKMPWIbbHVr5rkdUqOyezlFFWYOwnMmw/BKa1d3zp54VP/P8
+        +5aQ2d4sMoKEOfdWH7UqMe3FszfYFvSu5KMCQFMYeFaaEEP7Jn8rGzfQ5HQd44ek
+        lQJqmq6CE2BXbY/i34FuvPcKU70HEEygY6Y9d8J3o6zQ0K9SYNu+pcXt4lkCQA3h
+        jJQQe5uEGJTExqed7jllQ0khFJzLMx0K6tj0NeeIzAaGCQz13oo2sCdeGRHO4aDh
+        HH6Qlq/6UOV5wP8+GAcCQFgRCcB+hrje8hfEEefHcFpyKH+5g1Eu1k0mLrxK2zd+
+        4SlotYRHgPCEubokb2S1zfZDWIXW3HmggnGgM949TlY=
+        -----END RSA PRIVATE KEY-----
+      verification_key: |
+        -----BEGIN PUBLIC KEY-----
+        MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDHFr+KICms+tuT1OXJwhCUmR2d
+        KVy7psa8xzElSyzqx7oJyfJ1JZyOzToj9T5SfTIq396agbHJWVfYphNahvZ/7uMX
+        qHxf+ZH9BL1gk9Y6kCnbM5R60gfwjyW1/dQPjOzn9N394zd2FJoFHwdq9Qs0wBug
+        spULZVNRxq7veq/fzwIDAQAB
+        -----END PUBLIC KEY-----
+    cc:
+      client_secret: <%= common_password %>
+    admin:
+      client_secret: <%= common_password %>
+    batch:
+      username: batch
+      password: <%= common_password %>
+    client:
+      autoapprove:
+        - cf
+    clients:
+      cf:
+        override: true
+        authorized-grant-types: password,implicit,refresh_token
+        authorities: uaa.none
+        scope: cloud_controller.read,cloud_controller.write,openid,password.write,cloud_controller.admin,scim.read,scim.write
+        access-token-validity: 7200
+        refresh-token-validity: 1209600
+      admin:
+        secret: <%= common_password %>
+        authorized-grant-types: client_credentials
+        authorities: clients.read,clients.write,clients.secret,password.write,scim.read,uaa.admin
+      scim:
+        userids_enabled: true
+        users:
+        - admin|<%= common_password %>|scim.write,scim.read,openid,cloud_controller.admin,uaa.admin,password.write
+        - services|<%= common_password %>|scim.write,scim.read,openid,cloud_controller.admin
+
 </pre>
 
-<script src="https://gist.github.com/drnic/5785295.js"></script>
-
-### Replace values with your values ###
-
-In your `deployments/cf.yml`, replace the following values:
-
-* `YOUR-BOSH-UUID` - with the UUID from running `bosh status`
-* `2.3.4.5` - with your floating IP address
-* `mycloud.com` (many instances) - with your root DNS
-* `c1oudc0w` (many instances) - with a common password used within the system (also the initial `admin` user password)
+NOTE again: this is a deployment file that is known to work with v138 of Cloud Foundry.
 
 ## Deploying your own Cloud Foundry ##
 
-In this section, your bosh will be instructed to provision 4 VMs (specified in the manifest), binding the router to your floating IP address (which you have already registered with your DNS provider for the `*.mycloud.com` A record), and running the minimal, useful set of jobs mentioned above. In the following section, you well deploy a sample application!
+In this section, your bosh will be instructed to provision 9 VMs (specified in the manifest), binding the router to your floating IP address, and running the minimal, useful set of jobs mentioned above. In the subsequent section, you well deploy a sample application to your Cloud Foundry
 
 First, target your bosh CLI to your manifest file. Use either:
 
 <pre class="terminal">
-$ bosh deployment cf
-$ bosh deployment deployments/cf.yml
+$ bosh deployment ~/bosh-workspace/deployments/cf/demo.yml
 </pre>
 
-The former use case attempts to find a file `deployments/NAME.yml`. That is, it is an abbreviated version of the latter use case above.
-
-Then, we upload the deployment manifest to your bosh and instruct it to "deploy" your Cloud Foundry service.
+Then, we upload the deployment file to your bosh and instruct it to "deploy" your Cloud Foundry service.
 
 <pre class="terminal">
 $ bosh deploy
@@ -182,18 +501,17 @@ The first time you deploy a bosh release it will compile every package that it n
 
 <pre class="terminal">
 Compiling packages
-buildpack_cache/0.1-dev, git/1,...  |                        | 0/26 00:00:32  ETA: --:--:--         
+buildpack_cache/2,...  |                        | 0/23 00:00:32  ETA: --:--:--         
 </pre>
 
 And later...
 
 <pre class="terminal">
-Compiling packages
-  insight_agent/2 (00:01:01)                                                                        
-  buildpack_cache/0.1-dev (00:01:56)                                                                
-  rootfs_lucid64/0.1-dev (00:02:04)                                                                 
-  mysqlclient/3 (00:00:03)                                                                          
-git/1, golang/1, imagemagick/2,...  |ooo                     | 4/26 00:02:15  ETA: 00:04:04         
+  Compiling packages
+    buildpack_cache/2 (00:02:39)                                                                      
+    insight_agent/2 (00:02:49)                                                                        
+    nginx/9 (00:00:49)                                                                                
+golang/2, gorouter/10,...  |ooo                     | 4/23 00:02:15  ETA: 00:04:04         
 </pre>
 
 If you visit your OpenStack dashboard, you will see a number of VMs have been provisioned. Each of these VMs is being assigned a single package to compile. When it completes, it uploads the compiled binaries and libraries for that package into the bosh blobstore. These compiled packages can be used over and over and never need compilation again.
@@ -202,49 +520,56 @@ Finally, the initial compilation of packages ends (after about 15 minutes in the
 
 <pre class="terminal">
   ...
-  cloud_controller_ng/12.1-dev (00:01:09)                                                           
-  warden/25.1-dev (00:00:45)                                                                        
-  dea_next/15.1-dev (00:01:31)                                                                      
-  imagemagick/2 (00:15:07)                                                                          
-Done                    26/26 00:15:07                                                              
+  login/19 (00:00:37)                                                                               
+  uaa/30 (00:00:38)                                                                                 
+  dea_next/22 (00:00:51)                                                                            
+Done                    23/23 00:09:16                                                              
 </pre>
 
-Next it boots the 4 VMs mentioned in the deployment manifest above (see the `resource_pools` [section](https://gist.github.com/drnic/5785295#file-cf-openstack-dns-small-yml-L34-L51)):
+Next it boots the 9 VMs mentioned in the deployment file above:
 
 <pre class="terminal">
 Creating bound missing VMs
-  medium/0 (00:00:40)                                                                               
-  medium/1 (00:00:42)                                                                               
-  small/0 (00:00:42)                                                                                
-  small/1 (00:00:45)                                                                                
-Done                    4/4 00:00:45                                                                
+  common/1 (00:01:49)                                                                               
+  common/0 (00:02:53)                                                                               
+  common/2 (00:03:31)                                                                               
+  common/3 (00:01:53)                                                                               
+  common/5 (00:01:32)                                                                               
+  common/4 (00:02:10)                                                                               
+  common/6 (00:01:51)                                                                               
+  common/7 (00:01:07)                                                                               
+  large/0 (00:01:54)                                                                                
+Done                    9/9 00:07:34                                                              
 </pre>
 
 Finally it assigns each VM a job (which is a list of one or more job templates from the [cf-release bosh release jobs folder](https://github.com/cloudfoundry/cf-release/tree/master/jobs))
 
 <pre class="terminal">
 Binding instance VMs
-  core/0 (00:00:01)                                                                                 
+  postgres/0 (00:00:01)                                                                             
+  nfs_server/0 (00:00:01)                                                                           
+  syslog_aggregator/0 (00:00:01)                                                                    
+  nats/0 (00:00:01)                                                                                 
   uaa/0 (00:00:01)                                                                                  
-  api/0 (00:00:01)                                                                                  
+  health_manager/0 (00:00:01)                                                                       
+  router/0 (00:00:01)                                                                               
+  cloud_controller/0 (00:00:01)                                                                     
   dea/0 (00:00:01)                                                                                  
-Done                    4/4 00:00:01                                                                
+Done                    9/9 00:00:04                                                              
 
 Preparing configuration
   binding configuration (00:00:01)                                                                  
 Done                    1/1 00:00:01                                                                
 
-Updating job core
-core/0 (canary)                     |oooooooooooooooooooo    | 0/1 00:01:09  ETA: --:--:--
+Updating job syslog_aggregator
+syslog_aggregator/0 (canary)       |oooooooooooooooooooo    | 0/1 00:01:09  ETA: --:--:--
 </pre>
 
-First the `core` job is started.
+First the `syslog_aggregator` job is started.
 
-The ordering of the jobs within the deployment manifest - core, uaa, api, dea - is deliberate. It determines the order that the job VMs are started.
+The ordering of the jobs within the deployment file is deliberate. It determines the order that the job VMs are started. The later jobs may have dependencies on the earlier jobs already running.
 
-DEAs (job `dea`) need the NATS (job `core`) and the Cloud Controller (job `api`). The Cloud Controller needs the UAA (job `uaa`). The Cloud Controller and the UAA need a PostgreSQL database (job `core`).
-
-So the deployment manifest is written to start `core` first, then `uaa`, then `api` (`cloud_controller` and the `gorouter`), and finally the `dea`.
+DEAs (job `dea`) need the NATS (job `nats`) and the Cloud Controller (job `cloud_controller`). The Cloud Controller needs the UAA (job `uaa`). The Cloud Controller and the UAA need a PostgreSQL database (job `postgres`).
 
 When the deployment is finished:
 
@@ -276,7 +601,7 @@ First, target the Cloud Foundry, create an Organization, and create the first Sp
 $ gem install cf
 $ cf target api.mycloud.com
 $ cf login admin
-Password> c1oudc0w  (unless you change it in the deployment manifest below)
+Password> c1oudc0w  (unless you change it in the deployment file below)
 
 $ cf create-org demo
 Creating organization demo... OK
