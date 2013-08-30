@@ -479,11 +479,11 @@ properties:
         secret: <%= common_password %>
         authorized-grant-types: client_credentials
         authorities: clients.read,clients.write,clients.secret,password.write,scim.read,uaa.admin
-      scim:
-        userids_enabled: true
-        users:
-        - admin|<%= common_password %>|scim.write,scim.read,openid,cloud_controller.admin,uaa.admin,password.write
-        - services|<%= common_password %>|scim.write,scim.read,openid,cloud_controller.admin
+    scim:
+      userids_enabled: true
+      users:
+      - admin|<%= common_password %>|scim.write,scim.read,openid,cloud_controller.admin,uaa.admin,password.write
+      - services|<%= common_password %>|scim.write,scim.read,openid,cloud_controller.admin
 ~~~
 
 NOTE again: this is a deployment file that is known to work with v138 of Cloud Foundry.
