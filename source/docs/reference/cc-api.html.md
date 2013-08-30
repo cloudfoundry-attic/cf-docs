@@ -2,7 +2,7 @@
 title: Cloud Foundry API
 ---
 
-_This documents the v2 version of the API.  v1 is unofficially documented at http://apidocs.cloudfoundry.com/_
+_This documents the v2 version of the API._
 
 ## <a id='overview'></a> Overview ##
 
