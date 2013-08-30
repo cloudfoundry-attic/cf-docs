@@ -26,6 +26,10 @@ log/
 
 Just which files are extraneous depends on what framework you use. The `.gitignore` templates for common frameworks available at https://github.com/github/gitignore are a useful starting point.  
 
+##<a id='instances'></a>Run Multiple Instances to Increase Availability ##
+
+To avoid the risk of an application being unavailable during Cloud Foundry upgrade processes, you should run more than one instance of an application. When a DEA is upgraded, the applications running on it are _evacuated_: shut down gracefully on the DEA to be upgraded, and restarted on another DEA. On Pivotal CF Hosted, BOSH is configured to upgrade DEAs one at a time, so for an application whose startup time is less than two minutes, running a second instance should be sufficient. Pivotal recommends running more than two instances of an application that takes longer than two minutes to start. 
+
 
 ##<a id='buildpacks'></a>Buildpack Support for Runtimes and Frameworks ##
 
