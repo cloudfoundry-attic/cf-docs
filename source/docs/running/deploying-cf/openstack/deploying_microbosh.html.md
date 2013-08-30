@@ -28,7 +28,9 @@ Although the new [OpenStack Networking](http://www.openstack.org/software/openst
 
 Check that your OpenStack `default` security group allows SSH (port `22`). Create a new OpenStack security group, name it ie `microbosh`, and open the following ports:
 
-* All ports (from `1` to `65535`) where the source group is the current security group 
+* All ports (from `1` to `65535`) where the source group is the current security group
+* Port `22` from source 0.0.0.0/0 (CIDR): Used for inbound SSH access
+* Port `53` from source 0.0.0.0/0 (CIDR): Used for inbound DNS requests
 * Port `4222` from source 0.0.0.0/0 (CIDR): Used by [NATS](/docs/running/bosh/components/messaging.html)
 * Port `6868` from source 0.0.0.0/0 (CIDR): Used by [BOSH Agent](/docs/running/bosh/components/agent.html)
 * Port `25250` from source 0.0.0.0/0 (CIDR): Used by [BOSH Blobstore](/docs/running/bosh/components/blobstore.html)
