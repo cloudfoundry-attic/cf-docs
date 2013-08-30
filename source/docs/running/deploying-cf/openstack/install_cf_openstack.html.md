@@ -340,6 +340,7 @@ properties:
     memory_overcommit_factor: 4
     disk_mb: 16384
     disk_overcommit_factor: 4
+    directory_server_protocol: <%= protocol %>
 
   dea_next: *dea
 
