@@ -4,9 +4,9 @@ title: Health Manager
 
 The Health Manager monitors the state of applications deployed to Cloud Foundry and ensures that started applications are running, and that their versions and number of instances are correct.
 
-The Health Manger compares the actual state of an application to its desired state, and when it detects a discrepancy, it initiates actions to return the application to the desired state. For instance, if fewer than expected instances are running, the Health Manager will instruct the appropriate DEA to start the appropriate number of instances.    
+The Health Manger compares the actual state of an application to its desired state, and when it detects a discrepancy, it initiates actions to return the application to the desired state. For instance, if fewer than expected instances are running, the Health Manager will instruct the Cloud Controller to start the appropriate number of instances.    
 
-The actual state of an application is represented by an instance of the `AppState` class, which updates itself based on heartbeats and `droplet.exited` messages issued by the DEA running the application. The desired state of an application is obtained from a dump of the Cloud Controller database.
+The actual state of an application is updates  based on heartbeats and `droplet.exited` messages issued by the DEA running the application. The desired state of an application is obtained from a dump of the Cloud Controller database.
 
 
 ## <a id='components'></a>Health Manager Components ##
@@ -15,11 +15,11 @@ This section describes Health Manager components.
 
 * Manager --- The Manager component provides an entry point and configures, initializes and registers other Health Manager components.
 * Harmonizer --- The Harmonizer periodically compares the actual state of an application to the desired state; the Scheduler and Nudger actions are used to bring the states into harmony.
-* Scheduler --- The Scheduler encapsulates Ruby EventMachine-related functionality such as timer setup and cancellation, and quantization of long-running tasks to prevent Event Machine Reactor loop blocking.
+* Scheduler --- The Scheduler encapsulates Ruby EventMachine-related functionality such as timer setup and cancellation, and quantization of long-running tasks to prevent EventMachine Reactor loop blocking.
 * Desired State --- The Desired State component obtains the expected state of the application: stopped or started, how many instances should be running, and so on, from the [Cloud Controller](./cloud-controller.html) via the HTTP-based Bulk API. The Bulk API returns a dump of the CC_DB database, which contains the Cloud Controller's expected state for all applications. 
 * Actual State --- The Actual State component listens to heartbeat and other messages on the [NATS](./messaging-nats.html) bus from DEAs. 
-* Nudger --- Nudger is the interface that the Health Manager uses to remedy discrepencies between desired and actual application state by dispatching `cloudcontrollers.hm.requests` messages that instruct Cloud Controller nodes to start or stop instances. Nudger maintains a priority queue of these requests, and dequeues the messages by a batchful.
-* Reporter --- The Reporter responds to `healthmanager.status` and `healthmanager.health` requests.
+* Nudger --- Nudger is the interface that the Health Manager uses to remedy discrepancies between desired and actual application state by dispatching `health.start` and `health.stop` messages that instruct Cloud Controller to start or stop instances. Nudger maintains a priority queue of these requests, and dequeues the messages by a batchful.
+* Reporter --- The Reporter responds to `healthmanager.status` and `healthmanager.health` requests and reports on the actual state of the world.
 
 
 ## <a id='harmonization'></a>Harmonization Policy ###
@@ -55,7 +55,7 @@ The goals for handling a flapping application are:
 To accomodate these conflicting requirements, the policy for handling a flapping instance is:
 
 - Initially restart the instance with a delay defined by `min_restart_delay`.
-- For each subsequent crash, double the delay up to the value of`max_restart_delay`.
+- For each subsequent crash, double the delay up to the value of `max_restart_delay`.
 - Add a random noise to the value of delay, its maximum absolute value defined by `delay_time_noise`.
 - If the number of crashes for flapping instance exceeds `giveup_crash_number`, stop trying to restart the instance. This behavior can be disabled.
 
@@ -63,9 +63,9 @@ To accomodate these conflicting requirements, the policy for handling a flapping
 
 DEAs periodically issue heartbeat messages on the NATS bus. A heartbeat message identifies the issuing DEA and includes information about application instances running on the DEA.
 
-The heartbeats are used to establish whether there are "missing" or "extra" instances. An `AppState` object for each instance of each version.
+The heartbeats are used to establish whether there are "missing" or "extra" instances. 
 
-An instance is "missing" if its `AppState` object has not received a heartbeat in the last `droplet_lost` seconds. However, an `instance_missing` event is triggered only if `AppState` was not reset recently, and if `check_for_missing_instances` method has been invoked.
+An instance is "missing" if its heartbeat has not been received in the last `droplet_lost` seconds. However, an `instance_missing` event is triggered only if the desired state has been fetched and is up-to-date.
 
 An `instance_missing` event triggers a start command. A stop command is triggered for each extra instance.
 
