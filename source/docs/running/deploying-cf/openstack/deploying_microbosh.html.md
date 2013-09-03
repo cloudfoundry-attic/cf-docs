@@ -26,7 +26,9 @@ Although the new [OpenStack Networking](http://www.openstack.org/software/openst
 
 ### <a id="openstack_security_groups"></a>OpenStack Security Groups ###
 
-Check that your OpenStack `default` security group allows SSH (port `22`). Create a new OpenStack security group, name it ie `microbosh`, and open the following ports:
+Ensure that you have created the [Security Groups required](/docs/running/deploying-cf/common/security_groups.html).
+
+The ports required for bosh are:
 
 * All ports (from `1` to `65535`) where the source group is the current security group
 * Port `22` from source 0.0.0.0/0 (CIDR): Used for inbound SSH access
@@ -86,7 +88,7 @@ cloud:
       api_key: <password> 
       tenant: <tenant>
       region: <region> # Optional
-      default_security_groups: ["default", <microbosh_security_group>]
+      default_security_groups: ["ssh", "bosh"]
       default_key_name: <microbosh_keypair>
       private_key: <path_to_microbosh_keypar_private_key>
 
