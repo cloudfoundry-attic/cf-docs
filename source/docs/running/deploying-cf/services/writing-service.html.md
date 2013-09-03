@@ -6,18 +6,10 @@ There are 2 versions of the SERVICES API, this document represents version 1 of 
 Documentation for the newer v2 API will be available when that API is sufficiently finished, as it is currently under construction.
 
 Writing a service involves writing a gateway that obeys the API contract between CloudController v2 (CC) and the gateway v1 (GW).
-The protocol is entirely RESTful HTTP, with _bidirectional communication_.
-There are 6 basic operations that take place, described later in this document:
+The protocol is entirely RESTful HTTP, with _bidirectional communication_. In addition to authentication there are 6 basic operations that take place, described in this document.
 
-* [catalog management](#catalog)
-* [provision](#provision)
-* [bind](#bind)
-* [unbind](#unbind)
-* [deprovision](#deprovision)
-* [orphan detection](#orphans) _(optional)_
+## <a id='authentication'></a>Authentication ##
 
-Authentication
---------------
 _CC authenticates to a GW using a shared secret_
 
 The GW must reject all requests not including the shared secret with a 401 unauthorized response.
@@ -29,8 +21,8 @@ _A GW authenticates to CC using a UAA token_
 Like all API endpoints in CC, the GW must first obtain and then include a valid Oauth2 token from UAA.  This token must include
 the scope `cloud_controller.admin`, because only this scope has permission to modify the services catalog.
 
-<span id="catalog">Catalog Management</span>
-------------------
+## <a id="catalog"></a>Catalog Management</a> ##
+
 With v2 of CC, a gateway is responsible for maintaining its catalog of offerings and plans by issuing various RESTful API calls to CC.
 Normally the lifecycle is as follows:
 
@@ -49,9 +41,8 @@ Updating a service by `unique_id` allows you to make changes to fields inside th
 
 To generate a `unique_id`, try this [Online GUID Generator](http://www.guidgenerator.com/ "Online GUID Generator").
 
-_API_
-
-Creating a new service in the catalog: `POST /v2/services`
+### <a id='catalog-create-new'></a>Creating a new service in the catalog ###
+`POST /v2/services`
 <table>
 <thead>
 <tr>
@@ -199,7 +190,8 @@ Creating a new service in the catalog: `POST /v2/services`
 </tbody>
 </table>
 
-Updating a service in the catalog:  `PUT /v2/services`
+### <a id='catalog-update-service'></a>Updating a service in the catalog ###
+`PUT /v2/services`
 <table>
 <thead>
 <tr>
@@ -242,7 +234,8 @@ Updating a service in the catalog:  `PUT /v2/services`
 </tbody>
 </table>
 
-Listing the services catalog:  `GET /v2/services`
+### <a id='catalog-list-services'></a>Listing the services catalog ###
+`GET /v2/services`
 <table>
 <thead>
 <tr>
@@ -305,11 +298,13 @@ Listing the services catalog:  `GET /v2/services`
 </tbody>
 </table>
 
-Removing a service from the catalog:  `DELETE /v2/services/:guid`
+### <a id='catalog-remove-service'></a>Removing a service from the catalog ###
+`DELETE /v2/services/:guid`
 
 No body or query parameters.  This request is expected to fail if there are plans, instances, or bindings attached to this service, as they must be deleted first.
 
-Creating a new plan in the catalog: `POST /v2/service_plans`
+### <a id='catalog-create-plan'></a>Creating a new plan in the catalog ###
+`POST /v2/service_plans`
 
 <table>
 <thead>
@@ -382,7 +377,10 @@ Creating a new plan in the catalog: `POST /v2/service_plans`
 </tbody>
 </table>
 
-Listing the plans: `GET /v2/service_plans`
+### <a id='catalog-list-plans'></a>Listing the plans ###
+
+`GET /v2/service_plans`
+
 <table>
 <thead>
 <tr>
@@ -445,7 +443,8 @@ Listing the plans: `GET /v2/service_plans`
 </tbody>
 </table>
 
-Updating a plan in the catalog: `PUT /v2/service_plans/:guid`
+### <a id='catalog-update-plan'></a>Updating a plan in the catalog ###
+`PUT /v2/service_plans/:guid`
 
 <table>
 <thead>
@@ -472,15 +471,15 @@ Updating a plan in the catalog: `PUT /v2/service_plans/:guid`
 </tbody>
 </table>
 
-Removing a plan from the catalog: `DELETE /v2/service_plans/:guid`
+### <a id='catalog-remove-plan'></a>Removing a plan from the catalog ###
+`DELETE /v2/service_plans/:guid`
 
 * No body
 * No query parameters.
 
 This request is expected to fail if there instances or bindings attached to this plan, as they must be deleted first.
 
-<span id="provision">Provisioning</span>
---------------------
+## <a id="provision"></a>Provisioning ##
 
 When a developer asks to provision a service (using `cf create-service`), they issue an API request to CC including the offering, plan, and space.
 CC uses its database to determine what gateway is responsible for this offering and issues an API request synchronously to the GW to provision the resources.
@@ -589,8 +588,7 @@ The full request URL is determined by concatenating the URL in the catalog + the
 </tbody>
 </table>
 
-<span id="bind">Binding</span>
---------
+## <a id="bind"></a>Binding ##
 
 Binding is a developer-initiated intention (using `cf bind-service`) to make a service instance available to a specific application,
 and it usually has side effects (such as creating new credentials for an application to access a database).
@@ -669,8 +667,8 @@ For legacy reasons, a binding is known as a “handle” on the gateway side.
 </tbody>
 </table>
 
-<span id="unbind">Unbinding</span>
---------
+## <a id="unbind"></a>Unbinding ##
+
 Simply the opposite of bind, unbind is the developer-initiated intention to revoke a specific application’s access to a service instance.
 The developer makes an API call to CC, which makes an API call to the GW including the GWID of the binding that should be destroyed.
 If possible, the bound credentials should be destroyed so that application can no longer access the resource.
@@ -709,8 +707,8 @@ The full request URL is determined by concatenating the URL in the catalog + the
 </tbody>
 </table>
 
-<span id="deprovision">Deprovisioning</span>
---------------
+## <a id="deprovision"></a>Deprovisioning ##
+
 Simply the opposite of provision, deprovision is the developer-initiated intention to remove a specific service instance.
 The developer makes an API call to CC, which makes an API call to the GW including the GWID of the instance that should be destroyed.
 The resources consumed by the service instance should be released, and hopefully made available to future requests.
@@ -725,8 +723,7 @@ The full request URL is determined by concatenating the URL in the catalog + the
 
 The only argument, `service_id` is the GW service_id that was returned from the provision response, and there is no body to the request or response.
 
-<span id="orphans">Orphan Detection and Cleanup</span>
---------------------
+## <a id="orphans"></a>Orphan Detection and Cleanup ##
 
 CC is the source of truth, and the GW and CC can end up disagreeing about which services and binding exist.
 In this case, the GW is responsible for removing the bindings and instances that don’t exist anymore in the CC.
