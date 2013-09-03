@@ -195,7 +195,8 @@ networks:
     type: dynamic
     cloud_properties:
       security_groups:
-      - cf
+      - cf-public
+      - cf-private
 
 resource_pools:
   - name: common
