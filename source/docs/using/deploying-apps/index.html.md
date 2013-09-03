@@ -81,5 +81,10 @@ For framework specific service information see:
 
 For information about how external services can work with Cloud Foundry, see [Services Architecture](/docs/running/architecture/services/).
 
+## <a id='loggregator'></a>Using Loggregator ##
+
+An application running on a Cloud Foundry instance can use loggregator to collect and distribute application logs.
+By default all outout to STDOUT and STDERR from an application is collected, so for most application logging frameworks / tools just configure them to use STDOUT and STDERR and then log lines will flow into loggregator. 
+
 
 
