@@ -9,4 +9,4 @@ title: Deploying Cloud Foundry with BOSH
 * [Deploying to vCloud Director](vcloud/deploying_to_vcloud_director.html)
 * [Using the latest CF-Release](common/cf-release.html)
 
-* [Services](services/)
+* [Deploying Community Services](adding-services.html)
