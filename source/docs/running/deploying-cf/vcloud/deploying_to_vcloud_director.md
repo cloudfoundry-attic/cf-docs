@@ -13,9 +13,13 @@ To get started with BOSH on vCloud you need:
 
 ##Installing the BOSH Deployer##
 
-We assume you already have Ruby (1.9.2) and rubygems (1.8) installed. To install the BOSH deployer gem (which includes the BOSH CLI):
+We assume you already have Ruby (1.9.3) and rubygems installed. To install the BOSH deployer gem (which includes the BOSH CLI):
 
-	gem install bosh_deployer
+
+<pre class="terminal">
+$ gem install bosh_cli_plugin_micro --version "~> 1.5.0.pre" --source https://s3.amazonaws.com/bosh-jenkins-gems/
+</pre>
+
 
 ## Micro BOSH Stemcells##
 
@@ -65,7 +69,7 @@ The BOSH deployer will deploy applications based on files in expected directory 
 
 Micro BOSH configurations are set in the `micro_bosh.yml`, which you need to create.
 
-+ Create `~/deployments/vcloud/micro_bosh.yml` using [this template](../micro_bosh-vcloud.yml).
++ Create `~/deployments/vcloud/micro_bosh.yml` using [this template](micro_bosh-vcloud.yml).
 
    1. Update the instance of `x.x.x.x` with one of the IPs from the block assigned to you. Change the other IP addresses `n.n.n.n`  to match your network’s netmask, gateway, DNS and NTP server addresses.
    2. Under the vcds section, replace `v.v.v.v` with the address of the vCloud instance and enter your vCloud credentials.
