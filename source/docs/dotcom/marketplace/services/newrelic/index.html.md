@@ -105,7 +105,7 @@ All three of these things can be found by logging into your New Relic account as
   <dependency>
       <groupId>com.newrelic.agent.java</groupId>
       <artifactId>newrelic-agent</artifactId>
-      <version>2.19.1</version>
+      <version>2.21.3</version>
   </dependency>
   ~~~
 
@@ -113,7 +113,7 @@ All three of these things can be found by logging into your New Relic account as
 
   ~~~xml
   dependencies {
-      compile 'com.newrelic.agent.java:newrelic-agent:2.19.1'
+      compile 'com.newrelic.agent.java:newrelic-agent:2.21.3'
   }
   ~~~
 
@@ -136,7 +136,7 @@ All three of these things can be found by logging into your New Relic account as
 1. Now we're going to set an environment variable to pass system parameters to the jvm. Replace `your_app_name` and `your_license_key` with actual values.
 
 	<pre class="terminal">
-	$ cf set-env <your app name> CATALINA_OPTS "-javaagent:/app/webapps/ROOT/WEB-INF/lib/newrelic-agent-2.19.1.jar 
+	$ cf set-env <your app name> CATALINA_OPTS "-javaagent:/app/webapps/ROOT/WEB-INF/lib/newrelic-agent-2.21.3.jar 
 		-Dnewrelic.home='/app/webapps/ROOT/WEB-INF/classes' 
 		-Dnewrelic.config.license_key='your_license_key' 
 		-Dnewrelic.config.app_name='your_app_name'
