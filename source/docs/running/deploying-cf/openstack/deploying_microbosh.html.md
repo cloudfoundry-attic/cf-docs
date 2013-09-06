@@ -26,9 +26,13 @@ Although the new [OpenStack Networking](http://www.openstack.org/software/openst
 
 ### <a id="openstack_security_groups"></a>OpenStack Security Groups ###
 
-Check that your OpenStack `default` security group allows SSH (port `22`). Create a new OpenStack security group, name it ie `microbosh`, and open the following ports:
+Ensure that you have created the [Security Groups required](/docs/running/deploying-cf/common/security_groups.html).
 
-* All ports (from `1` to `65535`) where the source group is the current security group 
+The ports required for bosh are:
+
+* All ports (from `1` to `65535`) where the source group is the current security group
+* Port `22` from source 0.0.0.0/0 (CIDR): Used for inbound SSH access
+* Port `53` from source 0.0.0.0/0 (CIDR): Used for inbound DNS requests
 * Port `4222` from source 0.0.0.0/0 (CIDR): Used by [NATS](/docs/running/bosh/components/messaging.html)
 * Port `6868` from source 0.0.0.0/0 (CIDR): Used by [BOSH Agent](/docs/running/bosh/components/agent.html)
 * Port `25250` from source 0.0.0.0/0 (CIDR): Used by [BOSH Blobstore](/docs/running/bosh/components/blobstore.html)
@@ -84,7 +88,7 @@ cloud:
       api_key: <password> 
       tenant: <tenant>
       region: <region> # Optional
-      default_security_groups: ["default", <microbosh_security_group>]
+      default_security_groups: ["ssh", "bosh"]
       default_key_name: <microbosh_keypair>
       private_key: <path_to_microbosh_keypar_private_key>
 
@@ -220,7 +224,7 @@ cd ~/bosh-workspace/stemcells
 Download the latest OpenStack Micro BOSH stemcell:
 
 <pre class="terminal">
-wget http://bosh-jenkins-artifacts.s3.amazonaws.com/micro-bosh-stemcell/openstack/latest-micro-bosh-stemcell-openstack.tgz
+wget http://bosh-jenkins-artifacts.s3.amazonaws.com/bosh-stemcell/openstack/bosh-stemcell-latest-openstack-kvm-ubuntu.tgz
 </pre>
 
 ### <a id="deploy"></a>Deploy Micro BOSH ###
@@ -240,7 +244,7 @@ This command will output:
 Deploy the Micro BOSH:
 
 <pre class="terminal">
-bosh micro deploy ~/bosh-workspace/stemcells/latest-micro-bosh-stemcell-openstack.tgz
+bosh micro deploy ~/bosh-workspace/stemcells/bosh-stemcell-latest-openstack-kvm-ubuntu.tgz
 </pre>
  
 This command will output:
@@ -258,8 +262,8 @@ This command will output:
     
     Stemcell info
     -------------
-    Name:    micro-bosh-stemcell
-    Version: 1.5.0.pre.3
+    Name:    bosh-stemcell
+    Version: 939
     
     
     Deploy Micro BOSH

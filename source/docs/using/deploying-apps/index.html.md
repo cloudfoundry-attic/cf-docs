@@ -26,6 +26,10 @@ log/
 
 Just which files are extraneous depends on what framework you use. The `.gitignore` templates for common frameworks available at https://github.com/github/gitignore are a useful starting point.  
 
+##<a id='instances'></a>Run Multiple Instances to Increase Availability ##
+
+To avoid the risk of an application being unavailable during Cloud Foundry upgrade processes, you should run more than one instance of an application. When a DEA is upgraded, the applications running on it are _evacuated_: shut down gracefully on the DEA to be upgraded, and restarted on another DEA. On Pivotal CF Hosted, BOSH is configured to upgrade DEAs one at a time, so for an application whose startup time is less than two minutes, running a second instance should be sufficient. Pivotal recommends running more than two instances of an application that takes longer than two minutes to start. 
+
 
 ##<a id='buildpacks'></a>Buildpack Support for Runtimes and Frameworks ##
 
@@ -76,6 +80,11 @@ For framework specific service information see:
 * [Service Bindings for Node.js Applications](http://0.0.0.0:4567/docs/using/services/node-service-bindings.html)
 
 For information about how external services can work with Cloud Foundry, see [Services Architecture](/docs/running/architecture/services/).
+
+## <a id='loggregator'></a>Using Loggregator ##
+
+An application running on a Cloud Foundry instance can use loggregator to collect and distribute application logs.
+By default all outout to STDOUT and STDERR from an application is collected, so for most application logging frameworks / tools just configure them to use STDOUT and STDERR and then log lines will flow into loggregator. 
 
 
 

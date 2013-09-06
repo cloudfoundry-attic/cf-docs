@@ -63,7 +63,6 @@ This is an example manifest for deploying BOSH via Micro BOSH. The next step wou
       canary_watch_time: 60000
       update_watch_time: 60000
       max_in_flight: 1
-      max_errors: 1
 
     jobs:
 
