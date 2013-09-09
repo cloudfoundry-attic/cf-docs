@@ -81,24 +81,6 @@ If you are running **devstack**, add the following to your `localrc` and at the 
 VOLUME_BACKING_FILE_SIZE=70000M
 </pre>
 
-## <a id="ephemeral"></a> Do instance flavors have ephemeral storage? ##
-
-BOSH can only use flavors that are available to you, but it requires that you only use flavors that have an ephemeral disk.
-
-To see the list of available flavors that have ephemeral disks:
-
-<pre class="terminal">
-$ fog openstack
->> OpenStack.flavors.select {|s| s.ephemeral > 0}.map(&:name)
-["m1.small", "m1.medium", "m1.microbosh"]
-</pre>
-
-You can create flavors using the `nova` tool. For example, to create an `m1.small` with 1 CPU, 2G RAM and 20G ephemeral disk:
-
-<pre class="terminal">
-$ nova flavor-create m1.small 2 2048 20 1 --ephemeral 20 --rxtx-factor 1 --is-public true
-</pre>
-
 ## <a id="internet"></a> Can access the Internet from within instances? ##
 
 Your deployment of Cloud Foundry will need outbound access to the Internet (for example, the Ruby buildpack will run `bundle install` on users' applications to fetch RubyGems). You can verify now that your OpenStack is configured correctly to allow outbound access to the Internet.
