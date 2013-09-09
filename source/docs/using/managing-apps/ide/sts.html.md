@@ -116,6 +116,7 @@ The follow panes are present when the **Overview** tab is selected:
     * **Pivotal CF Signup** --- If you do not have a Cloud Foundry account, click to sign up for one.
 * E -- The **Server Status** pane shows whether or not you are connected to Cloud Foundry space that the currently selected server instance targets. When you have multiple Pivotal Cloud Foundry server instances configured, you will use the **Disconnect** and **Connect** controls to switch among them.
 * F -- The **Console** pane displays status messages when you perform an action such as deploying an application.
+* G -- You can use the **Remote Systems View** pane to view the contents of a file that is part of a deployed application. For more information, see [View an Application File](#view-file).
 
 <img src="/images/sts/ui-overview-tab.png" style="width: 1150px;"/>
 
@@ -126,29 +127,30 @@ The follow panes are present when the *Applications and Services* tab is selecte
 * H --- The **Applications** pane lists the applications deployed to the targeted space.
 * I --  The **Services** pane lists the services provisioned in the targeted space
 * J --  The **General** pane displays information for the application currently selected in the **Applications** pane.
-* K --  The **Services** pane lists services that are bound to the application currently selected in the **Applications** pane.
+* K --  The **Services** pane lists services that are bound to the application currently selected in the **Applications** pane. Note the icon in the upper right corner of the pane --- it allows you to create a service, as described in [Create a Service](#create-service), below. 
 
 <img src="/images/sts/ui-apps-services-tab.png" style="width: 1150px;" />
-
-<img src="/images/sts/new-server.png" />
 
 ## <a id='deploy-an-application'></a>Deploy an Application ##
 To deploy an application to Cloud Foundry using the plugin: 
 
 1. To initiate deployment either:
-* Drag the application from the **Package Explorer** pane onto the Pivotal Cloud Foundry server in the **Servers** pane, or
-* Right-click the Pivotal Cloud Foundry server in the **Servers** pane, select **Add and Remove* from the server context menu, and then 
+  * Drag the application from the **Package Explorer** pane onto the Pivotal Cloud Foundry server in the **Servers** pane, or
+  * Right-click the Pivotal Cloud Foundry server in the **Servers** pane, select **Add and Remove* from the server context menu, and then 
 1. On the **Application Details** window, you can enter the URL of an external buildpack if desired. Click **Next** to continue.
 
       <img src="/images/sts/application-details.png" />
 
 1. On the **Launch Deployment** window:
 
-* **Host** --- By default, contains the name of the application.
-* **Domain** --- By default, contains
-* **Deployed URL** --- 
-* **Memory Reservation** --- Select the amount of memory to allocate to the application from the pull-down list.
-* **Start application...** --- If you do not want the application to be started upon deployment, uncheck the box.
+  **Host** --- By default, contains the name of the application.
+
+  **Domain** --- By default, contains
+  
+  **Deployed URL** --- 
+  **Memory Reservation** --- Select the amount of memory to allocate to the application from the pull-down list.
+  
+  **Start application...** --- If you do not want the application to be started upon deployment, uncheck the box.
 
       <img src="/images/sts/launch-deployment.png" />
 
@@ -158,14 +160,35 @@ To deploy an application to Cloud Foundry using the plugin:
 
    As the deployment proceeds, progress messages appear in the **Console** pane. When deployment is complete, the application is listed in the ** Applications** pane.   
 
+## <a id='create-service'></a>Create a Service ##
+
+Before you can bind a service to an application you must create it. To do so:
+
+1. Select the **Applications and Services** tab.
+1. Click the icon in the upper right corner of the "Services" pane.
+1. In the **Service Configuration** window:
+
+  * Name --- Enter a name for the service.
+  * Type --- Select the service type from the pull-down list.
+
+      <img src="/images/sts/service-configuration.png" />
+
+1. The new service appears in the **Services** pane.
+
+## <a id='bind-service'></a>Bind a Service ##
+
+
 ## <a id='view-file'></a>View an Application File ##
-1. vvccb vcbv vb c
+
+You can view the contents of a file in a deployed application by selecting it the **Remote Systems View**. (See the pane labelled "G" in the screenshot in the [Overview Tab](#overview-tab) above.) 
+
+1. If the **Remote Systems View** pane is not visible:
+  * Select the *Applications and Services* tab.
+  * In the **Instances* pane, click the **Remote Systems View** link.
+
+2. On the **Remote Systems View** pane, browse to the application and application file of interest, and double-click the file. A new tab appears in the editor area with the contents of the selected file. 
 
       <img src="/images/sts/remote-systems.png" />
-
-1. vbcvb
-
-      <img src="/images/sts/file-contents.png" />
 
 ## <a id='undeploy'></a>Undeploy an Application##
 
