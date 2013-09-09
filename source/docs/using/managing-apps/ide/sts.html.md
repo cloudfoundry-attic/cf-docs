@@ -2,8 +2,6 @@
 title: Cloud Foundry Eclipse Plugin
 ---
 
-**5 September 2013 - This page is a work in progress, and contains information that is subject to review, correction, and enhancement.**
-
 The Cloud Foundry Eclipse Plugin is an extension that enables Cloud Foundry users to deploy and manage Java and Spring applications on a Cloud Foundry instance from Eclipse or Spring Tools Suite (STS).
 
 The plugin supports Eclipse v3.8 and v4.3 (a JEE version is recommended), and STS 3.0.0 and later.
@@ -123,7 +121,7 @@ The follow panes are present when the **Overview** tab is selected:
 
 ### <a id='apps-services-tab'></a>Applications and Services Tab ###
 
-The follow panes are present when the *Applications and Services* tab is selected: 
+The follow panes are present when the **Applications and Services** tab is selected: 
 
 * H --- The **Applications** pane lists the applications deployed to the target space.
 * I --  The **Services** pane lists the services provisioned in the targeted space
@@ -138,6 +136,7 @@ The follow panes are present when the *Applications and Services* tab is selecte
 <img src="/images/sts/ui-apps-services-tab.png" style="width: 1150px;" />
 
 ## <a id='deploy-an-application'></a>Deploy an Application ##
+
 To deploy an application to Cloud Foundry using the plugin: 
 
 1. To initiate deployment either:
