@@ -218,6 +218,15 @@ resource_pools:
       instance_type: m1.large
 
 jobs:
+  - name: nats
+    template:
+      - nats
+    instances: 1
+    resource_pool: common
+    networks:
+      - name: default
+        default: [dns, gateway]
+
   - name: syslog_aggregator
     template:
       - syslog_aggregator
@@ -246,15 +255,6 @@ jobs:
     instances: 1
     resource_pool: common
     persistent_disk: 65536
-    networks:
-      - name: default
-        default: [dns, gateway]
-
-  - name: nats
-    template:
-      - nats
-    instances: 1
-    resource_pool: common
     networks:
       - name: default
         default: [dns, gateway]
@@ -556,10 +556,10 @@ Finally it assigns each VM a job (which is a list of one or more job templates f
 
 <pre class="terminal">
 Binding instance VMs
-  postgres/0 (00:00:01)                                                                             
+  nats/0 (00:00:01)
+  postgres/0 (00:00:01)
   nfs_server/0 (00:00:01)                                                                           
-  syslog_aggregator/0 (00:00:01)                                                                    
-  nats/0 (00:00:01)                                                                                 
+  syslog_aggregator/0 (00:00:01)
   uaa/0 (00:00:01)                                                                                  
   health_manager/0 (00:00:01)                                                                       
   router/0 (00:00:01)                                                                               
