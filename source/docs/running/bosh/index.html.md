@@ -16,5 +16,6 @@ These sections describe the architecture, topology, configuration, and use of BO
   * [Packages](reference/packages.html)
   * [Releases](reference/releases.html)
   * [BOSH CLI](reference/bosh-cli.html)
+  * [BOSH DB](reference/boshdb.html)
 * Troubleshooting
   * [How to locate and watch logs on Job instances](troubleshooting/job-logs.html)
