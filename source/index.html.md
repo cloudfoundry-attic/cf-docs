@@ -44,6 +44,8 @@ title: Welcome to Cloud Foundry Documentation
   <a href="docs/using/deploying-apps/manifest.html">Application Manifests (manifest.yml)</a><br> 
   <a href="docs/using/deploying-apps/buildpacks.html">Buildpacks</a><br> 
   <a href="docs/using/deploying-apps/environment-variable.html">Cloud Foundry Environment Variables</a></br>
+  <a href="docs/using/deploying-apps/loggregator/index.html">Loggregator</a></br>
+
 
   </p>
   <hr>
