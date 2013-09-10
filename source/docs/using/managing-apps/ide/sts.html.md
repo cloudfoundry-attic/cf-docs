@@ -4,7 +4,7 @@ title: Cloud Foundry Eclipse Plugin
 
 The Cloud Foundry Eclipse Plugin is an extension that enables Cloud Foundry users to deploy and manage Java and Spring applications on a Cloud Foundry instance from Eclipse or Spring Tools Suite (STS).
 
-The plugin supports Eclipse v3.8 and v4.3 (a JEE version is recommended), and STS 3.0.0 and later.
+The plugin supports Eclipse v3.8 and v4.3 (a Java EE version is recommended), and STS 3.0.0 and later.
 
 This page has instructions for installing and using v1.5.1 of the plugin, which is compatible with Cloud Foundry v2.
 
@@ -27,7 +27,7 @@ The sections below have instructions for installing the Cloud Foundry Eclipse Pl
 
 Follow these instructions to install the Cloud Foundry Eclipse Plugin to Eclipse from the Eclipse Marketplace. If you are installing the plugin to STS, see the following section [Install to STS from Extensions Tab](#install-to-sts).
 
-1. Start Eclipse
+1. Start Eclipse.
 1. Select **Eclipse Marketplace** from the Eclipse **Help** menu.
 1. On the marketplace window, enter "Cloud Foundry" in the **Find** field, and click **Go**.
 1. In the search results, click the **Install** control next to the listing for Cloud Foundry Integration.
@@ -77,12 +77,16 @@ This section has instructions for configuring a server resource that will repres
 
 1. Right-click the **Servers** pane and select **New > Server**. 
 1. In the **Define a New Server** window, expand the **Pivotal** folder, select **Cloud Foundry**, and click **Next**.  
+    
+    **Note:** Do not enter values for **Server host name** or **Server Runtime Environment**. These fields are unused and will be removed in a future version of the plugin.
 
      <img src="/images/sts/define-new-server.png" />
 
-1. On the **Cloud Foundry Account** window, if you already have a Cloud Foundry account enter the email account and password you use to log on to Cloud Foundry Click **Validate Account**. 
+1. On the **Cloud Foundry Account** window, if you already have a Cloud Foundry account, enter the email account and password you use to log on to Cloud Foundry and click **Validate Account**. 
 
   If you do not have a Cloud Foundry account you can click **Pivotal CF Signup** to get one, and complete this procedure after your account is established.
+
+  **Note:** The **Register Account** function is not supported by public instances of Cloud Foundry v2. You can register accounts for Pivotal CF Hosted using the Pivotal CF portal at [run.pivotal.io](https://console.run.pivotal.io).
 
      <img src="/images/sts/cloud-foundry-account.png" />
 
@@ -90,7 +94,9 @@ This section has instructions for configuring a server resource that will repres
 
       <img src="/images/sts/new-server.png" />
 
-1. On the **Orgnizations and Spaces** window, select the space you want to target, and click **Finish**.  
+1. On the **Organizations and Spaces** window, select the space you want to target, and click **Finish**. 
+
+   **Note:** If you do not select a space, the server will be configured to connect to the default space, which is the first encountered in a list of your speces.) 
 
       <img src="/images/sts/orgs-and-spaces.png" />
 
@@ -106,12 +112,11 @@ The follow panes are present when the **Overview** tab is selected:
 
 * A --- The **Package Explorer** pane lists the projects in the current workspace. 
 * B -- The **Servers** tab lists server instances configured in the current workspace. A server of type "Pivotal Cloud Foundry" represents a targeted space in a Cloud Foundry instance. 
-`Pivotal Cloud Foundry - <Organization> - <Space> - nttp
 * C -- The **General Information** pane.
 * D -- The **Account Information** pane lists your Cloud Foundry credentials and the target organization and space. The pane includes these controls:
     * **Clone Server** --- Use to create additional Pivotal Cloud Foundry server instances. You must configure a server instance for each Cloud Foundry space you wish to target. For more information, see [Create Additional Server Instances](#clone).
     * **Change Password** --- Use to change your Cloud Foundry password.
-    * **Validate Account** --- Use to verify your currently configured Cloud Foundry credentials
+    * **Validate Account** --- Use to verify your currently configured Cloud Foundry credentials.
     * **Pivotal CF Signup** --- Use to sign up for a Cloud Foundry account.
 * E -- The **Server Status** pane shows whether or not you are connected to the target Cloud Foundry space, and **Disconnect** and **Connect** controls.
 * F -- The **Console** pane displays status messages when you perform an action such as deploying an application.
@@ -124,14 +129,15 @@ The follow panes are present when the **Overview** tab is selected:
 The follow panes are present when the **Applications and Services** tab is selected: 
 
 * H --- The **Applications** pane lists the applications deployed to the target space.
-* I --  The **Services** pane lists the services provisioned in the targeted space
-* J --  The **General** pane displays the following information for the application currently selected in the **Applications** pane:
+* I ---  The **Services** pane lists the services provisioned in the targeted space.
+* J ---  The **General** pane displays the following information for the application currently selected in the **Applications** pane:
       * **Name** 
-      * **Mapped URLs** -- Lists URLs mapped to the application. You can click a URL to open a browser to the application within Eclipse (or STS); and click the pencil icon to add or remove mapped URLs. See [Manage Application URLs](#manage-urls)
+      * **Mapped URLs** -- Lists URLs mapped to the application. You can click a URL to open a browser to the application within Eclipse (or STS); and click the pencil icon to add or remove mapped URLs. See [Manage Application URLs](#manage-urls).
       * **Memory Limit** -- The amount of memory allocated to the application. You can use the pull-down to change the memory limit.
       * **Instances** -- The number of instances of the application that are deployed. You can use the pull-down to change number of instances.
-      * **Start**, **Stop**, **Restart**, **Update and Restart** --- The controls that appear depend on the current state of the application.  
-* K --  The **Services** pane lists services that are bound to the application currently selected in the **Applications** pane. Note the icon in the upper right corner of the pane --- it allows you to create a service, as described in [Create a Service](#create-service). 
+      * **Start**, **Stop**, **Restart**, **Update and Restart** --- The controls that appear depend on the current state of the application.  The **Update and Restart** button appears if there is an accessible workspace project that is linked to one of the deployed applications; this command will attempt to push changed resources before starting the application. 
+
+* K --- The **Services** pane lists services that are bound to the application currently selected in the **Applications** pane. Note the icon in the upper right corner of the pane --- it allows you to create a service, as described in [Create a Service](#create-service). 
 
 <img src="/images/sts/ui-apps-services-tab.png" style="width: 1150px;" />
 
@@ -142,6 +148,7 @@ To deploy an application to Cloud Foundry using the plugin:
 1. To initiate deployment either:
   * Drag the application from the **Package Explorer** pane onto the Pivotal Cloud Foundry server in the **Servers** pane, or
   * Right-click the Pivotal Cloud Foundry server in the **Servers** pane, select **Add and Remove** from the server context menu, and move the application from the **Available** to the **Configured** column.
+  s
 
 1. On the **Application Details** window, you can enter the URL of an external buildpack if desired. Click **Next** to continue.
 
@@ -151,17 +158,17 @@ To deploy an application to Cloud Foundry using the plugin:
 
   **Host** --- By default, contains the name of the application.
   
-  **Domain** --- Contains the default domain. 
+  **Domain** --- Contains the default domain. If you have mapped custom domains to the target space, they appear in the pull-down list.  **Note**:  This version of the Cloud Foundry Eclipse plugin does not provide a mechanism for mapping a custom domain to a space. You must use the `cf map domain` command to do so. For more information, see [map-domain](/docs/using/managing-apps/cf/index.html#map-domain).
   
   **Deployed URL** --- By default, contains the value of the **Host** and **Domain** fields, separated by a period (.) character.
   
   **Memory Reservation** --- Select the amount of memory to allocate to the application from the pull-down list.
   
-  **Start application...** --- If you do not want the application to be started upon deployment, uncheck the box.
+  **Start application on deployment** --- If you do not want the application to be started upon deployment, uncheck the box.
 
       <img src="/images/sts/launch-deployment.png" />
 
-1. The **Services Selection** window lists services provisioned in the target space. Checkmark the services, if any, that you want to bind to the application, and click **Finish**. Note that you can bind services to the application after deployment.  
+1. The **Services Selection** window lists services provisioned in the target space. Checkmark the services, if any, that you want to bind to the application, and click **Finish**. Note that you can bind services to the application after deployment, as described in [Bind and Unbind Services](bind-service).
 
       <img src="/images/sts/services-selection.png" />
 
@@ -221,8 +228,32 @@ Each space in Cloud Foundry to which you want to deploy applications must be rep
 
 To clone a server:
 
-1. Right-click a  Cloud Foundry server instance in the **Servers** pane, and select **Clone Server** from the context menu.
+1. Right-click a Cloud Foundry server instance in the **Servers** pane, and select **Clone Server** from the context menu.
 1. On the **Organizations and Spaces** window, select the space you want to target. 
 1. The name field will be filled with the name of the space you selected. If desired, edit the server name before clicking finish **Finish**.
+
+## <a id='add-URL'></a>Add a Cloud Foundry Instance URL ##
+
+By default, the Cloud Foundry Eclipse plugin is configured to connect with Pivotal CF Hosted instance. You can configure the plugin to work with other Cloud Foundry instances to which you have access.  To do so: 
+
+1. Perform steps 1 and 2 of [Create a Cloud Foundry Server](#cloud-foundry-server).
+1. On the **Cloud Foundry Account** window, enter the email account and password you use to log on to the target instance, and then click **Manage Cloud URLs**
+
+  <img src="/images/sts/cloud-foundry-account.png" />
+ 
+1. On the **Manage Cloud URLs** window, click **Add**.
+
+      <img src="/images/sts/manage-cloud-urls.png" />
+
+1. On the **Add a Cloud URL** window, enter the name and URL of the target cloud instance and click **Finish**. 
+
+      <img src="/images/sts/add-cloud-url.png" />
+
+1. The new cloud instance should appear in the list on the **Manage Cloud URLs** window. Click **OK** to proceed. 
+1. On the **Cloud Foundry Account** window, click **Validate Account**. 
+1. Complete steps 4 through 6 of [Create a Cloud Foundry Server](#cloud-foundry-server).
+
+     
+
 
 
