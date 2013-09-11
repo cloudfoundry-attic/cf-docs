@@ -42,3 +42,42 @@ To see how this configuration is used, see the readme for [Steno](http://github.
 * The aggregated logs can be found on the `syslog_aggregator` VM in the `/var/vcap/store/log` directory.
 * That directory contains subdirectories for each job, year, month and day. Example: `/var/vcap/store/log/cloud_controller_ng/2013/4/19`.
 * In the top folder `/var/vcap/store/log`, there's a symlink named after each job for that job's current log file.
+
+### Bosh deployment configuration
+
+To run the `syslog_aggregator` job, you will want to:
+
+1. Add a job that includes the `syslog_aggregator` job template
+1. Include a persistent disk in this job large enough to store the aggregated logs
+1. Ensure that the `syslog_aggregator` job template is run _after_ the `nats` job template; as it will use NATS.
+1. Add global properties to enable all other jobs to emit rsyslog events to your `syslog_aggregator` job.
+
+For example, you might add the following to your deployment file:
+
+~~~yaml
+name: mydeployment
+
+jobs:
+- name: nats
+  ...
+
+- name: syslog
+  release: cf
+  template:
+    - syslog_aggregator
+  instances: 1
+  resource_pool: small
+  persistent_disk: 8192
+  networks:
+  - name: default
+    default:
+    - dns
+    - gateway
+
+...
+properties:
+  syslog_aggregator:
+    address: 0.syslog.default.mydeployment.microbosh
+    port: 54321
+~~~
+
