@@ -127,7 +127,7 @@ On the machine running Eclipse or Spring Tools Suite:
 
 This section has instructions for configuring a server resource that will represent a target Cloud Foundry space. You will create a server for each space in Cloud Foundry to which you will deploy applications. Once you create your first Cloud Foundry service instances using the instructions below, you can create additional instances using the [Clone Server](#clone) feature.
 
-1. Right-click the **Servers** pane and select **New > Server**. 
+1. Right-click the **Servers** view and select **New > Server**. 
 1. In the **Define a New Server** window, expand the **Pivotal** folder, select **Cloud Foundry**, and click **Next**.  
     
     **Note:** Do not enter values for **Server host name** or **Server Runtime Environment**. These fields are unused and will be removed in a future version of the plugin.
@@ -148,22 +148,27 @@ This section has instructions for configuring a server resource that will repres
 
 1. On the **Organizations and Spaces** window, select the space you want to target, and click **Finish**. 
 
-   **Note:** If you do not select a space, the server will be configured to connect to the default space, which is the first encountered in a list of your speces.) 
+   **Note:** If you do not select a space, the server will be configured to connect to the default space, which is the first encountered in a list of your spaces. 
 
       <img src="/images/sts/orgs-and-spaces.png" />
 
-1. Once you have successfully configured the Pivotal Cloud Foundry server, it will appear in the **Servers** pane of the Eclipse or STS user interface. To familiarize yourself with the plugin user interface, see [About the Plugin User Interface](#plugin-ui). When you are ready, proceed to [Deploy an Application](#deploy-an-application).     
+1. Once you have successfully configured the Pivotal Cloud Foundry server, it will appear in the **Servers** view of the Eclipse or STS user interface. To familiarize yourself with the plugin user interface, see [About the Plugin User Interface](#plugin-ui). When you are ready, proceed to [Deploy an Application](#deploy-an-application).     
 
 ## <a id='plugin-ui'></a>About the Plugin User Interface ##
 
-The paragraphs below describe the Cloud Foundry Eclipse plugin user interface. If you do not see the tabs described below, select the Pivotal Cloud Foundry server in the **Servers** pane.
+The paragraphs below describe the Cloud Foundry Eclipse plugin user interface. If you do not see the tabs described below, select the Pivotal Cloud Foundry server in the **Servers** view.
+
+The Cloud Foundry editor, outlined in red in the screenshot below, is the primary plugin user interface.
+Some workflows involve interacting with standard elements of the Eclipse user interface, such as the  Project Explorer, Console and Servers views.
+
+Note that the Cloud Foundry editor allows you to work with a single Cloud Foundry space; each space is represented by a distinct server instance in the Servers view (B). Multiple editors, each targeting a different space, can be open simultaneously. However, only one editor targeting a particular Cloud Foundry server instance can be open at a time. 
 
 ### <a id='overview-tab'></a>Overview Tab ###
 
-The follow panes are present when the **Overview** tab is selected:
+The follow panes and views are present when the **Overview** tab is selected:
 
-* A --- The **Package Explorer** pane lists the projects in the current workspace. 
-* B -- The **Servers** tab lists server instances configured in the current workspace. A server of type "Pivotal Cloud Foundry" represents a targeted space in a Cloud Foundry instance. 
+* A --- The **Package Explorer** view lists the projects in the current workspace. 
+* B -- The **Servers** view lists server instances configured in the current workspace. A server of type "Pivotal Cloud Foundry" represents a targeted space in a Cloud Foundry instance. 
 * C -- The **General Information** pane.
 * D -- The **Account Information** pane lists your Cloud Foundry credentials and the target organization and space. The pane includes these controls:
     * **Clone Server** --- Use to create additional Pivotal Cloud Foundry server instances. You must configure a server instance for each Cloud Foundry space you wish to target. For more information, see [Create Additional Server Instances](#clone).
@@ -171,8 +176,8 @@ The follow panes are present when the **Overview** tab is selected:
     * **Validate Account** --- Use to verify your currently configured Cloud Foundry credentials.
     * **Pivotal CF Signup** --- Use to sign up for a Cloud Foundry account.
 * E -- The **Server Status** pane shows whether or not you are connected to the target Cloud Foundry space, and **Disconnect** and **Connect** controls.
-* F -- The **Console** pane displays status messages when you perform an action such as deploying an application.
-* G -- The **Remote Systems View** pane allows you to view the contents of a file that is part of a deployed application. For more information, see [View an Application File](#view-file).
+* F -- The **Console** view displays status messages when you perform an action such as deploying an application.
+* G -- The **Remote Systems View** allows you to view the contents of a file that is part of a deployed application. For more information, see [View an Application File](#view-file).
 
 <img src="/images/sts/ui-overview-tab.png" style="width: 1150px;"/>
 
@@ -198,9 +203,8 @@ The follow panes are present when the **Applications and Services** tab is selec
 To deploy an application to Cloud Foundry using the plugin: 
 
 1. To initiate deployment either:
-  * Drag the application from the **Package Explorer** pane onto the Pivotal Cloud Foundry server in the **Servers** pane, or
-  * Right-click the Pivotal Cloud Foundry server in the **Servers** pane, select **Add and Remove** from the server context menu, and move the application from the **Available** to the **Configured** column.
-  s
+  * Drag the application from the **Package Explorer** view onto the Pivotal Cloud Foundry server in the **Servers** view, or
+  * Right-click the Pivotal Cloud Foundry server in the **Servers** view, select **Add and Remove** from the server context menu, and move the application from the **Available** to the **Configured** column.
 
 1. On the **Application Details** window, you can enter the URL of an external buildpack if desired. Click **Next** to continue.
 
@@ -224,7 +228,7 @@ To deploy an application to Cloud Foundry using the plugin:
 
       <img src="/images/sts/services-selection.png" />
 
-   As the deployment proceeds, progress messages appear in the **Console** pane. When deployment is complete, the application is listed in the **Applications** pane.   
+   As the deployment proceeds, progress messages appear in the **Console** view. When deployment is complete, the application is listed in the **Applications** pane.   
 
 ## <a id='create-service'></a>Create a Service ##
 
@@ -243,19 +247,19 @@ The new service appears in the **Services** pane.
 
 ## <a id='bind-service'></a>Bind and Unbind Services ##
 
-You can bind a service to an application when you deploy it. To bind a service to an application that is already deployed, drag the service from the **Services** pane to the **Application Services** pane.  (See the panes labelled "G" in the screenshot in the [Applications and Services](#apps-services-tab) above.)
+You can bind a service to an application when you deploy it. To bind a service to an application that is already deployed, drag the service from the **Services** pane to the **Application Services** pane.  (See the area labelled "G" in the screenshot in the [Applications and Services](#apps-services-tab) above.)
 
 To unbind a service, right-click the service in the **Application Services** pane, and select **Unbind from Application**.
 
 ## <a id='view-file'></a>View an Application File ##
 
-You can view the contents of a file in a deployed application by selecting it the **Remote Systems View**. (See the pane labelled "I" and "J" in the screenshot in the [Applications and Services Tab](#overview-tab) above.) 
+You can view the contents of a file in a deployed application by selecting it the **Remote Systems View**. (See the areas labelled "I" and "J" in the screenshot in the [Applications and Services Tab](#overview-tab) above.) 
 
-1. If the **Remote Systems View** pane is not visible:
+1. If the **Remote Systems View** is not visible:
   * Select the **Applications and Services** tab.
   * In the **Instances** pane, click the **Remote Systems View** link.
 
-2. On the **Remote Systems View** pane, browse to the application and application file of interest, and double-click the file. A new tab appears in the editor area with the contents of the selected file. 
+2. On the **Remote Systems View**, browse to the application and application file of interest, and double-click the file. A new tab appears in the editor area with the contents of the selected file. 
 
       <img src="/images/sts/file-contents.png" />
 
@@ -269,7 +273,7 @@ You can change the memory allocation for an application and the number of instan
 
 ## <a id='manage-app-urls'></a>Manage Application URLs ##
 
-You add, edit, and remove URLs mapped to the currently selected application in the **General** pane when the **Applications and Services** tab is selected.  Click the pencil icon to display the **Mapped URIs Configuration** pane. 
+You add, edit, and remove URLs mapped to the currently selected application in the **General** pane when the **Applications and Services** tab is selected.  Click the pencil icon to display the **Mapped URIs Configuration** window. 
 
 <img src="/images/sts/manage-uris-configuration.png" />
 
@@ -280,7 +284,7 @@ Each space in Cloud Foundry to which you want to deploy applications must be rep
 
 To clone a server:
 
-1. Right-click a Cloud Foundry server instance in the **Servers** pane, and select **Clone Server** from the context menu.
+1. Right-click a Cloud Foundry server instance in the **Servers** view, and select **Clone Server** from the context menu.
 1. On the **Organizations and Spaces** window, select the space you want to target. 
 1. The name field will be filled with the name of the space you selected. If desired, edit the server name before clicking finish **Finish**.
 
