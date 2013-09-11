@@ -10,7 +10,12 @@ This page has instructions for installing and using v1.5.1 of the plugin, which 
 
 You can use the plugin to:
 
-* Deploy applications from an Eclipse or STS workspace to a running Cloud Foundry instance. The plugin supports Spring, Java, Java standalone, Web, Grails, and Lift applications.
+* Deploy applications from an Eclipse or STS workspace to a running Cloud Foundry instance. The plugin supports Java/JVM applications and framworks, such:
+  * Spring
+  * Java Web
+  * Java standalone
+  * Grails
+  * Lift
 * Create, bind, and unbind services.
 * View and manage deployed applications and services.
 * Start and stop applications.
@@ -22,10 +27,21 @@ v1.5.1 of the plugin provides several new features:
 * Cloud Foundry server cloning --- v1.5.1 of the plugin makes it easier to work with multiple Cloud Foundry spaces. After configuring a first Cloud Foundry server instance using the plugin, you can use the new **Clone Server** command to create additional server instances that target other Cloud Foundry spaces.   
 
 ## <a id='install'></a>Install Cloud Foundry Eclipse Plugin ##
-The sections below have instructions for installing the Cloud Foundry Eclipse Plugin.
+
+If you have a previous version of the Cloud Foundry Eclipse Plugin installed, uninstall it before installing the new version. To uninstall the plugin:
+
+1. Choose **About Eclipse** (or **About Spring Tools Suite**) from the Eclipse (or **Spring Tools Suite**) menu and click **Installation Details**.  
+1. On the **Installation Details**, select the previous version of the plugin and click **Uninstall**. 
+
+Follow the installation instructions appropriate for your environment:
+
+* [Install to Eclipse from Marketplace](#install-to-eclipse)
+* [Install to STS from Extensions Tab](#install-to-sts).
+* [Install from a Local Repository](#install-local)
+
 ### <a id='install-to-eclipse'></a>Install to Eclipse from Marketplace ###
 
-Follow these instructions to install the Cloud Foundry Eclipse Plugin to Eclipse from the Eclipse Marketplace. If you are installing the plugin to STS, see the following section [Install to STS from Extensions Tab](#install-to-sts).
+Follow these instructions to install the Cloud Foundry Eclipse Plugin to Eclipse from the Eclipse Marketplace. 
 
 1. Start Eclipse.
 1. Select **Eclipse Marketplace** from the Eclipse **Help** menu.
@@ -62,7 +78,7 @@ Follow these instructions to install the Cloud Foundry Eclipse Plugin to STS fro
 
   <img src="/images/sts/install-details.png"/>
 
-1. The **Review Licenses** window appears. Click “I accept the terms of the license agremment” and click **Finish** to perform the installation. 
+1. The **Review Licenses** window appears. Click “I accept the terms of the license agreement” and click **Finish** to perform the installation. 
 
 1. The **Sofware Updates** window appears. Click **Yes** to restart STS.
 
@@ -70,6 +86,42 @@ Follow these instructions to install the Cloud Foundry Eclipse Plugin to STS fro
 
 1. After STS restarts, you can see new panes in the Editor portion of the screen. See [About the Plugin User Interface](#plugin-ui) below for a description of the plugin tabs and the information in each.
 1. Proceed to [Create a Cloud Foundry Server](#cloud-foundry-server).
+
+### <a id='install-local'></a>Install from a Local Repository ###
+
+If you need to install the Cloud Foundry Eclipse Plugin locally, rather than via the Internet, you can download the source and create a repository that you can copy to the target machine and then install from it. 
+
+*Step 1:  Obtain the plugin source from GibHub.* 
+
+* You can download archived source code for released versions of the plugin from https://github.com/SpringSource/eclipse-integration-cloudfoundry/releases.
+* If you want the very latest source code for the plugin, clone the project repository:
+
+    ```
+    git clone https://github.com/SpringSource/eclipse-integration-cloudfoundry
+    ```
+<br>
+
+*Step 2: Build repository.* 
+
+Unzip the downloaded archive, change directory to the root directory and run this command in the shell:
+
+`mvn -Pe37 package`
+
+Transfer `org.cloudfoundry.ide.eclipse.server.site/target/site` to the machine where you want to install the plugin. If you zip it up, be sure to unzip prior to installation. 
+ 
+*Step 3: Install from local repository.* 
+
+On the machine running Eclipse or Spring Tools Suite:
+
+1. In Eclipse (or STS), select **Install New Software** from the **Help** menu.
+1. On the **Available Software** window, click **Add** to the right of the **Work with** field.
+1. On the **Add Repository** window, enter a name for the repository, for example “Cloud Foundry Integration”, and click **Local**.
+1. On the **Open** window, browse to `org.cloudfoundry.ide.eclipse.server.site/target/site` and click **Open**.
+1. On the **Add Repository** window, click **OK**.
+1. On the **Available Software** window checkmark: “Core/Cloud Foundry Integration” and “Resources//Cloud Foundry Integration” and click **Next**.
+1. On the **Review Licenses** window, click “I accept the terms of the license agreement” and click **Finish**.
+
+
 
 ## <a id='cloud-foundry-server'></a>Create a Cloud Foundry Server ##
 
