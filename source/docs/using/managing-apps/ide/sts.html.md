@@ -118,7 +118,7 @@ On the machine running Eclipse or Spring Tools Suite:
 1. On the **Add Repository** window, enter a name for the repository, for example “Cloud Foundry Integration”, and click **Local**.
 1. On the **Open** window, browse to `org.cloudfoundry.ide.eclipse.server.site/target/site` and click **Open**.
 1. On the **Add Repository** window, click **OK**.
-1. On the **Available Software** window checkmark: “Core/Cloud Foundry Integration” and “Resources//Cloud Foundry Integration” and click **Next**.
+1. On the **Available Software** window checkmark: “Core/Cloud Foundry Integration” and “Resources/Cloud Foundry Integration” and click **Next**.
 1. On the **Review Licenses** window, click “I accept the terms of the license agreement” and click **Finish**.
 
 
