@@ -48,7 +48,7 @@ Follow these instructions to install the Cloud Foundry Eclipse Plugin to Eclipse
 1. On the marketplace window, enter "Cloud Foundry" in the **Find** field, and click **Go**.
 1. In the search results, click the **Install** control next to the listing for Cloud Foundry Integration.
 
-  <img src="/images/sts/eclipse-marketplace.png"/>  
+  <img src="/images/sts/eclipse-marketplace.png"/>  nn
 
 1. The **Confirm Selected Features** window lists the plugin --- "Cloud Foundry Integration for Eclipse" --- and the optional "SpringSource UAA Integration" component, which reports tool usage data, anonymously. If you do not want your plugin usage statistics to be reported, de-select the UAA component before clicking **Confirm**.
 
@@ -159,9 +159,9 @@ This section has instructions for configuring a server resource that will repres
 The paragraphs below describe the Cloud Foundry Eclipse plugin user interface. If you do not see the tabs described below, select the Pivotal Cloud Foundry server in the **Servers** view.
 
 The Cloud Foundry editor, outlined in red in the screenshot below, is the primary plugin user interface.
-Some workflows involve interacting with standard elements of the Eclipse user interface, such as the  Project Explorer, Console and Servers views.
+Some workflows involve interacting with standard elements of the Eclipse user interface, such as the **Project Explorer** and the **Console** and **Servers** views.
 
-Note that the Cloud Foundry editor allows you to work with a single Cloud Foundry space; each space is represented by a distinct server instance in the Servers view (B). Multiple editors, each targeting a different space, can be open simultaneously. However, only one editor targeting a particular Cloud Foundry server instance can be open at a time. 
+Note that the Cloud Foundry editor allows you to work with a single Cloud Foundry space; each space is represented by a distinct server instance in the **Servers** view (B). Multiple editors, each targeting a different space, can be open simultaneously. However, only one editor targeting a particular Cloud Foundry server instance can be open at a time. 
 
 ### <a id='overview-tab'></a>Overview Tab ###
 
@@ -192,7 +192,7 @@ The follow panes are present when the **Applications and Services** tab is selec
       * **Mapped URLs** -- Lists URLs mapped to the application. You can click a URL to open a browser to the application within Eclipse (or STS); and click the pencil icon to add or remove mapped URLs. See [Manage Application URLs](#manage-urls).
       * **Memory Limit** -- The amount of memory allocated to the application. You can use the pull-down to change the memory limit.
       * **Instances** -- The number of instances of the application that are deployed. You can use the pull-down to change number of instances.
-      * **Start**, **Stop**, **Restart**, **Update and Restart** --- The controls that appear depend on the current state of the application.  The **Update and Restart** button appears if there is an accessible workspace project that is linked to one of the deployed applications; this command will attempt to push changed resources before starting the application. 
+      * **Start**, **Stop**, **Restart**, **Update and Restart** --- The controls that appear depend on the current state of the application. The **Update and Restart** command will attempt an incremental push of only those application resources that have changed. It will not perform a full application push. See [Push Application Changes](#push-changes) below. 
 
 * K --- The **Services** pane lists services that are bound to the application currently selected in the **Applications** pane. Note the icon in the upper right corner of the pane --- it allows you to create a service, as described in [Create a Service](#create-service). 
 
@@ -206,13 +206,21 @@ To deploy an application to Cloud Foundry using the plugin:
   * Drag the application from the **Package Explorer** view onto the Pivotal Cloud Foundry server in the **Servers** view, or
   * Right-click the Pivotal Cloud Foundry server in the **Servers** view, select **Add and Remove** from the server context menu, and move the application from the **Available** to the **Configured** column.
 
-1. On the **Application Details** window, you can enter the URL of an external buildpack if desired. Click **Next** to continue.
+1. On the **Application Details** window:
+
+  * By default, the *Name* field is populated with the application project name. You can enter a different name if desired --- the name will be assigned to the deployed application, but will not rename the project.
+
+  * If you want to use an external buildpack to stage the application, enter the URL of the buildpack.
+
+  You can deploy the application without further configuration by clicking **Finish**. Note that becuase the application default values may take a second or two to load, the **Finish** button might not be enabled immediately. A progress indicator will indicate when the application default values have been loaded, and the "Finish" button will be enabled.
+ 
+  Click **Next** to continue.
 
       <img src="/images/sts/application-details.png" />
 
 1. On the **Launch Deployment** window:
 
-  **Host** --- By default, contains the name of the application.
+  **Host** --- By default, contains the name of the application. You can enter a different value if desired. Note that if you push the same application to multiple spaces in the same organization, you must assign a unique **Host** to each.
   
   **Domain** --- Contains the default domain. If you have mapped custom domains to the target space, they appear in the pull-down list.  **Note**:  This version of the Cloud Foundry Eclipse plugin does not provide a mechanism for mapping a custom domain to a space. You must use the `cf map domain` command to do so. For more information, see [map-domain](/docs/using/managing-apps/cf/index.html#map-domain).
   
@@ -257,6 +265,7 @@ You can view the contents of a file in a deployed application by selecting it th
 
 1. If the **Remote Systems View** is not visible:
   * Select the **Applications and Services** tab.
+  * Select the application of interest from the **Applications** pane.
   * In the **Instances** pane, click the **Remote Systems View** link.
 
 2. On the **Remote Systems View**, browse to the application and application file of interest, and double-click the file. A new tab appears in the editor area with the contents of the selected file. 
@@ -271,20 +280,50 @@ To undeploy an application, right click the appliation in either the **Servers**
 
 You can change the memory allocation for an application and the number of instances deployed in the **General** pane when the **Applications and Services** tab is selected.  Use the **Memory Limit** and **Instances** selector lists. 
 
+Although the scaling can be performed while the application is running, if the scaling has not taken effect, restart the application. If necessary, the application statistics can be manually refreshed by clicking the **Refresh** button in the top, right corner of the "Applications" pane, labelled "H" in the screenshot in [Applications and Services Tab](#apps-services-tab).
+
+## <a id='push-changes'></a>Push Application Changes ##
+
+The Cloud Foundry editor supports these application operations:
+
+1. **Start** and **Stop** --- When you **Start** an application, the plugin pushes all application files to the Cloud Foundry instance before starting the application, regardless of whether there are changes to the files or not.
+
+2. **Restart** --- When you **Restart** a deployed application, the plugin does not push any resources to the Cloud Foundry instance.
+
+3. **Update and Restart** --- When you run this command, the plugin pushes only the changes that were made to the application since last update, not the entire application. This is useful for performing incremental updates to large applications. 
+
+
 ## <a id='manage-app-urls'></a>Manage Application URLs ##
 
 You add, edit, and remove URLs mapped to the currently selected application in the **General** pane when the **Applications and Services** tab is selected.  Click the pencil icon to display the **Mapped URIs Configuration** window. 
 
 <img src="/images/sts/manage-uris-configuration.png" />
 
+## <a id='console-view'></a>Information in the Console View ##
+
+When you start, restart, or update and restart an application, application output will generally be streamed to the **Console** view (labelled "F" in the screenshot in [Overview Tab](#overview-tab)). The information shown in the **Console** view for a running application instance includes staging information, and the application's  `std.out` and `std.error` logs. 
+
+If multiple instances of the application are running, only the output of the first instance appears in the **Console** view. To view the output of another running instance, or to refresh the output that is currently displayed: 
+
+1. In the **Applications and Services** tab, select the deployed application in the *Applications* pane.
+
+2. Click the **Refresh** button on the top right corner of the **Applications** pane.
+
+3. In the **Instances** pane, wait for the application instances to be updated. 
+
+4. Once non-zero health is shown for an application instance, right-click on that instance to open the context menu and select **Show Console**.
+
 
 ## <a id='clone'></a>Clone a Cloud Foundry Server Instance ##
 
-Each space in Cloud Foundry to which you want to deploy applications must be represented by a server of type "Cloud Foundry". After you have created a Cloud Foundry server instance, as decribed in [Create a Cloud Foundry Server](#cloud-foundry-instance), you can clone it to create another. 
+Each space in Cloud Foundry to which you want to deploy applications must be represented by a Cloud Foundry server instance in the **Servers** view. After you have created a Cloud Foundry server instance, as decribed in [Create a Cloud Foundry Server](#cloud-foundry-instance), you can clone it to create another. 
 
 To clone a server:
 
-1. Right-click a Cloud Foundry server instance in the **Servers** view, and select **Clone Server** from the context menu.
+1. Either:
+  *  In the Cloud Foundry server instance editor "Overview" tab, click on the "Clone Server" button, or
+  * Right-click a Cloud Foundry server instance in the **Servers** view, and select **Clone Server** from the context menu, 
+
 1. On the **Organizations and Spaces** window, select the space you want to target. 
 1. The name field will be filled with the name of the space you selected. If desired, edit the server name before clicking finish **Finish**.
 
