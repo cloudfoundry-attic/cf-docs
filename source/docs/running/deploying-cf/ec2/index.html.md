@@ -162,7 +162,7 @@ This bootstrap command runs two phases: first, several BOSH commands are execute
 + 2 BOSH releases: cf-release and cf-services-release, each pulled from the latest "green" release-candidate branch in github.
 + The latest "green" BOSH stemcell, downloaded from our CI server.
 + 2 already-deployed BOSH deployments: CF core and CF services, backed by generated manifest files described below.
-+ 2 CF admin user accounts with randomly-generated passworsd (find in cf-shared-secrets.yml).
++ 2 CF admin user accounts with randomly-generated passwords (find in cf-shared-secrets.yml).
 + A default CF organization called "bootstrap-org".
 + A default CF space called "bootstrap-space".
 + CF service-auth-tokens allowing CF core to authenticate to CF services.
