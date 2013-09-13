@@ -7,6 +7,7 @@ Documentation for the newer v2 API will be available when that API is sufficient
 
 Writing a service involves writing a gateway that obeys the API contract between CloudController v2 (CC) and the gateway v1 (GW).
 The protocol is entirely RESTful HTTP, with _bidirectional communication_. In addition to authentication there are 6 basic operations that take place, described in this document.
+An oversimplified example of making a GW that supports the 3 most basic operations can be found here: https://github.com/geapi/cf-service-example.
 
 ## <a id='authentication'></a>Authentication ##
 
@@ -42,7 +43,9 @@ Updating a service by `unique_id` allows you to make changes to fields inside th
 To generate a `unique_id`, try this [Online GUID Generator](http://www.guidgenerator.com/ "Online GUID Generator").
 
 ### <a id='catalog-create-new'></a>Creating a new service in the catalog ###
+
 `POST /v2/services`
+
 <table>
 <thead>
 <tr>
@@ -105,7 +108,7 @@ To generate a `unique_id`, try this [Online GUID Generator](http://www.guidgener
 <tr>
   <td>unique_id</td>
   <td>string</td>
-  <td>A new identifier that must be globally unique.  This ID will be passed as part of provision, bind, etc. requests.  This “primary key” is easier to work with than the combination of [label, provider, version] which also forms a “primary key”.</td>
+  <td>A new identifier that must be globally unique.  This ID will be passed as part of provision, bind, etc. requests.  This “primary key” is easier to work with than the combination of <code>[label, provider, version]</code> which also forms a “primary key”.</td>
 </tr>
 <tr>
   <td>service_plans</td>
@@ -114,6 +117,7 @@ To generate a `unique_id`, try this [Online GUID Generator](http://www.guidgener
 </tr>
 </tbody>
 </table>
+
 <table>
 <thead>
 <tr>
@@ -149,7 +153,7 @@ To generate a `unique_id`, try this [Online GUID Generator](http://www.guidgener
   <td>Created</td>
   <td>
   Service successfully created, example response:
-
+  <pre><code>
     {
       "metadata" = > {
         "guid" = > "9201fc22-ee74-42c8-9dcd-4425be183074",
@@ -169,7 +173,7 @@ To generate a `unique_id`, try this [Online GUID Generator](http://www.guidgener
         "service_plans_url" = > "/v2/services/9201fc22-ee74-42c8-9dcd-4425be183074/service_plans"
       }
     }
-
+  </pre></code>
   </td>
 </tr>
 <tr>
@@ -191,7 +195,9 @@ To generate a `unique_id`, try this [Online GUID Generator](http://www.guidgener
 </table>
 
 ### <a id='catalog-update-service'></a>Updating a service in the catalog ###
+
 `PUT /v2/services`
+
 <table>
 <thead>
 <tr>
@@ -235,7 +241,9 @@ To generate a `unique_id`, try this [Online GUID Generator](http://www.guidgener
 </table>
 
 ### <a id='catalog-list-services'></a>Listing the services catalog ###
+
 `GET /v2/services`
+
 <table>
 <thead>
 <tr>
@@ -299,11 +307,13 @@ To generate a `unique_id`, try this [Online GUID Generator](http://www.guidgener
 </table>
 
 ### <a id='catalog-remove-service'></a>Removing a service from the catalog ###
+
 `DELETE /v2/services/:guid`
 
 No body or query parameters.  This request is expected to fail if there are plans, instances, or bindings attached to this service, as they must be deleted first.
 
 ### <a id='catalog-create-plan'></a>Creating a new plan in the catalog ###
+
 `POST /v2/service_plans`
 
 <table>
@@ -444,6 +454,7 @@ No body or query parameters.  This request is expected to fail if there are plan
 </table>
 
 ### <a id='catalog-update-plan'></a>Updating a plan in the catalog ###
+
 `PUT /v2/service_plans/:guid`
 
 <table>
@@ -472,6 +483,7 @@ No body or query parameters.  This request is expected to fail if there are plan
 </table>
 
 ### <a id='catalog-remove-plan'></a>Removing a plan from the catalog ###
+
 `DELETE /v2/service_plans/:guid`
 
 * No body
