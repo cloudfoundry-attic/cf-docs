@@ -4,6 +4,7 @@ description: Monitors applications, reconciles the current state (e.g. running, 
 ---
 
 Health Manager has four core responsibilities:
+
 * Monitor applications to determine their state (e.g. running, stopped, crashed, etc.), version, and number of instances. The actual state of an application is updates  based on heartbeats and `droplet.exited` messages issued by the DEA running the application.
 * Determine applications' expected state, version, and number of instances. The desired state of an application is obtained from a dump of the Cloud Controller database.
 * Reconcile the actual state of applications with their expected state. For instance, if fewer than expected instances are running, the Health Manager will instruct the Cloud Controller to start the appropriate number of instances.
