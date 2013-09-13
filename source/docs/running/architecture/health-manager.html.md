@@ -1,13 +1,16 @@
 ---
 title: Health Manager
+description: Monitors applications, reconciles the current state (e.g. running, stopped, crashed) and expected state, and directs Cloud Controller to take action if they disagree.
 ---
 
-The Health Manager monitors the state of applications deployed to Cloud Foundry and ensures that started applications are running, and that their versions and number of instances are correct.
+Health Manager has four core responsibilities:
 
-The Health Manger compares the actual state of an application to its desired state, and when it detects a discrepancy, it initiates actions to return the application to the desired state. For instance, if fewer than expected instances are running, the Health Manager will instruct the Cloud Controller to start the appropriate number of instances.    
+* Monitor applications to determine their state (e.g. running, stopped, crashed, etc.), version, and number of instances. The actual state of an application is updates  based on heartbeats and `droplet.exited` messages issued by the DEA running the application.
+* Determine applications' expected state, version, and number of instances. The desired state of an application is obtained from a dump of the Cloud Controller database.
+* Reconcile the actual state of applications with their expected state. For instance, if fewer than expected instances are running, the Health Manager will instruct the Cloud Controller to start the appropriate number of instances.
+* Direct Cloud Controller to take action to correct any discrepancies in the state of applications.
 
-The actual state of an application is updates  based on heartbeats and `droplet.exited` messages issued by the DEA running the application. The desired state of an application is obtained from a dump of the Cloud Controller database.
-
+The Health Manager is essential to ensuring that apps running on Cloud Foundry remain available. It is needed to restart applications whenever the DEA running an app shuts down for any reason; Warden kills the app because it violated a quota; or the application process exits with a non-zero exit code.
 
 ## <a id='components'></a>Health Manager Components ##
 
@@ -16,8 +19,8 @@ This section describes Health Manager components.
 * Manager --- The Manager component provides an entry point and configures, initializes and registers other Health Manager components.
 * Harmonizer --- The Harmonizer periodically compares the actual state of an application to the desired state; the Scheduler and Nudger actions are used to bring the states into harmony.
 * Scheduler --- The Scheduler encapsulates Ruby EventMachine-related functionality such as timer setup and cancellation, and quantization of long-running tasks to prevent EventMachine Reactor loop blocking.
-* Desired State --- The Desired State component obtains the expected state of the application: stopped or started, how many instances should be running, and so on, from the [Cloud Controller](./cloud-controller.html) via the HTTP-based Bulk API. The Bulk API returns a dump of the CC_DB database, which contains the Cloud Controller's expected state for all applications. 
-* Actual State --- The Actual State component listens to heartbeat and other messages on the [NATS](./messaging-nats.html) bus from DEAs. 
+* Desired State --- The Desired State component obtains the expected state of the application: stopped or started, how many instances should be running, and so on, from the [Cloud Controller](./cloud-controller.html) via the HTTP-based Bulk API. The Bulk API returns a dump of the CC_DB database, which contains the Cloud Controller's expected state for all applications.
+* Actual State --- The Actual State component listens to heartbeat and other messages on the [NATS](./messaging-nats.html) bus from DEAs.
 * Nudger --- Nudger is the interface that the Health Manager uses to remedy discrepancies between desired and actual application state by dispatching `health.start` and `health.stop` messages that instruct Cloud Controller to start or stop instances. Nudger maintains a priority queue of these requests, and dequeues the messages by a batchful.
 * Reporter --- The Reporter responds to `healthmanager.status` and `healthmanager.health` requests and reports on the actual state of the world.
 
@@ -33,7 +36,7 @@ Conceptually, harmonization happens in two ways:
 
 There are three scenarios that result in a `droplet.exited` message:
 
-- An  application was stopped explicitly, in which case no remedial action is required. 
+- An  application was stopped explicitly, in which case no remedial action is required.
 - A DEA is being evacuated and all application instances running there need to be restarted somewhere else. Health Manager initiates the restarts.
 - An application instance crashed. The crashed instance needs to be restarted, unless it crashed multiple times within a short period of time, in which case it is declared `flapping`. See the following section for more information.
 
@@ -45,14 +48,14 @@ An instance of application is declared "flapping" if it crashed more than `flapp
 - The application has a bug that results in repeated crashes.
 - The application depends on an external or Cloud Foundry-provisioned service that is unavailable, resulting in repeated crashes.
 
-The goals for handling a flapping application are: 
+The goals for handling a flapping application are:
 
 - Attempt to restart an application when appropriate.
 - Provide crashlogs for crashed instances.
 - Reduce the overhead associated with restarting an application, particularly the overhead associated with moving application bits to the DEA.
 - Avoid IO spikes due to massive simultaneous restarts.
 
-To accomodate these conflicting requirements, the policy for handling a flapping instance is:
+To accommodate these conflicting requirements, the policy for handling a flapping instance is:
 
 - Initially restart the instance with a delay defined by `min_restart_delay`.
 - For each subsequent crash, double the delay up to the value of `max_restart_delay`.
@@ -63,7 +66,7 @@ To accomodate these conflicting requirements, the policy for handling a flapping
 
 DEAs periodically issue heartbeat messages on the NATS bus. A heartbeat message identifies the issuing DEA and includes information about application instances running on the DEA.
 
-The heartbeats are used to establish whether there are "missing" or "extra" instances. 
+The heartbeats are used to establish whether there are "missing" or "extra" instances.
 
 An instance is "missing" if its heartbeat has not been received in the last `droplet_lost` seconds. However, an `instance_missing` event is triggered only if the desired state has been fetched and is up-to-date.
 
