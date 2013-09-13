@@ -157,6 +157,8 @@ TODO, change the following at the top of the file:
 * replace `root_domain` value with a DNS, say `mycloud.com` that has `*.mycloud.com` mapped to your IP; defaults to using http://xip.io service for DNS
 * replace the `common_password`; even better is to put in lots of different passwords and tokens throughout the deployment file
 
+Further, note that you need to have configured the "cf-public" and "cf-private" security groups as outlined in [these instructions](../common/security-groups.html).
+
 ~~~
 ---
 <%
