@@ -162,6 +162,7 @@ TODO, change the following at the top of the file:
 <%
 director_uuid = "DIRECTOR_UUID"
 protocol = "http"
+cf_release = "141"
 ip_address = "2.3.4.5"
 common_password = "c1oudc0wc1oudc0w"
 root_domain = "#{ip_address}.xip.io"
@@ -172,7 +173,7 @@ director_uuid: <%= director_uuid %>
 
 releases:
  - name: cf
-   version: 138
+   version: <%= cf_release %>
 
 compilation:
   workers: 3
@@ -484,7 +485,7 @@ properties:
       - services|<%= common_password %>|scim.write,scim.read,openid,cloud_controller.admin
 ~~~
 
-NOTE again: this is a deployment file that is known to work with v138 of Cloud Foundry.
+NOTE again: this is a deployment file that is known to work with v141 of Cloud Foundry.
 
 ## Deploying your own Cloud Foundry ##
 
