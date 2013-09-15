@@ -18,7 +18,7 @@ This page briefly describes a number of terms that are commonly used in Cloud Fo
 
 ## <a id='bosh-agent'></a>BOSH Agent ##
 
-> The BOSH Agent is a process that runs on each VM maganged by BOSH and listens for instructions from the [BOSH Director](#bosh-director). When the director assigns a [job](#job) to an agent, the agent downloads the packages associated with the job from the blobstore and installs and configures them. The agent uses `monit` to start and stops jobs. 
+> The BOSH Agent is a process that runs on each VM maganged by BOSH and listens for instructions from the [BOSH Director](#bosh-director). When the director assigns a [job](#job) to an agent, the agent downloads the packages associated with the job from the blobstore and installs and configures them. The agent uses `monit` to start and stop jobs. 
 
 ## <a id='bosh-blobstore'></a> BOSH Blobstore ##
 
@@ -108,14 +108,14 @@ This page briefly describes a number of terms that are commonly used in Cloud Fo
 
 ## <a id='dea'></a> Droplet Execution Agent ##
 
-> A Droplet Execution Agent (DEA) is a process that runs on Cloud Foundry VMs that host applications. A DEA subscribes to the messages that the Cloud Controller publishes when droplets need to be run. If the DEA host meets the runtime and RAM requirements of a droplet, the DEA responds to the Cloud Controller's request, receives the droplet, and starts it. Similarly, a DEA stops an application as requested by the Cloud Controller. A DEA keepS track of the instances it started and periodically broadcasts messages about their state using [NATS](#nats). 
+> A Droplet Execution Agent (DEA) is a process that runs on Cloud Foundry VMs that host applications. A DEA subscribes to the messages that the Cloud Controller publishes when droplets need to be run. If the DEA host meets the runtime and RAM requirements of a droplet, the DEA responds to the Cloud Controller's request, receives the droplet, and starts it. Similarly, a DEA stops an application as requested by the Cloud Controller. A DEA keeps track of the instances it started and periodically broadcasts messages about their state using [NATS](#nats). 
 <br><br>  
 
 > For more information, see [Droplet Execution Agent](../architecture/execution-agent.html).
 
 ## <a id='droplet'></a> droplet ##
 
-> A droplet is the result of the application [staging](#staging) process, it is an uploaded application to which a buildpack as been applied. It is the original application, with a wrapper around it that accepts one input -- the port where it should listen for HTTP requests, and has two methods, a start and a stop. 
+> A droplet is the result of the application [staging](#staging) process, it is an uploaded application to which a buildpack has been applied. It is the original application, with a wrapper around it that accepts one input -- the port where it should listen for HTTP requests, and has two methods, a start and a stop. 
 
 ## <a id=' '></a>flapping ##
 
@@ -123,7 +123,7 @@ This page briefly describes a number of terms that are commonly used in Cloud Fo
 
 ## <a id='health-manager'></a>Health Manager ##
 
-> The Health Manager is a daemon that periodically scans the Cloud Controller database  for the expected state of applications that have been deployed and the VMs where they run. The Health Manager compares expected state with actual state, and issues a message to the Cloud Controller when it detects a problem.
+> The Health Manager is a daemon that periodically scans the Cloud Controller database for the expected state of applications that have been deployed and the VMs where they run. The Health Manager compares expected state with actual state, and issues a message to the Cloud Controller when it detects a problem.
 <br> <br> 
 > For more information see [Health Manager](health-manager.html).
 
@@ -155,7 +155,7 @@ This page briefly describes a number of terms that are commonly used in Cloud Fo
 >  A set of generalized configuration files and scripts for a [job](#job). The job uses Ruby ERB templates to generate the final configuration files and scripts when a Stemcell is turned into a job. A job template can be generated with the BOSH CLI. 
 <br><br>
 
-> When a configuration file is turned into a template, instance-specific information is abstracted into a property that later is provided when the Director starts the job on a VM. Information includes, for example, which port the webserver should run on, or which username and password a databse should use.
+> When a configuration file is turned into a template, instance-specific information is abstracted into a property that later is provided when the Director starts the job on a VM. Information includes, for example, which port the webserver should run on, or which username and password a database should use.
 
 
 
@@ -170,7 +170,7 @@ This page briefly describes a number of terms that are commonly used in Cloud Fo
 
 
 ## <a id='nats'></a>NATS  ##
->  NATS is a  publish and subscribe and distributed messaging system. Cloud Foundry components use NATS to communicate with each other.
+>  NATS is a publish and subscribe and distributed messaging system. Cloud Foundry components use NATS to communicate with each other.
 
 
 ## <a id='org'></a>Organization ##
@@ -217,7 +217,7 @@ This page briefly describes a number of terms that are commonly used in Cloud Fo
 
 ## <a id='staging'></a> staging ##
 
->  Staging refers to the processing performed by a DEA on an uploaded application, in accordance with the buildpack selected for use by Cloud Foundry or specified by the user. The result of thestaging process is a [droplet](#droplet).  
+>  Staging refers to the processing performed by a DEA on an uploaded application, in accordance with the buildpack selected for use by Cloud Foundry or specified by the user. The result of the staging process is a [droplet](#droplet).  
 
 
 ## <a id='stemcell'></a>stemcell##
@@ -226,7 +226,7 @@ This page briefly describes a number of terms that are commonly used in Cloud Fo
 
 ## <a id='steno'></a>Steno ##
 
-> A lightweight, modular logging library written  to support Cloud Foundry. 
+> A lightweight, modular logging library written to support Cloud Foundry. 
 
 ## <a id='STS'></a>STS ##
 
