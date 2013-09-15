@@ -8,6 +8,8 @@ The Security Groups referenced in other sections of the documentation are descri
 
 NOTE: in the OpenStack examples below, port UDP 68 was automatically added to all security groups.
 
+NOTE: In OpenStack Grizzly, there is now a setting for both INGRESS and EGRESS control.  These settings target INGRESS configuration.
+
 ## <a id="security-group-bosh"></a> "ssh"
 
 All servers deployed by bosh, including bosh itself, need to expose TCP port 22 for ssh and IMCP -1 to allow ping.

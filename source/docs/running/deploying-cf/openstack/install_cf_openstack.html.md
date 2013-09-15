@@ -157,11 +157,14 @@ TODO, change the following at the top of the file:
 * replace `root_domain` value with a DNS, say `mycloud.com` that has `*.mycloud.com` mapped to your IP; defaults to using http://xip.io service for DNS
 * replace the `common_password`; even better is to put in lots of different passwords and tokens throughout the deployment file
 
+Further, note that you need to have configured the "cf-public" and "cf-private" security groups as outlined in [these instructions](../common/security-groups.html).
+
 ~~~
 ---
 <%
 director_uuid = "DIRECTOR_UUID"
 protocol = "http"
+cf_release = "141"
 ip_address = "2.3.4.5"
 common_password = "c1oudc0wc1oudc0w"
 root_domain = "#{ip_address}.xip.io"
@@ -172,7 +175,7 @@ director_uuid: <%= director_uuid %>
 
 releases:
  - name: cf
-   version: 138
+   version: <%= cf_release %>
 
 compilation:
   workers: 3
@@ -484,7 +487,7 @@ properties:
       - services|<%= common_password %>|scim.write,scim.read,openid,cloud_controller.admin
 ~~~
 
-NOTE again: this is a deployment file that is known to work with v138 of Cloud Foundry.
+NOTE again: this is a deployment file that is known to work with v141 of Cloud Foundry.
 
 ## Deploying your own Cloud Foundry ##
 
