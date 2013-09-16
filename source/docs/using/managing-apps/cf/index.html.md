@@ -2,11 +2,11 @@
 title: cf Command Line Interface
 ---
 
-cf is Cloud Foundry's command line interface. You can use cf to deploy and manage applications running on most Cloud Foundry based environments including CloudFoundry.com.
+cf is Cloud Foundry's command line interface. You can use cf to deploy and manage applications running on most Cloud Foundry based environments, including CloudFoundry.com.
 
 ## <a id='commands'></a>Commands by Functional Category ##
 
-This table below lists all cf commands. Click a command in the table for information about command options and functionality. For options that apply to all cf commands, see [Command Usage and Qualifiers](#usage).
+This table below lists all cf commands. Click a command in the table below information about command options and functionality. For options that apply to all cf commands, see [Command Usage and Qualifiers](#usage).
 
 |   |  | |
 | :-------- | :---------- |:---------- |
