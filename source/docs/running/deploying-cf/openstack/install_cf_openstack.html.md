@@ -341,6 +341,7 @@ properties:
     memory_mb: 4096
     disk_mb: 16384
     directory_server_protocol: <%= protocol %>
+    mtu: 1454
 
   dea_next: *dea
 
