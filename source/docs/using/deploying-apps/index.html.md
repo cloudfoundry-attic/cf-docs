@@ -13,7 +13,7 @@ When you push an application, Cloud Foundry performs a variety of staging tasks,
 
 The staging process flow is illustrated on [How Applications Are Staged](/docs/running/architecture/how-applications-are-staged.html).
 
-##<a id='buildpacks'></a>Use .cfignore to Exclude Unnecessary Files ##
+## <a id='exclude'></a>Exclude Unnecessary Files with cfignore ##
 
 By default, when you push an application, all files in the application’s project directory tree, except version control files with file extensions `.svn`, `.git`, and `.darcs`, are uploaded to your Cloud Foundry instance. If the application directory contains other files (such as temp or log files), or complete subdirectories that are not required to build and run your application, the best practice is to exclude them using a `.cfignore` file. (`.cfignore` is similar to git’s `.gitignore`, which allows you to exclude files and directories from git tracking.)  Especially with a large application, uploading unnecessary files slows down application deployment.
  
