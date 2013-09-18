@@ -160,7 +160,7 @@ Note that you can bind a service to an application at the time you create the se
 
 #### <a id='console'></a> console ####
 
-Open a Rails console and connect to an application. For information about using the Rails console see [Rails 3, Using the Console](/docs/using/deploying-apps/ruby/rails-using-the-console.html)  in "Deploying Rails Apps". **
+Open a Rails console and connect to an application. For information about using the Rails console, see [Rails 3, Using the Console](/docs/using/deploying-apps/ruby/rails-using-the-console.html)  in "Deploying Rails Apps". **
 
 <div class="command-doc">
   <pre class="terminal">$ cf console  [application name] [port}</pre>
