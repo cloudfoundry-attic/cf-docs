@@ -48,7 +48,7 @@ Follow these instructions to install the Cloud Foundry Eclipse Plugin to Eclipse
 1. On the marketplace window, enter "Cloud Foundry" in the **Find** field, and click **Go**.
 1. In the search results, click the **Install** control next to the listing for Cloud Foundry Integration.
 
-  <img src="/images/sts/eclipse-marketplace.png"/>  nn
+  <img src="/images/sts/eclipse-marketplace.png"/>  
 
 1. The **Confirm Selected Features** window lists the plugin --- "Cloud Foundry Integration for Eclipse" --- and the optional "SpringSource UAA Integration" component, which reports tool usage data, anonymously. If you do not want your plugin usage statistics to be reported, de-select the UAA component before clicking **Confirm**.
 
