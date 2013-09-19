@@ -21,7 +21,7 @@ These docs are rendered using [middleman](https://github.com/middleman/middleman
 git clone https://github.com/cloudfoundry/cf-docs.git cloudfoundry-docs
 cd cloudfoundry-docs
 bundle
-middleman server
+bundle exec middleman server
 ```
 
 Then view [http://0.0.0.0:4567](http://0.0.0.0:4567) in your browser.
