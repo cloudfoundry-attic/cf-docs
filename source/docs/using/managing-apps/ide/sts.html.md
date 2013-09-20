@@ -54,8 +54,8 @@ Follow these instructions to install the Cloud Foundry Eclipse Plugin to Eclipse
 
      <img src="/images/sts/confirm-selected-features.png" />
 
-1. The **Review Licenses** window appears. Click “I accept the terms of the license agremment” and click **Finish**.
-1. The **Sofware Updates** window appears. Click **Yes** to restart Eclipse.
+1. The **Review Licenses** window appears. Click “I accept the terms of the license agreement” and click **Finish**.
+1. The **Software Updates** window appears. Click **Yes** to restart Eclipse.
 
      <img src="/images/sts/software-updates.png" />
 
