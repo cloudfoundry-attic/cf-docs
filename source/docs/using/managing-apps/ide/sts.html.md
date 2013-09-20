@@ -10,7 +10,7 @@ This page has instructions for installing and using v1.5.1 of the plugin, which 
 
 You can use the plugin to:
 
-* Deploy applications from an Eclipse or STS workspace to a running Cloud Foundry instance. The plugin supports Java/JVM applications and framworks, such:
+* Deploy applications from an Eclipse or STS workspace to a running Cloud Foundry instance. The plugin supports Java/JVM applications and frameworks, such as:
   * Spring
   * Java Web
   * Java standalone
@@ -36,7 +36,7 @@ If you have a previous version of the Cloud Foundry Eclipse Plugin installed, un
 Follow the installation instructions appropriate for your environment:
 
 * [Install to Eclipse from Marketplace](#install-to-eclipse)
-* [Install to STS from Extensions Tab](#install-to-sts).
+* [Install to STS from Extensions Tab](#install-to-sts)
 * [Install from a Local Repository](#install-local)
 
 ### <a id='install-to-eclipse'></a>Install to Eclipse from Marketplace ###
