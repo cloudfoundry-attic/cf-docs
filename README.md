@@ -1,7 +1,7 @@
 cf-docs
 ====
 
-This is the documentation for the Cloud Foundry project - including information about running and managing applications on Cloud Foundry, and setting up your own Cloud Foundry instance with VCAP and BOSH. 
+This is the documentation for the Cloud Foundry open source project - including information about running and managing applications on Cloud Foundry, and setting up your own Cloud Foundry instance with BOSH.
 
 This repository also feeds [cloudfoundry.github.com](http://cloudfoundry.github.com) using [Github Pages](http://pages.github.com/) and [Middleman](http://middlemanapp.com/).
 
