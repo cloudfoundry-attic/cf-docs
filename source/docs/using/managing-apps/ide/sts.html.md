@@ -80,7 +80,7 @@ Follow these instructions to install the Cloud Foundry Eclipse Plugin to STS fro
 
 1. The **Review Licenses** window appears. Click “I accept the terms of the license agreement” and click **Finish** to perform the installation. 
 
-1. The **Sofware Updates** window appears. Click **Yes** to restart STS.
+1. The **Software Updates** window appears. Click **Yes** to restart STS.
 
      <img src="/images/sts/restart-sts.png" />
 
