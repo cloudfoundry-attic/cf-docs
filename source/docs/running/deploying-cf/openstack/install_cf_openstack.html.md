@@ -91,8 +91,8 @@ A cloud provider needs a base image to provision VMs/servers. Bosh explicitly re
 To upload the latest bosh stemcell to your bosh:
 
 <pre class="terminate">
-$ wget http://bosh-jenkins-artifacts.s3.amazonaws.com/bosh-stemcell/openstack/latest-bosh-stemcell-openstack.tgz
-$ bosh upload stemcell latest-bosh-stemcell-openstack.tgz
+$ wget http://bosh-jenkins-artifacts.s3.amazonaws.com/bosh-stemcell/openstack/bosh-stemcell-latest-openstack-kvm-ubuntu.tgz
+$ bosh upload stemcell bosh-stemcell-latest-openstack-kvm-ubuntu.tgz 
 </pre>
 
 Confirm that you have at least one bosh stemcell loaded into your bosh:
