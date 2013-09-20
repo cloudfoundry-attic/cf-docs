@@ -38,7 +38,7 @@ The `compile` script builds the droplet that will be run by the DEA and will the
 
 The script is run with two arguments, the build directory for the application and the cache directory, which is a location the buildpack can use to store assets during the build process.
 
-During execution of this script all output sent to STDOUT will be relayed via CF back to the end user. The generally accepted pattern for this is to break out this functionality in to a 'language_pack'. A good example of this can be seen at [https://github.com/cloudfoundry/cloudfoundry-buildpack-java/blob/master/lib/language_pack/java.rb](https://github.com/cloudfoundry/cloudfoundry-buildpack-java/blob/master/lib/language_pack/java.rb)
+During execution of this script all output sent to STDOUT will be relayed via CF back to the end user. The generally accepted pattern for this is to break out this functionality in to a 'language_pack'. A good example of this can be seen at [https://github.com/cloudfoundry/heroku-buildpack-ruby/blob/master/lib/language_pack/ruby.rb](https://github.com/cloudfoundry/heroku-buildpack-ruby/blob/master/lib/language_pack/ruby.rb)
 
 A simple `compile` script is shown below:
 
