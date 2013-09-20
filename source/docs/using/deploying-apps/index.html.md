@@ -77,7 +77,7 @@ For framework specific service information see:
 * [Service Bindings for Grails Applications]((/docs/using/services/grails-service-bindings.html)
 * [Service Bindings for Lift Applications](/docs/using/services/lift-service-bindings.html)
 * [Service Bindings for Rack, Rails, or Sinatra Applications](/docs/using/services/ruby-service-bindings.html)
-* [Service Bindings for Node.js Applications](http://0.0.0.0:4567/docs/using/services/node-service-bindings.html)
+* [Service Bindings for Node.js Applications](/docs/using/services/node-service-bindings.html)
 
 For information about how external services can work with Cloud Foundry, see [Services Architecture](/docs/running/architecture/services/).
 
