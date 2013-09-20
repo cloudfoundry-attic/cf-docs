@@ -7,7 +7,7 @@ This repository also feeds [cloudfoundry.github.com](http://cloudfoundry.github.
 
 If you have minor changes, you can contribute by forking this repository, modifying the files in `/source/docs`, and creating a GitHub pull request.
 
-If you want to contribute on a larger scale, see the [Pivotal Project for CF Docs](https://www.pivotaltracker.com/projects/713283#).
+If you want to contribute against the prioritized backlog of documentation needs, see the [Pivotal Tracker project for Cloud Foundry Documentation](https://www.pivotaltracker.com/projects/713283#).
 
 ## Contributing docs
 
