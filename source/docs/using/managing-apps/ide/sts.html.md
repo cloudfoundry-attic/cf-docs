@@ -91,7 +91,7 @@ Follow these instructions to install the Cloud Foundry Eclipse Plugin to STS fro
 
 If you need to install the Cloud Foundry Eclipse Plugin locally, rather than via the Internet, you can download the source and create a repository that you can copy to the target machine and then install from it. 
 
-*Step 1:  Obtain the plugin source from GibHub.* 
+*Step 1:  Obtain the plugin source from GitHub.* 
 
 * You can download archived source code for released versions of the plugin from https://github.com/SpringSource/eclipse-integration-cloudfoundry/releases.
 * If you want the very latest source code for the plugin, clone the project repository:
@@ -118,7 +118,7 @@ On the machine running Eclipse or Spring Tools Suite:
 1. On the **Add Repository** window, enter a name for the repository, for example “Cloud Foundry Integration”, and click **Local**.
 1. On the **Open** window, browse to `org.cloudfoundry.ide.eclipse.server.site/target/site` and click **Open**.
 1. On the **Add Repository** window, click **OK**.
-1. On the **Available Software** window checkmark: “Core/Cloud Foundry Integration” and “Resources/Cloud Foundry Integration” and click **Next**.
+1. On the **Available Software** window, checkmark: “Core/Cloud Foundry Integration” and “Resources/Cloud Foundry Integration” and click **Next**.
 1. On the **Review Licenses** window, click “I accept the terms of the license agreement” and click **Finish**.
 
 
@@ -136,7 +136,7 @@ This section has instructions for configuring a server resource that will repres
 
 1. On the **Cloud Foundry Account** window, if you already have a Cloud Foundry account, enter the email account and password you use to log on to Cloud Foundry and click **Validate Account**. 
 
-  If you do not have a Cloud Foundry account you can click **Pivotal CF Signup** to get one, and complete this procedure after your account is established.
+  If you do not have a Cloud Foundry account, you can click **Pivotal CF Signup** to get one and complete this procedure after your account is established.
 
   **Note:** The **Register Account** function is not supported by public instances of Cloud Foundry v2. You can register accounts for Pivotal CF Hosted using the Pivotal CF portal at [run.pivotal.io](https://console.run.pivotal.io).
 
@@ -156,7 +156,7 @@ This section has instructions for configuring a server resource that will repres
 
 ## <a id='plugin-ui'></a>About the Plugin User Interface ##
 
-The paragraphs below describe the Cloud Foundry Eclipse plugin user interface. If you do not see the tabs described below, select the Pivotal Cloud Foundry server in the **Servers** view.
+The paragraphs below describe the Cloud Foundry Eclipse plugin user interface. If you do not see the tabs described below, select the Pivotal Cloud Foundry server in the **Servers** view. To expose the Servers view, ensure that you are using the Java perspective, then select **Window > Show View > Other > Server > Servers**.
 
 The Cloud Foundry editor, outlined in red in the screenshot below, is the primary plugin user interface.
 Some workflows involve interacting with standard elements of the Eclipse user interface, such as the **Project Explorer** and the **Console** and **Servers** views.
@@ -175,9 +175,9 @@ The follow panes and views are present when the **Overview** tab is selected:
     * **Change Password** --- Use to change your Cloud Foundry password.
     * **Validate Account** --- Use to verify your currently configured Cloud Foundry credentials.
     * **Pivotal CF Signup** --- Use to sign up for a Cloud Foundry account.
-* E -- The **Server Status** pane shows whether or not you are connected to the target Cloud Foundry space, and **Disconnect** and **Connect** controls.
+* E -- The **Server Status** pane shows whether or not you are connected to the target Cloud Foundry space, and the **Disconnect** and **Connect** controls.
 * F -- The **Console** view displays status messages when you perform an action such as deploying an application.
-* G -- The **Remote Systems View** allows you to view the contents of a file that is part of a deployed application. For more information, see [View an Application File](#view-file).
+* G -- The **Remote Systems** view allows you to view the contents of a file that is part of a deployed application. For more information, see [View an Application File](#view-file).
 
 <img src="/images/sts/ui-overview-tab.png" style="width: 1150px;"/>
 
