@@ -34,6 +34,7 @@ source 'https://s3.amazonaws.com/bosh-jenkins-gems/'
 ruby "1.9.3"
 
 gem "bootstrap-cf-plugin", :git => "git://github.com/cloudfoundry/bootstrap-cf-plugin"
+gem "bosh"
 ~~~
 
 Install the latest release of the bootstrap plugin.
