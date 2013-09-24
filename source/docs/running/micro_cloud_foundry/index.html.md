@@ -327,7 +327,7 @@ Follow these steps  whether you configured Micro Cloud Foundry with DHCP or a st
 
 The `cf micro-status`, `cf micro-online` and `cf micro-offline` commands automate the steps described in the previous section. Review that section to understand how the command changes your configuration.
 
-Install the cf gem, or upgrade it if needed. See [CF Installation](/docs/using/managing-apps/cf/) for instructions.
+Install the cf gem, or upgrade it if needed. See [CF Installation](/docs/using/managing-apps/cf/index.html) for instructions.
 
 ```bash
 Usage: 

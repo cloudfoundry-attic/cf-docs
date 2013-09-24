@@ -202,7 +202,7 @@ Once Cloud Foundry has been deployed using the bootstrap cf plugin, there will b
   </tr>
 </table>
 
-For more information about managing organizations, spaces, and users, go to the [cf](../../../using/managing-apps/cf) page.
+For more information about managing organizations, spaces, and users, go to the [cf](../../../using/managing-apps/cf/index.html) page.
 
 ## <a id='destroy-environment'></a>Destroying the AWS Environment ##
   <table style="width: 70%;"><tr><td>

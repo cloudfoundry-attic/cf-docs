@@ -152,7 +152,7 @@ This section has instructions for configuring a server resource that will repres
 
       <img src="/images/sts/orgs-and-spaces.png" />
 
-1. Once you have successfully configured the Pivotal Cloud Foundry server, it will appear in the **Servers** view of the Eclipse or STS user interface. To familiarize yourself with the plugin user interface, see [About the Plugin User Interface](#plugin-ui). When you are ready, proceed to [Deploy an Application](#deploy-an-application).     
+1. Once you have successfully configured the Pivotal Cloud Foundry server, it will appear in the **Servers** view of the Eclipse or STS user interface. To familiarize yourself with the plugin user interface, see [About the Plugin User Interface](#plugin-ui). When you are ready, proceed to [Deploy an Application](#deploy-an-application).
 
 ## <a id='plugin-ui'></a>About the Plugin User Interface ##
 
@@ -232,7 +232,7 @@ To deploy an application to Cloud Foundry using the plugin:
 
       <img src="/images/sts/launch-deployment.png" />
 
-1. The **Services Selection** window lists services provisioned in the target space. Checkmark the services, if any, that you want to bind to the application, and click **Finish**. Note that you can bind services to the application after deployment, as described in [Bind and Unbind Services](bind-service).
+1. The **Services Selection** window lists services provisioned in the target space. Checkmark the services, if any, that you want to bind to the application, and click **Finish**. Note that you can bind services to the application after deployment, as described in [Bind and Unbind Services](#bind-service).
 
       <img src="/images/sts/services-selection.png" />
 

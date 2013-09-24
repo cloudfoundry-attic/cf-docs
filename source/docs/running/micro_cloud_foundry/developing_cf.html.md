@@ -56,7 +56,7 @@ $ cf create-space space1
 $ cf target ccng.[your domain] --ask-space
 </pre>
 
-Push a test app using [cf](../../using/managing-apps/cf) or another Cloud Foundry [application management tool](../../using/managing-apps).
+Push a test app using [cf](../../using/managing-apps/cf/index.html) or another Cloud Foundry [application management tool](../../using/managing-apps/index.html).
 
 ## Proof of concept development workflow
 

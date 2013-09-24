@@ -2,7 +2,7 @@
 title: Deploying Micro BOSH
 ---
 
-Installation of BOSH is done using micro BOSH, which is a single VM that includes all of the [BOSH components](/docs/running/bosh/components/). If you want to play around with BOSH, or create a simple development setup, you can install micro BOSH using the BOSH Deployer. If you would like to use BOSH in production to manage a distributed system, you also use the BOSH Deployer, install micro BOSH, and then use it as a means to deploy the final distributed system on multiple VMs.
+Installation of BOSH is done using micro BOSH, which is a single VM that includes all of the [BOSH components](/docs/running/bosh/components/index.html). If you want to play around with BOSH, or create a simple development setup, you can install micro BOSH using the BOSH Deployer. If you would like to use BOSH in production to manage a distributed system, you also use the BOSH Deployer, install micro BOSH, and then use it as a means to deploy the final distributed system on multiple VMs.
 
 A good way to think about this two step process is to consider that BOSH is a distributed system in itself. Since BOSH's core purpose is to deploy and manage distributed systems, it makes sense that we would use it to deploy itself. On the BOSH team, we gleefully refer to this as [Inception](http://en.wikipedia.org/wiki/Inception).
 
@@ -10,7 +10,7 @@ A good way to think about this two step process is to consider that BOSH is a di
 
 ### <a id="bosh_cli"></a>BOSH CLI ###
 
-Install the [BOSH CLI](/docs/running/bosh/setup).
+Install the [BOSH CLI](/docs/running/bosh/setup/index.html).
 
 ### <a id="openstack_services"></a>OpenStack Services ###
 

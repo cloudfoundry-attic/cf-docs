@@ -195,4 +195,4 @@ Task 30 done
 VMs total: 50
 </pre>
 
-The Cloud Foundry deployment should now be ready to use. You can now follow the instructions in the [Using](/docs/using) section of these docs to install the [cf](/docs/using/managing-apps/cf) command-line tool and push an application.
+The Cloud Foundry deployment should now be ready to use. You can now follow the instructions in the [Using](/docs/using/index.html) section of these docs to install the [cf](/docs/using/managing-apps/cf/index.html) command-line tool and push an application.

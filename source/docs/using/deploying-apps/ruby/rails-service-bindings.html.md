@@ -14,7 +14,7 @@ To complete this quickstart guide, you need to fulfill the following prerequisit
 * [Ruby](http://www.ruby-lang.org/en/)
 * [Rails](http://rubyonrails.org/)
 * [Bundler](http://gembundler.com/)
-* The [CF](../../managing-apps/) command line tool
+* The [CF](../../managing-apps/index.html) command line tool
 * A sample application such as the one created in [this](./rails-getting-started.html) tutorial
 
 ## <a id='gemfile'></a>Configuring your Gemfile ##

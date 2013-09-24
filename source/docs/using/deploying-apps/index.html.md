@@ -67,7 +67,7 @@ There are three ways that Cloud Foundry can obtain the command to use to start a
 
 An application running on a Cloud Foundry instance can use services that the instance is configured to provision. Such built-in services vary for different Cloud Foundry instances.  
 
-The Pivotal CF hosted instance provides a variety of ready-to-provision services, including several databases, email, and Redis, among others.  For information about services available to applications running on the Pivotal CF hosted instance, see [Services Marketplace](/docs/dotcom/marketplace/services/).  
+The Pivotal CF hosted instance provides a variety of ready-to-provision services, including several databases, email, and Redis, among others.  For information about services available to applications running on the Pivotal CF hosted instance, see [Services Marketplace](/docs/dotcom/marketplace/services/index.html).  
 
 To use a built-in service, you need to create a service instance and bind it to your application.  [Getting Started with Services](/docs/dotcom/adding-a-service.html) has information about how to perform these tasks on the  Pivotal CF hosted service. Depending on the type of service, it may be necessary to configure the application to connect to a service instance.
 
@@ -79,7 +79,7 @@ For framework specific service information see:
 * [Service Bindings for Rack, Rails, or Sinatra Applications](/docs/using/services/ruby-service-bindings.html)
 * [Service Bindings for Node.js Applications](/docs/using/services/node-service-bindings.html)
 
-For information about how external services can work with Cloud Foundry, see [Services Architecture](/docs/running/architecture/services/).
+For information about how external services can work with Cloud Foundry, see [Services Architecture](/docs/running/architecture/services/index.html).
 
 
 
