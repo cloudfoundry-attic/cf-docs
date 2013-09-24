@@ -8,7 +8,7 @@ This guide walks you through binding and using services at run.pivotal.io. It as
 
 ## <a id='intro'></a>Intro to Services ##
 
-Cloud Foundry Services are add-ons that can be provisioned alongside your application. Learn all about Services at [Using Services](../using/services/).
+Cloud Foundry Services are add-ons that can be provisioned alongside your application. Learn all about Services at [Using Services](../using/services/index.html).
 
 In order to use services with your application you will need to:
 

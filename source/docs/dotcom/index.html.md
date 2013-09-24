@@ -11,4 +11,4 @@ Documentation specific to the Pivotal CF Hosted service.
 
 ## <a id='marketplace'></a>Services Marketplace ##
 
-* [Services Marketplace](marketplace/)
+* [Services Marketplace](marketplace/index.html)

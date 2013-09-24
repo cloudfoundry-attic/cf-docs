@@ -4,7 +4,7 @@ title: ClearDB
 
 ## <a id='managing-services'></a>Managing Services ##
 
-[Managing Services](../../../using/services/)
+[Managing Services](../../../using/services/index.html)
 
 ## <a id='integration'></a>Integrating the Service With Your App ###
 

@@ -10,7 +10,7 @@ These sections describe the architecture, topology, configuration, and use of BO
 
 * [Components](components/index.html)
 * [Local Setup](setup/index.html)
-* [Deploying Cloud Foundry with BOSH](/docs/running/deploying-cf/)
+* [Deploying Cloud Foundry with BOSH](/docs/running/deploying-cf/index.html)
 * [Reference](reference/index.html)
   * [Jobs](reference/jobs.html)
   * [Packages](reference/packages.html)
