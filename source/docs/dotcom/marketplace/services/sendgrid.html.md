@@ -168,6 +168,7 @@ To access your SendGrid dashboard, simply click the 'Manage' button next to the 
 
 You can continue [managing your services from the command line](http://docs.cloudfoundry.com/docs/using/services/managing-services.html).
 
+Cloud Foundry customers can start receiving 25,000 free emails each month. These 25,000 free monthly emails will give you access to advanced reporting and analytics and all APIs (Web, SMTP, Event, Parse, Sub-User).
 
 ## <a id='support'></a>Support ##
 
