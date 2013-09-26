@@ -363,11 +363,11 @@ Response:
 }
 ```
 
-Specifying `inline-releations-depth` > 1 should not result in an circular
+Specifying `inline-relations-depth` > 1 should not result in an circular
 expansion of resources.  For example, if there is a bidirectional relationship
 between two resources, e.g. an Organization has many Users and a User is a
 member of many Organizations, then the response to `GET
-/v2/organizations/:id?inline-releations-depth=10`
+/v2/organizations/:id?inline-relations-depth=10`
 should not expand the Organizations a User belongs to.  Doing so would result
 in an expansion loop.  The User expansion should provide a `organizations_url`
 instead.
