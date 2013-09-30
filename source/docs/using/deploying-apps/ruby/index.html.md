@@ -88,7 +88,7 @@ This section describes two approaches for ensuring that a database migration is 
 
 ### <a id='task'></a>Use Rake Task to Limit Migration ###
 
-1. Create a Rake task that limits migration to the first instance started.  The metadata for an application instance running on Cloud Foundry includes `instance_id`; the first instance that starts up has `instance_id` of "0".
+1. Create a Rake task that limits the migration to the first instance started.  The metadata for an application instance running on Cloud Foundry includes `instance_id`; the first instance that starts up has `instance_id` of "0".
 
   ~~~
   namespace :cf do
