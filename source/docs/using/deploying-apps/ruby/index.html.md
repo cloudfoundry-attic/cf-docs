@@ -111,7 +111,7 @@ This section describes two approaches for ensuring that a database migration is 
        ... the rest of your settings  ...
      ~~~
 
- Verify that the application instances started up, because, as with the prior method, if the migration fails, the application instances will not be startrf.
+ Verify that the application instances started up, because, as with the prior method, if the migration fails, the application instances will not be started.
 
 
 
