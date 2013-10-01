@@ -24,7 +24,7 @@ The Directory Server is written in Go and can be found in the `go/` directory of
 
 A DEA periodically checks the health of the applications running in it.
 
-If a URL is mapped to an application, the DEA attempts to connect to the URL, and if it successful, the DEA will consider that application state to be "Running". If there is no URL mapped to the application, the DEA checks the system process table for the application's process PID; if the PID exists, the DEA will consider that application state to be "Running". 
+If a URL is mapped to an application, the DEA attempts to connect to the port assigned to the application. If the application port is accepting connections, the DEA will consider that application state to be "Running". If there is no URL mapped to the application, the DEA checks the system process table for the application's process PID; if the PID exists, the DEA will consider that application state to be "Running". 
 
 The DEA also checks for a `AppState` object for the application.
 
