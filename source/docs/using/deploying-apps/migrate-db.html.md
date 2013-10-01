@@ -2,7 +2,7 @@
 title: Migrate a Database on Cloud Foundry
 ---
 
-In this version of CLoud Foundry, you cannot access a database running on Cloud Foundry remotely from a command shell. For this reason, database migration usually involves customizing the start command that Cloud Foundry runs when you push an application. The instructions below include directions for editing an application's manifest to migrate the database prior to starting the application. For more information about `manifest.yml`, see [cf Push and the Manifest](/docs/using/deploying-apps/manifest.html#push-and-manifest) on the [Application Manifests](/docs/using/deploying-apps/manifest.html) page.
+In this version of Cloud Foundry, you cannot access a database running on Cloud Foundry remotely from a command shell. For this reason, database migration usually involves customizing the start command that Cloud Foundry runs when you push an application. The instructions below include directions for editing an application's manifest to migrate the database prior to starting the application. For more information about `manifest.yml`, see [cf Push and the Manifest](/docs/using/deploying-apps/manifest.html#push-and-manifest) on the [Application Manifests](/docs/using/deploying-apps/manifest.html) page.
 
 
 ## <a id='migrate-ruby-db'></a>Migrate a Database for a Ruby App ##
