@@ -13,7 +13,7 @@ Assuming that you will run multiple instances of the application, you want to ru
 
 ### <a id='start-scale'></a>Start an Instance and then Scale ###
 
- Start a single instance when running the migration, and then start additional instances.  
+ Start a single instance when running the migration, and then scale the application to start additional instances.  
 
   1. In `manifest.yml`, set the instances attribute to "1", and using the `command` attribute, specify the Rake task --- `rake db:migrate` --- command before the command that starts the application.   
 
