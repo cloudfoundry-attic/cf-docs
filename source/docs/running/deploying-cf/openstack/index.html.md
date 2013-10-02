@@ -24,6 +24,8 @@ For advanced or support topics:
 
 * [Add Login Server](/docs/running/deploying-cf/common/login-server.html)
 
+* [Using OpenStack Swift as Cloud Foundry blobstore](using_swift_blobstore.html)
+
 For another example of using BOSH to deploy a system, follow these instructions: 
 
 [Deploying Wordpress using Micro BOSH](deploying_wordpress.html)
