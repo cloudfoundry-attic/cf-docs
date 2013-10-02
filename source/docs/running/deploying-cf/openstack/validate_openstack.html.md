@@ -46,7 +46,7 @@ Try the following to see if you may be affected by API throttling:
 
 <pre class="terminal">
 $ gem install fog
->> 100.times { p OpenStack.servers }
+>> 100.times { p Compute[:openstack].servers }
 </pre>
 
 If you are running **devstack**, add the following to your `localrc` and at the end of this page you will recreate your devstack without API throttling:
@@ -65,7 +65,7 @@ Verify that you can create a 30G volume:
 $ gem install fog
 $ fog openstack
 >> size = 30
->> v = OpenStack.volumes.create(size: size, name: 'test', description: 'test')
+>> v = Compute[:openstack].volumes.create(size: size, name: 'test', description: 'test')
 >> v.reload
 >> v.status
 "available"
