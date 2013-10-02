@@ -113,6 +113,21 @@ To generate a `unique_id`, try this [Online GUID Generator](http://www.guidgener
   <td>A new identifier that must be globally unique.  This ID will be passed as part of provision, bind, etc. requests.  This “primary key” is easier to work with than the combination of <code>[label, provider, version]</code> which also forms a “primary key”.</td>
 </tr>
 <tr>
+  <td>bindable</td>
+  <td>bool</td>
+  <td>If false, cloud controller will return an error to frontend clients when a user requests to bind an app to an instance of the service.</td>
+</tr>
+<tr>
+  <td>tags</td>
+  <td>array of objects</td>
+  <td>Used by buildpacks and application libraries to parse credentials from the <a href="../../../using/deploying-apps/environment-variable.html">VCAP_SERVICES environment variable</a>. Could also be used by frontend clients to filter marketplace services.</td>
+</tr>
+<tr>
+  <td>documentation_url</td>
+  <td>string</td>
+  <td>Used by frontend clients to display a URL to documentation for the service.</td>
+</tr>
+<tr>
   <td>service_plans</td>
   <td>array of objects</td>
   <td>A list of service plan objects to created along as part of this service (see POST /v2/service_plans for list of fields).</td>
