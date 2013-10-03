@@ -126,7 +126,8 @@ title: Welcome to Cloud Foundry Documentation
   </p>
 
   <p>
-  <a href="docs/running/architecture/services/">Services</a>
+  Services<br>
+  <a href="docs/running/architecture/services/">Adding Services to Cloud Foundry</a>
   </p>
 
   <p>
