@@ -1,5 +1,5 @@
 ---
-title: Writing a CloudFoundry Service
+title: Writing a Cloud Foundry Service
 ---
 
 There are 2 versions of the SERVICES API, this document represents version 1 of that API.
