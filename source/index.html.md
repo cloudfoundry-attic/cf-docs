@@ -108,9 +108,7 @@ title: Welcome to Cloud Foundry Documentation
   <a href="docs/running/deploying-cf/openstack/index.html">Deploy to OpenStack</a><br>   
   <a href="docs/running/deploying-cf/vsphere/index.html">Deploy to vSphere</a><br>
   <a href="docs/running/deploying-cf/vcloud/deploying_to_vcloud_director.html">Deploy to vCloud Director</a><br>
-  <br>
   <a href="docs/running/deploying-cf/adding-services.html">Deploying Community Services</a><br>
-  <br>
   <a href="docs/running/deploying-cf-with-chef/index.html">Deploy with Chef</a><br>
   <a href="docs/running/deploying-cf/run-local.html">Run a Local Cloud Foundry Instance</a>
 
