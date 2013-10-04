@@ -50,8 +50,8 @@ resource_pools:
     network: default
     size: 6
     stemcell:
-      name: bosh-stemcell
-      version: 0.6.7
+      name: bosh-vsphere-esxi-ubuntu
+      version: latest
     cloud_properties:
       cpu: 1
       disk: 8192

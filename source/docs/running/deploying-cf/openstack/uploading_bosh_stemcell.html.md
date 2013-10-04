@@ -2,7 +2,7 @@
 title: Uploading a BOSH Stemcell
 ---
 
-This guide describes the process for uploading a [BOSH Stemcell](/docs/running/bosh/components/stemcell.html) to your [BOSH Director](/docs/running/bosh/components/director.html). 
+This guide describes the process for uploading a [BOSH Stemcell](/docs/running/bosh/components/stemcell.html) to your [BOSH Director](/docs/running/bosh/components/director.html).
 
 ## <a id="prerequisites"></a>Prerequisites ##
 
@@ -31,8 +31,8 @@ Update stemcell
   extracting stemcell archive (00:00:04)
   verifying stemcell manifest (00:00:00)
   checking if this stemcell already exists (00:00:00)
-  uploading stemcell bosh-stemcell/939 to the cloud (00:00:27)                                      
-  save stemcell bosh-stemcell/939 (2214e824-e420-4a43-ac81-b6f600f25f80) (00:00:00)                 
+  uploading stemcell bosh-openstack-kvm-ubuntu/939 to the cloud (00:00:27)
+  save stemcell bosh-openstack-kvm-ubuntu/939 (2214e824-e420-4a43-ac81-b6f600f25f80) (00:00:00)
 Done                    6/6 00:02:11
 
 Task 1 done
@@ -46,13 +46,13 @@ Stemcell uploaded and created
 ## <a id="check_stemcell"></a>Check BOSH Stemcell ###
 
 To confirm that the BOSH Stemcell has been loaded into your BOSH Director use the `bosh stemcells` command:
-   
+
 <pre class="terminal">
 # bosh stemcells
 +---------------+---------+--------------------------------------+
 | Name          | Version | CID                                  |
 +---------------+---------+--------------------------------------+
-| bosh-stemcell | 939     | 2214e824-e420-4a43-ac81-b6f600f25f80 |
+| bosh-openstack-kvm-ubuntu | 939     | 2214e824-e420-4a43-ac81-b6f600f25f80 |
 +---------------+---------+--------------------------------------+
 
 Stemcells total: 1
