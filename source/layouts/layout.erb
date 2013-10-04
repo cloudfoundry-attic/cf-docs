@@ -9,9 +9,9 @@
     <!-- Use title if it's in the page YAML frontmatter -->
     <title><%= data.page.title || "Cloud Foundry Docs" %></title>
 
-    <%= stylesheet_link_tag "master" %>
-    <%= stylesheet_link_tag "style" %>
-    <%= javascript_include_tag  "all" %>
+    <link href="/stylesheets/master.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="/stylesheets/style.css" media="screen" rel="stylesheet" type="text/css" />
+    <script src="/javascripts/all.js" type="text/javascript"></script>
     <link href='/images/favicon.ico' rel='shortcut icon'>
     <script type="text/javascript">
       $(document).ready(function(){
