@@ -48,7 +48,7 @@ ls: cannot access /var/vcap/shared: Stale NFS file handle"
 
 Try the following ideas to resolve this.
 
-1. Recreate the `cloud_controller` (or `api`) jobs with the BOSH CLI `bosh recreate cloud_controller/0`
+1. (Recommended) Restart the `cloud_controller` (or `api`) jobs with the BOSH CLI `bosh restart cloud_controller`
 2. Manually recreate the NFS mount on the `cloud_controller` job server:
 
 ```
