@@ -38,7 +38,7 @@ If you get the following error when deploying an app to Cloud Foundry you may ha
 The app package is invalid: failed synchronizing resource pool File exists - /var/vcap/shared
 ```
 
-You can confirm that this is related to a broken/incomplete NFS mount by SSH into the `cloud_controller_ng` job and checking the existence of the `/var/vcap/shared` folder:
+To confirm that this is related to a broken/incomplete NFS mount, SSH into the `cloud_controller_ng` job and checking the existence of the `/var/vcap/shared` folder:
 
 ```
 $ bosh ssh cloud_controller/0 "ls -l /var/vcap/shared"
