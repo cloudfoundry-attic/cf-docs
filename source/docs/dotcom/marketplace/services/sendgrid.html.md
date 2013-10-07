@@ -59,7 +59,25 @@ With the SendGrid service provisioned and credentials added to the `VCAP_SERVICE
 
 ### Java ###
 
-This Java program will build a multi-part MIME email and send it through SendGrid. Java already has built in libraries to send and receive emails. This example uses [javamail] (https://java.net/projects/javamail/pages/Home).
+The recommended way to use SendGrid with Java is to use the [sendgrid-java](https://github.com/sendgrid/sendgrid-java) library. The following example uses [sendgrid-java](https://github.com/sendgrid/sendgrid-java). Simply, replace your username and password with the username and password in your `VCAP_SERVICES` environment variable.
+
+```java
+import com.github.sendgrid.SendGrid;
+SendGrid sendgrid = new SendGrid("sendgrid_username", "sendgrid_password");
+
+sendgrid.addTo("example@example.com");
+sendgrid.setFrom("other@example.com");
+sendgrid.setSubject("Hello World");
+sendgrid.setText("My first email through SendGrid");
+
+sendgrid.send();
+```
+
+See the example app [Spring-Attack](https://github.com/scottmotte/spring-attack) for a complete working example.
+
+#### Alternative approach with JavaMail
+
+If you prefer to use Java's built in libraries to send emails you can do the following using [JavaMail](https://java.net/projects/javamail/pages/Home).
 
 ```java
     import javax.mail.*;
