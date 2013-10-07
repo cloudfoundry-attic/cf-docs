@@ -186,12 +186,11 @@ SendGrid offers statistics for a number of different metrics to report on what i
 
 ![Dashboard](http://static.sendgrid.com.s3.amazonaws.com/images/delivery_metrics.png)
 
-
 To access your SendGrid dashboard, simply click the 'Manage' button next to the SendGrid service on your app space console.
 
-
-
 ## <a id='support'></a>Support ##
+
+Cloud Foundry customers can start receiving 25,000 free emails each month. These 25,000 free monthly emails will give you access to advanced reporting and analytics and all APIs (Web, SMTP, Event, Parse, Sub-User).
 
 One of SendGrid's best features is its responsive customer service. You can contact SendGrid 24/7 by phone, web, and live chat:
 
