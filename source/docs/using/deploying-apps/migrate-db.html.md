@@ -13,7 +13,7 @@ Assuming that you will run multiple instances of the application, you want to ru
 
 ### <a id='start-scale'></a>Start an Instance and then Scale ###
 
- Start a single instance when running the migration, and then scale the application to start additional instances.  
+ Start a single instance when running the migration, and then re-push the application to start the desired number of instances.  
 
   1. In `manifest.yml`, set the instances attribute to "1", and using the `command` attribute, specify the Rake task --- `rake db:migrate` --- command before the command that starts the application.   
 
@@ -26,7 +26,9 @@ Assuming that you will run multiple instances of the application, you want to ru
        ... the rest of your settings  ...
     ~~~
 
-  2. Ensure that the instance started (if the migration fails, the application will not be started), and then run [cf scale](/docs/using/managing-apps/cf/index.html#scale) to start additional application instances. 
+  2. Push the application.
+
+  3. Edit `manifest.yml` to set the `instances` attribute to the desired quantity and to remove the migrate task from the `command` attribute, and then re-push the application. 
 
 ### <a id='task'></a>Use Rake Task to Limit Migration ###
 
