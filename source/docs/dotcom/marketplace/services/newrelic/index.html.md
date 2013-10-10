@@ -121,7 +121,7 @@ Format of `VCAP_SERVICES` environment variable:
 	]
 }
 ~~~
-For more information, see [VCAP_SERVICES Environment Variable](../../../using/deploying-apps/environment-variable.html).
+For more information, see [VCAP_SERVICES Environment Variable](/docs/using/deploying-apps/environment-variable.html).
 
 ---
 
