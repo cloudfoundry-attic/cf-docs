@@ -4,6 +4,8 @@ title: SendGrid
 
 [SendGrid's](http://sendgrid.com)  cloud-based email infrastructure relieves businesses of the cost and complexity of maintaining custom email systems. SendGrid provides reliable delivery, scalability and real-time analytics along with flexible APIs that make custom integration a breeze.
 
+Pivotal CF hosted customers can start receiving 25,000 free emails using SendGrid each month. This will give you access to advanced reporting and analytics and all APIs (Web, SMTP, Event, Parse, Sub-User). If you have a run.pivotal.io account, simply [login](http://console.run.pivotal.io/) and go to the SendGrid plan page in the Pivotal CF marketplace to get started with your 25,000 free monthly emails for use with your app. Sign up [here](http://console.run.pivotal.io/register) if you do not have an account.
+
 ## <a id='managing'></a>Managing Services ##
 
 To create and bind a new SendGrid service, see [Managing Services from the Command Line](../../../using/services/managing-services.html).
@@ -189,8 +191,6 @@ SendGrid offers statistics for a number of different metrics to report on what i
 To access your SendGrid dashboard, simply click the 'Manage' button next to the SendGrid service on your app space console.
 
 ## <a id='support'></a>Support ##
-
-Cloud Foundry customers can start receiving 25,000 free emails each month. These 25,000 free monthly emails will give you access to advanced reporting and analytics and all APIs (Web, SMTP, Event, Parse, Sub-User).
 
 One of SendGrid's best features is its responsive customer service. You can contact SendGrid 24/7 by phone, web, and live chat:
 
