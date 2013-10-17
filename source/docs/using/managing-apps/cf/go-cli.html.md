@@ -5,19 +5,32 @@ title: cf Command Line Interface
 cf is Cloud Foundry's command line interface. You can use cf to deploy and manage applications running on most Cloud Foundry based environments, including CloudFoundry.com.
 
 
+##<a id='api'></a> api ##
 
+Set or view target API URL.
+
+**Usage**
+
+`go-cf api URL`
+
+<div class="command-doc">
+  <pre class="terminal">
+
+</pre>
+</div>
 
 ##<a id='app'></a> app ##
 Display the health and status of an application.
 
 **Usage**
 
-`go-cf app`
+`go-cf app APP`
 
 **Example**
 
 <div class="command-doc">
   <pre class="terminal">
+
 go-cf app hello-frank
 Showing health and status for app hello-frank...
 OK
@@ -111,7 +124,7 @@ TIP: Use 'cf push' to ensure your env variable changes take effect</pre>
 
 
 
-## <a id='crashlogs'></a> crashlogs ##
+## <a id='crashlogs'></a> crashlogs TBS##
 
 Display the staging, stdout and stderr logs for an application's unresponsive instances.
 
@@ -245,8 +258,16 @@ Create a user account. If you do not supply required options on the command line
   <div class="break"></div>
 </div>
 
+## <a id='delete-domain'></a> delete-domain ##
 
+Delete a domain.
 
+**Usage**
+`go-cf delete-domain DOMAIN` 
+
+Use the `-f` option to delete the domain without being prompted to confirm that you want to delete it. For example:
+
+`go-cf delete-domain -f DOMAIN`
 
 ## <a id='delete'></a> delete, d ##
 
@@ -288,27 +309,11 @@ Use the `-f` option to delete the organization without being prompted to confirm
   <div class="break"></div>
 </div>
 
-## <a id='delete-route'></a> delete-route ##
+## <a id='delete-route'></a> delete-route TBS##
 
 Delete a route.
 
 **Usage**
-
-**Example**
-
-<div class="command-doc">
-  <pre class="terminal"></pre>
-  <div class="break"></div>
-</div>
-
-
-
-## <a id='delete-service-auth-token'></a> delete-service-auth-token ##
-
-Delete a service broker. 
-
-**Usage**
-`go-cf delete-service-broker SERVICE_BROKER
 
 **Example**
 
@@ -331,6 +336,19 @@ Delete a service authorization token.
   <div class="break"></div>
 </div>
 
+## <a id='delete-service-auth-token'></a> delete-service-broker ##
+
+Delete a service broker. 
+
+**Usage**
+`go-cf delete-service-broker SERVICE_BROKER
+
+**Example**
+
+<div class="command-doc">
+  <pre class="terminal"></pre>
+  <div class="break"></div>
+</div>
 
 ## <a id='delete-service'></a>delete-service, ds ##
 
@@ -474,57 +492,44 @@ The following data is returned for each event:
 * description --- Description of the error.
 * exit status --- Exit status 
 
-## <a id='file'></a> files##
+## <a id='files'></a> files, f##
 
 Print out a list of files in a directory or the contents of a specific file, belonging to the specified application.
 
 **Usage**
-`cf files APP [PATH]`
 
+`cf files APP [PATH]` or `cf f APP [PATH]`
 
-<div class="command-doc">
-  <pre class="terminal">$ cf file [application name] [path]</pre>
-</div>
+**Example**
 
-Sample Result
-
+In this example, the files in the application named "hello-frankie" are listed.
 <div class="command-doc">
   <pre class="terminal">
-cf file rabbitmq-node staging_info.yml
-Getting file contents... OK
-
----
-detected_buildpack: Node.js
-start_command: node app.js
-</pre>
-</div>
-
-
-## <a id='files'></a> files ##
-
-List an application's files.
-
-Sample Result
-
-<div class="command-doc">
-  <pre class="terminal">
-cf file rabbitmq-node
-Getting file contents... OK
-
+go-cf files hello-frankie
+Getting files...
+OK
 .bash_logout                              220B
 .bashrc                                   3.0K
 .profile                                  675B
 app/                                         -
 logs/                                        -
-nodejs-0.10.15.tgz                        5.3M
-nodejs-0.4.7.tgz                          3.1M
-npm-1.2.30.tgz                            2.2M
 run.pid                                     3B
-scons-1.2.0.tgz                         382.1K
-staging_info.yml                           59B
-tmp/                                         -
+startup                                   490B
+tmp/                                         -                         -
 </pre>
 </div>
+
+In this example, the contents of the file named "run.pid" are listed.
+
+<div class="command-doc">
+  <pre class="terminal">
+go-cf files hello-frankie run.pid
+Getting files...
+OK
+32
+</pre>
+</div>
+
 
 ## <a id='guid'></a> guid TBS##
 
@@ -542,72 +547,62 @@ Get the GUID for the object with the type (for instance, app, organization, spac
 |--type TYPE |y |The type of the object: "app", "org", "space", "domain".  |
 
 
-## <a id='health'></a> health ##
+## <a id='login'></a> login, l ##
 
-Display the health of the specified applications.
+Authenticate with the target. 
+
+**Usage**
+
+`cf login [USERNAME] [PASSWORD]`
+
+**Interactive Login Example**
+
+Although you can supply your username and password on the command line, it is not recommended, as your shell history will contain your password in plain text. For best security, enter `login` on the command line without your username and password, and then respond to the interactive prompts.
 
 <div class="command-doc">
-  <pre class="terminal">$ cf health [list of application names]</pre>
+  <pre class="terminal">
+cf login
+
+target: https://api.run.pivotal.io
+
+Email> jdoe@startup.io
+
+Password> *********
+
+Authenticating... OK
+  </pre>
   <div class="break"></div>
 </div>
 
-The current status of the application, for example "running", "flapping", "stopped", is returned. If only a subset of application instances are running, the percentage of instances that are running is shown.
+**Non-interactive Examples**
 
-## <a id='instances'></a> instances ##
-List the instances of the specified application.
 
-<div class="command-doc">
-  <pre class="terminal">$ cf instances [list of application names]</pre>
-  <div class="break"></div>
-</div>
+`cf login jdoe@startup.io pa55woRD` (specify username and password to login non-interactively)
 
-For an instance that is running, the following data is returned:
+`cf login jdoe@startup.io "my password"` (use quotes for passwords with a space)
+   
+`cf login jdoe@startup.io "\"password\""` (escape quotes if used in password)
 
-* started -- The time that the instance was started.
-* console -- The port and IP address where the instance is running.
-
-## <a id='login'></a> login ##
-
-Authenticate with the target. If you do not supply required options on the command line, cf will prompt for them. 
-
-<div class="command-doc">
-  <pre class="terminal">$ cf login [email]</pre>
-  <div class="break"></div>
-</div>
-
-| Qualifier | Required | Description |
-| :-------- | :------- | :---------- |
-|--password PASSWORD |y |Password to use to authenticate. |
-|--username, --email EMAIL  |y |Username or email that identifies the user account.|
-|-o, --organization, --org ORGANIZATION |n |Use this option to specify the space to switch to upon login. |
-|-s, --space SPACE  |n |Use this option so specify the space to switch to upon login. |
-
-## <a id='logout'></a> logout ##
+## <a id='logout'></a> logout, lo ##
 
 Log out from the target.
 
-<div class="command-doc">
-  <pre class="terminal">$ cf logout</pre>
-  <div class="break"></div>
-</div>
+**Usage**
+
+`cf logout`
 
 ## <a id='logs'></a> logs ##
 
-Display log files, such as staging, stdout, and stderr, for an application. The log files available for an application vary by type.
+Tail, or by using the `--recent` qualifier, display the recently added content of log files, such as staging, stdout, and stderr, for an application. The log files available for an application vary by type.
 
-To view the contents of a specific file in the application directory structure, use 'cf file'.
+To view the contents of a specific file in the application directory structure, use `cf files`.
 
-<div class="command-doc">
-  <pre class="terminal">$ cf logs [application name]</pre>
-  <div class="break"></div>
-</div>
-| Qualifier | Required | Description |
-| :-------- | :------- | :---------- |
-|--all |n |Use this option if you want to list log files for all instances of the application. |
-|--app APP |y |The name of the application. |
-|--instance INSTANCE |n |Use to specify the application instance, for instance "2", whose logs you want to list. <br>If not specified logs for the first instance started ("0") are listed.|
+**Usage**
 
-Sample Results 
+`cf logs APP [--recent]`
+
+
+**Example**
 
 <div class="command-doc">
   <pre class="terminal">cf logs rabbitmq-node
@@ -1067,13 +1062,6 @@ Stop an application whose status is not already "Stopped".
 |--all | |Stop all application in the space. |
 |--apps, --app APPS | |Use this qualifier to specify selected applications to stop. |
 
-## <a id='switch-space'></a> switch-space ##
-
-Switch to a different space.
-
-<div class="command-doc">
-  <pre class="terminal">$ cf switch-space [space name]</pre>
-</div>
 
 ## <a id='tail'></a> tail ##
 
@@ -1091,53 +1079,50 @@ Watch the file for the specified application and the specified path, and display
 
 ## <a id='target'></a> target ##
 
-Set or display the target cloud, organization, and space. When you run a cf command that reads or writes information about applications or service instances, by default the command will  access objects in the currently selected target cloud, organization, and space. 
+Set a target organization or user, or view the currently targeted API endpoint, logged-in user, and targeted organization and space. 
 
+**Usage**
+
+`go-cf target [-o ORG] [-s SPACE0`
+
+**Example**
+
+To target an organization and space:
 <div class="command-doc">
-  <pre class="terminal">$ cf target [URL]</pre>
+  <pre class="terminal">
+go-cf target -o jdoe -s development
+API endpoint: https://api.run.pivotal.io (API version: 2)
+User:         jdoe@gopivotal.com
+Org:          jdoe
+Space:        development
+</pre>
   <div class="break"></div>
 </div>
 
-
-| Qualifier | Required | Description |
-| :-------- | :------- | :---------- |
-| --url URL |n| Use this option to select a different Cloud Foundry instance.|
-|--org ORGANIZATION |n |Use this option to select a different Cloud Foundry organization. |
-|--space SPACE |n |Use this option to select a different Cloud Foundry space. |
-
-If no qualifiers are specified on the command line, the following data is returned:
-
-* target -- The target Cloud Foundry instance.
-* organization -- The currently selected organization.
-* space -- The currently selected space.
-
-## <a id='targets'></a> targets ##
-
-List known targets.
-
+To target a different space:
 <div class="command-doc">
-  <pre class="terminal">$ cf targets</pre>
+  <pre class="terminal">
+go-cf target  -s production
+API endpoint: https://api.run.pivotal.io (API version: 2)
+User:         jdoe@gopivotal.com
+Org:          jdoe
+Space:        production
+</pre>
   <div class="break"></div>
 </div>
 
-The URL for each known Cloud Foundry instance will be returned.
-
-
-## <a id='tunnel'></a> tunnel ##
-
-Tunnel to a service instance. You can keep the tunnel open or automatically open a client and connect to the service. For more information on tunneling to a service see [Tunneling to Services](../../services/tunnelling-with-services.html). 
+To view current target settings:
 
 <div class="command-doc">
-  <pre class="terminal">$ cf tunnel [instance name] [application name]</pre>
+  <pre class="terminal">
+go-cf target 
+API endpoint: https://api.run.pivotal.io (API version: 2)
+User:         jdoe@gopivotal.com
+Org:          jdoe
+Space:        production
+</pre>
   <div class="break"></div>
 </div>
-
-
-| Qualifier | Required | Description |
-| :-------- | :------- | :---------- |
-| --client CLIENT | |Client to automatically launch. |
-|--instance INSTANCE | |Service instance to tunnel to. |
-|--port PORT             | |Port to bind the tunnel to. |
 
 ## <a id='unbind-service'></a> unbind-service ##
 
@@ -1148,71 +1133,65 @@ Remove a service binding from an application. cf will prompt for required qualif
   <div class="break"></div>
 </div>
 
-## <a id='unmap-domain'></a> unmap-domain ##
 
-Unmap a domain from the current space, and optionally delete it.
+## <a id='unmap-domain'></a> unmap-domain##
 
+Unmap a domain from a space.
+
+**Usage**
 <div class="command-doc">
-  <pre class="terminal">$ cf unmap-domain [domain] [--delete]</pre>
+  <pre class="terminal">$ cf unmap-domain SPACE DOMAIN</pre>
   <div class="break"></div>
 </div>
 
+**Example**
 
-| Qualifier | Required | Description |
-| :-------- | :------- | :---------- |
-|--delete | | | Use this qualifier to delete as well as unmap the domain.
-|--domain DOMAIN | |Domain to unmap |
-| --space SPACE| | Space from which to unmap the domain. |
-| --org ORGANIZATION| |Oranization from which to unmap the domain. |
+## <a id='unmap-route'></a> unmap-route##
 
-## <a id='unmap'></a> unmap ##
+Remove a URL route from an application.
 
-Disassociate a URL from an application.
-
+**Usage**
 <div class="command-doc">
-  <pre class="terminal">$ cf unmap [application name] [url]</pre>
+  <pre class="terminal">$ cf unmap-route APP DOMAIN [-n HOSTNAME]</pre>
   <div class="break"></div>
 </div>
 
+**Example**
 
-| Qualifier | Required | Description |
-| :-------- | :------- | :---------- |
-|--all | |Act on all routes |
-| --app APP| |Application from which to remove the URL.|
-|--url URL | |URL to unmap. |
-| | | |
 ## <a id='unset-env'></a> unset-env ##
 
 Remove an environment variable. For information about defining an environment variable see [set-env](#set-env).
 
+**Usage**
 <div class="command-doc">
-  <pre class="terminal">$ cf unset-env [application name] [variable name]</pre>
+  <pre class="terminal">$ cf unset-env APP NAME</pre>
 </div>
 
-
-| Qualifier | Required | Description |
-| :-------- | :------- | :---------- |
-|--[no-]restart |n |Use this option to indicate that you do (or do not) want to restart the application after updating it. |
-|--app APP | y |The application from which you are defining the variable. |
-|--name NAME    | y |The name of the environment variable to remove. |
 
 ## <a id='update-service-auth-token'></a> update-service-auth-token ##
 
 Update a service authorization token.
 
+**Usage**
+
 <div class="command-doc">
   <pre class="terminal">$ cf update-service-auth-token [SERVICE_AUTH_TOKEN]</pre>
 </div>
 
-## <a id='users'></a> users ##
-
-List all users.
+## <a id='update-service-broker'></a> update-service-broker ##
+**Usage**
 
 <div class="command-doc">
-  <pre class="terminal">$ cf users</pre>
+  <pre class="terminal">$ cf update-service-broker SERVICE_BROKER USERNAME PASSWORD URL</pre>
 </div>
 
+## <a id='update-user-provided-service'></a>update-user-provided-service, uups ##
 
+**Usage**
+
+<div class="command-doc">
+  <pre class="terminal">$ cf update-service-broker SERVICE_BROKER USERNAME PASSWORD URL</pre>
+</div>
 
 
 
