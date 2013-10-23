@@ -2,7 +2,7 @@
 title: Deploying Micro BOSH
 ---
 
-Installation of BOSH is done using micro BOSH, which is a single VM that includes all of the [BOSH components](/docs/running/bosh/components/). If you want to play around with BOSH, or create a simple development setup, you can install micro BOSH using the BOSH Deployer. If you would like to use BOSH in production to manage a distributed system, you also use the BOSH Deployer, install micro BOSH, and then use it as a means to deploy the final distributed system on multiple VMs.
+Installation of BOSH is done using micro BOSH, which is a single VM that includes all of the [BOSH components](/docs/running/bosh/components/index.html). If you want to play around with BOSH, or create a simple development setup, you can install micro BOSH using the BOSH Deployer. If you would like to use BOSH in production to manage a distributed system, you also use the BOSH Deployer, install micro BOSH, and then use it as a means to deploy the final distributed system on multiple VMs.
 
 A good way to think about this two step process is to consider that BOSH is a distributed system in itself. Since BOSH's core purpose is to deploy and manage distributed systems, it makes sense that we would use it to deploy itself. On the BOSH team, we gleefully refer to this as [Inception](http://en.wikipedia.org/wiki/Inception).
 
@@ -10,16 +10,16 @@ A good way to think about this two step process is to consider that BOSH is a di
 
 ### <a id="bosh_cli"></a>BOSH CLI ###
 
-Install the [BOSH CLI](/docs/running/bosh/setup).
+Install the [BOSH CLI](/docs/running/bosh/setup/index.html).
 
 ### <a id="openstack_services"></a>OpenStack Services ###
 
 Micro BOSH needs a running OpenStack environment. Only [Folsom](https://wiki.openstack.org/wiki/ReleaseNotes/Folsom) and [Grizzly](https://wiki.openstack.org/wiki/ReleaseNotes/Grizzly) OpenStack releases are supported.
 
-You will need access to these OpenStack services: 
+You will need access to these OpenStack services:
 
 * [Identity](http://www.openstack.org/software/openstack-shared-services/): Micro BOSH will authenticate your credentials trought the identity server and get the endpoint URLs for other OpenStack services.
-* [Compute](http://www.openstack.org/software/openstack-compute/): Micro BOSH will boot new vms, assign floating IPs to vm, and create and attach volumes to vms. 
+* [Compute](http://www.openstack.org/software/openstack-compute/): Micro BOSH will boot new vms, assign floating IPs to vm, and create and attach volumes to vms.
 * [Image](http://www.openstack.org/software/openstack-shared-services/): Micro BOSH will update new images (called [BOSH Stemcells](/docs/running/bosh/components/stemcell.html) in BOSH terminology).
 
 Although the new [OpenStack Networking](http://www.openstack.org/software/openstack-networking/) service is not required, it is recommended if you want to deploy complex distributed systems.
@@ -69,11 +69,11 @@ logging:
 
 network:
   type: manual
-  vip: <allocated_floating_ip> # Optional  
+  vip: <allocated_floating_ip> # Optional
   ip: <static_ip>
   cloud_properties:
     net_id: <network_uuid>
-    
+
 resources:
   persistent_disk: 16384
   cloud_properties:
@@ -83,9 +83,9 @@ cloud:
   plugin: openstack
   properties:
     openstack:
-      auth_url: http://<identity_server>:5000/v2.0 
+      auth_url: http://<identity_server>:5000/v2.0
       username: <username>
-      api_key: <password> 
+      api_key: <password>
       tenant: <tenant>
       region: <region> # Optional
       default_security_groups: ["ssh", "bosh"]
@@ -107,7 +107,7 @@ Adapt the `micro_bosh.yml` file to your environment settings:
 
 #### <a id="network_properties"></a>Network properties ####
 
-This section sets the network configuration for your Micro BOSH. 
+This section sets the network configuration for your Micro BOSH.
 
 If you are using nova-network, adapt the network section with below settings:
 
@@ -115,7 +115,7 @@ If you are using nova-network, adapt the network section with below settings:
 network:
   type: dynamic
   vip: <allocated_floating_ip> # Optional
-~~~        
+~~~
 
 * The `vip` option is optional, and allows you to associate a floating IP adress to the Micro Bosh vm in case you want to access it from outside of the vm network. If set, `allocated_floating_ip` **must** be a previously allocated floating ip.
 
@@ -129,21 +129,21 @@ network:
   vip: <allocated_floating_ip> # Optional
   cloud_properties:
     net_id: <network_uuid>
-~~~ 
+~~~
 
 * The `vip` option is optional, and allows you to associate a floating IP adress to the Micro Bosh vm in case you want to access it from outside of the vm network. If set, `allocated_floating_ip` **must** be a previously allocated floating ip.
 * The `net_id` option sets the OpenStack network to use. `network_uuid` **must** be an existing Network UUID (you can list your OpenStack networks using the command `quantum net-list`).
 
-1. If you want to set the Micro Bosh IP address manually: 
+1. If you want to set the Micro Bosh IP address manually:
 
 ~~~yaml
 network:
   type: manual
-  vip: <allocated_floating_ip> # Optional 
+  vip: <allocated_floating_ip> # Optional
   ip: <static_ip>
   cloud_properties:
     net_id: <network_uuid>
-~~~        
+~~~
 
 * The `vip` option is optional, and allows you to associate a floating IP adress to the Micro Bosh vm in case you want to access it from outside of the vm network. If set, `allocated_floating_ip` **must** be a previously allocated floating ip.
 * The `ip` option sets the IP address to assign to the Micro BOSH vm. `static_ip` **must** be an IP address belowing to the IP range of one of the network subnets set in `net_id`.
@@ -151,36 +151,36 @@ network:
 
 #### <a id="resources_properties"></a>Resources properties ####
 
-This section sets the resources configuration for your Micro Bosh. 
+This section sets the resources configuration for your Micro Bosh.
 
 ~~~yaml
 resources:
   persistent_disk: 16384
   cloud_properties:
     instance_type: <flavor_name>
-~~~ 
+~~~
 
 * The `persistent_disk` indicates that a new 16Gb volume will be created and attached to the Micro BOSH vm. On this disk, Micro BOSH will store the data, so in case you reboot or when upgrading the Micro BOSH vm, no data will be lost.
-* The `instance_type` set the OpenStack flavor used for the Micro BOSH vm. The `flavor_name` **must** have ephemeral disk (check the [validate your OpenStack](validate_openstack.html#ephemeral) guide) 
+* The `instance_type` set the OpenStack flavor used for the Micro BOSH vm. The `flavor_name` **must** have ephemeral disk (check the [validate your OpenStack](validate_openstack.html#ephemeral) guide)
 
 #### <a id="cloud_properties"></a>Cloud properties ####
 
-This section sets the cloud configuration for your Micro BOSH. 
+This section sets the cloud configuration for your Micro BOSH.
 
 ~~~yaml
 cloud:
   plugin: openstack
   properties:
     openstack:
-      auth_url: http://<identity_server>:5000/v2.0 
+      auth_url: http://<identity_server>:5000/v2.0
       username: <username>
-      api_key: <password> 
+      api_key: <password>
       tenant: <tenant>
       region: <region> # Optional
       default_security_groups: ["default", <microbosh_security_group>]
       default_key_name: <microbosh_keypair>
       private_key: <path_to_microbosh_keypar_private_key>
-~~~ 
+~~~
 
 * The `auth_url` option set your [OpenStack identity](http://www.openstack.org/software/openstack-shared-services/) server.
 * The `username`, `api_key` and `tenant` options sets your OpenStack credentials.
@@ -190,7 +190,7 @@ cloud:
 
 #### <a id="apply_spec_properties"></a>Apply Spec properties ####
 
-This section sets the specification configuration for your Micro BOSH. 
+This section sets the specification configuration for your Micro BOSH.
 
 ~~~yaml
 apply_spec:
@@ -246,11 +246,11 @@ Deploy the Micro BOSH:
 <pre class="terminal">
 bosh micro deploy ~/bosh-workspace/stemcells/bosh-stemcell-latest-openstack-kvm-ubuntu.tgz
 </pre>
- 
+
 This command will output:
 
     Deploying new micro BOSH instance `microbosh-openstack/micro_bosh.yml' to `https://<microbosh_ip_address>:25555' (type 'yes' to continue): yes
-    
+
     Verifying stemcell...
     File exists and readable                                     OK
     Manifest not found in cache, verifying tarball...
@@ -259,25 +259,25 @@ This command will output:
     Stemcell image file                                          OK
     Writing manifest to cache...
     Stemcell properties                                          OK
-    
+
     Stemcell info
     -------------
-    Name:    bosh-stemcell
-    Version: 939
-    
-    
+    Name:    bosh-openstack-kvm-ubuntu
+    Version: 1029
+
+
     Deploy Micro BOSH
-      unpacking stemcell (00:00:02)                                                                     
-      uploading stemcell (00:00:35)                                                                     
-      creating VM from 04a1bdfe-4479-492e-8622-54380032a13a (00:01:21)                                  
-      waiting for the agent (00:01:20)                                                                  
-      create disk (00:00:05)                                                                            
-      mount disk (00:00:14)                                                                             
-      stopping agent services (00:00:01)                                                                
-      applying micro BOSH spec (00:00:16)                                                               
-      starting agent services (00:00:00)                                                                
-      waiting for the director (00:00:15)                                                               
-    Done                    11/11 00:04:19                                                              
+      unpacking stemcell (00:00:02)
+      uploading stemcell (00:00:35)
+      creating VM from 04a1bdfe-4479-492e-8622-54380032a13a (00:01:21)
+      waiting for the agent (00:01:20)
+      create disk (00:00:05)
+      mount disk (00:00:14)
+      stopping agent services (00:00:01)
+      applying micro BOSH spec (00:00:16)
+      starting agent services (00:00:00)
+      waiting for the director (00:00:15)
+    Done                    11/11 00:04:19
     WARNING! Your target has been changed to `https://<microbosh_ip_address>:25555'!
     Deployment set to '~/bosh-workspace/deployments/microbosh-openstack/micro_bosh.yml'
     Deployed `microbosh-openstack/micro_bosh.yml' to `https://<microbosh_ip_address>:25555', took 00:04:19 to complete
@@ -352,7 +352,7 @@ This command will output:
 
     Config
                  /Users/frodenas/.bosh_config
-    
+
     Director
       Name       microbosh-openstack
       URL        https://<microbosh_ip_address>:25555
@@ -362,13 +362,13 @@ This command will output:
       CPI        openstack
       dns        enabled (domain_name: microbosh)
       compiled_package_cache disabled
-    
+
     Deployment
       not set
 
 ### <a id="microbosh_ssh"></a>SSH ###
 
-You can ssh to your Micro BOSH vm using the private key set at the [cloud properties](#cloud_properties) section of your Micro BOSH deployment file: 
+You can ssh to your Micro BOSH vm using the private key set at the [cloud properties](#cloud_properties) section of your Micro BOSH deployment file:
 
 <pre class="terminal">
 ssh -i &lt;path_to_microbosh_keypar_private_key&gt; vcap@&lt;microbosh_ip_address&gt;
@@ -398,17 +398,17 @@ bosh micro delete
 This command will output:
 
     You are going to delete micro BOSH deployment `microbosh-openstack'.
-    
+
     THIS IS A VERY DESTRUCTIVE OPERATION AND IT CANNOT BE UNDONE!
-    
+
     Are you sure? (type 'yes' to continue): yes
-    
+
     Delete micro BOSH
-      stopping agent services (00:00:01)                                                                
-      unmount disk (00:00:06)                                                                           
-      detach disk (00:00:06)                                                                            
-      delete disk (00:02:25)                                                                            
-      delete VM (00:00:10)                                                                              
-      delete stemcell (00:00:03)                                                                        
-    Done                    7/7 00:02:53                                                                
+      stopping agent services (00:00:01)
+      unmount disk (00:00:06)
+      detach disk (00:00:06)
+      delete disk (00:02:25)
+      delete VM (00:00:10)
+      delete stemcell (00:00:03)
+    Done                    7/7 00:02:53
     Deleted deployment 'microbosh-openstack', took 00:02:53 to complete

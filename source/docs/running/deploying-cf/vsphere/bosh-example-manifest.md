@@ -31,8 +31,8 @@ This is an example manifest for deploying BOSH via Micro BOSH. The next step wou
     resource_pools:
     - name: small
       stemcell:
-        name: bosh-stemcell
-        version: 0.6.7
+        name: bosh-vsphere-esxi-ubuntu
+        version: latest
       network: default
       size: 5
       cloud_properties:
@@ -41,8 +41,8 @@ This is an example manifest for deploying BOSH via Micro BOSH. The next step wou
         cpu: 1
     - name: director
       stemcell:
-        name: bosh-stemcell
-        version: 0.6.7
+        name: bosh-vsphere-esxi-ubuntu
+        version: latest
       network: default
       size: 1
       cloud_properties:

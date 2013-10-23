@@ -23,7 +23,7 @@ If you do not have an account yet, you can [sign up here](https://console.run.pi
 
 ## <a id='install-cf'></a>Install cf Command Line Tool ##
 
-You'll use the `cf` [command line tool](/docs/using/managing-apps/cf) to deploy your application. You can also use it to check on the health of your application, change settings, and stop and restart your app.
+You'll use the `cf` [command line tool](/docs/using/managing-apps/cf/index.html) to deploy your application. You can also use it to check on the health of your application, change settings, and stop and restart your app.
 
 Because `cf` is a Ruby gem, you will need to have Ruby and RubyGems installed. See the [Installing Ruby](/docs/common/install_ruby.html) page for help installing Ruby and RubyGems.
 

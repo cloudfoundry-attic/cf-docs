@@ -15,11 +15,11 @@ This document explains how to delete a  Cloud Foundry Deployment and BOSH Deploy
 
           $ bosh deployments
 
-            +--------------+--------------+---------------------+
-            | Name         | Release(s)   | Stemcell(s)         |
-            +--------------+--------------+---------------------+
-            | cloudfoundry | appcloud/119 | bosh-stemcell/0.6.4 |
-            +--------------+--------------+---------------------+
+            +--------------+--------------+-------------------------------+
+            | Name         | Release(s)   | Stemcell(s)                   |
+            +--------------+--------------+-------------------------------+
+            | cloudfoundry | appcloud/119 | bosh-vsphere-esxi-ubuntu/1029 |
+            +--------------+--------------+-------------------------------+
 
 + Run the following command to delete the Cloud Foundry deployment:
 
@@ -78,13 +78,13 @@ This completes the deletion of Cloud Foundry deployment release from BOSH.
 + First delete the BOSH stemcell as follows
 
 
- `bosh delete stemcell bosh-stemcell 0.6.4` # you can find stemcell name in the output of `bosh deployment` which we executed above
+ `bosh delete stemcell bosh-vsphere-esxi-ubuntu 1029` # you can find stemcell name in the output of `bosh deployment` which we executed above
 
    Output of the above command is partially listed below:
 
-          $ bosh delete stemcell bosh-stemcell 0.6.4
+          $ bosh delete stemcell bosh-vsphere-esxi-ubuntu 1029
             Checking if stemcell exists...
-            You are going to delete stemcell `bosh-stemcell/0.6.4'
+            You are going to delete stemcell `bosh-vsphere-esxi-ubuntu/1029'
             Are you sure? (type 'yes' to continue): yes
 
             Director task 44
@@ -103,11 +103,11 @@ This completes the deletion of Cloud Foundry deployment release from BOSH.
 
         $ bosh deployments
 
-          +------+------------+---------------------+
-          | Name | Release(s) | Stemcell(s)         |
-          +------+------------+---------------------+
-          | bosh | bosh/10    | bosh-stemcell/0.6.4 |
-          +------+------------+---------------------+
+          +------+------------+-------------------------------+
+          | Name | Release(s) | Stemcell(s)                   |
+          +------+------------+-------------------------------+
+          | bosh | bosh/10    | bosh-vsphere-esxi-ubuntu/1029 |
+          +------+------------+-------------------------------+
 
           Deployments total: 1
 

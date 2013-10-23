@@ -4,6 +4,8 @@ title: SendGrid
 
 [SendGrid's](http://sendgrid.com)  cloud-based email infrastructure relieves businesses of the cost and complexity of maintaining custom email systems. SendGrid provides reliable delivery, scalability and real-time analytics along with flexible APIs that make custom integration a breeze.
 
+Pivotal CF hosted customers can start receiving 25,000 free emails using SendGrid each month. This will give you access to advanced reporting and analytics and all APIs (Web, SMTP, Event, Parse, Sub-User). If you have a run.pivotal.io account, simply [login](http://console.run.pivotal.io/) and go to the SendGrid plan page in the Marketplace to get started with your 25,000 free monthly emails for use with your app. Sign up [here](http://console.run.pivotal.io/register) if you do not have an account.
+
 ## <a id='managing'></a>Managing Services ##
 
 To create and bind a new SendGrid service, see [Managing Services from the Command Line](../../../using/services/managing-services.html).
@@ -59,7 +61,25 @@ With the SendGrid service provisioned and credentials added to the `VCAP_SERVICE
 
 ### Java ###
 
-This Java program will build a multi-part MIME email and send it through SendGrid. Java already has built in libraries to send and receive emails. This example uses [javamail] (https://java.net/projects/javamail/pages/Home).
+The recommended way to use SendGrid with Java is to use the [sendgrid-java](https://github.com/sendgrid/sendgrid-java) library. The following example uses [sendgrid-java](https://github.com/sendgrid/sendgrid-java). Simply, replace your username and password with the username and password in your `VCAP_SERVICES` environment variable.
+
+```java
+import com.github.sendgrid.SendGrid;
+SendGrid sendgrid = new SendGrid("sendgrid_username", "sendgrid_password");
+
+sendgrid.addTo("example@example.com");
+sendgrid.setFrom("other@example.com");
+sendgrid.setSubject("Hello World");
+sendgrid.setText("My first email through SendGrid");
+
+sendgrid.send();
+```
+
+See the example app [Spring-Attack](https://github.com/scottmotte/spring-attack) for a complete working example.
+
+#### Alternative approach with JavaMail
+
+If you prefer to use Java's built in libraries to send emails you can do the following using [JavaMail](https://java.net/projects/javamail/pages/Home).
 
 ```java
     import javax.mail.*;
@@ -168,10 +188,7 @@ SendGrid offers statistics for a number of different metrics to report on what i
 
 ![Dashboard](http://static.sendgrid.com.s3.amazonaws.com/images/delivery_metrics.png)
 
-
 To access your SendGrid dashboard, simply click the 'Manage' button next to the SendGrid service on your app space console.
-
-
 
 ## <a id='support'></a>Support ##
 

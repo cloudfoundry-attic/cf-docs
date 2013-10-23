@@ -91,8 +91,8 @@ A cloud provider needs a base image to provision VMs/servers. Bosh explicitly re
 To upload the latest bosh stemcell to your bosh:
 
 <pre class="terminate">
-$ wget http://bosh-jenkins-artifacts.s3.amazonaws.com/bosh-stemcell/openstack/latest-bosh-stemcell-openstack.tgz
-$ bosh upload stemcell latest-bosh-stemcell-openstack.tgz
+$ wget http://bosh-jenkins-artifacts.s3.amazonaws.com/bosh-stemcell/openstack/bosh-stemcell-latest-openstack-kvm-ubuntu.tgz
+$ bosh upload stemcell bosh-stemcell-latest-openstack-kvm-ubuntu.tgz
 </pre>
 
 Confirm that you have at least one bosh stemcell loaded into your bosh:
@@ -100,11 +100,11 @@ Confirm that you have at least one bosh stemcell loaded into your bosh:
 <pre class="terminate">
 $ bosh stemcells
 
-+---------------+---------+--------------------------------------+
-| Name          | Version | CID                                  |
-+---------------+---------+--------------------------------------+
-| bosh-stemcell | 939     | 51c86e1d-2439-45a7-9f8d-870c7f64c61b |
-+---------------+---------+--------------------------------------+
++--------------------------------+---------+-----------------------------------------+
+| Name                           | Version | CID                                     |
++--------------------------------+---------+-----------------------------------------+
+| bosh-openstack-kvm-ubuntu      | 1055    | sc-f66fc9db-150d-4e2e-b78f-ad4ab7fc7ad1 |
++--------------------------------+---------+-----------------------------------------+
 
 Stemcells total: 1
 </pre>
@@ -206,7 +206,7 @@ resource_pools:
     network: default
     size: 8
     stemcell:
-      name: bosh-stemcell
+      name: bosh-openstack-kvm-ubuntu
       version: latest
     cloud_properties:
       instance_type: m1.small
@@ -215,7 +215,7 @@ resource_pools:
     network: default
     size: 1
     stemcell:
-      name: bosh-stemcell
+      name: bosh-openstack-kvm-ubuntu
       version: latest
     cloud_properties:
       instance_type: m1.large
@@ -512,17 +512,17 @@ The first time you deploy a bosh release it will compile every package that it n
 
 <pre class="terminal">
 Compiling packages
-buildpack_cache/2,...  |                        | 0/23 00:00:32  ETA: --:--:--         
+buildpack_cache/2,...  |                        | 0/23 00:00:32  ETA: --:--:--
 </pre>
 
 And later...
 
 <pre class="terminal">
   Compiling packages
-    buildpack_cache/2 (00:02:39)                                                                      
-    insight_agent/2 (00:02:49)                                                                        
-    nginx/9 (00:00:49)                                                                                
-golang/2, gorouter/10,...  |ooo                     | 4/23 00:02:15  ETA: 00:04:04         
+    buildpack_cache/2 (00:02:39)
+    insight_agent/2 (00:02:49)
+    nginx/9 (00:00:49)
+golang/2, gorouter/10,...  |ooo                     | 4/23 00:02:15  ETA: 00:04:04
 </pre>
 
 If you visit your OpenStack dashboard, you will see a number of VMs have been provisioned. Each of these VMs is being assigned a single package to compile. When it completes, it uploads the compiled binaries and libraries for that package into the bosh blobstore. These compiled packages can be used over and over and never need compilation again.
@@ -531,26 +531,26 @@ Finally, the initial compilation of packages ends (after about 15 minutes in the
 
 <pre class="terminal">
   ...
-  login/19 (00:00:37)                                                                               
-  uaa/30 (00:00:38)                                                                                 
-  dea_next/22 (00:00:51)                                                                            
-Done                    23/23 00:09:16                                                              
+  login/19 (00:00:37)
+  uaa/30 (00:00:38)
+  dea_next/22 (00:00:51)
+Done                    23/23 00:09:16
 </pre>
 
 Next it boots the 9 VMs mentioned in the deployment file above:
 
 <pre class="terminal">
 Creating bound missing VMs
-  common/1 (00:01:49)                                                                               
-  common/0 (00:02:53)                                                                               
-  common/2 (00:03:31)                                                                               
-  common/3 (00:01:53)                                                                               
-  common/5 (00:01:32)                                                                               
-  common/4 (00:02:10)                                                                               
-  common/6 (00:01:51)                                                                               
-  common/7 (00:01:07)                                                                               
-  large/0 (00:01:54)                                                                                
-Done                    9/9 00:07:34                                                              
+  common/1 (00:01:49)
+  common/0 (00:02:53)
+  common/2 (00:03:31)
+  common/3 (00:01:53)
+  common/5 (00:01:32)
+  common/4 (00:02:10)
+  common/6 (00:01:51)
+  common/7 (00:01:07)
+  large/0 (00:01:54)
+Done                    9/9 00:07:34
 </pre>
 
 Finally it assigns each VM a job (which is a list of one or more job templates from the [cf-release bosh release jobs folder](https://github.com/cloudfoundry/cf-release/tree/master/jobs))
@@ -559,18 +559,18 @@ Finally it assigns each VM a job (which is a list of one or more job templates f
 Binding instance VMs
   nats/0 (00:00:01)
   postgres/0 (00:00:01)
-  nfs_server/0 (00:00:01)                                                                           
+  nfs_server/0 (00:00:01)
   syslog_aggregator/0 (00:00:01)
-  uaa/0 (00:00:01)                                                                                  
-  health_manager/0 (00:00:01)                                                                       
-  router/0 (00:00:01)                                                                               
-  cloud_controller/0 (00:00:01)                                                                     
-  dea/0 (00:00:01)                                                                                  
-Done                    9/9 00:00:04                                                              
+  uaa/0 (00:00:01)
+  health_manager/0 (00:00:01)
+  router/0 (00:00:01)
+  cloud_controller/0 (00:00:01)
+  dea/0 (00:00:01)
+Done                    9/9 00:00:04
 
 Preparing configuration
-  binding configuration (00:00:01)                                                                  
-Done                    1/1 00:00:01                                                                
+  binding configuration (00:00:01)
+Done                    1/1 00:00:01
 
 Updating job syslog_aggregator
 syslog_aggregator/0 (canary)       |oooooooooooooooooooo    | 0/1 00:01:09  ETA: --:--:--
@@ -586,19 +586,19 @@ When the deployment is finished:
 
 <pre class="terminal">
 Updating job core
-  core/0 (canary) (00:01:04)                                                                        
-Done                    1/1 00:01:04                                                                
+  core/0 (canary) (00:01:04)
+Done                    1/1 00:01:04
 
 Updating job uaa
-  uaa/0 (canary) (00:00:47)                                                                         
-Done                    1/1 00:00:47                                                                
+  uaa/0 (canary) (00:00:47)
+Done                    1/1 00:00:47
 
 Updating job api
-  api/0 (canary) (00:01:50)                                                                         
-Done                    1/1 00:01:50                                                                
+  api/0 (canary) (00:01:50)
+Done                    1/1 00:01:50
 
 Updating job dea
-  dea/0 (canary) (00:01:21)                                                                         
+  dea/0 (canary) (00:01:21)
 Done                    1/1 00:01:21
 </pre>
 

@@ -45,3 +45,5 @@ BOSH uses [monit](http://mmonit.com/monit/) to manage and monitor the process(es
 : How monit should stop the process
 
 Usually the `monit` file contains a script to invoke to start and stop the process, but it can invoke the binary directly.
+
+Early in the development of a BOSH release, it may be useful to leave the `monit` file empty --- this does not cause a problem. ou still must include a `monit` file, but it can simply be an empty file.

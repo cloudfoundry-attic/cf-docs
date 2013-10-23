@@ -31,7 +31,7 @@ Create an account for your space from the command line with the following comman
 <pre class="terminal">
 $ cf create-service loadimpact
 </pre>
-    
+
 Load Impact is not a bindable service.
 
 ### <a id='managing-sso'></a>Login to Load Impact using Single Sign On ###
@@ -91,12 +91,12 @@ You can keep it simple or simulate complex user behavior when creating tests. We
 
 Once logged into you Load Impact account you end up on the "My tests" page. From there you can immediately get started with your testing:
 
-1. Press the "Start a new test" button  
+1. Press the "Start a new test" button
 
-   ![Press button to show URL field](https://s3.amazonaws.com/loadimpact_cloudfoundry/my_tests_page.png "Press button to show URL field")  
+   ![Press button to show URL field](https://s3.amazonaws.com/loadimpact_cloudfoundry/my_tests_page.png "Press button to show URL field")
 
-2. Enter the URL of the page you want to test in the input field and press the "Start test" button  
-     
+2. Enter the URL of the page you want to test in the input field and press the "Start test" button
+
    ![Enter URL and press start test button](https://s3.amazonaws.com/loadimpact_cloudfoundry/my_tests_page_expanded.png "Enter URL and press start test button")
 
 ### <a id='creating-tests-simple-config'></a>Simple configuration with no scripting ###
@@ -117,11 +117,11 @@ Expand the "Load test execution plan" section if you wish to alter the number of
 
 If you want more control of what your simulated users are doing during the load test you need to look into the different possible ways of generating a load script:
 
-* **Auto-generation based on page analysis**  
+* **Auto-generation based on page analysis**
   Basically what we have been doing up until now. The Load Impact Page Analyzer will analyze how a web browser would load the page and generate a load script for you.
-* **Using the Load Impact Session Recorder**  
+* **Using the Load Impact Session Recorder**
   A HTTP proxy based solution, can be used to record traffic from desktop as well as mobile devices. The recorded traffic is automatically converted to a load script.
-* **Writing Lua code**  
+* **Writing Lua code**
   Not as scary as it may sound. Lua is a small, easy to use yet powerful programming language. Check out our quick start guide if you need more help.
 
 Now, expand the “User scenarios” section:
@@ -172,23 +172,23 @@ Should you have any questions please [contact us through our support center](htt
 
 ### <a id='support-faq'></a>FAQ ###
 
-**Q**: Can I simulate users clicking through a series of pages?  
-**A**: Absolutely! Our free Session Recorder will assist in creating a user scenario that simulates a user visiting several pages on a site. 
+**Q**: Can I simulate users clicking through a series of pages?
+**A**: Absolutely! Our free Session Recorder will assist in creating a user scenario that simulates a user visiting several pages on a site.
 
-**Q**: Can browsing on sites with i.e. Javascript be simulated?  
-**A**: Yes, our Session Recorder records all the requests sent when browsing sites using JavaScript and Flash, allowing us to emulate the execution of the script through the mimicking of the resulting requests. For all scripts, you can manually input dynamic parameters such as user logins or view states. 
+**Q**: Can browsing on sites with i.e. Javascript be simulated?
+**A**: Yes, our Session Recorder records all the requests sent when browsing sites using JavaScript and Flash, allowing us to emulate the execution of the script through the mimicking of the resulting requests. For all scripts, you can manually input dynamic parameters such as user logins or view states.
 
-**Q**: Can I test sites that require logins?  
+**Q**: Can I test sites that require logins?
 **A**: Load Impact supports both HTTP authentication (basic, digest and NTLM) and HTTP POST operations, as well as HTTPS.  Simulating random or unique user logins is also possible.
 
-**Q**: What is the difference between Simulated Browser Users (SBUs) and Virtual Users (VUs)?  
+**Q**: What is the difference between Simulated Browser Users (SBUs) and Virtual Users (VUs)?
 **A**: A Virtual User will only use a single network connection when loading resources from a target host. Resources can be loaded from multiple hosts in the same test, however, that will then result in one connection per target host, per VU. Simulated Browser Users, on the other hand, can use multiple concurrent network connections when loading resources from a single target host.
 
-**Q**: I have Google Analytics - How many SBUs should I be load testing at?  
-**A**: Google Analytics is a very popular means of keeping track of website traffic, but the stats are usually only reported as the number of visits per month. Capturing the peak traffic per hour and dividing that with the time spent on the site allows you to translate monthly visits to actual concurrent users (SBUs). 
+**Q**: I have Google Analytics - How many SBUs should I be load testing at?
+**A**: Google Analytics is a very popular means of keeping track of website traffic, but the stats are usually only reported as the number of visits per month. Capturing the peak traffic per hour and dividing that with the time spent on the site allows you to translate monthly visits to actual concurrent users (SBUs).
 
-**Q**: Do Server Metrics agents collect private server information?  
-**A**: Absolutely not, our agents only collect performance metrics for the specific tests they are selected to run with. 
+**Q**: Do Server Metrics agents collect private server information?
+**A**: Absolutely not, our agents only collect performance metrics for the specific tests they are selected to run with.
 
 ## <a id='external-links'></a>External Links ##
 * [Knowledgebase](http://support.loadimpact.com/)

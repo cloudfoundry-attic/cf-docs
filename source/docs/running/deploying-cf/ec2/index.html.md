@@ -29,11 +29,11 @@ Create a working directory from which to deploy the environment. For example, `$
 
 ~~~
 source 'https://rubygems.org'
-source 'https://s3.amazonaws.com/bosh-jenkins-gems/'
 
 ruby "1.9.3"
 
 gem "bootstrap-cf-plugin", :git => "git://github.com/cloudfoundry/bootstrap-cf-plugin"
+gem "bosh"
 ~~~
 
 Install the latest release of the bootstrap plugin.
@@ -201,7 +201,7 @@ Once Cloud Foundry has been deployed using the bootstrap cf plugin, there will b
   </tr>
 </table>
 
-For more information about managing organizations, spaces, and users, go to the [cf](../../../using/managing-apps/cf) page.
+For more information about managing organizations, spaces, and users, go to the [cf](../../../using/managing-apps/cf/index.html) page.
 
 ## <a id='destroy-environment'></a>Destroying the AWS Environment ##
   <table style="width: 70%;"><tr><td>

@@ -6,7 +6,7 @@ Hadoop-based Cloud Data Warehouse. Treasure Data enables data-driven companies t
 
 ## <a id='managing-services'></a>Managing Services ##
 
-[Managing Services](../../../using/services/)
+[Managing Services](../../../using/services/index.html)
 
 ## <a id='support'></a>Support ##
 

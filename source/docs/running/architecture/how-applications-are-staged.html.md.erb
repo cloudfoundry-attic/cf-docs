@@ -3,11 +3,11 @@ title: How Applications Are Staged
 description: Click on the link to view the diagram.
 ---
 
-<img src="/images/app_push_flow_diagram.png" style="width: 100%"/>
+ <%= image_tag("app_push_flow_diagram.png", :height => "100%", :width => "100%") %>
 
  1. At the command line, the user goes into the directory holding their application and uses the cf command line tool to issue a push command.
 
- 2. The cf command line tool tells CCNG to create a record for the application. 
+ 2. The cf command line tool tells CCNG to create a record for the application.
 
  3. CCNG stores the application metadata (e.g. the app name, number of instances the user specified, the buildpack and stack).
 

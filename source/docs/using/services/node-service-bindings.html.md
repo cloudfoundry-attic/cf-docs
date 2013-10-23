@@ -11,7 +11,7 @@ This guide is for developers who wish to bind a data source to a Node.js applica
 ## <a id='prerequisites'></a>Prerequisites ##
 
 * A Cloud Foundry account, you can sign up [here](https://my.cloudfoundry.com/signup)
-* The [CF](../../managing-apps/) command line tool
+* The [CF](../../managing-apps/index.html) command line tool
 * [Node.js](http://www.nodejs.org) installed using the matching version of Node.js on your Cloud Foundry instance
 * [NPM](http://npmjs.org/) - Node Package Manager, to manage dependencies on your application
 * A sample application such as the one created in [this](./index.html) tutorial
