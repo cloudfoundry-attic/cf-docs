@@ -1,13 +1,13 @@
 cf-docs
 ====
 
-This is the documentation for the Cloud Foundry project - including information about running and managing applications on Cloud Foundry, and setting up your own Cloud Foundry instance with VCAP and BOSH. 
+This is the documentation for the Cloud Foundry open source project - including information about running and managing applications on Cloud Foundry, and setting up your own Cloud Foundry instance with BOSH.
 
 This repository also feeds [cloudfoundry.github.com](http://cloudfoundry.github.com) using [Github Pages](http://pages.github.com/) and [Middleman](http://middlemanapp.com/).
 
 If you have minor changes, you can contribute by forking this repository, modifying the files in `/source/docs`, and creating a GitHub pull request.
 
-If you want to contribute on a larger scale, see the [Pivotal Project for CF Docs](https://www.pivotaltracker.com/projects/713283#).
+If you want to contribute against the prioritized backlog of documentation needs, see the [Pivotal Tracker project for Cloud Foundry Documentation](https://www.pivotaltracker.com/projects/713283#).
 
 ## Contributing docs
 
