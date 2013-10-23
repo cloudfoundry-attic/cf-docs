@@ -26,6 +26,10 @@ Display the health and status of an application.
 
 `go-cf app APP`
 
+Where:
+
+* `app` is the name of the application, as assigned when it was pushed.
+
 **Example**
 
 <div class="command-doc">
@@ -102,7 +106,7 @@ The following data is returned for each application:
 * urls --- URLs mapped to the application
 
 
-## <a id='bind-service'></a> bind-service ##
+## <a id='bind-service'></a> bind-service, bs ##
 
 Bind a service to an application. Some service types are bindable, some are not. If a service supports binding, binding it to an application adds credentials for the service instance to the `VCAP_SERVICES` environment variable. You may need to restart the application for the binding to take effect.
 
@@ -124,27 +128,14 @@ TIP: Use 'cf push' to ensure your env variable changes take effect</pre>
 
 
 
-## <a id='crashlogs'></a> crashlogs TBS##
-
-Display the staging, stdout and stderr logs for an application's unresponsive instances.
-
-**Usage**
-
-**Example**
-
-<div class="command-doc">
-  <pre class="terminal"></pre>
-  <div class="break"></div>
-</div>
-
-## <a id='create-org'></a> create-org ##
+## <a id='create-org'></a> create-org, co ##
 
 Create an organization.
 
 
 **Usage**
 
-`create-org ORG` or `cs ORG`
+`create-org ORG` or `co ORG`
 
 <div class="command-doc">
   <pre class="terminal">
@@ -158,7 +149,7 @@ TIP: Use 'cf target -o Partner22' to target new org
 </div>
 
 
-## <a id='create-service'></a> create-service ##
+## <a id='create-service'></a> create-service, cs ##
 
 Create a new service instance, and optionally, bind it to an application. If you do not bind a service to an application when you create, you can do it later with the [bind-service](#bind-service) command. For more information about creating and binding service instances, see [Getting Started - Adding a Service](/docs/dotcom/adding-a-service.html).
 
