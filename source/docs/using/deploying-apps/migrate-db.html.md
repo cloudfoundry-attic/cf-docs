@@ -9,7 +9,7 @@ The technique you use to migrate a database on Cloud Foundry depends on the appl
 
 ## <a id='migrate-ruby-db'></a>Migrate a Database for a Rails App ##
 
-You can use a Rake task --- `rake db:migrate` --- to migrate a Rails application's database. You can run the Rake task on Cloud Foundry by customizing the command that Cloud Foundry uses to start the application, such that it runs the migration task before starting the application.
+You can use a Rake task --- `rake db:migrate` --- to migrate a Rails application's database. You can run the Rake task on Cloud Foundry by customizing the command that Cloud Foundry uses to start the application, so that it runs the migration before starting the application.
 
 The instructions below include directions for editing an application's manifest to migrate the database prior to starting the application. For more information about `manifest.yml`, see [cf Push and the Manifest](/docs/using/deploying-apps/manifest.html#push-and-manifest) on the [Application Manifests](/docs/using/deploying-apps/manifest.html) page.
 
