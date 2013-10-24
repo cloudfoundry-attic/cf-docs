@@ -116,6 +116,11 @@ Note that you can bind a service to an application at the time you create the se
 
 `go-cf bind-service APP SERVICE_INSTANCE` or `go-cf bs APP SERVICE_INSTANCE`
 
+Where:
+
+* `APP` is the name of the application, as assigned when it was pushed.
+* `SERVICE_INSTANCE` is the name of the service instance, as assigned when it was created. 
+
 **Example**
 <div class="command-doc">
   <pre class="terminal">
@@ -135,7 +140,13 @@ Create an organization.
 
 **Usage**
 
-`create-org ORG` or `co ORG`
+`go-cf create-org ORG` or `go-cf co ORG`
+
+Where:
+
+* `ORG` is the name you assign to the organization.
+
+**Example**
 
 <div class="command-doc">
   <pre class="terminal">
@@ -155,7 +166,13 @@ Create a new service instance, and optionally, bind it to an application. If you
 
 **Usage**
 
-`go-cf create-service SERVICE PLAN SERVICE_INSTANCE` or `cs SERVICE PLAN SERVICE_INSTANCE`
+`go-cf create-service SERVICE PLAN SERVICE_INSTANCE` or `go-cf cs SERVICE PLAN SERVICE_INSTANCE`
+
+Where:
+
+* `SERVICE` is the service type.
+* `PLAN` is the service plan you choose.
+* `SERVICE_INSTANCE` is the name you assign to the service instance.
 
 **Example**
 
@@ -179,6 +196,12 @@ Create a service authorization token.
 
 `go-cf create-service-auth-token LABEL PROVIDER TOKEN`
 
+Where:
+
+* `LABEL` is 
+* `PROVIDER` is 
+* `TOKEN` is 
+
 **Example**
 
 <div class="command-doc">
@@ -193,6 +216,14 @@ Create a service broker.
 **Usage**
 
 `go-cf create-service-broker SERVICE_BROKER USERNAME PASSWORD URL`
+
+Where:
+
+* `SERVICE_BROKER` is
+* `USERNAME` is
+* `PASSWORD` is
+* `URL` is
+
 
 **Example**
 
@@ -209,6 +240,10 @@ Create a space in an organization.
 
 `go-cf create-space SPACE`
 
+Where:
+
+* `SPACE` is the name you assign to the space.
+
 **Example**
 
 
@@ -221,10 +256,17 @@ TIP: Use 'cf target -s Stress' to target new space</pre>
   <div class="break"></div>
 </div>
 
-## <a id='create-user'></a>create-user-provided-service, cups ##
+## <a id='create-user-provided-service'></a>create-user-provided-service, cups ##
 
 Make a user-provided service available to Cloud Foundry applications.
+
 **Usage**
+
+`go-cf create-user-provided-service SERVICE_INSTANCE`
+
+Where:
+
+* `SERVICE_INSTANCE` is the name you assign to the service.
 
 **Example**
 
@@ -240,6 +282,12 @@ Make a user-provided service available to Cloud Foundry applications.
 Create a user account. If you do not supply required options on the command line, cf will prompt for them. 
 
 **Usage**
+
+`go-cf create-user USERNAME`
+
+Where:
+
+* `USERNAME` is the user name for the user account.
 
 **Example**
 
