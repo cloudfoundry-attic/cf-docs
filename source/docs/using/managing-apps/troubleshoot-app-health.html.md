@@ -16,4 +16,5 @@ Cloud Foundry's cf command line interface provides several commands you can use 
 
 * `guid` --- You can use this command to return the guid of an applicaton. For usage information, see the [guid](/docs/using/managing-apps/cf/index.html#guid) section on the [cf Command Line Interface](/docs/using/managing-apps/cf/index.html) page.
 
+* `stats` --- Lists resource statistics for each instance of an application, including CPU, memory, and disk usage. For usage information, see the [stats](/docs/using/managing-apps/cf/index.html#stats) section on the [cf Command Line Interface](/docs/using/managing-apps/cf/index.html) page.
 
