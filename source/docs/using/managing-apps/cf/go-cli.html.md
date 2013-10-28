@@ -1076,8 +1076,10 @@ Start a stopped application.
 
 Display resource statistics for each instance of an application, including CPU, memory, and disk usage.
 
+Usage:
+
 <div class="command-doc">
-  <pre class="terminal">$ cf stats [application name]</pre>
+  <pre class="terminal">$ cf stats APP</pre>
   <div class="break"></div>
 </div>
 
@@ -1087,6 +1089,19 @@ The following data is returned for each instance of the application:
 * cpu -- CPU utilization
 * memory -- Memory utilization
 * disk -- Disk utilization
+
+Example:
+<div class="command-doc">
+  <pre class="terminal">
+cf stats myapp
+
+Getting stats for myapp... OK
+
+instance cpu  memory        disk 
+#0       0.0% 22.9M of 256M 66.7M of 1G
+
+  </pre>
+</div>
 
 ## <a id='stop'></a> stop ##
 
