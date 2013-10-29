@@ -4,6 +4,11 @@ title: Configure Service Connections for Ruby
 
 After you create a service instance and bind it to an application you must configure the application to connect to the service. 
 
+## <a id='cf-app-utils'></a>Query VCAP_SERVICES with cf-app-utils ##
+
+We've provided a simple gem that allows your application to search for credentials from VCAP_SERVICES by name, tag, or label.
+
+* [cf-app-utils-ruby](https://github.com/cloudfoundry/cf-app-utils-ruby)
 
 ## <a id='config-file'></a>Define Connection in Configuration File ##
 
