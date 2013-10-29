@@ -180,7 +180,7 @@ You will also need to edit the ActionMailer settings in `config/environment.rb`:
       :enable_starttls_auto => true
     }
 ```
-A sample application for using Ruby on Rails and SendGrid on Cloud Foundry can be found [here](https://github.com/laur-craciun/sendgrid-cloudfoundry-rails).
+A sample application for using Ruby on Rails and SendGrid on Cloud Foundry can be found [here](https://github.com/cloudfoundry-samples/sendgrid-cloudfoundry-rails).
 
 ## <a id='dashboard'></a>Dashboard ##
 
