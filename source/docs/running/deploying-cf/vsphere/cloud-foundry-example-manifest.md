@@ -4,7 +4,7 @@ title: Cloud Foundry Example Manifest
 
 ~~~yaml
 ---
-name: your-deploymnet
+name: your-deployment
 director_uuid: 3350612f-f0e4-41b3-b1b2-3d730f9011a7 # get this from bosh status
 
 releases:
@@ -56,7 +56,7 @@ resource_pools:
   network: default
   size: 28
   stemcell:
-    name: bosh-stemcell
+    name: bosh-vsphere-esxi-ubuntu
     version: 0.6.7
   cloud_properties:
     ram: 4096
@@ -71,7 +71,7 @@ resource_pools:
   network: default
   size: 1
   stemcell:
-    name: bosh-stemcell
+    name: bosh-vsphere-esxi-ubuntu
     version: 0.6.7
   cloud_properties:
     ram: 8192
@@ -86,7 +86,7 @@ resource_pools:
   network: default
   size: 2
   stemcell:
-    name: bosh-stemcell
+    name: bosh-vsphere-esxi-ubuntu
     version: 0.6.7
   cloud_properties:
     ram: 3072
@@ -101,7 +101,7 @@ resource_pools:
   network: default
   size: 1
   stemcell:
-    name: bosh-stemcell
+    name: bosh-vsphere-esxi-ubuntu
     version: 0.6.7
   cloud_properties:
     ram: 13312
@@ -116,7 +116,7 @@ resource_pools:
   network: default
   size: 2
   stemcell:
-    name: bosh-stemcell
+    name: bosh-vsphere-esxi-ubuntu
     version: 0.6.7
   cloud_properties:
     ram: 21504
@@ -527,7 +527,7 @@ properties:
     - tag: admin
       name: a-ccdb-user-name
       password: a-ccdb-password
-    databases: 
+    databases:
     - tag: cc
       name: foobar
 

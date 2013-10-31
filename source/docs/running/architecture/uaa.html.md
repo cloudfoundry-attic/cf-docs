@@ -62,7 +62,7 @@ $ uaac token get marissa koala
 
 (If you do not specify username and password you will be prompted to supply them.)
 
-This authenticates and obtains an access token from the server using the OAuth2 implicit grant, similar to the approach intended for a client like `cf`. The token is stored in `~/.uuac.yml`; open that file to obtain access token for your `cf` target (or use `--verbose` on the login command line above to see it in the command shell.
+This authenticates and obtains an access token from the server using the OAuth2 implicit grant, similar to the approach intended for a client like `cf`. The token is stored in `~/.uaac.yml`; open that file to obtain access token for your `cf` target (or use `--verbose` on the login command line above to see it in the command shell.
 
 Then you can login as a resource server and retrieve the token details:
 

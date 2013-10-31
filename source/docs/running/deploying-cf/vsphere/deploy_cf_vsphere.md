@@ -35,7 +35,7 @@ Deployment
 The Director needs a stemcell in order to deploy Cloud Foundry. Use the existing public stemcell in your `~/stemcells` directory. Do not use the Micro BOSH stemcell.
 
 <pre class="terminal">
-$ bosh upload stemcell ~/stemcells/bosh-stemcell-vsphere-0.6.7.tgz
+$ bosh upload stemcell ~/stemcells/bosh-stemcell-latest-vsphere-esxi-ubuntu.tgz
 Verifying stemcell...
 File exists and readable                                     OK
 Using cached manifest...
@@ -43,14 +43,14 @@ Stemcell properties                                          OK
 
 Stemcell info
 -------------
-Name:    bosh-stemcell
-Version: 0.6.7
+Name:    bosh-vsphere-esxi-ubuntu
+Version: 1029
 
 Checking if stemcell already exists...
 No
 
 Uploading stemcell...
-bosh-stemcell: 100% |ooooooooooooooooooooooooooooooooooooooo| 277.1MB  78.8MB/s 		Time: 00:00:03
+bosh-vsphere-esxi-ubuntu: 100% |ooooooooooooooooooooooooooooooooooooooo| 277.1MB  78.8MB/s 		Time: 00:00:03
 
 Director task 1
 
@@ -58,8 +58,8 @@ Update stemcell
 extracting stemcell archive (00:00:06)
 verifying stemcell manifest (00:00:00)
 checking if this stemcell already exists (00:00:00)
-uploading stemcell bosh-stemcell/0.6.4 to the cloud (00:01:08)
-save stemcell: bosh-stemcell/0.6.4 (sc-a85ab3dc-8d3d-4228-83d0-5be2436a1886) (00:00:00)
+uploading stemcell bosh-vsphere-esxi-ubuntu/1029 to the cloud (00:01:08)
+save stemcell: bosh-vsphere-esxi-ubuntu/1029 (sc-a85ab3dc-8d3d-4228-83d0-5be2436a1886) (00:00:00)
 Done                    5/5 00:01:14
 Task 1 done
 Started		2012-09-26 10:14:26 UTC

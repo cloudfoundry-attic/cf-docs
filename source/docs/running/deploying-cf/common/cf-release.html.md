@@ -8,7 +8,7 @@ title: Using the latest CF-Release
 
 This short guide shows how to, after [bootstrapping Bosh](/docs/running/deploying-cf/index.html), create a Cloud Foundry release ready to deploy to your environment. 
 
-NOTE: These instructions are for v138 release of Cloud Foundry.
+NOTE: These instructions are for v145 release of Cloud Foundry. We strongly recommend using the [highest final version tag of cf-release](https://github.com/cloudfoundry/cf-release/releases).
 
 ## <a id='clone'></a> Clone CF-Release ##
 
@@ -23,10 +23,10 @@ cd cf-release
 
 ## <a id='upload-the-release'></a> Upload the release ##
 
-Releases of Cloud Foundry are published regularly (approximately weekly) and you upload them to your bosh using `bosh upload release`:
+Releases of Cloud Foundry are published regularly (approximately weekly) and you upload them to your bosh using `bosh upload release` where the cf-145.yml file should be substituted with the cf-release version, which we recommend to be the [highest final version tag of cf-release](https://github.com/cloudfoundry/cf-release/releases):
 
 <pre class="terminal">
-$ bosh upload release releases/cf-138.yml
+$ bosh upload release releases/cf-145.yml
 
 Copying packages
 ----------------
@@ -52,7 +52,7 @@ $ bosh releases
 +------+----------+-------------+
 | Name | Versions | Commit Hash |
 +------+----------+-------------+
-| cf   | 138      | adca9c45    |
+| cf   | 145      | 121623ca    |
 +------+----------+-------------+
 </pre>
 

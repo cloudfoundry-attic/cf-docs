@@ -43,8 +43,8 @@ title: Welcome to Cloud Foundry Documentation
   <a href="docs/using/deploying-apps/jvm/index.html">Deploy Java, Groovy, or Scala Apps</a><br>
   <a href="docs/using/deploying-apps/manifest.html">Application Manifests (manifest.yml)</a><br> 
   <a href="docs/using/deploying-apps/buildpacks.html">Buildpacks</a><br> 
-  <a href="docs/using/deploying-apps/environment-variable.html">Cloud Foundry Environment Variables</a></br>
-
+  <a href="docs/using/deploying-apps/environment-variable.html">Cloud Foundry Environment Variables</a></br> 
+  <a href="docs/using/deploying-apps/migrate-db.html">Migrate a Database on Cloud Foundry</a></br>
 
   </p>
   <hr>
@@ -108,9 +108,7 @@ title: Welcome to Cloud Foundry Documentation
   <a href="docs/running/deploying-cf/openstack/index.html">Deploy to OpenStack</a><br>   
   <a href="docs/running/deploying-cf/vsphere/index.html">Deploy to vSphere</a><br>
   <a href="docs/running/deploying-cf/vcloud/deploying_to_vcloud_director.html">Deploy to vCloud Director</a><br>
-  <br>
   <a href="docs/running/deploying-cf/adding-services.html">Deploying Community Services</a><br>
-  <br>
   <a href="docs/running/deploying-cf-with-chef/index.html">Deploy with Chef</a><br>
   <a href="docs/running/deploying-cf/run-local.html">Run a Local Cloud Foundry Instance</a>
 
@@ -126,7 +124,8 @@ title: Welcome to Cloud Foundry Documentation
   </p>
 
   <p>
-  <a href="docs/running/architecture/services/">Services</a>
+  Services<br>
+  <a href="docs/running/architecture/services/">Adding Services to Cloud Foundry</a>
   </p>
 
   <p>

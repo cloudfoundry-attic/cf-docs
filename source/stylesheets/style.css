@@ -20,6 +20,7 @@
 
 .breadcrumbs li {
   display: inline;
+  font-weight: normal;
 }
 
 .breadcrumbs li:after {

@@ -14,7 +14,7 @@ title: BOSH CLI Local Setup
 Install the BOSH CLI gem:
 
 <pre class="terminal">
-$ gem install bosh_cli_plugin_micro -v "~> 1.5.0.pre" --source http://s3.amazonaws.com/bosh-jenkins-gems/
+$ gem install bosh_cli_plugin_micro --pre
 </pre>
 
 If you are using the rbenv Ruby environment manager, refresh the list of gems that rbenv knows about: 
@@ -25,6 +25,3 @@ $ rbenv rehash
 
 ## Next Step: Install Micro BOSH
 [Micro BOSH](/docs/running/bosh/components/micro-bosh.html) is a single VM that includes all of the BOSH components. You will use Micro BOSH to deploy BOSH. Installation steps for Micro BOSH are included in the [Cloud Foundry deployment procedures](/docs/running/deploying-cf/). See the appropriate procedure for your platform.
-
-
-

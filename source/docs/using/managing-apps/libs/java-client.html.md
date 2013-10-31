@@ -1,53 +1,40 @@
 ---
-title: Java Cloud Foundry Client
+title: Cloud Foundry Java Client Library
 ---
 
 ## <a id='intro'></a>Introduction ##
 
-This is a guide to using the Java Cloud Foundry client library to manage an account on a Cloud Foundry instance.
+This is a guide to using the Cloud Foundry Java Client Library to manage an account on a Cloud Foundry instance.
 
 ## <a id='getting'></a>Getting the Library ##
 
-The Java Cloud Foundry library is available in the Spring Framework milestone repository. The library can be added as a dependency to Maven or Gradle project using the following information. 
+The Cloud Foundry Java Client Library is available in Maven Central. The library can be added as a dependency to Maven or Gradle project using the following information. 
 
 ### <a id='maven'></a>Maven ###
 
-To use the Java client in a Maven project, you first need to add the Spring Framework milestone repository to your `pom.xml` file. Add the repository in a `<repository>` section like this: 
-
-~~~xml
-  <repositories>
-    <repository>
-      <id>repository.springframework.milestone</id>
-      <name>Spring Framework Milestone Repository</name>
-      <url>http://repo.springsource.org/milestone</url>
-    </repository>
-  </repositories>
-~~~
-
-After adding the repository, the dependency can be added to your `pom.xml` as follows:
+The `cloudfoundry-client-lib` dependency can be added to your `pom.xml` as follows:
 
 ~~~xml
   <dependencies>
     <dependency>
       <groupId>org.cloudfoundry</groupId>
       <artifactId>cloudfoundry-client-lib</artifactId>
-      <version>0.8.5</version>
+      <version>1.0.0</version>
     </dependency>
   </dependencies>
 ~~~ 
 
 ### <a id='gradle'></a>Gradle ###
 
-To use the Java client in a Gradle project, add the Spring Framework milestone repository to your `build.gradle` file, along with the dependency, like this: 
+To use the Java client library in a Gradle project, add the `cloudfoundry-client-lib` dependency to your `build.gradle` file:
 
 ~~~groovy
 repositories {
   mavenCentral()
-  mavenRepo url:'http://repo.springframework.org/milestone/'
 }
 
 dependencies {
-  compile 'org.cloudfoundry:cloudfoundry-client-lib:0.8.4'
+  compile 'org.cloudfoundry:cloudfoundry-client-lib:1.0.0'
 } 
 ~~~
 
@@ -104,6 +91,6 @@ public class JavaSample {
 }
 ~~~
 
-For more details on the Java API, view the [source on GitHub](https://github.com/cloudfoundry/vcap-java-client/tree/master/cloudfoundry-client-lib). The [domain package](https://github.com/cloudfoundry/vcap-java-client/tree/master/cloudfoundry-client-lib/src/main/java/org/cloudfoundry/client/lib/domain) shows the objects that can be queried and inspected.  
+For more details on the Cloud Foundry Java Client Library, view the [source on GitHub](https://github.com/cloudfoundry/cf-java-client/tree/master/cloudfoundry-client-lib). The [domain package](https://github.com/cloudfoundry/cf-java-client/tree/master/cloudfoundry-client-lib/src/main/java/org/cloudfoundry/client/lib/domain) shows the objects that can be queried and inspected.  
 
-The source for the [Cloud Foundry Maven plugin](https://github.com/cloudfoundry/vcap-java-client/tree/master/cloudfoundry-maven-plugin) is also a good example of using the Java client library. 
+The source for the [Cloud Foundry Maven plugin](https://github.com/cloudfoundry/cf-java-client/tree/master/cloudfoundry-maven-plugin) is also a good example of using the Java client library. 
