@@ -2,7 +2,7 @@
 title: Writing a v2 Cloud Foundry Service
 ---
 
-**Note:** This v2 Services API is still in development. The API and this documentation is subject to change.
+**Note:** The v2 Services API is still in development. The API and this documentation is subject to change.
 
 There are two versions of the Cloud Foundry Services API. This page documents v2. For information about v1 of the API see [Writing a v1 Cloud Foundry Service]().
 
@@ -14,12 +14,12 @@ The key changes in v2 of the Services API are:
 * Unidirectional RESTful HTTP messages --- Brokers can run standalone.
 * Easier catalog management and orphan detection --- This functionality is improved, and moved from the broker to the Cloud Controller.
 * Consistent naming --- API endpoints and fields are consistently named.
-* Orphan avoidance --- Automatic cleanup prevention of orphans (Inconsistent instances between broker and CC)
+* Orphan avoidance --- Automatic cleanup and prevention of orphans (Inconsistent instances between broker and the Cloud Controller)
 
-## <a id='api-roadmap'></a>API Roadmap ##
-Possible changes that may be made to v2 of the Services API (without change to the version number) that will not break client and server functionality include:
+## <a id='futures'></a>Upcoming API Changes ##
+Changes to the API that are under consideration include:
 
-* New optional endpoints (or new HTTP methods to existing endpoints) can be added representing new concepts. This will enable support for features such as snapshots, backups, updating instances, and updating bindings.  It is expected that brokers will export some listings of their optional capabilities in the catalog.
+* New optional endpoints, or new HTTP methods for existing endpoints, may be added to enable support for features such as snapshots, backups, updating instances, and updating bindings. It is expected that brokers will export some listings of their optional capabilities in the catalog.
 
 * New fields may be added to existing request/response messages. These fields must be optional, and should be ignored by clients and servers that do not understand them.
 
@@ -31,12 +31,12 @@ The Cloud Foundry services API defines the contract between the Cloud Controller
 
 ## <a id='authentication'></a>Authentication ##
 
-Cloud Controller (final release v145+) authenticates with the Broker using HTTP basic authentication (the `Authentication:` header) on every request, and will reject any broker registrations that do not contain a username and password. The broker is responsible for checking the username and password and returning a 403 Forbidden message if they are invalid. Cloud Controller supports connecting to a broker using SSL if additional security is desired.
+Cloud Controller (final release v145+) authenticates with the Broker using HTTP basic authentication (the `Authentication:` header) on every request, and will reject any broker registrations that do not contain a username and password. The broker is responsible for checking the username and password and returning a `403 Forbidden` message if they are invalid. Cloud Controller supports connecting to a broker using SSL if additional security is desired.
 
-## <a id='register'></a>Registering a Broker ##
+## <a id='register'></a>Registering a Broker with Cloud Controller ##
 
-(not part of Broker V2 API)
-Before a broker can be used with Cloud Foundry, the operator must register the broker with Cloud Controller.  Broker authors do not have to know how to use or implement this API, as this functionality is built into the cf command-line-interface.  Because these APIs are actually part of CC + its front-end clients (such as CF), we’ve moved them into this document: Managing V2 Brokers with CC.
+Support for broker registration is not supported by the v2 Services API
+Before a broker can be used with Cloud Foundry, the operator must register the broker with Cloud Controller. Broker authors do not have to know how to use or implement this API, as this functionality is built into the cf command-line interface. These APIs are actually part of Cloud Controller and its front-end clients (such as CF), we’ve moved them into this document: Managing V2 Brokers with Cloud Controller.
 
 ## <a id='catalog-mgmt'></a>Catalog Management ##
 
@@ -227,14 +227,14 @@ Brokers are expected to respond with `201 Created` with the response body from t
 
 ## <a id='binding'></a>Binding ##
 
-When the broker receives a bind request from CC, it should take whatever action is necessary to generate a way for an application to utilize the already-provisioned resource. Not all services have to be bindable, some derive all their value just from being provisioned. In order for “unbind” to be the most meaningful, applications should be issued different credentials when possible, allowing one bound application can have its access actually revoked without affecting the others. Bind can mean different things depending on the service, here are some examples for Mysql:
+When the broker receives a bind request from the Cloud Controller, it should take whatever action is necessary to generate a way for an application to utilize the already-provisioned resource. Not all services have to be bindable, some derive all their value just from being provisioned. In order for “unbind” to be the most meaningful, applications should be issued different credentials when possible, allowing one bound application can have its access actually revoked without affecting the others. Bind can mean different things depending on the service, here are some examples for Mysql:
 
 * New random user credentials are generated for the existing database
 * A single set of credentials are returned for every bind to the same database
 
 `PUT /v2/service_instances/:instance_id/service_bindings/:id`
 
-In this API, the `:id` of a service binding is provided by the CC. And `:instance_id` is the ID from a previously provisioned service instance.  This ID will be used for future unbind requests, so the broker must use it to correlate the resource it creates.
+In this API, the `:id` of a service binding is provided by the Cloud Controller. `:instance_id` is the ID from a previously provisioned service instance.  This ID will be used for future unbind requests, so the broker must use it to correlate the resource it creates.
 
 <table>
 <thead>
@@ -295,5 +295,115 @@ Brokers are expected to respond with `200 OK` or `201 Created` with the response
 	    "database": "dbname"
 	  }
 	}
-
 </pre>
+
+## <a id='unbinding'></a>Unbinding ##
+
+When a broker receives an unbind request from CC, it should delete any resources it created in bind. Usually this means that an application immediately cannot access the resource.
+
+`DELETE /v2/service_instances/:instance_id/service_bindings/:id`
+
+The `:id` in the URL is the identifier returned in by the broker during a bind response.  The request has no body, because DELETE requests generally do not have bodies. It does provide these query string params as useful hints for brokers:
+
+<table>
+<thead>
+<tr>
+  <th>Query-String Field</th>
+  <th>Type</th>
+  <th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>service_id*</td>
+  <td>string</td>
+  <td>ID of the service from the catalog.  Not necessary, but the broker could make use of this to locate the resource in question.
+</td>
+</tr>
+<tr>
+  <td>plan_id*</td>
+  <td>string</td>
+  <td>ID of the plan from the catalog.  Not necessary, but the broker could make use of this to locate the resource in question.</td>
+</tr>
+</tbody>
+</table>
+
+## <a id='unbinding'></a>Unbinding ##
+
+A response code of `200 OK` with a body of `{}` indicates that the resource was deleted. A response code of `404 Not Found` with a body of `{}` indicates to CC that the resource was not there in the first place, and is likely gone. _Any other_ response code indicates to CC that the the binding could not be deleted, the user will be informed (and the binding will remain in the database).
+
+## <a id='unprovisioning'></a>Unprovisioning ##
+
+When a broker receives an unprovision request from CC, it should delete any resources it created during the provision. Usually this means that all resources are immediately reclaimed for future provisions.
+
+`DELETE /v2/service_instances/:id`
+
+The `:id` in the URL is the identifier returned in by the broker during a provision response.  The request has **no body**, because DELETE requests generally do not have bodies. It does provide these query string params as useful hints for brokers:
+
+
+<table>
+<thead>
+<tr>
+  <th>Query-String Field</th>
+  <th>Type</th>
+  <th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>service_id*</td>
+  <td>string</td>
+  <td>ID of the service from the catalog.  Not necessary, but the broker could make use of this to locate the resource in question.
+</td>
+</tr>
+<tr>
+  <td>plan_id*</td>
+  <td>string</td>
+  <td>ID of the plan from the catalog.  Not necessary, but the broker could make use of this to locate the resource in question.</td>
+</tr>
+</tbody>
+</table>
+
+A response code of `200 OK` with a body of `{}` indicates that the resource was deleted. A response code of `404 Not Found `with a body of `{}` indicates to CC that the resource was not there in the first place, and is likely gone. Any other response code indicates to CC that the the service instance could not be deleted, the user will be informed (and the instance will remain in the database).
+
+## <a id='broker-errors'></a>Broker Errors ##
+
+Broker Errors
+When a broker fails to perform any requested operation, unless it fails with a well-defined HTTP response code listed above (like 404 on delete), it should return a JSON-encoded error payload. This payload allows the broker to expose a message to end-user or operator. Any responses not matching this error format will result in the user seeing a generic internal error message.
+
+* Use HTTP status code 400 Bad Request when the input is syntactically invalid.
+* Use HTTP status code 401 Unauthorized when authentication is missing.
+* Use HTTP status code 403 Forbidden when authentication is incorrect.
+* Use HTTP status code 422 Unprocessable Entity when the input is semantically invalid.
+* Use HTTP status code 502 Bad Gateway when there was an issue with a downstream API.
+* Use HTTP status code 500 Internal Server Error for a generic issue.
+
+**Error response format:**
+
+
+<table>
+<thead>
+<tr>
+  <th>Response Field</th>
+  <th>Type</th>
+  <th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>smessage*</td>
+  <td>string</td>
+  <td>An error message explaining why the request failed. This message will likely be forwarded to the person initiating the request.
+</td>
+</tr>
+</tbody>
+</table>
+
+## <a id='orphans'></a>Orphans ##
+
+The Cloud Controller database and a Broker are expected to store identical copies of existing instances and bindings. Potentially, these two lists may become inconsistent. For example, if a broker times out during a delete request, the Cloud Controller will be unsure of whether that resource still exists on the broker or not. Cloud Controller will implement the following orphan prevention techniques:
+
+* If a broker fails to provision/bind, the Cloud Controller will immediately issue a unprovision/unbind request to ensure that any provisioned resources have been cleaned up.
+
+* If a broker fails to unbind/unprovision, the Cloud Controller will periodically retry that DELETE request until it succeeds (or generates a 404). Eventually it will give up, but this technique will help clean up resources that are left around when a broker fails to delete.
+
