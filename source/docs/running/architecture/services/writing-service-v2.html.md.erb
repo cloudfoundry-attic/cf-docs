@@ -11,13 +11,13 @@ There are two versions of the Cloud Foundry Services API. This page documents v2
 The key changes in v2 of the Services API are:
 
 * Terminology change --- In Cloud Foundry v2, what used to be called a service gateway is referred to as a service broker.
-* Unidirectional RESTful HTTP messages --- Brokers can run standalone.
+* Unidirectional RESTful HTTP messages --- The Cloud Controller initiates all communication with brokers, so a broker can run standalone.
 * Easier catalog management and orphan detection --- This functionality is improved, and moved from the broker to the Cloud Controller.
 * Consistent naming --- API endpoints and fields are consistently named.
-* Orphan avoidance --- Automatic cleanup and prevention of orphans (Inconsistent instances between broker and the Cloud Controller)
+* Orphan avoidance --- Orphan service instances and bindings are prevented to the extent possible, and automatically removed, when necessary.
 
 ## <a id='futures'></a>Upcoming API Changes ##
-Changes to the API that are under consideration include:
+Changes to the API that are under consideration include the addition of endpoints and the addition of new fields to existing messages. Existing endpoints and fields will not be removed or renamed. Potential changes include:
 
 * New optional endpoints, or new HTTP methods for existing endpoints, may be added to enable support for features such as snapshots, backups, updating instances, and updating bindings. It is expected that brokers will export some listings of their optional capabilities in the catalog.
 
@@ -33,10 +33,6 @@ The Cloud Foundry services API defines the contract between the Cloud Controller
 
 Cloud Controller (final release v145+) authenticates with the Broker using HTTP basic authentication (the `Authentication:` header) on every request, and will reject any broker registrations that do not contain a username and password. The broker is responsible for checking the username and password and returning a `403 Forbidden` message if they are invalid. Cloud Controller supports connecting to a broker using SSL if additional security is desired.
 
-## <a id='register'></a>Registering a Broker with Cloud Controller ##
-
-Support for broker registration is not supported by the v2 Services API
-Before a broker can be used with Cloud Foundry, the operator must register the broker with Cloud Controller. Broker authors do not have to know how to use or implement this API, as this functionality is built into the cf command-line interface. These APIs are actually part of Cloud Controller and its front-end clients (such as CF), we’ve moved them into this document: Managing V2 Brokers with Cloud Controller.
 
 ## <a id='catalog-mgmt'></a>Catalog Management ##
 
@@ -61,67 +57,67 @@ If the database has plans which are not found in the broker catalog, and there a
 <tbody>
 <tr>
   <td>services*</td>
-  <td>servicesg</td>
+  <td>array-of-objects</td>
   <td>Schema of service objects defined below:</td>
 </tr>
 <tr>
-  <td>id*</td>
+  <td>&nbsp;&nbsp;&nbsp;id*</td>
   <td>string</td>
   <td>An identifier, unique within the broker, used to correlate this service in future requests to the catalog.</td>
 </tr>
 <tr>
-  <td>name*</td>
+  <td>&nbsp;&nbsp;&nbsp;name*</td>
   <td>string</td>
   <td>The CLI-friendly name of the service that will appear in the catalog</td>
 </tr>
 <tr>
-  <td>description*</td>
+  <td>&nbsp;&nbsp;&nbsp;description*</td>
   <td>string</td>
   <td>A short description of the service that will appear in the catalog</td>
 </tr>
 <tr>
-  <td>bindable*</td>
+  <td>&nbsp;&nbsp;&nbsp;bindable*</td>
   <td>boolean</td>
   <td>Whether the service can be bound to applications. Defaults to true.</td>
 </tr>
 <tr>
-  <td>tags</td>
+  <td>&nbsp;&nbsp;&nbsp;tags</td>
   <td>array-of-strings</td>
   <td>A list of permissions that the user would have to give the service, if they provision it. Currently the only permission with any meaning is `syslog_drain`.  See Loggregator documentation (TBD) for more information </td>
 </tr>
 <tr>
-  <td>metadata</td>
+  <td>&nbsp;&nbsp;&nbsp;metadata</td>
   <td>object</td>
   <td>A list of metadata for a service offering.  See [Service Metadata]() for more information.</td>
 </tr>
 <tr>
-  <td>requires</td>
+  <td>&nbsp;&nbsp;&nbsp;requires</td>
   <td>array-of-strings</td>
   <td>A list of permissions that the user would have to give the service, if they provision it. Currently the only permission with any meaning is `syslog_drain`.  See loggregator docs for more info (TBD).</td>
 </tr>
 <tr>
-  <td>plans*</td>
+  <td>&nbsp;&nbsp;&nbsp;plans*</td>
   <td>array-of-objects
 </td>
   <td>A list of plans for this service, schema defined below:</td>
 </tr>
 <tr>
-  <td>id*</td>
+  <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;id*</td>
   <td>string</td>
   <td>An identifier, unique within the broker, used to correlate this plan in future requests to the catalog</td>
 </tr>
 <tr>
-  <td>name*</td>
+  <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;name*</td>
   <td>string</td>
   <td>The CLI-friendly name of the plan that will appear in the catalog</td>
 </tr>
 <tr>
-  <td>description*</td>
+  <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;description*</td>
   <td>string</td>
   <td>IA short description of the service that will appear in the catalog.</td>
 </tr>
 <tr>
-  <td>metadata</td>
+  <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;metadata</td>
   <td>object</td>
   <td>A list of metadata for a service plan.  See metadata specs for more information.</td>
 </tr>
@@ -234,7 +230,7 @@ When the broker receives a bind request from the Cloud Controller, it should tak
 
 `PUT /v2/service_instances/:instance_id/service_bindings/:id`
 
-In this API, the `:id` of a service binding is provided by the Cloud Controller. `:instance_id` is the ID from a previously provisioned service instance.  This ID will be used for future unbind requests, so the broker must use it to correlate the resource it creates.
+Note that the `:id` of a service binding is provided by the Cloud Controller. `:instance_id` is the ID from a previously provisioned service instance; it will be used for future unbind requests, so the broker must use it to correlate the resource it creates.
 
 <table>
 <thead>
@@ -258,7 +254,7 @@ In this API, the `:id` of a service binding is provided by the Cloud Controller.
 </tbody>
 </table>
 
-Brokers are expected to respond with `200 OK` or `201 Created` with the response body from the table below. They can also return 409 Conflict if there is already a binding at this URL. Since this endpoint cannot be used to update resources, brokers must return 409 if a non-identical request is made. If they respond with any other code, CC will assume that the binding request failed and inform the user.
+Brokers are expected to respond with `200 OK` or `201 Created` with the response body from the table below. They can also return `409 Conflict` if there is already a binding at this URL. Since this endpoint cannot be used to update resources, brokers must return 409 if a non-identical request is made. If they respond with any other code, Cloud Controller will assume that the binding request failed and inform the user.
 
 <table>
 <thead>
@@ -368,7 +364,6 @@ A response code of `200 OK` with a body of `{}` indicates that the resource was 
 
 ## <a id='broker-errors'></a>Broker Errors ##
 
-Broker Errors
 When a broker fails to perform any requested operation, unless it fails with a well-defined HTTP response code listed above (like 404 on delete), it should return a JSON-encoded error payload. This payload allows the broker to expose a message to end-user or operator. Any responses not matching this error format will result in the user seeing a generic internal error message.
 
 * Use HTTP status code 400 Bad Request when the input is syntactically invalid.
@@ -403,7 +398,7 @@ When a broker fails to perform any requested operation, unless it fails with a w
 
 The Cloud Controller database and a Broker are expected to store identical copies of existing instances and bindings. Potentially, these two lists may become inconsistent. For example, if a broker times out during a delete request, the Cloud Controller will be unsure of whether that resource still exists on the broker or not. Cloud Controller will implement the following orphan prevention techniques:
 
-* If a broker fails to provision/bind, the Cloud Controller will immediately issue a unprovision/unbind request to ensure that any provisioned resources have been cleaned up.
+* If a broker fails to provision or bind an instance, the Cloud Controller will immediately issue an unprovision or unbind request .
 
 * If a broker fails to unbind/unprovision, the Cloud Controller will periodically retry that DELETE request until it succeeds (or generates a 404). Eventually it will give up, but this technique will help clean up resources that are left around when a broker fails to delete.
 
