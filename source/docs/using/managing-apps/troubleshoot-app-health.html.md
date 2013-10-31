@@ -35,7 +35,7 @@ The Java buildpack does not bundle a JDBC driver with your application. If your 
  
 ### <a id='memory'></a>Allocate Sufficient Memory ###
 
-If you do not allocate sufficient memory to a Java application when you deploy it, it may fail to start, or be killed by Cloud Foundry. Allocate enough memory to allow for Java heap, PermGen, thread stacks, and JVM overhead. The Java buildpack allocates 10% of the memory limit to PermGen. Memory-related JVM options are configured in `config/openjdk.yml`. When your application is running, you can use the `cf stats` command to see memory utilization.
+If you do not allocate sufficient memory to a Java application when you deploy it, it may fail to start, or be killed by Cloud Foundry. Allocate enough memory to allow for Java heap, PermGen, thread stacks, and JVM overhead. The Java buildpack allocates 10% of the memory limit to PermGen. Memory-related JVM options are configured in `config/openjdk.yml` (https://github.com/cloudfoundry/java-buildpack/blob/master/config/openjdk.yml). When your application is running, you can use the `cf stats` command to see memory utilization.
 
 ### <a id='upload'></a>Troubleshoot Failed Upload ###
 

@@ -1,0 +1,141 @@
+---
+title: Writing a v2 Cloud Foundry Service
+---
+
+**Note:** This v2 Services API is still in development. The API and this documentation is subject to change.
+
+There are two versions of the Cloud Foundry Services API. This page documents v2. For information about v1 of the API see [Writing a v1 Cloud Foundry Service]().
+
+## <a id='api-changes'></a>What's New in Services API v2 ##
+
+The key changes in v2 of the Services API are:
+
+* Terminology change --- In Cloud Foundry v2, what used to be called a service gateway is referred to as a service broker.
+* Unidirectional RESTful HTTP messages --- Brokers can run standalone.
+* Easier catalog management and orphan detection --- This functionality is improved, and moved from the broker to the Cloud Controller.
+* Consistent naming --- API endpoints and fields are consistently named.
+* Orphan avoidance --- Automatic cleanup prevention of orphans (Inconsistent instances between broker and CC)
+
+## <a id='api-roadmap'></a>API Roadmap ##
+Possible changes that may be made to v2 of the Services API (without change to the version number) that will not break client and server functionality include:
+
+* New optional endpoints (or new HTTP methods to existing endpoints) can be added representing new concepts. This will enable support for features such as snapshots, backups, updating instances, and updating bindings.  It is expected that brokers will export some listings of their optional capabilities in the catalog.
+
+* New fields may be added to existing request/response messages. These fields must be optional, and should be ignored by clients and servers that do not understand them.
+
+## <a id='api-overview'></a>API Overview ##
+
+The Cloud Foundry services API defines the contract between the Cloud Controller and the service broker. The broker is expected to implement several HTTP (or HTTPS) endpoints underneath a URI prefix. A single service can only be provided by a single broker URL, but horizontal scalability and load balancing allows for multiple redundant brokers. A broker can also offer multiple services.
+
+<%= image_tag("../../../../images/v2services.png", :width =>"960", :height =>"720", :style => 'background-color:#fff') %>
+
+## <a id='authentication'></a>Authentication ##
+
+Cloud Controller (final release v145+) authenticates with the Broker using HTTP basic authentication (the `Authentication:` header) on every request, and will reject any broker registrations that do not contain a username and password. The broker is responsible for checking the username and password and returning a 403 Forbidden message if they are invalid. Cloud Controller supports connecting to a broker using SSL if additional security is desired.
+
+## <a id='register'></a>Registering a Broker ##
+
+(not part of Broker V2 API)
+Before a broker can be used with Cloud Foundry, the operator must register the broker with Cloud Controller.  Broker authors do not have to know how to use or implement this API, as this functionality is built into the cf command-line-interface.  Because these APIs are actually part of CC + its front-end clients (such as CF), we’ve moved them into this document: Managing V2 Brokers with CC.
+
+## <a id='catalog-mgmt'></a>Catalog Management ##
+
+The first endpoint that a broker must implement is the service catalog. Cloud Controller will initially fetch this endpoint from all brokers and make adjustments to the user-facing service catalog stored in the Cloud Controller database. If the catalog fails to initially load or validate, Cloud Controller will not allow the operator to add the new broker, and should give a meaningful error message. Cloud Controller will also update the catalog whenever a broker is updated, so you can use `update-service-broker` with no changes to force a catalog refresh.
+
+When Cloud Controller fetches a catalog from a broker, it will compare the `unique_id` for services and plans with what is in the  Cloud Controller database. If a service or plan in the broker catalog has a `unique_id` which is not present in the database, a new record will be added to the database. If services or plans in the database are found with `unique_id`s that match the broker catalog, Cloud Controller will update update the records to match the broker’s catalog.
+
+If the database has plans which are not found in the broker catalog, and there are no associated service instances, Cloud Controller will remove these plans from the database. If there are provisioned instances, the plan will be marked “inactive” and will no longer be visible in the marketplace catalog or be provisionable. Cloud Controller will then delete services that do not have associated plans from the database.
+
+
+`GET /v2/catalog`
+
+
+
+<table>
+
+<thead>
+<tr>
+  <th>Response field</th>
+  <th>Type</th>
+  <th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>services*</td>
+  <td>servicesg</td>
+  <td>Schema of service objects defined below:</td>
+</tr>
+<tr>
+  <td>id*</td>
+  <td>string</td>
+  <td>An identifier, unique within the broker, used to correlate this service in future requests to the catalog.</td>
+</tr>
+<tr>
+  <td>name*</td>
+  <td>string</td>
+  <td>The CLI-friendly name of the service that will appear in the catalog</td>
+</tr>
+<tr>
+  <td>description*</td>
+  <td>string</td>
+  <td>A short description of the service that will appear in the catalog</td>
+</tr>
+<tr>
+  <td>bindable*</td>
+  <td>boolean</td>
+  <td>Whether the service can be bound to applications. Defaults to true.</td>
+</tr>
+<tr>
+  <td>tags</td>
+  <td>array-of-strings</td>
+  <td>A list of permissions that the user would have to give the service, if they provision it. Currently the only permission with any meaning is `syslog_drain`.  See Loggregator documentation (TBD) for more information </td>
+</tr>
+<tr>
+  <td>acls</td>
+  <td>string</td>
+  <td>(Currently unused)</td>
+</tr>
+<tr>
+  <td>timeout</td>
+  <td>integer</td>
+  <td>(Currently unused) How long the CC should wait for a gateway to finish an operation before giving up.</td>
+</tr>
+<tr>
+  <td>active</td>
+  <td>bool</td>
+  <td>Used as a hint to CF front-ends that a service is not active and can no longer be provisioned (not enforced by CC)</td>
+</tr>
+<tr>
+  <td>extra</td>
+  <td>string</td>
+  <td>JSON-encoded-string of extra data to be used by frontend clients</td>
+</tr>
+<tr>
+  <td>unique_id</td>
+  <td>string</td>
+  <td>A new identifier that must be globally unique.  This ID will be passed as part of provision, bind, etc. requests.  This “primary key” is easier to work with than the combination of <code>[label, provider, version]</code> which also forms a “primary key”.</td>
+</tr>
+<tr>
+  <td>bindable</td>
+  <td>bool</td>
+  <td>If false, cloud controller will return an error to frontend clients when a user requests to bind an app to an instance of the service.</td>
+</tr>
+<tr>
+  <td>tags</td>
+  <td>array of objects</td>
+  <td>Used by buildpacks and application libraries to parse credentials from the <a href="../../../using/deploying-apps/environment-variable.html">VCAP_SERVICES environment variable</a>. Could also be used by frontend clients to filter marketplace services.</td>
+</tr>
+<tr>
+  <td>documentation_url</td>
+  <td>string</td>
+  <td>Used by frontend clients to display a URL to documentation for the service.</td>
+</tr>
+<tr>
+  <td>service_plans</td>
+  <td>array of objects</td>
+  <td>A list of service plan objects to created along as part of this service (see POST /v2/service_plans for list of fields).</td>
+</tr>
+</tbody>
+</table>
+
