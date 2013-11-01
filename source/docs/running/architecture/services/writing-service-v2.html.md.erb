@@ -4,7 +4,7 @@ title: Writing a v2 Cloud Foundry Service
 
 **Note:** The v2 Services API is still in development. The API and this documentation is subject to change.
 
-There are two versions of the Cloud Foundry Services API. This page documents v2. For information about v1 of the API see [Writing a v1 Cloud Foundry Service]().
+There are two versions of the Cloud Foundry Services API. This page documents v2. For information about v1 of the API see [Writing a v1 Cloud Foundry Service](writing-service.html).
 
 ## <a id='api-changes'></a>What's New in Services API v2 ##
 
@@ -68,12 +68,12 @@ If the database has plans which are not found in the broker catalog, and there a
 <tr>
   <td>&nbsp;&nbsp;&nbsp;name*</td>
   <td>string</td>
-  <td>The CLI-friendly name of the service that will appear in the catalog</td>
+  <td>The CLI-friendly name of the service that will appear in the catalog.</td>
 </tr>
 <tr>
   <td>&nbsp;&nbsp;&nbsp;description*</td>
   <td>string</td>
-  <td>A short description of the service that will appear in the catalog</td>
+  <td>A short description of the service that will appear in the catalog.</td>
 </tr>
 <tr>
   <td>&nbsp;&nbsp;&nbsp;bindable*</td>
@@ -83,17 +83,17 @@ If the database has plans which are not found in the broker catalog, and there a
 <tr>
   <td>&nbsp;&nbsp;&nbsp;tags</td>
   <td>array-of-strings</td>
-  <td>A list of permissions that the user would have to give the service, if they provision it. Currently the only permission with any meaning is `syslog_drain`.  See Loggregator documentation (TBD) for more information </td>
+  <td>A list of permissions that the user would have to give the service, if they provision it. The only permission currently supported is <tt>syslog_drain<tt>. </td>
 </tr>
 <tr>
   <td>&nbsp;&nbsp;&nbsp;metadata</td>
   <td>object</td>
-  <td>A list of metadata for a service offering.  See [Service Metadata]() for more information.</td>
+  <td>A list of metadata for a service offering. For more information, see <a href="https://docs.google.com/a/gopivotal.com/document/d/19bfM4H1NL4Z4Qj1jYCF6czQnSzxmq96-iuVKHJ7EZ3M/">Service Metadata</a>.</td>
 </tr>
 <tr>
   <td>&nbsp;&nbsp;&nbsp;requires</td>
   <td>array-of-strings</td>
-  <td>A list of permissions that the user would have to give the service, if they provision it. Currently the only permission with any meaning is `syslog_drain`.  See loggregator docs for more info (TBD).</td>
+  <td>A list of permissions that the user would have to give the service, if they provision it. The only permission currently supported is <tt>syslog_drain</tt>. </td>
 </tr>
 <tr>
   <td>&nbsp;&nbsp;&nbsp;plans*</td>
@@ -104,12 +104,12 @@ If the database has plans which are not found in the broker catalog, and there a
 <tr>
   <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;id*</td>
   <td>string</td>
-  <td>An identifier, unique within the broker, used to correlate this plan in future requests to the catalog</td>
+  <td>An identifier, unique within the broker, used to correlate this plan in future requests to the catalog.</td>
 </tr>
 <tr>
   <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;name*</td>
   <td>string</td>
-  <td>The CLI-friendly name of the plan that will appear in the catalog</td>
+  <td>The CLI-friendly name of the plan that will appear in the catalog.</td>
 </tr>
 <tr>
   <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;description*</td>
@@ -119,7 +119,7 @@ If the database has plans which are not found in the broker catalog, and there a
 <tr>
   <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;metadata</td>
   <td>object</td>
-  <td>A list of metadata for a service plan.  See metadata specs for more information.</td>
+  <td>A list of metadata for a service plan. For more information, see <a href="https://docs.google.com/a/gopivotal.com/document/d/19bfM4H1NL4Z4Qj1jYCF6czQnSzxmq96-iuVKHJ7EZ3M/">Service Metadata</a>.</td>
 </tr>
 </tbody>
 </table>
@@ -147,14 +147,14 @@ If the database has plans which are not found in the broker catalog, and there a
 
 ## <a id='provisioning'></a>Provisioning ##
 
-When the broker receives a provision request from Cloud Controller, it should synchronously take whatever action is necessary to create a new service resource for the developer. What a provision means for different services can vary dramatically, but there are a few common actions that work for many services. Examples of what provision could mean, when applied to a MySQL service:
+When the broker receives a provision request from Cloud Controller, it should synchronously take whatever action is necessary to create a new service resource for the developer. The result of provisioning varies by service type, although there are a few common actions that work for many services. For a MySQL service, provisioning could result in:
 
-* The developer gets an empty dedicated mysqld process running on its own VM.
-* The developer gets an empty dedicated mysqld process running in lightweight container on a shared VM
-* The developer gets an empty dedicated mysqld process running on a shared VM
-* The developer gets an empty dedicated database, on an existing shared running mysqld
-* The developer gets a database with business schema already there
-* The developer gets a copy of a full database (such as provisioning a QA database which is a copy of production)
+* An empty dedicated `mysqld` process running on its own VM.
+* An empty dedicated `mysqld` process running in a lightweight container on a shared VM.
+* An empty dedicated `mysqld` process running on a shared VM.
+* An empty dedicated database, on an existing shared running `mysqld`.
+* A database with business schema already there.
+* A copy of a full database, for example a QA database that is a copy of the production database.
 
 For non-data services, provisioning could just mean getting an account on an existing system.
 
@@ -174,17 +174,17 @@ For non-data services, provisioning could just mean getting an account on an exi
 <tr>
   <td>service_id*</td>
   <td>string</td>
-  <td>The ID of the service within the catalog above.  While not strictly necessary, some brokers might make use of this ID.</td>
+  <td>The ID of the service within the catalog above. While not strictly necessary, some brokers might make use of this ID.</td>
 </tr>
 <tr>
   <td>plan_id*</td>
   <td>string</td>
-  <td>The ID of the plan within the above service (from the catalog endpoint) that the user would like provisioned.  Because plans have identifiers unique to a broker, this is enough information to determine what to provision.</td>
+  <td>The ID of the plan within the above service (from the catalog endpoint) that the user would like provisioned. Because plans have identifiers unique to a broker, this is enough information to determine what to provision.</td>
 </tr>
 <tr>
   <td>organization_guid*</td>
   <td>string</td>
-  <td>The CC GUID of the organization under which the service is to be provisioned.  Many brokers should not use this field, but it could be helpful in determining data placement or applying custom business rules.</td>
+  <td>The Cloud Controller GUID of the organization under which the service is to be provisioned. Although most brokers will not use this field, it could be helpful in determining data placement or applying custom business rules.</td>
 </tr>
 <tr>
   <td>space_guid*</td>
@@ -208,7 +208,7 @@ Brokers are expected to respond with `201 Created` with the response body from t
 <tr>
   <td>dashboard_url</td>
   <td>string</td>
-  <td>The URL a web-based management UI for the service instance. This optional URL allows space developers to visit a friendly management console for this instance. The URL should contain enough information to identify the resource being accessed (9189kdfsk0vfnku in the example below), as well as potentially credentials to access that resource (access_token=3hjdsnqadw487232lp below). CC will sign this URL so that the management console can trust that a user should be able to see the details of this instance. For more information, see [Authenticating a service using the dashboard_url]().</td>
+  <td>The URL of a web-based management user interface for the service instance. This optional URL allows space developers to visit a friendly management console for this instance. The URL should contain enough information to identify the resource being accessed ("9189kdfsk0vfnku" in the example below), and potentially the credentials to access that resource ("access_token=3hjdsnqadw487232lp" below). Cloud Controller will sign this URL so that the management console can trust that a user should be allowed to see the details of the instance. For more information, see <a href="https://docs.google.com/a/gopivotal.com/document/d/1ojU5lFgVcLf9BCKIO481xdweFAb-Y3Vj1CM6KhmqSis/edit#heading=h.z2jbskafu6z8">Authenticating a Service Using the dashboard_url</a>.</td>
 </tr>
 </tboby>
 </table>
@@ -223,10 +223,10 @@ Brokers are expected to respond with `201 Created` with the response body from t
 
 ## <a id='binding'></a>Binding ##
 
-When the broker receives a bind request from the Cloud Controller, it should take whatever action is necessary to generate a way for an application to utilize the already-provisioned resource. Not all services have to be bindable, some derive all their value just from being provisioned. In order for “unbind” to be the most meaningful, applications should be issued different credentials when possible, allowing one bound application can have its access actually revoked without affecting the others. Bind can mean different things depending on the service, here are some examples for Mysql:
+When the broker receives a bind request from the Cloud Controller, it should take whatever action is necessary to generate a way for an application to utilize the already-provisioned resource. Not all services must be bindable --- some derive their value just from being provisioned. Applications should be issued different credentials when possible, so that revoking one bound application's access does not affect others. Bind can mean different things depending on the service. Here are some examples for MySQL:
 
-* New random user credentials are generated for the existing database
-* A single set of credentials are returned for every bind to the same database
+* New random user credentials are generated for the existing database.
+* A single set of credentials are returned for every bind to the same database.
 
 `PUT /v2/service_instances/:instance_id/service_bindings/:id`
 
@@ -244,17 +244,17 @@ Note that the `:id` of a service binding is provided by the Cloud Controller. `:
 <tr>
   <td>service_id*</td>
   <td>string</td>
-  <td>ID of the service from the catalog.  Not necessary, but the broker could make use of this to locate the resource in question.</td>
+  <td>ID of the service from the catalog. Not required, but the broker could make use of this to locate the resource.</td>
 </tr>
 <tr>
   <td>plan_id*</td>
   <td>string</td>
-  <td>ID of the plan from the catalog.  Not necessary, but the broker could make use of this to locate the resource in question.</td>
+  <td>ID of the plan from the catalog. Not required, but the broker could make use of this to locate the resource.</td>
 </tr>
 </tbody>
 </table>
 
-Brokers are expected to respond with `200 OK` or `201 Created` with the response body from the table below. They can also return `409 Conflict` if there is already a binding at this URL. Since this endpoint cannot be used to update resources, brokers must return 409 if a non-identical request is made. If they respond with any other code, Cloud Controller will assume that the binding request failed and inform the user.
+Brokers are expected to respond with `200 OK` or `201 Created` with the response body from the table below. They can also return `409 Conflict` if there is already a binding at the URL. Since this endpoint cannot be used to update resources, a broker must return a 409 if a non-identical request is made. If a broker responds with any other code, Cloud Controller will assume that the binding request failed and inform the user.
 
 <table>
 <thead>
@@ -268,12 +268,12 @@ Brokers are expected to respond with `200 OK` or `201 Created` with the response
 <tr>
   <td>credentials*</td>
   <td>object</td>
-  <td>A free-form hash of credentials that the bound application can use to gain access to the service. We encourage the use of a `uri` field when possible (such as `mysql://user:password@host:port/dbname`), but it’s often useful to provide individual credentials pieces such as hostname, port, username, and password.</td>
+  <td>A free-form hash of credentials that the bound application can use to access the service. Use of a `uri` field (such as `mysql://user:password@host:port/dbname`) is recommended when possible, but it is often useful to provide individual credentials components such as hostname, port, username, and password.</td>
 </tr>
 <tr>
   <td>syslog_drain_url</td>
   <td>string</td>
-  <td>A URL that CF should drain logs to for the bound application. Requires the syslog_drain permission to have logs automatically wired to applications.</td>
+  <td>A URL to which Cloud Foundry should drain logs to for the bound application. The <tt>syslog_drain</tt> permission is required for logs to be automatically wired to applications.</td>
 </tr>
 </tbody>
 </table>
@@ -295,11 +295,11 @@ Brokers are expected to respond with `200 OK` or `201 Created` with the response
 
 ## <a id='unbinding'></a>Unbinding ##
 
-When a broker receives an unbind request from CC, it should delete any resources it created in bind. Usually this means that an application immediately cannot access the resource.
+When a broker receives an unbind request from Cloud Controller, it should delete any resources it created in bind. Usually this means that an application immediately cannot access the resource.
 
 `DELETE /v2/service_instances/:instance_id/service_bindings/:id`
 
-The `:id` in the URL is the identifier returned in by the broker during a bind response.  The request has no body, because DELETE requests generally do not have bodies. It does provide these query string params as useful hints for brokers:
+The `:id` in the URL is the identifier returned in by the broker during a bind response. The request has no body, because DELETE requests generally do not have bodies. It does provide these query string params as useful hints for brokers:
 
 <table>
 <thead>
@@ -313,24 +313,24 @@ The `:id` in the URL is the identifier returned in by the broker during a bind r
 <tr>
   <td>service_id*</td>
   <td>string</td>
-  <td>ID of the service from the catalog.  Not necessary, but the broker could make use of this to locate the resource in question.
+  <td>ID of the service from the catalog.  Not required, but the broker could make use of this to locate the resource.
 </td>
 </tr>
 <tr>
   <td>plan_id*</td>
   <td>string</td>
-  <td>ID of the plan from the catalog.  Not necessary, but the broker could make use of this to locate the resource in question.</td>
+  <td>ID of the plan from the catalog.  Not required, but the broker could make use of this to locate the resource.</td>
 </tr>
 </tbody>
 </table>
 
 ## <a id='unbinding'></a>Unbinding ##
 
-A response code of `200 OK` with a body of `{}` indicates that the resource was deleted. A response code of `404 Not Found` with a body of `{}` indicates to CC that the resource was not there in the first place, and is likely gone. _Any other_ response code indicates to CC that the the binding could not be deleted, the user will be informed (and the binding will remain in the database).
+A response code of `200 OK` with a body of `{}` indicates that the resource was deleted. A response code of `404 Not Found` with a body of `{}` indicates to Cloud Controller that the resource was not there in the first place, and is likely gone. _Any other_ response code indicates to Cloud Controller that the the binding could not be deleted; the user will be informed (and the binding will remain in the database).
 
 ## <a id='unprovisioning'></a>Unprovisioning ##
 
-When a broker receives an unprovision request from CC, it should delete any resources it created during the provision. Usually this means that all resources are immediately reclaimed for future provisions.
+When a broker receives an unprovision request from Cloud Controller, it should delete any resources it created during the provision. Usually this means that all resources are immediately reclaimed for future provisions.
 
 `DELETE /v2/service_instances/:id`
 
@@ -349,29 +349,29 @@ The `:id` in the URL is the identifier returned in by the broker during a provis
 <tr>
   <td>service_id*</td>
   <td>string</td>
-  <td>ID of the service from the catalog.  Not necessary, but the broker could make use of this to locate the resource in question.
+  <td>ID of the service from the catalog.  Not required, but the broker could make use of this to locate the resource.
 </td>
 </tr>
 <tr>
   <td>plan_id*</td>
   <td>string</td>
-  <td>ID of the plan from the catalog.  Not necessary, but the broker could make use of this to locate the resource in question.</td>
+  <td>ID of the plan from the catalog.  Not required, but the broker could make use of this to locate the resource.</td>
 </tr>
 </tbody>
 </table>
 
-A response code of `200 OK` with a body of `{}` indicates that the resource was deleted. A response code of `404 Not Found `with a body of `{}` indicates to CC that the resource was not there in the first place, and is likely gone. Any other response code indicates to CC that the the service instance could not be deleted, the user will be informed (and the instance will remain in the database).
+A response code of `200 OK` with a body of `{}` indicates that the resource was deleted. A response code of `404 Not Found `with a body of `{}` indicates to Cloud Controller that the resource was not there in the first place, and is likely gone. _Any other_ response code indicates to Cloud Controller that the the service instance could not be deleted, the user will be informed (and the instance will remain in the database).
 
 ## <a id='broker-errors'></a>Broker Errors ##
 
 When a broker fails to perform any requested operation, unless it fails with a well-defined HTTP response code listed above (like 404 on delete), it should return a JSON-encoded error payload. This payload allows the broker to expose a message to end-user or operator. Any responses not matching this error format will result in the user seeing a generic internal error message.
 
-* Use HTTP status code 400 Bad Request when the input is syntactically invalid.
-* Use HTTP status code 401 Unauthorized when authentication is missing.
-* Use HTTP status code 403 Forbidden when authentication is incorrect.
-* Use HTTP status code 422 Unprocessable Entity when the input is semantically invalid.
-* Use HTTP status code 502 Bad Gateway when there was an issue with a downstream API.
-* Use HTTP status code 500 Internal Server Error for a generic issue.
+* Use HTTP status code `400 Bad Request` when the input is syntactically invalid.
+* Use HTTP status code `401 Unauthorized` when authentication is missing.
+* Use HTTP status code `403 Forbidden` when authentication is incorrect.
+* Use HTTP status code `422 Unprocessable Entity` when the input is semantically invalid.
+* Use HTTP status code `502 Bad Gateway` when there is an issue with a downstream API.
+* Use HTTP status code `500 Internal Server Error` for a generic issue.
 
 **Error response format:**
 
@@ -400,5 +400,5 @@ The Cloud Controller database and a Broker are expected to store identical copie
 
 * If a broker fails to provision or bind an instance, the Cloud Controller will immediately issue an unprovision or unbind request .
 
-* If a broker fails to unbind/unprovision, the Cloud Controller will periodically retry that DELETE request until it succeeds (or generates a 404). Eventually it will give up, but this technique will help clean up resources that are left around when a broker fails to delete.
+* If a broker fails to unbind or unprovision an instance, the Cloud Controller will periodically retry that DELETE request until it succeeds (or generates a 404). Eventually it will give up, but this technique will help clean up resources that are remain when a broker fails to delete.
 
