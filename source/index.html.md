@@ -41,9 +41,9 @@ title: Welcome to Cloud Foundry Documentation
   <a href="docs/using/deploying-apps/ruby/index.html">Deploy Rack, Rails, or Sinatra Applications</a><br>
   <a href="docs/using/deploying-apps/javascript/index.html">Deploy Node.js Applications</a><br>
   <a href="docs/using/deploying-apps/jvm/index.html">Deploy Java, Groovy, or Scala Apps</a><br>
-  <a href="docs/using/deploying-apps/manifest.html">Application Manifests (manifest.yml)</a><br> 
-  <a href="docs/using/deploying-apps/buildpacks.html">Buildpacks</a><br> 
-  <a href="docs/using/deploying-apps/environment-variable.html">Cloud Foundry Environment Variables</a></br> 
+  <a href="docs/using/deploying-apps/manifest.html">Application Manifests (manifest.yml)</a><br>
+  <a href="docs/using/deploying-apps/buildpacks.html">Buildpacks</a><br>
+  <a href="docs/using/deploying-apps/environment-variable.html">Cloud Foundry Environment Variables</a></br>
   <a href="docs/using/deploying-apps/migrate-db.html">Migrate a Database on Cloud Foundry</a></br>
 
   </p>
@@ -96,7 +96,7 @@ title: Welcome to Cloud Foundry Documentation
   <a href="docs/running/bosh/setup/index.html">Local Setup</a><br>
   <a href="docs/running/bosh/reference/index.html">Reference</a><br>
   <a href="docs/running/bosh/reference/bosh-cli.html">BOSH CLI</a><br>
-  
+
   </p>
 
   <hr>
@@ -105,7 +105,7 @@ title: Welcome to Cloud Foundry Documentation
   Deploy Cloud Foundry<br>
   <a href="docs/running/bosh/setup/index.html">Set Up BOSH</a><br>
   <a href="docs/running/deploying-cf/ec2/index.html">Deploy  to AWS</a><br>
-  <a href="docs/running/deploying-cf/openstack/index.html">Deploy to OpenStack</a><br>   
+  <a href="docs/running/deploying-cf/openstack/index.html">Deploy to OpenStack</a><br>
   <a href="docs/running/deploying-cf/vsphere/index.html">Deploy to vSphere</a><br>
   <a href="docs/running/deploying-cf/vcloud/deploying_to_vcloud_director.html">Deploy to vCloud Director</a><br>
   <a href="docs/running/deploying-cf/adding-services.html">Deploying Community Services</a><br>
@@ -115,17 +115,18 @@ title: Welcome to Cloud Foundry Documentation
   </p>
 
   <hr>
- 
+
   <p>
   Managing Cloud Foundry<br>
   <a href="docs/running/managing-cf/managing-users.html">Users</a><br>
-  <a href="docs/running/managing-cf/monitoring.html">Monitoring</a><br>
   <a href="docs/running/managing-cf/logging.html">Logging</a>
   </p>
 
   <p>
   Services<br>
-  <a href="docs/running/architecture/services/">Adding Services to Cloud Foundry</a>
+  <a href="docs/running/architecture/services/">Adding Services to Cloud Foundry</a><br>
+  <a href="docs/running/architecture/services/writing-service.html">Writing a v1 Cloud Foundry Service</a><br>
+
   </p>
 
   <p>
