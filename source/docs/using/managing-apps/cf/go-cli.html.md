@@ -4,28 +4,9 @@ title: Getting Started with cf v6
 
 cf is Cloud Foundry's command line interface. You can use cf to deploy and manage applications running on most Cloud Foundry based environments, including CloudFoundry.com.
 
-Download cf v6: link
+Download cf v6:
 
-Install cf v6: link
-
-## <a id='questions'></a>Questions ##
-
-* Please explain:
-    * "If you would prefer to completely switch to gcf now, you can use an alias to cf."
-	* "cf v6 will always use any flags passed in the cf login command first. If you’re scripting login and targeting, please use the non-interactive gcf api, gcf auth, and gcf target commands. "
-* Re: gcf push
-	* what are allowable values for stack?  Default value?
-	* what units are assumed if I enter "-m 256"
-	* shall we document that these push options are removed:
-     	* –[no-]bind-services
-		* –[no-]create-services
-		* –[no-]restart
-		* –name NAME
-		* –plan PLAN
-		* –reset
-* What does this mean:
-	* "Note that when you create or update a user-provided service, you can use the `-l SYSLOG_DRAIN_URL` option to send data formatted according to RFC 5424 to a third-party log management software as described in RFC 6587."
-
+Install cf v6:
 
 ## <a id='beta'></a>Beta Notice ##
 
