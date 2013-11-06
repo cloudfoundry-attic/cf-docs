@@ -50,7 +50,8 @@ title: Welcome to Cloud Foundry Documentation
   <hr>
 
   <p>Client Tools<br>
-  <a href="docs/using/managing-apps/cf/index.html">cf command line</a><br>
+  <a href="docs/using/managing-apps/cf/index.html">cf command line v5</a><br>
+  <a href="docs/using/managing-apps/cf/go-cli.html">Getting Started with cf v6</a><br>
   <a href="docs/using/managing-apps/ide/index.html">IDE Integration</a><br>
   <a href="docs/using/managing-apps/build-tools/index.html">Build Tool Integration</a>
   </p>
