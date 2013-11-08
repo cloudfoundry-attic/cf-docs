@@ -408,7 +408,6 @@ properties:
 
   cc: &cc
     logging_level: debug
-    external_host: ccng
     srv_api_uri: <%= protocol %>://api.<%= root_domain %>
     cc_partition: default
     db_encryption_key: <%= common_password %>
