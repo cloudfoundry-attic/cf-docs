@@ -218,7 +218,7 @@ Brokers are expected to respond with `201 Created` with the response body from t
 <tr>
   <td>dashboard_url</td>
   <td>string</td>
-  <td>The URL of a web-based management user interface for the service instance. This optional URL allows space developers to visit a friendly management console for this instance. The URL should contain enough information to identify the resource being accessed ("9189kdfsk0vfnku" in the example below), and potentially the credentials to access that resource ("access_token=3hjdsnqadw487232lp" below). Cloud Controller will sign this URL so that the management console can trust that a user should be allowed to see the details of the instance. For more information, see <a href="https://docs.google.com/a/gopivotal.com/document/d/1ojU5lFgVcLf9BCKIO481xdweFAb-Y3Vj1CM6KhmqSis/edit#heading=h.z2jbskafu6z8">Authenticating a Service Using the dashboard_url</a>.</td>
+  <td>The URL of a web-based management user interface for the service instance. This optional URL allows space developers to visit a friendly management console for this instance. The URL should contain enough information to identify the resource being accessed ("9189kdfsk0vfnku" in the example below), and potentially the credentials to access that resource ("access_token=3hjdsnqadw487232lp" below). For more information, see <a href="https://docs.google.com/a/gopivotal.com/document/d/1ojU5lFgVcLf9BCKIO481xdweFAb-Y3Vj1CM6KhmqSis/edit#heading=h.z2jbskafu6z8">Authenticating a Service Using the dashboard_url</a>.</td>
 </tr>
 </tboby>
 </table>
@@ -333,8 +333,6 @@ The `:id` in the URL is the identifier returned in by the broker during a bind r
 </tr>
 </tbody>
 </table>
-
-## <a id='unbinding'></a>Unbinding ##
 
 A response code of `200 OK` with a body of `{}` indicates that the resource was deleted. A response code of `404 Not Found` with a body of `{}` indicates to Cloud Controller that the resource was not there in the first place, and is likely gone. _Any other_ response code indicates to Cloud Controller that the the binding could not be deleted; the user will be informed (and the binding will remain in the database).
 
