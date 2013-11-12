@@ -11,7 +11,7 @@ The Cloud Controller stores user uploaded applications, buildpacks, droplets and
 The files uploaded by users are stored in private buckets and secured against unauthorized access. 
 If DEAs need to access these files from the Cloud Controller's blobstore, the Cloud Controller generates temporary urls to the required files and provides them to the DEA. The DEA can download the according files from the received url to execute staging tasks and delivers back the results. The generated temporary urls are only valid for a limited amount of time. This ensures that the data is secure.
 
-<strong>!!! Annotation: This feature is not available yet, because it depends on some modifications to the underlying fog gem to provide temporary urls. </strong>
+<strong>!!! Annotation: This feature is not available yet, because it depends on the fog gem > v1.16.0. The cloud controller's fog version needs to be bumped.</strong>
 
 <br/>
 
