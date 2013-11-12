@@ -29,7 +29,7 @@ The Cloud Foundry services API defines the contract between the Cloud Controller
 
 <%= image_tag("../../../../images/v2services.png", :width =>"960", :height =>"720", :style => 'background-color:#fff') %>
 
-## <a id='api-version-header'></a>API Version Header##
+## <a id='api-version-header'></a>API Version Header ##
 
 
 Requests from the Cloud Controller to the broker contain a header that defines the version number of the Broker API that Cloud Controller will use. This header will be useful in future minor revisions of the API, to allow brokers to reject requests from Cloud Controllers that they do not understand. While minor API revisions will always be additive, it is possible that brokers will come to depend on a feature that was added after 2.0, so they may use this header to reject the request. Error messages from the broker in this situation should inform the operator of what the required and actual version numbers are, so that an operator can go upgrade Cloud Controller and resolve the issue. A broker should respond with a `412 Precondition Failed` message when rejecting a request.
