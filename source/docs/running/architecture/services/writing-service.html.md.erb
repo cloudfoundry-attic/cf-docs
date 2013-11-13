@@ -4,6 +4,9 @@ title: Writing a v1 Cloud Foundry Service
 
 There are two versions of the Cloud Foundry Services API. This page documents v1.
 
+<strong>DEPRECATED:</strong> We recommend that all new service brokers be writing against the
+<a href="writing-service-v2.html">version 2 API</a>.
+
 Writing a service involves writing a gateway that obeys the API contract between CloudController v2 (CC) and the gateway v1 (GW).
 The protocol is entirely RESTful HTTP, with _bidirectional communication_. In addition to authentication there are six basic operations that take place, described in this document.
 An oversimplified example of making a GW that supports the 3 most basic operations can be found here: https://github.com/geapi/cf-service-example.
