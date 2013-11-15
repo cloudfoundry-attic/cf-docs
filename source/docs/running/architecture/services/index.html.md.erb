@@ -6,35 +6,34 @@ There are two ways in which Cloud Foundry enables developers to add services to 
 
 ## <a id='managed'></a>Managed Services ##
 
-The Cloud Foundry core Services team has developed an API which is used to integrate services with Cloud Foundry. We call this the Services API or Service Broker API. This API is used between cloud controller and service brokers.
+Cloud Foundry provides an API which is used to integrate services with Cloud Foundry; we call this the Services API or Service Broker API. This RESTful http API is used between cloud controller and service brokers. This should not be confused with the version of the cloud controller API, often used to refer to the version of Cloud Foundry itself; when one refers to "Cloud Foundry v2" they are referring to the version of the cloud controller API. The services API is versioned independantly of the cloud controller API.
 
-Service Broker is the term we use to refer to a component of the service which implements the service broker API. This component was formerly referred to as a Service Gateway, however as traffic between applications and services does not flow through the broker we found the term gateway caused confusion. Although gateway still appears in code, we use the term broker in conversation and are updating documentation to reflect the change.
+Service Broker is the term we use to refer to a component of the service which implements the service broker API. This component was formerly referred to as a Service Gateway, however as traffic between applications and services does not flow through the broker we found the term gateway caused confusion. Although gateway still appears in old code, we use the term broker in conversation, in new code, and are updating documentation to reflect the change.
 
-In general, service brokers advertise a catalog of service offerings and service plans to Cloud Foundry, and receive calls from Cloud Foundry for four functions: create, delete, bind, and unbind. The broker then passes these calls onto the service itself. 
+In general, service brokers advertise a catalog of service offerings and service plans to Cloud Foundry, and receive calls from Cloud Foundry for five functions: fetch catalog, create, bind, unbind, and delete. What a broker does with each call can vary between services; in general create reserves resources on a service and bind delivers information to an application necessary for accessing the resource. We call the reserved resource a Service Instance. What a service instance represents can vary by service; it could be a single database on a multi-tenant server, a dedicated cluster, or even just an account on a web application. 
 
-### <a id='versioning'></a>API Versioning ###
+### <a id='how-to'></a>Adding a Service to Cloud Foundry ###
 
-Service brokers which implement the [v1 Service Broker API](writing-service.html) are said to be v1 service brokers. Similarly, brokers which implement the [v2 broker API](writing-service-v2.html) are said to be v2 brokers. This should not be confused with the version of the cloud controller API (currently v2), often used to refer to the version of Cloud Foundry itself; when one refers to "Cloud Foundry v2" they are referring to the version of the cloud controller API. The services API is versioned independantly of the cloud controller API.
+The current major version of Service Broker API is v2. Brokers which implement the v2 API are referred to as v2 brokers. All changes to the v2 API will be additive and optional, no endpoints or fields will be removed until the next major version.
+
+* [Writing a Cloud Foundry Service Broker](writing-service.html)
+* [An example service broker](https://github.com/cloudfoundry/cf-mysql-broker)
+
+Cloud Foundry currently supports both v2 brokers and v1 brokers, but support for v1 brokers is planned to be removed from the next major version. Although there is no timeline for that release, we recommend new brokers are implemented with the v2 Services API and existing brokers are upgraded. For reference, the [v1 Service Broker API](writing-service-v1.html).
 
 ### <a id='architecture'></a>Service Architecture ###
 
-How a service is implemented is up to the service provider/developer. Cloud Foundry only requires that the service provider implement the service broker API. 
+How a service is implemented is up to the service provider/developer. Cloud Foundry only requires that the service provider implement the service broker API. A broker can be implemented as a seperate application, or by adding the required http endpoints to an existing service.
 
 ### <a id='deployment'></a>Deployment </h3> 
 
 The following are all valid deployment models.
 
 * Entire service packaged and deployed by BOSH alongside Cloud Foundry
-* Broker packaged and deployed by BOSH alongside Cloud Foundry, rest of the service deployed outside of Cloud Foundry
-* Entire service deployed outside of Cloud Foundry
-
-### <a id='how-to'></a>Adding a Service to Cloud Foundry ###
-
-Adding a service to Cloud Foundry means implementing the service broker API. Many members of the Cloud Foundry community are developing custom services for their own Cloud Foundry deployments, as well as writing brokers to integrate existing external services. 
-
-* [Writing a Cloud Foundry Service](writing-service.html) - v1 service broker API
-* [Echo Service](https://github.com/cloudfoundry/vcap-services-sample-release) - a simple example service that shows you how to develop your own Cloud Foundry services
+* Broker packaged and deployed by BOSH alongside Cloud Foundry, rest of the service deployed and maintained by other means
+* Broker (and optionally service) pushed as an application to Cloud Foundry
+* Entire service, including broker, deployed outside of Cloud Foundry
 
 ## <a id='user-provided'></a>User-provided Service Instances ##
 
-Both operators and developers frequently ask how applications pushed to their Cloud Foundry instances can bind with external services, such as Oracle, which they operate themselves or are outside of Cloud Foundry's control'. [User-provided Service Instances](../../../using/services/user-provided.html) enable developers to use external services with their applications using familiar workflows. 
+Both operators and developers frequently ask how applications pushed to their Cloud Foundry instances can bind with external services, such as Oracle, which they operate themselves or are outside of Cloud Foundry's control. [User-provided Service Instances](../../../using/services/user-provided.html) enable developers to use external services with their applications using familiar workflows. 

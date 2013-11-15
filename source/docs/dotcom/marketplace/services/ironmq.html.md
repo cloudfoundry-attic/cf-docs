@@ -2,7 +2,7 @@
 title: IronMQ
 ---
 
-An easy-to-use highly available message queuing service. Built for distributed cloud applications with critical messaging needs.
+Some description of what the service is good for.
 
 ## <a id='managing'></a>Managing Services ##
 
@@ -17,6 +17,8 @@ $ cf create-service ironmq
 </pre>
     
 ### Binding Your Service Instance ##
+
+* Include this section only if your service is bindable. *
 
 Bind the service instance to your app with the following command:
     
@@ -77,6 +79,6 @@ Provider Support Instructions
 
 ## <a id='external-links'></a>External Links ##
 
-* http://www.iron.io/mq
+* Provider URL
 * Provider-hosted documentation URL
 
