@@ -75,6 +75,26 @@ sendgrid.setText("My first email through SendGrid");
 sendgrid.send();
 ```
 
+Optionally, combine with [vcapenv](https://github.com/scottmotte/vcapenv) to avoid entering in the username and password directly. Vcapenv will do the work to automatically pull your credentials from SendGrid.
+
+```java
+import com.github.scottmotte.Vcapenv;
+import com.github.sendgrid.SendGrid;
+
+Vcapenv vcapenv = new Vcapenv();
+String sendgrid_username = vcapenv.SENDGRID_USERNAME();
+String sendgrid_password = vcapenv.SENDGRID_PASSWORD();
+
+SendGrid sendgrid = new SendGrid(sendgrid_username, sendgrid_password);
+
+sendgrid.addTo("example@example.com");
+sendgrid.setFrom("other@example.com");
+sendgrid.setSubject("Hello World");
+sendgrid.setText("My first email through SendGrid");
+
+sendgrid.send();
+```
+
 See the example app [Spring-Attack](https://github.com/scottmotte/spring-attack) for a complete working example.
 
 #### Alternative approach with JavaMail
