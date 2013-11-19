@@ -1,8 +1,8 @@
 ---
-title: Iron Worker
+title: Iron MQ
 ---
 
-IronWorker is a multi-language worker platform that runs tasks in the background, in parallel, and at massive scale.
+IronMQ is a reliable message queue service that lets you connect systems and build distributed apps that scale effortlessly and eliminate any single points of failure.
 
 ## <a id='managing'></a>Managing Services ##
 
@@ -54,7 +54,7 @@ Format of credentials in `VCAP_SERVICES` environment variable.
 
 ## Language Support
 
-IronMQ has clients for [a lot of languages][3], and you can always use [the REST API][4] (or write your own!). This means your existing Heroku stack should work without any changes.
+IronMQ has clients for [a lot of languages][3], and you can always use [the REST API][4] (or write your own!).
 
 ## Ruby
 
@@ -194,11 +194,11 @@ console.log(body);
 
 ## Next Steps
 
-To get into more advanced uses of IronMQ, you may want to check out the [API docs][4] or check out an example Sinatra application that ties in [IronWorker][10] at .
+To get into more advanced uses of IronMQ, you may want to check out the [API docs][4]
 
 ## Support
 
-Issues should get logged with [Heroku Support][11]. You’re also welcome to stop by the [Iron.io support chat room][12] and chat with Iron.io staff about issues. You can also find more resources at the [Iron.io Dev Center][13].
+You’re also welcome to stop by the [Iron.io support chat room][12] and chat with Iron.io staff about issues. You can also find more resources at the [Iron.io Dev Center][13].
 
 ## <a id='sample-app'></a>Integrations ##
 
@@ -246,7 +246,5 @@ Issues should get logged with [Heroku Support][11]. You’re also welcome to sto
   [7]: https://github.com/iron-io/iron_mq_clojure
   [8]: https://github.com/iron-io/iron_mq_node
   [9]: https://github.com/iron-io/iron_core_node
-  [10]: http://addons.heroku.com/iron_worker
-  [11]: https://support.heroku.com
   [12]: http://get.iron.io/chat
   [13]: http://dev.iron.io
