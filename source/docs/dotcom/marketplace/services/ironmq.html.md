@@ -1,8 +1,8 @@
 ---
-title: IronMQ
+title: Iron Worker
 ---
 
-Some description of what the service is good for.
+IronWorker is a multi-language worker platform that runs tasks in the background, in parallel, and at massive scale.
 
 ## <a id='managing'></a>Managing Services ##
 
@@ -17,8 +17,6 @@ $ cf create-service ironmq
 </pre>
     
 ### Binding Your Service Instance ##
-
-* Include this section only if your service is bindable. *
 
 Bind the service instance to your app with the following command:
     
@@ -54,31 +52,43 @@ Format of credentials in `VCAP_SERVICES` environment variable.
 }
 ~~~
 
-### Spring
-Framework-specific integration techniques. 
 
-### Rails
-Framework-specific integration techniques. 
+## <a id='sample-app'></a>Integrations ##
 
-### Node.js
-Framework-specific integration techniques. 
+<ul>
+  <li><a href="/mq/integrations/delayed_job" >Delayed Job for Rails</a></li>
+  <li><a href="http://www.sumoheavy.com/message-queues-in-magento/" target="_blank" >Zend Framework</a></li>
+  <li><a href="/mq/integrations/celery/" >Celery for Python</a></li>
+  <li><a href="http://www.yiiframework.com/extension/yiiron/" target="_blank" >Yii Framework</a></li>
+  <li><a href="http://bundles.laravel.com/bundle/ironmq" target="_blank" >Laravel Framework</a></li>
+  <li><a href="http://drupal.org/project/ironio" target="_blank" >Drupal</a>
+    <li><a href="http://tech.pro/tutorial/1196/blacksmith-ironmq-client-library-fun-with-queues" target="_blank" >.NET Framework</a></li>
+</ul>
 
-## <a id='sample-app'></a>Sample Applications ##
+## <a id='dashboard'></a>Dashboard (HUD) ##
 
-Links and documentation for a sample app which a Cloud Foundry user could use to see the value of your service.
+You can view and analyze all your queues from the HUD...
 
-## <a id='dashboard'></a>Dashboard ##
+![ironworkers on the hud][1]
 
-What users can do with your dashboard.
+## View analytics and gain insight about your queues
+
+![ironmq analytics][2]
+  
+## Share your projects with other people
+
+Each of your projects can be shared with coworkers and friends. It's easy and just takes a few seconds. They'll get an invite to signup for Iron.io for free and have automatic access to the project once completed.
+![Sharing your Iron Worker Project][3]
 
 ## <a id='support'></a>Support ##
 
-[Contacting Service Providers for Support](../contacting-service-providers-for-support.html)
+- [Dev Center](http:www.dev.iron.io)
+- [Live Public Support](http://get.iron.io/chat)
+- [Iron.io on GitHub](https://github.com/iron-io)
+- [Frequently Asked Questions](http://dev.iron.io/faq)
+- [Report an Issue](https://github.com/iron-io/issues/issues)
 
-Provider Support Instructions
 
-## <a id='external-links'></a>External Links ##
-
-* Provider URL
-* Provider-hosted documentation URL
-
+  [1]: http://www.iron.io/assets/screenshots/home-scrnshot-mq-1.png
+  [2]: http://www.iron.io/assets/screenshots/home-scrnshot-mq-2.png
+  [3]: https://d2oawfjgoy88bd.cloudfront.net/523a211b2cdcf276fb5dae02/523a211c2cdcf276fb5dae04/528be904888b9d471f460281.png?Expires=1384987278&Signature=Bt8WG1evom8MFsh1rLSWqF2KFBK1c6l4tGWjuaTRMbw~jvDYBQY6QvdyCKB29Q2TkjvIb0n5rX9XvWWTEti5MFCJYKHwpKdjcdePk9vv0OhBU0vRCdfwotpPNemnkfQ5DvBBJXb7FxH3cWbN~3TiZnlmB0gMXlbnDtciLoakbgjkALTZsy1nBrAapUQ6VQWqjA9B6~Kb6gBTBP~2Ep8BN63970GtgR5ecBtx1OnsCFFrnFAodzfbUzcPj8AMONSsNjIowLbYPNP8OEePl89Z2U~lXQa7lcvWMAnlV8rzz6Ftvno5C8Ly~YS2C52N~3Zj9Lm-vD9QY4gX7M9-lzjoKg__&Key-Pair-Id=APKAJHEJJBIZWFB73RSA

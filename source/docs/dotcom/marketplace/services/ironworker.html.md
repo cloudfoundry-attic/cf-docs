@@ -2,7 +2,7 @@
 title: Iron Worker
 ---
 
-An easy-to-use scalable task queue that gives cloud developers a simple way to offload front-end tasks, run scheduled jobs, and process tasks in the background and at scale.
+IronWorker is a multi-language worker platform that runs tasks in the background, in parallel, and at massive scale.
 
 ## <a id='managing'></a>Managing Services ##
 
@@ -52,31 +52,32 @@ Format of credentials in `VCAP_SERVICES` environment variable.
 }
 ~~~
 
-### Spring
-Framework-specific integration techniques. 
-
-### Rails
-Framework-specific integration techniques. 
-
-### Node.js
-Framework-specific integration techniques. 
 
 ## <a id='sample-app'></a>Sample Applications ##
 
-Links and documentation for a sample app which a Cloud Foundry user could use to see the value of your service.
+Sample Apps in binary, dotnet, go, java, node, php, python, and ruby!
 
+[IronWorker Examples on GitHub](https://github.com/iron-io/iron_worker_examples)
 ## <a id='dashboard'></a>Dashboard ##
 
-What users can do with your dashboard.
+You can view and analyze all your workers from the HUD...
+
+![ironworkers on the hud][1]
+  
+## Share your projects with other people
+
+Each of your projects can be shared with coworkers and friends. It's easy and just takes a few seconds. They'll get an invite to signup for Iron.io for free and have automatic access to the project once completed.
+![Sharing your Iron Worker Project][2]
 
 ## <a id='support'></a>Support ##
 
-[Contacting Service Providers for Support](../contacting-service-providers-for-support.html)
-
 Provider Support Instructions
 
-## <a id='external-links'></a>External Links ##
+- [Dev Center](http:www.dev.iron.io)
+- [Live Public Support](http://get.iron.io/chat)
+- [Iron.io on GitHub](https://github.com/iron-io)
+- [Frequently Asked Questions](http://dev.iron.io/faq)
+- [Report an Issue](https://github.com/iron-io/issues/issues)
 
-* http://www.iron.io/worker
-* Provider-hosted documentation URL
-
+  [1]: http://www.iron.io/assets/screenshots/home-scrnshot-worker-1.png
+  [2]: https://d2oawfjgoy88bd.cloudfront.net/523a211b2cdcf276fb5dae02/523a211c2cdcf276fb5dae04/528be904888b9d471f460281.png?Expires=1384987278&Signature=Bt8WG1evom8MFsh1rLSWqF2KFBK1c6l4tGWjuaTRMbw~jvDYBQY6QvdyCKB29Q2TkjvIb0n5rX9XvWWTEti5MFCJYKHwpKdjcdePk9vv0OhBU0vRCdfwotpPNemnkfQ5DvBBJXb7FxH3cWbN~3TiZnlmB0gMXlbnDtciLoakbgjkALTZsy1nBrAapUQ6VQWqjA9B6~Kb6gBTBP~2Ep8BN63970GtgR5ecBtx1OnsCFFrnFAodzfbUzcPj8AMONSsNjIowLbYPNP8OEePl89Z2U~lXQa7lcvWMAnlV8rzz6Ftvno5C8Ly~YS2C52N~3Zj9Lm-vD9QY4gX7M9-lzjoKg__&Key-Pair-Id=APKAJHEJJBIZWFB73RSA
