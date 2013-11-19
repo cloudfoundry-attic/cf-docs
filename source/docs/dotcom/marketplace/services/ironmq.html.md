@@ -60,19 +60,21 @@ IronMQ has clients for [a lot of languages][3], and you can always use [the REST
 
 We’re going to need to install the Ruby gem, for development purposes:
 
-
+~~~
 $ gem install iron_mq
 Fetching: iron_mq-3.0.2.gem (100%)
 Successfully installed iron_mq-3.0.2
+~~~
 
 If you’re building for a Rails application or anything that uses Bundler, add the following to your Gemfile:
 
-
+~~~
 gem 'iron_mq'
+~~~
 
 Now you have a simple helper that allows you to interact with your queues:
 
-
+~~~ruby
 # Create an IronMQ::Client object
 @ironmq = IronMQ::Client.new()
 
@@ -88,6 +90,7 @@ p msg
 
 # Delete a message (you must delete a message when you're done with it or it will go back on the queue after a timeout)
 msg.delete # or @queue.delete(msg.id)
+~~~
 
 ## Java
 
@@ -95,6 +98,7 @@ We’re going to need to install [the jar file][5] for the official IronMQ Java 
 
 Once you have the jar file added as a dependency, you have a simple wrapper that allows you to interact with your queues:
 
+~~~java
 
 // Get your Iron.io credentials from the environment
 Map env = System.getenv();
@@ -114,6 +118,7 @@ System.out.println(msg.getBody());
 
 // Delete a message (you must delete a message when you're done with it or it will go back on the queue after a timeout)
 queue.deleteMessage(msg);
+~~~
 
 ## Python
 
@@ -121,7 +126,7 @@ We’re going to have to install the [Python client library][6] for IronMQ. You 
 
 Once the package is installed, you have a simple wrapper that allows you to interact with your queues:
 
-
+~~~python
 # Create an IronMQ client object
 mq = IronMQ()
 
@@ -137,6 +142,7 @@ print msg
 
 # Delete a message (you must delete a message when you're done with it or it will go back on the queue after a timeout)
 queue.delete(msg["messages"][0]["id"])
+~~~
 
 ## Clojure
 
@@ -147,7 +153,7 @@ We’re going to need to add the [IronMQ Clojure client][7] to your project.clj:
 
 Use these to create a client that allows you to interact with your queues:
 
-
+~~~clojure
 (require '[iron-mq-clojure.client :as mq])
 
 (def client (mq/create-client (System/getenv "IRON_MQ_TOKEN") (System/getenv "IRON_MQ_PROJECT_ID")))
@@ -161,6 +167,7 @@ Use these to create a client that allows you to interact with your queues:
 
 ; Delete a message (you must delete a message when you're done with it or it will go back on the queue after a timeout)
 (mq/delete-message client "my_queue" msg))
+~~~
 
 ## Node.js
 
@@ -168,7 +175,7 @@ We’re going to need to the [IronMQ Node.js client][8] to interact with our que
 
 Once that’s done, you can require it to get a simple wrapper for the API:
 
-
+~~~ruby
 var iron_mq = require("iron_mq");
 
 var client = new iron_mq.Client({"queue_name": "my_queue"});
@@ -191,6 +198,7 @@ console.log(body);
 });
 }
 });
+~~~
 
 ## Next Steps
 
