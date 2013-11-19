@@ -56,11 +56,24 @@ How to Get your Project ID and Token from Cloud Foundry
 
 Add those values to a file called `iron.json` in your app root directory and add iron.json to your .gitignore file.
 
-
     {
       "project_id": "123456789",
       "token": "aslkdjflaksuilaks"
     }
+
+## Ruby
+
+We’re going to need to install the Ruby gem, for development purposes:
+
+<pre class="terminal">
+$ gem install worker_ng
+</pre>
+
+If you’re building for a Rails application or anything that uses Bundler, add the following to your Gemfile:
+
+~~~
+gem 'iron_worker_ng'
+~~~
 
 ## Create a worker
 
@@ -84,7 +97,6 @@ Now create a file called `hello.worker` that defines your worker’s dependencie
     exec "hello_worker.rb"
 
 Now upload it:
-
 
     #iron_worker upload hello
 

@@ -60,11 +60,9 @@ IronMQ has clients for [a lot of languages][3], and you can always use [the REST
 
 We’re going to need to install the Ruby gem, for development purposes:
 
-~~~
+<pre class="terminal">
 $ gem install iron_mq
-Fetching: iron_mq-3.0.2.gem (100%)
-Successfully installed iron_mq-3.0.2
-~~~
+</pre>
 
 If you’re building for a Rails application or anything that uses Bundler, add the following to your Gemfile:
 
