@@ -23,32 +23,76 @@ $ sudo apt-get -y install libsqlite3-dev genisoimage
 * Install the BOSH Deployer Ruby gem.
 
 <pre class="terminal">
+$ gem install bosh_cli --pre 
 $ gem install bosh_cli_plugin_micro --pre
 </pre>
 
 Once you have installed the deployer, you will see some extra commands appear after typing `bosh` on your command line.
 
-*Note*: The `bosh micro` commands must be run within a micro BOSH deployment directory.
+*Note*: The `bosh micro` commands should be run within a micro BOSH deployment directory.
 
 <pre class="terminal">
-$ bosh help
-...
-Micro
-	micro deployment [<name>] Choose micro deployment to work with
-	micro status              Display micro BOSH deployment status
-	micro deployments         Show the list of deployments
-	micro deploy <stemcell>   Deploy a micro BOSH instance to the currently
-                                    selected deployment
-                          --update  update existing instance
-	micro delete              Delete micro BOSH instance (including
-                                    persistent disk)
-	micro agent <args>        Send agent messages
-	micro apply <spec>        Apply spec
+$ bosh help micro
+  aws bootstrap micro
+      rm deployments dir, creates a deployments/micro/micro_bosh.yml and deploys the microbosh
+
+  micro
+      show micro bosh sub-commands
+
+  micro agent <args>
+      Send agent messages
+
+      Message Types:
+
+      start - Start all jobs on MicroBOSH
+
+      stop - Stop all jobs on MicroBOSH
+
+      ping - Check to see if the agent is responding
+
+      drain TYPE SPEC - Tell the agent to begin draining
+        TYPE - One of 'shutdown', 'update' or 'status'.
+        SPEC - The drain spec to use.
+
+      state [full] - Get the state of a system
+        full - Get additional information about system vitals
+
+      list_disk - List disk CIDs mounted on the system
+
+      migrate_disk OLD NEW - Migrate a disk
+        OLD - The CID of the source disk.
+        NEW - The CID of the destination disk.
+
+      mount_disk CID - Mount a disk on the system
+        CID - The cloud ID of the disk to mount.
+
+      unmount_disk CID - Unmount a disk from the system
+        CID - The cloud ID of the disk to unmount.
+
+  micro apply <spec>
+      Apply spec
+
+  micro delete
+      Delete micro BOSH instance (including persistent disk)
+
+  micro deploy [<stemcell>] [--update] [--update-if-exists]
+      Deploy a micro BOSH instance to the currently selected deployment
+      --update                              update existing instance
+      --update-if-exists                    create new or update existing instance
+
+  micro deployment [<name>]
+      Choose micro deployment to work with, or display current deployment
+
+  micro deployments
+      Show the list of deployments
+
+  micro status
+      Display micro BOSH deployment status  
 </pre>
 
 ### <a id="config"></a>Configuration ###
 
-For a minimal vSphere configuration example, see [here](https://github.com/cloudfoundry/bosh/blob/master/bosh_cli_plugin_micro/spec/assets/test-bootstrap-config.yml). Note that `disk_path` is `BOSH_Deployer` rather than `BOSH_Disks`. A datastore folder other than `BOSH_Disks` is required if your vCenter hosts other Directors. The `disk_path` folder needs to be created manually. Also, your configuration must live inside a `deployments` directory and follow the convention of having a `$name` subdir containing `micro_bosh.yml`, where `$name` is your deployment name.
+For a minimal vSphere configuration example, see [here](https://github.com/cloudfoundry/bosh/blob/master/bosh_cli_plugin_micro/spec/assets/test-bootstrap-config.yml). Note that `disk_path` is `BOSH_Deployer` rather than `BOSH_Disks`. A datastore folder other than `BOSH_Disks` is required if your vCenter hosts other Directors. The `disk_path` folder needs to be created manually. Also, your configuration should live inside a `deployments` directory and follow the convention of having a `$name` subdir containing `micro_bosh.yml`, where `$name` is your deployment name.
 
 For example:
 
@@ -59,7 +103,7 @@ deployments/dev32/micro_bosh.yml
 deployments/dev33/micro_bosh.yml
 </pre>
 
-Deployment state is persisted to `deployments/bosh-deployments.yml`.
+Deployment state is persisted to `<current directory>/bosh-deployments.yml`.
 
 ### <a id="config-vcenter"></a>vCenter Configuration ###
 
@@ -136,23 +180,24 @@ If you have 2 datastores called "vnx:1" and "vnx:2", and you would like to separ
 
 ## <a id="deploy"></a>Deployment ##
 
-Download a micro BOSH Stemcell:
+Download a BOSH Stemcell:
 
 <pre class="terminal">
 $ mkdir -p ~/stemcells
 $ cd stemcells
 $ bosh public stemcells
-+---------------------------------------+--------------------------------------------------+
-| Name                                  | Tags                                             |
-+---------------------------------------+--------------------------------------------------+
-| bosh-stemcell-aws-0.6.4.tgz           | aws, stable                                      |
-| bosh-stemcell-vsphere-0.6.4.tgz       | vsphere, stable                                  |
-| bosh-stemcell-vsphere-0.6.7.tgz       | vsphere, stable                                  | 
-| micro-bosh-stemcell-aws-0.6.4.tgz     | aws, micro, stable                               |
-| micro-bosh-stemcell-vsphere-0.6.4.tgz | vsphere, micro, stable                           |
-+---------------------------------------+--------------------------------------------------+
-To download use 'bosh download public stemcell <stemcell_name>'.
-$ bosh download public stemcell micro-bosh-stemcell-0.6.4.tgz
++---------------------------------------------+
+| Name                                        |
++---------------------------------------------+
+| bosh-stemcell-1365-aws-xen-ubuntu.tgz       |
+| light-bosh-stemcell-1365-aws-xen-ubuntu.tgz |
+| bosh-stemcell-1365-openstack-kvm-ubuntu.tgz |
+| bosh-stemcell-1365-vsphere-esxi-ubuntu.tgz  |
+| bosh-stemcell-1365-vsphere-esxi-centos.tgz  |
++---------------------------------------------+
+To download use `bosh download public stemcell <stemcell_name>'. For full url use --full.
+
+$ bosh download public stemcell bosh-stemcell-XXXX-vsphere-esxi-ubuntu.tgz
 </pre>
 
 Set the micro BOSH Deployment using:
@@ -166,13 +211,13 @@ Deployment set to '/var/vcap/deployments/dev33/micro_bosh.yml'
 Deploy a new micro BOSH instance:
 
 <pre class="terminal">
-$ bosh micro deploy ~/stemcells/micro-bosh-stemcell-0.6.4.tgz
+$ bosh micro deploy bosh-stemcell-XXXX-vsphere-esxi-ubuntu.tgz
 </pre>
 
 Update an existing micro BOSH instance. The existing persistent disk will be attached to the new VM:
 
 <pre class="terminal">
-$ bosh micro deploy ~/stemcells/micro-bosh-stemcell-0.6.4.tgz --update
+$ bosh micro deploy bosh-stemcell-XXXX-vsphere-esxi-ubuntu.tgz --update
 </pre>
 
 ### <a id="delete"></a>Deleting a Micro BOSH Deployment ###
@@ -189,24 +234,24 @@ The `status` command will show the persisted state for a given micro BOSH instan
 
 <pre class="terminal">
 $ bosh micro status
-Stemcell CID   sc-fba33340-72c9-4bc2-8fea-3a258511a702
-Stemcell name  micro-bosh-stemcell-vsphere-0.6.4
-VM CID         vm-1b15b7e5-af8f-4dba-9212-9e240d662d4f
-Disk CID       1
-Micro BOSH CID bm-05558542-61c0-4a99-802a-1909689c659a
-Deployment     /home/user/cloudfoundry/deployments/micro_bosh/micro_bosh.yml
-Target         http://192.168.9.20:25555 #IP Address of the Director
+Stemcell CID   sc-1744775e-869d-4f72-ace0-6303385ef25a
+Stemcell name  bosh-stemcell-1341-vsphere-esxi-ubuntu
+VM CID         vm-ef943451-b46d-437f-b5a5-debbe6a305b3
+Disk CID       disk-5aefc4b4-1a22-4fb5-bd33-1c3cdb5da16f
+Micro BOSH CID bm-fa74d53a-1032-4c40-a262-9c8a437ee6e6
+Deployment     /home/user/cloudfoundry/bosh/deployments/micro_bosh/micro_bosh.yml
+Target         https://192.168.9.20:25555 #IP Address of the Director
 </pre>
 
 ### <a id="listing"></a>Listing Deployments ###
 
-The `deployments` command prints a table view of `deployments/bosh-deployments.yml`:
+The `deployments` command prints a table view of `bosh-deployments.yml`:
 
 <pre class="terminal">
 $ bosh micro deployments
 </pre>
 
-The files in the `deployments` directory need to be saved if you later want to be able to update your micro BOSH instance. They are all text files, so you can commit them to a git repository to make sure they are safe in case your bootstrap VM goes away.
+The files in your current directory need to be saved if you later want to be able to update your micro BOSH instance. They are all text files, so you can commit them to a git repository to make sure they are safe in case your bootstrap VM goes away.
 
 ### <a id="apply-spec"></a>Applying a Specification ###
 

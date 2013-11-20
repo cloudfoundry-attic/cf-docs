@@ -25,14 +25,19 @@ Logged in as 'admin'
 
 $ bosh status
 Updating director data... done
+Config
+             /home/user/.bosh_config
 
 Director
-  Name      your-micro-BOSH
- 	URL       http://11.23.194.100:25555
- 	Version   0.5.2 (release:ffed4d4a bosh:21e0b0bc)
- 	User      admin
- 	UUID      729b6100-4035-4b35-ab9a-cf8299719fe3
- 	CPI       vsphere
+  Name       your-micro-BOSH
+  URL        http://11.23.194.100:25555
+  Version    1.5.0.pre.980 (release:95f2cf42 bosh:95f2cf42)
+  User       admin
+  UUID       729b6100-4035-4b35-ab9a-cf8299719fe3
+  CPI        vsphere
+  dns        enabled (domain_name: microbosh)
+  compiled_package_cache disabled
+  snapshots  disabled
 
 Deployment
   not set
@@ -49,28 +54,28 @@ $ mkdir -p ~/stemcells
 $ cd ~/stemcells
 $ bosh public stemcells
 
-+---------------------------------------+------------------------+
-| Name                                  | Tags                   |
-+---------------------------------------+------------------------+
-| bosh-stemcell-aws-0.6.4.tgz           | aws, stable            |
-| bosh-stemcell-vsphere-0.6.4.tgz       | vsphere, stable        |
-| bosh-stemcell-vsphere-0.6.7.tgz       | vsphere, stable        |
-| micro-bosh-stemcell-aws-0.6.4.tgz     | aws, micro, stable     |
-| micro-bosh-stemcell-vsphere-0.6.4.tgz | vsphere, micro, stable |
-+---------------------------------------+------------------------+
++---------------------------------------------+
+| Name                                        |
++---------------------------------------------+
+| bosh-stemcell-1365-aws-xen-ubuntu.tgz       |
+| light-bosh-stemcell-1365-aws-xen-ubuntu.tgz |
+| bosh-stemcell-1365-openstack-kvm-ubuntu.tgz |
+| bosh-stemcell-1365-vsphere-esxi-ubuntu.tgz  |
+| bosh-stemcell-1365-vsphere-esxi-centos.tgz  |
++---------------------------------------------+
 To download use `bosh download public stemcell <stemcell_name>'. For full url use --full.
 </pre>
 
-Download a public stemcell. *Note*: in this case you do not use the micro bosh stemcell.
+Download a public stemcell. *Note*: if you have already downloaded a stemcell to deploy your micro BOSH, you can use that one.
 
 <pre class="terminal">
-$ bosh download public stemcell bosh-stemcell-vsphere-0.6.7.tgz 
+$ bosh download public stemcell bosh-stemcell-XXXX-vsphere-esxi-ubuntu.tgz
 </pre>
 
 Upload the downloaded stemcell to micro BOSH.
 
 <pre class="terminal">
-$ bosh upload stemcell bosh-stemcell-vsphere-0.6.7.tgz
+$ bosh upload stemcell bosh-stemcell-XXXX-vsphere-esxi-ubuntu.tgz
 </pre>
 
 You can see the uploaded stemcells (on your Micro BOSH) by using `bosh stemcells`:
@@ -78,20 +83,18 @@ You can see the uploaded stemcells (on your Micro BOSH) by using `bosh stemcells
 <pre class="terminal">
 $ bosh stemcells
 
-+---------------+---------+-----------------------------------------+
-| Name          | Version | CID                                     |
-+---------------+---------+-----------------------------------------+
-| bosh-stemcell | 0.6.7   | sc-1033810d-f3ff-42b5-8d39-58cb035638fc |
-+---------------+---------+-----------------------------------------+
++-------------------------------+---------+-----------------------------------------+
+| Name                          | Version | CID                                     |
++-------------------------------+---------+-----------------------------------------+
+| bosh-vsphere-esxi-ubuntu      | 1365    | sc-c43d6d06-53b9-47dc-8830-b4e280684a9a |
++-------------------------------+---------+-----------------------------------------+
 </pre>
 
 ## <a id="upload-release"></a>Upload a BOSH release ##
 
-Rather than creating a new release, we will use the public release from in the [local setup instructions](../../bosh/setup/index.html).
-
 <pre class="terminal">
-$ cd ~/bosh-release
-$ bosh upload release releases/bosh-13.yml
+$ wget http://bosh-jenkins-artifacts.s3.amazonaws.com/release/bosh-XXXX.tgz
+$ bosh upload release bosh-XXXX.tgz
 </pre>
 
 ## <a id="deploy"></a>Setup a BOSH Deployment Manifest and Deploy ##
