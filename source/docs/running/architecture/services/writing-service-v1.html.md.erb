@@ -41,8 +41,9 @@ All catalog management APIs are in the CloudController.
 A service is identified by the combination of `[label, provider, version]`, which must be unique.
 A plan is identified by `[service_guid, name]`, which must also be unique.
 
-Because compound primary keys are annoying to work with, we introduced the concept of `unique_id` string fields, but we made them optional for backwards compatibility.
-Updating a service by `unique_id` allows you to make changes to fields inside the old primary key, like label and provider, without having to create a new service.
+We introduced the `unique_id` field in order to enable service brokers to change service labels, providers, and versions,
+and to change plan names. If a service broker sets a unique_id for its service in Cloud Controller, then the broker can
+use the `unique_id` to identify the service, even after it has changed the service name, etc. The same is true for plans.
 
 To generate a `unique_id`, try this [Online GUID Generator](http://www.guidgenerator.com/ "Online GUID Generator").
 
@@ -112,7 +113,7 @@ To generate a `unique_id`, try this [Online GUID Generator](http://www.guidgener
 <tr>
   <td>unique_id</td>
   <td>string</td>
-  <td>A new identifier that must be globally unique.  This ID will be passed as part of provision, bind, etc. requests.  This “primary key” is easier to work with than the combination of <code>[label, provider, version]</code> which also forms a “primary key”.</td>
+  <td>A new identifier that must be globally unique.  This ID will be passed to the service broker as part of provision, bind, etc. requests.  This “primary key” is easier to work with than the combination of <code>[label, provider, version]</code> which also forms a “primary key”.</td>
 </tr>
 <tr>
   <td>bindable</td>
@@ -246,15 +247,10 @@ To generate a `unique_id`, try this [Online GUID Generator](http://www.guidgener
 <tr>
   <td>label*<br/>provider*</br>version*</td>
   <td>string</td>
-  <td>If unique_id is not provided, used to find the existing service to be updated</td>
+  <td>If `unique_id` is not provided, used to find the existing service to be updated</td>
 </tr>
 <tr>
-  <td>unique_id</td>
-  <td>string</td>
-  <td>When provided, used to find the existing service to be updated</td>
-</tr>
-<tr>
-  <td colspan="3"><em>Everything else same as create endpoint</em></td>
+  <td colspan="3"><em>Everything else same as create endpoint, except `unique_id` cannot be included</em></td>
 </tr>
 </tbody>
 </table>
@@ -488,15 +484,10 @@ No body or query parameters.  This request is expected to fail if there are plan
 <tr>
   <td>service_guid*<br/>name*
   <td>string</td>
-  <td>If unique_id is not provided, used to find the existing plan to be updated</td>
+  <td>If `unique_id` is not provided, used to find the existing plan to be updated</td>
 </tr>
 <tr>
-  <td>unique_id</td>
-  <td>string</td>
-  <td>When provided, used to find the existing plan to be updated</td>
-</tr>
-<tr>
-  <td colspan="3"><em>Everything else same as create endpoint</em></td>
+  <td colspan="3"><em>Everything else same as create endpoint, except `unique_id` cannot be provided</em></td>
 </tr>
 </tbody>
 </table>
