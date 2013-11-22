@@ -163,7 +163,13 @@ Once you've implemented the first endpoint `GET /v2/catalog` above, you'll want 
 Registering or updating a broker causes cloud controller to fetch and validate the catalog from your broker, and update the database with any changes found in the catalog. Your service broker should validate the username and password, otherwise anyone could curl your broker to delete all service instances.
 
 <pre class="terminal">
-$ cf add-service-broker mybroker --username someuser--password somethingsecure --url http://mybroker.example.com/
+$ cf add-service-broker mybroker --username someuser --password somethingsecure --url http://mybroker.example.com/
+</pre>
+
+To update a broker:
+
+<pre class="terminal">
+$ cf update-service-broker mybroker --username someuser --password somethingsecure --url http://mybroker.example.com/
 </pre>
 
 #### Making a Plan Public
