@@ -183,8 +183,6 @@ If you have 2 datastores called "vnx:1" and "vnx:2", and you would like to separ
 Download a BOSH Stemcell:
 
 <pre class="terminal">
-$ mkdir -p ~/stemcells
-$ cd stemcells
 $ bosh public stemcells
 +---------------------------------------------+
 | Name                                        |
