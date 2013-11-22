@@ -154,11 +154,11 @@ If the database has plans which are not found in the broker catalog, and there a
 }
 </pre>
 
-## <a id='create-broker'></a>Adding a Broker to Cloud Foundry ##
+### <a id='create-broker'></a>Adding a Broker to Cloud Foundry ###
 
 Once you've implemented the first endpoint `GET /v2/catalog` above, you'll want to see whether your services and plan are available to end users. Two steps are required, registering your broker with cloud controller and making plans public. Both steps require you are authenticate as a cloud controller admin.
 
-### Adding a Broker to Cloud Foundry
+#### Adding a Broker to Cloud Foundry
 
 Registering or updating a broker causes cloud controller to fetch and validate the catalog from your broker, and update the database with any changes found in the catalog. Your service broker should validate the username and password, otherwise anyone could curl your broker to delete all service instances.
 
@@ -166,7 +166,7 @@ Registering or updating a broker causes cloud controller to fetch and validate t
 $ cf add-service-broker mybroker --username someuser--password somethingsecure --url http://mybroker.example.com/
 </pre>
 
-### Making a Plan Public
+#### Making a Plan Public
 
 By default, new plans are private. This mean they are not visible to end users. This gives CF admins control over their catalogs when they don't have control over service brokers. Making a plan public currently involves a couple of curls but a CLI command is coming very soon (this command will be implemented in the [v6 Go-based CLI](../../../using/managing-apps/cf/go-cli.html) only). 
 
