@@ -1,5 +1,5 @@
 ---
-title: Iron MQ
+title: IronMQ
 ---
 
 IronMQ is a reliable message queue service that lets you connect systems and build distributed apps that scale effortlessly and eliminate any single points of failure.

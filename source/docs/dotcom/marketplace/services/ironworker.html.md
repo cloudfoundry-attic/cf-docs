@@ -1,5 +1,5 @@
 ---
-title: Iron Worker
+title: IronWorker
 ---
 
 IronWorker is a multi-language worker platform that runs tasks in the background, in parallel, and at massive scale.
