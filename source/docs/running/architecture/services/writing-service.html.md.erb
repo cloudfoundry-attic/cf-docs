@@ -395,7 +395,9 @@ The `:id` in the URL is the identifier returned in by the broker during a bind r
 </tbody>
 </table>
 
-A response code of `200 OK` with a body of `{}` indicates that the resource was deleted. A response code of `404 Not Found` with a body of `{}` indicates to Cloud Controller that the resource was not there in the first place, and is likely gone. _Any other_ response code indicates to Cloud Controller that the the binding could not be deleted; the user will be informed (and the binding will remain in the database).
+A response code of `200 OK` with a body of `{}` indicates that the resource was deleted. A response code of `410 Not Found` with a body of `{}` indicates to Cloud Controller that the resource was not there in the first place, and is likely gone. _Any other_ response code indicates to Cloud Controller that the the binding could not be deleted; the user will be informed (and the binding will remain in the database).
+
+We've chosen to require empty JSON in the response for future compatibility; it will be easier to add fields in the future if JSON is expected rather than support the cases when a JSON body may or may not be returned.
 
 ## <a id='unprovisioning'></a>Unprovisioning ##
 
@@ -429,7 +431,9 @@ The `:id` in the URL is the identifier returned in by the broker during a provis
 </tbody>
 </table>
 
-A response code of `200 OK` with a body of `{}` indicates that the resource was deleted. A response code of `404 Not Found `with a body of `{}` indicates to Cloud Controller that the resource was not there in the first place, and is likely gone. _Any other_ response code indicates to Cloud Controller that the the service instance could not be deleted, the user will be informed (and the instance will remain in the database).
+A response code of `200 OK` with a body of `{}` indicates that the resource was deleted. A response code of `410 Not Found `with a body of `{}` indicates to Cloud Controller that the resource was not there in the first place, and is likely gone. _Any other_ response code indicates to Cloud Controller that the the service instance could not be deleted, the user will be informed (and the instance will remain in the database).
+
+We've chosen to require empty JSON in the response for future compatibility; it will be easier to add fields in the future if JSON is expected rather than support the cases when a JSON body may or may not be returned.
 
 ## <a id='broker-errors'></a>Broker Errors ##
 
