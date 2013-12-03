@@ -10,7 +10,7 @@ There are two versions of the Cloud Foundry Services API. This page documents v1
 Writing a service involves writing a gateway that obeys the API contract between CloudController v2 (CC) and the gateway v1 (GW).
 The protocol is entirely RESTful HTTP, with _bidirectional communication_. In addition to authentication there are six basic operations that take place, described in this document.
 An oversimplified example of making a GW that supports the 3 most basic operations can be found here: https://github.com/geapi/cf-service-example.
-
+           
 <%= image_tag("../../../../images/v1services.png", :width =>"960", :height =>"720", :style => 'background-color:#fff') %>
 
 ## <a id='authentication'></a>Authentication ##
@@ -652,6 +652,13 @@ For legacy reasons, a binding is known as a “handle” on the gateway side.
   <td>string</td>
   <td>The email address of the provisioning user<br/>
   <em>do not use, but it it required to make a valid message</em>
+  </td>
+</tr>
+<tr>
+  <td>app_id</td>
+  <td>string</td>
+  <td>The identifier of the application that will receive the binding credentials.<br/>
+  <em>Included in the cloud controller in commit f577e8444 on 12/3/2013 (it will be included in cf-release v15X)</em>
   </td>
 </tr>
 <tr>
