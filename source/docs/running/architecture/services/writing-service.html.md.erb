@@ -445,7 +445,7 @@ We've chosen to require empty JSON in the response for future compatibility; it 
 
 ## <a id='broker-errors'></a>Broker Errors ##
 
-When a broker fails to perform any requested operation, unless it fails with a well-defined HTTP response code listed above (like 404 on delete), it should return a JSON-encoded error payload. This payload allows the broker to expose a message to end-user or operator. Any responses not matching this error format will result in the user seeing a generic internal error message.
+When a broker fails to perform any requested operation, unless it fails with a well-defined HTTP response code listed above (like 410 on delete), it should return a JSON-encoded error payload. This payload allows the broker to expose a message to end-user or operator. Any responses not matching this error format will result in the user seeing a generic internal error message.
 
 * Use HTTP status code `400 Bad Request` when the input is syntactically invalid.
 * Use HTTP status code `401 Unauthorized` when authentication is missing.
