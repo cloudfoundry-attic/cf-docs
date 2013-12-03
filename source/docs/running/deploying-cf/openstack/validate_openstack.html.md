@@ -6,9 +6,9 @@ This page aims to help you validate your target OpenStack in preparation for ins
 
 You will need a running OpenStack environment. Note that only [Folsom](https://wiki.openstack.org/wiki/ReleaseNotes/Folsom) and [Grizzly](https://wiki.openstack.org/wiki/ReleaseNotes/Grizzly) OpenStack releases are supported.
 
-## <a id="api_access"></a>Can access to your OpenStack API? ##
+## <a id="api_access"></a>Can access your OpenStack API? ##
 
-You can verify that you have your OpenStack API credentials and can make API calls. Credentials are a combination of your user name, password, and what tenant (or project) your cloud is running under. Some providers require also to set the region.
+You can verify that you have your OpenStack API credentials and can make API calls. Credentials are a combination of your user name, password, and which tenant (or project) your cloud is running under. Some providers also require you to set the region.
 
 Create a `~/.fog` file and copy the below content:
 
