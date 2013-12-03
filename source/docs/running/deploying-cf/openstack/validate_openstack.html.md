@@ -38,6 +38,33 @@ Note: it is recommended that you deploy BOSH and Cloud Foundry in a dedicated te
 
 There is more information on [OpenStack API docs](http://docs.openstack.org/api/quick-start/content/).
 
+## <a id="metadata_service"></a> Can access OpenStack metadata service from within a virtual machine? ##
+
+According to [the OpenStack Documentation](http://docs.openstack.org/grizzly/openstack-compute/admin/content/metadata-service.html), the Compute service uses a special metadata service to enable virtual machine instances to retrieve instance-specific data.  The default stemcell for use with BOSH uses the [cloud-init scripts](https://help.ubuntu.com/community/CloudInit) to retrieve this metadata for each instance of a virtual machine that OpenStack manages.
+
+You will need to ensure that virtual machines you boot in your OpenStack environment can access the metadata service at http://169.254.169.254.  
+
+From your OpenStack dashboard, create an VM and open the console into it (the "Console" tab on its "Instance Detail" page). Wait for the terminal to appear and login.
+
+Then execute the curl command to access the above URL.  You should see a list of dates similar to the figure below.
+
+<pre class="terminal">
+$ curl http://169.254.169.254
+
+1.0
+2007-01-19
+2007-03-01
+2007-08-29
+2007-10-10
+2007-12-15
+2008-02-01
+2008-09-01
+2009-04-04
+
+</pre>
+
+If you do not see the output above, please consult the OpenStack documentation (or the documentation for your OpenStack distribution) to diagnose and resolve networking issues.
+
 ## <a id="api_access"></a> Can invoke large number of API calls? ##
 
 Your OpenStack might have API throttling (devstack enables throttling by default) which may mean that BOSH requests to OpenStack fail dramatically, or perhaps fail temporarily (whilst waiting for the API throttle to expire).
