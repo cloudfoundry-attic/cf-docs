@@ -2,7 +2,7 @@
 title: Streaming Logs
 ---
 
-_This page assumes that you are using cf v6_
+_This page assumes that you are using cf v6._
 
 ### Features
 
