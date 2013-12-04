@@ -1,6 +1,6 @@
-----
+---
 title: Streaming Logs
-----
+---
 
 _This page assumes you are using cf v6._
 
