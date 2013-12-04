@@ -4,36 +4,37 @@ title: Writing a v1 Cloud Foundry Service
 
 There are two versions of the Cloud Foundry Services API. This page documents v1.
 
-<strong>DEPRECATED:</strong> We recommend that all new service brokers be writing against the
+<strong>DEPRECATED:</strong> We recommend that all new service brokers be written against the
 <a href="writing-service.html">version 2 API</a>.
 
-Writing a service involves writing a gateway that obeys the API contract between CloudController v2 (CC) and the gateway v1 (GW).
+Writing a service involves writing a service broker that obeys the API contract between the Cloud Controller v2 (CC) and a v1 service broker.
+Service brokers were previously called as Service Gateways (GW).
 The protocol is entirely RESTful HTTP, with _bidirectional communication_. In addition to authentication there are six basic operations that take place, described in this document.
-An oversimplified example of making a GW that supports the 3 most basic operations can be found here: https://github.com/geapi/cf-service-example.
+An oversimplified example of making a broker that supports the 3 most basic operations can be found here: https://github.com/geapi/cf-service-example.
            
 <%= image_tag("../../../../images/v1services.png", :width =>"960", :height =>"720", :style => 'background-color:#fff') %>
 
 ## <a id='authentication'></a>Authentication ##
 
-_CC authenticates to a GW using a shared secret_
+_The Cloud Controller authenticates to a broker using a shared secret_
 
-The GW must reject all requests not including the shared secret with a 401 unauthorized response.
-The token is registered into CC by an admin user, usually using the cf CLI gem which adds commands like `cf create-service-auth-token`.
-Or one can directly make calls to the CC v2 RESTful API to register a new shared secret (called auth token).
+The broker must reject all requests not including the shared secret with a 401 unauthorized response.
+The token is registered into the Cloud Controller by an admin user, usually using the cf CLI gem which adds commands like `cf create-service-auth-token`.
+Or one can directly make calls to the Cloud Controller v2 RESTful API to register a new shared secret (called auth token).
 
-_A GW authenticates to CC using a UAA token_
+_A broker authenticates to the Cloud Controller using a UAA token_
 
-Like all API endpoints in CC, the GW must first obtain and then include a valid Oauth2 token from UAA.  This token must include
+Like all API endpoints in the Cloud Controller, the broker must first obtain and then include a valid Oauth2 token from UAA.  This token must include
 the scope `cloud_controller.admin`, because only this scope has permission to modify the services catalog.
 
 ## <a id="catalog"></a>Catalog Management</a> ##
 
-With v2 of CC, a gateway is responsible for maintaining its catalog of offerings and plans by issuing various RESTful API calls to CC.
+With v2 of the Cloud Controller, a broker is responsible for maintaining its catalog of offerings and plans by issuing various RESTful API calls to the Cloud Controller.
 Normally the lifecycle is as follows:
 
-1. On startup, the gateway communicates with UAA to get an access token with sufficient permissions to access CC (currently admin access).
-1. It then downloads the catalog of all available service offerings and plans from CC
-1. It issues POST requests to create missing offerings and plans.  Offerings include a URL to access the gateway responsible for future provision/bind requests.
+1. On startup, the broker communicates with UAA to get an access token with sufficient permissions to access the Cloud Controller (currently admin access).
+1. It then downloads the catalog of all available service offerings and plans from the Cloud Controller
+1. It issues POST requests to create missing offerings and plans.  Offerings include a URL to access the broker responsible for future provision/bind requests.
 1. It issues PUT requests to update existing offerings and plans that are not in sync
 1. It issues DELETE requests to remove offerings and plans it no longer wants to advertise
 
@@ -73,7 +74,7 @@ To generate a `unique_id`, try this [Online GUID Generator](http://www.guidgener
 <tr>
   <td>url*</td>
   <td>string</td>
-  <td>The callback URL of the gateway</td>
+  <td>The callback URL of the broker</td>
 </tr>
 <tr>
   <td>description*</td>
@@ -98,12 +99,12 @@ To generate a `unique_id`, try this [Online GUID Generator](http://www.guidgener
 <tr>
   <td>timeout</td>
   <td>integer</td>
-  <td>(Currently unused) How long the CC should wait for a gateway to finish an operation before giving up.</td>
+  <td>(Currently unused) How long the Cloud Controller should wait for a broker to finish an operation before giving up.</td>
 </tr>
 <tr>
   <td>active</td>
   <td>bool</td>
-  <td>Used as a hint to CF front-ends that a service is not active and can no longer be provisioned (not enforced by CC)</td>
+  <td>Used as a hint to CF front-ends that a service is not active and can no longer be provisioned (not enforced by the Cloud Controller)</td>
 </tr>
 <tr>
   <td>extra</td>
@@ -150,7 +151,7 @@ To generate a `unique_id`, try this [Online GUID Generator](http://www.guidgener
 <tr>
   <td>metadata</td>
   <td>object</td>
-  <td>Contains guid and CC URL for manipulating the newly created resource</td>
+  <td>Contains guid and the Cloud Controller URL for manipulating the newly created resource</td>
 </tr>
 <tr>
   <td>entity</td>
@@ -199,7 +200,7 @@ To generate a `unique_id`, try this [Online GUID Generator](http://www.guidgener
 <tr>
   <td>400</td>
   <td>Bad request</td>
-  <td>one of: already defined, bad request, invalid params, missing field (error message in the CC log will have details as to why)</td>
+  <td>one of: already defined, bad request, invalid params, missing field (error message in the Cloud Controller log will have details as to why)</td>
 </tr>
 <tr>
   <td>401/403</td>
@@ -209,7 +210,7 @@ To generate a `unique_id`, try this [Online GUID Generator](http://www.guidgener
 <tr>
   <td>500</td>
   <td>Server error</td>
-  <td>Something in CC went wrong, check log</td>
+  <td>Something in the Cloud Controller went wrong, check log</td>
 </tr>
 </tbody>
 </table>
@@ -308,14 +309,14 @@ To generate a `unique_id`, try this [Online GUID Generator](http://www.guidgener
 <tr>
   <td>metadata</td>
   <td>object</td>
-  <td>Contains guid and CC URL for each service resource</td>
+  <td>Contains guid and the Cloud Controller URL for each service resource</td>
 </tr>
 <tr>
   <td>entity</td>
   <td>object</td>
   <td>
     <em>Contains all the same fields as create</em><br/>
-    Also contains “service_plans_url”, a CC URL to download the list of plans.  May also contain a full list of plans, depending in query params
+    Also contains “service_plans_url”, a Cloud Controller URL to download the list of plans.  May also contain a full list of plans, depending on query params
   </td>
 </tr>
 </tbody>
@@ -390,7 +391,7 @@ No body or query parameters.  This request is expected to fail if there are plan
 <tr>
   <td>metadata</td>
   <td>object</td>
-  <td>Contains guid and CC URL for manipulating the newly created resource</td>
+  <td>Contains guid and the Cloud Controller URL for manipulating the newly created resource</td>
 </tr>
 <tr>
   <td>entity</td>
@@ -455,14 +456,14 @@ No body or query parameters.  This request is expected to fail if there are plan
 <tr>
   <td>metadata</td>
   <td>object</td>
-  <td>Contains guid and CC URL for each plan resource</td>
+  <td>Contains guid and the Cloud Controller URL for each plan resource</td>
 </tr>
 <tr>
   <td>entity</td>
   <td>object</td>
   <td>
     <em>Contains all the same fields as create</em><br/>
-    Also contains “service_instances_url”, a CC URL to download the list of instances, and “service_url”, a CC URL to the parent service
+    Also contains “service_instances_url”, a Cloud Controller URL to download the list of instances, and “service_url”, a Cloud Controller URL to the parent service
   </td>
 </tr>
 </tbody>
@@ -503,15 +504,15 @@ This request is expected to fail if there instances or bindings attached to this
 
 ## <a id="provision"></a>Provisioning ##
 
-When a developer asks to provision a service (using `cf create-service`), they issue an API request to CC including the offering, plan, and space.
-CC uses its database to determine what gateway is responsible for this offering and issues an API request synchronously to the GW to provision the resources.
-This request includes less information than the user-initiated request, because GWs are supposed to not care about some CF concepts like users, spaces, and organizations.
+When a developer asks to provision a service (using `cf create-service`), they issue an API request to the Cloud Controller including the offering, plan, and space.
+The Cloud Controller uses its database to determine what broker is responsible for this offering and issues an API request synchronously to the broker to provision the resources.
+This request includes less information than the user-initiated request, because brokers are supposed to not care about some CF concepts like users, spaces, and organizations.
 
-The GW must then provision the resource, if possible, and respond with a “gateway identifier” (GWID) that can be used to identify the resource for future operations.
+The broker must then provision the resource, if possible, and respond with a “gateway identifier” (GWID) that can be used to identify the resource for future operations.
 In CF terms, what is created after provisioning is a “service instance”.
 No application should have access to the service instance until it has been bound by the user, so usually no service credentials exist at the time of provisioning.
 
-To provision, CC sends a provision request to the gateway.
+To provision, the Cloud Controller sends a provision request to the broker.
 The full request URL is determined by concatenating the URL in the catalog + the path below.
 
 `POST :service_url/gateway/v1/configurations`
@@ -543,12 +544,12 @@ The full request URL is determined by concatenating the URL in the catalog + the
 <tr>
   <td>provider</td>
   <td>string</td>
-  <td>The provider of the service to provision, in case the gateway is responsible for multiple services</td>
+  <td>The provider of the service to provision, in case the broker is responsible for multiple services</td>
 </tr>
 <tr>
   <td>label</td>
   <td>string</td>
-  <td>The label of the service to provision, in case the gateway is responsible for multiple services</td>
+  <td>The label of the service to provision, in case the broker is responsible for multiple services</td>
 </tr>
 <tr>
   <td>plan</td>
@@ -558,7 +559,7 @@ The full request URL is determined by concatenating the URL in the catalog + the
 <tr>
   <td>version</td>
   <td>string</td>
-  <td>The version of the service to provision, in case the gateway is responsible for multiple versions</td>
+  <td>The version of the service to provision, in case the broker is responsible for multiple versions</td>
 </tr>
 <tr>
   <td>organization_guid</td>
@@ -590,7 +591,7 @@ The full request URL is determined by concatenating the URL in the catalog + the
 <tr>
   <td>service_id*</td>
   <td>string</td>
-  <td>A GW-generated identifier that represents the resource, and will be passed to the GW for future bind/deprovision requests</td>
+  <td>A broker-generated identifier that represents the resource, and will be passed to the broker for future bind/deprovision requests</td>
 </tr>
 <tr>
   <td>configuration*</td>
@@ -600,7 +601,7 @@ The full request URL is determined by concatenating the URL in the catalog + the
 <tr>
   <td>credentials*</td>
   <td>object</td>
-  <td>Any credentials that were generated as a result of provisioning, that the GW would like to be stored in CC.</td>
+  <td>Any credentials that were generated as a result of provisioning, that the broker would like to be stored in the Cloud Controller.</td>
 </tr>
 <tr>
   <td>dashboard_url</td>
@@ -614,17 +615,17 @@ The full request URL is determined by concatenating the URL in the catalog + the
 
 Binding is a developer-initiated intention (using `cf bind-service`) to make a service instance available to a specific application,
 and it usually has side effects (such as creating new credentials for an application to access a database).
-Like provisioning, the developer makes an API call to CC including the instance ID and app ID to be bound,
-and CC makes an API call to the GW including just the service instance ID (gateways don’t know about apps).
+Like provisioning, the developer makes an API call to the Cloud Controller including the instance ID and app ID to be bound,
+and the Cloud Controller makes an API call to the broker including just the service instance ID (brokers don’t know about apps).
 
-The GW must then create a binding, if possible, and respond with both a GWID and credentials.
+The broker must then create a binding, if possible, and respond with both a GWID and credentials.
 For services where there is only 1 set of credentials to a logical resource,
 binding can simply return the same credentials to each application,
 though it will be impossible to properly revoke access to an application during unbind.
 
-To bind, CC sends a bind request to the gateway.
+To bind, the Cloud Controller sends a bind request to the broker.
 The full request URL is determined by concatenating the URL in the catalog + the path below.
-For legacy reasons, a binding is known as a “handle” on the gateway side.
+For legacy reasons, a binding is known as a “handle” on the broker side.
 
 `POST /gateway/v1/configurations/:service_id/handles`
 
@@ -640,7 +641,7 @@ For legacy reasons, a binding is known as a “handle” on the gateway side.
 <tr>
   <td>service_id*</td>
   <td>string</td>
-  <td>The GW-generated identifier that identifies the instance to be bound</td>
+  <td>The broker-generated identifier that identifies the instance to be bound</td>
 </tr>
 <tr>
   <td>label*</td>
@@ -681,7 +682,7 @@ For legacy reasons, a binding is known as a “handle” on the gateway side.
 <tr>
   <td>service_id*</td>
   <td>string</td>
-  <td>An identifier that’s generated by the GW and will be passed to the GW for future unbind requests, it’s really a “handle_id” not a service_id.</td>
+  <td>An identifier that’s generated by the broker and will be passed to the broker for future unbind requests, it’s really a “handle_id” not a service_id.</td>
 </tr>
 <tr>
   <td>configuration*</td>
@@ -699,10 +700,10 @@ For legacy reasons, a binding is known as a “handle” on the gateway side.
 ## <a id="unbind"></a>Unbinding ##
 
 Simply the opposite of bind, unbind is the developer-initiated intention to revoke a specific application’s access to a service instance.
-The developer makes an API call to CC, which makes an API call to the GW including the GWID of the binding that should be destroyed.
+The developer makes an API call to the Cloud Controller, which makes an API call to the broker including the GWID of the binding that should be destroyed.
 If possible, the bound credentials should be destroyed so that application can no longer access the resource.
 
-To delete a binding, CC sends an unbind request to the gateway.
+To delete a binding, the Cloud Controller sends an unbind request to the broker.
 The full request URL is determined by concatenating the URL in the catalog + the path below.
 
 `DELETE /gateway/v1/configurations/:service_id/handles/:handle_id`
@@ -721,12 +722,12 @@ The full request URL is determined by concatenating the URL in the catalog + the
 <tr>
   <td>service_id*</td>
   <td>string</td>
-  <td>The GW service_id that was returned from the <strong>provision</strong> response</td>
+  <td>The broker service_id that was returned from the <strong>provision</strong> response</td>
 </tr>
 <tr>
   <td>handle_id*</td>
   <td>string</td>
-  <td>The GW service_id that was returned from the <strong>binding</strong> response</td>
+  <td>The broker service_id that was returned from the <strong>binding</strong> response</td>
 </tr>
 <tr>
   <td>binding_options</td>
@@ -739,10 +740,10 @@ The full request URL is determined by concatenating the URL in the catalog + the
 ## <a id="deprovision"></a>Deprovisioning ##
 
 Simply the opposite of provision, deprovision is the developer-initiated intention to remove a specific service instance.
-The developer makes an API call to CC, which makes an API call to the GW including the GWID of the instance that should be destroyed.
+The developer makes an API call to the Cloud Controller, which makes an API call to the broker including the GWID of the instance that should be destroyed.
 The resources consumed by the service instance should be released, and hopefully made available to future requests.
 
-To delete a service instance, CC sends a deprovision request to the gateway.
+To delete a service instance, the Cloud Controller sends a deprovision request to the broker.
 The full request URL is determined by concatenating the URL in the catalog + the path below.
 
 `DELETE /gateway/v1/configurations/:service_id`
@@ -750,10 +751,10 @@ The full request URL is determined by concatenating the URL in the catalog + the
 * No body
 * No query parameters
 
-The only argument, `service_id` is the GW service_id that was returned from the provision response, and there is no body to the request or response.
+The only argument, `service_id` is the broker service_id that was returned from the provision response, and there is no body to the request or response.
 
 ## <a id="orphans"></a>Orphan Detection and Cleanup ##
 
-CC is the source of truth, and the GW and CC can end up disagreeing about which services and binding exist.
-In this case, the GW is responsible for removing the bindings and instances that don’t exist anymore in the CC.
-There are CC endpoints for getting a list of bindings and instances, and the GW should use these to find orphans and prune them.
+The Cloud Controller is the source of truth, and the broker and the Cloud Controller can end up disagreeing about which services and binding exist.
+In this case, the broker is responsible for removing the bindings and instances that don’t exist anymore in the Cloud Controller.
+There are the Cloud Controller endpoints for getting a list of bindings and instances, and the broker should use these to find orphans and prune them.
