@@ -8,7 +8,7 @@ There are two versions of the Cloud Foundry Services API. This page documents v1
 <a href="writing-service.html">version 2 API</a>.
 
 Writing a service involves writing a service broker that obeys the API contract between the Cloud Controller v2 (CC) and a v1 service broker.
-Service brokers were previously called as Service Gateways (GW).
+Service brokers were previously called Service Gateways (GW).
 The protocol is entirely RESTful HTTP, with _bidirectional communication_. In addition to authentication there are six basic operations that take place, described in this document.
 An oversimplified example of making a broker that supports the 3 most basic operations can be found here: https://github.com/geapi/cf-service-example.
            
@@ -504,8 +504,8 @@ This request is expected to fail if there instances or bindings attached to this
 
 ## <a id="provision"></a>Provisioning ##
 
-When a developer asks to provision a service (using `cf create-service`), they issue an API request to the Cloud Controller including the offering, plan, and space.
-The Cloud Controller uses its database to determine what broker is responsible for this offering and issues an API request synchronously to the broker to provision the resources.
+When developers provision a service (using `cf create-service`), they issue an API request to the Cloud Controller including the offering, plan, and space.
+The Cloud Controller uses its database to determine which broker is responsible for this offering and issues an API request synchronously to the broker to provision the resources.
 This request includes less information than the user-initiated request, because brokers are supposed to not care about some CF concepts like users, spaces, and organizations.
 
 The broker must then provision the resource, if possible, and respond with a “gateway identifier” (GWID) that can be used to identify the resource for future operations.
@@ -579,7 +579,7 @@ The full request URL is determined by concatenating the URL in the catalog + the
 </tbody>
 </table>
 
-Brokers are expected to respond with `200 OK` and a JSON response body containing fields from the table below.
+Brokers should respond with `200 OK` and a JSON response body containing fields from the table below.
 The Cloud Controller will interpret any non-2xx response codes as a failure to provision.
 Asterisks denote required fields.
 
@@ -674,7 +674,7 @@ For legacy reasons, a binding is known as a “handle” on the broker side.
 </tbody>
 </table>
 
-Brokers are expected to respond with `200 OK` and a JSON response body containing fields from the table below.
+Brokers should respond with `200 OK` and a JSON response body containing fields from the table below.
 The Cloud Controller will interpret any non-2xx response codes as a failure to bind.
 Asterisks denote required fields.
 
