@@ -481,5 +481,5 @@ The Cloud Controller database and a Broker are expected to store identical copie
 
 * If a broker fails to provision or bind an instance, the Cloud Controller will immediately issue an unprovision or unbind request .
 
-* If a broker fails to unbind or unprovision an instance, the Cloud Controller will periodically retry that DELETE request until it succeeds (or generates a 404). Eventually it will give up, but this technique will help clean up resources that are remain when a broker fails to delete.
+* If a broker fails to unbind or unprovision an instance, the Cloud Controller will periodically retry that DELETE request until it succeeds (or generates a 410). Eventually it will give up, but this technique will help clean up resources that are remain when a broker fails to delete.
 
