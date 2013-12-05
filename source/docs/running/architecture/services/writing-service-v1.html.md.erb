@@ -579,6 +579,10 @@ The full request URL is determined by concatenating the URL in the catalog + the
 </tbody>
 </table>
 
+Brokers are expected to respond with `200 OK` and a JSON response body containing fields from the table below.
+The Cloud Controller will interpret any non-2xx response codes as a failure to provision.
+Asterisks denote required fields.
+
 <table>
 <thead>
 <tr>
@@ -670,6 +674,10 @@ For legacy reasons, a binding is known as a “handle” on the broker side.
 </tbody>
 </table>
 
+Brokers are expected to respond with `200 OK` and a JSON response body containing fields from the table below.
+The Cloud Controller will interpret any non-2xx response codes as a failure to bind.
+Asterisks denote required fields.
+
 <table>
 <thead>
 <tr>
@@ -737,6 +745,11 @@ The full request URL is determined by concatenating the URL in the catalog + the
 </tbody>
 </table>
 
+Brokers should respond with `200 OK` and a body that is null or `{}`.
+[vcap-services-base](https://github.com/cloudfoundry/vcap-services-base) returns `{}`.
+The Cloud Controller will interpret any non-2xx response codes as a failure and will not delete the binding from its database.
+The Cloud Controller ignores contents of JSON bodies.
+
 ## <a id="deprovision"></a>Deprovisioning ##
 
 Simply the opposite of provision, deprovision is the developer-initiated intention to remove a specific service instance.
@@ -751,7 +764,13 @@ The full request URL is determined by concatenating the URL in the catalog + the
 * No body
 * No query parameters
 
-The only argument, `service_id` is the broker service_id that was returned from the provision response, and there is no body to the request or response.
+The only argument, `service_id`, is the broker service_id that was returned from the provision response.
+The Cloud Controller deprovision request contains no body.
+
+Brokers should respond with `200 OK` and a body that is null or `{}`.
+[vcap-services-base](https://github.com/cloudfoundry/vcap-services-base) returns `{}`.
+The Cloud Controller interprets any non-2xx response codes as a failure and will not delete the instance from its database.
+The Cloud Controller ignores contents of JSON bodies.
 
 ## <a id="orphans"></a>Orphan Detection and Cleanup ##
 
