@@ -125,7 +125,7 @@ title: Welcome to Cloud Foundry Documentation
 
   <p>
   Services<br>
-  <a href="docs/running/architecture/services/">Adding Services to Cloud Foundry</a><br>
+  <a href="docs/running/architecture/services/">Overview</a><br>
   <a href="docs/running/architecture/services/writing-service.html">Writing a Cloud Foundry Service Broker</a><br>
 
   </p>
