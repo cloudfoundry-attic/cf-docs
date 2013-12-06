@@ -57,7 +57,7 @@ The version numbers are in the format `MAJOR.MINOR`, using semantic versioning s
 
 ## <a id='authentication'></a>Authentication ##
 
-Cloud Controller (final release v145+) authenticates with the Broker using HTTP basic authentication (the `Authentication:` header) on every request, and will reject any broker registrations that do not contain a username and password. The broker is responsible for checking the username and password and returning a `403 Forbidden` message if they are invalid. Cloud Controller supports connecting to a broker using SSL if additional security is desired.
+Cloud Controller (final release v145+) authenticates with the Broker using HTTP basic authentication (the `Authentication:` header) on every request, and will reject any broker registrations that do not contain a username and password. The broker is responsible for checking the username and password and returning a `401 Unauthorized` message if they are invalid. Cloud Controller supports connecting to a broker using SSL if additional security is desired.
 
 
 
@@ -65,9 +65,9 @@ Cloud Controller (final release v145+) authenticates with the Broker using HTTP 
 
 The first endpoint that a broker must implement is the service catalog. Cloud Controller will initially fetch this endpoint from all brokers and make adjustments to the user-facing service catalog stored in the Cloud Controller database. If the catalog fails to initially load or validate, Cloud Controller will not allow the operator to add the new broker, and should give a meaningful error message. Cloud Controller will also update the catalog whenever a broker is updated, so you can use `update-service-broker` with no changes to force a catalog refresh.
 
-When Cloud Controller fetches a catalog from a broker, it will compare the `unique_id` for services and plans with what is in the  Cloud Controller database. If a service or plan in the broker catalog has a `unique_id` which is not present in the database, a new record will be added to the database. If services or plans in the database are found with `unique_id`s that match the broker catalog, Cloud Controller will update update the records to match the broker’s catalog.
+When Cloud Controller fetches a catalog from a broker, it will compare the `id` of the services and plans with what is in the Cloud Controller database. If a service or plan in the broker catalog has an `id` which is not present in the database, a new record will be added to the database. When adding a broker, if services or plans in the database are found with `id`s that match the broker catalog, the operation will fail. When updating a broker, if services or plans in the database are found with `id`s that match the broker catalog, Cloud Controller will update the matching records.
 
-If the database has plans which are not found in the broker catalog, and there are no associated service instances, Cloud Controller will remove these plans from the database. If there are provisioned instances, the plan will be marked “inactive” and will no longer be visible in the marketplace catalog or be provisionable. Cloud Controller will then delete services that do not have associated plans from the database.
+If the database has plans which are not found in the broker catalog, and there are no associated service instances, Cloud Controller will remove these plans from the database. If there are provisioned instances, the plan will be marked “inactive” and will no longer be visible in the marketplace catalog or be provisionable. Cloud Controller will then delete services that do not have associated plans from the database.  
 
 
 `GET /v2/catalog`
@@ -90,7 +90,7 @@ If the database has plans which are not found in the broker catalog, and there a
 <tr>
   <td>&nbsp;&nbsp;&nbsp;id*</td>
   <td>string</td>
-  <td>An identifier, unique within the broker, used to correlate this service in future requests to the catalog.</td>
+  <td>An identifier used to correlate this service in future requests to the catalog. This must be unique within Cloud Foundry, using a GUID is recommended. </td>
 </tr>
 <tr>
   <td>&nbsp;&nbsp;&nbsp;name*</td>
@@ -105,7 +105,7 @@ If the database has plans which are not found in the broker catalog, and there a
 <tr>
   <td>&nbsp;&nbsp;&nbsp;bindable*</td>
   <td>boolean</td>
-  <td>Whether the service can be bound to applications. Defaults to true.</td>
+  <td>Whether the service can be bound to applications.</td>
 </tr>
 <tr>
   <td>&nbsp;&nbsp;&nbsp;tags</td>
@@ -131,7 +131,7 @@ If the database has plans which are not found in the broker catalog, and there a
 <tr>
   <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;id*</td>
   <td>string</td>
-  <td>An identifier, unique within the broker, used to correlate this plan in future requests to the catalog.</td>
+  <td>An identifier used to correlate this plan in future requests to the catalog. This must be unique within Cloud Foundry, using a GUID is recommended.</td>
 </tr>
 <tr>
   <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;name*</td>
@@ -151,6 +151,8 @@ If the database has plans which are not found in the broker catalog, and there a
 </tbody>
 </table>
 
+\* Fields with an asterisk are required.
+
 **Example response**
 
 <pre class="terminal">
@@ -159,6 +161,7 @@ If the database has plans which are not found in the broker catalog, and there a
     "id": "service-guid-here",
     "name": "MySQL",
     "description": "A MySQL-compatible relational database",
+    "bindable": true,
     "plans": [{
       "id": "plan1-guid-here",
       "name": "small",
@@ -174,25 +177,27 @@ If the database has plans which are not found in the broker catalog, and there a
 
 ### <a id='create-broker'></a>Adding a Broker to Cloud Foundry ###
 
-Once you've implemented the first endpoint `GET /v2/catalog` above, you'll want to see whether your services and plan are available to end users. Two steps are required, registering your broker with cloud controller and making plans public. Both steps require you are authenticate as a cloud controller admin.
+Once you've implemented the first endpoint `GET /v2/catalog` above, you'll want to see whether your services and plan are available to end users. Two steps are required: registering your broker with cloud controller and making plans public. 
 
-#### Adding a Broker to Cloud Foundry
+Before executing these two steps, make sure you are authenticated as a cloud controller admin (via the `cf login` command).
 
-Registering or updating a broker causes cloud controller to fetch and validate the catalog from your broker, and update the database with any changes found in the catalog. Your service broker should validate the username and password, otherwise anyone could curl your broker to delete all service instances.
+#### Registering a Broker with Cloud Foundry
+
+Registering or updating a broker causes cloud controller to fetch and validate the catalog from your broker, and update the database with any changes found in the catalog.  Registering or updating causes the cloud controller to store the basic auth username and password, which the cloud controller  will send to the broker with every request. Your service broker should validate the username and password sent in every request, otherwise anyone could curl your broker to delete all service instances.
 
 <pre class="terminal">
-$ cf add-service-broker mybroker --username someuser --password somethingsecure --url http://mybroker.example.com/
+$ cf add-service-broker mybrokername --username someuser --password somethingsecure --url http://mybroker.example.com/
 </pre>
 
 To update a broker:
 
 <pre class="terminal">
-$ cf update-service-broker mybroker --username someuser --password somethingsecure --url http://mybroker.example.com/
+$ cf update-service-broker mybrokername --username someuser --password somethingsecure --url http://mybroker.example.com/
 </pre>
 
 #### Making a Plan Public
 
-By default, new plans are private. This mean they are not visible to end users. This gives CF admins control over their catalogs when they don't have control over service brokers. Making a plan public currently involves a couple of curls but a CLI command is coming very soon (this command will be implemented in the [v6 Go-based CLI](../../../using/managing-apps/cf/go-cli.html) only). 
+By default, new plans are private. This means they are not visible to end users. This gives CF admins control over their catalogs when they don't have control over service brokers. Making a plan public currently involves a couple of curls but a CLI command is coming very soon (this command will be implemented in the [v6 Go-based CLI](../../../using/managing-apps/cf/go-cli.html) only). 
 
 The first step is to get the service plan guid. 
 
@@ -231,8 +236,13 @@ Now run the following curl using the service plan guid above.
 $ cf curl PUT /v2/service_plans/a01d462f-a4a4-4945-a008-3ff13c06f719 -b '{"public":'true'}'
 </pre>
 
-At this point, if your catalog was validated you should see your service and plan in response to `cf services -m`. 
+To verify that the the plan was set to public, re-run this command and check the 'public' field:
 
+<pre class="terminal">
+$ cf services -m -t
+</pre>
+
+At this point you should see your service and plans in the Cloud Foundry Marketplace, or in the response to `cf services -m`.
 
 ## <a id='provisioning'></a>Provisioning ##
 
