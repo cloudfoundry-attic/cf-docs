@@ -12,7 +12,7 @@ The logging capability in Cloud Foundry allows you to:
 1. Dump a recent set of application logs.
 1. Continually drain application logs to 3rd party log archive and analysis services using syslog.
 
-### Usage
+#### Tailing application logs
 
 <pre class="terminal">
 gcf logs APP_NAME [--recent]
@@ -30,15 +30,58 @@ $ gcf logs myapp
 
 To exit, press Ctrl-C (^C).
 
+#### Dumping recent application logs
+
 If your application crashes it can be handy to get recent logs.
 To do that, add the --recent flag. For example:
 
 <pre class="terminal">
-gcf logs myapp --recent
+gcf logs APP_NAME --recent
 </pre>
 
-### Notes
+
+#### Draining application logs
+
+The CF logging system support the syslog format as described in [RFC 5424](http://tools.ietf.org/html/rfc5424) with octect encoding as described in [RFC 6587](http://tools.ietf.org/html/rfc6587)   Optionally you can use syslog TLS support as described in [RFC 5425](http://tools.ietf.org/html/rfc5425)
+
+To drain your application's logs to a 3rd party syslog drain service, you will need to bind a syslog drain url to your application.
+
+You can do this by adding a 3rd party log service to your application or by adding a user provided service with a custom syslog drain url to your application via the command line.
+
+To create a user provided syslog service:
+
+<pre class="terminal">
+gcf create-user-provided-service SERVICE_NAME -l SYSLOG-DRAIN-URL
+</pre>
+
+The SYSLOG-DRAIN-URL should be in the format of 'scheme://host:port' where allowed schemes are 'syslog' or 'syslog-tls' For example:
+
+    syslog scheme:     'syslog://my.unencrypted.syslogservice.example.com:1234'
+    syslog tls scheme: 'syslog-tls://my.encrypted.syslogservice.example.com:5467'
+
+After you create your custom service you need to bind the applications to it.   For example:
+
+<pre class="terminal">
+gcf bind-service APP_NAME SERVICE_NAME
+</pre>
+
+You can repeat this for all applications you wish to drain to your syslog service.   Also you will have to restart your application(s) to pick up the new service.
+
+##### Notes
+Cloud Foundry gathers and stores logs in a best-effort manner and if the buffer of log lines is too large because clients are unable to keep up, the system will drop some log messages. Application logs should typically be available if clients such as a CLI tail or a syslog drain are able to keep up with the application log volume.
 The logging capability reports only on STDOUT and STDERR of your application and other relevant system messages. You may need to configure your application to write logs to STDOUT or STDERR instead of a custom log file. Sending application logs that are not part of STDOUT and STDERR is not supported.
 
-Cloud Foundry gathers and stores logs in a best-effort manner and if the buffer of log lines is too large because clients are unable to keep up, the system will drop some log messages. Application logs should typically be available if clients such as a CLI tail or a syslog drain are able to keep up with the application log volume.
+Logging output delivered with an internal timestamp.  This timestamp which is assigned when the logging service receives the log line.
+If your log line includes a timestamp, this timestamp is not processed by the logging system but is rather just passed as part of the opaque 'message data'
+
+To prevent issues you should ensure your application is NOT buffering output to STDOUT or STDERR.
+
+For sinatra, make sure to have this in your configure block:
+
+    $stderr.sync = true
+    $stdout.sync = true
+
+If you use Log4J ConsoleAppender, there is no buffering. There is an [immediateFlush](http://logging.apache.org/log4j/1.2/apidocs/org/apache/log4j/WriterAppender.html#immediateFlush) option that defaults to true. If that is set to false, there might be some buffering.
+
+Logback's [ConsoleAppender](http://logback.qos.ch/manual/appenders.html#ConsoleAppender) buffers by default (by using a OutputStreamWriter under the hood)
 
