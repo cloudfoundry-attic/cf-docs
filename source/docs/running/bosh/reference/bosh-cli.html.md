@@ -148,9 +148,6 @@ Currently available bosh commands are:
      --tags tag1,tag2... filter by tag
      --all               show all stemcells
 
- purge
-     Purge local manifest cache
-
  recreate <job> [<index>] [--force]
      Recreate job/instance (hard stop + start)
      --force Proceed even when there are other manifest changes
