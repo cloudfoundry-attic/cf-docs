@@ -95,6 +95,8 @@ $ wget http://bosh-jenkins-artifacts.s3.amazonaws.com/bosh-stemcell/openstack/bo
 $ bosh upload stemcell bosh-stemcell-latest-openstack-kvm-ubuntu.tgz
 </pre>
 
+*Note* There has been [a report on the vcap-dev mailing list](https://www.pivotaltracker.com/story/show/62108468) that cf-release v147 and other releases through v150 are incompatible with some latest verisons of openstack-kvm-ubuntu stemcell. The one that works for the user reporting the issue is [1256](https://bosh-jenkins-artifacts.s3.amazonaws.com/bosh-stemcell/openstack/bosh-stemcell-1256-openstack-kvm-ubuntu.tgz).
+
 Confirm that you have at least one bosh stemcell loaded into your bosh:
 
 <pre class="terminate">
