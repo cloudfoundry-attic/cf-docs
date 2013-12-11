@@ -65,7 +65,7 @@ Cloud Controller (final release v145+) authenticates with the Broker using HTTP 
 
 The first endpoint that a broker must implement is the service catalog. Cloud Controller will initially fetch this endpoint from all brokers and make adjustments to the user-facing service catalog stored in the Cloud Controller database. If the catalog fails to initially load or validate, Cloud Controller will not allow the operator to add the new broker, and should give a meaningful error message. Cloud Controller will also update the catalog whenever a broker is updated, so you can use `update-service-broker` with no changes to force a catalog refresh.
 
-When Cloud Controller fetches a catalog from a broker, it will compare the `id` of the services and plans with what is in the Cloud Controller database. If a service or plan in the broker catalog has an `id` which is not present in the database, a new record will be added to the database. When adding a broker, if services or plans in the database are found with `id`s that match the broker catalog, the operation will fail. When updating a broker, if services or plans in the database are found with `id`s that match the broker catalog, Cloud Controller will update the matching records.
+When Cloud Controller fetches a catalog from a broker, it will compare the `id` of services and plans with the `unique_id` in the services and plans tables in the Cloud Controller database. If a service or plan in the broker catalog has an `id` which is not present in the database, a new record will be added to the database. When adding a broker, if services or plans in the database are found with `id`s that match the broker catalog, the operation will fail. When updating a broker, if services or plans in the database are found with `id`s that match the broker catalog, Cloud Controller will update the matching records.
 
 If the database has plans which are not found in the broker catalog, and there are no associated service instances, Cloud Controller will remove these plans from the database. If there are provisioned instances, the plan will be marked “inactive” and will no longer be visible in the marketplace catalog or be provisionable. Cloud Controller will then delete services that do not have associated plans from the database.  
 
@@ -183,7 +183,7 @@ Before executing these two steps, make sure you are authenticated as a cloud con
 
 #### Registering a Broker with Cloud Foundry
 
-Registering or updating a broker causes cloud controller to fetch and validate the catalog from your broker, and update the database with any changes found in the catalog.  Registering or updating causes the cloud controller to store the basic auth username and password, which the cloud controller  will send to the broker with every request. Your service broker should validate the username and password sent in every request, otherwise anyone could curl your broker to delete all service instances.
+Registering or updating a broker causes cloud controller to fetch and validate the catalog from your broker, and update the database with any changes found in the catalog. Registering or updating causes the cloud controller to store the basic auth username and password, which the cloud controller will send to the broker with every request. Your service broker should validate the username and password sent in every request, otherwise anyone could curl your broker to delete all service instances.
 
 <pre class="terminal">
 $ cf add-service-broker mybrokername --username someuser --password somethingsecure --url http://mybroker.example.com/
@@ -293,7 +293,7 @@ For non-data services, provisioning could just mean getting an account on an exi
 </tbody>
 </table>
 
-Brokers are expected to respond with `201 Created` with the response body from the table below. They can also return `409 Conflict` if there is already a provisioned resource at this URL. Since this endpoint cannot be used to update resource parameters, brokers must return 409 if a conflicting request is made. Ideally, a non-conflicting request (duplicate ID and params) would return 200, but brokers may simply return 409 for a duplicate ID.  If they respond with any other code, CC will assume that the provision request failed and inform the user.
+Brokers are expected to respond with `201 Created` with the response body from the table below. They can also return `409 Conflict` if there is already a provisioned resource at this URL. Since this endpoint cannot be used to update resource parameters, brokers must return 409 if a conflicting request is made. Ideally, a non-conflicting request (duplicate ID and params) would return 200, but brokers may simply return 409 for a duplicate ID. If they respond with any other code, CC will assume that the provision request failed and inform the user.
 
 <table>
 <thead>
