@@ -6,7 +6,7 @@ title: Writing a Cloud Foundry Service Broker
 
 ## <a id='versions'></a>Versions ##
 
-Two major versions of the Service Broker API are currently supported by Cloud Foundry, v1 and v2. As v1 is deprecated and support will be removed in the next major version of Cloud Foundry, it is recommended that all new brokers implement v2 and current brokers are upgraded. 
+Two major versions of the Service Broker API are currently supported by Cloud Foundry, v1 and v2. As v1 is deprecated and support will be removed in the next major version of Cloud Foundry, it is recommended that all new brokers implement v2 and current brokers are upgraded.
 
 ### <a id='current-version'></a>Current Version ###
 
@@ -21,7 +21,7 @@ v2.0
 ### <a id='change-policy'></a>Change Policy ###
 
 * Existing endpoints and fields will not be removed or renamed.
-* New optional endpoints, or new HTTP methods for existing endpoints, may be added to enable support for new features. 
+* New optional endpoints, or new HTTP methods for existing endpoints, may be added to enable support for new features.
 * New fields may be added to existing request/response messages. These fields must be optional, and should be ignored by clients and servers that do not understand them.
 
 ### <a id='api-changes-since-v1'></a>Changes Since v1 ###
@@ -37,7 +37,7 @@ The key changes from v1 to v2 of the Services API are:
 
 ## <a id='dependencies'></a>Dependencies ##
 
-v2.0 of the services API has been supported since final build 148 of [cf-release](https://github.com/cloudfoundry/cf-release/).  
+v2.0 of the services API has been supported since final build 148 of [cf-release](https://github.com/cloudfoundry/cf-release/).
 
 ## <a id='api-overview'></a>API Overview ##
 
@@ -67,7 +67,7 @@ The first endpoint that a broker must implement is the service catalog. Cloud Co
 
 When Cloud Controller fetches a catalog from a broker, it will compare the broker's id for services and plans with the `unique_id` values for services and plan in the  Cloud Controller database. If a service or plan in the broker catalog has an id which is not present amongst the `unique_id` values in the database, a new record will be added to the database. If services or plans in the database are found with `unique_id`s that match the broker catalog's id, Cloud Controller will update update the records to match the broker’s catalog.
 
-If the database has plans which are not found in the broker catalog, and there are no associated service instances, Cloud Controller will remove these plans from the database. If there are provisioned instances, the plan will be marked “inactive” and will no longer be visible in the marketplace catalog or be provisionable. Cloud Controller will then delete services that do not have associated plans from the database.  
+If the database has plans which are not found in the broker catalog, and there are no associated service instances, Cloud Controller will remove these plans from the database. If there are provisioned instances, the plan will be marked “inactive” and will no longer be visible in the marketplace catalog or be provisionable. Cloud Controller will then delete services that do not have associated plans from the database.
 
 
 `GET /v2/catalog`
@@ -177,7 +177,7 @@ If the database has plans which are not found in the broker catalog, and there a
 
 ### <a id='create-broker'></a>Adding a Broker to Cloud Foundry ###
 
-Once you've implemented the first endpoint `GET /v2/catalog` above, you'll want to see whether your services and plan are available to end users. Two steps are required: registering your broker with cloud controller and making plans public. 
+Once you've implemented the first endpoint `GET /v2/catalog` above, you'll want to see whether your services and plan are available to end users. Two steps are required: registering your broker with cloud controller and making plans public.
 
 Before executing these two steps, make sure you are authenticated as a cloud controller admin (via the `cf login` command).
 
@@ -197,9 +197,9 @@ $ cf update-service-broker mybrokername --username someuser --password something
 
 #### Making a Plan Public
 
-By default, new plans are private. This means they are not visible to end users. This gives CF admins control over their catalogs when they don't have control over service brokers. Making a plan public currently involves a couple of curls but a CLI command is coming very soon (this command will be implemented in the [v6 Go-based CLI](../../../using/managing-apps/cf/go-cli.html) only). 
+By default, new plans are private. This means they are not visible to end users. This gives CF admins control over their catalogs when they don't have control over service brokers. Making a plan public currently involves a couple of curls but a CLI command is coming very soon (this command will be implemented in the [v6 Go-based CLI](../../../using/managing-apps/cf/go-cli.html) only).
 
-The first step is to get the service plan guid. 
+The first step is to get the service plan guid.
 
 <pre class="terminal">
 $ cf services -m -t
@@ -469,14 +469,9 @@ We've chosen to require empty JSON in the response for future compatibility; it 
 
 ## <a id='broker-errors'></a>Broker Errors ##
 
-When a broker fails to perform any requested operation, unless it fails with a well-defined HTTP response code listed above (like 410 on delete), it should return a JSON-encoded error payload. This payload allows the broker to expose a message to end-user or operator. Any responses not matching this error format will result in the user seeing a generic internal error message.
+When a broker fails to perform any requested operation, unless it fails with a well-defined HTTP response code listed above (like 410 on delete), it should return an appropriate HTTP response code (chosen to accurately reflect the nature of the failure), and a JSON-encoded error payload.
 
-* Use HTTP status code `400 Bad Request` when the input is syntactically invalid.
-* Use HTTP status code `401 Unauthorized` when authentication is missing.
-* Use HTTP status code `403 Forbidden` when authentication is incorrect.
-* Use HTTP status code `422 Unprocessable Entity` when the input is semantically invalid.
-* Use HTTP status code `502 Bad Gateway` when there is an issue with a downstream API.
-* Use HTTP status code `500 Internal Server Error` for a generic issue.
+This payload allows the broker to expose a message to end-user or operator. If a payload is included, only the message from the description field in the payload will be shown. If there is no payload, a generic error message containing the HTTP response code will be shown.
 
 **Error response format:**
 
@@ -491,7 +486,7 @@ When a broker fails to perform any requested operation, unless it fails with a w
 </thead>
 <tbody>
 <tr>
-  <td>message*</td>
+  <td>description</td>
   <td>string</td>
   <td>An error message explaining why the request failed. This message will likely be forwarded to the person initiating the request.
 </td>
