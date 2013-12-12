@@ -259,7 +259,7 @@ For non-data services, provisioning could just mean getting an account on an exi
 
 `PUT /v2/service_instances/:id`
 
-**In this API, the `:id` of a service instance is provided by the Cloud Controller**. This ID will be used for future requests (bind and unprovision), so the broker must use it to correlate the resource it creates.
+**In this API, the `:id` of a service instance is provided by the Cloud Controller**. This ID will be used for future requests (bind and deprovision), so the broker must use it to correlate the resource it creates.
 
 <table>
 <thead>
@@ -367,7 +367,7 @@ Brokers are expected to respond with `200 OK` or `201 Created` with the response
 </thead>
 <tbody>
 <tr>
-  <td>credentials*</td>
+  <td>credentials</td>
   <td>object</td>
   <td>A free-form hash of credentials that the bound application can use to access the service. Use of a `uri` field (such as `mysql://user:password@host:port/dbname`) is recommended when possible, but it is often useful to provide individual credentials components such as hostname, port, username, and password.</td>
 </tr>
@@ -431,9 +431,9 @@ A response code of `200 OK` with a body of `{}` indicates that the resource was 
 
 We've chosen to require empty JSON in the response for future compatibility; it will be easier to add fields in the future if JSON is expected rather than support the cases when a JSON body may or may not be returned.
 
-## <a id='unprovisioning'></a>Unprovisioning ##
+## <a id='deprovisioning'></a>Deprovisioning ##
 
-When a broker receives an unprovision request from Cloud Controller, it should delete any resources it created during the provision. Usually this means that all resources are immediately reclaimed for future provisions.
+When a broker receives an deprovision request from Cloud Controller, it should delete any resources it created during the provision. Usually this means that all resources are immediately reclaimed for future provisions.
 
 `DELETE /v2/service_instances/:id`
 
@@ -503,7 +503,7 @@ When a broker fails to perform any requested operation, unless it fails with a w
 
 The Cloud Controller database and a Broker are expected to store identical copies of existing instances and bindings. Potentially, these two lists may become inconsistent. For example, if a broker times out during a delete request, the Cloud Controller will be unsure of whether that resource still exists on the broker or not. Cloud Controller will implement the following orphan prevention techniques:
 
-* If a broker fails to provision or bind an instance, the Cloud Controller will immediately issue an unprovision or unbind request .
+* If a broker fails to provision or bind an instance, the Cloud Controller will immediately issue an deprovision or unbind request .
 
-* If a broker fails to unbind or unprovision an instance, the Cloud Controller will periodically retry that DELETE request until it succeeds (or generates a 410). Eventually it will give up, but this technique will help clean up resources that are remain when a broker fails to delete.
+* If a broker fails to unbind or deprovision an instance, the Cloud Controller will periodically retry that DELETE request until it succeeds (or generates a 410). Eventually it will give up, but this technique will help clean up resources that are remain when a broker fails to delete.
 
