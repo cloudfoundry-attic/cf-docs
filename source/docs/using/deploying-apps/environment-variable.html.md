@@ -188,7 +188,7 @@ VCAP_SERVICES=
         "hostname": "pub-redis-17546.MatanCluster.ec2.garantiadata.com",
         "password": "1M5zd3QfWi9nUyya"
       }
-    },
+    }
   ],
   "elephantsql-dev-n/a": [
     {
