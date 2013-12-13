@@ -152,70 +152,64 @@ The example below contains the parsed JSON for the VCAP_SERVICE variable for a b
 ~~~
 VCAP_SERVICES=
 {
-  cleardb-n/a: [
+  "cleardb-n/a": [
     {
-      name: "cleardb-1",
-      label: "cleardb-n/a",
-      plan: "spark",
-      credentials: {
-        name: "ad_c6f4446532610ab",
-        hostname: "us-cdbr-east-03.cleardb.com",
-        port: "3306",
-        username: "b5d435f40dd2b2",
-        password: "ebfc00ac",
-        uri: "mysql://b5d435f40dd2b2:ebfc00ac@us-cdbr-east-03.cleardb.com:3306/ad_c6f4446532610ab",
-        jdbcUrl: "jdbc:mysql://b5d435f40dd2b2:ebfc00ac@us-cdbr-east-03.cleardb.com:3306/ad_c6f4446532610ab"
+      "name": "cleardb-1",
+      "label": "cleardb-n/a",
+      "plan": "spark",
+      "credentials": {
+        "name": "ad_c6f4446532610ab",
+        "hostname": "us-cdbr-east-03.cleardb.com",
+        "port": "3306",
+        "username": "b5d435f40dd2b2",
+        "password": "ebfc00ac",
+        "uri": "mysql://b5d435f40dd2b2:ebfc00ac@us-cdbr-east-03.cleardb.com:3306/ad_c6f4446532610ab",
+        "jdbcUrl": "jdbc:mysql://b5d435f40dd2b2:ebfc00ac@us-cdbr-east-03.cleardb.com:3306/ad_c6f4446532610ab"
       }
     }
   ],
-  cloudamqp-n/a: [
+  "cloudamqp-n/a": [
     {
-      name: "cloudamqp-6",
-      label: "cloudamqp-n/a",
-      plan: "lemur",
-      credentials: {
-        uri: "amqp://ksvyjmiv:IwN6dCdZmeQD4O0ZPKpu1YOaLx1he8wo@lemur.cloudamqp.com/ksvyjmiv"
+      "name": "cloudamqp-6",
+      "label": "cloudamqp-n/a",
+      "plan": "lemur",
+      "credentials": {
+        "uri": "amqp://ksvyjmiv:IwN6dCdZmeQD4O0ZPKpu1YOaLx1he8wo@lemur.cloudamqp.com/ksvyjmiv"
       }
     }
   ],
-  rediscloud-n/a: [
+  "rediscloud-n/a": [
     {
-      name: "rediscloud-1",
-      label: "rediscloud-n/a",
-      plan: "20mb",
-      credentials: {
-        port: "17546",
-        hostname: "pub-redis-17546.MatanCluster.ec2.garantiadata.com",
-        password: "1M5zd3QfWi9nUyya"
+      "name": "rediscloud-1",
+      "label": "rediscloud-n/a",
+      "plan": "20mb",
+      "credentials": {
+        "port": "17546",
+        "hostname": "pub-redis-17546.MatanCluster.ec2.garantiadata.com",
+        "password": "1M5zd3QfWi9nUyya"
       }
     },
   ],
-{
-  elephantsql-dev-n/a: [
-  {
-    name: "elephantsql-dev-c6c60",
-    label: "elephantsql-dev-n/a",
-    plan: "turtle",
-    credentials: {
-      uri: "postgres://seilbmbd:PHxTPJSbkcDakfK4cYwXHiIX9Q8p5Bxn@babar.elephantsql.com:5432/seilbmbd"
+  "elephantsql-dev-n/a": [
+    {
+      "name": "elephantsql-dev-c6c60",
+      "label": "elephantsql-dev-n/a",
+      "plan": "turtle",
+      "credentials": {
+        "uri": "postgres://seilbmbd:PHxTPJSbkcDakfK4cYwXHiIX9Q8p5Bxn@babar.elephantsql.com:5432/seilbmbd"
+      }
     }
-  }
-  ]
-}
-
-
- mongolab-dev-n/a: [
-  {
-    name: "mongolab-dev-2cea8",
-    label: "mongolab-dev-n/a",
-    plan: "sandbox",
-    credentials: {
-      uri: "mongodb://cloudfoundry-test_2p6otl8c_841b7q4b_tmtlqeaa:eb5d00ac-2a4f-4beb-80ad-9da11cff5a70@ds027908.mongolab.com:27908/cloudfoundry-test_2p6otl8c_841b7q4b"
+  ],
+  "mongolab-dev-n/a": [
+    {
+      "name": "mongolab-dev-2cea8",
+      "label": "mongolab-dev-n/a",
+      "plan": "sandbox",
+      "credentials": {
+        "uri": "mongodb://cloudfoundry-test_2p6otl8c_841b7q4b_tmtlqeaa:eb5d00ac-2a4f-4beb-80ad-9da11cff5a70@ds027908.mongolab.com:27908/cloudfoundry-test_2p6otl8c_841b7q4b"
+      }
     }
-  }
-  ]
-}
-{
+  ],
   "newrelic-n/a":[
     {
       "name":"newrelic-14e9d",
@@ -226,18 +220,16 @@ VCAP_SERVICES=
           "licenseKey":"2865f6f3nsig8f813af7989fccb24a699cb22a4beb"
         }
     }
-  ]
-}
-{
-  sendgrid-n/a: [
+  ],
+  "sendgrid-n/a": [
     {
-      name: "mysendgrid",
-      label: "sendgrid-n/a",
-      plan: "free",
-      credentials: {
-        hostname: "smtp.sendgrid.net",
-        username: "QvsXMbJ3rK",
-        password: "HCHMOYluTv"
+      "name": "mysendgrid",
+      "label": "sendgrid-n/a",
+      "plan": "free",
+      "credentials": {
+        "hostname": "smtp.sendgrid.net",
+        "username": "QvsXMbJ3rK",
+        "password": "HCHMOYluTv"
       }
     }
   ]
