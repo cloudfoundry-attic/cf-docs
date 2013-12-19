@@ -147,7 +147,7 @@ The results are returned as a JSON document that contains an object for each ser
 |jdbcUrl|The JDBC URL for the database connection; appears in the "credentials" object for a cleardb instance. |
 
 
-The example below contains the parsed JSON for the VCAP_SERVICE variable for a bound instance of each service type available in the Cloud Foundry Services Marketplace. 
+The example below contains the parsed JSON for the VCAP_SERVICE variable for a bound instance of several services available in the [Pivotal Web Services](http://run.pivotal.io) Marketplace. 
 
 ~~~
 VCAP_SERVICES=
