@@ -62,51 +62,39 @@
   <body class="<%= page_classes %>">
     <img id="bg" src="/images/bg-plain-x.jpg">
     <div id='non_footer'>
-      <div id='header'>
-        <div class='container_wide'>
-          <ul class='actions'>
-            <li class='last'>
-              <a href="http://www.cloudfoundry.com/contact">Contact Us</a>
-            </li>
-            <li>
-              <a class='register_link' href='http://login.run.pivotal.io/login'>My Account</a>            
-            </li>
-          </ul>
-        </div>
-      </div>
       <div id='content'>
-        <div class='logo-main'>
-          <div class='logo'>
-            <a href='http://www.cloudfoundry.com'>
-            <img src='/images/logo-cloudfoundry.png'>
-            </a>
-            <a href='http://www.gopivotal.com' target="_blank">
-            <img id="pivotal-logo" src='/images/logo-pivotal.png'>
-            </a>
-          </div>
-          <div class='cta'>
-            <a href='https://console.run.pivotal.io'>
-            <img src='/images/signup_freetrial.png'>
-            </a>
-          </div>
-        </div><!-- End of logo-main-->
+            <div class="text-center" style="background: url(/images/bg-crowd.png);background-position:center bottom;background-repeat:no-repeat">
+                <img src="/images/logo_org.png">
+            </div>
+          <br></br>
         <div class='container-full'>
           <div id='organization_bar'>
             <div class='navbar'>
               <ul class='nav'>
-                <li>
-                <a href='http://www.cloudfoundry.com/use' id='use'>Using Cloud Foundry</a>
-                </li>
-                <li>
-                <a href='http://www.cloudfoundry.com/run' id='run'>Running Cloud Foundry</a>
-                </li>
-                <li>
-                <a href='http://www.cloudfoundry.com/getinvolved' id='getinvolved'>Get Involved</a>
-                </li>
+                            <li id='icon-home-li'>
+                                <a id='icon-home-link' href='/'>
+                                    <img id='icon-home' src='http://blog.cloudfoundry.com/wp-content/static/cforg/img/icon-home.png'>
+                                </a>
+                            </li>
+                            <li>
+                                <a id='about' href='http://www.cloudfoundry.org/about.html'>About</a>
+                            </li>
+                            <li>
+                                <a id='learn' href='http://www.cloudfoundry.org/learn.html'>Learn</a>
+                            </li>
+                            <li>
+                                <a href='http://www.cloudfoundry.org/documentation.html'>Documentation</a>
+                            </li>
+                            <li>
+                                <a id='get-involved' href='http://www.cloudfoundry.org/getinvolved.html'>Get Involved</a>
+                            </li>
+
                 <li id='docs-off'>
+                    <!--
                   <a href='/' id='docs'>
                     <div id='icon-docs'></div>
                   </a>
+                     -->
                   <div id='docs-list'>
                     <div class="docs-list-list">
                       <a class="docs-list-th" href='/docs/using/app-arch/'>Using Cloud Foundry</a>
@@ -153,6 +141,7 @@
                     </div><!-- End of column 3 docs-list-list -->
                   </div><!-- End of docs-list -->
                 </li>
+                  <!--
                 <li id='search-off'>
                   <a id='search'>
                     <div class='icon-search'></div>
@@ -166,6 +155,7 @@
                     <div class="cancel-x"></div>
                   </a>
                 </li>
+                  -->
               </ul>
             </div><!-- End of navbar -->
           </div><!-- End of organization_bar -->
@@ -227,37 +217,29 @@
           </ul>
         </div><!-- End of bg_social -->
         <ul class='links'>
-          <li>
-          <a href='http://www.cloudfoundry.com/about'>About</a>
-          </li>
-          <li class='disc'>•</li>
-          <li>
-          <a href='http://blog.cloudfoundry.com/'>Blog</a>
-          </li>
-          <li class='disc'>•</li>
-          <li>
-          <a href='http://www.cloudfoundry.com/partners'>Partners</a>
-          </li>
-          <li class='disc'>•</li>
-          <li>
-          <a href='http://docs.cloudfoundry.com'>Docs</a>
-          </li>
-          <li class='disc'>•</li>
-          <li>
-          <a href='http://www.cloudfoundry.com/faq'>FAQ</a>
-          </li>
-          <li class='disc'>•</li>
-          <li>
-          <a href='http://www.cloudfoundry.com/getinvolved'>Get Involved</a>
-          </li>
-          <li class='disc'>•</li>
-          <li>
-          <a href='http://status.cloudfoundry.com/'>Status</a>
-          </li>
-          <li class='disc'>•</li>
-          <li>
-          <a href='http://www.cloudfoundry.com/support'>Support</a>
-          </li>
+                <li>
+                    <a href='http://www.cloudfoundry.org/about.html'>About</a>
+                </li>
+                <li class='disc'>•</li>
+                <li>
+                    <a href='http://www.cloudfoundry.org/blog.html'>Blog</a>
+                </li>
+                <li class='disc'>•</li>
+                <li>
+                    <a href='http://www.cloudfoundry.org/about.html'>Partners</a>
+                </li>
+                <li class='disc'>•</li>
+                <li>
+                    <a href='http://www.cloudfoundry.org/documentation.html'>Docs</a>
+                </li>
+                <li class='disc'>•</li>
+                <li>
+                    <a href='http://www.cloudfoundry.org/faq.html'>FAQ</a>
+                </li>
+                <li class='disc'>•</li>
+                <li>
+                    <a href='http://www.cloudfoundry.org/getinvolved.html'>Get Involved</a>
+                </li>
         </ul>
         <div class='copyright'>
           <div class='hr-horizontal-dark'></div>
@@ -270,9 +252,7 @@
                 document.write(d.getFullYear());
               //]]>
             </script>
-            GoPivotal, Inc. All rights reserved.
-            <a href='http://www.cloudfoundry.com/terms'>Terms</a>
-            <a href='http://www.gopivotal.com/privacy-policy' target='_blank'>Privacy</a>
+            IBM
           </p>
         </div><!-- End of copyright -->
       </div><!-- End of container-footer -->
