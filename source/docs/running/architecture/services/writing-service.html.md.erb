@@ -233,7 +233,8 @@ This will will return a JSON response which will include something like the foll
 Now run the following curl using the service plan guid above.
 
 <pre class="terminal">
-$ cf curl PUT /v2/service_plans/a01d462f-a4a4-4945-a008-3ff13c06f719 -b '{"public":'true'}'
+$ service_plan="a01d462f-a4a4-4945-a008-3ff13c06f719"
+$ cf curl PUT /v2/service_plans/$service_plan -b '{"public":'true'}'
 </pre>
 
 To verify that the the plan was set to public, re-run this command and check the 'public' field:
