@@ -164,6 +164,10 @@ This is an example manifest for deploying BOSH via Micro BOSH. The next step wou
         address: 172.20.134.52
         port: 25555
         encryption: false
+        db:
+          user: bosh
+          password: your-postgres-password
+          host: 172.20.134.50
 
       hm:
         http:
