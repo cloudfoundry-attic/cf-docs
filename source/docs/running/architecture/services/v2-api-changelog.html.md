@@ -2,6 +2,9 @@
 title: v2 API Change Log
 ---
 
+## 2013-12-27 ##
+Added field, bumped version to 2.1, included in cf-release final build 152.
+
 ## 2013-12-11 ##
 Bug found in [the v2.0 doc](api-v2.0.html). It was indicated that the credentials field returned by the broker after binding a service to an app is required, but it is actually optional.
 
