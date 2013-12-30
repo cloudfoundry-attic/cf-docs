@@ -10,6 +10,10 @@ This short guide shows how to, after [bootstrapping Bosh](/docs/running/deployin
 
 NOTE: These instructions are for v145 release of Cloud Foundry. We strongly recommend using the [highest final version tag of cf-release](https://github.com/cloudfoundry/cf-release/releases).
 
+<pre class="terminal">
+$ bosh upload release releases/cf-145.yml
+</pre>
+
 ## <a id='clone'></a> Clone CF-Release ##
 
 Create / find a folder to keep your clone of the CF-Release repository and clone it from Github;
