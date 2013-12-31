@@ -214,6 +214,3 @@ You also want to cleanup any YAML artifacts that are no longer valid:
 ~/cf$ bosh aws destroy
 ~/cf$ rm -f *.yml
 </pre>
-
-<img id="nuclear" src='/images/nuclear2.jpg'>
-<br clear="left">Photo: Creative Commons / CTBTO Photostream at http://www.flickr.com/photos/ctbto/6476282811/
