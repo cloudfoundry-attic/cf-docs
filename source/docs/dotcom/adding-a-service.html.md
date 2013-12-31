@@ -83,15 +83,24 @@ If the service supports binding, your service instance will then be bound to you
 Binding cleardb-e2006 to myapp... OK
 </pre>
 
-## <a id='using'></a>Using Bound Service Instances with your Application ##
+## <a id='using'></a>Using Service Instances with your Application ##
 
-Once you have a service instance created and bound to your app, you will need to configure your application to dynamically fetch the credentials for your service. These credentials are stored in the [VCAP_SERVICES environment variable](../using/deploying-apps/environment-variable.html#VCAP_SERVICES) and there are generally two methods for consuming credentials from there.
+Once you have a service instance created and bound to your app, you will need to configure your application to use the correct credentials for your service.
 
-* **Auto-configuration**: Some buildpacks create a service connection for you by creating additional environment variables, updating config files, or passing system parameters to the jvm. 
-* **Manual**: [Parse the JSON yourself](../using/deploying-apps/environment-variable.html#app); helper libraries are available for some frameworks.
+There are three ways of consuming service instance credentials within your application.
+
+| Binding Strategy     | Description                                                                                                                            |
+| :------------------- | :--------------------                                                                                                                  |
+| Auto-configuration | Cloud Foundry creates a service connection for you.                                                                |
+| cfruntime            | Creates an object with the location and settings of your services. Set your service connections based on the values in that object.    |
+| Manual               | Parse the JSON credentials object yourself from the [VCAP_SERVICES Environment Variable](../using/deploying-apps/environment-variable.html). |
  
-| Runtime               | Framework                   | Binding Strategy         |
+## <a id='configuring'></a>Configuring Connections for Different Frameworks ##
+ 
+The procedure for configuring an application to connect to a service varies by framework. Note that auto-configuration is not supported for all frameworks. The table below has links to instructions for configuring service connections in different environments.  
+
+| Runtime               | Framework                   |Auto-Configuration Support|
 | :-------------        |:-------------               |:-------------            |
-| Java / JVM        | <li>[Spring](../using/services/spring-service-bindings.html) <li>[Grails](../using/services/grails-service-bindings.html) <li>[Lift](../using/services/lift-service-bindings.html) | Auto-configuration<br/>Manual |
-| Ruby            | <li>[Rack, Rails, or Sinatra](../using/services/ruby-service-bindings.html) |  [Limited auto-configuration support for Rails only](../using/services/ruby-service-bindings.html#auto-config)<br/>Manual | 
-| Javascript          | <li>[Node.js](../using/services/node-service-bindings.html) | Manual |
+| Java / JVM        | <li>[Spring](../using/services/spring-service-bindings.html) <li>[Grails](../using/services/grails-service-bindings.html) <li>[Lift](../using/services/lift-service-bindings.html) | Supported. |
+| Ruby            | <li>[Rack, Rails, or Sinatra](../using/services/ruby-service-bindings.html) |  Supported only for Rails, with some limitations. For more information, <br> see [Options for Configuring Ruby Apps for Services](../using/services/ruby-service-bindings.html#options). | 
+| Javascript          | <li>[Node.js](../using/services/node-service-bindings.html) |Not yet available in Cloud Foundry v2. |
