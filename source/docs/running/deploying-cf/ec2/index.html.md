@@ -61,8 +61,6 @@ export BOSH_VPC_PRIMARY_AZ=us-east-1d   # see note below
 *Note:* Now only deployment to `us-east-1` region is supported by next
 steps. For MicroBOSH deploy please review [following guide](https://gist.github.com/danhigham/5804252).
 
-*Note:* Pull request in review process to add support for other AWS regions (https://github.com/cloudfoundry/bosh/pull/323)
-
 Choose availability zones that are listed as "operating normally" on
 the [AWS Console Status Health Section](https://console.aws.amazon.com/ec2/v2/home?region=us-east-1)
 for your region.
