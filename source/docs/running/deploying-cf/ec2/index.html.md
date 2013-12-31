@@ -33,7 +33,8 @@ source 'https://rubygems.org'
 ruby "1.9.3"
 
 gem "bootstrap-cf-plugin", :git => "git://github.com/cloudfoundry/bootstrap-cf-plugin"
-gem "bosh"
+
+gem "bosh_cli_plugin_aws"
 ~~~
 
 Install the latest release of the bootstrap plugin.
