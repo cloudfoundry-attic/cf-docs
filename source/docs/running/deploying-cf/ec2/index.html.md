@@ -33,7 +33,8 @@ source 'https://rubygems.org'
 ruby "1.9.3"
 
 gem "bootstrap-cf-plugin", :git => "git://github.com/cloudfoundry/bootstrap-cf-plugin"
-gem "bosh"
+
+gem "bosh_cli_plugin_aws"
 ~~~
 
 Install the latest release of the bootstrap plugin.
@@ -59,8 +60,6 @@ export BOSH_VPC_PRIMARY_AZ=us-east-1d   # see note below
 
 *Note:* Now only deployment to `us-east-1` region is supported by next
 steps. For MicroBOSH deploy please review [following guide](https://gist.github.com/danhigham/5804252).
-
-*Note:* Pull request in review process to add support for other AWS regions (https://github.com/cloudfoundry/bosh/pull/323)
 
 Choose availability zones that are listed as "operating normally" on
 the [AWS Console Status Health Section](https://console.aws.amazon.com/ec2/v2/home?region=us-east-1)
@@ -214,6 +213,3 @@ You also want to cleanup any YAML artifacts that are no longer valid:
 ~/cf$ bosh aws destroy
 ~/cf$ rm -f *.yml
 </pre>
-
-<img id="nuclear" src='/images/nuclear2.jpg'>
-<br clear="left">Photo: Creative Commons / CTBTO Photostream at http://www.flickr.com/photos/ctbto/6476282811/
