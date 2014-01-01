@@ -25,23 +25,20 @@ Ruby 1.9.3 and git (1.8 or later) are prerequisites for the following steps. Aft
 $ gem install bundler
 </pre>
 
-Create a working directory from which to deploy the environment. For example, `$HOME/cf`. In that directory, create a file named `Gemfile` with the following contents:
+Create a deployments directory with a subdirectory for your particular deployment. For example, `~/deployments/cf-example`. In the particular deployment's sub-directory, create a file named `Gemfile` with the following contents:
 
 ~~~
 source 'https://rubygems.org'
 
 ruby "1.9.3"
 
-gem "bootstrap-cf-plugin", :git => "git://github.com/cloudfoundry/bootstrap-cf-plugin"
-
 gem "bosh_cli_plugin_aws"
+gem "cf_deployer", git: "https://github.com/pivotal-cf-experimental/cf-deployer.git"
 ~~~
 
-Install the latest release of the bootstrap plugin.
-
 <pre class="terminal">
-$ cd $HOME/cf
-~/cf$ bundle install
+$ cd ~/deployments/cf-example
+~/deployments/cf-example$ bundle install
 </pre>
 
 Next, set environment variables required for deploying to AWS. Create a file called `bosh_environment` and add the following, changing the value for each line to suit your configuration:
@@ -68,13 +65,13 @@ for your region.
 Use `source` to set them for the current shell:
 
 <pre class="terminal">
-~/cf$ source bosh_environment
+~/deployments/cf-example$ source bosh_environment
 </pre>
 
 Run `bosh aws create` to create a VPC Internet Gateway, VPC subnets, 3 RDS databases, and a NAT VM for Cloud Foundry subnet routing. The command does not require user input, so start it and grab a coffee at the trendiest place across town!
 
 <pre class="terminal">
-~/cf$ bosh aws create
+~/cf$ bundle exec bosh aws create
 Executing migration CreateKeyPairs
 allocating 1 KeyPair(s)
 Executing migration CreateVpc
@@ -93,7 +90,7 @@ creating bucket xxxx-bosh-artifacts
 Deploy Micro BOSH from the workspace directory, using the `bosh aws bootstrap micro` command:
 
 <pre class="terminal">
-~/cf$ bosh aws bootstrap micro
+~/deployments/cf-example$ bundle exec bosh aws bootstrap micro
 
 WARNING! Your target has been changed to `https://10.10.0.6:25555'!
 Deployment set to '/Users/pivotal/cf/deployments/micro/micro_bosh.yml'
@@ -115,7 +112,7 @@ Logged in as `hm'
 After Micro BOSH has been deployed succesfully, you can check its status:
 
 <pre class="terminal">
-~/cf$ bosh status
+~/deployments/cf-example$ bundle exec bosh status
 
 Updating director data... done
 
@@ -138,10 +135,53 @@ Deployment
 
 ## <a id='deploy-cloudfoundry'></a>Deploy Cloud Foundry ##
 
-Cloud Foundry can now be deployed using the `bundle exec cf bootstrap aws` command from the bootstrap-cf-plugin gem.
+Cloud Foundry can now be deployed.
+
+Create a stub file called `cf-aws-stub.yml` for spiff, we'll use this in a moment to generate a BOSH manifest for our CF deployment.
 
 <pre class="terminal">
-~/cf$ bundle exec cf bootstrap aws
+---
+name: cf-example
+director_uuid: PLACEHOLDER-DIRECTOR-UUID
+releases:
+  - name: cf
+    version: latest
+properties:
+  loggregator_endpoint:
+    shared_secret: PLACEHOLDER-LOGGREGATOR-SECRET
+  template_only:
+    aws:
+      access_key_id: PLACEHOLDER-ACCESS-KEY-ID
+      secret_access_key: PLACEHOLDER-SECRET-KEY
+      availability_zone: us-east-1a # Change this if you'd like to
+      subnet_ids:
+        cf1: PLACEHOLDER-SUBNET-FOR-AZ1
+</pre>
+
+Change `PLACEHOLDER-DIRECTOR-UUID` to the UUID printed when you ran `bundle exec bosh status` earlier.
+
+Change `PLACEHOLDER-LOGGREGATOR-SECRET` to something secret.
+
+Change `PLACEHOLDER-ACCESS-KEY-ID` and `PLACEHOLDER-SECRET-KEY` to your AWS access key id and secret key.
+
+Change `PLACEHOLDER-SUBNET-FOR-AZ1` and `PLACEHOLDER-SUBNET-FOR-AZ2` to the subnets you've created manually for AZ1 & AZ2 respectively. (TODO: How to create a subnet?)
+
+Clone `cf-release` into a convenient location, e.g. `~/releases/cf-release`
+
+<pre class="terminal">
+~/releases$ git clone https://github.com/cloudfoundry/cf-release.git
+</pre>
+
+Generate a BOSH manifest using by combining `cf-release/templates/cf-minimal-dev.yml` in `cf-release` with the answers in `cf-aws-stub.yml` using spiff
+
+<pre class="terminal">
+~/deployments/cf-example$ # … spiff …
+</pre>
+
+Deploy CF with the `cf_deploy` tool
+
+<pre class="terminal">
+~/cf$ bundle exec cf_deploy --deployments-repo ~/deployments --deployment-name cf-example --release-repo ~/releases/cf-release --release-n
 </pre>
 
 This process can take some time (2-3 hours), especially during its first run when all the jobs are compiled for the first time. When the bootstrap has finished installing Cloud Foundry, it should be possible to target the install with cf and login as an administrator with the user name `admin` and the password `the_admin_pw`.
