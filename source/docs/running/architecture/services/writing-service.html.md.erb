@@ -194,73 +194,8 @@ CLI and web clients have different needs with regard to service and plan names. 
 
 ### <a id='create-broker'></a>Adding a Broker to Cloud Foundry ###
 
-Once you've implemented the first endpoint `GET /v2/catalog` above, you'll want to see whether your services and plan are available to end users. Two steps are required: registering your broker with cloud controller and making plans public.
+Once you've implemented the first endpoint `GET /v2/catalog` above, you'll want to [register the broker with CF](managing-service-broker.html#add-broker) to make your services and plans available to end users.
 
-Before executing these two steps, make sure you are authenticated as a cloud controller admin (via the `cf login` command).
-
-#### Registering a Broker with Cloud Foundry
-
-Registering or updating a broker causes cloud controller to fetch and validate the catalog from your broker, and update the database with any changes found in the catalog.  Registering or updating causes the cloud controller to store the basic auth username and password, which the cloud controller  will send to the broker with every request. Your service broker should validate the username and password sent in every request, otherwise anyone could curl your broker to delete all service instances.
-
-<pre class="terminal">
-$ cf add-service-broker mybrokername --username someuser --password somethingsecure --url http://mybroker.example.com/
-</pre>
-
-To update a broker:
-
-<pre class="terminal">
-$ cf update-service-broker mybrokername --username someuser --password somethingsecure --url http://mybroker.example.com/
-</pre>
-
-#### Making a Plan Public
-
-By default, new plans are private. This means they are not visible to end users. This gives CF admins control over their catalogs when they don't have control over service brokers. Making a plan public currently involves a couple of curls but a CLI command is coming very soon (this command will be implemented in the [v6 Go-based CLI](../../../using/managing-apps/cf/go-cli.html) only).
-
-The first step is to get the service plan guid.
-
-<pre class="terminal">
-$ cf services -m -t
-</pre>
-
-This will will return a JSON response which will include something like the following for each service.
-
-<pre class="terminal">
-        "service_plans": [
-          {
-            "metadata": {
-              "guid": "a01d462f-a4a4-4945-a008-3ff13c06f719",
-              "url": "/v2/service_plans/a01d462f-a4a4-4945-a008-3ff13c06f719",
-              "created_at": "2013-11-15T23:42:52+00:00",
-              "updated_at": "2013-11-22T18:57:46+00:00"
-            },
-            "entity": {
-              "name": "large",
-              "free": false,
-              "description": "Large Dummy",
-              "service_guid": "e629bb0a-fee7-4a6c-a4f1-9eeec7096c29",
-              "extra": "{\"cost\":20.0,\"bullets\":[]}",
-              "unique_id": "addonOffering_3365",
-              "public": false,
-              "service_url": "/v2/services/e629bb0a-fee7-4a6c-a4f1-9eeec7096c29",
-              "service_instances_url": "/v2/service_plans/a01d462f-a4a4-4945-a008-3ff13c06f719/service_instances"
-            }
-          },
-</pre>
-
-Now run the following curl using the service plan guid above.
-
-<pre class="terminal">
-$ service_plan="a01d462f-a4a4-4945-a008-3ff13c06f719"
-$ cf curl PUT /v2/service_plans/$service_plan -b '{"public":'true'}'
-</pre>
-
-To verify that the the plan was set to public, re-run this command and check the 'public' field:
-
-<pre class="terminal">
-$ cf services -m -t
-</pre>
-
-At this point you should see your service and plans in the Cloud Foundry Marketplace, or in the response to `cf services -m`.
 
 ## <a id='provisioning'></a>Provisioning ##
 

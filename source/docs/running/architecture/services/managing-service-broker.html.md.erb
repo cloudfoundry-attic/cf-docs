@@ -1,0 +1,190 @@
+---
+title: Managing a Cloud Foundry service broker
+---
+
+## Introduction
+
+This document describes how to use the `cf` or `gcf` commanline tools to manage a Cloud Foundry [Service Broker](index.html).
+
+Service Brokers implement the [Service Broker API](writing-service.html).
+
+## <a id='add-broker'></a>Adding a Broker to Cloud Foundry ###
+
+Once you've implemented the [Catalog endpoint](writing-service.html#catalog-mgmt), you'll want to see whether your services and plans are available to end users. Two steps are required: 
+
+1. registering your broker with cloud controller
+2. making plans public.
+
+Before executing these two steps, make sure you are authenticated as a cloud controller admin (via the `cf login` or `gcf login` command).
+
+### <a id='register-broker'></a>Registering a Broker with Cloud Foundry
+
+Registering or updating a broker causes cloud controller to fetch and validate the catalog from your broker, and update the database with any changes found in the catalog.  Registering or updating causes the cloud controller to store the basic auth username and password, which the cloud controller  will send to the broker with every request. Your service broker should validate the username and password sent in every request, otherwise anyone could curl your broker to delete all service instances.
+
+#### To add a broker:
+
+With `cf`:
+
+<pre class="terminal">
+$ cf add-service-broker mybrokername --username someuser --password somethingsecure --url http://mybroker.example.com/
+</pre>
+
+With `gcf`:
+
+<pre class="terminal">
+$ gcf create-service-broker mybrokername someuser somethingsecure http://mybroker.example.com/
+</pre>
+
+#### To update a broker:
+
+With `cf`:
+
+<pre class="terminal">
+$ cf update-service-broker mybrokername --username someuser --password somethingsecure --url http://mybroker.example.com/
+</pre>
+
+With `gcf`:
+
+<pre class="terminal">
+$ gcf update-service-broker mybrokername someuser somethingsecure http://mybroker.example.com/
+</pre>
+
+#### To verify that the broker has been added successfully:
+
+With `cf`:
+
+<pre class="terminal">
+$ cf service-brokers
+Getting service brokers... OK
+
+Name            URL
+my-service-name http://mybroker.example.com
+</pre>
+
+With `gcf`:
+
+<pre class="terminal">
+$ gcf service-brokers
+Getting service brokers as admin...
+OK
+
+Name            URL
+my-service-name http://mybroker.example.com
+</pre>
+
+#### To view services advertised by the broker:
+
+`cf` allows an admin to see services imported from the broker before end users can. `gcf` does not support this. 
+
+<pre class="terminal">
+$ cf services --marketplace
+Getting services... OK
+
+service       	version   provider   plans    	description                                           
+my-service-name n/a       n/a        free-plan	My service description.
+</pre>
+
+
+#### Possible Errors
+
+If  incorrect basic auth credentials are provided:
+
+`cf` returns a unhelpful error: 
+
+<pre class="terminal">
+CFoundry::ServerError: 10001: The service broker API returned an error from http://github-broker.primo.cf-app.com/v2/catalog: 404 Not Found
+</pre>
+
+`gcf` provides a meaningful error:
+
+<pre class="terminal">
+Server error, status code: 500, error code: 10001, message: Authentication failed for the service broker API. Double-check that the username and password are correct: http://github-broker.primo.cf-app.com/v2/catalog
+</pre>
+
+If you receive the following errors, check your broker logs. You may have an internal error.
+
+`cf`:
+
+<pre class="terminal">
+CFoundry::ServerError: 10001: The service broker API returned an error from http://github-broker.primo.cf-app.com/v2/catalog: 500 Internal Server Error
+</pre>
+
+`gcf`:
+
+<pre class="terminal">
+Server error, status code: 500, error code: 10001, message: The service broker API returned an error from http://github-broker.primo.cf-app.com/v2/catalog: 500 Internal Server Error
+</pre>
+
+If your `unique_id`s for service and plan are not unique, you should get an error. Currently these errors aren't helpful, but it's a known issue and will be fixed soon.
+
+`cf`: 
+
+<pre class="terminal">
+CFoundry::InvalidRequest: 10004: The request is invalid
+</pre>
+
+`gcf`:
+
+<pre class="terminal">
+Server error, status code: 400, error code: 10004, message: The request is invalid
+</pre>
+
+
+### <a id='make-plan-public'></a>Making a Plan Public
+
+By default, new plans are private. This means they are not visible to end users. This gives CF admins control over their catalogs when they don't have control over service brokers. Making a plan public currently involves a couple of curls but a CLI command is coming very soon (this command will be implemented in the [v6 Go-based CLI](../../../using/managing-apps/cf/go-cli.html) only).
+
+The first step is to get the service plan guid.
+
+<pre class="terminal">
+$ cf services --marketplace --trace
+</pre>
+
+This will will return a JSON response which will include something like the following for each service.
+
+<pre class="terminal">
+        "service_plans": [
+          {
+            "metadata": {
+              "guid": "a01d462f-a4a4-4945-a008-3ff13c06f719",
+              "url": "/v2/service_plans/a01d462f-a4a4-4945-a008-3ff13c06f719",
+              "created_at": "2013-11-15T23:42:52+00:00",
+              "updated_at": "2013-11-22T18:57:46+00:00"
+            },
+            "entity": {
+              "name": "large",
+              "free": false,
+              "description": "Large Dummy",
+              "service_guid": "e629bb0a-fee7-4a6c-a4f1-9eeec7096c29",
+              "extra": "{\"cost\":20.0,\"bullets\":[]}",
+              "unique_id": "addonOffering_3365",
+              "public": false,
+              "service_url": "/v2/services/e629bb0a-fee7-4a6c-a4f1-9eeec7096c29",
+              "service_instances_url": "/v2/service_plans/a01d462f-a4a4-4945-a008-3ff13c06f719/service_instances"
+            }
+          },
+</pre>
+
+Now run the following curl using the service plan guid above.
+
+<pre class="terminal">
+$ service_plan="a01d462f-a4a4-4945-a008-3ff13c06f719"
+$ cf curl PUT /v2/service_plans/$service_plan -b '{"public":'true'}'
+</pre>
+
+To verify that the the plan was set to public, re-run this command and check the 'public' field:
+
+<pre class="terminal">
+$ cf services --marketplace --trace
+</pre>
+
+At this point you should see your service and plans in the Cloud Foundry Marketplace, or in the response to `gcf marketplace`.
+
+
+### Adding multiple service brokers
+
+Multiple service brokers may be added to a Cloud Foundry, but the following constraints must be kept in mind:
+
+- It's not possible to have multiple brokers with the same name
+- It's not possible to have multiple brokers with the same URL
+- The service id and plan ids of each service advertised by the broker must be unique across Cloud Foundry (GUIDs should be used for these fields)

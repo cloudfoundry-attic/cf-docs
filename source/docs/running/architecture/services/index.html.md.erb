@@ -28,7 +28,9 @@ Because Cloud Foundry only requires that a service implements the broker API in 
 The current major version of Service Broker API is v2. Brokers which implement the v2 API are referred to as v2 brokers. All changes to the v2 API will be additive and optional, no endpoints or fields will be removed until the next major version.
 
 * [Writing a Cloud Foundry Service Broker](writing-service.html)
-* [An example service broker](https://github.com/cloudfoundry/cf-mysql-broker)
+* [An example Service Broker (GitHub repository service) and demo app that uses the service (written in Ruby)](https://github.com/cloudfoundry-samples/github-service-broker-ruby)
+* [Another example Service Broker (MySQL database service) (written in Ruby)](https://github.com/cloudfoundry/cf-mysql-broker)
+* [Adding a Service Broker on CF](managing-service-broker.html)
 
 Cloud Foundry currently supports both v2 brokers and v1 brokers, but support for v1 brokers will be removed from the next major version of cloud controller. Although there is no timeline for that release, we recommend new brokers are implemented with the v2 Services API and existing brokers are upgraded. For reference, the [v1 Service Broker API](writing-service-v1.html).
 
