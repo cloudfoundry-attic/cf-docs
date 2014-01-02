@@ -53,10 +53,6 @@ The Cloud Foundry services API defines the contract between the Cloud Controller
 
 <%= image_tag("../../../../images/v2services.png", :width =>"960", :height =>"720", :style => 'background-color:#fff') %>
 
-## <a id='required-fields'></a>Required Fields ##
-
-* Required fields can not be null.
-
 ## <a id='api-version-header'></a>API Version Header ##
 
 
@@ -168,7 +164,7 @@ CLI and web clients have different needs with regard to service and plan names. 
 </tbody>
 </table>
 
-\* Fields with an asterisk are required.
+\* Fields with an asterisk are required. Required fields can not be null.
 
 **Example response**
 
@@ -311,6 +307,8 @@ For non-data services, provisioning could just mean getting an account on an exi
 </tbody>
 </table>
 
+\* Fields with an asterisk are required. Required fields can not be null.
+
 Brokers are expected to respond with `201 Created` with the response body from the table below. They can also return `409 Conflict` if there is already a provisioned resource at this URL. Since this endpoint cannot be used to update resource parameters, brokers must return 409 if a conflicting request is made. Ideally, a non-conflicting request (duplicate ID and params) would return 200, but brokers may simply return 409 for a duplicate ID.  If they respond with any code besides 200 or 201, CC will assume that the provision request failed and inform the user.
 
 <table>
@@ -372,6 +370,8 @@ Note that the `:id` of a service binding is provided by the Cloud Controller. `:
 </tr>
 </tbody>
 </table>
+
+\* Fields with an asterisk are required. Required fields can not be null.
 
 Brokers are expected to respond with `200 OK` or `201 Created` with the response body from the table below. They can also return `409 Conflict` if there is already a binding at the URL. Since this endpoint cannot be used to update resources, a broker must return a 409 if a non-identical request is made. If a broker responds with a code other than 200 or 201, Cloud Controller will assume that the binding request failed and inform the user.
 
@@ -445,6 +445,8 @@ The `:id` in the URL is the identifier of a previously created binding (the same
 </tbody>
 </table>
 
+\* Fields with an asterisk are required. Required fields can not be null.
+
 A response code of `200 OK` with a body of `{}` indicates that the resource was deleted. A response code of `410 Not Found` with a body of `{}` indicates to Cloud Controller that the resource was not there in the first place, and is likely gone. _Any other_ response code indicates to Cloud Controller that the the binding could not be deleted; the user will be informed (and the binding will remain in the database).
 
 We've chosen to require empty JSON in the response for future compatibility; it will be easier to add fields in the future if JSON is expected rather than support the cases when a JSON body may or may not be returned.
@@ -480,6 +482,8 @@ The `:id` in the URL is the identifier of a previously provisioned instance (the
 </tr>
 </tbody>
 </table>
+
+\* Fields with an asterisk are required. Required fields can not be null.
 
 A response code of `200 OK` with a body of `{}` indicates that the resource was deleted. A response code of `410 Not Found `with a body of `{}` indicates to Cloud Controller that the resource was not there in the first place, and is likely gone. _Any other_ response code indicates to Cloud Controller that the the service instance could not be deleted, the user will be informed (and the instance will remain in the database).
 

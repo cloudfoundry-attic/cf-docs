@@ -10,6 +10,10 @@ We've provided a simple gem that allows your application to search for credentia
 
 * [cf-app-utils-ruby](https://github.com/cloudfoundry/cf-app-utils-ruby)
 
+## <a id='auto-config'></a>Auto-configuration for Rails ##
+
+Ruby on Rails applications often expect to find the connection string for a relational database stored in the environment variable `DATABASE_URL`. If the Ruby buildpack detects a Rails app, it looks in the `VCAP_SERVICES` environment variable for a service instance having the key `uri` in the `credentials` JSON object, whose value has a scheme matching `mysql` or `postgres`. If the buildpack finds a match, it updates DATABASE_URL with the value of `uri`. If multiple bound instances contain a `uri` key with matching scheme, the buildpack will use the first one found.   
+
 ## <a id='config-file'></a>Define Connection in Configuration File ##
 
 For a Ruby database application, you configure the database connection information in the application's `database.yml` file. When you bind a service to an application, the service connection details are written to the applications's `VCAP_SERVICES` environment variable. `VCAP_SERVICES` lists, in JSON format, the services bound to your application and the credentials required to connect to each. 
