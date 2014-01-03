@@ -32,7 +32,7 @@ Deployment
 
 ## <a id="upload-stemcell"></a>Upload a Stemcell ##
 
-The Director needs a stemcell in order to deploy Cloud Foundry. Use the existing public stemcell in your `~/stemcells` directory.
+The Director needs a stemcell in order to deploy Cloud Foundry. Use the existing public stemcell in your `~/stemcells` directory. Do not use the Micro BOSH stemcell.
 
 <pre class="terminal">
 $ bosh upload stemcell ~/stemcells/bosh-stemcell-latest-vsphere-esxi-ubuntu.tgz
@@ -85,7 +85,7 @@ You'll see a flurry of output as BOSH configures and uploads release components.
 
 ## <a id="create-manifest"></a>Create a Cloud Deployment Manifest ##
 
-For the purpose of this tutorial, we'll use a sample [deployment manifest](http://docs.cloudfoundry.com/docs/running/deploying-cf/vsphere/cloud-foundry-example-manifest.html).
+For the purpose of this tutorial, we'll use a sample [deployment manifest](https://github.com/cloudfoundry/oss-docs/blob/master/bosh/samples/cloudfoundry.yml).
 
 Keep in mind that a manifest of this size requires significant virtual hardware resources to run. According to the manifest file, you ideally need 72 vCPUs, 200GB of RAM, and 1 TB of storage. The more IOPS you can throw at the deployment, the better.
 
