@@ -26,10 +26,7 @@ $ cf bind-service
 
 To log into your New Relic Account via SSO you only need to log into the [run.pivotal.io Web Console](http://console.run.pivotal.io). Find your New Relic service instance on the Space page in which you created it. Clicking the Manage button will log you into the New Relic account for your instance via SSO.
 
-## <a id='notes'></a>Important Notes ##
-
-* To opt-out of marketing emails from New Relic, log into their dashboard via SSO as described above and click the account dropdown in the top-right. In User Preferences, unselect "I want to receive information emails", then click "Save email preferences".
-* Also on the User Preferences page of New Relic's site is a field to change the email address for the account. *Do not change this field*. Doing so with break the SSO integration and prevent you from logging into your account. 
+---
 
 ## <a id='sample-app'></a>Sample Applications ##
 

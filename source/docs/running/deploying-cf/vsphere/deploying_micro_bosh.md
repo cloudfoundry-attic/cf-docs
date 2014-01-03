@@ -18,106 +18,139 @@ We recommend that you run the BOSH bootstrap from Ubuntu since it is the distrib
 $ sudo apt-get -y install libsqlite3-dev genisoimage
 </pre>
 
-* Install Ruby and RubyGems. Refer to the [Installing Ruby](/docs/common/install_ruby.html) page for help with Ruby installation.
+* Install Ruby and RubyGems. Refer to the [Installing Ruby](/docs/common/install_ruby.html) page for help with Ruby installation. 
 
 * Install the BOSH Deployer Ruby gem.
 
 <pre class="terminal">
-$ gem install bosh_cli --pre
+$ gem install bosh_cli --pre 
 $ gem install bosh_cli_plugin_micro --pre
 </pre>
 
-Once you have installed the deployer, you will be able to use `bosh micro` commands. To see help on these type `bosh help micro`
+Once you have installed the deployer, you will see some extra commands appear after typing `bosh` on your command line.
+
+*Note*: The `bosh micro` commands should be run within a micro BOSH deployment directory.
+
+<pre class="terminal">
+$ bosh help micro
+  aws bootstrap micro
+      rm deployments dir, creates a deployments/micro/micro_bosh.yml and deploys the microbosh
+
+  micro
+      show micro bosh sub-commands
+
+  micro agent <args>
+      Send agent messages
+
+      Message Types:
+
+      start - Start all jobs on MicroBOSH
+
+      stop - Stop all jobs on MicroBOSH
+
+      ping - Check to see if the agent is responding
+
+      drain TYPE SPEC - Tell the agent to begin draining
+        TYPE - One of 'shutdown', 'update' or 'status'.
+        SPEC - The drain spec to use.
+
+      state [full] - Get the state of a system
+        full - Get additional information about system vitals
+
+      list_disk - List disk CIDs mounted on the system
+
+      migrate_disk OLD NEW - Migrate a disk
+        OLD - The CID of the source disk.
+        NEW - The CID of the destination disk.
+
+      mount_disk CID - Mount a disk on the system
+        CID - The cloud ID of the disk to mount.
+
+      unmount_disk CID - Unmount a disk from the system
+        CID - The cloud ID of the disk to unmount.
+
+  micro apply <spec>
+      Apply spec
+
+  micro delete
+      Delete micro BOSH instance (including persistent disk)
+
+  micro deploy [<stemcell>] [--update] [--update-if-exists]
+      Deploy a micro BOSH instance to the currently selected deployment
+      --update                              update existing instance
+      --update-if-exists                    create new or update existing instance
+
+  micro deployment [<name>]
+      Choose micro deployment to work with, or display current deployment
+
+  micro deployments
+      Show the list of deployments
+
+  micro status
+      Display micro BOSH deployment status  
+</pre>
 
 ### <a id="config"></a>Configuration ###
 
-BOSH deploys things from a subdirectory under a deployments directory. So create both and name it appropriately. In our example we named it micro01.
+For a minimal vSphere configuration example, see [here](https://github.com/cloudfoundry/bosh/blob/master/bosh_cli_plugin_micro/spec/assets/test-bootstrap-config.yml). Note that `disk_path` is `BOSH_Deployer` rather than `BOSH_Disks`. A datastore folder other than `BOSH_Disks` is required if your vCenter hosts other Directors. The `disk_path` folder needs to be created manually. Also, your configuration should live inside a `deployments` directory and follow the convention of having a `$name` subdir containing `micro_bosh.yml`, where `$name` is your deployment name.
+
+For example:
 
 <pre class="terminal">
-	mkdir deployments
-	cd deployments
-	mkdir micro01
+$ find deployments -name micro_bosh.yml
+deployments/vcs01/micro_bosh.yml
+deployments/dev32/micro_bosh.yml
+deployments/dev33/micro_bosh.yml
 </pre>
 
-BOSH needs a deployment manifest for MicroBOSH. It must be named `micro_bosh.yml`. Create one in your new directory following the example below:
+Deployment state is persisted to `<current directory>/bosh-deployments.yml`.
+
+### <a id="config-vcenter"></a>vCenter Configuration ###
+
+The vCenter configuration section looks like the following:
 
 ~~~yaml
----
-name: MicroBOSH01
-
-network:
-  ip: <ip_address_you_want_for_microbosh>
-  netmask: <netmask_for_the_subnet_you_are_deploying_to>
-  gateway: <gateway_for_the_subnet_you_are_deploying_to>
-  dns:
-  - <ip_for_dns>
-  cloud_properties:
-    name: <network_name_according_to_vsphere>
-
-resources: # this seems like good sizing for microbosh
-   persistent_disk: 16384
-   cloud_properties:
-      ram: 8192
-      disk: 16384
-      cpu: 4
-cloud:
-  plugin: vsphere
-  properties:
-    agent:
-      ntp:
-        - <ntp_host_1>
-        - <ntp_host_2>
-     vcenters:
-       - host: <vcenter_ip>
-         user: <vcenter_userid>
-         password: <vcenter_password>
-         datacenters:
-           - name: <datacenter_name>
-             vm_folder: <vm_folder_name>
-             template_folder: <template_folder_name>
-             disk_path: <subdir_to_store_disks>
-             datastore_pattern: <data_store_pattern>
-             persistent_datastore_pattern: <persistent_datastore_pattern>
-             allow_mixed_datastores: <true_if_persistent_datastores_and_datastore_patterns_are_the_same>
-             clusters:
-             - <cluster_name>:
-                 resource_pool: <resource_pool_name_optional>
-
-apply_spec:
-  properties:
-    vcenter:
-      host: <vcenter_ip>
-      user: <vcenter_userid>
-      password: <vcenter_password>
-      datacenters:
-        - name: <datacenter_name>
-          vm_folder: <vm_folder_name>
-          template_folder: <template_folder_name>
-          disk_path: <subdir_to_store_disks>
-          datastore_pattern: <data_store_pattern>
-          persistent_datastore_pattern: <persistent_datastore_pattern>
-          allow_mixed_datastores: <true_if_persistent_datastores_and_datastore_patterns_are_the_same>
-          clusters:
-          - <cluster_name>:
-              resource_pool: <resource_pool_name_optional>
-
+  cloud:
+    plugin: vsphere
+    properties:
+      agent:
+        ntp:
+          - <ntp_host_1>
+          - <ntp_host_2>
+       vcenters:
+         - host: <vcenter_ip>
+           user: <vcenter_userid>
+           password: <vcenter_password>
+           datacenters:
+             - name: <datacenter_name>
+               vm_folder: <vm_folder_name>
+               template_folder: <template_folder_name>
+               disk_path: <subdir_to_store_disks>
+               datastore_pattern: <data_store_pattern>
+               persistent_datastore_pattern: <persistent_datastore_pattern>
+               allow_mixed_datastores: <true_if_persistent_datastores_and_datastore_patterns_are_the_same>
+               clusters:
+               - <cluster_name>:
+                   resource_pool: <resource_pool_name>
 ~~~
-
-The `apply_spec` provides Micro BOSH with the vCenter settings in order for it to deploy Cloud Foundry. It is different than the vCenter you are using to deploy MicroBOSH because MicroBOSH can deploy to a different vCenter than the one it was deployed to.
 
 If you want to create a role for the BOSH user in vCenter, the privileges are defined [here](./vcenter_user_privileges.html).
 
-Before you can run micro BOSH deployer, you have to create folders according to the values in your manifest.
+Before you can run micro BOSH deployer, you have to do the following within vCenter:
 
 1. Create the vm_folder
 1. Create the template_folder
 1. Create the disk_path in the appropriate datastores
-1. Create the resource_pool (optional)
+1. Create the resource_pool
 
-![vcenter-folders](/images/vcenter-folders.png)
-![vcenter-disk-path](/images/vcenter-disk-path.png)
+Resource pool is optional. Without a resource pool the cluster property looks like:
 
-* Datastore Patterns *
+~~~yaml
+               persistent_datastore_pattern: <datastore_pattern>
+               allow_mixed_datastores: <true_if_persistent_datastores_and_datastore_patterns_are_the_same>
+               clusters:
+               - <cluster_name>
+~~~
 
 The datastore pattern above could just be the name of a datastore or some regular expression matching the datastore name.
 
@@ -154,41 +187,46 @@ $ bosh public stemcells
 +---------------------------------------------+
 | Name                                        |
 +---------------------------------------------+
-| bosh-stemcell-1657-aws-xen-ubuntu.tgz       |
-| bosh-stemcell-1657-aws-xen-centos.tgz       |
-| light-bosh-stemcell-1657-aws-xen-ubuntu.tgz |
-| light-bosh-stemcell-1657-aws-xen-centos.tgz |
-| bosh-stemcell-1657-openstack-kvm-ubuntu.tgz |
-| bosh-stemcell-1657-vsphere-esxi-ubuntu.tgz  |
-| bosh-stemcell-1657-vsphere-esxi-centos.tgz  |
+| bosh-stemcell-1365-aws-xen-ubuntu.tgz       |
+| light-bosh-stemcell-1365-aws-xen-ubuntu.tgz |
+| bosh-stemcell-1365-openstack-kvm-ubuntu.tgz |
+| bosh-stemcell-1365-vsphere-esxi-ubuntu.tgz  |
+| bosh-stemcell-1365-vsphere-esxi-centos.tgz  |
 +---------------------------------------------+
+To download use `bosh download public stemcell <stemcell_name>'. For full url use --full.
+
 $ bosh download public stemcell bosh-stemcell-XXXX-vsphere-esxi-ubuntu.tgz
 </pre>
 
-CD to the deployments directory and set the deployment. This assumes you named the directory micro01.
+Set the micro BOSH Deployment using:
 
 <pre class="terminal">
-$ cd deployments
-$ bosh micro deployment micro01
-Deployment set to '/var/vcap/deployments/micro01/micro_bosh.yml'
+$ cd /var/vcap/deployments
+$ bosh micro deployment dev33
+Deployment set to '/var/vcap/deployments/dev33/micro_bosh.yml'
 </pre>
 
-Deploy a stemcell for MicroBOSH.
+Deploy a new micro BOSH instance:
 
 <pre class="terminal">
 $ bosh micro deploy bosh-stemcell-XXXX-vsphere-esxi-ubuntu.tgz
 </pre>
 
-
-### <a id="verify"></a>Checking Status of a Micro BOSH Deploy ###
-
-Target the Microbosh
+Update an existing micro BOSH instance. The existing persistent disk will be attached to the new VM:
 
 <pre class="terminal">
-bosh target <ip_address_from_your_micro_bosh_manifest:25555>
+$ bosh micro deploy bosh-stemcell-XXXX-vsphere-esxi-ubuntu.tgz --update
 </pre>
 
-Login with admin/admin
+### <a id="delete"></a>Deleting a Micro BOSH Deployment ###
+
+The `delete` command will delete the VM, Stemcell, and persistent disk:
+
+<pre class="terminal">
+$ bosh micro delete
+</pre>
+
+### <a id="verify"></a>Checking Status of a Micro BOSH Deploy ###
 
 The `status` command will show the persisted state for a given micro BOSH instance.
 
@@ -213,6 +251,13 @@ $ bosh micro deployments
 
 The files in your current directory need to be saved if you later want to be able to update your micro BOSH instance. They are all text files, so you can commit them to a git repository to make sure they are safe in case your bootstrap VM goes away.
 
+### <a id="apply-spec"></a>Applying a Specification ###
+
+The micro-bosh-stemcell includes an embedded `apply_spec.yml`. This command can be used to apply a different spec to an existing instance. The `apply_spec.yml` properties are merged with your Deployment's `network.ip` and `cloud.properties.vcenters` properties.
+
+<pre class="terminal">
+$ bosh micro apply apply_spec.yml
+</pre>
 
 ### <a id="send-message"></a>Sending Messages to the Micro BOSH Agent ###
 
