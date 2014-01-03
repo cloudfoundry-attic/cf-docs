@@ -32,12 +32,12 @@ The current major version of Service Broker API is v2. Brokers which implement t
 Cloud Foundry currently supports both v2 brokers and v1 brokers, but support for v1 brokers will be removed from the next major version of cloud controller. Although there is no timeline for that release, we recommend new brokers are implemented with the v2 Services API and existing brokers are upgraded. For reference, the [v1 Service Broker API](writing-service-v1.html).
 
 
-### Developing a service broker
+### <a id='developing'></a>Developing a service broker
 1. You'll need a Cloud Foundry instance to deploy and test your service broker as you are developing it. You may use an existing install of CF that you have admin access to. Otherwise, we recommend installing a standalone CF instance using [Bosh Lite](https://github.com/cloudfoundry/bosh-lite).
 2. Read [v2 Service Broker API Documentation](writing-service.html), [Managing Service Brokers on CF](managing-service-brokers.html), and [Using Services](../../../using/services), which explain how to implement and deploy a service broker and how CF uses service brokers to manage services.
 3. Refer to the example service brokers below as a starting point for developing your broker.
 
-### Example Service Brokers
+### <a id='examples'></a>Example Service Brokers
 
 The following example service broker applications have been developed - these are a great starting point if you are developing your own service broker.
 

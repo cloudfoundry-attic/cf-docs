@@ -308,7 +308,7 @@ Note that the `:id` of a service binding is provided by the Cloud Controller. `:
 </tbody>
 </table>
 
-Brokers are expected to respond with `200 OK` or `201 Created` with the response body from the table below. They can also return `409 Conflict` if there is already a binding at the URL. Since this endpoint cannot be used to update resources, a broker must return a 409 if a non-identical request is made. If a broker responds with a code other than 200 or 201, Cloud Controller will assume that the binding request failed and inform the user.
+Brokers are expected to respond with `200 OK` or `201 Created` with the response body from the table below. They can also return `409 Conflict` if there is already a binding with the same `id`. Since this endpoint cannot be used to update resources, a broker must return a `409` if an identical request is made. If a broker responds with a code other than `200` or `201`, Cloud Controller will assume that the binding request failed and inform the user.
 
 <table>
 <thead>
