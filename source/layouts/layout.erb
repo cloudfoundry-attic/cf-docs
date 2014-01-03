@@ -9,6 +9,9 @@
     <!-- Use title if it's in the page YAML frontmatter -->
     <title><%= data.page.title || "Cloud Foundry Docs" %></title>
 
+    <!-- Templates can insert head content here (like meta redirects) -->
+    <%= yield_content(:head_content) %>
+
     <link href="/stylesheets/master.css" media="screen" rel="stylesheet" type="text/css" />
     <link href="/stylesheets/style.css" media="screen" rel="stylesheet" type="text/css" />
     <script src="/javascripts/all.js" type="text/javascript"></script>
