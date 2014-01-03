@@ -43,8 +43,8 @@ The following example service broker applications have been developed - these ar
 
 #### Ruby
 
-1. [An example Service Broker (GitHub repository service)](https://github.com/cloudfoundry-samples/github-service-broker-ruby) - this is designed to be an easy-to-read example of a service broker, with complete documentation, and comes with a demo app that uses the service.  The broker can be deployed as an application on CF.
-2. [Another example Service Broker (MySQL database service)](https://github.com/cloudfoundry/cf-mysql-broker)
+1. [An example Service Broker (GitHub repository service)](https://github.com/cloudfoundry-samples/github-service-broker-ruby) - this is designed to be an easy-to-read example of a service broker, with complete documentation, and comes with a demo app that uses the service.  The broker can either be deployed as an application on CF or hosted anywhere. The service itself (GitHub) is separate from the broker.
+2. [Another example Service Broker (MySQL database service)](https://github.com/cloudfoundry/cf-mysql-broker) - this broker and the [MySQL service](https://github.com/cloudfoundry/cf-mysql-release) it supports are designed to be deployed together as [BOSH](https://github.com/cloudfoundry/bosh)-managed service broker and service nodes. BOSH is responsible for deployment and operation of all of the processes necessary for the service.
 
 #### Java
 * coming soon
