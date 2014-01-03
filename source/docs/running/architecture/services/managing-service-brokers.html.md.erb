@@ -8,7 +8,7 @@ This document describes how to use the `cf` or `gcf` commanline tools to manage 
 
 Service Brokers implement the [Service Broker API](writing-service.html).
 
-## <a id='add-broker'></a>Adding a Broker to Cloud Foundry ###
+## <a id='add-broker'></a>Adding a Broker
 
 Once you've implemented the [Catalog endpoint](writing-service.html#catalog-mgmt), you'll want to see whether your services and plans are available to end users. Two steps are required: 
 
@@ -188,3 +188,31 @@ Multiple service brokers may be added to a Cloud Foundry, but the following cons
 - It's not possible to have multiple brokers with the same name
 - It's not possible to have multiple brokers with the same URL
 - The service id and plan ids of each service advertised by the broker must be unique across Cloud Foundry (GUIDs should be used for these fields)
+
+## <a id='list-broker'></a>Listing all Brokers
+
+With `cf`:
+<pre class="terminal">
+$ cf service-brokers
+</pre>
+
+With `gcf`:
+<pre class="terminal">
+$ gcf service-brokers
+</pre>
+
+
+## <a id='remove-broker'></a>Removing a Broker
+
+Any attempt to remove a broker from CF that has associated service instances will fail. When planning to shut down or delete a broker, make sure that you remove it from CF before you shut it down. Failure to do so will leave [orphaned service instances](writing-service.html#orphans).
+
+With `cf`:
+<pre class="terminal">
+$ cf remove-service-broker mybrokername
+</pre>
+
+With `gcf`:
+<pre class="terminal">
+$ gcf delete-service-broker mybrokername
+</pre>
+
