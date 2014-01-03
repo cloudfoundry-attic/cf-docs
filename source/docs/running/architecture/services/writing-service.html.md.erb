@@ -77,7 +77,7 @@ Cloud Controller (final release v145+) authenticates with the Broker using HTTP 
 
 The first endpoint that a broker must implement is the service catalog. Cloud Controller will initially fetch this endpoint from all brokers and make adjustments to the user-facing service catalog stored in the Cloud Controller database. If the catalog fails to initially load or validate, Cloud Controller will not allow the operator to add the new broker, and should give a meaningful error message. Cloud Controller will also update the catalog whenever a broker is updated, so you can use `update-service-broker` with no changes to force a catalog refresh.
 
-When Cloud Controller fetches a catalog from a broker, it will compare the broker's id for services and plans with the `unique_id` values for services and plan in the  Cloud Controller database. If a service or plan in the broker catalog has an id which is not present amongst the `unique_id` values in the database, a new record will be added to the database. If services or plans in the database are found with `unique_id`s that match the broker catalog's id, Cloud Controller will update update the records to match the broker’s catalog.
+When Cloud Controller fetches a catalog from a broker, it will compare the broker's id for services and plans with the `unique_id` values for services and plan in the Cloud Controller database. If a service or plan in the broker catalog has an id which is not present amongst the `unique_id` values in the database, a new record will be added to the database. If services or plans in the database are found with `unique_id`s that match the broker catalog's id, Cloud Controller will update update the records to match the broker’s catalog.
 
 If the database has plans which are not found in the broker catalog, and there are no associated service instances, Cloud Controller will remove these plans from the database. If there are provisioned instances, the plan will be marked “inactive” and will no longer be visible in the marketplace catalog or be provisionable. Cloud Controller will then delete services that do not have associated plans from the database.
 
@@ -178,7 +178,7 @@ $ curl http://username:password@broker-url/v2/catalog
 </tbody>
 </table>
 
-\* Fields with an asterisk are required.
+\* Fields with an asterisk are required. Required fields cannot be null.
 
 **Example response**
 
@@ -210,7 +210,7 @@ Before executing these two steps, make sure you are authenticated as a cloud con
 
 #### Registering a Broker with Cloud Foundry
 
-Registering or updating a broker causes cloud controller to fetch and validate the catalog from your broker, and update the database with any changes found in the catalog.  Registering or updating causes the cloud controller to store the basic auth username and password, which the cloud controller  will send to the broker with every request. Your service broker should validate the username and password sent in every request, otherwise anyone could curl your broker to delete all service instances.
+Registering or updating a broker causes cloud controller to fetch and validate the catalog from your broker, and update the database with any changes found in the catalog. Registering or updating causes the cloud controller to store the basic auth username and password, which the cloud controller will send to the broker with every request. Your service broker should validate the username and password sent in every request, otherwise anyone could curl your broker to delete all service instances.
 
 <pre class="terminal">
 $ cf add-service-broker mybrokername --username someuser --password somethingsecure --url http://mybroker.example.com/
@@ -326,6 +326,8 @@ For non-data services, provisioning could just mean getting an account on an exi
 </tbody>
 </table>
 
+\* Fields with an asterisk are required. Required fields cannot be null.
+
 ####Body####
 
 <pre class="terminal">
@@ -417,6 +419,8 @@ Note that the `:id` of a service binding is provided by the Cloud Controller. `:
 </tbody>
 </table>
 
+\* Fields with an asterisk are required. Required fields cannot be null.
+
 ####Body####
 <pre class="terminal">
 {
@@ -500,16 +504,18 @@ The `:id` in the URL is the identifier of a previously created binding (the same
 <tr>
   <td>service_id*</td>
   <td>string</td>
-  <td>ID of the service from the catalog.  Not required, but the broker could make use of this to locate the resource.
+  <td>ID of the service from the catalog. Not required, but the broker could make use of this to locate the resource.
 </td>
 </tr>
 <tr>
   <td>plan_id*</td>
   <td>string</td>
-  <td>ID of the plan from the catalog.  Not required, but the broker could make use of this to locate the resource.</td>
+  <td>ID of the plan from the catalog. Not required, but the broker could make use of this to locate the resource.</td>
 </tr>
 </tbody>
 </table>
+
+\* Fields with an asterisk are required. Required fields cannot be null.
 
 ####Body####
 <pre class="terminal">
@@ -541,7 +547,7 @@ When a broker receives an deprovision request from Cloud Controller, it should d
 ####Route####
 `DELETE /v2/service_instances/:id`
 
-The `:id` in the URL is the identifier of a previously provisioned instance (the same `:id` passed in the provision request).  The request has **no body**, because DELETE requests generally do not have bodies. It does provide these query string params as useful hints for brokers:
+The `:id` in the URL is the identifier of a previously provisioned instance (the same `:id` passed in the provision request). The request has **no body**, because DELETE requests generally do not have bodies. It does provide these query string params as useful hints for brokers:
 
 
 <table>
@@ -556,16 +562,18 @@ The `:id` in the URL is the identifier of a previously provisioned instance (the
 <tr>
   <td>service_id*</td>
   <td>string</td>
-  <td>ID of the service from the catalog.  Not required, but the broker could make use of this to locate the resource.
+  <td>ID of the service from the catalog. Not required, but the broker could make use of this to locate the resource.
 </td>
 </tr>
 <tr>
   <td>plan_id*</td>
   <td>string</td>
-  <td>ID of the plan from the catalog.  Not required, but the broker could make use of this to locate the resource.</td>
+  <td>ID of the plan from the catalog. Not required, but the broker could make use of this to locate the resource.</td>
 </tr>
 </tbody>
 </table>
+
+\* Fields with an asterisk are required. Required fields cannot be null.
 
 ####Body####
 <pre class="terminal">
