@@ -1,14 +1,14 @@
 ---
-title: Validate your OpenStack
+title: Validate your OpenStack Instance
 ---
 
 This page aims to help you validate your target OpenStack in preparation for installing BOSH and deploying Cloud Foundry.
 
 You will need a running OpenStack environment. Note that only [Folsom](https://wiki.openstack.org/wiki/ReleaseNotes/Folsom) and [Grizzly](https://wiki.openstack.org/wiki/ReleaseNotes/Grizzly) OpenStack releases are supported.
 
-## <a id="api_access"></a>Can access to your OpenStack API? ##
+## <a id="api_access"></a>Can access the OpenStack APIs for your instance of OpenStack? ##
 
-You can verify that you have your OpenStack API credentials and can make API calls. Credentials are a combination of your user name, password, and what tenant (or project) your cloud is running under. Some providers require also to set the region.
+You can verify that you have your OpenStack API credentials and can make API calls. Credentials are a combination of your user name, password, and which tenant (or project) your cloud is running under. Some providers also require you to set the region.
 
 Create a `~/.fog` file and copy the below content:
 
@@ -37,6 +37,33 @@ The `[]` is an empty array in Ruby. You might see a long list of servers being d
 Note: it is recommended that you deploy BOSH and Cloud Foundry in a dedicated tenancy. Its easier to keep track of the servers, volumes, security groups and networks that you create. It also allows you to manage user access.
 
 There is more information on [OpenStack API docs](http://docs.openstack.org/api/quick-start/content/).
+
+## <a id="metadata_service"></a> Can access OpenStack metadata service from within a virtual machine? ##
+
+According to [the OpenStack Documentation](http://docs.openstack.org/grizzly/openstack-compute/admin/content/metadata-service.html), the Compute service uses a special metadata service to enable virtual machine instances to retrieve instance-specific data.  The default stemcell for use with BOSH uses the [cloud-init scripts](https://help.ubuntu.com/community/CloudInit) to retrieve this metadata for each instance of a virtual machine that OpenStack manages.
+
+You will need to ensure that virtual machines you boot in your OpenStack environment can access the metadata service at http://169.254.169.254.  
+
+From your OpenStack dashboard, create an VM and open the console into it (the "Console" tab on its "Instance Detail" page). Wait for the terminal to appear and login.
+
+Then execute the curl command to access the above URL.  You should see a list of dates similar to the figure below.
+
+<pre class="terminal">
+$ curl http://169.254.169.254
+
+1.0
+2007-01-19
+2007-03-01
+2007-08-29
+2007-10-10
+2007-12-15
+2008-02-01
+2008-09-01
+2009-04-04
+
+</pre>
+
+If you do not see the output above, please consult the OpenStack documentation (or the documentation for your OpenStack distribution) to diagnose and resolve networking issues.
 
 ## <a id="api_access"></a> Can invoke large number of API calls? ##
 
