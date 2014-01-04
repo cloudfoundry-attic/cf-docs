@@ -4,7 +4,7 @@ title: Cloud Foundry Roadmap
 
 ### Pivotal Tracker Projects for Cloud Foundry
 Cloud Foundry uses [Pivotal Tracker](http://pivotaltracker.com) to track development tasks.
-You can see what's in the backlog in
+You can see what's coming up by looking at the tracker for each area:
 
 * [CF Runtime](https://www.pivotaltracker.com/s/projects/966314)
 * [CF Services](https://www.pivotaltracker.com/s/projects/969486)
