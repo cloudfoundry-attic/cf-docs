@@ -127,69 +127,28 @@ The port (on the network interface specified by `VCAP_CONSOLE_IP`) upon which ap
 
 ### <a id='VCAP_SERVICES'></a>VCAP\_SERVICES ###
 
-For most service types, Cloud Foundry will add connection details to the `VCAP_SERVICES` environment variable when you bind the service to the application.
+For most service types, Cloud Foundry will add connection details to the `VCAP_SERVICES` environment variable when you restart the application after binding the service to the application.
 
-The results are returned as a JSON document that contains an object for each service type of which one or more instances are bound to the application. The service type object contains a child object for each service instance of that type that is bound to the application. The attributes for a service instance vary somewhat by service type. The attributes that describe a bound service are defined in the table below.  Note that not all attributes apply to all service types.  
+The results are returned as a JSON document that contains an object for each service type of which one or more instances are bound to the application. The service type object contains a child object for each service instance of that type that is bound to the application. The attributes that describe a bound service are defined in the table below.
+
+The key for each service type in the JSON document is the same as the value of the "label" attribute.
 
 
 |Attribute|Description |
 | --------- | --------- | 
-|service name-version|A service type is identified by the service name and service version (if there is no version attribute, the string "n/a" is used), separated by a dash character, for example "cleardb-n/a". |
 |name|The name assigned to the service instance when it was created. |
-|label|Takes the same value as service name-version. |
+|label (v1 API)|The service name and service version (if there is no version attribute, the string "n/a" is used), separated by a dash character, for example "cleardb-n/a".|
+|label (v2 API)|Identical to the service name. |
 |plan|The provider plan selected when the service was created. |
-|name|The name of the database running on the service provider's server; appears in the "credentials" object for a cleardb instance.  |
-|host |The host  for connecting to the service; appears in the "credentials" object for a cleardb, rediscloud, or sendgrid instance.|
-|port |Port for connecting to the service; appears in the "credentials" object for a cleardb or rediscloud instance.  |
-|username |Username for connecting to the service; appears in the "credentials" object for a cleardb or sendgrid instance.  |
-|password |Password for connecting to the service; appears in the "credentials" object for a cleardb, cloudamp, or sendgrid instance.  |
-|uri  |URI of the service, appears in the "credentials" object for a cleardb, rediscloud, elephantsql, or mongolab instance.  |
-|jdbcUrl|The JDBC URL for the database connection; appears in the "credentials" object for a cleardb instance. |
+|credentials|A JSON object containing the service-specific set of credentials needed to access the service instance. For example, for the cleardb service, this will include name, hostname, port, username, password, uri, and jdbcUrl.|
 
 
-The example below contains the parsed JSON for the VCAP_SERVICE variable for a bound instance of several services available in the [Pivotal Web Services](http://run.pivotal.io) Marketplace. 
+
+The [v1](/docs/running/architecture/services/writing-service-v1.html) example below contains the  JSON for the VCAP_SERVICE variable for a bound instance of several services available in the [Pivotal Web Services](http://run.pivotal.io) Marketplace. 
 
 ~~~
 VCAP_SERVICES=
 {
-  "cleardb-n/a": [
-    {
-      "name": "cleardb-1",
-      "label": "cleardb-n/a",
-      "plan": "spark",
-      "credentials": {
-        "name": "ad_c6f4446532610ab",
-        "hostname": "us-cdbr-east-03.cleardb.com",
-        "port": "3306",
-        "username": "b5d435f40dd2b2",
-        "password": "ebfc00ac",
-        "uri": "mysql://b5d435f40dd2b2:ebfc00ac@us-cdbr-east-03.cleardb.com:3306/ad_c6f4446532610ab",
-        "jdbcUrl": "jdbc:mysql://b5d435f40dd2b2:ebfc00ac@us-cdbr-east-03.cleardb.com:3306/ad_c6f4446532610ab"
-      }
-    }
-  ],
-  "cloudamqp-n/a": [
-    {
-      "name": "cloudamqp-6",
-      "label": "cloudamqp-n/a",
-      "plan": "lemur",
-      "credentials": {
-        "uri": "amqp://ksvyjmiv:IwN6dCdZmeQD4O0ZPKpu1YOaLx1he8wo@lemur.cloudamqp.com/ksvyjmiv"
-      }
-    }
-  ],
-  "rediscloud-n/a": [
-    {
-      "name": "rediscloud-1",
-      "label": "rediscloud-n/a",
-      "plan": "20mb",
-      "credentials": {
-        "port": "17546",
-        "hostname": "pub-redis-17546.MatanCluster.ec2.garantiadata.com",
-        "password": "1M5zd3QfWi9nUyya"
-      }
-    }
-  ],
   "elephantsql-dev-n/a": [
     {
       "name": "elephantsql-dev-c6c60",
@@ -200,31 +159,40 @@ VCAP_SERVICES=
       }
     }
   ],
-  "mongolab-dev-n/a": [
-    {
-      "name": "mongolab-dev-2cea8",
-      "label": "mongolab-dev-n/a",
-      "plan": "sandbox",
-      "credentials": {
-        "uri": "mongodb://cloudfoundry-test_2p6otl8c_841b7q4b_tmtlqeaa:eb5d00ac-2a4f-4beb-80ad-9da11cff5a70@ds027908.mongolab.com:27908/cloudfoundry-test_2p6otl8c_841b7q4b"
-      }
-    }
-  ],
-  "newrelic-n/a":[
-    {
-      "name":"newrelic-14e9d",
-      "label":"newrelic-n/a",
-      "plan":"standard",
-      "credentials":
-        {
-          "licenseKey":"2865f6f3nsig8f813af7989fccb24a699cb22a4beb"
-        }
-    }
-  ],
   "sendgrid-n/a": [
     {
       "name": "mysendgrid",
       "label": "sendgrid-n/a",
+      "plan": "free",
+      "credentials": {
+        "hostname": "smtp.sendgrid.net",
+        "username": "QvsXMbJ3rK",
+        "password": "HCHMOYluTv"
+      }
+    }
+  ]
+}
+~~~
+
+The [v2](/docs/running/architecture/services/api-v2.0.html) version of the same data would look like this:
+
+~~~
+VCAP_SERVICES=
+{
+  "elephantsql-dev": [
+    {
+      "name": "elephantsql-dev-c6c60",
+      "label": "elephantsql-dev",
+      "plan": "turtle",
+      "credentials": {
+        "uri": "postgres://seilbmbd:PHxTPJSbkcDakfK4cYwXHiIX9Q8p5Bxn@babar.elephantsql.com:5432/seilbmbd"
+      }
+    }
+  ],
+  "sendgrid": [
+    {
+      "name": "mysendgrid",
+      "label": "sendgrid",
       "plan": "free",
       "credentials": {
         "hostname": "smtp.sendgrid.net",
