@@ -134,7 +134,7 @@ If you are running **devstack**, add the following to your `localrc` and at the 
 API_RATE_LIMIT=False
 </pre>
 
-## <a id="volumes"></a> Can create a large volume? ##
+## <a id="volumes"></a> Can create and mount a large volume? ##
 
 The [devstack](http://devstack.org/) OpenStack distributions defaults to a very small total volume size (5G). Alternately, your tenancy/project might have only been granted a small quota for volume sizes.  You will also want to check that you can access a volume from a virtual machine to ensure that the OpenStack Cinder service is operating correctly.
 
