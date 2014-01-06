@@ -128,9 +128,7 @@ To download the image to your Glance Image Service, perform the following steps:
 
 Depending on your server's internet connection, the image may take some time to download.
 
-To check that you can successfully boot the image, perform the following steps:
-
-1.  
+After the image has download, launch an instance of it from the dashboard and see that you can connect to it. If the image seems to take a significantly long amount of time to boot, it may be that your metadata service is not configured correctly.  
 
 ## <a id="internet"></a> Can access the Internet from within instances? ##
 
