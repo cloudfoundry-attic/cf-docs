@@ -8,7 +8,7 @@ NOTE: These instructions are for v138 release of Cloud Foundry. For newer versio
 
 ## What will happen ##
 
-At the end of this page, three `m1.medium` VMs will be running in your OpenStack environment running Cloud Foundry.
+At the end of this page, eight `m1.medium` VMs will be running in your OpenStack environment running Cloud Foundry.
 
 You will be able to target it using your own DNS, login, and upload a simple application.
 
@@ -27,7 +27,7 @@ Hello World!
 
 ## Requirements ##
 
-It is assumed that you have [validated your OpenStack](validate_openstack.html.md) and [have a bosh running](deploying_microbosh.html).
+It is assumed that you have [validated your OpenStack](validate_openstack.html) and [have a bosh running](deploying_microbosh.html).
 
 It is also required that you have provisioned a floating IP address (`2.3.4.5` in the examples below) and setup your DNS to map `*` records to this IP address. For example, if you were using `mycloud.com` domain as the base domain for your Cloud Foundry, you need a `*` A record for this zone mapping to `2.3.4.5`.
 
