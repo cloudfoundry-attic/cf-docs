@@ -149,16 +149,58 @@ To verify the ability to provision large volumes, perform the following steps:
 7.  For size, enter <em>30</em>.
 8.  You should see the volume appear in the list of volumes with the status <em>Available</em>.
 
+If the volume appears with the status <em>Error</em> then you need to check that your OpenStack Cinder Service is configured correctly.  See [http://docs.openstack.org/admin-guide-cloud/content/managing-volumes.html](Cinder Administrator Guide) for more information. 
+
 To verify that you can attach and mount a volume to an instance, perform the following steps (<em>assumes you have completed the steps above</em>):
 
 1.  From your OpenStack dashboard, create a VM.
 2.  Return to the <em>Volumes</em> page, and find <em>Test Volume</em>.  Click <em>Edit Attachments</em> on the right.
 3.  In the <em>Attach to Instance</em> find the VM you just created.
-4.  You can leave the <em>Device Name</em> field as <em>/dev/vdc</em>. 
+4.  In the <em>Device Name</em> field, enter <em>/dev/vdb</em>. 
 5.  Open the console into this virtual machine (the "Console" tab on its "Instance Detail" page). 
+6.  At the prompt, type
+    <pre class="bash">
+    $ sudo fdisk -l
+    
+	Disk /dev/vdb: 32.2 GB, 32212254720 bytes
+	16 heads, 63 sectors/track, 62415 cylinders, total 62914560 sectors
+	Units = sectors of 1 * 512 = 512 bytes
+	Sector size (logical/physical): 512 bytes / 512 bytes
+	I/O size (minimum/optimal): 512 bytes / 512 bytes
+	Disk identifier: 0x00000000
+	
+	Disk /dev/vdb doesn't contain a valid partition table
+	</pre>
 
+Next, create a master partition on the disk by entering at the prompt:
+<pre class="bash">
+$ sudo fdisk /dev/vdb
+n
+p
+1
+ENTER
+ENTER
+t
+8e
+w
+</pre>
 
-If `v.status` displays `"error"` then you need to ask your OpenStack administrator for a larger quota. 
+Next, create a file system on the disk by entering at the prompt.
+<pre class="bash">
+$ sudo mkfs.ext3 /dev/vdb1
+</pre>
+
+Then, mount the disk to a directory on your VM.
+<pre class="bash">
+sudo mkdir /disk
+sudo mount -t ext3 /dev/vdb1 /disk
+</pre>
+
+And check that you can write a file to the disk:
+<pre  class="bash">
+cd /disk
+sudo touch pla
+</pre>
 
 If you are running **devstack**, add the following to your `localrc` and at the end of this page you will recreate your devstack with a larger volume backing file:
 
