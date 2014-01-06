@@ -65,6 +65,43 @@ $ curl http://169.254.169.254
 
 If you do not see the output above, please consult the OpenStack documentation (or the documentation for your OpenStack distribution) to diagnose and resolve networking issues.
 
+## <a id="private_ping"></a> Can ping one virtual machine from another virtual machine? ##
+
+Cloud Foundry requires that virtual machines be able to communicate with one another over the OpenStack networking stack.  If networking is misconfigured for your instance of OpenStack, BOSH may provision VMs but the deployment of Cloud Foundry will not function correctly because the VMs cannot properly orchestrate over NATS and other underlying technologies.
+
+Try to following to ensure that you can communicate from VM to VM:
+
+Create a security group for your virtual machines called <em>ping-test</em>.
+
+1.  Open the OpenStack dashboard, and click on <em>Access & Security</em> in the left-hand menu.
+2.  Click <em>Create Security Group</em> on the upper-right hand corner on the list of security groups.
+3.  Under <em>Name</em>, enter <em>ping-test</em>.  You must enter something in the <em>Description</em> field, but it does not matter what it is.
+4.  Click <em>Create Security Group</em>.
+5.  The list of security groups should now contain <em>ping-test</em>.  Find it in the list and click the <em>Edit Rules</em> button.
+6.  The list of rules should be blank.  Click <em>Add Rule</em>.
+7.  For <em>Protocol</em>, select <em>ICMP</em>.
+8.  For <em>Type</em>, enter <em>-1</em>.
+9.  For <em>Code</em>, enter <em>-1</em>.
+10. For <em>Source</em>, select <em>Security Group</em>.
+11. For <em>Security Group</em>, select <em>ping-test (Current)</em>.
+12. Click <em>Add</em>.
+
+From your OpenStack dashboard, create <em>two</em> VMs and open the console into one of them (the "Console" tab on its "Instance Detail" page). Make sure that you put these virtual machines into the <em>ping-test</em> security group.  Wait for the terminal to appear and login.
+
+Look at the list of instances in the OpenStack dashboard and find the IP address of the other virtual machine.  At the prompt, issue the following command (assuming your instance receives the IP address <code>172.16.1.2</code>:
+
+<pre class="terminal">
+$ ping 172.16.1.2
+PING 172.16.1.2 (172.16.1.2) 56(84) bytes of data.
+64 bytes from 172.16.1.2: icmp_seq=1 ttl=64 time=0.095 ms
+64 bytes from 172.16.1.2: icmp_seq=2 ttl=64 time=0.048 ms
+64 bytes from 172.16.1.2: icmp_seq=3 ttl=64 time=0.080 ms
+...
+
+</pre>
+
+Note that you can press Ctrl-C to exit the ping program.  If you are not able to ping one virtual machine from another, consider the [a href="http://docs.openstack.org/admin-guide-cloud/content/ch_networking.html"](OpenStack Networking Guide) for more information.
+
 ## <a id="api_access"></a> Can invoke large number of API calls? ##
 
 Your OpenStack might have API throttling (devstack enables throttling by default) which may mean that BOSH requests to OpenStack fail dramatically, or perhaps fail temporarily (whilst waiting for the API throttle to expire).
