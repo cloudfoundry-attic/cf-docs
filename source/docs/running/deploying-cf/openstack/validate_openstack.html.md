@@ -40,7 +40,7 @@ There is more information on [OpenStack API docs](http://docs.openstack.org/api/
 
 ## <a id="metadata_service"></a> Can access OpenStack metadata service from within a virtual machine? ##
 
-According to [the OpenStack Documentation](http://docs.openstack.org/grizzly/openstack-compute/admin/content/metadata-service.html), the Compute service uses a special metadata service to enable virtual machine instances to retrieve instance-specific data.  The default stemcell for use with BOSH uses the [cloud-init scripts](https://help.ubuntu.com/community/CloudInit) to retrieve this metadata for each instance of a virtual machine that OpenStack manages.
+According to [the OpenStack Documentation](http://docs.openstack.org/grizzly/openstack-compute/admin/content/metadata-service.html), the Compute service uses a special metadata service to enable virtual machine instances to retrieve instance-specific data. The default stemcell for use with BOSH retrieves this metadata for each instance of a virtual machine that OpenStack manages in order to get some data injected by the BOSH director.
 
 You will need to ensure that virtual machines you boot in your OpenStack environment can access the metadata service at http://169.254.169.254.  
 
@@ -64,6 +64,21 @@ $ curl http://169.254.169.254
 </pre>
 
 If you do not see the output above, please consult the OpenStack documentation (or the documentation for your OpenStack distribution) to diagnose and resolve networking issues.
+
+Alternatively, BOSH uses a fallback mechanism [injecting a file](http://docs.openstack.org/grizzly/openstack-compute/admin/content/instance-data.html#inserting_metadata) into the vm.
+
+So if the metadata service is not enabled in your OpenStack instance, you can also try inserting a file when booting a vm:
+
+<pre class="terminal">
+$ gem install fog
+$ fog openstack
+>> s = Compute[:openstack].servers.create(name: 'test', flavor_ref: <flavor id>, image_ref: <image id>, personality: [{'path' => 'user_data.json', 'contents' => 'test' }])
+>> s.reload
+>> s.status
+"ACTIVE"
+
+>> s.destroy
+</pre>
 
 ## <a id="api_access"></a> Can invoke large number of API calls? ##
 
