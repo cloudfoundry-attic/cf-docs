@@ -108,6 +108,9 @@ If you are running **devstack**, add the following to your `localrc` and at the 
 VOLUME_BACKING_FILE_SIZE=70000M
 </pre>
 
+## <a id="cloud-image"></a> Can upload and deploy an Ubuntu 12.04 64-bit Server Cloud Image? ##
+
+
 ## <a id="internet"></a> Can access the Internet from within instances? ##
 
 Your deployment of Cloud Foundry will need outbound access to the Internet (for example, the Ruby buildpack will run `bundle install` on users' applications to fetch RubyGems). You can verify now that your OpenStack is configured correctly to allow outbound access to the Internet.
