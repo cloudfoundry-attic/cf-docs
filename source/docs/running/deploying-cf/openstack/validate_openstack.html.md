@@ -83,8 +83,8 @@ Create a security group for your virtual machines called <em>ping-test</em>.
   <li>For <em>Protocol</em>, select <em>ICMP</em>.</li>
   <li>For <em>Type</em>, enter <em>-1</em>.</li>
   <li>For <em>Code</em>, enter <em>-1</em>.</li>
-  <li>For <em>Source</em>, you can leave it as <em>CIDR</em>.</li>
-  <li>For <em>CIDR</em>, enter <em>0.0.0.0/0</em>.</li>
+  <li>For <em>Source</em>, select <em>Security Group</em>.</li>
+  <li>For <em>Security Group</em>, select <em>ping-test (Current)</em>.</li>
   <li>Click <em>Add</em>.</li>
 </ol>
 From your OpenStack dashboard, create <em>two</em> VMs and open the console into one of them (the "Console" tab on its "Instance Detail" page). Make sure that you put these virtual machines into the <em>ping-test</em> security group.  Wait for the terminal to appear and login.
