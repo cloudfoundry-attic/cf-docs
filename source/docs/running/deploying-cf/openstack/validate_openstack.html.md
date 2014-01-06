@@ -134,25 +134,73 @@ If you are running **devstack**, add the following to your `localrc` and at the 
 API_RATE_LIMIT=False
 </pre>
 
-## <a id="volumes"></a> Can create a large volume? ##
+## <a id="volumes"></a> Can create and mount a large volume? ##
 
-The [devstack](http://devstack.org/) OpenStack distributions defaults to a very small total volume size (5G). Alternately, your tenancy/project might have only been granted a small quota for volume sizes.
+The [devstack](http://devstack.org/) OpenStack distributions defaults to a very small total volume size (5G). Alternately, your tenancy/project might have only been granted a small quota for volume sizes.  You will also want to check that you can access a volume from a virtual machine to ensure that the OpenStack Cinder service is operating correctly.
 
-Verify that you can create a 30G volume:
+To verify the ability to provision large volumes, perform the following steps:
 
-<pre class="terminal">
-$ gem install fog
-$ fog openstack
->> size = 30
->> v = Compute[:openstack].volumes.create(size: size, name: 'test', description: 'test')
->> v.reload
->> v.status
-"available"
+1.  Login to your OpenStack dashboard.
+2.  Click <em>Volumes</em> from the menu on the left.
+3.  Click <em>Create Volume</em>.
+4.  For <em>Volume Name</em>, enter "Test Volume".
+5.  Put something in the <em>Description</em> field.
+6.  It does not matter what you put in the <em>Type</em> field.
+7.  For size, enter <em>30</em>.
+8.  You should see the volume appear in the list of volumes with the status <em>Available</em>.
 
->> v.destroy
+If the volume appears with the status <em>Error</em> then you need to check that your OpenStack Cinder Service is configured correctly.  See [Cinder Administrator Guide](http://docs.openstack.org/admin-guide-cloud/content/managing-volumes.html) for more information. 
+
+To verify that you can attach and mount a volume to an instance, perform the following steps (<em>assumes you have completed the steps above</em>):
+
+1.  From your OpenStack dashboard, create a VM.
+2.  Return to the <em>Volumes</em> page, and find <em>Test Volume</em>.  Click <em>Edit Attachments</em> on the right.
+3.  In the <em>Attach to Instance</em> find the VM you just created.
+4.  In the <em>Device Name</em> field, enter <em>/dev/vdb</em>. 
+5.  Open the console into this virtual machine (the "Console" tab on its "Instance Detail" page). 
+6.  At the prompt, type
+    <pre class="bash">
+    $ sudo fdisk -l
+    
+	Disk /dev/vdb: 32.2 GB, 32212254720 bytes
+	16 heads, 63 sectors/track, 62415 cylinders, total 62914560 sectors
+	Units = sectors of 1 * 512 = 512 bytes
+	Sector size (logical/physical): 512 bytes / 512 bytes
+	I/O size (minimum/optimal): 512 bytes / 512 bytes
+	Disk identifier: 0x00000000
+	
+	Disk /dev/vdb doesn't contain a valid partition table
+	</pre>
+
+Next, create a master partition on the disk by entering at the prompt:
+<pre class="bash">
+$ sudo fdisk /dev/vdb
+n
+p
+1
+ENTER
+ENTER
+t
+8e
+w
 </pre>
 
-If `v.status` displays `"error"` then you need to ask your OpenStack administrator for a larger quota. 
+Next, create a file system on the disk by entering at the prompt.
+<pre class="bash">
+$ sudo mkfs.ext3 /dev/vdb1
+</pre>
+
+Then, mount the disk to a directory on your VM.
+<pre class="bash">
+sudo mkdir /disk
+sudo mount -t ext3 /dev/vdb1 /disk
+</pre>
+
+And check that you can write a file to the disk:
+<pre  class="bash">
+cd /disk
+sudo touch pla
+</pre>
 
 If you are running **devstack**, add the following to your `localrc` and at the end of this page you will recreate your devstack with a larger volume backing file:
 
