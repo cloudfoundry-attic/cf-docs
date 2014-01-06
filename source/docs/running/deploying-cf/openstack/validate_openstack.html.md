@@ -101,7 +101,7 @@ PING 172.16.1.2 (172.16.1.2) 56(84) bytes of data.
 
 </pre>
 
-Note that you can press Ctrl-C to exit the ping program.  If you are not able to ping one virtual machine from another, consider the <a href="http://docs.openstack.org/admin-guide-cloud/content/ch_networking.html">OpenStack Networking Guide</a> for more information.
+Note that you can press Ctrl-C to exit the ping program.  If you are not able to ping one virtual machine from another, consider the [a href="http://docs.openstack.org/admin-guide-cloud/content/ch_networking.html"](OpenStack Networking Guide) for more information.
 
 ## <a id="api_access"></a> Can invoke large number of API calls? ##
 
