@@ -10,7 +10,9 @@ Services are integrated with Cloud Foundry by implementing a documented API for 
 
 Service Broker is the term we use to refer to a component of the service which implements the service broker API. This component was formerly referred to as a Service Gateway, however as traffic between applications and services does not flow through the broker we found the term gateway caused confusion. Although gateway still appears in old code, we use the term broker in conversation, in new code, and are updating documentation to reflect the change.
 
-In general, service brokers advertise a catalog of service offerings and service plans to Cloud Foundry, and receive calls from Cloud Foundry for five functions: fetch catalog, create, bind, unbind, and delete. What a broker does with each call can vary between services; in general create reserves resources on a service and bind delivers information to an application necessary for accessing the resource. We call the reserved resource a Service Instance. What a service instance represents can vary by service; it could be a single database on a multi-tenant server, a dedicated cluster, or even just an account on a web application. 
+In general, service brokers advertise a catalog of service offerings and service plans to Cloud Foundry, and receive calls from Cloud Foundry for five functions: fetch catalog, provision (create), bind, unbind, and deprovision (delete). What a broker does with each call can vary between services; in general, 'provision' reserves resources on a service and 'bind' delivers information to an application necessary for accessing the resource. We call the reserved resource a Service Instance. What a service instance represents can vary by service; it could be a single database on a multi-tenant server, a dedicated cluster, or even just an account on a web application.
+
+<%= image_tag("../../../../images/managed-services.png", :width =>"945", :height =>"655", :style => 'background-color:#fff') %>
 
 ### <a id='architecture'></a>Service Architecture ###
 
