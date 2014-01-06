@@ -35,15 +35,15 @@ Use bosh deploy to push these changes out and then reboot your Warden / DEA VM.
 If you get the following error when deploying an app to Cloud Foundry you may have an NFS related issue with the Cloud Controller:
 
 ```
-The app package is invalid: failed synchronizing resource pool File exists - /var/vcap/shared
+The app package is invalid: failed synchronizing resource pool File exists - /var/vcap/nfs/shared
 ```
 
-To confirm that this is related to a broken/incomplete NFS mount, SSH into the `cloud_controller_ng` job and checking the existence of the `/var/vcap/shared` folder:
+To confirm that this is related to a broken/incomplete NFS mount, SSH into the `cloud_controller_ng` job and checking the existence of the `/var/vcap/nfs/shared` folder:
 
 ```
-$ bosh ssh cloud_controller/0 "ls -l /var/vcap/shared"
+$ bosh ssh cloud_controller/0 "ls -l /var/vcap/nfs/shared"
 ...
-ls: cannot access /var/vcap/shared: Stale NFS file handle"
+ls: cannot access /var/vcap/nfs/shared: Stale NFS file handle"
 ```
 
 Try the following ideas to resolve this.
@@ -53,8 +53,8 @@ Try the following ideas to resolve this.
 
 ```
 $ bosh ssh cloud_controller/0
-root:~# umount /var/vcap/shared
-root:~# mount -t nfs 0.nfs.default.cf.microbosh:/var/vcap/store/shared /var/vcap/shared
+root:~# umount /var/vcap/nfs
+root:~# mount -t nfs 0.nfs.default.cf.microbosh:/var/vcap/store /var/vcap/nfs
 ```
 
 Replace `0.nfs.default.cf.microbosh` above with the static IP or DNS host of the job instance running the `debian_nfs_server`.
