@@ -74,9 +74,20 @@ Try to following to ensure that you can communicate from VM to VM:
 Create a security group for your virtual machines called <em>ping-test</em>.
 
 <ol>
-  <li>Open the OpenStack dashboard, and click on "Access & Security" in the left-hand menu.</li>
-
-From your OpenStack dashboard, create <em>two</em> VMs and open the console into one of them (the "Console" tab on its "Instance Detail" page). Wait for the terminal to appear and login.
+  <li>Open the OpenStack dashboard, and click on <em>Access & Security</em> in the left-hand menu.</li>
+  <li>Click <em>Create Security Group</em> on the upper-right hand corner on the list of security groups.</li>
+  <li>Under <em>Name</em>, enter <em>ping-test</em>.  You must enter something in the <em>Description</em> field, but it does not matter what it is.</li>
+  <li>Click <em>Create Security Group</em>.</li>
+  <li>The list of security groups should now contain <em>ping-test</em>.  Find it in the list and click the <em>Edit Rules</em> button.</li>
+  <li>The list of rules should be blank.  Click <em>Add Rule</em>.</li>
+  <li>For <em>Protocol</em>, select <em>ICMP</em>.</li>
+  <li>For <em>Type</em>, enter <em>-1</em>.</li>
+  <li>For <em>Code</em>, enter <em>-1</em>.</li>
+  <li>For <em>Source</em>, you can leave it as <em>CIDR</em>.</li>
+  <li>For <em>CIDR</em>, enter <em>0.0.0.0/0</em>.</li>
+  <li>Click <em>Add</em>.</li>
+</ol>
+From your OpenStack dashboard, create <em>two</em> VMs and open the console into one of them (the "Console" tab on its "Instance Detail" page). Make sure that you put these virtual machines into the <em>ping-test</em> security group.  Wait for the terminal to appear and login.
 
 Look at the list of instances in the OpenStack dashboard and find the IP address of the other virtual machine.  At the prompt, issue the following command (assuming your instance receives the IP address <code>172.16.1.2</code>:
 
