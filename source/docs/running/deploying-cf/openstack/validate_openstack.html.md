@@ -136,21 +136,27 @@ API_RATE_LIMIT=False
 
 ## <a id="volumes"></a> Can create a large volume? ##
 
-The [devstack](http://devstack.org/) OpenStack distributions defaults to a very small total volume size (5G). Alternately, your tenancy/project might have only been granted a small quota for volume sizes.
+The [devstack](http://devstack.org/) OpenStack distributions defaults to a very small total volume size (5G). Alternately, your tenancy/project might have only been granted a small quota for volume sizes.  You will also want to check that you can access a volume from a virtual machine to ensure that the OpenStack Cinder service is operating correctly.
 
-Verify that you can create a 30G volume:
+To verify the ability to provision large volumes, perform the following steps:
 
-<pre class="terminal">
-$ gem install fog
-$ fog openstack
->> size = 30
->> v = Compute[:openstack].volumes.create(size: size, name: 'test', description: 'test')
->> v.reload
->> v.status
-"available"
+1.  Login to your OpenStack dashboard.
+2.  Click <em>Volumes</em> from the menu on the left.
+3.  Click <em>Create Volume</em>.
+4.  For <em>Volume Name</em>, enter "Test Volume".
+5.  Put something in the <em>Description</em> field.
+6.  It does not matter what you put in the <em>Type</em> field.
+7.  For size, enter <em>30</em>.
+8.  You should see the volume appear in the list of volumes with the status <em>Available</em>.
 
->> v.destroy
-</pre>
+To verify that you can attach and mount a volume to an instance, perform the following steps (<em>assumes you have completed the steps above</em>):
+
+1.  From your OpenStack dashboard, create a VM.
+2.  Return to the <em>Volumes</em> page, and find <em>Test Volume</em>.  Click <em>Edit Attachments</em> on the right.
+3.  In the <em>Attach to Instance</em> find the VM you just created.
+4.  You can leave the <em>Device Name</em> field as <em>/dev/vdc</em>. 
+5.  Open the console into this virtual machine (the "Console" tab on its "Instance Detail" page). 
+
 
 If `v.status` displays `"error"` then you need to ask your OpenStack administrator for a larger quota. 
 
