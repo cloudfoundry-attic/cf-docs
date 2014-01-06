@@ -160,6 +160,28 @@ If you are running **devstack**, add the following to your `localrc` and at the 
 VOLUME_BACKING_FILE_SIZE=70000M
 </pre>
 
+## <a id="cloud-image"></a> Can upload and deploy an Ubuntu 12.04 64-bit Server Cloud Image? ##
+
+BOSH uses [Stemcells](/docs/running/bosh/components/stemcell.html) as the basis for virtual machine instances that it deploys to various cloud providers.  For the OpenStack cloud provider, the BOSH stemcell is based on Ubuntu 12.04 64-bit Server.  If you cannot upload this image to the Glance Image Service in your instance of OpenStack, the BOSH director will also have trouble when it tries to upload the stemcell.  Similarly, if you cannot boot a virtual machine from this instance, and connect to it via SSH, BOSH will also have trouble doing the same.  Additionally, you will want to check that the underlying hardware that runs your OpenStack is compatible with running a 64-bit operating system.
+
+To check that your OpenStack is compatible with Ubuntu 10.04 64-bit Server, you will need to download the image to your Glance Image Service, and then separately boot the image as an instance in OpenStack.
+
+To download the image to your Glance Image Service, perform the following steps:
+
+1.  Login to your OpenStack dashboard.
+2.  In the menu on the left-hand side, click <em>Images & Snapshots</em>.
+3.  You should see a list of images.  Click <em>Create Image</em>.
+4.  For <em>Name</em>, enter <em>Ubuntu Server 64-bit</em>.
+5.  For <em>Image Location</em>, enter <em>http://cloud-images.ubuntu.com/lucid/current/lucid-server-cloudimg-amd64-disk1.img</em>.
+6.  For <em>Format</em>, select <em>QCOW2 - QEMU Emulator</em>.
+7.  For <em>Minimum Disk</em>, enter 5GB.
+8.  For <em>Minimum Ram</em>, enter 1024MB.
+9.  Click <em>Create Image</em>.
+
+Depending on your server's internet connection, the image may take some time to download.
+
+After the image has download, launch an instance of it from the dashboard and see that you can connect to it. If the image seems to take a significantly long amount of time to boot, it may be that your metadata service is not configured correctly.  
+
 ## <a id="internet"></a> Can access the Internet from within instances? ##
 
 Your deployment of Cloud Foundry will need outbound access to the Internet (for example, the Ruby buildpack will run `bundle install` on users' applications to fetch RubyGems). You can verify now that your OpenStack is configured correctly to allow outbound access to the Internet.
