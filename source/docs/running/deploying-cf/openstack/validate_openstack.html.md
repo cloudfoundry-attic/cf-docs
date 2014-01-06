@@ -149,7 +149,7 @@ To verify the ability to provision large volumes, perform the following steps:
 7.  For size, enter <em>30</em>.
 8.  You should see the volume appear in the list of volumes with the status <em>Available</em>.
 
-If the volume appears with the status <em>Error</em> then you need to check that your OpenStack Cinder Service is configured correctly.  See [http://docs.openstack.org/admin-guide-cloud/content/managing-volumes.html](Cinder Administrator Guide) for more information. 
+If the volume appears with the status <em>Error</em> then you need to check that your OpenStack Cinder Service is configured correctly.  See [Cinder Administrator Guide](http://docs.openstack.org/admin-guide-cloud/content/managing-volumes.html) for more information. 
 
 To verify that you can attach and mount a volume to an instance, perform the following steps (<em>assumes you have completed the steps above</em>):
 
