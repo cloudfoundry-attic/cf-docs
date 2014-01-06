@@ -112,7 +112,23 @@ VOLUME_BACKING_FILE_SIZE=70000M
 
 BOSH uses [Stemcells](/docs/running/bosh/components/stemcell.html) as the basis for virtual machine instances that it deploys to various cloud providers.  For the OpenStack cloud provider, the BOSH stemcell is based on Ubuntu 12.04 64-bit Server.  If you cannot upload this image to the Glance Image Service in your instance of OpenStack, the BOSH director will also have trouble when it tries to upload the stemcell.  Similarly, if you cannot boot a virtual machine from this instance, and connect to it via SSH, BOSH will also have trouble doing the same.  Additionally, you will want to check that the underlying hardware that runs your OpenStack is compatible with running a 64-bit operating system.
 
-To check that your OpenStack is compatible with Ubuntu 12.04 64-bit Server, perform the following steps:
+To check that your OpenStack is compatible with Ubuntu 10.04 64-bit Server, you will need to download the image to your Glance Image Service, and then separately boot the image as an instance in OpenStack.
+
+To download the image to your Glance Image Service, perform the following steps:
+
+1.  Login to your OpenStack dashboard.
+2.  In the menu on the left-hand side, click <em>Images & Snapshots</em>.
+3.  You should see a list of images.  Click <em>Create Image</em>.
+4.  For <em>Name</em>, enter <em>Ubuntu Server 64-bit</em>.
+5.  For <em>Image Location</em>, enter <em>http://cloud-images.ubuntu.com/lucid/current/lucid-server-cloudimg-amd64-disk1.img</em>.
+6.  For <em>Format</em>, select <em>QCOW2 - QEMU Emulator</em>.
+7.  For <em>Minimum Disk</em>, enter 5GB.
+8.  For <em>Minimum Ram</em>, enter 1024MB.
+9.  Click <em>Create Image</em>.
+
+Depending on your server's internet connection, the image may take some time to download.
+
+To check that you can successfully boot the image, perform the following steps:
 
 1.  
 
