@@ -127,24 +127,24 @@ The port (on the network interface specified by `VCAP_CONSOLE_IP`) upon which ap
 
 ### <a id='VCAP_SERVICES'></a>VCAP\_SERVICES ###
 
-For most service types, Cloud Foundry will add connection details to the `VCAP_SERVICES` environment variable when you restart the application after binding the service to the application.
+For [bindable services](../services/) Cloud Foundry will add connection details to the `VCAP_SERVICES` environment variable when you restart your application, after binding a service instance to your application.
 
-The results are returned as a JSON document that contains an object for each service type of which one or more instances are bound to the application. The service type object contains a child object for each service instance of that type that is bound to the application. The attributes that describe a bound service are defined in the table below.
+The results are returned as a JSON document that contains an object for each service for which one or more instances are bound to the application. The service object contains a child object for each service instance of that service that is bound to the application. The attributes that describe a bound service are defined in the table below.
 
-The key for each service type in the JSON document is the same as the value of the "label" attribute.
+The key for each service in the JSON document is the same as the value of the "label" attribute.
 
 
 |Attribute|Description |
 | --------- | --------- | 
-|name|The name assigned to the service instance when it was created. |
-|label (v1 API)|The service name and service version (if there is no version attribute, the string "n/a" is used), separated by a dash character, for example "cleardb-n/a".|
-|label (v2 API)|Identical to the service name. |
-|plan|The provider plan selected when the service was created. |
-|credentials|A JSON object containing the service-specific set of credentials needed to access the service instance. For example, for the cleardb service, this will include name, hostname, port, username, password, uri, and jdbcUrl.|
+|name|The name assigned to the service instance by the user when it was created |
+|label (v1 API)|The service name and service version (if there is no version attribute, the string "n/a" is used), separated by a dash character, for example "cleardb-n/a"|
+|label (v2 API)|The service name |
+|plan|The service plan selected when the service was created |
+|credentials|A JSON object containing the service-specific set of credentials needed to access the service instance. For example, for the cleardb service, this will include name, hostname, port, username, password, uri, and jdbcUrl|
 
 
 
-The [v1](/docs/running/architecture/services/writing-service-v1.html) example below contains the  JSON for the VCAP_SERVICE variable for a bound instance of several services available in the [Pivotal Web Services](http://run.pivotal.io) Marketplace. 
+The [v1](/docs/running/architecture/services/writing-service-v1.html) example below contains the JSON for the VCAP_SERVICES environment variable for bound instances of several services available in the [Pivotal Web Services](http://run.pivotal.io) Marketplace. 
 
 ~~~
 VCAP_SERVICES=
