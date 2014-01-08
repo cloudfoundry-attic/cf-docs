@@ -34,26 +34,27 @@ The current major version of Service Broker API is v2. Brokers which implement t
 Cloud Foundry currently supports both v2 brokers and v1 brokers, but support for v1 brokers will be removed from the next major version of cloud controller. Although there is no timeline for that release, we recommend new brokers are implemented with the v2 Services API and existing brokers are upgraded. For reference, the [v1 Service Broker API](writing-service-v1.html).
 
 
-### <a id='developing'></a>Developing a service broker
-1. You'll need a Cloud Foundry instance to deploy and test your service broker as you are developing it. You may use an existing install of CF that you have admin access to. Otherwise, we recommend installing a standalone CF instance using [Bosh Lite](https://github.com/cloudfoundry/bosh-lite).
-2. Read [v2 Service Broker API Documentation](api.html), [Managing Service Brokers on CF](managing-service-brokers.html), and [Using Services](../../../using/services), which explain how to implement and deploy a service broker and how CF uses service brokers to manage services.
-3. Refer to the example service brokers below as a starting point for developing your broker.
+### <a id='developing'></a>Developing a Service Broker ###
+1. **Development Environment** - You'll need a Cloud Foundry instance to deploy and test your service broker as you are developing it. You must have admin access to your CF instance. You may use any existing install of CF as long you have admin access to it. Otherwise, we recommend deploying a new CF development instance using [Bosh Lite](https://github.com/cloudfoundry/bosh-lite).
+2. **Documentation** - Read the following docs:
+  * [v2 Service Broker API](api.html)
+  * [Managing Service Brokers on CF](managing-service-brokers.html)
+  * [Using Services](../../../using/services)
+3. **Examples** - Refer to the example service brokers below as a starting point for developing your broker.
 
-### <a id='examples'></a>Example Service Brokers
+### <a id='examples'></a>Example Service Brokers ###
 
 The following example service broker applications have been developed - these are a great starting point if you are developing your own service broker.
 
 #### Ruby
 
 1. [GitHub repository service](https://github.com/cloudfoundry-samples/github-service-broker-ruby) - this is designed to be an easy-to-read example of a service broker, with complete documentation, and comes with a demo app that uses the service.  The broker can either be deployed as an application on CF or hosted anywhere. The service itself (GitHub) is separate from the broker.
-2. [MySQL database service](https://github.com/cloudfoundry/cf-mysql-release) - [the broker](https://github.com/cloudfoundry/cf-mysql-release) and accompanying MySQL server are designed to be deployed together as a [BOSH](https://github.com/cloudfoundry/bosh) release. BOSH is responsible for deployment and operation of all of the processes necessary for the service.
+2. [MySQL database service](https://github.com/cloudfoundry/cf-mysql-release) - this broker and its accompanying MySQL server are designed to be deployed together as a [BOSH](https://github.com/cloudfoundry/bosh) release. BOSH is responsible for deployment and operation of all of the processes necessary for the service. The broker code can be found [here](https://github.com/cloudfoundry/cf-mysql-broker). 
 
 #### Java
-* coming soon
 
-#### Python
-* coming soon
-
+1. [Spring Service Broker](https://github.com/cloudfoundry-community/spring-service-broker) - this repo provides a template for building service brokers in Spring, and includes an example implementation for MongoDB.
+1. [MySQL Java Broker](https://github.com/cloudfoundry-community/cf-mysql-java-broker) - a Java port of the [Ruby MySQL broker](https://github.com/cloudfoundry/cf-mysql-broker) above.
 
 ## <a id='user-provided'></a>User-provided Service Instances ##
 
