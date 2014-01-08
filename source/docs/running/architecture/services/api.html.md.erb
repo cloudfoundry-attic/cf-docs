@@ -240,7 +240,7 @@ For non-data services, provisioning could just mean getting an account on an exi
 </tbody>
 </table>
 
-Brokers are expected to respond with `201 Created` with the response body from the table below. They can also return `409 Conflict` if there is already a provisioned resource at this URL. Since this endpoint cannot be used to update resource parameters, brokers must return 409 if a conflicting request is made. Ideally, a non-conflicting request (duplicate ID and params) would return 200, but brokers may simply return 409 for a duplicate ID.  If they respond with any code besides 200 or 201, CC will assume that the provision request failed and inform the user.
+Brokers are expected to respond with `201 Created` with the response body from the table below. They can also return `409 Conflict` if there is already a provisioned resource at this URL. Since this endpoint cannot be used to update resource parameters, brokers must return `409` if a conflicting request is made. Ideally, a non-conflicting request (duplicate ID and params) would return `200`, but brokers may simply return `409` for a duplicate ID.  If they respond with any code besides `200` or `201`, CC will assume that the provision request failed and inform the user.
 
 <table>
 <thead>
