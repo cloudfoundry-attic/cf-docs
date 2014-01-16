@@ -77,10 +77,6 @@ When Cloud Controller fetches a catalog from a broker, it will compare the broke
 
 If the database has plans which are not found in the broker catalog, and there are no associated service instances, Cloud Controller will remove these plans from the database. If there are provisioned instances, the plan will be marked “inactive” and will no longer be visible in the marketplace catalog or be provisionable. Cloud Controller will then delete services that do not have associated plans from the database.
 
-### CLI-friendly vs web UI-friendly strings
-
-CLI and web clients have different needs with regard to service and plan names. A CLI-friendly string is all lowercase, with no spaces. Keep it short; imagine a user having to type it as an argument for a longer command. A web friendly display name is camelcase with spaces and punctuation supported. 
-
 ### Request ###
 
 ##### Route #####
@@ -92,6 +88,8 @@ CLI and web clients have different needs with regard to service and plan names. 
 </pre>
 
 ### Response ###
+
+CLI and web clients have different needs with regard to service and plan names. A CLI-friendly string is all lowercase, with no spaces. Keep it short; imagine a user having to type it as an argument for a longer command. A web friendly display name is camelcase with spaces and punctuation supported.
 
 <table>
 
@@ -174,7 +172,7 @@ CLI and web clients have different needs with regard to service and plan names. 
 
 \* Fields with an asterisk are required.
 
-**Example response**
+##### Body #####
 
 <pre class="terminal">
 {
@@ -218,7 +216,7 @@ For non-data services, provisioning could just mean getting an account on an exi
 ##### Route #####
 `PUT /v2/service_instances/:id`
 
-**In this API, the `:id` of a service instance is provided by the Cloud Controller**. This ID will be used for future requests (bind and deprovision), so the broker must use it to correlate the resource it creates.
+_Note: the `:id` of a service instance is provided by the Cloud Controller. This ID will be used for future requests (bind and deprovision), so the broker must use it to correlate the resource it creates._
 
 <table>
 <thead>
@@ -295,7 +293,7 @@ Brokers are expected to respond with `201 Created` with the response body from t
 </tboby>
 </table>
 
-**Example response**
+##### Body #####
 
 <pre class="terminal">
 {
@@ -317,7 +315,7 @@ When the broker receives a bind request from the Cloud Controller, it should tak
 ##### Route #####
 `PUT /v2/service_instances/:instance_id/service_bindings/:id`
 
-Note that the `:id` of a service binding is provided by the Cloud Controller. `:instance_id` is the ID of a previously-provisioned service instance; `:id` will be used for future unbind requests, so the broker must use it to correlate the resource it creates.
+_Note: the `:id` of a service binding is provided by the Cloud Controller. `:instance_id` is the ID of a previously-provisioned service instance; `:id` will be used for future unbind requests, so the broker must use it to correlate the resource it creates._
 
 <table>
 <thead>
@@ -390,7 +388,7 @@ Brokers are expected to respond with `200 OK` or `201 Created` with the response
 </tbody>
 </table>
 
-**Example response**
+##### Body #####
 
 <pre class="terminal">
 	{
@@ -407,7 +405,6 @@ Brokers are expected to respond with `200 OK` or `201 Created` with the response
 
 ## <a id='unbinding'></a>Unbinding ##
 _Note: Brokers that do not provide any bindable services do not need to implement the endpoint for unbind requests_
-
 
 When a broker receives an unbind request from Cloud Controller, it should delete any resources it created in bind. Usually this means that an application immediately cannot access the resource.
 
@@ -525,8 +522,7 @@ When a broker fails to perform any requested operation, unless it fails with a w
 
 This payload allows the broker to expose a message to end-user or operator. If a payload is included, only the message from the description field in the payload will be shown. If there is no payload, a generic error message containing the HTTP response code will be shown.
 
-**Error response format:**
-
+### Response ###
 
 <table>
 <thead>
