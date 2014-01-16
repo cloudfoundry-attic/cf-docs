@@ -4,11 +4,14 @@ title: CFoundry Ruby Gem
 
 ## <a id='intro'></a>Introduction ##
 
-This is a guide to using the CFoundry Ruby Gem to manage an account on a Cloud Foundry instance.
+This is a guide to using the CFoundry Ruby Gem to manage an account on a Cloud 
+Foundry instance.
 
 ## <a id='connecting'></a>Connecting to Cloud Foundry ##
 
-First of all, make sure to include the `cfoundry` gem as part of your application. Add it the application `Gemfile` if your are using Bundler;
+First of all, make sure to include the `cfoundry` gem as part of your 
+application. 
+Add it the application `Gemfile` if your are using Bundler:
 
 ~~~ruby
 
@@ -17,7 +20,7 @@ gem 'cfoundry'
 
 ~~~
 
-The first step to using cfoundry is creating a Client instance and logging in;
+The first step to using cfoundry is creating a Client instance and logging in:
 
 ~~~ruby
 require 'cfoundry'
@@ -30,7 +33,7 @@ client = CFoundry::Client.new endpoint
 client.login username, password
 ~~~
 
-Test the connection by listing the available services;
+Test the connection by listing the available services:
 
 ~~~ruby
 
@@ -40,7 +43,12 @@ client.services.collect { |x| x.description }
 
 ## <a id='persist-authentication'></a>Persisting Authentication (Using cf tokens) ##
 
-A far safer way of creating a cfoundry client object without potentially exposing your credentials in source code is to login using cf and then use the generated auth token to login in. The auth tokens are stored by cf in ~/.cf/tokens.yml. The following snippet of ruby code shows how to open this file, select the right auth token and then use it to log in to Cloud Foundry.
+A far safer way of creating a cfoundry client object without potentially 
+exposing your credentials in source code is to login using cf and then use the 
+generated auth token to login in. 
+The auth tokens are stored by cf in ~/.cf/tokens.yml. 
+The following snippet of ruby code shows how to open this file, select the 
+right auth token and then use it to log in to Cloud Foundry.
 
 ~~~ruby
 
@@ -57,11 +65,13 @@ client = CFoundry::Client.new endpoint, token
 
 ~~~
 
-Once the client object is created, it can be used in the same fashion as before.
+Once the client object is created, it can be used in the same fashion as 
+before.
 
-## <a id='organisations'></a>Organisations ##
+## <a id='organizations'></a>Organizations ##
 
-An account will always belong to at least one organization. Inspect the organizations using the client class;
+An account will always belong to at least one organization. 
+Inspect the organizations using the client class:
 
 ~~~ruby
 
@@ -72,7 +82,8 @@ An account will always belong to at least one organization. Inspect the organiza
 
 ## <a id='spaces'></a>Spaces ##
 
-Each organisation on Cloud Foundry can be separated in to spaces, we can easily inspect these via the client class;
+Each organization on Cloud Foundry can be separated into spaces, and we can 
+inspect these via the client class:
 
 ~~~ruby
 
@@ -81,7 +92,7 @@ Each organisation on Cloud Foundry can be separated in to spaces, we can easily 
 
 ~~~
 
-Creating and deleting a space is also straight forward;
+Creating and deleting a space:
 
 ~~~ruby
 
@@ -96,7 +107,7 @@ new_space.delete!
 
 ~~~
 
-There are several methods for retrieving a space;
+There are several methods for retrieving a space:
 
 ~~~ruby
 
@@ -111,18 +122,24 @@ client.methods.grep /space_by/
 
 ## <a id='services'></a>Services, Service Instances and Service Plans ##
 
-On Cloud Foundry each service has many service plans, depending on the instance, they will vary greatly. For the purposes of this document we will always use the first service plan for each service.
+On Cloud Foundry each service has many service plans, depending on the 
+instance, they will vary greatly. 
+For the purposes of this document we will always use the first service plan for 
+each service.
 
-The Client class contains four service methods; services, service_instances, service_instance_by_name and service_instance.
+The Client class contains four service methods: services, service\_instances, 
+service\_instance\_by\_name and service\_instance.
 
-The first method, 'services', returns a hash of all the available services on the targeted Cloud Foundry instance;
+The first method, 'services', returns a hash of all the available services on 
+the targeted Cloud Foundry instance:
 
 ~~~ruby
 client.services.collect { |x| x.description }
 => ["MySQL database", "MongoDB NoSQL database", "Redis key-value store", "RabbitMQ message queue", "PostgreSQL database (vFabric)"]
 ~~~
 
-The 'service_instances' method returns the actual service instances currently provisioned on that account;
+The 'service_instances' method returns the actual service instances currently 
+provisioned on that account:
 
 ~~~ruby
 pp client.service_instances
@@ -136,14 +153,14 @@ pp client.service_instances
  #<CFoundry::V1::ServiceInstance 'mongodb-220c4'>]
 ~~~
 
-The 'service\_instance\_by_name' method returns a named service instance;
+The 'service\_instance\_by_name' method returns a named service instance:
 
 ~~~ruby
 client.service_instance_by_name 'mysql-7327e'
 => #<CFoundry::V1::ServiceInstance 'mysql-7327e'>
 ~~~
 
-To create a service instance use the service_instance method;
+To create a service instance use the service\_instance method:
 
 ~~~ruby
 
@@ -158,12 +175,13 @@ service_instance.space = client.spaces.first # <- assign the space the service i
 
 service_instance.create! # <- send the request to create it
 
-# if the create was succesful, it should return true.
+# if the create was successful, it should return true.
 
 ~~~
 ## <a id='runtimes-and-frameworks'></a>Runtimes and Frameworks ##
 
-Both runtimes and frameworks have a collection that can be used to reference them both;
+Both runtimes and frameworks have a collection that can be used to reference 
+them:
 
 ~~~ruby
 
@@ -173,15 +191,14 @@ client.frameworks.collect { |x| x.name }
 client.runtimes.collect { |x| x.name }
 => ["java", "java7", "node", "node06", "node08", "ruby18", "ruby19"]
 
-
 ~~~
 
 
 ## <a id='applications'></a>Applications ##
 
-The Client class contains three application methods; apps, app and app_by_name
+The Client class contains three application methods: apps, app, and app\_by\_name.
 
-The 'apps' method returns a list of all the deployed applications;
+The 'apps' method returns a list of all the deployed applications:
 
 ~~~ruby
 
@@ -190,14 +207,14 @@ client.apps
 
 ~~~
 
-The 'app\_by\_name' method finds an application by it's name;
+The 'app\_by\_name' method finds an application by its name:
 
 ~~~ruby
 client.apps_by_name "node_app"
 => [#<CFoundry::V2::App '27edfb92-b0f4-47ad-acd6-cb911eb88096'>]
 ~~~
 
-To create an application user the app method;
+To create an application user the app method:
 
 ~~~ ruby
 
@@ -212,12 +229,13 @@ app.space = client.spaces.first # <- assign the application to a space
 
 app.create!
 
-# we may also want to bind a service too
+# we may also want to bind a service
 app.bind client.service_instance_by_name('my_new_redis_service')
 
 ~~~
 
-In order for the application to be accessible via http it has to be assigned a route on a domain;
+In order for the application to be accessible via http it has to be assigned a 
+route on a domain:
 
 ~~~ruby
 route = client.route
@@ -230,7 +248,11 @@ app.add_route route # <- add the route to the domain
 
 ~~~
 
-This only creates an application 'stub', as of yet there is no actual code uploaded to Cloud Foundry nor is the application started. To give the application something to run and depending on the runtime and framework archive the source, byte code or binary in to a zip file. Upload the zipfile to the application but using the upload command;
+This only creates an application 'stub', as of yet there is no actual code 
+uploaded to Cloud Foundry nor is the application started. 
+To give the application something to run and, depending on the runtime and 
+framework, archive the source, byte code, or binary into a zip file. 
+Upload the zip file to the application but using the upload command:
 
 ~~~ruby
 
@@ -248,13 +270,17 @@ app.upload 'app.zip'
 
 ~~~
 
-Now the application has been uploaded to Cloud Foundry, all that is left is to start the application
+Now the application has been uploaded to Cloud Foundry, all that is left is to start the application:
 
 ~~~ruby
 app.start!
 ~~~~
 
-The call to start is asynchronous, if true and a block is passed to the method then the block gets called with a URL. The url is the location of a real time log that can be requested via HTTP. CFoundry::Client has a method named stream_url which will transfer chunked data from the server;
+The call to start is asynchronous: if true and a block is passed to the method 
+then the block gets called with a URL. 
+The url is the location of a real time log that can be requested via HTTP. 
+CFoundry::Client has a method named stream\_url which will transfer chunked 
+data from the server:
 
 ~~~ruby
 
@@ -280,7 +306,7 @@ end
 
 ## <a id='env-vars'></a>Environment Variables ##
 
-Modifying an applications environment variable is trivial;
+Modifying an applications environment variable can be done as follows:
 
 ~~~ruby
 
@@ -297,21 +323,23 @@ app.env['my_env_var'] # <- retrieve the variable
 
 ## <a id='domains'></a>Domains ##
 
-Domains are the base on which routes are created. The default domain for a Cloud Foundry instance is the domain the Cloud Foundry instance is actually on.
+Domains are the base on which routes are created. 
+The default domain for a Cloud Foundry instance is the domain the Cloud Foundry 
+instance is actually on.
 
-To create a new domain use the 'domain' method on the client class;
+To create a new domain use the 'domain' method on the client class:
 
 ~~~ruby
 
 domain = client.domain
 domain.name = 'mydomain.com' # <- the name of the domain
 domain.wildcard = true
-domain.owning_organization = client.organizations.first # <- set the owning organisation
+domain.owning_organization = client.organizations.first # <- set the owning organization
 domain.create! # <- commit
 
 ~~~
 
-To retrieve already existing domains;
+To retrieve already existing domains:
 
 ~~~ruby
 

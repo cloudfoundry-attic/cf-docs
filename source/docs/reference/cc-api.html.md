@@ -53,8 +53,8 @@ The following attributes are contained in the `metadata` section:
 | :---------  | :-----------                                                                         |
 | guid       | Stable id for the resource.                                                         |
 | url        | URL for the resource.                                                               |
-| created_at | Date/Timestamp the resource was created, e.g. "2012-01-01 13:42:00 -0700"           |
-| updated_at | Date/Timestamp the resource was updated.  null if the resource has not been updated |
+| created\_at | Date/Timestamp the resource was created, e.g. "2012-01-01 13:42:00 -0700"           |
+| updated\_at | Date/Timestamp the resource was updated.  null if the resource has not been updated |
 
 
 ### Creating Resources
@@ -99,10 +99,10 @@ A paginated response contains the following attributes:
 
 | Attribute     | Description                                                                                       |
 | :---------     | :-----------                                                                                       |
-| total_results | Total number of results in the entire data set.                                                   |
-| total_pages   | Total number of pages in the entire dataset.                                                      |
-| prev_url      | URL used to fetch the previous set of results in the paginated response.  null on the first call. |
-| next_url      | URL used to fetch the next set of ressults in the paginated response.  null on the last call.     |
+| total\_results | Total number of results in the entire data set.                                                   |
+| total\_pages   | Total number of pages in the entire dataset.                                                      |
+| prev\_url      | URL used to fetch the previous set of results in the paginated response.  null on the first call. |
+| next\_url      | URL used to fetch the next set of results in the paginated response.  null on the last call.     |
 | resources     | Array of resources as returned by a GET on the resource id.                                       |
 
 The resources are expanded by default because in that is what is desired in the
@@ -165,10 +165,10 @@ Response:
 
 #### Search/Filtering
 
-Searching and Filtering are peformed via the `q` query parameter.  The value of
-the `q` parameter is a key value pair containing the resource attribute name
-and the query value, e.g: `GET /v2/foo_bars?q=name:some*` would return
-both records shown in the pagination example above.
+Searching and Filtering are performed via the `q` query parameter.
+The value of the `q` parameter is a key value pair containing the resource
+attribute name and the query value, e.g: `GET /v2/foo_bars?q=name:some*` would
+return both records shown in the pagination example above.
 
 String query values may contain a `*` which will be treated at a shell style
 glob.
@@ -190,9 +190,10 @@ A successful `DELETE` operation results in a 204.
 
 ### Updating Resources
 
-`PUT` differs from standard convention.  In order to avoid a read-modify-write
-cycle when updating a single attribute, `PUT` is handled as if the `PATCH` verb
-were used.  Specifically, if a resource with URL `/v2/foo_bars/99` has attributes
+`PUT` differs from standard convention.
+In order to avoid a read-modify-write cycle when updating a single attribute,
+`PUT` is handled as if the `PATCH` verb were used.
+Specifically, if a resource with URL `/v2/foo_bars/99` has attributes
 
 ```json
 {
@@ -230,8 +231,8 @@ in a resource with the following attributes
 A successful `PUT` results in HTTP 200.
 
 The caller may specify the `If-Match` HTTP header to enable opportunistic
-concurrency.  This is not required.  If there is an opportunistic concurrency
-failure, the API endpoint should return HTTP 412.
+concurrency.  This is not required.
+If there is an opportunistic concurrency failure, the API endpoint should return HTTP 412.
 
 The attributes for the updated FooBar are returned in a JSON-encoded response body.
 
@@ -270,11 +271,10 @@ the resources, set the id to `null`.
 
 #### Reading N-to-Many Associations
 
-N-to-many relationships may be
 N-to-Many relationships are indicated by a url attribute for the other
-collection of resources.  For example, if a FooBaz has multiple Bars, a
-`GET /v2/FooBaz/:id` will return the following attribute (other
-attributes omitted)
+collection of resources.
+For example, if a FooBaz has multiple Bars, a `GET /v2/FooBaz/:id` will return
+the following attribute (other attributes omitted)
 
 ```json
 {
@@ -290,11 +290,13 @@ Setting an n-to-many association is done during the initial `POST` for the
 resource, during an update via `PUT`.
 
 To create the association during a `POST` or to edit it with a `PUT`, supply a
-an array of ids.  For example, in the FooBaz has multiple Bars example
-above, a caller could issue a `POST /v2/foo_baz` with a body of `{ "bar_guid": [1,
-5, 10]}` to make an initial association of the new FooBaz with Bars with ids 1,
-5 and 10 (other attributes omitted).  Similarly, a `PUT` will update the
-associations between the resources to only those provided in the list.
+an array of ids.
+For example, in the FooBaz has multiple Bars example above, a caller could
+issue a `POST /v2/foo_baz` with a body of `{ "bar_guid": [1, 5, 10]}` to make
+an initial association of the new FooBaz with Bars with ids 1, 5, and 10
+(other attributes omitted).
+Similarly, a `PUT` will update the associations between the resources to only
+those provided in the list.
 
 Adding and removing elements from a large collection would be onerous if the
 entire list had to be provided every time.
@@ -321,7 +323,7 @@ apps` command line call.  In these cases, the caller intends to walk the entire
 tree of relationships.
 
 To inline relationships, the caller may specify a `inline-relations-depth` query
-parameter for a `GET` request.  A value of 0 results in the default behaviour of
+parameter for a `GET` request.  A value of 0 results in the default behavior of
 not inlining any of the relations and only URLs as described above are
 returned.  A value of N > 0 results in the direct expansion of relations
 inline in the response, but URLs are provided for the next level of relations.
@@ -418,11 +420,11 @@ Returns a paginated response of Organizations.
 
 The `q` query parameter may include the following `attribute-names`:
 * name
-* space_guid
-* user_guid
-* manager_guid
-* billing_manager_guid
-* auditor_guid
+* space\_guid
+* user\_guid
+* manager\_guid
+* billing\_manager\_guid
+* auditor\_guid
 
 See the API Overview for a more detailed description of these parameters.
 
@@ -433,8 +435,8 @@ The response is in the standard v2 paginated response format, i.e.:
 | name                 | schema                                                       |
 | -------------------- | ------------------------------------------------------------ |
 | total_results        | Integer                                                      |
-| prev_url             | String /HTTPS_URL_REGEX/                                     |
-| next_url             | String /HTTPS_URL_REGEX/                                     |
+| prev\_url             | String /HTTPS\_URL\_REGEX/                                     |
+| next\_url             | String /HTTPS\_URL\_REGEX/                                     |
 | resources            | [{:metadata => Hash,:entity => Hash,}]                       |
 
 The schema for `:metadata` follows the v2 standard:
@@ -442,24 +444,24 @@ The schema for `:metadata` follows the v2 standard:
 | name                 | schema                                                       |
 | -------------------- | ------------------------------------------------------------ |
 | guid                 | String                                                       |
-| url                  | String /HTTPS_URL_REGEX/                                     |
-| created_at           | Date                                                         |
-| updated_at           | Date                                                         |
+| url                  | String /HTTPS\_URL\_REGEX/                                     |
+| created\_at           | Date                                                         |
+| updated\_at           | Date                                                         |
 
 The schema for the `:entity` hash for Organization is:
 
 | name                  | schema                                                       |
 | --------------------- | ------------------------------------------------------------ |
 | name                  | String                                                       |
-| billing_enabled       | bool                                                         |
-| quota_definition_guid | String                                                       |
-| quota_definition_url  | String /HTTPS_URL_REGEX/                                     |
-| spaces_url            | String /HTTPS_URL_REGEX/                                     |
-| domains_url           | String /HTTPS_URL_REGEX/                                     |
-| users_url             | String /HTTPS_URL_REGEX/                                     |
-| managers_url          | String /HTTPS_URL_REGEX/                                     |
-| billing_managers_url  | String /HTTPS_URL_REGEX/                                     |
-| auditors_url          | String /HTTPS_URL_REGEX/                                     |
+| billing\_enabled       | bool                                                         |
+| quota\_definition\_guid | String                                                       |
+| quota\_definition\_url  | String /HTTPS\_URL\_REGEX/                                     |
+| spaces\_url            | String /HTTPS\_URL\_REGEX/                                     |
+| domains\_url           | String /HTTPS\_URL\_REGEX/                                     |
+| users\_url             | String /HTTPS\_URL\_REGEX/                                     |
+| managers\_url          | String /HTTPS\_URL\_REGEX/                                     |
+| billing\_managers\_url  | String /HTTPS\_URL\_REGEX/                                     |
+| auditors\_url          | String /HTTPS\_URL\_REGEX/                                     |
 
 
 
@@ -474,13 +476,13 @@ Creates a Organization.
 | name                  | notes    | schema                                             |
 | --------------------- | -------- | -------------------------------------------------- |
 | name                  | required | String                                             |
-| billing_enabled       | optional | bool                                               |
-| quota_definition_guid | optional | String                                             |
-| domain_guids          | optional | [String]                                           |
-| user_guids            | optional | [String]                                           |
-| manager_guids         | optional | [String]                                           |
-| billing_manager_guids | optional | [String]                                           |
-| auditor_guids         | optional | [String]                                           |
+| billing\_enabled       | optional | bool                                               |
+| quota\_definition\_guid | optional | String                                             |
+| domain\_guids          | optional | [String]                                           |
+| user\_guids            | optional | [String]                                           |
+| manager\_guids         | optional | [String]                                           |
+| billing\_manager\_guids | optional | [String]                                           |
+| auditor\_guids         | optional | [String]                                           |
 
 #### Response Format:
 
@@ -494,24 +496,24 @@ The schema for `:metadata` follows the v2 standard:
 | name                 | schema                                                       |
 | -------------------- | ------------------------------------------------------------ |
 | guid                 | String                                                       |
-| url                  | String /HTTPS_URL_REGEX/                                     |
-| created_at           | Date                                                         |
-| updated_at           | Date                                                         |
+| url                  | String /HTTPS\_URL\_REGEX/                                     |
+| created\_at           | Date                                                         |
+| updated\_at           | Date                                                         |
 
 The schema for the `:entity` hash for Organization is:
 
 | name                  | schema                                                       |
 | --------------------- | ------------------------------------------------------------ |
 | name                  | String                                                       |
-| billing_enabled       | bool                                                         |
-| quota_definition_guid | String                                                       |
-| quota_definition_url  | String /HTTPS_URL_REGEX/                                     |
-| spaces_url            | String /HTTPS_URL_REGEX/                                     |
-| domains_url           | String /HTTPS_URL_REGEX/                                     |
-| users_url             | String /HTTPS_URL_REGEX/                                     |
-| managers_url          | String /HTTPS_URL_REGEX/                                     |
-| billing_managers_url  | String /HTTPS_URL_REGEX/                                     |
-| auditors_url          | String /HTTPS_URL_REGEX/                                     |
+| billing\_enabled       | bool                                                         |
+| quota\_definition\_guid | String                                                       |
+| quota\_definition\_url  | String /HTTPS\_URL\_REGEX/                                     |
+| spaces\_url            | String /HTTPS\_URL\_REGEX/                                     |
+| domains\_url           | String /HTTPS\_URL\_REGEX/                                     |
+| users\_url             | String /HTTPS\_URL\_REGEX/                                     |
+| managers\_url          | String /HTTPS\_URL\_REGEX/                                     |
+| billing\_managers\_url  | String /HTTPS\_URL\_REGEX/                                     |
+| auditors\_url          | String /HTTPS\_URL\_REGEX/                                     |
 
 
 
@@ -537,14 +539,14 @@ Updates a Organization.
 | name                  | notes    | schema                                             |
 | --------------------- | -------- | -------------------------------------------------- |
 | name                  | optional | String                                             |
-| billing_enabled       | optional | bool                                               |
-| quota_definition_guid | optional | String                                             |
-| space_guids           | optional | [String]                                           |
-| domain_guids          | optional | [String]                                           |
-| user_guids            | optional | [String]                                           |
-| manager_guids         | optional | [String]                                           |
-| billing_manager_guids | optional | [String]                                           |
-| auditor_guids         | optional | [String]                                           |
+| billing\_enabled       | optional | bool                                               |
+| quota\_definition\_guid | optional | String                                             |
+| space\_guids           | optional | [String]                                           |
+| domain\_guids          | optional | [String]                                           |
+| user\_guids            | optional | [String]                                           |
+| manager\_guids         | optional | [String]                                           |
+| billing\_manager\_guids | optional | [String]                                           |
+| auditor\_guids         | optional | [String]                                           |
 
 #### Response Format:
 
@@ -558,24 +560,24 @@ The schema for `:metadata` follows the v2 standard:
 | name                 | schema                                                       |
 | -------------------- | ------------------------------------------------------------ |
 | guid                 | String                                                       |
-| url                  | String /HTTPS_URL_REGEX/                                     |
-| created_at           | Date                                                         |
-| updated_at           | Date                                                         |
+| url                  | String /HTTPS\_URL\_REGEX/                                     |
+| created\_at           | Date                                                         |
+| updated\_at           | Date                                                         |
 
 The schema for the `:entity` hash for Organization is:
 
 | name                  | schema                                                       |
 | --------------------- | ------------------------------------------------------------ |
 | name                  | String                                                       |
-| billing_enabled       | bool                                                         |
-| quota_definition_guid | String                                                       |
-| quota_definition_url  | String /HTTPS_URL_REGEX/                                     |
-| spaces_url            | String /HTTPS_URL_REGEX/                                     |
-| domains_url           | String /HTTPS_URL_REGEX/                                     |
-| users_url             | String /HTTPS_URL_REGEX/                                     |
-| managers_url          | String /HTTPS_URL_REGEX/                                     |
-| billing_managers_url  | String /HTTPS_URL_REGEX/                                     |
-| auditors_url          | String /HTTPS_URL_REGEX/                                     |
+| billing\_enabled       | bool                                                         |
+| quota\_definition\_guid | String                                                       |
+| quota\_definition\_url  | String /HTTPS\_URL\_REGEX/                                     |
+| spaces\_url            | String /HTTPS\_URL\_REGEX/                                     |
+| domains\_url           | String /HTTPS\_URL\_REGEX/                                     |
+| users\_url             | String /HTTPS\_URL\_REGEX/                                     |
+| managers\_url          | String /HTTPS\_URL\_REGEX/                                     |
+| billing\_managers\_url  | String /HTTPS\_URL\_REGEX/                                     |
+| auditors\_url          | String /HTTPS\_URL\_REGEX/                                     |
 
 
 
@@ -597,24 +599,24 @@ The schema for `:metadata` follows the v2 standard:
 | name                 | schema                                                       |
 | -------------------- | ------------------------------------------------------------ |
 | guid                 | String                                                       |
-| url                  | String /HTTPS_URL_REGEX/                                     |
-| created_at           | Date                                                         |
-| updated_at           | Date                                                         |
+| url                  | String /HTTPS\_URL\_REGEX/                                     |
+| created\_at           | Date                                                         |
+| updated\_at           | Date                                                         |
 
 The schema for the `:entity` hash for Organization is:
 
 | name                  | schema                                                       |
 | --------------------- | ------------------------------------------------------------ |
 | name                  | String                                                       |
-| billing_enabled       | bool                                                         |
-| quota_definition_guid | String                                                       |
-| quota_definition_url  | String /HTTPS_URL_REGEX/                                     |
-| spaces_url            | String /HTTPS_URL_REGEX/                                     |
-| domains_url           | String /HTTPS_URL_REGEX/                                     |
-| users_url             | String /HTTPS_URL_REGEX/                                     |
-| managers_url          | String /HTTPS_URL_REGEX/                                     |
-| billing_managers_url  | String /HTTPS_URL_REGEX/                                     |
-| auditors_url          | String /HTTPS_URL_REGEX/                                     |
+| billing\_enabled       | bool                                                         |
+| quota\_definition\_guid | String                                                       |
+| quota\_definition\_url  | String /HTTPS\_URL\_REGEX/                                     |
+| spaces\_url            | String /HTTPS\_URL\_REGEX/                                     |
+| domains\_url           | String /HTTPS\_URL\_REGEX/                                     |
+| users\_url             | String /HTTPS\_URL\_REGEX/                                     |
+| managers\_url          | String /HTTPS\_URL\_REGEX/                                     |
+| billing\_managers\_url  | String /HTTPS\_URL\_REGEX/                                     |
+| auditors\_url          | String /HTTPS\_URL\_REGEX/                                     |
 
 
 
@@ -652,13 +654,13 @@ Returns a paginated response of Users.
 | q                      | Search/filter string of the form `<attribute-name>:<value>` |
 
 The `q` query parameter may include the following `attribute-names`:
-* space_guid
-* organization_guid
-* managed_organization_guid
-* billing_managed_organization_guid
-* audited_organization_guid
-* managed_space_guid
-* audited_space_guid
+* space\_guid
+* organization\_guid
+* managed\_organization\_guid
+* billing\_managed\_organization\_guid
+* audited\_organization\_guid
+* managed\_space\_guid
+* audited\_space\_guid
 
 See the API Overview for a more detailed description of these parameters.
 
@@ -668,9 +670,9 @@ The response is in the standard v2 paginated response format, i.e.:
 
 | name                 | schema                                                       |
 | -------------------- | ------------------------------------------------------------ |
-| total_results        | Integer                                                      |
-| prev_url             | String /HTTPS_URL_REGEX/                                     |
-| next_url             | String /HTTPS_URL_REGEX/                                     |
+| total\_results        | Integer                                                      |
+| prev\_url             | String /HTTPS\_URL\_REGEX/                                     |
+| next\_url             | String /HTTPS\_URL\_REGEX/                                     |
 | resources            | [{:metadata => Hash,:entity => Hash,}]                       |
 
 The schema for `:metadata` follows the v2 standard:
@@ -678,9 +680,9 @@ The schema for `:metadata` follows the v2 standard:
 | name                 | schema                                                       |
 | -------------------- | ------------------------------------------------------------ |
 | guid                 | String                                                       |
-| url                  | String /HTTPS_URL_REGEX/                                     |
-| created_at           | Date                                                         |
-| updated_at           | Date                                                         |
+| url                  | String /HTTPS\_URL\_REGEX/                                     |
+| created\_at           | Date                                                         |
+| updated\_at           | Date                                                         |
 
 The schema for the `:entity` hash for User is:
 
@@ -688,15 +690,15 @@ The schema for the `:entity` hash for User is:
 | --------------------------------- | ------------------------------------------------------------ |
 | guid                              | String                                                       |
 | admin                             | bool                                                         |
-| default_space_guid                | String                                                       |
-| default_space_url                 | String /HTTPS_URL_REGEX/                                     |
-| spaces_url                        | String /HTTPS_URL_REGEX/                                     |
-| organizations_url                 | String /HTTPS_URL_REGEX/                                     |
-| managed_organizations_url         | String /HTTPS_URL_REGEX/                                     |
-| billing_managed_organizations_url | String /HTTPS_URL_REGEX/                                     |
-| audited_organizations_url         | String /HTTPS_URL_REGEX/                                     |
-| managed_spaces_url                | String /HTTPS_URL_REGEX/                                     |
-| audited_spaces_url                | String /HTTPS_URL_REGEX/                                     |
+| default\_space\_guid                | String                                                       |
+| default\_space\_url                 | String /HTTPS\_URL\_REGEX/                                     |
+| spaces\_url                        | String /HTTPS\_URL\_REGEX/                                     |
+| organizations\_url                 | String /HTTPS\_URL\_REGEX/                                     |
+| managed\_organizations\_url         | String /HTTPS\_URL\_REGEX/                                     |
+| billing\_managed\_organizations\_url | String /HTTPS\_URL\_REGEX/                                     |
+| audited\_organizations\_url         | String /HTTPS\_URL\_REGEX/                                     |
+| managed\_spaces\_url                | String /HTTPS\_URL\_REGEX/                                     |
+| audited\_spaces\_url                | String /HTTPS\_URL\_REGEX/                                     |
 
 
 
@@ -712,14 +714,14 @@ Creates a User.
 | ---------------------------------- | -------- | -------------------------------------------------- |
 | guid                               | required | String                                             |
 | admin                              | optional | bool                                               |
-| default_space_guid                 | optional | String                                             |
-| space_guids                        | optional | [String]                                           |
-| organization_guids                 | optional | [String]                                           |
-| managed_organization_guids         | optional | [String]                                           |
-| billing_managed_organization_guids | optional | [String]                                           |
-| audited_organization_guids         | optional | [String]                                           |
-| managed_space_guids                | optional | [String]                                           |
-| audited_space_guids                | optional | [String]                                           |
+| default\_space\_guid                 | optional | String                                             |
+| space\_guids                        | optional | [String]                                           |
+| organization\_guids                 | optional | [String]                                           |
+| managed\_organization\_guids         | optional | [String]                                           |
+| billing\_managed\_organization\_guids | optional | [String]                                           |
+| audited\_organization\_guids         | optional | [String]                                           |
+| managed\_space\_guids                | optional | [String]                                           |
+| audited\_space\_guids                | optional | [String]                                           |
 
 #### Response Format:
 
@@ -733,9 +735,9 @@ The schema for `:metadata` follows the v2 standard:
 | name                 | schema                                                       |
 | -------------------- | ------------------------------------------------------------ |
 | guid                 | String                                                       |
-| url                  | String /HTTPS_URL_REGEX/                                     |
-| created_at           | Date                                                         |
-| updated_at           | Date                                                         |
+| url                  | String /HTTPS\_URL\_REGEX/                                     |
+| created\_at           | Date                                                         |
+| updated\_at           | Date                                                         |
 
 The schema for the `:entity` hash for User is:
 
@@ -743,15 +745,15 @@ The schema for the `:entity` hash for User is:
 | --------------------------------- | ------------------------------------------------------------ |
 | guid                              | String                                                       |
 | admin                             | bool                                                         |
-| default_space_guid                | String                                                       |
-| default_space_url                 | String /HTTPS_URL_REGEX/                                     |
-| spaces_url                        | String /HTTPS_URL_REGEX/                                     |
-| organizations_url                 | String /HTTPS_URL_REGEX/                                     |
-| managed_organizations_url         | String /HTTPS_URL_REGEX/                                     |
-| billing_managed_organizations_url | String /HTTPS_URL_REGEX/                                     |
-| audited_organizations_url         | String /HTTPS_URL_REGEX/                                     |
-| managed_spaces_url                | String /HTTPS_URL_REGEX/                                     |
-| audited_spaces_url                | String /HTTPS_URL_REGEX/                                     |
+| default\_space\_guid                | String                                                       |
+| default\_space\_url                 | String /HTTPS\_URL\_REGEX/                                     |
+| spaces\_url                        | String /HTTPS\_URL\_REGEX/                                     |
+| organizations\_url                 | String /HTTPS\_URL\_REGEX/                                     |
+| managed\_organizations\_url         | String /HTTPS\_URL\_REGEX/                                     |
+| billing\_managed\_organizations\_url | String /HTTPS\_URL\_REGEX/                                     |
+| audited\_organizations\_url         | String /HTTPS\_URL\_REGEX/                                     |
+| managed\_spaces\_url                | String /HTTPS\_URL\_REGEX/                                     |
+| audited\_spaces\_url                | String /HTTPS\_URL\_REGEX/                                     |
 
 
 
@@ -778,14 +780,14 @@ Updates a User.
 | ---------------------------------- | -------- | -------------------------------------------------- |
 | guid                               | optional | String                                             |
 | admin                              | optional | bool                                               |
-| default_space_guid                 | optional | String                                             |
-| space_guids                        | optional | [String]                                           |
-| organization_guids                 | optional | [String]                                           |
-| managed_organization_guids         | optional | [String]                                           |
-| billing_managed_organization_guids | optional | [String]                                           |
-| audited_organization_guids         | optional | [String]                                           |
-| managed_space_guids                | optional | [String]                                           |
-| audited_space_guids                | optional | [String]                                           |
+| default\_space\_guid                 | optional | String                                             |
+| space\_guids                        | optional | [String]                                           |
+| organization\_guids                 | optional | [String]                                           |
+| managed\_organization\_guids         | optional | [String]                                           |
+| billing\_managed\_organization\_guids | optional | [String]                                           |
+| audited\_organization\_guids         | optional | [String]                                           |
+| managed\_space\_guids                | optional | [String]                                           |
+| audited\_space\_guids                | optional | [String]                                           |
 
 #### Response Format:
 
@@ -799,9 +801,9 @@ The schema for `:metadata` follows the v2 standard:
 | name                 | schema                                                       |
 | -------------------- | ------------------------------------------------------------ |
 | guid                 | String                                                       |
-| url                  | String /HTTPS_URL_REGEX/                                     |
-| created_at           | Date                                                         |
-| updated_at           | Date                                                         |
+| url                  | String /HTTPS\_URL\_REGEX/                                     |
+| created\_at           | Date                                                         |
+| updated\_at           | Date                                                         |
 
 The schema for the `:entity` hash for User is:
 
@@ -809,15 +811,15 @@ The schema for the `:entity` hash for User is:
 | --------------------------------- | ------------------------------------------------------------ |
 | guid                              | String                                                       |
 | admin                             | bool                                                         |
-| default_space_guid                | String                                                       |
-| default_space_url                 | String /HTTPS_URL_REGEX/                                     |
-| spaces_url                        | String /HTTPS_URL_REGEX/                                     |
-| organizations_url                 | String /HTTPS_URL_REGEX/                                     |
-| managed_organizations_url         | String /HTTPS_URL_REGEX/                                     |
-| billing_managed_organizations_url | String /HTTPS_URL_REGEX/                                     |
-| audited_organizations_url         | String /HTTPS_URL_REGEX/                                     |
-| managed_spaces_url                | String /HTTPS_URL_REGEX/                                     |
-| audited_spaces_url                | String /HTTPS_URL_REGEX/                                     |
+| default\_space\_guid                | String                                                       |
+| default\_space\_url                 | String /HTTPS\_URL\_REGEX/                                     |
+| spaces\_url                        | String /HTTPS\_URL\_REGEX/                                     |
+| organizations\_url                 | String /HTTPS\_URL\_REGEX/                                     |
+| managed\_organizations\_url         | String /HTTPS\_URL\_REGEX/                                     |
+| billing\_managed\_organizations\_url | String /HTTPS\_URL\_REGEX/                                     |
+| audited\_organizations\_url         | String /HTTPS\_URL\_REGEX/                                     |
+| managed\_spaces\_url                | String /HTTPS\_URL\_REGEX/                                     |
+| audited\_spaces\_url                | String /HTTPS\_URL\_REGEX/                                     |
 
 
 
@@ -839,9 +841,9 @@ The schema for `:metadata` follows the v2 standard:
 | name                 | schema                                                       |
 | -------------------- | ------------------------------------------------------------ |
 | guid                 | String                                                       |
-| url                  | String /HTTPS_URL_REGEX/                                     |
-| created_at           | Date                                                         |
-| updated_at           | Date                                                         |
+| url                  | String /HTTPS\_URL\_REGEX/                                     |
+| created\_at           | Date                                                         |
+| updated\_at           | Date                                                         |
 
 The schema for the `:entity` hash for User is:
 
@@ -849,15 +851,15 @@ The schema for the `:entity` hash for User is:
 | --------------------------------- | ------------------------------------------------------------ |
 | guid                              | String                                                       |
 | admin                             | bool                                                         |
-| default_space_guid                | String                                                       |
-| default_space_url                 | String /HTTPS_URL_REGEX/                                     |
-| spaces_url                        | String /HTTPS_URL_REGEX/                                     |
-| organizations_url                 | String /HTTPS_URL_REGEX/                                     |
-| managed_organizations_url         | String /HTTPS_URL_REGEX/                                     |
-| billing_managed_organizations_url | String /HTTPS_URL_REGEX/                                     |
-| audited_organizations_url         | String /HTTPS_URL_REGEX/                                     |
-| managed_spaces_url                | String /HTTPS_URL_REGEX/                                     |
-| audited_spaces_url                | String /HTTPS_URL_REGEX/                                     |
+| default\_space\_guid                | String                                                       |
+| default\_space\_url                 | String /HTTPS\_URL\_REGEX/                                     |
+| spaces\_url                        | String /HTTPS\_URL\_REGEX/                                     |
+| organizations\_url                 | String /HTTPS\_URL\_REGEX/                                     |
+| managed\_organizations\_url         | String /HTTPS\_URL\_REGEX/                                     |
+| billing\_managed\_organizations\_url | String /HTTPS\_URL\_REGEX/                                     |
+| audited\_organizations\_url         | String /HTTPS\_URL\_REGEX/                                     |
+| managed\_spaces\_url                | String /HTTPS\_URL\_REGEX/                                     |
+| audited\_spaces\_url                | String /HTTPS\_URL\_REGEX/                                     |
 
 
 
@@ -892,15 +894,15 @@ Returns a paginated response of Spaces.
 | ---------              | -----------                                                                      |
 | limit                  | Maximum number of results to return.                                             |
 | offset                 | Offset from which to start iteration.                                            |
-| urls-only              | If 1, only return a list of urls; do not expand metadata or resource attributues |
+| urls-only              | If 1, only return a list of urls; do not expand metadata or resource attributes |
 | inline-relations-depth | 0 - don't inline any relations and return URLs.  Otherwise, inline to depth N.   |
 | q                      | Search/filter string of the form `<attribute-name>:<value>` |
 
 The `q` query parameter may include the following `attribute-names`:
 * name
-* organization_guid
-* developer_guid
-* app_guid
+* organization\_guid
+* developer\_guid
+* app\_guid
 
 See the API Overview for a more detailed description of these parameters.
 
@@ -910,9 +912,9 @@ The response is in the standard v2 paginated response format, i.e.:
 
 | name                 | schema                                                       |
 | -------------------- | ------------------------------------------------------------ |
-| total_results        | Integer                                                      |
-| prev_url             | String /HTTPS_URL_REGEX/                                     |
-| next_url             | String /HTTPS_URL_REGEX/                                     |
+| total\_results        | Integer                                                      |
+| prev\_url             | String /HTTPS\_URL\_REGEX/                                     |
+| next\_url             | String /HTTPS\_URL\_REGEX/                                     |
 | resources            | [{:metadata => Hash,:entity => Hash,}]                       |
 
 The schema for `:metadata` follows the v2 standard:
@@ -920,23 +922,23 @@ The schema for `:metadata` follows the v2 standard:
 | name                 | schema                                                       |
 | -------------------- | ------------------------------------------------------------ |
 | guid                 | String                                                       |
-| url                  | String /HTTPS_URL_REGEX/                                     |
-| created_at           | Date                                                         |
-| updated_at           | Date                                                         |
+| url                  | String /HTTPS\_URL\_REGEX/                                     |
+| created\_at           | Date                                                         |
+| updated\_at           | Date                                                         |
 
 The schema for the `:entity` hash for Space is:
 
 | name                  | schema                                                       |
 | --------------------- | ------------------------------------------------------------ |
 | name                  | String                                                       |
-| organization_guid     | String                                                       |
-| organization_url      | String /HTTPS_URL_REGEX/                                     |
-| developers_url        | String /HTTPS_URL_REGEX/                                     |
-| managers_url          | String /HTTPS_URL_REGEX/                                     |
-| auditors_url          | String /HTTPS_URL_REGEX/                                     |
-| apps_url              | String /HTTPS_URL_REGEX/                                     |
-| domains_url           | String /HTTPS_URL_REGEX/                                     |
-| service_instances_url | String /HTTPS_URL_REGEX/                                     |
+| organization\_guid     | String                                                       |
+| organization\_url      | String /HTTPS\_URL\_REGEX/                                     |
+| developers\_url        | String /HTTPS\_URL\_REGEX/                                     |
+| managers\_url          | String /HTTPS\_URL\_REGEX/                                     |
+| auditors\_url          | String /HTTPS\_URL\_REGEX/                                     |
+| apps\_url              | String /HTTPS\_URL\_REGEX/                                     |
+| domains\_url           | String /HTTPS\_URL\_REGEX/                                     |
+| service\_instances\_url | String /HTTPS\_URL\_REGEX/                                     |
 
 
 
@@ -951,13 +953,13 @@ Creates a Space.
 | name                   | notes    | schema                                             |
 | ---------------------- | -------- | -------------------------------------------------- |
 | name                   | required | String                                             |
-| organization_guid      | required | String                                             |
-| developer_guids        | optional | [String]                                           |
-| manager_guids          | optional | [String]                                           |
-| auditor_guids          | optional | [String]                                           |
-| app_guids              | optional | [String]                                           |
-| domain_guids           | optional | [String]                                           |
-| service_instance_guids | optional | [String]                                           |
+| organization\_guid      | required | String                                             |
+| developer\_guids        | optional | [String]                                           |
+| manager\_guids          | optional | [String]                                           |
+| auditor\_guids          | optional | [String]                                           |
+| app\_guids              | optional | [String]                                           |
+| domain\_guids           | optional | [String]                                           |
+| service\_instance\_guids | optional | [String]                                           |
 
 #### Response Format:
 
@@ -971,23 +973,23 @@ The schema for `:metadata` follows the v2 standard:
 | name                 | schema                                                       |
 | -------------------- | ------------------------------------------------------------ |
 | guid                 | String                                                       |
-| url                  | String /HTTPS_URL_REGEX/                                     |
-| created_at           | Date                                                         |
-| updated_at           | Date                                                         |
+| url                  | String /HTTPS\_URL\_REGEX/                                     |
+| created\_at           | Date                                                         |
+| updated\_at           | Date                                                         |
 
 The schema for the `:entity` hash for Space is:
 
 | name                  | schema                                                       |
 | --------------------- | ------------------------------------------------------------ |
 | name                  | String                                                       |
-| organization_guid     | String                                                       |
-| organization_url      | String /HTTPS_URL_REGEX/                                     |
-| developers_url        | String /HTTPS_URL_REGEX/                                     |
-| managers_url          | String /HTTPS_URL_REGEX/                                     |
-| auditors_url          | String /HTTPS_URL_REGEX/                                     |
-| apps_url              | String /HTTPS_URL_REGEX/                                     |
-| domains_url           | String /HTTPS_URL_REGEX/                                     |
-| service_instances_url | String /HTTPS_URL_REGEX/                                     |
+| organization\_guid     | String                                                       |
+| organization\_url      | String /HTTPS\_URL\_REGEX/                                     |
+| developers\_url        | String /HTTPS\_URL\_REGEX/                                     |
+| managers\_url          | String /HTTPS\_URL\_REGEX/                                     |
+| auditors\_url          | String /HTTPS\_URL\_REGEX/                                     |
+| apps\_url              | String /HTTPS\_URL\_REGEX/                                     |
+| domains\_url           | String /HTTPS\_URL\_REGEX/                                     |
+| service\_instances\_url | String /HTTPS\_URL\_REGEX/                                     |
 
 
 
@@ -1013,13 +1015,13 @@ Updates a Space.
 | name                   | notes    | schema                                             |
 | ---------------------- | -------- | -------------------------------------------------- |
 | name                   | optional | String                                             |
-| organization_guid      | optional | String                                             |
-| developer_guids        | optional | [String]                                           |
-| manager_guids          | optional | [String]                                           |
-| auditor_guids          | optional | [String]                                           |
-| app_guids              | optional | [String]                                           |
-| domain_guids           | optional | [String]                                           |
-| service_instance_guids | optional | [String]                                           |
+| organization\_guid      | optional | String                                             |
+| developer\_guids        | optional | [String]                                           |
+| manager\_guids          | optional | [String]                                           |
+| auditor\_guids          | optional | [String]                                           |
+| app\_guids              | optional | [String]                                           |
+| domain\_guids           | optional | [String]                                           |
+| service\_instance\_guids | optional | [String]                                           |
 
 #### Response Format:
 
@@ -1033,23 +1035,23 @@ The schema for `:metadata` follows the v2 standard:
 | name                 | schema                                                       |
 | -------------------- | ------------------------------------------------------------ |
 | guid                 | String                                                       |
-| url                  | String /HTTPS_URL_REGEX/                                     |
-| created_at           | Date                                                         |
-| updated_at           | Date                                                         |
+| url                  | String /HTTPS\_URL\_REGEX/                                     |
+| created\_at           | Date                                                         |
+| updated\_at           | Date                                                         |
 
 The schema for the `:entity` hash for Space is:
 
 | name                  | schema                                                       |
 | --------------------- | ------------------------------------------------------------ |
 | name                  | String                                                       |
-| organization_guid     | String                                                       |
-| organization_url      | String /HTTPS_URL_REGEX/                                     |
-| developers_url        | String /HTTPS_URL_REGEX/                                     |
-| managers_url          | String /HTTPS_URL_REGEX/                                     |
-| auditors_url          | String /HTTPS_URL_REGEX/                                     |
-| apps_url              | String /HTTPS_URL_REGEX/                                     |
-| domains_url           | String /HTTPS_URL_REGEX/                                     |
-| service_instances_url | String /HTTPS_URL_REGEX/                                     |
+| organization\_guid     | String                                                       |
+| organization\_url      | String /HTTPS\_URL\_REGEX/                                     |
+| developers\_url        | String /HTTPS\_URL\_REGEX/                                     |
+| managers\_url          | String /HTTPS\_URL\_REGEX/                                     |
+| auditors\_url          | String /HTTPS\_URL\_REGEX/                                     |
+| apps\_url              | String /HTTPS\_URL\_REGEX/                                     |
+| domains\_url           | String /HTTPS\_URL\_REGEX/                                     |
+| service\_instances\_url | String /HTTPS\_URL\_REGEX/                                     |
 
 
 
@@ -1071,23 +1073,23 @@ The schema for `:metadata` follows the v2 standard:
 | name                 | schema                                                       |
 | -------------------- | ------------------------------------------------------------ |
 | guid                 | String                                                       |
-| url                  | String /HTTPS_URL_REGEX/                                     |
-| created_at           | Date                                                         |
-| updated_at           | Date                                                         |
+| url                  | String /HTTPS\_URL\_REGEX/                                     |
+| created\_at           | Date                                                         |
+| updated\_at           | Date                                                         |
 
 The schema for the `:entity` hash for Space is:
 
 | name                  | schema                                                       |
 | --------------------- | ------------------------------------------------------------ |
 | name                  | String                                                       |
-| organization_guid     | String                                                       |
-| organization_url      | String /HTTPS_URL_REGEX/                                     |
-| developers_url        | String /HTTPS_URL_REGEX/                                     |
-| managers_url          | String /HTTPS_URL_REGEX/                                     |
-| auditors_url          | String /HTTPS_URL_REGEX/                                     |
-| apps_url              | String /HTTPS_URL_REGEX/                                     |
-| domains_url           | String /HTTPS_URL_REGEX/                                     |
-| service_instances_url | String /HTTPS_URL_REGEX/                                     |
+| organization\_guid     | String                                                       |
+| organization\_url      | String /HTTPS\_URL\_REGEX/                                     |
+| developers\_url        | String /HTTPS\_URL\_REGEX/                                     |
+| managers\_url          | String /HTTPS\_URL\_REGEX/                                     |
+| auditors\_url          | String /HTTPS\_URL\_REGEX/                                     |
+| apps\_url              | String /HTTPS\_URL\_REGEX/                                     |
+| domains\_url           | String /HTTPS\_URL\_REGEX/                                     |
+| service\_instances\_url | String /HTTPS\_URL\_REGEX/                                     |
 
 
 
@@ -1120,16 +1122,16 @@ Returns a paginated response of Apps.
 | ---------              | -----------                                                                      |
 | limit                  | Maximum number of results to return.                                             |
 | offset                 | Offset from which to start iteration.                                            |
-| urls-only              | If 1, only return a list of urls; do not expand metadata or resource attributues |
+| urls-only              | If 1, only return a list of urls; do not expand metadata or resource attributes |
 | inline-relations-depth | 0 - don't inline any relations and return URLs.  Otherwise, inline to depth N.   |
 | q                      | Search/filter string of the form `<attribute-name>:<value>` |
 
 The `q` query parameter may include the following `attribute-names`:
 * name
-* space_guid
-* organization_guid
-* framework_guid
-* runtime_guid
+* space\_guid
+* organization\_guid
+* framework\_guid
+* runtime\_guid
 
 See the API Overview for a more detailed description of these parameters.
 
@@ -1139,9 +1141,9 @@ The response is in the standard v2 paginated response format, i.e.:
 
 | name                 | schema                                                       |
 | -------------------- | ------------------------------------------------------------ |
-| total_results        | Integer                                                      |
-| prev_url             | String /HTTPS_URL_REGEX/                                     |
-| next_url             | String /HTTPS_URL_REGEX/                                     |
+| total\_results        | Integer                                                      |
+| prev\_url             | String /HTTPS\_URL\_REGEX/                                     |
+| next\_url             | String /HTTPS\_URL\_REGEX/                                     |
 | resources            | [{:metadata => Hash,:entity => Hash,}]                       |
 
 The schema for `:metadata` follows the v2 standard:
@@ -1149,9 +1151,9 @@ The schema for `:metadata` follows the v2 standard:
 | name                 | schema                                                       |
 | -------------------- | ------------------------------------------------------------ |
 | guid                 | String                                                       |
-| url                  | String /HTTPS_URL_REGEX/                                     |
-| created_at           | Date                                                         |
-| updated_at           | Date                                                         |
+| url                  | String /HTTPS\_URL\_REGEX/                                     |
+| created\_at           | Date                                                         |
+| updated\_at           | Date                                                         |
 
 The schema for the `:entity` hash for App is:
 
@@ -1159,22 +1161,22 @@ The schema for the `:entity` hash for App is:
 | -------------------- | ------------------------------------------------------------ |
 | name                 | String                                                       |
 | production           | bool                                                         |
-| environment_json     | Hash                                                         |
+| environment\_json     | Hash                                                         |
 | memory               | Integer                                                      |
 | instances            | Integer                                                      |
-| file_descriptors     | Integer                                                      |
-| disk_quota           | Integer                                                      |
+| file\_descriptors     | Integer                                                      |
+| disk\_quota           | Integer                                                      |
 | state                | String                                                       |
 | command              | String                                                       |
 | console              | bool                                                         |
-| space_guid           | String                                                       |
-| space_url            | String /HTTPS_URL_REGEX/                                     |
-| runtime_guid         | String                                                       |
-| runtime_url          | String /HTTPS_URL_REGEX/                                     |
-| framework_guid       | String                                                       |
-| framework_url        | String /HTTPS_URL_REGEX/                                     |
-| service_bindings_url | String /HTTPS_URL_REGEX/                                     |
-| routes_url           | String /HTTPS_URL_REGEX/                                     |
+| space\_guid           | String                                                       |
+| space\_url            | String /HTTPS\_URL\_REGEX/                                     |
+| runtime\_guid         | String                                                       |
+| runtime\_url          | String /HTTPS\_URL\_REGEX/                                     |
+| framework\_guid       | String                                                       |
+| framework\_url        | String /HTTPS\_URL\_REGEX/                                     |
+| service\_bindings\_url | String /HTTPS\_URL\_REGEX/                                     |
+| routes\_url           | String /HTTPS\_URL\_REGEX/                                     |
 
 
 
@@ -1190,18 +1192,18 @@ Creates a App.
 | -------------------- | -------- | -------------------------------------------------- |
 | name                 | required | String                                             |
 | production           | optional | bool                                               |
-| environment_json     | optional | Hash                                               |
+| environment\_json     | optional | Hash                                               |
 | memory               | optional | Integer                                            |
 | instances            | optional | Integer                                            |
-| file_descriptors     | optional | Integer                                            |
-| disk_quota           | optional | Integer                                            |
+| file\_descriptors     | optional | Integer                                            |
+| disk\_quota           | optional | Integer                                            |
 | state                | optional | String                                             |
 | command              | optional | String                                             |
 | console              | optional | bool                                               |
-| space_guid           | required | String                                             |
-| runtime_guid         | required | String                                             |
-| framework_guid       | required | String                                             |
-| route_guids          | optional | [String]                                           |
+| space\_guid           | required | String                                             |
+| runtime\_guid         | required | String                                             |
+| framework\_guid       | required | String                                             |
+| route\_guids          | optional | [String]                                           |
 
 #### Response Format:
 
@@ -1215,9 +1217,9 @@ The schema for `:metadata` follows the v2 standard:
 | name                 | schema                                                       |
 | -------------------- | ------------------------------------------------------------ |
 | guid                 | String                                                       |
-| url                  | String /HTTPS_URL_REGEX/                                     |
-| created_at           | Date                                                         |
-| updated_at           | Date                                                         |
+| url                  | String /HTTPS\_URL\_REGEX/                                     |
+| created\_at           | Date                                                         |
+| updated\_at           | Date                                                         |
 
 The schema for the `:entity` hash for App is:
 
@@ -1225,22 +1227,22 @@ The schema for the `:entity` hash for App is:
 | -------------------- | ------------------------------------------------------------ |
 | name                 | String                                                       |
 | production           | bool                                                         |
-| environment_json     | Hash                                                         |
+| environment\_json     | Hash                                                         |
 | memory               | Integer                                                      |
 | instances            | Integer                                                      |
-| file_descriptors     | Integer                                                      |
-| disk_quota           | Integer                                                      |
+| file\_descriptors     | Integer                                                      |
+| disk\_quota           | Integer                                                      |
 | state                | String                                                       |
 | command              | String                                                       |
 | console              | bool                                                         |
-| space_guid           | String                                                       |
-| space_url            | String /HTTPS_URL_REGEX/                                     |
-| runtime_guid         | String                                                       |
-| runtime_url          | String /HTTPS_URL_REGEX/                                     |
-| framework_guid       | String                                                       |
-| framework_url        | String /HTTPS_URL_REGEX/                                     |
-| service_bindings_url | String /HTTPS_URL_REGEX/                                     |
-| routes_url           | String /HTTPS_URL_REGEX/                                     |
+| space\_guid           | String                                                       |
+| space\_url            | String /HTTPS\_URL\_REGEX/                                     |
+| runtime\_guid         | String                                                       |
+| runtime\_url          | String /HTTPS\_URL\_REGEX/                                     |
+| framework\_guid       | String                                                       |
+| framework\_url        | String /HTTPS\_URL\_REGEX/                                     |
+| service\_bindings\_url | String /HTTPS\_URL\_REGEX/                                     |
+| routes\_url           | String /HTTPS\_URL\_REGEX/                                     |
 
 
 
@@ -1267,19 +1269,19 @@ Updates a App.
 | --------------------- | -------- | -------------------------------------------------- |
 | name                  | optional | String                                             |
 | production            | optional | bool                                               |
-| environment_json      | optional | Hash                                               |
+| environment\_json      | optional | Hash                                               |
 | memory                | optional | Integer                                            |
 | instances             | optional | Integer                                            |
-| file_descriptors      | optional | Integer                                            |
-| disk_quota            | optional | Integer                                            |
+| file\_descriptors      | optional | Integer                                            |
+| disk\_quota            | optional | Integer                                            |
 | state                 | optional | String                                             |
 | command               | optional | String                                             |
 | console               | optional | bool                                               |
-| space_guid            | optional | String                                             |
-| runtime_guid          | optional | String                                             |
-| framework_guid        | optional | String                                             |
-| service_binding_guids | optional | [String]                                           |
-| route_guids           | optional | [String]                                           |
+| space\_guid            | optional | String                                             |
+| runtime\_guid          | optional | String                                             |
+| framework\_guid        | optional | String                                             |
+| service\_binding\_guids | optional | [String]                                           |
+| route\_guids           | optional | [String]                                           |
 
 #### Response Format:
 
@@ -1293,9 +1295,9 @@ The schema for `:metadata` follows the v2 standard:
 | name                 | schema                                                       |
 | -------------------- | ------------------------------------------------------------ |
 | guid                 | String                                                       |
-| url                  | String /HTTPS_URL_REGEX/                                     |
-| created_at           | Date                                                         |
-| updated_at           | Date                                                         |
+| url                  | String /HTTPS\_URL\_REGEX/                                     |
+| created\_at           | Date                                                         |
+| updated\_at           | Date                                                         |
 
 The schema for the `:entity` hash for App is:
 
@@ -1303,22 +1305,22 @@ The schema for the `:entity` hash for App is:
 | -------------------- | ------------------------------------------------------------ |
 | name                 | String                                                       |
 | production           | bool                                                         |
-| environment_json     | Hash                                                         |
+| environment\_json     | Hash                                                         |
 | memory               | Integer                                                      |
 | instances            | Integer                                                      |
-| file_descriptors     | Integer                                                      |
-| disk_quota           | Integer                                                      |
+| file\_descriptors     | Integer                                                      |
+| disk\_quota           | Integer                                                      |
 | state                | String                                                       |
 | command              | String                                                       |
 | console              | bool                                                         |
-| space_guid           | String                                                       |
-| space_url            | String /HTTPS_URL_REGEX/                                     |
-| runtime_guid         | String                                                       |
-| runtime_url          | String /HTTPS_URL_REGEX/                                     |
-| framework_guid       | String                                                       |
-| framework_url        | String /HTTPS_URL_REGEX/                                     |
-| service_bindings_url | String /HTTPS_URL_REGEX/                                     |
-| routes_url           | String /HTTPS_URL_REGEX/                                     |
+| space\_guid           | String                                                       |
+| space\_url            | String /HTTPS\_URL\_REGEX/                                     |
+| runtime\_guid         | String                                                       |
+| runtime\_url          | String /HTTPS\_URL\_REGEX/                                     |
+| framework\_guid       | String                                                       |
+| framework\_url        | String /HTTPS\_URL\_REGEX/                                     |
+| service\_bindings\_url | String /HTTPS\_URL\_REGEX/                                     |
+| routes\_url           | String /HTTPS\_URL\_REGEX/                                     |
 
 
 
@@ -1340,9 +1342,9 @@ The schema for `:metadata` follows the v2 standard:
 | name                 | schema                                                       |
 | -------------------- | ------------------------------------------------------------ |
 | guid                 | String                                                       |
-| url                  | String /HTTPS_URL_REGEX/                                     |
-| created_at           | Date                                                         |
-| updated_at           | Date                                                         |
+| url                  | String /HTTPS\_URL\_REGEX/                                     |
+| created\_at           | Date                                                         |
+| updated\_at           | Date                                                         |
 
 The schema for the `:entity` hash for App is:
 
@@ -1350,22 +1352,22 @@ The schema for the `:entity` hash for App is:
 | -------------------- | ------------------------------------------------------------ |
 | name                 | String                                                       |
 | production           | bool                                                         |
-| environment_json     | Hash                                                         |
+| environment\_json     | Hash                                                         |
 | memory               | Integer                                                      |
 | instances            | Integer                                                      |
-| file_descriptors     | Integer                                                      |
-| disk_quota           | Integer                                                      |
+| file\_descriptors     | Integer                                                      |
+| disk\_quota           | Integer                                                      |
 | state                | String                                                       |
 | command              | String                                                       |
 | console              | bool                                                         |
-| space_guid           | String                                                       |
-| space_url            | String /HTTPS_URL_REGEX/                                     |
-| runtime_guid         | String                                                       |
-| runtime_url          | String /HTTPS_URL_REGEX/                                     |
-| framework_guid       | String                                                       |
-| framework_url        | String /HTTPS_URL_REGEX/                                     |
-| service_bindings_url | String /HTTPS_URL_REGEX/                                     |
-| routes_url           | String /HTTPS_URL_REGEX/                                     |
+| space\_guid           | String                                                       |
+| space\_url            | String /HTTPS\_URL\_REGEX/                                     |
+| runtime\_guid         | String                                                       |
+| runtime\_url          | String /HTTPS\_URL\_REGEX/                                     |
+| framework\_guid       | String                                                       |
+| framework\_url        | String /HTTPS\_URL\_REGEX/                                     |
+| service\_bindings\_url | String /HTTPS\_URL\_REGEX/                                     |
+| routes\_url           | String /HTTPS\_URL\_REGEX/                                     |
 
 
 
@@ -1399,13 +1401,13 @@ Returns a paginated response of Runtimes.
 | ---------              | -----------                                                                      |
 | limit                  | Maximum number of results to return.                                             |
 | offset                 | Offset from which to start iteration.                                            |
-| urls-only              | If 1, only return a list of urls; do not expand metadata or resource attributues |
+| urls-only              | If 1, only return a list of urls; do not expand metadata or resource attributes |
 | inline-relations-depth | 0 - don't inline any relations and return URLs.  Otherwise, inline to depth N.   |
 | q                      | Search/filter string of the form `<attribute-name>:<value>` |
 
 The `q` query parameter may include the following `attribute-names`:
 * name
-* app_guid
+* app\_guid
 
 See the API Overview for a more detailed description of these parameters.
 
@@ -1415,9 +1417,9 @@ The response is in the standard v2 paginated response format, i.e.:
 
 | name                 | schema                                                       |
 | -------------------- | ------------------------------------------------------------ |
-| total_results        | Integer                                                      |
-| prev_url             | String /HTTPS_URL_REGEX/                                     |
-| next_url             | String /HTTPS_URL_REGEX/                                     |
+| total\_results        | Integer                                                      |
+| prev\_url             | String /HTTPS\_URL\_REGEX/                                     |
+| next\_url             | String /HTTPS\_URL\_REGEX/                                     |
 | resources            | [{:metadata => Hash,:entity => Hash,}]                       |
 
 The schema for `:metadata` follows the v2 standard:
@@ -1425,9 +1427,9 @@ The schema for `:metadata` follows the v2 standard:
 | name                 | schema                                                       |
 | -------------------- | ------------------------------------------------------------ |
 | guid                 | String                                                       |
-| url                  | String /HTTPS_URL_REGEX/                                     |
-| created_at           | Date                                                         |
-| updated_at           | Date                                                         |
+| url                  | String /HTTPS\_URL\_REGEX/                                     |
+| created\_at           | Date                                                         |
+| updated\_at           | Date                                                         |
 
 The schema for the `:entity` hash for Runtime is:
 
@@ -1436,7 +1438,7 @@ The schema for the `:entity` hash for Runtime is:
 | name                 | String                                                       |
 | description          | String                                                       |
 | version              | String                                                       |
-| apps_url             | String /HTTPS_URL_REGEX/                                     |
+| apps\_url             | String /HTTPS\_URL\_REGEX/                                     |
 
 
 
@@ -1452,7 +1454,7 @@ Creates a Runtime.
 | -------------------- | -------- | -------------------------------------------------- |
 | name                 | required | String                                             |
 | description          | required | String                                             |
-| app_guids            | optional | [String]                                           |
+| app\_guids            | optional | [String]                                           |
 
 #### Response Format:
 
@@ -1466,9 +1468,9 @@ The schema for `:metadata` follows the v2 standard:
 | name                 | schema                                                       |
 | -------------------- | ------------------------------------------------------------ |
 | guid                 | String                                                       |
-| url                  | String /HTTPS_URL_REGEX/                                     |
-| created_at           | Date                                                         |
-| updated_at           | Date                                                         |
+| url                  | String /HTTPS\_URL\_REGEX/                                     |
+| created\_at           | Date                                                         |
+| updated\_at           | Date                                                         |
 
 The schema for the `:entity` hash for Runtime is:
 
@@ -1477,7 +1479,7 @@ The schema for the `:entity` hash for Runtime is:
 | name                 | String                                                       |
 | description          | String                                                       |
 | version              | String                                                       |
-| apps_url             | String /HTTPS_URL_REGEX/                                     |
+| apps\_url             | String /HTTPS\_URL\_REGEX/                                     |
 
 
 
@@ -1504,7 +1506,7 @@ Updates a Runtime.
 | -------------------- | -------- | -------------------------------------------------- |
 | name                 | optional | String                                             |
 | description          | optional | String                                             |
-| app_guids            | optional | [String]                                           |
+| app\_guids            | optional | [String]                                           |
 
 #### Response Format:
 
@@ -1518,9 +1520,9 @@ The schema for `:metadata` follows the v2 standard:
 | name                 | schema                                                       |
 | -------------------- | ------------------------------------------------------------ |
 | guid                 | String                                                       |
-| url                  | String /HTTPS_URL_REGEX/                                     |
-| created_at           | Date                                                         |
-| updated_at           | Date                                                         |
+| url                  | String /HTTPS\_URL\_REGEX/                                     |
+| created\_at           | Date                                                         |
+| updated\_at           | Date                                                         |
 
 The schema for the `:entity` hash for Runtime is:
 
@@ -1529,7 +1531,7 @@ The schema for the `:entity` hash for Runtime is:
 | name                 | String                                                       |
 | description          | String                                                       |
 | version              | String                                                       |
-| apps_url             | String /HTTPS_URL_REGEX/                                     |
+| apps\_url             | String /HTTPS\_URL\_REGEX/                                     |
 
 
 
@@ -1551,9 +1553,9 @@ The schema for `:metadata` follows the v2 standard:
 | name                 | schema                                                       |
 | -------------------- | ------------------------------------------------------------ |
 | guid                 | String                                                       |
-| url                  | String /HTTPS_URL_REGEX/                                     |
-| created_at           | Date                                                         |
-| updated_at           | Date                                                         |
+| url                  | String /HTTPS\_URL\_REGEX/                                     |
+| created\_at           | Date                                                         |
+| updated\_at           | Date                                                         |
 
 The schema for the `:entity` hash for Runtime is:
 
@@ -1562,7 +1564,7 @@ The schema for the `:entity` hash for Runtime is:
 | name                 | String                                                       |
 | description          | String                                                       |
 | version              | String                                                       |
-| apps_url             | String /HTTPS_URL_REGEX/                                     |
+| apps\_url             | String /HTTPS\_URL\_REGEX/                                     |
 
 
 
@@ -1596,13 +1598,13 @@ Returns a paginated response of Frameworks.
 | ---------              | -----------                                                                      |
 | limit                  | Maximum number of results to return.                                             |
 | offset                 | Offset from which to start iteration.                                            |
-| urls-only              | If 1, only return a list of urls; do not expand metadata or resource attributues |
+| urls-only              | If 1, only return a list of urls; do not expand metadata or resource attributes |
 | inline-relations-depth | 0 - don't inline any relations and return URLs.  Otherwise, inline to depth N.   |
 | q                      | Search/filter string of the form `<attribute-name>:<value>` |
 
 The `q` query parameter may include the following `attribute-names`:
 * name
-* app_guid
+* app\_guid
 
 See the API Overview for a more detailed description of these parameters.
 
@@ -1612,9 +1614,9 @@ The response is in the standard v2 paginated response format, i.e.:
 
 | name                 | schema                                                       |
 | -------------------- | ------------------------------------------------------------ |
-| total_results        | Integer                                                      |
-| prev_url             | String /HTTPS_URL_REGEX/                                     |
-| next_url             | String /HTTPS_URL_REGEX/                                     |
+| total\_results        | Integer                                                      |
+| prev\_url             | String /HTTPS\_URL\_REGEX/                                     |
+| next\_url             | String /HTTPS\_URL\_REGEX/                                     |
 | resources            | [{:metadata => Hash,:entity => Hash,}]                       |
 
 The schema for `:metadata` follows the v2 standard:
@@ -1622,9 +1624,9 @@ The schema for `:metadata` follows the v2 standard:
 | name                 | schema                                                       |
 | -------------------- | ------------------------------------------------------------ |
 | guid                 | String                                                       |
-| url                  | String /HTTPS_URL_REGEX/                                     |
-| created_at           | Date                                                         |
-| updated_at           | Date                                                         |
+| url                  | String /HTTPS\_URL\_REGEX/                                     |
+| created\_at           | Date                                                         |
+| updated\_at           | Date                                                         |
 
 The schema for the `:entity` hash for Framework is:
 
@@ -1632,7 +1634,7 @@ The schema for the `:entity` hash for Framework is:
 | -------------------- | ------------------------------------------------------------ |
 | name                 | String                                                       |
 | description          | String                                                       |
-| apps_url             | String /HTTPS_URL_REGEX/                                     |
+| apps\_url             | String /HTTPS\_URL\_REGEX/                                     |
 
 
 
@@ -1648,7 +1650,7 @@ Creates a Framework.
 | -------------------- | -------- | -------------------------------------------------- |
 | name                 | required | String                                             |
 | description          | required | String                                             |
-| app_guids            | optional | [String]                                           |
+| app\_guids            | optional | [String]                                           |
 
 #### Response Format:
 
@@ -1662,9 +1664,9 @@ The schema for `:metadata` follows the v2 standard:
 | name                 | schema                                                       |
 | -------------------- | ------------------------------------------------------------ |
 | guid                 | String                                                       |
-| url                  | String /HTTPS_URL_REGEX/                                     |
-| created_at           | Date                                                         |
-| updated_at           | Date                                                         |
+| url                  | String /HTTPS\_URL\_REGEX/                                     |
+| created\_at           | Date                                                         |
+| updated\_at           | Date                                                         |
 
 The schema for the `:entity` hash for Framework is:
 
@@ -1672,7 +1674,7 @@ The schema for the `:entity` hash for Framework is:
 | -------------------- | ------------------------------------------------------------ |
 | name                 | String                                                       |
 | description          | String                                                       |
-| apps_url             | String /HTTPS_URL_REGEX/                                     |
+| apps\_url             | String /HTTPS\_URL\_REGEX/                                     |
 
 
 
@@ -1699,7 +1701,7 @@ Updates a Framework.
 | -------------------- | -------- | -------------------------------------------------- |
 | name                 | optional | String                                             |
 | description          | optional | String                                             |
-| app_guids            | optional | [String]                                           |
+| app\_guids            | optional | [String]                                           |
 
 #### Response Format:
 
@@ -1713,9 +1715,9 @@ The schema for `:metadata` follows the v2 standard:
 | name                 | schema                                                       |
 | -------------------- | ------------------------------------------------------------ |
 | guid                 | String                                                       |
-| url                  | String /HTTPS_URL_REGEX/                                     |
-| created_at           | Date                                                         |
-| updated_at           | Date                                                         |
+| url                  | String /HTTPS\_URL\_REGEX/                                     |
+| created\_at           | Date                                                         |
+| updated\_at           | Date                                                         |
 
 The schema for the `:entity` hash for Framework is:
 
@@ -1723,7 +1725,7 @@ The schema for the `:entity` hash for Framework is:
 | -------------------- | ------------------------------------------------------------ |
 | name                 | String                                                       |
 | description          | String                                                       |
-| apps_url             | String /HTTPS_URL_REGEX/                                     |
+| apps\_url             | String /HTTPS\_URL\_REGEX/                                     |
 
 
 
@@ -1745,9 +1747,9 @@ The schema for `:metadata` follows the v2 standard:
 | name                 | schema                                                       |
 | -------------------- | ------------------------------------------------------------ |
 | guid                 | String                                                       |
-| url                  | String /HTTPS_URL_REGEX/                                     |
-| created_at           | Date                                                         |
-| updated_at           | Date                                                         |
+| url                  | String /HTTPS\_URL\_REGEX/                                     |
+| created\_at           | Date                                                         |
+| updated\_at           | Date                                                         |
 
 The schema for the `:entity` hash for Framework is:
 
@@ -1755,7 +1757,7 @@ The schema for the `:entity` hash for Framework is:
 | -------------------- | ------------------------------------------------------------ |
 | name                 | String                                                       |
 | description          | String                                                       |
-| apps_url             | String /HTTPS_URL_REGEX/                                     |
+| apps\_url             | String /HTTPS\_URL\_REGEX/                                     |
 
 
 
@@ -1789,12 +1791,12 @@ Returns a paginated response of Services.
 | ---------              | -----------                                                                      |
 | limit                  | Maximum number of results to return.                                             |
 | offset                 | Offset from which to start iteration.                                            |
-| urls-only              | If 1, only return a list of urls; do not expand metadata or resource attributues |
+| urls-only              | If 1, only return a list of urls; do not expand metadata or resource attributes |
 | inline-relations-depth | 0 - don't inline any relations and return URLs.  Otherwise, inline to depth N.   |
 | q                      | Search/filter string of the form `<attribute-name>:<value>` |
 
 The `q` query parameter may include the following `attribute-names`:
-* service_plan_guid
+* service\_plan\_guid
 
 See the API Overview for a more detailed description of these parameters.
 
@@ -1804,9 +1806,9 @@ The response is in the standard v2 paginated response format, i.e.:
 
 | name                 | schema                                                       |
 | -------------------- | ------------------------------------------------------------ |
-| total_results        | Integer                                                      |
-| prev_url             | String /HTTPS_URL_REGEX/                                     |
-| next_url             | String /HTTPS_URL_REGEX/                                     |
+| total\_results        | Integer                                                      |
+| prev\_url             | String /HTTPS\_URL\_REGEX/                                     |
+| next\_url             | String /HTTPS\_URL\_REGEX/                                     |
 | resources            | [{:metadata => Hash,:entity => Hash,}]                       |
 
 The schema for `:metadata` follows the v2 standard:
@@ -1814,9 +1816,9 @@ The schema for `:metadata` follows the v2 standard:
 | name                 | schema                                                       |
 | -------------------- | ------------------------------------------------------------ |
 | guid                 | String                                                       |
-| url                  | String /HTTPS_URL_REGEX/                                     |
-| created_at           | Date                                                         |
-| updated_at           | Date                                                         |
+| url                  | String /HTTPS\_URL\_REGEX/                                     |
+| created\_at           | Date                                                         |
+| updated\_at           | Date                                                         |
 
 The schema for the `:entity` hash for Service is:
 
@@ -1824,14 +1826,14 @@ The schema for the `:entity` hash for Service is:
 | -------------------- | ------------------------------------------------------------ |
 | label                | String                                                       |
 | provider             | String                                                       |
-| url                  | String /URL_REGEX/                                           |
+| url                  | String /URL\_REGEX/                                           |
 | description          | String                                                       |
 | version              | String                                                       |
-| info_url             | String /URL_REGEX/                                           |
+| info\_url             | String /URL\_REGEX/                                           |
 | acls                 | {"users" => [String],"wildcards" => [String],}               |
 | timeout              | Integer                                                      |
 | active               | bool                                                         |
-| service_plans_url    | String /HTTPS_URL_REGEX/                                     |
+| service\_plans\_url    | String /HTTPS\_URL\_REGEX/                                     |
 
 
 
@@ -1847,14 +1849,14 @@ Creates a Service.
 | -------------------- | -------- | -------------------------------------------------- |
 | label                | required | String                                             |
 | provider             | required | String                                             |
-| url                  | required | String /URL_REGEX/                                 |
+| url                  | required | String /URL\_REGEX/                                 |
 | description          | required | String                                             |
 | version              | required | String                                             |
-| info_url             | optional | String /URL_REGEX/                                 |
+| info\_url             | optional | String /URL\_REGEX/                                 |
 | acls                 | optional | {"users" => [String],"wildcards" => [String],}     |
 | timeout              | optional | Integer                                            |
 | active               | optional | bool                                               |
-| service_plan_guids   | optional | [String]                                           |
+| service\_plan\_guids   | optional | [String]                                           |
 
 #### Response Format:
 
@@ -1868,9 +1870,9 @@ The schema for `:metadata` follows the v2 standard:
 | name                 | schema                                                       |
 | -------------------- | ------------------------------------------------------------ |
 | guid                 | String                                                       |
-| url                  | String /HTTPS_URL_REGEX/                                     |
-| created_at           | Date                                                         |
-| updated_at           | Date                                                         |
+| url                  | String /HTTPS\_URL\_REGEX/                                     |
+| created\_at           | Date                                                         |
+| updated\_at           | Date                                                         |
 
 The schema for the `:entity` hash for Service is:
 
@@ -1878,14 +1880,14 @@ The schema for the `:entity` hash for Service is:
 | -------------------- | ------------------------------------------------------------ |
 | label                | String                                                       |
 | provider             | String                                                       |
-| url                  | String /URL_REGEX/                                           |
+| url                  | String /URL\_REGEX/                                           |
 | description          | String                                                       |
 | version              | String                                                       |
-| info_url             | String /URL_REGEX/                                           |
+| info\_url             | String /URL\_REGEX/                                           |
 | acls                 | {"users" => [String],"wildcards" => [String],}               |
 | timeout              | Integer                                                      |
 | active               | bool                                                         |
-| service_plans_url    | String /HTTPS_URL_REGEX/                                     |
+| service\_plans\_url    | String /HTTPS\_URL\_REGEX/                                     |
 
 
 
@@ -1912,14 +1914,14 @@ Updates a Service.
 | -------------------- | -------- | -------------------------------------------------- |
 | label                | optional | String                                             |
 | provider             | optional | String                                             |
-| url                  | optional | String /URL_REGEX/                                 |
+| url                  | optional | String /URL\_REGEX/                                 |
 | description          | optional | String                                             |
 | version              | optional | String                                             |
-| info_url             | optional | String /URL_REGEX/                                 |
+| info\_url             | optional | String /URL\_REGEX/                                 |
 | acls                 | optional | {"users" => [String],"wildcards" => [String],}     |
 | timeout              | optional | Integer                                            |
 | active               | optional | bool                                               |
-| service_plan_guids   | optional | [String]                                           |
+| service\_plan\_guids   | optional | [String]                                           |
 
 #### Response Format:
 
@@ -1933,9 +1935,9 @@ The schema for `:metadata` follows the v2 standard:
 | name                 | schema                                                       |
 | -------------------- | ------------------------------------------------------------ |
 | guid                 | String                                                       |
-| url                  | String /HTTPS_URL_REGEX/                                     |
-| created_at           | Date                                                         |
-| updated_at           | Date                                                         |
+| url                  | String /HTTPS\_URL\_REGEX/                                     |
+| created\_at           | Date                                                         |
+| updated\_at           | Date                                                         |
 
 The schema for the `:entity` hash for Service is:
 
@@ -1943,14 +1945,14 @@ The schema for the `:entity` hash for Service is:
 | -------------------- | ------------------------------------------------------------ |
 | label                | String                                                       |
 | provider             | String                                                       |
-| url                  | String /URL_REGEX/                                           |
+| url                  | String /URL\_REGEX/                                           |
 | description          | String                                                       |
 | version              | String                                                       |
-| info_url             | String /URL_REGEX/                                           |
+| info\_url             | String /URL\_REGEX/                                           |
 | acls                 | {"users" => [String],"wildcards" => [String],}               |
 | timeout              | Integer                                                      |
 | active               | bool                                                         |
-| service_plans_url    | String /HTTPS_URL_REGEX/                                     |
+| service\_plans\_url    | String /HTTPS\_URL\_REGEX/                                     |
 
 
 
@@ -1972,9 +1974,9 @@ The schema for `:metadata` follows the v2 standard:
 | name                 | schema                                                       |
 | -------------------- | ------------------------------------------------------------ |
 | guid                 | String                                                       |
-| url                  | String /HTTPS_URL_REGEX/                                     |
-| created_at           | Date                                                         |
-| updated_at           | Date                                                         |
+| url                  | String /HTTPS\_URL\_REGEX/                                     |
+| created\_at           | Date                                                         |
+| updated\_at           | Date                                                         |
 
 The schema for the `:entity` hash for Service is:
 
@@ -1982,14 +1984,14 @@ The schema for the `:entity` hash for Service is:
 | -------------------- | ------------------------------------------------------------ |
 | label                | String                                                       |
 | provider             | String                                                       |
-| url                  | String /URL_REGEX/                                           |
+| url                  | String /URL\_REGEX/                                           |
 | description          | String                                                       |
 | version              | String                                                       |
-| info_url             | String /URL_REGEX/                                           |
+| info\_url             | String /URL\_REGEX/                                           |
 | acls                 | {"users" => [String],"wildcards" => [String],}               |
 | timeout              | Integer                                                      |
 | active               | bool                                                         |
-| service_plans_url    | String /HTTPS_URL_REGEX/                                     |
+| service\_plans\_url    | String /HTTPS\_URL\_REGEX/                                     |
 
 
 
@@ -2013,7 +2015,7 @@ NOTE: Like the migrations and the models this is being fleshed out and should be
 
 ### LIST ServicePlans
 
-Resource URL: `GET /v2/service_plans`
+Resource URL: `GET /v2/service\_plans`
 
 Returns a paginated response of ServicePlans.
 
@@ -2023,13 +2025,13 @@ Returns a paginated response of ServicePlans.
 | ---------              | -----------                                                                      |
 | limit                  | Maximum number of results to return.                                             |
 | offset                 | Offset from which to start iteration.                                            |
-| urls-only              | If 1, only return a list of urls; do not expand metadata or resource attributues |
+| urls-only              | If 1, only return a list of urls; do not expand metadata or resource attributes |
 | inline-relations-depth | 0 - don't inline any relations and return URLs.  Otherwise, inline to depth N.   |
 | q                      | Search/filter string of the form `<attribute-name>:<value>` |
 
 The `q` query parameter may include the following `attribute-names`:
-* service_guid
-* service_instance_guid
+* service\_guid
+* service\_instance\_guid
 
 See the API Overview for a more detailed description of these parameters.
 
@@ -2039,9 +2041,9 @@ The response is in the standard v2 paginated response format, i.e.:
 
 | name                 | schema                                                       |
 | -------------------- | ------------------------------------------------------------ |
-| total_results        | Integer                                                      |
-| prev_url             | String /HTTPS_URL_REGEX/                                     |
-| next_url             | String /HTTPS_URL_REGEX/                                     |
+| total\_results        | Integer                                                      |
+| prev\_url             | String /HTTPS\_URL\_REGEX/                                     |
+| next\_url             | String /HTTPS\_URL\_REGEX/                                     |
 | resources            | [{:metadata => Hash,:entity => Hash,}]                       |
 
 The schema for `:metadata` follows the v2 standard:
@@ -2049,9 +2051,9 @@ The schema for `:metadata` follows the v2 standard:
 | name                 | schema                                                       |
 | -------------------- | ------------------------------------------------------------ |
 | guid                 | String                                                       |
-| url                  | String /HTTPS_URL_REGEX/                                     |
-| created_at           | Date                                                         |
-| updated_at           | Date                                                         |
+| url                  | String /HTTPS\_URL\_REGEX/                                     |
+| created\_at           | Date                                                         |
+| updated\_at           | Date                                                         |
 
 The schema for the `:entity` hash for ServicePlan is:
 
@@ -2060,9 +2062,9 @@ The schema for the `:entity` hash for ServicePlan is:
 | name                  | String                                                       |
 | free                  | bool                                                         |
 | description           | String                                                       |
-| service_guid          | String                                                       |
-| service_url           | String /HTTPS_URL_REGEX/                                     |
-| service_instances_url | String /HTTPS_URL_REGEX/                                     |
+| service\_guid          | String                                                       |
+| service\_url           | String /HTTPS\_URL\_REGEX/                                     |
+| service\_instances\_url | String /HTTPS\_URL\_REGEX/                                     |
 
 
 
@@ -2079,8 +2081,8 @@ Creates a ServicePlan.
 | name                   | required | String                                             |
 | free                   | required | bool                                               |
 | description            | required | String                                             |
-| service_guid           | required | String                                             |
-| service_instance_guids | optional | [String]                                           |
+| service\_guid           | required | String                                             |
+| service\_instance\_guids | optional | [String]                                           |
 
 #### Response Format:
 
@@ -2094,9 +2096,9 @@ The schema for `:metadata` follows the v2 standard:
 | name                 | schema                                                       |
 | -------------------- | ------------------------------------------------------------ |
 | guid                 | String                                                       |
-| url                  | String /HTTPS_URL_REGEX/                                     |
-| created_at           | Date                                                         |
-| updated_at           | Date                                                         |
+| url                  | String /HTTPS\_URL\_REGEX/                                     |
+| created\_at           | Date                                                         |
+| updated\_at           | Date                                                         |
 
 The schema for the `:entity` hash for ServicePlan is:
 
@@ -2105,9 +2107,9 @@ The schema for the `:entity` hash for ServicePlan is:
 | name                  | String                                                       |
 | free                  | bool                                                         |
 | description           | String                                                       |
-| service_guid          | String                                                       |
-| service_url           | String /HTTPS_URL_REGEX/                                     |
-| service_instances_url | String /HTTPS_URL_REGEX/                                     |
+| service\_guid          | String                                                       |
+| service\_url           | String /HTTPS\_URL\_REGEX/                                     |
+| service\_instances\_url | String /HTTPS\_URL\_REGEX/                                     |
 
 
 
@@ -2135,8 +2137,8 @@ Updates a ServicePlan.
 | name                   | optional | String                                             |
 | free                   | optional | bool                                               |
 | description            | optional | String                                             |
-| service_guid           | optional | String                                             |
-| service_instance_guids | optional | [String]                                           |
+| service\_guid           | optional | String                                             |
+| service\_instance\_guids | optional | [String]                                           |
 
 #### Response Format:
 
@@ -2150,9 +2152,9 @@ The schema for `:metadata` follows the v2 standard:
 | name                 | schema                                                       |
 | -------------------- | ------------------------------------------------------------ |
 | guid                 | String                                                       |
-| url                  | String /HTTPS_URL_REGEX/                                     |
-| created_at           | Date                                                         |
-| updated_at           | Date                                                         |
+| url                  | String /HTTPS\_URL\_REGEX/                                     |
+| created\_at           | Date                                                         |
+| updated\_at           | Date                                                         |
 
 The schema for the `:entity` hash for ServicePlan is:
 
@@ -2161,9 +2163,9 @@ The schema for the `:entity` hash for ServicePlan is:
 | name                  | String                                                       |
 | free                  | bool                                                         |
 | description           | String                                                       |
-| service_guid          | String                                                       |
-| service_url           | String /HTTPS_URL_REGEX/                                     |
-| service_instances_url | String /HTTPS_URL_REGEX/                                     |
+| service\_guid          | String                                                       |
+| service\_url           | String /HTTPS\_URL\_REGEX/                                     |
+| service\_instances\_url | String /HTTPS\_URL\_REGEX/                                     |
 
 
 
@@ -2185,9 +2187,9 @@ The schema for `:metadata` follows the v2 standard:
 | name                 | schema                                                       |
 | -------------------- | ------------------------------------------------------------ |
 | guid                 | String                                                       |
-| url                  | String /HTTPS_URL_REGEX/                                     |
-| created_at           | Date                                                         |
-| updated_at           | Date                                                         |
+| url                  | String /HTTPS\_URL\_REGEX/                                     |
+| created\_at           | Date                                                         |
+| updated\_at           | Date                                                         |
 
 The schema for the `:entity` hash for ServicePlan is:
 
@@ -2196,9 +2198,9 @@ The schema for the `:entity` hash for ServicePlan is:
 | name                  | String                                                       |
 | free                  | bool                                                         |
 | description           | String                                                       |
-| service_guid          | String                                                       |
-| service_url           | String /HTTPS_URL_REGEX/                                     |
-| service_instances_url | String /HTTPS_URL_REGEX/                                     |
+| service\_guid          | String                                                       |
+| service\_url           | String /HTTPS\_URL\_REGEX/                                     |
+| service\_instances\_url | String /HTTPS\_URL\_REGEX/                                     |
 
 
 
@@ -2232,15 +2234,15 @@ Returns a paginated response of ServiceInstances.
 | ---------              | -----------                                                                      |
 | limit                  | Maximum number of results to return.                                             |
 | offset                 | Offset from which to start iteration.                                            |
-| urls-only              | If 1, only return a list of urls; do not expand metadata or resource attributues |
+| urls-only              | If 1, only return a list of urls; do not expand metadata or resource attributes |
 | inline-relations-depth | 0 - don't inline any relations and return URLs.  Otherwise, inline to depth N.   |
 | q                      | Search/filter string of the form `<attribute-name>:<value>` |
 
 The `q` query parameter may include the following `attribute-names`:
 * name
-* space_guid
-* service_plan_guid
-* service_binding_guid
+* space\_guid
+* service\_plan\_guid
+* service\_binding\_guid
 
 See the API Overview for a more detailed description of these parameters.
 
@@ -2250,9 +2252,9 @@ The response is in the standard v2 paginated response format, i.e.:
 
 | name                 | schema                                                       |
 | -------------------- | ------------------------------------------------------------ |
-| total_results        | Integer                                                      |
-| prev_url             | String /HTTPS_URL_REGEX/                                     |
-| next_url             | String /HTTPS_URL_REGEX/                                     |
+| total\_results        | Integer                                                      |
+| prev\_url             | String /HTTPS\_URL\_REGEX/                                     |
+| next\_url             | String /HTTPS\_URL\_REGEX/                                     |
 | resources            | [{:metadata => Hash,:entity => Hash,}]                       |
 
 The schema for `:metadata` follows the v2 standard:
@@ -2260,20 +2262,20 @@ The schema for `:metadata` follows the v2 standard:
 | name                 | schema                                                       |
 | -------------------- | ------------------------------------------------------------ |
 | guid                 | String                                                       |
-| url                  | String /HTTPS_URL_REGEX/                                     |
-| created_at           | Date                                                         |
-| updated_at           | Date                                                         |
+| url                  | String /HTTPS\_URL\_REGEX/                                     |
+| created\_at           | Date                                                         |
+| updated\_at           | Date                                                         |
 
 The schema for the `:entity` hash for ServiceInstance is:
 
 | name                 | schema                                                       |
 | -------------------- | ------------------------------------------------------------ |
 | name                 | String                                                       |
-| space_guid           | String                                                       |
-| space_url            | String /HTTPS_URL_REGEX/                                     |
-| service_plan_guid    | String                                                       |
-| service_plan_url     | String /HTTPS_URL_REGEX/                                     |
-| service_bindings_url | String /HTTPS_URL_REGEX/                                     |
+| space\_guid           | String                                                       |
+| space\_url            | String /HTTPS\_URL\_REGEX/                                     |
+| service\_plan\_guid    | String                                                       |
+| service\_plan\_url     | String /HTTPS\_URL\_REGEX/                                     |
+| service\_bindings\_url | String /HTTPS\_URL\_REGEX/                                     |
 
 
 
@@ -2288,9 +2290,9 @@ Creates a ServiceInstance.
 | name                  | notes    | schema                                             |
 | --------------------- | -------- | -------------------------------------------------- |
 | name                  | required | String                                             |
-| space_guid            | required | String                                             |
-| service_plan_guid     | required | String                                             |
-| service_binding_guids | optional | [String]                                           |
+| space\_guid            | required | String                                             |
+| service\_plan\_guid     | required | String                                             |
+| service\_binding\_guids | optional | [String]                                           |
 
 #### Response Format:
 
@@ -2304,20 +2306,20 @@ The schema for `:metadata` follows the v2 standard:
 | name                 | schema                                                       |
 | -------------------- | ------------------------------------------------------------ |
 | guid                 | String                                                       |
-| url                  | String /HTTPS_URL_REGEX/                                     |
-| created_at           | Date                                                         |
-| updated_at           | Date                                                         |
+| url                  | String /HTTPS\_URL\_REGEX/                                     |
+| created\_at           | Date                                                         |
+| updated\_at           | Date                                                         |
 
 The schema for the `:entity` hash for ServiceInstance is:
 
 | name                 | schema                                                       |
 | -------------------- | ------------------------------------------------------------ |
 | name                 | String                                                       |
-| space_guid           | String                                                       |
-| space_url            | String /HTTPS_URL_REGEX/                                     |
-| service_plan_guid    | String                                                       |
-| service_plan_url     | String /HTTPS_URL_REGEX/                                     |
-| service_bindings_url | String /HTTPS_URL_REGEX/                                     |
+| space\_guid           | String                                                       |
+| space\_url            | String /HTTPS\_URL\_REGEX/                                     |
+| service\_plan\_guid    | String                                                       |
+| service\_plan\_url     | String /HTTPS\_URL\_REGEX/                                     |
+| service\_bindings\_url | String /HTTPS\_URL\_REGEX/                                     |
 
 
 
@@ -2343,9 +2345,9 @@ Updates a ServiceInstance.
 | name                  | notes    | schema                                             |
 | --------------------- | -------- | -------------------------------------------------- |
 | name                  | optional | String                                             |
-| space_guid            | optional | String                                             |
-| service_plan_guid     | optional | String                                             |
-| service_binding_guids | optional | [String]                                           |
+| space\_guid            | optional | String                                             |
+| service\_plan\_guid     | optional | String                                             |
+| service\_binding\_guids | optional | [String]                                           |
 
 #### Response Format:
 
@@ -2359,20 +2361,20 @@ The schema for `:metadata` follows the v2 standard:
 | name                 | schema                                                       |
 | -------------------- | ------------------------------------------------------------ |
 | guid                 | String                                                       |
-| url                  | String /HTTPS_URL_REGEX/                                     |
-| created_at           | Date                                                         |
-| updated_at           | Date                                                         |
+| url                  | String /HTTPS\_URL\_REGEX/                                     |
+| created\_at           | Date                                                         |
+| updated\_at           | Date                                                         |
 
 The schema for the `:entity` hash for ServiceInstance is:
 
 | name                 | schema                                                       |
 | -------------------- | ------------------------------------------------------------ |
 | name                 | String                                                       |
-| space_guid           | String                                                       |
-| space_url            | String /HTTPS_URL_REGEX/                                     |
-| service_plan_guid    | String                                                       |
-| service_plan_url     | String /HTTPS_URL_REGEX/                                     |
-| service_bindings_url | String /HTTPS_URL_REGEX/                                     |
+| space\_guid           | String                                                       |
+| space\_url            | String /HTTPS\_URL\_REGEX/                                     |
+| service\_plan\_guid    | String                                                       |
+| service\_plan\_url     | String /HTTPS\_URL\_REGEX/                                     |
+| service\_bindings\_url | String /HTTPS\_URL\_REGEX/                                     |
 
 
 
@@ -2394,20 +2396,20 @@ The schema for `:metadata` follows the v2 standard:
 | name                 | schema                                                       |
 | -------------------- | ------------------------------------------------------------ |
 | guid                 | String                                                       |
-| url                  | String /HTTPS_URL_REGEX/                                     |
-| created_at           | Date                                                         |
-| updated_at           | Date                                                         |
+| url                  | String /HTTPS\_URL\_REGEX/                                     |
+| created\_at           | Date                                                         |
+| updated\_at           | Date                                                         |
 
 The schema for the `:entity` hash for ServiceInstance is:
 
 | name                 | schema                                                       |
 | -------------------- | ------------------------------------------------------------ |
 | name                 | String                                                       |
-| space_guid           | String                                                       |
-| space_url            | String /HTTPS_URL_REGEX/                                     |
-| service_plan_guid    | String                                                       |
-| service_plan_url     | String /HTTPS_URL_REGEX/                                     |
-| service_bindings_url | String /HTTPS_URL_REGEX/                                     |
+| space\_guid           | String                                                       |
+| space\_url            | String /HTTPS\_URL\_REGEX/                                     |
+| service\_plan\_guid    | String                                                       |
+| service\_plan\_url     | String /HTTPS\_URL\_REGEX/                                     |
+| service\_bindings\_url | String /HTTPS\_URL\_REGEX/                                     |
 
 
 
@@ -2440,13 +2442,13 @@ Returns a paginated response of ServiceBindings.
 | ---------              | -----------                                                                      |
 | limit                  | Maximum number of results to return.                                             |
 | offset                 | Offset from which to start iteration.                                            |
-| urls-only              | If 1, only return a list of urls; do not expand metadata or resource attributues |
+| urls-only              | If 1, only return a list of urls; do not expand metadata or resource attributes |
 | inline-relations-depth | 0 - don't inline any relations and return URLs.  Otherwise, inline to depth N.   |
 | q                      | Search/filter string of the form `<attribute-name>:<value>` |
 
 The `q` query parameter may include the following `attribute-names`:
-* app_guid
-* service_instance_guid
+* app\_guid
+* service\_instance\_guid
 
 See the API Overview for a more detailed description of these parameters.
 
@@ -2456,9 +2458,9 @@ The response is in the standard v2 paginated response format, i.e.:
 
 | name                 | schema                                                       |
 | -------------------- | ------------------------------------------------------------ |
-| total_results        | Integer                                                      |
-| prev_url             | String /HTTPS_URL_REGEX/                                     |
-| next_url             | String /HTTPS_URL_REGEX/                                     |
+| total\_results        | Integer                                                      |
+| prev\_url             | String /HTTPS\_URL\_REGEX/                                     |
+| next\_url             | String /HTTPS\_URL\_REGEX/                                     |
 | resources            | [{:metadata => Hash,:entity => Hash,}]                       |
 
 The schema for `:metadata` follows the v2 standard:
@@ -2466,18 +2468,18 @@ The schema for `:metadata` follows the v2 standard:
 | name                 | schema                                                       |
 | -------------------- | ------------------------------------------------------------ |
 | guid                 | String                                                       |
-| url                  | String /HTTPS_URL_REGEX/                                     |
-| created_at           | Date                                                         |
-| updated_at           | Date                                                         |
+| url                  | String /HTTPS\_URL\_REGEX/                                     |
+| created\_at           | Date                                                         |
+| updated\_at           | Date                                                         |
 
 The schema for the `:entity` hash for ServiceBinding is:
 
 | name                  | schema                                                       |
 | --------------------- | ------------------------------------------------------------ |
-| app_guid              | String                                                       |
-| app_url               | String /HTTPS_URL_REGEX/                                     |
-| service_instance_guid | String                                                       |
-| service_instance_url  | String /HTTPS_URL_REGEX/                                     |
+| app\_guid              | String                                                       |
+| app\_url               | String /HTTPS\_URL\_REGEX/                                     |
+| service\_instance\_guid | String                                                       |
+| service\_instance\_url  | String /HTTPS\_URL\_REGEX/                                     |
 
 
 
@@ -2491,8 +2493,8 @@ Creates a ServiceBinding.
 
 | name                  | notes    | schema                                             |
 | --------------------- | -------- | -------------------------------------------------- |
-| app_guid              | required | String                                             |
-| service_instance_guid | required | String                                             |
+| app\_guid              | required | String                                             |
+| service\_instance\_guid | required | String                                             |
 
 #### Response Format:
 
@@ -2506,18 +2508,18 @@ The schema for `:metadata` follows the v2 standard:
 | name                 | schema                                                       |
 | -------------------- | ------------------------------------------------------------ |
 | guid                 | String                                                       |
-| url                  | String /HTTPS_URL_REGEX/                                     |
-| created_at           | Date                                                         |
-| updated_at           | Date                                                         |
+| url                  | String /HTTPS\_URL\_REGEX/                                     |
+| created\_at           | Date                                                         |
+| updated\_at           | Date                                                         |
 
 The schema for the `:entity` hash for ServiceBinding is:
 
 | name                  | schema                                                       |
 | --------------------- | ------------------------------------------------------------ |
-| app_guid              | String                                                       |
-| app_url               | String /HTTPS_URL_REGEX/                                     |
-| service_instance_guid | String                                                       |
-| service_instance_url  | String /HTTPS_URL_REGEX/                                     |
+| app\_guid              | String                                                       |
+| app\_url               | String /HTTPS\_URL\_REGEX/                                     |
+| service\_instance\_guid | String                                                       |
+| service\_instance\_url  | String /HTTPS\_URL\_REGEX/                                     |
 
 
 
@@ -2542,8 +2544,8 @@ Updates a ServiceBinding.
 
 | name                  | notes    | schema                                             |
 | --------------------- | -------- | -------------------------------------------------- |
-| app_guid              | optional | String                                             |
-| service_instance_guid | optional | String                                             |
+| app\_guid              | optional | String                                             |
+| service\_instance\_guid | optional | String                                             |
 
 #### Response Format:
 
@@ -2557,18 +2559,18 @@ The schema for `:metadata` follows the v2 standard:
 | name                 | schema                                                       |
 | -------------------- | ------------------------------------------------------------ |
 | guid                 | String                                                       |
-| url                  | String /HTTPS_URL_REGEX/                                     |
-| created_at           | Date                                                         |
-| updated_at           | Date                                                         |
+| url                  | String /HTTPS\_URL\_REGEX/                                     |
+| created\_at           | Date                                                         |
+| updated\_at           | Date                                                         |
 
 The schema for the `:entity` hash for ServiceBinding is:
 
 | name                  | schema                                                       |
 | --------------------- | ------------------------------------------------------------ |
-| app_guid              | String                                                       |
-| app_url               | String /HTTPS_URL_REGEX/                                     |
-| service_instance_guid | String                                                       |
-| service_instance_url  | String /HTTPS_URL_REGEX/                                     |
+| app\_guid              | String                                                       |
+| app\_url               | String /HTTPS\_URL\_REGEX/                                     |
+| service\_instance\_guid | String                                                       |
+| service\_instance\_url  | String /HTTPS\_URL\_REGEX/                                     |
 
 
 
@@ -2590,18 +2592,18 @@ The schema for `:metadata` follows the v2 standard:
 | name                 | schema                                                       |
 | -------------------- | ------------------------------------------------------------ |
 | guid                 | String                                                       |
-| url                  | String /HTTPS_URL_REGEX/                                     |
-| created_at           | Date                                                         |
-| updated_at           | Date                                                         |
+| url                  | String /HTTPS\_URL\_REGEX/                                     |
+| created\_at           | Date                                                         |
+| updated\_at           | Date                                                         |
 
 The schema for the `:entity` hash for ServiceBinding is:
 
 | name                  | schema                                                       |
 | --------------------- | ------------------------------------------------------------ |
-| app_guid              | String                                                       |
-| app_url               | String /HTTPS_URL_REGEX/                                     |
-| service_instance_guid | String                                                       |
-| service_instance_url  | String /HTTPS_URL_REGEX/                                     |
+| app\_guid              | String                                                       |
+| app\_url               | String /HTTPS\_URL\_REGEX/                                     |
+| service\_instance\_guid | String                                                       |
+| service\_instance\_url  | String /HTTPS\_URL\_REGEX/                                     |
 
 
 
@@ -2634,7 +2636,7 @@ Returns a paginated response of ServiceAuthTokens.
 | ---------              | -----------                                                                      |
 | limit                  | Maximum number of results to return.                                             |
 | offset                 | Offset from which to start iteration.                                            |
-| urls-only              | If 1, only return a list of urls; do not expand metadata or resource attributues |
+| urls-only              | If 1, only return a list of urls; do not expand metadata or resource attributes |
 | inline-relations-depth | 0 - don't inline any relations and return URLs.  Otherwise, inline to depth N.   |
 | q                      | Search/filter string of the form `<attribute-name>:<value>` |
 
@@ -2649,9 +2651,9 @@ The response is in the standard v2 paginated response format, i.e.:
 
 | name                 | schema                                                       |
 | -------------------- | ------------------------------------------------------------ |
-| total_results        | Integer                                                      |
-| prev_url             | String /HTTPS_URL_REGEX/                                     |
-| next_url             | String /HTTPS_URL_REGEX/                                     |
+| total\_results        | Integer                                                      |
+| prev\_url             | String /HTTPS\_URL\_REGEX/                                     |
+| next\_url             | String /HTTPS\_URL\_REGEX/                                     |
 | resources            | [{:metadata => Hash,:entity => Hash,}]                       |
 
 The schema for `:metadata` follows the v2 standard:
@@ -2659,9 +2661,9 @@ The schema for `:metadata` follows the v2 standard:
 | name                 | schema                                                       |
 | -------------------- | ------------------------------------------------------------ |
 | guid                 | String                                                       |
-| url                  | String /HTTPS_URL_REGEX/                                     |
-| created_at           | Date                                                         |
-| updated_at           | Date                                                         |
+| url                  | String /HTTPS\_URL\_REGEX/                                     |
+| created\_at           | Date                                                         |
+| updated\_at           | Date                                                         |
 
 The schema for the `:entity` hash for ServiceAuthToken is:
 
@@ -2698,9 +2700,9 @@ The schema for `:metadata` follows the v2 standard:
 | name                 | schema                                                       |
 | -------------------- | ------------------------------------------------------------ |
 | guid                 | String                                                       |
-| url                  | String /HTTPS_URL_REGEX/                                     |
-| created_at           | Date                                                         |
-| updated_at           | Date                                                         |
+| url                  | String /HTTPS\_URL\_REGEX/                                     |
+| created\_at           | Date                                                         |
+| updated\_at           | Date                                                         |
 
 The schema for the `:entity` hash for ServiceAuthToken is:
 
@@ -2748,9 +2750,9 @@ The schema for `:metadata` follows the v2 standard:
 | name                 | schema                                                       |
 | -------------------- | ------------------------------------------------------------ |
 | guid                 | String                                                       |
-| url                  | String /HTTPS_URL_REGEX/                                     |
-| created_at           | Date                                                         |
-| updated_at           | Date                                                         |
+| url                  | String /HTTPS\_URL\_REGEX/                                     |
+| created\_at           | Date                                                         |
+| updated\_at           | Date                                                         |
 
 The schema for the `:entity` hash for ServiceAuthToken is:
 
@@ -2779,9 +2781,9 @@ The schema for `:metadata` follows the v2 standard:
 | name                 | schema                                                       |
 | -------------------- | ------------------------------------------------------------ |
 | guid                 | String                                                       |
-| url                  | String /HTTPS_URL_REGEX/                                     |
-| created_at           | Date                                                         |
-| updated_at           | Date                                                         |
+| url                  | String /HTTPS\_URL\_REGEX/                                     |
+| created\_at           | Date                                                         |
+| updated\_at           | Date                                                         |
 
 The schema for the `:entity` hash for ServiceAuthToken is:
 

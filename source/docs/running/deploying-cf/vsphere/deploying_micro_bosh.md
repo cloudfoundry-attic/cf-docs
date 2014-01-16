@@ -2,15 +2,26 @@
 title: Deploying Micro BOSH
 ---
 
-Installation of BOSH is done using micro BOSH, which is a single VM that includes all of the BOSH components. If you want to play around with BOSH, or create a simple development setup, you can install micro BOSH using the BOSH Deployer. If you would like to use BOSH in production to manage a distributed system, you also use the BOSH Deployer, install micro BOSH, and then use it as a means to deploy the final distributed system on multiple VMs.
+Installation of BOSH is done using micro BOSH, which is a single VM that 
+includes all of the BOSH components. 
+If you want to play around with BOSH, or create a simple development setup, you 
+can install micro BOSH using the BOSH Deployer. 
+If you would like to use BOSH in production to manage a distributed system, you 
+also use the BOSH Deployer, install micro BOSH, and then use it as a means to 
+deploy the final distributed system on multiple VMs.
 
-A good way to think about this two step process is to consider that BOSH is a distributed system in itself. Since BOSH's core purpose is to deploy and manage distributed systems, it makes sense that we would use it to deploy itself. On the BOSH team, we gleefully refer to this as [Inception](http://en.wikipedia.org/wiki/Inception).
+A good way to think about this two step process is to consider that BOSH is a 
+distributed system in itself. 
+Since BOSH's core purpose is to deploy and manage distributed systems, it makes 
+sense that we would use it to deploy itself. 
+On the BOSH team, we gleefully refer to this as [Inception](http://en.wikipedia.org/wiki/Inception).
 
 ## <a id="bootstrap"></a>BOSH Bootstrap ##
 
 ### <a id="prerequisites"></a>Prerequisites ###
 
-We recommend that you run the BOSH bootstrap from Ubuntu since it is the distribution used by the BOSH team, and has been thoroughly tested.
+We recommend that you run the BOSH bootstrap from Ubuntu since it is the 
+distribution used by the BOSH team, and has been thoroughly tested.
 
 * Install some core packages on Ubuntu that the BOSH deployer depends on.
 
@@ -27,11 +38,15 @@ $ gem install bosh_cli --pre
 $ gem install bosh_cli_plugin_micro --pre
 </pre>
 
-Once you have installed the deployer, you will be able to use `bosh micro` commands. To see help on these type `bosh help micro`
+Once you have installed the deployer, you will be able to use `bosh micro` 
+commands. 
+To see help on these type `bosh help micro`
 
 ### <a id="config"></a>Configuration ###
 
-BOSH deploys things from a subdirectory under a deployments directory. So create both and name it appropriately. In our example we named it micro01.
+BOSH deploys things from a subdirectory under a deployments directory. 
+So create both and name it appropriately. 
+In our example we named it micro01.
 
 <pre class="terminal">
 	mkdir deployments
@@ -39,7 +54,9 @@ BOSH deploys things from a subdirectory under a deployments directory. So create
 	mkdir micro01
 </pre>
 
-BOSH needs a deployment manifest for MicroBOSH. It must be named `micro_bosh.yml`. Create one in your new directory following the example below:
+BOSH needs a deployment manifest for MicroBOSH. 
+It must be named `micro_bosh.yml`. 
+Create one in your new directory following the example below:
 
 ~~~yaml
 ---
@@ -103,11 +120,16 @@ apply_spec:
 
 ~~~
 
-The `apply_spec` provides Micro BOSH with the vCenter settings in order for it to deploy Cloud Foundry. It is different than the vCenter you are using to deploy MicroBOSH because MicroBOSH can deploy to a different vCenter than the one it was deployed to.
+The `apply_spec` provides Micro BOSH with the vCenter settings in order for it 
+to deploy Cloud Foundry. 
+It is different than the vCenter you are using to deploy MicroBOSH because 
+MicroBOSH can deploy to a different vCenter than the one it was deployed to.
 
-If you want to create a role for the BOSH user in vCenter, the privileges are defined [here](./vcenter_user_privileges.html).
+If you want to create a role for the BOSH user in vCenter, the privileges are 
+defined [here](./vcenter_user_privileges.html).
 
-Before you can run micro BOSH deployer, you have to create folders according to the values in your manifest.
+Before you can run micro BOSH deployer, you have to create folders according to 
+the values in your manifest.
 
 1. Create the vm_folder
 1. Create the template_folder
@@ -119,9 +141,12 @@ Before you can run micro BOSH deployer, you have to create folders according to 
 
 * Datastore Patterns *
 
-The datastore pattern above could just be the name of a datastore or some regular expression matching the datastore name.
+The datastore pattern above could just be the name of a datastore or some 
+regular expression matching the datastore name.
 
-If you have a datastore called "vc_data_store_1" and you would like to use this datastore for both persistent and non persistent disks, your config would look like:
+If you have a datastore called "vc\_data\_store\_1" and you would like to use 
+this datastore for both persistent and non persistent disks, your config would 
+look like this:
 
 ~~~yaml
                datastore_pattern: vc_data_store_1
@@ -129,7 +154,9 @@ If you have a datastore called "vc_data_store_1" and you would like to use this 
                allow_mixed_datastores: true
 ~~~
 
-If you have 2 datastores called "vc_data_store_1", "vc_data_store_2" and you would like to use both datastore for both persistent and non persistent disks, your config would look like:
+If you have two datastores called "vc\_data\_store\_1" and 
+"vc\_data\_store\_2", and you would like to use both datastore for both 
+persistent and non persistent disks, your config would look like this:
 
 ~~~yaml
                datastore_pattern: vc_data_store_?
@@ -137,7 +164,9 @@ If you have 2 datastores called "vc_data_store_1", "vc_data_store_2" and you wou
                allow_mixed_datastores: true
 ~~~
 
-If you have 2 datastores called "vnx:1" and "vnx:2", and you would like to separate your persistent and non persistent disks, your config would look like:
+If you have two datastores called "vnx:1" and "vnx:2", and you would like to 
+separate your persistent and non persistent disks, your config would look like 
+this:
 
 ~~~yaml
                datastore_pattern: vnx:1
@@ -165,7 +194,8 @@ $ bosh public stemcells
 $ bosh download public stemcell bosh-stemcell-XXXX-vsphere-esxi-ubuntu.tgz
 </pre>
 
-CD to the deployments directory and set the deployment. This assumes you named the directory micro01.
+CD to the deployments directory and set the deployment. 
+This assumes you named the directory micro01.
 
 <pre class="terminal">
 $ cd deployments
@@ -188,9 +218,10 @@ Target the Microbosh
 bosh target <ip_address_from_your_micro_bosh_manifest:25555>
 </pre>
 
-Login with admin/admin
+Login with admin/admin.
 
-The `status` command will show the persisted state for a given micro BOSH instance.
+The `status` command will show the persisted state for a given micro BOSH 
+instance.
 
 <pre class="terminal">
 $ bosh micro status
@@ -211,12 +242,16 @@ The `deployments` command prints a table view of `bosh-deployments.yml`:
 $ bosh micro deployments
 </pre>
 
-The files in your current directory need to be saved if you later want to be able to update your micro BOSH instance. They are all text files, so you can commit them to a git repository to make sure they are safe in case your bootstrap VM goes away.
+The files in your current directory need to be saved if you later want to be 
+able to update your micro BOSH instance. 
+They are all text files, so you can commit them to a git repository to make 
+sure they are safe in case your bootstrap VM goes away.
 
 
 ### <a id="send-message"></a>Sending Messages to the Micro BOSH Agent ###
 
-The `bosh` CLI can send messages over HTTP to the agent using the `agent` command.
+The `bosh` CLI can send messages over HTTP to the agent using the `agent` 
+command.
 
 <pre class="terminal">
 $ bosh micro agent ping

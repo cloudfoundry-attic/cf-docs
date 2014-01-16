@@ -2,11 +2,16 @@
 title: Troubleshooting Apps
 ---
 
-### Retrieve an example backend (internal DEA network host:port) for a particular URL
+### Retrieve an example backend (internal DEA network host:port) for a
+particular URL
 
-Send a X-Vcap-Trace header on your request to an app with the appropriate secret key, and the router will add a X-Vcap-Backend response header identifying the DEA that was used to service the request.
+Send a X-Vcap-Trace header on your request to an app with the appropriate secret
+key, and the router will add a X-Vcap-Backend response header identifying the
+DEA that was used to service the request.
 
-The value of the X-Vcap-Trace needs to correspond to the router configuration "trace_key" as can be seen in the [router config test](https://github.com/cloudfoundry/gorouter/blob/58f54267c43eb52e01b531ee51281f7d48408f3e/src/router/config/config_test.go#L101). If you are using BOSH, that value is set using "properties.router.trace_key".
+The value of the X-Vcap-Trace needs to correspond to the router configuration
+"trace\_key" as can be seen in the [router config test](https://github.com/cloudfoundry/gorouter/blob/58f54267c43eb52e01b531ee51281f7d48408f3e/src/router/config/config_test.go#L101). If you are using BOSH, that
+value is set using "properties.router.trace\_key".
 
 For example, with curl this would be:
 
@@ -21,7 +26,7 @@ $ curl -H 'X-Vcap-Trace: 222' http://app.example.com -v
 > Host: app.example.com
 > Accept: */*
 > X-Vcap-Trace: 22
-> 
+>
 < HTTP/1.1 200 OK
 < Content-Length: 40
 < Content-Type: text/html;charset=utf-8
@@ -33,7 +38,9 @@ $ curl -H 'X-Vcap-Trace: 222' http://app.example.com -v
 < X-Vcap-Router: 10.242.15.86
 < X-Xss-Protection: 1; mode=block
 ```
-The response shows the IP of the router in the X-Vcap-Router header and the IP:HOST of the backend DEA that responded to this request in the X-Vcap-Backend header.
+The response shows the IP of the router in the X-Vcap-Router header and the
+IP:HOST of the backend DEA that responded to this request in the X-Vcap-Backend
+header.
 
 ### pre-req BOSH setup
 
@@ -48,12 +55,12 @@ The response shows the IP of the router in the X-Vcap-Router header and the IP:H
 
 ### instructions for listening to NATS for a new app instance registration:
 
-- set NATS env 
+- set NATS env
 - nats-sub 'router.register' -s $NATS
 -- has ip, port, name
 -- the ip is the dea ip and port is port app is on
 
-### going to the warden container of an app once you have the ip:port 
+### going to the warden container of an app once you have the ip:port
 
 - ssh ip, (need a tool to parse /var/vcap/data/dea_next/db/instances.json on port or name)
 -- the warden handle in the same json hash as the name/port

@@ -21,7 +21,7 @@ An instance of this service can be provisioned via the CLI with the following co
 Bind the service instance to your app with the following command:
 
 <pre class="terminal">
-  $ cf bind-service 
+  $ cf bind-service
 </pre>
 
 ## <a id='using'></a>Using Service Instances with your Application ##
@@ -147,7 +147,7 @@ queue.delete(msg["messages"][0]["id"])
 We’re going to need to add the [IronMQ Clojure client][7] to your project.clj:
 
 
-[iron_mq_clojure "1.0.3"]
+`[iron_mq_clojure "1.0.3"]`
 
 Use these to create a client that allows you to interact with your queues:
 
@@ -169,7 +169,7 @@ Use these to create a client that allows you to interact with your queues:
 
 ## Node.js
 
-We’re going to need to the [IronMQ Node.js client][8] to interact with our queues. You can get it using `npm install iron_mq` or by downloading the source from Github (though you’ll need [iron_core_node][9], too).
+We’re going to need to the [IronMQ Node.js client][8] to interact with our queues. You can get it using `npm install iron_mq` or by downloading the source from Github (though you’ll need `[iron_core_node]`[9], too).
 
 Once that’s done, you can require it to get a simple wrapper for the API:
 
@@ -227,7 +227,7 @@ You’re also welcome to stop by the [Iron.io support chat room][12] and chat wi
   ## View analytics and gain insight about your queues
 
   ![ironmq analytics][2]
-  
+
   ## Share your projects with other people
 
   Each of your projects can be shared with coworkers and friends. It's easy and just takes a few seconds. They'll get an invite to signup for Iron.io for free and have automatic access to the project once completed.

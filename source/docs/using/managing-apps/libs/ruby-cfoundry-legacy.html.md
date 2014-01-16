@@ -1,14 +1,17 @@
 ---
-title: Using the CFoundry Ruby Gem to manage applications (Classic / Legacy Cloud Foundry)
+title: Using the CFoundry Ruby Gem to manage applications (Classic / Legacy
+Cloud Foundry)
 ---
 
 ## <a id='intro'></a>Introduction ##
 
-This is a guide to using the CFoundry Ruby Gem to manage an account on a Cloud Foundry instance.
+This is a guide to using the CFoundry Ruby Gem to manage an account on a Cloud
+Foundry instance.
 
 ## <a id='connecting'></a>Connecting to Cloud Foundry ##
 
-First of all make sure you have included the cfoundry gem as part of your application, add it the Gemfile if your are using bundler;
+First of all make sure you have included the cfoundry gem as part of your
+application, add it the Gemfile if your are using bundler:
 
 ~~~ruby
 
@@ -17,7 +20,7 @@ gem 'cfoundry'
 
 ~~~
 
-The first step to using cfoundry is creating a Client instance and logging in;
+The first step to using cfoundry is creating a Client instance and logging in:
 
 ~~~ruby
 require 'cfoundry'
@@ -30,7 +33,7 @@ client = CFoundry::Client.new endpoint
 client.login username, password
 ~~~
 
-Test the connection by listing the available services;
+Test the connection by listing the available services:
 
 ~~~ruby
 
@@ -38,9 +41,15 @@ client.services.collect { |x| x.description }
 
 ~~~
 
-## <a id='persist-authentication'></a>Persisting Authentication (Using cf tokens) ##
+## <a id='persist-authentication'></a>Persisting Authentication (Using cf 
+tokens) ##
 
-A far safer way of creating a cfoundry client object without potentially exposing your credentials in source code is to login using cf and then use the generated auth token to login in. The auth tokens are stored by cf in ~/.cf/tokens.yml. The following snippet of ruby code shows how to open this file, select the right auth token and then use it to log in to Cloud Foundry.
+A far safer way of creating a cfoundry client object without potentially
+exposing your credentials in source code is to login using cf and then use the
+generated auth token to login in.
+The auth tokens are stored by cf in ~/.cf/tokens.yml.
+The following snippet of ruby code shows how to open this file, select the
+right auth token and then use it to log in to Cloud Foundry.
 
 ~~~ruby
 
@@ -57,13 +66,16 @@ client = CFoundry::Client.new endpoint, token
 
 ~~~
 
-Once the client object is created, it can be used in the same fashion as before.
+Once the client object is created, it can be used in the same fashion as
+before.
 
 ## <a id='services'></a>Services ##
 
-The Client class contains four service methods; services, service_instances, service_instance_by_name and service_instance.
+The Client class contains four service methods: services, service\_instances, 
+service\_instance\_by\_name and service\_instance.
 
-The first method, 'services', returns a hash of all the available services on the targeted Cloud Foundry instance;
+The first method, 'services', returns a hash of all the available services on 
+the targeted Cloud Foundry instance:
 
 ~~~ruby
 pp client.services
@@ -91,7 +103,8 @@ pp client.services
   @version="2.0">]
 ~~~
 
-The 'service_instances' method returns the actual service instances currently provisioned on that account;
+The 'service_instances' method returns the actual service instances currently 
+provisioned on that account:
 
 ~~~ruby
 pp client.service_instances
@@ -105,14 +118,14 @@ pp client.service_instances
  #<CFoundry::V1::ServiceInstance 'mongodb-220c4'>]
 ~~~
 
-The 'service\_instance\_by_name' method returns a named service instance;
+The 'service\_instance\_by\_name' method returns a named service instance:
 
 ~~~ruby
 client.service_instance_by_name 'mysql-7327e'
 => #<CFoundry::V1::ServiceInstance 'mysql-7327e'>
 ~~~
 
-To create a service instance use the service_instance method;
+To create a service instance use the service\_instance method:
 
 ~~~ruby
 service = client.service_instance 'my_new_service'
@@ -121,11 +134,12 @@ service.version = '2.6' # <- if there are multiple versions of the same service,
 service.tier = 'free'
 service.create!
 
-# if the create was succesful, it should return true.
+# if the create was successful, it should return true.
 ~~~
 ## <a id='runtimes-and-frameworks'></a>Runtimes and Frameworks ##
 
-Both runtimes and frameworks have a collection that can be used to reference them both;
+Both runtimes and frameworks have a collection that can be used to reference 
+them:
 
 ~~~ruby
 
@@ -139,9 +153,9 @@ client.runtimes.collect { |x| x.name }
 
 ## <a id='applications'></a>Applications ##
 
-The Client class contains three application methods; apps, app and app_by_name
+The Client class contains three application methods: apps, app, and app\_by\_name.
 
-The 'apps' method returns a list of all the deployed applications;
+The 'apps' method returns a list of all the deployed applications:
 
 ~~~ruby
 
@@ -154,21 +168,21 @@ pp client.apps
 
 ~~~
 
-The 'app\_by\_name' method finds an application by it's name;
+The 'app\_by\_name' method finds an application by its name:
 
 ~~~ruby
 client.app_by_name 'sidekiq'
 => #<CFoundry::V1::App 'sidekiq'>
 ~~~
 
-To create an application user the app method;
+To create an application user the app method:
 
 ~~~ ruby
 
 app = client.app 'my_new_app'
 app.instances = 1 # <- set the number of instances you want
 app.memory = 256 # <- set the allocated amount of memory
-app.services = [service] # <- set the services bound to the appliation as an array of references to service_instance objects (optional)
+app.services = [service] # <- set the services bound to the application as an array of references to service_instance objects (optional)
 app.framework_name = 'standalone' # <- the name of the framework
 app.command = 'bundle exec ./app.rb' # <- an optional command to start the application (if standalone)
 app.runtime_name = 'ruby19' # <- the name of the runtime
@@ -176,7 +190,11 @@ app.create!
 
 ~~~
 
-This only creates an application 'stub', as of yet there is no actual code uploaded to Cloud Foundry nor is the application started. To give the application something to run and depending on the runtime and framework archive the source, byte code or binary in to a zip file. Upload the zipfile to the application but using the upload command;
+This only creates an application 'stub', as of yet there is no actual code
+uploaded to Cloud Foundry nor is the application started.
+To give the application something to run and, depending on the runtime and
+framework, archive the source, byte code or binary into a zip file.
+Upload the zip file to the application but using the upload command:
 
 ~~~ruby
 
@@ -194,4 +212,5 @@ app.upload 'app.zip'
 
 ~~~
 
-Now the application has been uploaded to Cloud Foundry, all that is left is to start the application
+Now the application has been uploaded to Cloud Foundry, all that is left is to
+start the application.
