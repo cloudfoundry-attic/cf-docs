@@ -139,7 +139,7 @@ the values in your manifest.
 ![vcenter-folders](/images/vcenter-folders.png)
 ![vcenter-disk-path](/images/vcenter-disk-path.png)
 
-* Datastore Patterns *
+* Datastore Patterns
 
 The datastore pattern above could just be the name of a datastore or some 
 regular expression matching the datastore name.
