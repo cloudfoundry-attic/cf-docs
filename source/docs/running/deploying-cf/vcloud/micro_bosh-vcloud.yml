@@ -13,7 +13,11 @@ network:
     name: cf-net
 
 resources:
-  persistent_disk: 4096
+  persistent_disk: 16384
+  cloud_properties:
+    ram: 8192
+    disk: 16384
+    cpu: 4
 
 cloud:
   plugin: vcloud
