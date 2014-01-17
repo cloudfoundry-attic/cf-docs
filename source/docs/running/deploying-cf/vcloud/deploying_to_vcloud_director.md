@@ -1,6 +1,7 @@
 #Deploying to vCloud Director Using Cloud Foundry BOSH#
 
-In this tutorial we learn how to deploy a simple Wordpress application on vCloud Director using BOSH.
+In this tutorial we learn how to deploy a simple Wordpress application on vCloud
+Director using BOSH.
 
 ##Prerequisites##
 
@@ -11,13 +12,14 @@ To get started with BOSH on vCloud you need:
 3. A Mac or *NIX computer
 4. The [BOSH CLI](../../bosh/setup/index.html)
 
-## Installing micro bosh
+## Installing Micro Bosh
 
-Note: this part is common with most other IaaS. Please refer to more common IaaS whose documentation is more up-to-date, such as [Deploy Micro BOSH using vSphere](../vpshere/deploying_micro_bosh.html)
+See [Deploying Micro BOSH using vSphere](../vpshere/deploying_micro_bosh.html)
 
-## Micro BOSH Stemcells##
+## Micro BOSH Stemcells ##
 
-+ We have published micro BOSH stemcells for download. When you are ready to use the BOSH deployer download a micro BOSH stemcell.
++ We have published micro BOSH stemcells for download. When you are ready to use
+the BOSH deployer download a micro BOSH stemcell.
 
 Download a micro BOSH stemcell with version >= 0.8.0 (coming soon)  Use bosh-release version #11 or higher.
 
@@ -30,26 +32,26 @@ Note :  Stemcells for vSphere work for vCloud Director
 		+---------------------------------------+--------------------------------------------------+
 		| bosh-stemcell-aws-0.6.4.tgz           | aws, stable                                      |
 		| bosh-stemcell-vsphere-0.6.4.tgz       | vsphere, stable                                  |
-		| bosh-stemcell-vsphere-0.6.7.tgz       | vsphere, stable                                  | 
+		| bosh-stemcell-vsphere-0.6.7.tgz       | vsphere, stable                                  |
 		| micro-bosh-stemcell-aws-0.6.4.tgz     | aws, micro, stable                               |
 		| micro-bosh-stemcell-vsphere-0.6.4.tgz	| vsphere, micro, stable                           |
 		+---------------------------------------+--------------------------------------------------+
 
 To download use `bosh download public stemcell <stemcell_name>` as shown below
-	
+
 	% bosh download public stemcell micro-bosh-stemcell-0.8.0.tgz
 
-##Deploying Micro BOSH##
+##Deploying Micro BOSH ##
 
 To deploy Micro Bosh on vCloud you will need to prepare resources from the cloud infrastructure managed by vCloud for use by BOSH.
 
-##Preparing vCloud virtual data center resources##
+##Preparing vCloud Virtual Data Center Resources ##
 
 + Add a catalog where stemcells and media (ISOs) for BOSH will be stored.
 
 ![vcloud_catalog](/images/vcloud_catalog.png)
 
-+ Add a network to the virtual datacenter.  Configure the network to be directly connected to the virtual datacenter external network.  Steps to [Create an External Direct Organization vDC Network](http://pubs.vmware.com/vcd-51/topic/com.vmware.vcloud.admin.doc_51/GUID-E8A80C28-6C16-4E83-828C-0510DA3B00F8.html).
++ Add a network to the virtual datacenter. Configure the network to be directly connected to the virtual datacenter external network.  Steps to [Create an External Direct Organization vDC Network](http://pubs.vmware.com/vcd-51/topic/com.vmware.vcloud.admin.doc_51/GUID-E8A80C28-6C16-4E83-828C-0510DA3B00F8.html).
 
 ##Create the Directory Structure##
 
@@ -67,10 +69,9 @@ Micro BOSH configurations are set in the `micro_bosh.yml`, which you need to cre
 
    1. Update the instance of `x.x.x.x` with one of the IPs from the block assigned to you. Change the other IP addresses `n.n.n.n`  to match your network’s netmask, gateway, DNS and NTP server addresses.
    2. Under the vcds section, replace `v.v.v.v` with the address of the vCloud instance and enter your vCloud credentials.
-   3. change the cloud_properties name:cf-net to the name of the external network
-   4. you may choose to have your micro_bosh deploy on a distinct vcloud instance that the one it is running on. If so,
-   change the apply_spec/properties/cloud section.
-   5. Save the file
+   3. Change the cloud_properties name:cf-net to the name of the external network.
+   4. You may choose to have your micro\_bosh deploy on a different vcloud instance than the one it is running on. If so, change the apply\_spec/properties/cloud section.
+   5. Save the file.
 
 ##Deploying Micro BOSH##
 
@@ -134,7 +135,7 @@ Now we download the latest stem cellto upload to our micro BOSH instance.
    * Upload it to your micro BOSH instance:
 
 		bosh upload stemcell bosh-stemcell-vsphere-0.6.7.tgz
-		
+
 ##Create a Private Network##
 
    1. [Add private networks](http://pubs.vmware.com/vcd-51/index.jsp?topic=%2Fcom.vmware.vcloud.admin.doc_51%2FGUID-6E69AF88-31E0-4DD8-A79E-E8E4B6F68878.html) to separate application components from each other and from direct access by users. Here, “cf-net” is a direct network added earlier and “cf-routed” is a private network.
