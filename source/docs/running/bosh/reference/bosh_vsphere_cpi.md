@@ -66,7 +66,7 @@ Although it's technically possible to use the instanceUuid on vSphere (much like
 
 ### Networks
 
-Networks are uniquely identified by datacenter and network name (which must be unique within the datacenter). As per the investigation in #61519862, folders for networks are not supported (we verified this ourselves). We could not see an alternative uuid mechanism (such as instanceUuid for VMs) to address networks. This could be changed to a full path in order to support nested folders.
+Networks are uniquely identified by datacenter and network name (which must be unique within the datacenter). Folders for networks are not supported.
 
 ### Datastores
 
@@ -77,10 +77,6 @@ Datastores are identified by their name and are matched by a regular expression 
 - `/foo/baz/datastore1`
 
 The name of datastore is the last part of each line above, e.g. 'datastore1'. An operator may choose to select both `/foo/bar/datastore1` and `/foo/baz/datastore1` with the regular expression 'datastore' or even 'datastore1'. They cannot, however, select both `/foo/bar/datastore1` and `/foo/bar/anothername` by using a regular expression that matches against directory structure, e.g. `/foo/bar`.
-
-We could make a small change so that we match against the entire path of the directory structure for datastores; however, we should be aware that this has potential for unexpected matches (i.e., given the example above, if someone has the name `datastore` in their directory structure).
-
-Datastore clusters could be a way to offload datastore placement to vSphere. Datastores outside of clusters may still have to be supported for some configurations.
 
 Ephemeral and persistent datastores are consumed before shared datastores.
 
@@ -94,7 +90,7 @@ A cluster is identified by its name and its datacenter. Its location within fold
 
 Clusters do not have any unique ID like a VM's instanceUuid.
 
-In vSphere, cluster names do not need to be unique per datacenter, only their paths needs to be unique. The current vSphere CPI code does not handle this and would only see one cluster if two had the same name. Cluster identifiers could be converted to a full path to fix this.
+In vSphere, cluster names do not need to be unique per datacenter, only their paths needs to be unique. The current vSphere CPI code does not handle this and would only see one cluster if two had the same name.
 
 ### Datacenters
 
