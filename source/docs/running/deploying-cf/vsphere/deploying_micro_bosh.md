@@ -149,6 +149,10 @@ If you have 2 datastores called "vnx:1" and "vnx:2", and you would like to separ
 
 Download a BOSH Stemcell:
 
+You need internet access for the bosh_cli to download the stemcells. You may need to temporary set the http_proxy and
+https_proxy variables if you're running behind a corporate firewall. If so, remember to unset it before completing
+ the following steps, if your proxy won't allow contacting the newly micro_bosh vm.
+
 <pre class="terminal">
 $ bosh public stemcells
 +---------------------------------------------+
