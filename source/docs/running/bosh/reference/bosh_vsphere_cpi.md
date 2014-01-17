@@ -66,7 +66,7 @@ Although it's technically possible to use the instanceUuid on vSphere (much like
 
 ### Networks
 
-Networks are uniquely identified by datacenter and network name (which must be unique within the datacenter). Folders for networks are not supported.
+Networks are uniquely identified by datacenter and network name (which must be unique within the datacenter).
 
 ### Datastores
 
@@ -80,17 +80,37 @@ The name of datastore is the last part of each line above, e.g. 'datastore1'. An
 
 Ephemeral and persistent datastores are consumed before shared datastores.
 
+#### Datastore Paths
+
+Persistent disks are stored on datastores in the following paths:
+
+`/<datacenter disk path from manifest>/disk-<random disk uuid>.vmdk`
+
+#### Linked Clones
+
+The vSphere CPI uses linked clones by default. Linked clones require the clone to be on the same datastore as the source so stemcells are automatically copied to each datastore that their clones will be on. These stemcells look like `sc-<uuid> / <datastore managed object id>` in the inventory. In the datastore browser the "/" will be quoted to "%2f".
+
 ### Clusters
 
 Each datacenter can have multiple clusters in the cloud properties.
 
-When placing a VM, a cluster is chosen (along with a datastore) based on the VM's memory, ephemeral disk, and persistent disk requirements. A cluster having the most persistent data is given preference, in order to take advantage of locality.
-
 A cluster is identified by its name and its datacenter. Its location within folders in each datacenter does not matter.
+
+In vSphere, cluster names do not need to be unique per datacenter, only their paths needs to be unique. The current vSphere CPI code does not handle this and would only see one cluster if two had the same name.
 
 Clusters do not have any unique ID like a VM's instanceUuid.
 
-In vSphere, cluster names do not need to be unique per datacenter, only their paths needs to be unique. The current vSphere CPI code does not handle this and would only see one cluster if two had the same name.
+#### VM Placement
+
+When placing a VM, a cluster is chosen (along with a datastore) based on the VM's memory, ephemeral disk, and persistent disk requirements.
+
+VMs are placed on clusters and datastores based on a weighted random algorithm. The weights are calculated by how many times the requested memory, ephemeral and persistent disk could fit on the cluster.
+
+During VM placement local datastores and shared datastores are not treated differently. All datastores registered on a cluster are treated the same.
+
+##### Locality
+
+When recreating an existing VM, the CPI tries to create it in a cluster and datastore that are near the largest of its existing persistent disks.
 
 ### Datacenters
 
