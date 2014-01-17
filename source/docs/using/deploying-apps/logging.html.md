@@ -92,7 +92,7 @@ instead of a custom log file.
 Sending application logs that are not part of STDOUT and STDERR is not
 supported.
 
-Logging output delivered with an internal timestamp.
+Logging output is delivered with an internal timestamp.
 This timestamp is assigned when the logging service receives the log line.
 If the log line includes a timestamp, this timestamp is not processed by the
 logging system.
