@@ -127,17 +127,10 @@ The example below contains a catalog of one service, having one service plan. Of
       "bindable":true,
       "unique_id":"18723",
       "extra":{
-         "providerDisplayName":"84codesAB",
-         "imageUrl":"https://d33na3ni6eqf5j.cloudfront.net/app_resources/18723/thumbs_112/img9069612145282015279.png",
-         "listing":{
-            "imageUrl":"https://d33na3ni6eqf5j.cloudfront.net/app_resources/18723/thumbs_112/img9069612145282015279.png",
-            "blurb":"Managed HA RabbitMQ servers in the cloud",
-            "long_description":"Managed, highly available, RabbitMQ clusters in the cloud"
-         },
-         "provider":{
-            "name":"84codes AB"
-         },
          "displayName":"CloudAMQP",
+         "imageUrl":"https://d33na3ni6eqf5j.cloudfront.net/app_resources/18723/thumbs_112/img9069612145282015279.png",
+         "longDescription":"Managed, highly available, RabbitMQ clusters in the cloud",
+         "providerDisplayName":"84codesAB",
          "documentationUrl":null,
          "supportUrl":null
       },
@@ -158,26 +151,32 @@ The example below contains a catalog of one service, having one service plan. Of
                "updated_at":"2014-01-09T03:19:16+00:00"
             },
             "entity":{
-               "name":"lemur",
+               "name":"bunny",
                "free":true,
-               "description":"Little Lemur",
+               "description":"Big Bunny",
                "service_guid":"bc8748f1-fe05-444d-ab7e-9798e1f9aef6",
                "extra":{
-                  "cost":0.0,
+                  "bullets":[
+                     "20 GB of messages",
+                     "20 connections"
+                  ],
                   "costs":[
                      {
                         "amount":{
-                           "usd":0.0
+                           "usd":99.0,
+                           "eur":49.0
                         },
-                        "unit":"ONE_TIME"
+                        "unit":"MONTHLY"
+                     },
+                     {
+                        "amount":{
+                           "usd":0.99,
+                           "eur":0.49
+                        },
+                        "unit":"1GB of messages over 20GB"
                      }
                   ],
-                  "bullets":[
-                     {
-                        "content":null,
-                        "tooltip":null
-                     }
-                  ]
+                  "displayName":"Big Bunny"
                },
                "unique_id":"addonOffering_1889",
                "public":true
