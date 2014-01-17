@@ -66,7 +66,7 @@ Although it's technically possible to use the instanceUuid on vSphere (much like
 
 ### Networks
 
-Networks are uniquely identified by datacenter and network name (which must be unique within the datacenter). As per the investigation in #61519862, folders for networks are not supported (we verified this ourselves). We could not see an alternative uuid mechanism (such as instanceUuid for VMs) to address networks. This could be changed to a full path in order to support nested folders.
+Networks are uniquely identified by datacenter and network name (which must be unique within the datacenter).
 
 ### Datastores
 
@@ -78,23 +78,39 @@ Datastores are identified by their name and are matched by a regular expression 
 
 The name of datastore is the last part of each line above, e.g. 'datastore1'. An operator may choose to select both `/foo/bar/datastore1` and `/foo/baz/datastore1` with the regular expression 'datastore' or even 'datastore1'. They cannot, however, select both `/foo/bar/datastore1` and `/foo/bar/anothername` by using a regular expression that matches against directory structure, e.g. `/foo/bar`.
 
-We could make a small change so that we match against the entire path of the directory structure for datastores; however, we should be aware that this has potential for unexpected matches (i.e., given the example above, if someone has the name `datastore` in their directory structure).
-
-Datastore clusters could be a way to offload datastore placement to vSphere. Datastores outside of clusters may still have to be supported for some configurations.
-
 Ephemeral and persistent datastores are consumed before shared datastores.
+
+#### Datastore Paths
+
+Persistent disks are stored on datastores in the following paths:
+
+`/<datacenter disk path from manifest>/disk-<random disk uuid>.vmdk`
+
+#### Linked Clones
+
+The vSphere CPI uses linked clones by default. Linked clones require the clone to be on the same datastore as the source so stemcells are automatically copied to each datastore that their clones will be on. These stemcells look like `sc-<uuid> / <datastore managed object id>` in the inventory. In the datastore browser the "/" will be quoted to "%2f".
 
 ### Clusters
 
 Each datacenter can have multiple clusters in the cloud properties.
 
-When placing a VM, a cluster is chosen (along with a datastore) based on the VM's memory, ephemeral disk, and persistent disk requirements. A cluster having the most persistent data is given preference, in order to take advantage of locality.
-
 A cluster is identified by its name and its datacenter. Its location within folders in each datacenter does not matter.
+
+In vSphere, cluster names do not need to be unique per datacenter, only their paths needs to be unique. The current vSphere CPI code does not handle this and would only see one cluster if two had the same name.
 
 Clusters do not have any unique ID like a VM's instanceUuid.
 
-In vSphere, cluster names do not need to be unique per datacenter, only their paths needs to be unique. The current vSphere CPI code does not handle this and would only see one cluster if two had the same name. Cluster identifiers could be converted to a full path to fix this.
+#### VM Placement
+
+When placing a VM, a cluster is chosen (along with a datastore) based on the VM's memory, ephemeral disk, and persistent disk requirements.
+
+VMs are placed on clusters and datastores based on a weighted random algorithm. The weights are calculated by how many times the requested memory, ephemeral and persistent disk could fit on the cluster.
+
+During VM placement local datastores and shared datastores are not treated differently. All datastores registered on a cluster are treated the same.
+
+##### Locality
+
+When recreating an existing VM, the CPI tries to create it in a cluster and datastore that are near the largest of its existing persistent disks.
 
 ### Datacenters
 
