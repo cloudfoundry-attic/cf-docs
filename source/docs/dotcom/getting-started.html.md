@@ -67,7 +67,7 @@ These sample apps will help you quickly get a sense of what it is like to use Cl
 | -------------- | -------------------------------------------------------------------- |
 | Java / JVM     | [Spring Music](https://github.com/cloudfoundry-samples/spring-music) |
 
-### <a id='prepare-app'></a>Prepare Your Own Application for Deployment ##
+### <a id='prepare-app'></a>Prepare Your Own Application for Deployment ###
 
 Have an app of your own you'd like to push? Cloud Foundry supports many frameworks and runtimes using a buildpack model. See [the Buildpack section of Deploying Applications](../using/deploying-apps/#buildpacks) for more information.
 
