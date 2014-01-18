@@ -35,9 +35,11 @@ To avoid the risk of an application being unavailable during Cloud Foundry upgra
 
 Cloud Foundry stages application using framework and and runtime-specific buildpacks. Heroku developed the buildpack approach, and made it available to the open source community.  Cloud Foundry currently provides buildpacks for the several runtimes and frameworks.  See the links below for run-time specific deployment instructions:
 
-* Ruby --- [Deploy Rack, Rails, or Sinatra Applications](/docs/using/deploying-apps/ruby/index.html)
-* Javascript --- [Deploy Node.js Applications](/docs/using/deploying-apps/javascript/index.html)
-* Java/JVM --- [Deploy Java, Groovy, or Scala Apps that Use the Spring, Grails, Lift, or Play Frameworks](/docs/using/deploying-apps/jvm/index.html)
+| Runtime        | Framework                                                                             |
+| :------------- | :-------------                                                                        |
+| Javascript     | [Node.js](/docs/using/deploying-apps/javascript/index.html)                           |
+| Java / JVM     | [Java Spring, Grails, Scala Lift, and Play](/docs/using/deploying-apps/jvm/index.html)|
+| Ruby           | [Rack, Rails, or Sinatra](/docs/using/deploying-apps/ruby/index.html)                 |
 
 Cloud Foundry also supports custom buildpacks as described on [Custom Buildpacks](/docs/using/deploying-apps/buildpacks.html).  Some <a href="https://devcenter.heroku.com/articles/third-party-buildpacks">Heroku third party buildpacks</a> may work with Cloud Foundry, but your experience may vary. See https://github.com/cloudfoundry-community/cf-docs-contrib/wiki/Buildpacks for a list of community-developed buildpacks. To use a buildpack that is not built-in to Cloud Foundry, you specify the URL of the buildpack when you push an application, using the `--buildpack` qualifier.
 
