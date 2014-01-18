@@ -178,7 +178,7 @@ Note that in this example, we already provisioned an ElephantSQL instance and na
   OK
 </pre>
 
-## <a id='troublshooting'></a>Troubleshooting ##
+## <a id='troubleshooting'></a>Troubleshooting ##
 
 If your application does not start on Cloud Foundry, it's a good idea to double-check that your application can run locally.
 
