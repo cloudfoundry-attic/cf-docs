@@ -59,17 +59,17 @@ Space>
 
 You can choose any of these spaces to deploy your application.
 
-## <a id='prepare-app'></a>Prepare Your Application for Deployment ##
+## <a id='sample-app'></a>Sample Applications ##
 
-Cloud Foundry supports many frameworks and runtimes. Learn about the preparations for each below:
+These sample apps will help you quickly get a sense of what it is like to use Cloud Foundry.
 
-| Runtime        | Framework                                                                             |
-| :------------- | :-------------                                                                        |
-| Javascript     | [Node.js](/docs/using/deploying-apps/javascript/index.html)                           |
-| Java / JVM     | [Java Spring, Grails, Scala Lift, and Play](/docs/using/deploying-apps/jvm/index.html)|
-| Ruby           | [Rack, Rails, or Sinatra](/docs/using/deploying-apps/ruby/index.html)                 |
+| Runtime        | Sample App                                                           | 
+| -------------- | -------------------------------------------------------------------- |
+| Java / JVM     | [Spring Music](https://github.com/cloudfoundry-samples/spring-music) |
 
-Cloud Foundry supports these frameworks and runtimes using a buildpack model. Some of the <a href="https://devcenter.heroku.com/articles/third-party-buildpacks">Heroku third party buildpacks</a> will work, but your experience may vary. To push an application using one of these buildpacks use `cf push [appname] --buildpack=[git url]`
+### <a id='prepare-app'></a>Prepare Your Own Application for Deployment ###
+
+Have an app of your own you'd like to push? Cloud Foundry supports many frameworks and runtimes using a buildpack model. See [the Buildpack section of Deploying Applications](../using/deploying-apps/#buildpacks) for more information.
 
 ## <a id='push-app'></a>Push Your Application to the Cloud ##
 
@@ -85,10 +85,11 @@ Before you deploy, you need to decide on the answers to some questions:
 
 You can define a variety of deployment options on the command line when you run `cf push`, or in a manifest file. For more information:
 
+* See [Key Facts About Application Deployment](../using/deploying-apps/) for details about the Push operation.
 * See the [push](/docs/using/managing-apps/cf/index.html#push) section on "cf Command Line Interface" for information about the `push` command and supplying qualifiers on the command line.
 * See the [cf Push and the Manifest](/docs/using/deploying-apps/manifest.html#push-and-manifest) section on "Application Manifests" for information about using an application manifest to supply deployment options.
 
-## <a id='example-push-app'></a>An Example Transcript ##
+### <a id='example-push-app'></a>Transcript of a Push ###
 
 Here is an example transcript from deploying a Ruby on Rails application.
 Note that in this example, we already provisioned an ElephantSQL instance and named it "elephantpg":
