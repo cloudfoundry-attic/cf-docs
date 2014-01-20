@@ -17,5 +17,6 @@ These sections describe the architecture, topology, configuration, and use of BO
   * [Releases](reference/releases.html)
   * [BOSH CLI](reference/bosh-cli.html)
   * [BOSH DB](reference/boshdb.html)
+  * [BOSH vSphere CPI](reference/bosh_vsphere_cpi.html)
 * Troubleshooting
   * [How to locate and watch logs on Job instances](troubleshooting/job-logs.html)
