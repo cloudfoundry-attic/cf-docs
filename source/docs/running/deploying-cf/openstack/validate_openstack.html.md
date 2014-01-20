@@ -6,6 +6,8 @@ This page aims to help you validate your target OpenStack in preparation for ins
 
 You will need a running OpenStack environment. Note that only [Folsom](https://wiki.openstack.org/wiki/ReleaseNotes/Folsom) and [Grizzly](https://wiki.openstack.org/wiki/ReleaseNotes/Grizzly) OpenStack releases are supported.
 
+<strong>NOTE</strong>: These requirements here, considered as an unordered list, are considered <em>necessary</em> but not <em>sufficient</em> for BOSH to be able to use your OpenStack deployment.  Put another way: if you cannot perform any one of these items correctly, then BOSH will not work; however, satisfying all these requirements does not necessarily mean BOSH <em>will</em> work.
+
 ## <a id="api_access"></a>Can access the OpenStack APIs for your instance of OpenStack? ##
 
 You can verify that you have your OpenStack API credentials and can make API calls. Credentials are a combination of your user name, password, and which tenant (or project) your cloud is running under. Some providers also require you to set the region.
