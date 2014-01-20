@@ -8,6 +8,8 @@ You will need a running OpenStack environment. Note that only [Folsom](https://w
 
 <strong>NOTE</strong>: These requirements here, considered as an unordered list, are considered <em>necessary</em> but not <em>sufficient</em> for BOSH to be able to use your OpenStack deployment.  Put another way: if you cannot perform any one of these items correctly, then BOSH will not work; however, satisfying all these requirements does not necessarily mean BOSH <em>will</em> work.
 
+In addition to the items on this page, you may want to check out the [troubleshooting](/docs/running/deploying-cf/openstack/troubleshooting.html) page so that you can ensure you don't run into these issues ahead of time. 
+
 ## <a id="api_access"></a>Can access the OpenStack APIs for your instance of OpenStack? ##
 
 You can verify that you have your OpenStack API credentials and can make API calls. Credentials are a combination of your user name, password, and which tenant (or project) your cloud is running under. Some providers also require you to set the region.
