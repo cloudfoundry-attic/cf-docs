@@ -34,7 +34,7 @@ $ fog openstack
 
 The `[]` is an empty array in Ruby. You might see a long list of servers being displayed if your OpenStack tenancy/project already contains provisioned servers.
 
-Note: it is recommended that you deploy BOSH and Cloud Foundry in a dedicated tenancy. Its easier to keep track of the servers, volumes, security groups and networks that you create. It also allows you to manage user access.
+Note: It is recommended that you deploy BOSH and Cloud Foundry in a dedicated tenancy. It is easier to keep track of the servers, volumes, security groups, and networks that you create. It also allows you to manage user access.
 
 There is more information on [OpenStack API docs](http://docs.openstack.org/api/quick-start/content/).
 
@@ -42,7 +42,7 @@ There is more information on [OpenStack API docs](http://docs.openstack.org/api/
 
 According to [the OpenStack Documentation](http://docs.openstack.org/grizzly/openstack-compute/admin/content/metadata-service.html), the Compute service uses a special metadata service to enable virtual machine instances to retrieve instance-specific data. The default stemcell for use with BOSH retrieves this metadata for each instance of a virtual machine that OpenStack manages in order to get some data injected by the BOSH director.
 
-You will need to ensure that virtual machines you boot in your OpenStack environment can access the metadata service at http://169.254.169.254.  
+You will need to ensure that virtual machines you boot in your OpenStack environment can access the metadata service at http://169.254.169.254.
 
 From your OpenStack dashboard, create an VM and open the console into it (the "Console" tab on its "Instance Detail" page). Wait for the terminal to appear and login.
 
@@ -119,7 +119,7 @@ Note that you can press Ctrl-C to exit the ping program.  If you are not able to
 
 ## <a id="api_access"></a> Can invoke large number of API calls? ##
 
-Your OpenStack might have API throttling (devstack enables throttling by default) which may mean that BOSH requests to OpenStack fail dramatically, or perhaps fail temporarily (whilst waiting for the API throttle to expire).
+Your OpenStack might have API throttling (devstack enables throttling by default) which may mean that BOSH requests to OpenStack fail dramatically, or perhaps fail temporarily (while waiting for the API throttle to expire).
 
 Try the following to see if you may be affected by API throttling:
 
@@ -149,26 +149,26 @@ To verify the ability to provision large volumes, perform the following steps:
 7.  For size, enter <em>30</em>.
 8.  You should see the volume appear in the list of volumes with the status <em>Available</em>.
 
-If the volume appears with the status <em>Error</em> then you need to check that your OpenStack Cinder Service is configured correctly.  See [Cinder Administrator Guide](http://docs.openstack.org/admin-guide-cloud/content/managing-volumes.html) for more information. 
+If the volume appears with the status <em>Error</em> then you need to check that your OpenStack Cinder Service is configured correctly.  See [Cinder Administrator Guide](http://docs.openstack.org/admin-guide-cloud/content/managing-volumes.html) for more information.
 
 To verify that you can attach and mount a volume to an instance, perform the following steps (<em>assumes you have completed the steps above</em>):
 
 1.  From your OpenStack dashboard, create a VM.
 2.  Return to the <em>Volumes</em> page, and find <em>Test Volume</em>.  Click <em>Edit Attachments</em> on the right.
 3.  In the <em>Attach to Instance</em> find the VM you just created.
-4.  In the <em>Device Name</em> field, enter <em>/dev/vdb</em>. 
-5.  Open the console into this virtual machine (the "Console" tab on its "Instance Detail" page). 
+4.  In the <em>Device Name</em> field, enter <em>/dev/vdb</em>.
+5.  Open the console into this virtual machine (the "Console" tab on its "Instance Detail" page).
 6.  At the prompt, type
     <pre class="bash">
     $ sudo fdisk -l
-    
+
 	Disk /dev/vdb: 32.2 GB, 32212254720 bytes
 	16 heads, 63 sectors/track, 62415 cylinders, total 62914560 sectors
 	Units = sectors of 1 * 512 = 512 bytes
 	Sector size (logical/physical): 512 bytes / 512 bytes
 	I/O size (minimum/optimal): 512 bytes / 512 bytes
 	Disk identifier: 0x00000000
-	
+
 	Disk /dev/vdb doesn't contain a valid partition table
 	</pre>
 
@@ -228,7 +228,7 @@ To download the image to your Glance Image Service, perform the following steps:
 
 Depending on your server's internet connection, the image may take some time to download.
 
-After the image has download, launch an instance of it from the dashboard and see that you can connect to it. If the image seems to take a significantly long amount of time to boot, it may be that your metadata service is not configured correctly.  
+After the image has download, launch an instance of it from the dashboard and see that you can connect to it. If the image seems to take a significantly long amount of time to boot, it may be that your metadata service is not configured correctly.
 
 ## <a id="internet"></a> Can access the Internet from within instances? ##
 
