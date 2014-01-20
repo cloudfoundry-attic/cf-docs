@@ -232,6 +232,60 @@ Depending on your server's internet connection, the image may take some time to 
 
 After the image has download, launch an instance of it from the dashboard and see that you can connect to it. If the image seems to take a significantly long amount of time to boot, it may be that your metadata service is not configured correctly.
 
+## <a id="internal-external-ips"></a> Can configure networking for both external and internal IPs? ##
+
+BOSH assumes that virtual machines will be connected to two distinct virtual networks: one that is internal and only accessible to the virtual machines themselves, and one that is external (or "public") that allows access from outside the network.  In the user interface, these external IP addresses are called <em>floating</em> IPs because they can be dynamically reassigned to virtual machines on the hypervisor with the push of a button.
+
+To confirm that you can assign floating IP addresses to your virtual machines, perform the following steps:
+
+1.  Find a virtual machine that you have already provisioned.  If you do not have one available, go ahead and provision one.  In the menu on the left-hand side, if you click <em>Instances</em>, you should see your virtual machine listed.
+2.  Ensure that the virtual machine in #1 has booted completely by checking its console window (the "Console" tab on its "Instance Detail" page).  
+4.  Find your virtual machine in the list of instances and click the button labeled <em>More</em> for that VM.  A list of operations should appear.
+5.  Select <em>Associate Floating IP</em> from the list that comes up.
+6.  You should be able to pull the drop down the list of public IP addresses from the menu named <em>IP Address</em>.  Sometimes, you may need to allocate an additional floating IP address by clicking the plus (+) to the right of this menu, selecting a pool, and clicking <em>Allocate IP</em>.
+7.  You should be able to leave the menu <em>Port to be associated</em> alone, but check that it points at the VM you have selected.
+8.  Click <em>Associate</em>.
+
+If the steps above do not work for you, consult the [OpenStack Networking Guide](http://docs.openstack.org/admin-guide-cloud/content/ch_networking.html) for more information.
+
+Simply assigning a floating IP address to a virtual machine does not mean that virtual networking is properly configured.  We will also need to ensure that the virtual machine can be reached on its floating IP address, so that calls can be made to and from the VM once it's running the BOSH Director or Cloud Foundry. The public-facing router will forward traffic at all ports to your virtual machine, so it is up to the networking configuration of your security group to provide the added layer of security by implementing a firewall.
+
+Create a security group for your public-facing virtual machine called <em>ping-test</em>.
+
+1.  Open the OpenStack dashboard, and click on <em>Access & Security</em> in the left-hand menu.
+2.  Click <em>Create Security Group</em> on the upper-right hand corner on the list of security groups.
+3.  Under <em>Name</em>, enter <em>ping-test</em>.  You must enter something in the <em>Description</em> field, but it does not matter what it is.
+4.  Click <em>Create Security Group</em>.
+5.  The list of security groups should now contain <em>ping-test</em>.  Find it in the list and click the <em>Edit Rules</em> button.
+6.  The list of rules should be blank.  Click <em>Add Rule</em>.
+7.  For <em>Protocol</em>, select <em>ICMP</em>.
+8.  For <em>Type</em>, enter <em>-1</em>.
+9.  For <em>Code</em>, enter <em>-1</em>.
+10. For <em>Source</em>, select <em>CIDR</em>.
+11. For <em>CIDR</em>, enter <em>0.0.0.0/0</em>.
+12. Click <em>Add</em>.
+
+You now need to add your virtual machine to the security group you just created.  
+
+1.  Go back to the <em>Instances</em> view and find your VM.
+2.  Click the <em>More</em> button to the right of your VM.
+3.  Click the <em>Edit Security Groups</em> button in the drop down menu that appears.
+4.  Find <em>ping-test</em> in the list under <em>All Security Groups</em> and click the plus (+) to add it to the virtual machine.
+
+Now that the <em>ping-test</em> group has been added to the VM, and configured to allow ping traffic through, and the virtual machine has been associated with a floating IP address, you can simply ping the VM to check that the traffic is properly routed.  
+
+At the prompt, issue the following command (asusme your instance receives the IP address <code>9.9.8.7</code>:
+
+<pre class="terminal">
+$ ping 9.9.8.7
+PING 9.9.8.7 (9.9.8.7) 56(84) bytes of data.
+64 bytes from 9.9.8.7: icmp_seq=1 ttl=64 time=0.095 ms
+64 bytes from 9.9.8.7: icmp_seq=2 ttl=64 time=0.048 ms
+64 bytes from 9.9.8.7: icmp_seq=3 ttl=64 time=0.080 ms
+...
+
+</pre>
+
 ## <a id="internet"></a> Can access the Internet from within instances? ##
 
 Your deployment of Cloud Foundry will need outbound access to the Internet (for example, the Ruby buildpack will run `bundle install` on users' applications to fetch RubyGems). You can verify now that your OpenStack is configured correctly to allow outbound access to the Internet.
