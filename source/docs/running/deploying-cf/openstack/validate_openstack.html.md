@@ -10,6 +10,8 @@ Note that the requirements listed here are considered *necessary* but not *suffi
 
 Please see [Troubleshooting Cloud Foundry on OpenStack](./troubleshooting.html) for additional troubleshooting information.
 
+In addition to the items on this page, you may want to check out the [troubleshooting](/docs/running/deploying-cf/openstack/troubleshooting.html) page so that you can ensure you don't run into these issues ahead of time. 
+
 ## <a id="api_access"></a>Can access the OpenStack APIs for your instance of OpenStack? ##
 
 You should verify that you have your OpenStack API credentials and can make API calls. Credentials are a combination of your user name, password, and the  tenant (or project) your cloud is running under. Some providers also require you to set the region.
