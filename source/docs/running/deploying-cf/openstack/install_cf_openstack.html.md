@@ -339,6 +339,7 @@ properties:
     authorization_timeout: 10
 
   router:
+    port: 8081
     status:
       port: 8080
       user: gorouter
@@ -445,13 +446,6 @@ properties:
   login:
     enabled: false
   
-  router:
-    port: 8081
-    status:
-      port: 8080
-      user: gorouter
-      password: icap
-
   uaa:
     url: <%= protocol %>://uaa.<%= root_domain %>
     no_ssl: <%= protocol == "http" %>
