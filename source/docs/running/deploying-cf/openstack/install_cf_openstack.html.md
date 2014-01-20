@@ -306,7 +306,8 @@ jobs:
         default: [dns, gateway]
 
   - name: dea
-    template: dea_next
+    template: 
+     - dea_next
     instances: 1
     resource_pool: large
     networks:
@@ -326,14 +327,19 @@ properties:
     apps: default
     management: default
 
+  ssl:
+    skip_cert_verify: true
+
   nats:
     address: 0.nats.default.<%= deployment_name %>.microbosh
+    machines: [ 0.nats.default.<%= deployment_name %>.microbosh ]
     port: 4222
     user: nats
     password: <%= common_password %>
     authorization_timeout: 10
 
   router:
+    port: 8081
     status:
       port: 8080
       user: gorouter
@@ -419,18 +425,27 @@ properties:
     staging_upload_user: upload
     staging_upload_password: <%= common_password %>
     resource_pool:
-      resource_directory_key: cf-att-io-cc-resources
+      resource_directory_key: cc-resources
+      fog_connection:
+        provider: Local
+        local_root: /var/vcap/nfs/shared
     packages:
-      app_package_directory_key: cf-att-io-cc-packages
+      app_package_directory_key: cc-packages
     droplets:
-      droplet_directory_key: cf-att-io-cc-droplets
-    default_quota_definition: runaway
+      droplet_directory_key: cc-droplets
+    quota_definitions:
+      default:
+        memory_limit: 10240
+        total_services: 100
+        non_basic_services_allowed: true
+        total_routes: 1000
+        trial_db_allowed: true
 
   ccng: *cc
 
   login:
     enabled: false
-
+  
   uaa:
     url: <%= protocol %>://uaa.<%= root_domain %>
     no_ssl: <%= protocol == "http" %>
