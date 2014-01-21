@@ -8,9 +8,8 @@ You will need a running OpenStack environment. Note that only [Folsom](https://w
 
 Note that the requirements listed here are considered *necessary* but not *sufficient* for BOSH to be able to use your OpenStack deployment. In other words, if you cannot perform any one of these items correctly, then BOSH will not work; however, satisfying all these requirements does not necessarily mean BOSH *will* work.
 
-Please see [Troubleshooting Cloud Foundry on OpenStack](./troubleshooting.html) for additional troubleshooting information.
-
-In addition to the items on this page, you may want to check out the [troubleshooting](/docs/running/deploying-cf/openstack/troubleshooting.html) page so that you can ensure you don't run into these issues ahead of time. 
+See [Troubleshooting Cloud Foundry on OpenStack](./troubleshooting.html) for
+additional troubleshooting information.
 
 ## <a id="api_access"></a>Can access the OpenStack APIs for your instance of OpenStack? ##
 
