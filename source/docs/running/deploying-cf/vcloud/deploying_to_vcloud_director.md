@@ -14,7 +14,7 @@ To get started with BOSH on vCloud you need:
 
 ## Installing Micro Bosh
 
-See [Deploying Micro BOSH using vSphere](../vpshere/deploying_micro_bosh.html)
+See [Deploying Micro BOSH using vSphere](../vsphere/deploying_micro_bosh.html)
 
 ## Micro BOSH Stemcells ##
 
