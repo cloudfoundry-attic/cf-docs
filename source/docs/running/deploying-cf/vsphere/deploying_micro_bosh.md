@@ -23,6 +23,9 @@ On the BOSH team, we gleefully refer to this as [Inception](http://en.wikipedia.
 We recommend that you run the BOSH bootstrap from Ubuntu since it is the
 distribution used by the BOSH team, and has been thoroughly tested.
 
+Plan to have around 8 GB of free disk space for the bosh_cli if you plan to use it to deploy CF releases.
+You'll need around 3 GB free disk space in /tmp
+
 * Install some core packages on Ubuntu that the BOSH deployer depends on.
 
 <pre class="terminal">
