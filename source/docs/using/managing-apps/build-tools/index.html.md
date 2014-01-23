@@ -65,6 +65,8 @@ Add the following to the `plugins` node of your `pom.xml`:
       <target>http://api.run.pivotal.io</target>
       <url>hello-java-maven.cfapps.io</url>
       <memory>256</memory>
+      <org>yourOrganizationName</org>
+      <space>development</space>
   </configuration>
 </plugin>
 ~~~
