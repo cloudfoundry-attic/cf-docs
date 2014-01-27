@@ -70,6 +70,8 @@ network:
   netmask: <netmask_for_the_subnet_you_are_deploying_to>
   gateway: <gateway_for_the_subnet_you_are_deploying_to>
   dns:
+  #The micro-bosh VM will have the following DNS entries in its /etc/resolv.com
+  #e.g. allowing it to resolve IaaS FQDNs
   - <ip_for_dns>
   cloud_properties:
     name: <network_name_according_to_vsphere>
@@ -120,6 +122,10 @@ apply_spec:
           clusters:
           - <cluster_name>:
               resource_pool: <resource_pool_name_optional>
+    dns:
+        #the bosh powerDNS will contact the following DNS server for serving DNS entries from other domains
+        recursor: <ip_for_dns>
+
 
 ~~~
 

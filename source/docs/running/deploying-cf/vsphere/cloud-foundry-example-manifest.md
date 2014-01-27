@@ -30,14 +30,21 @@ networks:
 - name: default
   subnets:
   - range: 172.16.214.0/23
+    #Reversed are the IPs that bosh should not be using in the declared range
     reserved:
     - 172.16.214.2 - 172.16.214.9
     - 172.16.215.245 - 172.16.215.254
+    #Static are the ones that are statically assigned to jobs in this manifest, and that bosh director will not attempt
+    #to dynamically assign to new vms.
     static:
     - 172.16.214.10 - 172.16.214.140
     gateway: 172.16.214.1
-    dns:
-    - 8.8.8.8
+    #If you configured your bosh/micro-bosh to enable dns, then leave the dns section empty. Bosh director
+    #will automatically use the bosh/micro-bosh powerDNS IP. If ever some of the jobs need to resolve DNS
+    #entries outside the bosh powerDNS subdomain (*.microbosh by default) then configure the powerDNS recursor
+    #in your bosh release.
+    #dns:
+    #- 8.8.8.8
     cloud_properties:
       name: default_vlan
 - name: lb
