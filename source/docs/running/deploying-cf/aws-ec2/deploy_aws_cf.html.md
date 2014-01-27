@@ -18,71 +18,66 @@ Original documentation borrowed heavily from [here](http://www.google.com/url?q=
 
 Create a folder on the local computer to store the CF Release:
 
-**$ mkdir -p ~/bosh-workspace/releases/**
-
-**$ cd ~/bosh-workspace/releases/**
-
-**$ git clone -b release-candidate git://github.com/cloudfoundry/cf-release.git**
-
-**$ cd ~/bosh-workspace/releases/cf-release**
-
+<pre class="terminal">
+  mkdir -p ~/bosh-workspace/releases/
+  cd ~/bosh-workspace/releases/
+  git clone -b release-candidate git://github.com/cloudfoundry/cf-release.git
+  cd ~/bosh-workspace/releases/cf-release
+</pre>
 Navigate into the releases folder and pick a recent release then upload:
 
-  **$ bosh upload release ~/bosh-workspace/releases/cf-release/releases/cf-146.yml**
+<pre class="terminal">
+  bosh upload release ~/bosh-workspace/releases/cf-release/releases/cf-146.yml
+</pre>
 
 Note: if you get a blobstore error "No space left of device…" the local computer ran out of space on the /tmp folder.  To fix this, find a larger local partition and execute the following commands to point /tmp to a larger device.
 
-**$ sudo su -**
-
-**$ mkdir /tmp2**
-
-**$ mount --bind /tmp2 /tmp**
-
-**$ sudo chown root.root /tmp**
-
-**$ sudo chmod 1777 /tmp**
+<pre class="terminal">
+  sudo su -
+  mkdir /tmp2
+  mount --bind /tmp2 /tmp
+  sudo chown root.root /tmp
+  sudo chmod 1777 /tmp
+</pre>
 
 To check that the release was successful:
 
-  **$bosh releases**
+<pre class="terminal">
+  bosh releases
+</pre>
 
 ### Obtain and Upload Stemcell
 
 These are the exact same instructions that we used to upload the latest stemcell of BOSH onto the Micro BOSH server.
 
-<table>
-  <tr>
-    <td>$ bosh upload stemcell https://s3.amazonaws.com/bosh-jenkins-artifacts/bosh-stemcell/aws/bosh-stemcell-1274-aws-xen-ubuntu.tgz</td>
-  </tr>
-</table>
+<pre class="terminal">
+  bosh upload stemcell https://s3.amazonaws.com/bosh-jenkins-artifacts/bosh-stemcell/aws/bosh-stemcell-1274-aws-xen-ubuntu.tgz
+</pre>
 
 
 After the upload is complete you can see the list of stemcells by calling:
 
-<table>
-  <tr>
-    <td>$ bosh stemcells</td>
-  </tr>
-</table>
-
+<pre class="terminal">
+  bosh stemcells
+</pre>
 
 ### Modify Deployment Manifest
 
 Create a location to save the file
 
-**$ mkdir -p ~/bosh-workspace/deployments/cf**
-
-**$ cd ~/bosh-workspace/deployments/cf**
-
-**$ vi cf.yml**
+<pre class="terminal">
+  mkdir -p ~/bosh-workspace/deployments/cf
+  cd ~/bosh-workspace/deployments/cf
+  vi cf.yml
+</pre>
 
 Below is a sample deployment manifest known to work with cf-146.  Substitute the new IP address you created in the last step for the address 107.20.148.206 seen below.  Obtain your director_uuid by executing "bosh status" and updating the manifest below no other changes are required unless you are using a different version other than cf-146.
 
 This sample deployment was originally created via the bosh-cloudfoundry gem which is located [here](https://github.com/cloudfoundry-community/bosh-cloudfoundry/blob/master/templates/v146/aws/medium/deployment_file.yml.erb).
 
-<table>
-  <tr>
-    <td>---
+<pre class="terminal">
+
+~~~yaml
 name: tutorial
 director_uuid: cb876e64-c08f-427f-b84f-3d05a5fde145
 
@@ -374,8 +369,7 @@ properties:
       users:
       - admin|eaa139af583c|scim.write,scim.read,openid,cloud_controller.admin
       - services|eaa139af583c|scim.write,scim.read,openid,cloud_controller.admin</td>
-  </tr>
-</table>
+~~~
 
 
 Remember to save your changes to the file
@@ -386,26 +380,18 @@ Everything is now in place to use the deployment manifest you have created and d
 
 Select the deployment file
 
-<table>
-  <tr>
-    <td>$ bosh deployment ~/bosh-workspace/deployments/cf/cf.yml</td>
-  </tr>
-</table>
+<pre class="terminal">
+  bosh deployment ~/bosh-workspace/deployments/cf/cf.yml</td>
+</pre>
 
 
 Deploy the BOSH
 
-<table>
-  <tr>
-    <td>$ bosh deploy </td>
-  </tr>
-</table>
+<pre class="terminal">
+  bosh deploy
+</pre>
 
 
 If you receive the following error, try to run "bosh deploy" again
 
-<table>
-  <tr>
-    <td>Error 400007: `api/0' is not running after update</td>
-  </tr>
-</table>
+**Error 400007: `api/0' is not running after update**

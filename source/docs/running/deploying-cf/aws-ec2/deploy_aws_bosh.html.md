@@ -18,24 +18,20 @@ The original source of this information was from the [cloud foundry blog post](h
 
 Simply upload the most recent generic release
 
-<table>
-  <tr>
-    <td>$ bosh upload release https://s3.amazonaws.com/bosh-jenkins-artifacts/release/bosh-1274.tgz</td>
-  </tr>
-</table>
+<pre class="terminal">
+bosh upload release https://s3.amazonaws.com/bosh-jenkins-artifacts/release/bosh-1274.tgz</td>
+</pre>
 
 
 ### Create Directory Structure
 
 Create a standard place to store the Deployment Manifest on your local computer, you should still be targeting the Micro BOSH server:
 
-<table>
-  <tr>
-    <td>$ mkdir -p ~/bosh-workspace/deployments/bosh
-$ cd ~/bosh-workspace/deployments/bosh
-$ touch bosh.yml</td>
-  </tr>
-</table>
+<pre class="terminal">
+  mkdir -p ~/bosh-workspace/deployments/bosh
+  cd ~/bosh-workspace/deployments/bosh
+  touch bosh.yml
+</pre>
 
 
 **Locate the correct BOSH Stemcell**
@@ -50,31 +46,22 @@ To find and obtain the current BOSH stemcell, navigate to [http://bosh_artifacts
 
 Upload the latest stemcell of BOSH onto the Micro BOSH server.
 
-<table>
-  <tr>
-    <td>$ bosh upload stemcell https://s3.amazonaws.com/bosh-jenkins-artifacts/bosh-stemcell/aws/bosh-stemcell-1274-aws-xen-ubuntu.tgz</td>
-  </tr>
-</table>
+<pre class="terminal">
+  bosh upload stemcell https://s3.amazonaws.com/bosh-jenkins-artifacts/bosh-stemcell/aws/bosh-stemcell-1274-aws-xen-ubuntu.tgz
+</pre>
 
 
 After the upload is complete you can see the list of stemcells by calling:
-
-<table>
-  <tr>
-    <td>$ bosh stemcells</td>
-  </tr>
-</table>
-
-
+<pre class="terminal">
+  bosh stemcells
+</pre>
 
 
 **Create BOSH Deployment Manifest**
 
 Now let’s review what the contents of the bosh.yml deployment manifest file should include.
 
-<table>
-  <tr>
-    <td>---
+~~~yaml
 name: bosh
 
 # The director_uuid is obtained by executing the "bosh status" command.
@@ -212,9 +199,8 @@ properties:
     secret_access_key: {{secret access key goes here}}
     default_key_name: bosh
     region: us-east-1
-    default_security_groups: ["bosh"]</td>
-  </tr>
-</table>
+    default_security_groups: ["bosh"]
+~~~
 
 
 Note that since this is a yml (YAML) file, spacing is extremely important, you’ll receive a syntax error when you get to the "Deploy Manifest" in two more sections.
@@ -227,48 +213,36 @@ Everything is now in place to use the deployment manifest you have created and d
 
 Enter the deployments folder you created earlier:
 
-<table>
-  <tr>
-    <td>$ cd ~/bosh-workspace/deployments</td>
-  </tr>
-</table>
+<pre class="terminal">
+  cd ~/bosh-workspace/deployments
+</pre>
 
 
 Select the deployment you called "bosh" in the first section of Step 5
 
-<table>
-  <tr>
-    <td>$ bosh deployment bosh/bosh.yml</td>
-  </tr>
-</table>
+<pre class="terminal">
+bosh deployment bosh/bosh.yml
+</pre>
 
 
 Deploy the BOSH
 
-<table>
-  <tr>
-    <td>$ bosh deploy </td>
-  </tr>
-</table>
-
+<pre class="terminal">
+  bosh deploy
+</pre>
 
 If the deployment failed clean it up before trying again
 
-<table>
-  <tr>
-    <td>$ bosh delete deployment bosh</td>
-  </tr>
-</table>
+<pre class="terminal">
+bosh delete deployment bosh
+</pre>
 
 
-Log into the new BOSH server, replace the IP address with the IP address you created in Step 4 with the one used below.
+Log into the new BOSH server, replace the IP address for the IP address you created in Step 4 with the one used below.
 
-<table>
-  <tr>
-    <td>$ bosh target 23.21.249.15</td>
-  </tr>
-</table>
-
+<pre class="terminal">
+bosh target 23.21.249.15
+</pre>
 
 The default username and password are "admin" and “admin”.
 
@@ -286,5 +260,5 @@ Note a few things in the preceding screenshot:
 
 4. **bosh** - this was the name of the Security Group
 
-5. **23.21.249.15 **- this was the Elastic IP address that we created and is the external IP address for the BOSH server
+5. **23.21.249.15**- this was the Elastic IP address that we created and is the external IP address for the BOSH server
 

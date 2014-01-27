@@ -1,4 +1,6 @@
-# Concepts
+---
+title: Glossary
+---
 
 ## Inceptions
 

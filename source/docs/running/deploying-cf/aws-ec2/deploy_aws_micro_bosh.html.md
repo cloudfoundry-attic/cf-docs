@@ -28,9 +28,7 @@ Create a standard place to store the Deployment Manifest on your local computer:
 
 Now let’s review what the contents of the microbosh.yml deployment manifest file should include.  Be sure to replace "x.x.x.x" with the ip address you created on Step 2 in the script below.
 
-<table>
-  <tr>
-    <td>---
+<pre class="terminal">
 name: microbosh
 
 logging:
@@ -67,9 +65,7 @@ apply_spec:
   properties:
     aws_registry:
       address: x.x.x.x    #Change this to the allocated IP address from Step 2
-</td>
-  </tr>
-</table>
+</pre>
 
 
 Note, Since this is a yml (YAML) file, spacing is extremely important, you’ll receive a syntax error when you get to the "Deploy Manifest" in two more sections.
@@ -106,7 +102,9 @@ Everything is now in place to use the deployment manifest you have created and d
 
 Enter the deployments folder you created earlier:
 
-#### **local$ cd ~/bosh-workspace/deployments/microboshes/deployments**
+<pre class="terminal">
+cd ~/bosh-workspace/deployments/microboshes/deployments**
+</pre>
 
 Select the deployment you called "aws" in the first section of Step 3
 
@@ -118,17 +116,22 @@ Ignore the error that isn’t an error, it is just letting you know that the dir
 
 Deploy the Micro BOSH AMI
 
-#### **local$ bosh micro deploy ****ami-979dc6fe**
+<pre class="terminal">
+bosh micro deploy ****ami-979dc6fe**
+</pre>
 
 If the deployment failed clean it up before trying again
 
-#### **local$ bosh micro delete**
+<pre class="terminal">
+bosh micro delete**
+</pre>
 
 Log into the new Micro BOSH server
 
-#### **local$ bosh target 54.204.16.249**
-
-**local$ bosh login**
+<pre class="terminal">
+bosh target 54.204.16.249
+bosh login
+</pre>
 
 The default username and password are "admin" and “admin”.
 
