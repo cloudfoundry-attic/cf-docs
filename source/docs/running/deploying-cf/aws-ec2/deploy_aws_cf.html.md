@@ -75,8 +75,6 @@ Below is a sample deployment manifest known to work with cf-146.  Substitute the
 
 This sample deployment was originally created via the bosh-cloudfoundry gem which is located [here](https://github.com/cloudfoundry-community/bosh-cloudfoundry/blob/master/templates/v146/aws/medium/deployment_file.yml.erb).
 
-<pre class="terminal">
-
 ~~~yaml
 name: tutorial
 director_uuid: cb876e64-c08f-427f-b84f-3d05a5fde145
