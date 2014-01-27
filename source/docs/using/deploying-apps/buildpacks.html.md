@@ -2,7 +2,7 @@
 title: Buildpacks
 ---
 
-Cloud Foundry stages application using framework and and runtime-specific buildpacks. Heroku developed the buildpack approach, and made it available to the open source community. 
+Cloud Foundry stages applications using framework- and runtime-specific buildpacks. Heroku developed the buildpack approach, and made it available to the open source community. 
 
 
 * **Cloud Foundry Buildpacks** ---  When you push an application the runs in a runtime and framwork supported by a Cloud Foundry buildpack, the appropriate buildpack is automatically applied to the application.  For information about the software resources each buildpack provides see:   
