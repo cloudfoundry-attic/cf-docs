@@ -1,4 +1,10 @@
-Prepare your local computer for deploying Micro BOSH and is the same regardless of the infrastructure you will deploy to.  You may have some of the steps below already installed if you are a Ruby developer ( and if you are, you know which steps you can skip):
+___
+title: Preparing your local machine for Micro Bosh Deployment
+---
+
+We use Micro BOSH to deploy BOSH. A micro BOSH is a single VM that includes all of the BOSH components. In order to deploy BOSH you will install a Micro BOSH and then run the BOSH deployer. The libraries we need to get started are distributed via a Ruby Gem.
+
+Preparing your local computer for deploying Micro BOSH is the same regardless of the infrastructure you will deploy to.  You may have some of the steps below already installed if you are a Ruby developer ( and if you are, you know which steps you can skip):
 
 1. Install Ruby
 
@@ -33,12 +39,11 @@ Git will be leveraged for several downloads so the git cli needs to be installed
 ### Update RubyGems
 
 This installs Ruby’s package management framework, additional details are located [here](http://rubygems.org/pages/download).
-
 <pre class="terminal">
-  gem update --system**
+  gem update --system
 </pre>
 
-### Create a new gemset and update package management
+### If using rvm you can create a new gemset and update package management
 
 <pre class="terminal">
   rvm use 2.0.0@bosh --create
@@ -58,10 +63,10 @@ For Fedora
 
 ### Install Gems for BOSH CLI
 
-Run the following command to Install the gems required to run bosh from the command line:
+Run the following command to Install the gems required to run bosh from the command line. This step can take a few minutes. If you'd like to speed this up a bit you can skip ri and rdoc with --no-ri --no-rdoc.
 
 <pre class="terminal">
   gem install bosh_cli_plugin_micro --pre
 </pre>
 
-Note: if the step above errors out referencing sqlite, execute "apt-get install sqlite-devel" then try the previous step again.
+Note: if the step above errors out referencing sqlite on aptitude based systems, execute "apt-get install sqlite-devel" then try the previous step again or otherwise ensure that sqlite development packages have been installed.
