@@ -2,6 +2,9 @@
 title: v2 API Change Log
 ---
 
+## 2014-01-27 ##
+Removed example request bodies for Unbind and Delete, as DELETE requests do not include a body. Clarified that documented request fields are query parameters, not body fields. Updated example cUrl to remove body and add query parameters.
+
 ## 2013-12-27 ##
 Added field, bumped version to 2.1, included in cf-release final build 152.
 
