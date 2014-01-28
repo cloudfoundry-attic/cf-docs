@@ -11,6 +11,8 @@ The AWS configuration needs to be altered so that the BOSH server(s) can be depl
 
 BOSH needs TCP ports ( 53, 4222, 25250 and 25777) and UDP port (53) opened for inbound to the security group "bosh" created previously.  We will also open ports 1 through 65535 so that all servers within that security group can talk to eachother.
 
+Note: during the process below your changes will not be complete until you click "Apply Rule Changes" if you click on another security group during this process you will lose your changes if you haven't applied them.
+
 Starting with the BOSH Director which needs port 4222, select the newly created Security Group, click "Inbound".  In the Port range box enter “4222” and click “Add Rule”.
 
 ![image alt text](/source/images/aws-ec2/image_18.png)
