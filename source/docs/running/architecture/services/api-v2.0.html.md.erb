@@ -1,6 +1,8 @@
 ---
-title: Service Broker API
+title: Service Broker API v2.0
 ---
+
+## <a id='changelog'></a>Document Changelog ##
 
 [v2 API Change Log](v2-api-changelog.html)
 
@@ -8,13 +10,22 @@ title: Service Broker API
 
 Two major versions of the Service Broker API are currently supported by Cloud Foundry, v1 and v2. As v1 is deprecated and support will be removed in the next major version of Cloud Foundry, it is recommended that all new brokers implement v2 and current brokers are upgraded.
 
-### <a id='current-version'></a>Current Version ###
-
-v2.0
-
-### <a id='past-version'></a>Past Versions ###
-
-* [v1](api-v1.html)
+<div style="width:50%">
+  <table>
+    <thead>
+      <tr>
+        <th>Current Version</th>
+        <th>Past Versions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a href="api.html">2.1</a></td>
+        <td><a href="api-v2.0.html">2.0</a><br/><a href="api-v1.html">v1 (unversioned)</a></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 ## <a id='changes'></a>Changes ##
 
@@ -69,8 +80,17 @@ When Cloud Controller fetches a catalog from a broker, it will compare the broke
 
 If the database has plans which are not found in the broker catalog, and there are no associated service instances, Cloud Controller will remove these plans from the database. If there are provisioned instances, the plan will be marked “inactive” and will no longer be visible in the marketplace catalog or be provisionable. Cloud Controller will then delete services that do not have associated plans from the database.
 
+### Request ###
 
+##### Route #####
 `GET /v2/catalog`
+
+##### cURL #####
+<pre class="terminal">
+ $ curl http://username:password@broker-url/v2/catalog
+</pre>
+
+### Response ###
 
 <table>
 
@@ -153,7 +173,7 @@ If the database has plans which are not found in the broker catalog, and there a
 
 \* Fields with an asterisk are required.
 
-**Example response**
+##### Body #####
 
 <pre class="terminal">
 {
@@ -192,9 +212,14 @@ When the broker receives a provision request from Cloud Controller, it should sy
 
 For non-data services, provisioning could just mean getting an account on an existing system.
 
+### Request ###
+
+##### Route #####
 `PUT /v2/service_instances/:id`
 
-**In this API, the `:id` of a service instance is provided by the Cloud Controller**. This ID will be used for future requests (bind and deprovision), so the broker must use it to correlate the resource it creates.
+_Note: the `:id` of a service instance is provided by the Cloud Controller. This ID will be used for future requests (bind and deprovision), so the broker must use it to correlate the resource it creates._
+
+##### Body #####
 
 <table>
 <thead>
@@ -228,7 +253,11 @@ For non-data services, provisioning could just mean getting an account on an exi
 </tbody>
 </table>
 
+### Response ###
+
 Brokers are expected to respond with `201 Created` with the response body from the table below. They can also return `409 Conflict` if there is already a provisioned resource at this URL. Since this endpoint cannot be used to update resource parameters, brokers must return 409 if a conflicting request is made. Ideally, a non-conflicting request (duplicate ID and params) would return 200, but brokers may simply return 409 for a duplicate ID.  If they respond with any code besides 200 or 201, CC will assume that the provision request failed and inform the user.
+
+##### Body #####
 
 <table>
 <thead>
@@ -247,8 +276,6 @@ Brokers are expected to respond with `201 Created` with the response body from t
 </tboby>
 </table>
 
-**Example response**
-
 <pre class="terminal">
 {
  "dashboard_url": "http://mongomgmthost/databases/9189kdfsk0vfnku?access_token=3hjdsnqadw487232lp"
@@ -264,9 +291,15 @@ When the broker receives a bind request from the Cloud Controller, it should tak
 * New random user credentials are generated for the existing database.
 * A single set of credentials are returned for every bind to the same database.
 
+### Request ###
+
+##### Route #####
+
 `PUT /v2/service_instances/:instance_id/service_bindings/:id`
 
-Note that the `:id` of a service binding is provided by the Cloud Controller. `:instance_id` is the ID of a previously-provisioned service instance; `:id` will be used for future unbind requests, so the broker must use it to correlate the resource it creates.
+_Note: the `:id` of a service binding is provided by the Cloud Controller. `:instance_id` is the ID of a previously-provisioned service instance; `:id` will be used for future unbind requests, so the broker must use it to correlate the resource it creates._
+
+##### Body #####
 
 <table>
 <thead>
@@ -290,7 +323,11 @@ Note that the `:id` of a service binding is provided by the Cloud Controller. `:
 </tbody>
 </table>
 
+### Response ###
+
 Brokers are expected to respond with `200 OK` or `201 Created` with the response body from the table below. They can also return `409 Conflict` if there is already a binding with the same `id`. Since this endpoint cannot be used to update resources, a broker must return a `409` if an identical request is made. If a broker responds with a code other than `200` or `201`, Cloud Controller will assume that the binding request failed and inform the user.
+
+##### Body #####
 
 <table>
 <thead>
@@ -314,8 +351,6 @@ Brokers are expected to respond with `200 OK` or `201 Created` with the response
 </tbody>
 </table>
 
-**Example response**
-
 <pre class="terminal">
 	{
 	  "credentials": {
@@ -335,9 +370,17 @@ _Note: Brokers that do not provide any bindable services do not need to implemen
 
 When a broker receives an unbind request from Cloud Controller, it should delete any resources it created in bind. Usually this means that an application immediately cannot access the resource.
 
+### Request ###
+
+##### Route #####
+
 `DELETE /v2/service_instances/:instance_id/service_bindings/:id`
 
-The `:id` in the URL is the identifier of a previously created binding (the same `:id` passed in the bind request). The request has no body, because DELETE requests generally do not have bodies. It does provide these query string params as useful hints for brokers:
+The `:id` in the URL is the identifier of a previously created binding (the same `:id` passed in the bind request). The request has no body, because DELETE requests generally do not have bodies. 
+
+##### Parameters #####
+
+The request provides these query string parameters as useful hints for brokers.
 
 <table>
 <thead>
@@ -361,6 +404,8 @@ The `:id` in the URL is the identifier of a previously created binding (the same
 </tr>
 </tbody>
 </table>
+
+### Response ###
 
 A response code of `200 OK` with a body of `{}` indicates that the resource was deleted. A response code of `410 Not Found` with a body of `{}` indicates to Cloud Controller that the resource was not there in the first place, and is likely gone. _Any other_ response code indicates to Cloud Controller that the the binding could not be deleted; the user will be informed (and the binding will remain in the database).
 
@@ -370,10 +415,17 @@ We've chosen to require empty JSON in the response for future compatibility; it 
 
 When a broker receives an deprovision request from Cloud Controller, it should delete any resources it created during the provision. Usually this means that all resources are immediately reclaimed for future provisions.
 
+### Request ###
+
+##### Route #####
+
 `DELETE /v2/service_instances/:id`
 
-The `:id` in the URL is the identifier of a previously provisioned instance (the same `:id` passed in the provision request).  The request has **no body**, because DELETE requests generally do not have bodies. It does provide these query string params as useful hints for brokers:
+The `:id` in the URL is the identifier of a previously provisioned instance (the same `:id` passed in the provision request).  The request has **no body**, because DELETE requests generally do not have bodies.
 
+##### Parameters #####
+
+The request provides these query string parameters as useful hints for brokers. 
 
 <table>
 <thead>
@@ -397,6 +449,8 @@ The `:id` in the URL is the identifier of a previously provisioned instance (the
 </tr>
 </tbody>
 </table>
+
+### Response ###
 
 A response code of `200 OK` with a body of `{}` indicates that the resource was deleted. A response code of `410 Not Found `with a body of `{}` indicates to Cloud Controller that the resource was not there in the first place, and is likely gone. _Any other_ response code indicates to Cloud Controller that the the service instance could not be deleted, the user will be informed (and the instance will remain in the database).
 
@@ -408,8 +462,7 @@ When a broker fails to perform any requested operation, unless it fails with a w
 
 This payload allows the broker to expose a message to end-user or operator. If a payload is included, only the message from the description field in the payload will be shown. If there is no payload, a generic error message containing the HTTP response code will be shown.
 
-**Error response format:**
-
+### Response ###
 
 <table>
 <thead>

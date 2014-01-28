@@ -218,6 +218,8 @@ For non-data services, provisioning could just mean getting an account on an exi
 
 _Note: the `:id` of a service instance is provided by the Cloud Controller. This ID will be used for future requests (bind and deprovision), so the broker must use it to correlate the resource it creates._
 
+##### Body #####
+
 <table>
 <thead>
 <tr>
@@ -250,7 +252,6 @@ _Note: the `:id` of a service instance is provided by the Cloud Controller. This
 </tbody>
 </table>
 
-##### Body #####
 <pre class="terminal">
 {
   "service_id":        "service-guid-here",
@@ -445,7 +446,7 @@ The request provides these query string parameters as useful hints for brokers.
 
 ##### cURL #####
 <pre class="terminal">
-$ curl http://username:password@broker-url/v2/service_instances/:instance_id/service_bindings/:id?service_id=service-id-here&plan_id=plan-id-here -X DELETE
+$ curl 'http://username:password@broker-url/v2/service_instances/:instance_id/service_bindings/:id?service_id=service-id-here&plan_id=plan-id-here' -X DELETE
 </pre>
 
 ### Response ###
@@ -494,7 +495,7 @@ The request provides these query string parameters as useful hints for brokers.
 
 ##### cURL #####
 <pre class="terminal">
-$ curl http://username:password@broker-url/v2/service_instances/:id?service_id=service-id-here&plan_id=plan-id-here -X DELETE
+$ curl 'http://username:password@broker-url/v2/service_instances/:id?service_id=service-id-here&plan_id=plan-id-here' -X DELETE
 </pre>
 
 ### Response ###
