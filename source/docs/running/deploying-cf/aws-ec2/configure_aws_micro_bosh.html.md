@@ -34,7 +34,9 @@ Then select "Create New Access Key".  If there are already keys created you may 
 
 ![image alt text](/source/images/aws-ec2/image_2.png)
 
-You will be prompted to download the security file as a csv.  DO THIS!  You cannot retrieve the aws secret key once the screen is closed.![image alt text](/source/images/aws-ec2/image_3.png)
+You will be prompted to download the security file as a csv.  DO THIS!  You cannot retrieve the aws secret key once the screen is closed. You will have to repeat this step create a new key if you lose this one.
+
+![image alt text](/source/images/aws-ec2/image_3.png)
 
 Document the access_key_id and secret_access_key somewhere privately and securely within your organization and keep these safe, these are the only two pieces of information needed to consume AWS resources by fraudsters.
 
@@ -56,7 +58,7 @@ Take note of the newly created IP address, you’ll be using it later.  Your add
 
 ### Create a key pair
 
-If you already have a Key Pair created you can skip creating a new key pair. You will still need to place a copy of the pem file as shown following.
+In order to ssh in to your instances you'll need to create a key pair. If you already have a Key Pair created you can skip creating a new key pair. You will still need to place a copy of the pem file as shown following.
 
 Making sure that "N. Virginia" is selected as the AWS Region, click “Key Pairs” then “Create Key Pair”
 
@@ -70,11 +72,15 @@ After you click "Yes" a file will be downloaded to your computer and likely name
 
 Rename this file to "bosh" and save it into your ~/.ssh folder on your computer. For example, on OSX you can do this from the terminal:
 
-#### **local$ mv ~/Downloads/bosh.pem.txt ~/.ssh/bosh**
+<pre class="terminal">
+  mv ~/Downloads/bosh.pem.txt ~/.ssh/bosh
+</pre>
 
 If you receive an error that ~/.ssh doesn’t exist, you can create this folder by executing:
 
-**mkdir -p ~/.ssh**
+<pre class="terminal">
+  mkdir -p ~/.ssh
+</pre>
 
 ### Create a security group
 
