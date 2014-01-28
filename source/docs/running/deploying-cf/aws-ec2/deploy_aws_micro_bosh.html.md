@@ -86,7 +86,7 @@ Save your changes to the file.
 
 It is important to deploy the correct AWS image that is compatible with the version of Micro BOSH you will be installing and these will be updated over time.
 
-To obtain the current ami, navigate to [http://bosh_artifacts.cfapps.io](http://bosh_artifacts.cfapps.io) and download the "light-bosh (aws xen ubuntu)" tarball file (.tar.gz).
+To obtain the current ami, navigate to [http://bosh_artifacts.cfapps.io](http://bosh_artifacts.cfapps.io) and download the "light-bosh (aws xen ubuntu)" tarball file (.tar.gz). The light stemcell is just a wrapper pointing to a public ami. If you are not using us-east-1 as specified previously than there may not be a public ami available.
 
 ![image alt text](/source/images/aws-ec2/image_14.png)
 

@@ -2,7 +2,7 @@
 title: Deployment of BOSH on AWS
 ---
 
-This step will leverage the new Elastic IP created in Step 4, Security Group and Key Pair file that we created in Step 2 to deploy a BOSH server on AWS in four steps:
+This step will leverage the new Elastic IP created in [Configuring AWS for BOSH (BOSH Inception)](/docs/running/deploying-cf/aws-ec2/configure_aws_bosh.html), Security Group and Key Pair file that we created in [Configuring AWS for Micro BOSH (Micro Inception)](/docs/running/deploying-cf/aws-ec2/configure_aws_micro_bosh.html) to deploy a BOSH server on AWS in four steps:
 
 1. Create Directory Structure
 
@@ -59,7 +59,12 @@ After the upload is complete you can see the list of stemcells by calling:
 
 **Create BOSH Deployment Manifest**
 
-Now let’s review what the contents of the bosh.yml deployment manifest file should include.
+Now let’s review what the contents of the bosh.yml deployment manifest file should include. Notice the first comment in the
+example file.  You'll need to replace that uuid with the one for the resuts of the command
+
+<pre class="terminal">
+  bosh status
+</pre>
 
 ~~~yaml
 name: bosh
@@ -218,7 +223,7 @@ Enter the deployments folder you created earlier:
 </pre>
 
 
-Select the deployment you called "bosh" in the first section of Step 5
+Select the deployment you called "bosh" in the first section of [Configuring AWS for BOSH (BOSH Inception)](/docs/running/deploying-cf/aws-ec2/configure_aws_bosh.html)
 
 <pre class="terminal">
 bosh deployment bosh/bosh.yml
@@ -231,7 +236,7 @@ Deploy the BOSH
   bosh deploy
 </pre>
 
-If the deployment failed clean it up before trying again
+If the deployment failed clean it up before trying again. This command will take awhile. You will also have several instances running in EC2 while this happens. These extra instances are used to distribute the compilation of packages needed for your BOSH virtual machine. You can control the number of compilation workers in teh bosh.yml file we created above.
 
 <pre class="terminal">
 bosh delete deployment bosh
