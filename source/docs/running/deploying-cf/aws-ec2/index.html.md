@@ -7,7 +7,7 @@ The main goal of this document is to guide someone with minimal experience throu
 
 In order to setup and deploy a full BOSH release there are 9 major steps:
 
-0. [First review the glossary](/docs/running/deploying-cf/aws-ec2/glossary.html)
+Review the [Glossary](/docs/running/deploying-cf/aws-ec2/glossary.html) for any unfamiliar terms
 
 1. [Create an AWS Account](http://bitnami.com/tutorials/create_aws_account)
 This step is only necessary if you don’t already have an AWS account. Follow this link for a good tutorial on the subject.
