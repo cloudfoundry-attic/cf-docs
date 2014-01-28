@@ -2,7 +2,7 @@
 title: Deploy Micro Bosh on AWS
 ---
 
-We will leverage the Elastic IP, Security Group and Key Pair file that we created in Step 2 to deploy a Micro BOSH server on AWS in four steps:
+We will leverage the Elastic IP, Security Group and Key Pair file that we created in Configuring AWS for Micro BOSH](/docs/running/deploying-cf/aws-ec2/configure_aws_micro_bosh.html) to deploy a Micro BOSH server on AWS in four steps:
 
 1. Create Directory Structure
 
@@ -18,17 +18,19 @@ Much of this is borrowed from [here](http://blog.cloudfoundry.com/2012/09/06/dep
 
 Create a standard place to store the Deployment Manifest on your local computer:
 
-#### **local$ mkdir -p ~/bosh-workspace/deployments/microboshes/deployments/microbosh**
+<pre class="terminal">
+mkdir -p ~/bosh-workspace/deployments/microboshes/deployments/microbosh
 
-#### **local$ cd ~/bosh-workspace/deployments/microboshes/deployments/microbosh**
+cd ~/bosh-workspace/deployments/microboshes/deployments/microbosh
 
-#### **local$ touch microbosh.yml**
+touch microbosh.yml
+</pre>
 
 **Create Micro BOSH Deployment Manifest**
 
-Now let’s review what the contents of the microbosh.yml deployment manifest file should include.  Be sure to replace "x.x.x.x" with the ip address you created on Step 2 in the script below.
+Now let’s review what the contents of the microbosh.yml deployment manifest file should include. If you did not use the us-east-1a availability zone you will need to adajust that and we are using a small instance type for the micro bosh.  Be sure to replace "x.x.x.x" with the ip address you created in [Configuring AWS for Micro BOSH (Micro Inception)](/docs/running/deploying-cf/aws-ec2/configure_aws_micro_bosh.html) and make sture to replace the aws access credentials with your own.
 
-<pre class="terminal">
+~~~yaml
 name: microbosh
 
 logging:
@@ -65,7 +67,7 @@ apply_spec:
   properties:
     aws_registry:
       address: x.x.x.x    #Change this to the allocated IP address from Step 2
-</pre>
+~~~
 
 
 Note, Since this is a yml (YAML) file, spacing is extremely important, you’ll receive a syntax error when you get to the "Deploy Manifest" in two more sections.
@@ -103,27 +105,29 @@ Everything is now in place to use the deployment manifest you have created and d
 Enter the deployments folder you created earlier:
 
 <pre class="terminal">
-cd ~/bosh-workspace/deployments/microboshes/deployments**
+cd ~/bosh-workspace/deployments/microboshes/deployments
 </pre>
 
-Select the deployment you called "aws" in the first section of Step 3
+Select the deployment you called "aws" by telling bosh whish manifect file to use.
 
-#### **local$ bosh micro deployment microbosh/microbosh.yml**
+<pre class="terminal">
+  bosh micro deployment microbosh/microbosh.yml
+</pre>
 
 Ignore the error that isn’t an error, it is just letting you know that the director was mapped to port 25555
 
   ``WARNING! Your target has been changed to `[http://aws:25555](http://aws:25555)``!
 
-Deploy the Micro BOSH AMI
+Deploy the Micro BOSH AMI using the ami we retrieved from the stem cell config.
 
 <pre class="terminal">
-bosh micro deploy ****ami-979dc6fe**
+bosh micro deploy ami-979dc6fe
 </pre>
 
-If the deployment failed clean it up before trying again
+If the deployment failed clean it up before trying again. If you get errors regarding your access key signature double check your keys in microbosh.yml and try again. Many of the errors encountered at this stage will likely be related to having missed a step in configurig AWS or an error in microbosh.yml
 
 <pre class="terminal">
-bosh micro delete**
+bosh micro delete
 </pre>
 
 Log into the new Micro BOSH server
@@ -149,4 +153,4 @@ A few things to note in the screenshot above:
 
 4. **bosh** - this was the name of the Security Group
 
-5. **54.204.16.249 **- this was the Elastic IP address that we created and is the external IP address for the Micro BOSH server
+5. **54.204.16.249**- this was the Elastic IP address that we created and is the external IP address for the Micro BOSH server

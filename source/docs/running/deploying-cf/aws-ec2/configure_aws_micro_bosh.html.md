@@ -73,7 +73,7 @@ After you click "Yes" a file will be downloaded to your computer and likely name
 Rename this file to "bosh" and save it into your ~/.ssh folder on your computer. For example, on OSX you can do this from the terminal:
 
 <pre class="terminal">
-  mv ~/Downloads/bosh.pem.txt ~/.ssh/bosh
+  mv ~/Downloads/bosh.pem.txt ~/.ssh/boshmv
 </pre>
 
 If you receive an error that ~/.ssh doesn’t exist, you can create this folder by executing:
