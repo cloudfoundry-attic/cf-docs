@@ -40,3 +40,5 @@ Leave "EC2" in the dropdown and confirm by clicking “Yes, Allocate”.
 ![image alt text](/images/aws-ec2/image_23.png)
 
 Take note of the newly created IP address, you’ll be using it later.  Your address will be different than what is listed here.  Also notice that the first IP address we created is currently allocated to the Micro Bosh instance. ![image alt text](/images/aws-ec2/image_24.png)
+
+###Go on to [Deployment of BOSH on AWS](/docs/running/deploying-cf/aws-ec2/deploy_aws_bosh.html) or [Return to Index](/docs/running/deploying-cf/aws-ec2/index.html)

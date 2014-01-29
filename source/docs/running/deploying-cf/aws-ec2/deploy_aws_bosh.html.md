@@ -2,7 +2,7 @@
 title: Deployment of BOSH on AWS
 ---
 
-This step will leverage the new Elastic IP created in [Configuring AWS for BOSH (BOSH Inception)](/docs/running/deploying-cf/aws-ec2/configure_aws_bosh.html), Security Group and Key Pair file that we created in [Configuring AWS for Micro BOSH (Micro Inception)](/docs/running/deploying-cf/aws-ec2/configure_aws_micro_bosh.html) to deploy a BOSH server on AWS in four steps:
+This step will leverage the new Elastic IP created in [Configuring AWS for BOSH](/docs/running/deploying-cf/aws-ec2/configure_aws_bosh.html), Security Group and Key Pair file that we created in [Configuring AWS for Micro BOSH](/docs/running/deploying-cf/aws-ec2/configure_aws_micro_bosh.html) to deploy a BOSH server on AWS in four steps:
 
 **Note:** CF may be deployed straight from Micro BOSH but this is typically not considered a reliable method and so it is not discussed here.
 
@@ -223,7 +223,7 @@ Enter the deployments folder you created earlier:
 </pre>
 
 
-Select the deployment you called "bosh" in the first section of [Configuring AWS for BOSH (BOSH Inception)](/docs/running/deploying-cf/aws-ec2/configure_aws_bosh.html)
+Select the deployment you called "bosh" in the first section of [Configuring AWS for BOSH](/docs/running/deploying-cf/aws-ec2/configure_aws_bosh.html)
 
 <pre class="terminal">
 bosh deployment bosh/bosh.yml
@@ -266,4 +266,6 @@ Note a few things in the preceding screenshot:
 4. **bosh** - this was the name of the Security Group
 
 5. **23.21.249.15**- this was the Elastic IP address that we created and is the external IP address for the BOSH server
+
+###Go on to [Example apps deployed on CF](/docs/running/deploying-cf/aws-ec2/example_apps.html) or [Return to Index](/docs/running/deploying-cf/aws-ec2/index.html)
 

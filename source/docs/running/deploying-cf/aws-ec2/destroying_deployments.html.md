@@ -24,3 +24,5 @@ Repoint the target to the MicroBOSH server and destroy the BOSH server, replace 
 </pre>
 
 Now you can deallocate the Elastic IPs that were created for CF, BOSH and MicroBOSH
+
+###[Return to Index](/docs/running/deploying-cf/aws-ec2/index.html)

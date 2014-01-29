@@ -76,3 +76,9 @@ Now run bosh status to confirm that we were successful
 <pre class="terminal">
   bosh status
 </pre>
+
+
+###Go on to [Configuring AWS for Micro BOSH](/docs/running/deploying-cf/aws-ec2/configure_aws_micro_bosh.html) or [Return to Index](/docs/running/deploying-cf/aws-ec2/index.html)
+
+
+

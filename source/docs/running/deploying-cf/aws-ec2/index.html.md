@@ -7,12 +7,11 @@ The main goal of this document is to guide someone with minimal experience throu
   <pre class='warning'>
   **WARNING**:  About production use - Currently on AWS we have to use BOSH DNS which requres a single VM implementation of PostgreSQL.
   This leaves us with a not very fault tolerant DNS situation. Without a reliable DNS situation you'll need to use static IP's for
-  communicating between internal VM's.
-  That situation is not detailed here as the scope of this document is to get you up and running as quickly as is currently possible
+  communicating between internal VM's. That situation is not detailed here as the scope of this document is to get you up and running as quickly as is currently possible
   </pre>
 
 
-In order to setup and deploy a full BOSH release there are 9 major steps:
+In order to setup and deploy a full CF release via BOSH there are 9 major steps:
 
 Review the [Glossary](/docs/running/deploying-cf/aws-ec2/glossary.html) for any unfamiliar terms
 

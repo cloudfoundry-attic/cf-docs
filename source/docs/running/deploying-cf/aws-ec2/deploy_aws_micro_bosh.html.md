@@ -28,7 +28,7 @@ touch microbosh.yml
 
 **Create Micro BOSH Deployment Manifest**
 
-Now let’s review what the contents of the microbosh.yml deployment manifest file should include. If you did not use the us-east-1a availability zone you will need to adjust that and we are using a small instance type for the micro bosh.  Be sure to replace "x.x.x.x" with the ip address you created in [Configuring AWS for Micro BOSH (Micro Inception)](/docs/running/deploying-cf/aws-ec2/configure_aws_micro_bosh.html) and make sture to replace the aws access credentials with your own.
+Now let’s review what the contents of the microbosh.yml deployment manifest file should include. If you did not use the us-east-1a availability zone you will need to adjust that and we are using a small instance type for the micro bosh.  Be sure to replace "x.x.x.x" with the IP address you created in [Configuring AWS for Micro BOSH](/docs/running/deploying-cf/aws-ec2/configure_aws_micro_bosh.html) and make sture to replace the aws access credentials with your own.
 
 ~~~yaml
 name: microbosh
@@ -151,3 +151,5 @@ A few things to note in the screenshot above:
 4. **bosh** - this was the name of the Security Group
 
 5. **54.204.16.249**- this was the Elastic IP address that we created and is the external IP address for the Micro BOSH server
+
+###Go on to [Configuring AWS for BOSH](/docs/running/deploying-cf/aws-ec2/configure_aws_bosh.html) or [Return to Index](/docs/running/deploying-cf/aws-ec2/index.html)

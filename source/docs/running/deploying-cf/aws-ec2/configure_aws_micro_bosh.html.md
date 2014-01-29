@@ -109,3 +109,5 @@ Now add the second port, 6868, by entering this port number into the Port range 
 Now add the last port, 22, by entering this port number into the Port range box and clicking "Add Rule".  Since this is the last port you are adding, click “Apply Rule Changes” to save the changes to this Security Group.
 
 ![image alt text](/images/aws-ec2/image_13.png)
+
+###Go on to [Deployment of Micro BOSH on AWS](/docs/running/deploying-cf/aws-ec2/deploy_aws_micro_bosh.html) or [Return to Index](/docs/running/deploying-cf/aws-ec2/index.html)
