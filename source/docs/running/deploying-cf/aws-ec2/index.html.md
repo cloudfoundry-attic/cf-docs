@@ -2,7 +2,7 @@
 title: Installing Micro BOSH, BOSH and Cloud Foundry on AWS
 ---
 
-The main goal of this document is to guide someone with minimal experience through an end to end deployment of Cloud Foundry (CF) running on AWS EC2.
+The main goal of this document is to guide someone with minimal experience through an end to end deployment of Cloud Foundry (CF) running on AWS EC2.This includes guided installation of CLI tools locally, installation of Micro BOSH, deployment of BOSH from Micro BOSH on AWS and deployment of CF from BOSH on AWS.
 
   <pre class='warning'>
   **WARNING**:  About production use - Currently on AWS we have to use BOSH DNS which requres a single VM implementation of PostgreSQL.

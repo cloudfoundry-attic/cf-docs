@@ -4,6 +4,9 @@ title: Deployment of BOSH on AWS
 
 This step will leverage the new Elastic IP created in [Configuring AWS for BOSH (BOSH Inception)](/docs/running/deploying-cf/aws-ec2/configure_aws_bosh.html), Security Group and Key Pair file that we created in [Configuring AWS for Micro BOSH (Micro Inception)](/docs/running/deploying-cf/aws-ec2/configure_aws_micro_bosh.html) to deploy a BOSH server on AWS in four steps:
 
+**Note:** CF may be deployed straight from Micro BOSH but this is typically not considered a reliable method and so it is not discussed here.
+
+
 1. Create Directory Structure
 
 2. Create Micro BOSH Deployment Manifest
