@@ -6,25 +6,25 @@ title: Step 6 - Configuring AWS for CF
 
 Making sure that "N. Virginia" is selected as the AWS Region, click “Elastic IPs” then “Allocate New Address”.
 
-![image alt text](/source/images/aws-ec2/image_27.png)
+![image alt text](/images/aws-ec2/image_27.png)
 
 Leave "EC2" in the dropdown and confirm by clicking “Yes, Allocate”.
 
-![image alt text](/source/images/aws-ec2/image_28.png)
+![image alt text](/images/aws-ec2/image_28.png)
 
 Take note of the newly created IP address, you’ll be using it later in the CF Deployment Manifest.  Your address will be different than what is listed here.  Also notice that the two IP addresses we created are currently allocated to the Micro Bosh and BOSH instances.
 
-![image alt text](/source/images/aws-ec2/image_29.png)
+![image alt text](/images/aws-ec2/image_29.png)
 
 ### Create a new Security Group
 
 Making sure that "N. Virginia" is selected as the AWS Region, click “Security Groups” then “Create Security Group”
 
-![image alt text](/source/images/aws-ec2/image_30.png)
+![image alt text](/images/aws-ec2/image_30.png)
 
 On the popup screen assign "cf" to the Name, “cf Security Group” to the Description, and leave “No VPC” in the dropdown.  Click “Yes, Create”
 
-![image alt text](/source/images/aws-ec2/image_31.png)
+![image alt text](/images/aws-ec2/image_31.png)
 
 ### Open Ports for the new Security Group
 
@@ -52,4 +52,4 @@ Add UDP ports:
 
 Click on "Inbound" tab, enter “22” into the “Port range:” box and click “Add Rule”.  Repeat this for ports 80 and 443.  To add TCP 1 - 65535, enter “1-66535” into the “Port range:” box and enter the name of the cf Security Group into the “Source:” box and click “Add Rule”.  To add UDP 1 - 65535, select “Custom UDP rule” from the “Create a new rule:” dropdown box, enter “1-66535” into the “Port range:” box and enter the name of the cf Security Group into the “Source:” box and click “Add Rule”.  When you are done, click the “Apply Rule Changes” button and the screen should look similar to the image below:
 
-![image alt text](/source/images/aws-ec2/image_32.png)
+![image alt text](/images/aws-ec2/image_32.png)

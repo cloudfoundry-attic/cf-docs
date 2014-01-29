@@ -1,5 +1,5 @@
 ---
-title: Glossary
+title: AWS Cloud Foundry Glossary
 ---
 
 ## Inceptions

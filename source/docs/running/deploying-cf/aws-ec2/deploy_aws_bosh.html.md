@@ -42,7 +42,7 @@ To find and obtain the current BOSH stemcell, navigate to [http://bosh_artifacts
 
 [https://s3.amazonaws.com/bosh-jenkins-artifacts/bosh-stemcell/aws/bosh-stemcell-1274-aws-xen-ubuntu.tgz](https://s3.amazonaws.com/bosh-jenkins-artifacts/bosh-stemcell/aws/bosh-stemcell-1274-aws-xen-ubuntu.tgz)
 
-![image alt text](/source/images/aws-ec2/image_25.png)
+![image alt text](/images/aws-ec2/image_25.png)
 
 Upload the latest stemcell of BOSH onto the Micro BOSH server.
 
@@ -207,9 +207,6 @@ properties:
     default_security_groups: ["bosh"]
 ~~~
 
-
-Note that since this is a yml (YAML) file, spacing is extremely important, you’ll receive a syntax error when you get to the "Deploy Manifest" in two more sections.
-
 Save your changes to the file.
 
 ### Deploy Manifest
@@ -255,7 +252,7 @@ If the deployment ran successfully you will have a BOSH instance deployed onto A
 
 Note a few things in the preceding screenshot:
 
-![image alt text](/source/images/aws-ec2/image_26.png)
+![image alt text](/images/aws-ec2/image_26.png)
 
 1. **bosh** - the name of the instance will match the deployment name
 

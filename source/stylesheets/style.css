@@ -79,6 +79,12 @@ pre {
   text-shadow: none;
 }
 
+pre.warning {
+  background-color: #EAFAFA;
+  font: inherit;
+  padding-bottom: 0px;
+}
+
 pre.terminal {
   background-color: #444;
   color: #fff;
@@ -96,6 +102,7 @@ pre.terminal {
   filter: none;
   font-weight: normal;
 }
+
 
 /* Lists ---------------------- */
 ul, ol, dl { font-size: 16px; line-height: 1.6; margin: 0 0 17px 17px; list-style-position: outside; }

@@ -24,6 +24,7 @@ Create a folder on the local computer to store the CF Release:
   git clone -b release-candidate git://github.com/cloudfoundry/cf-release.git
   cd ~/bosh-workspace/releases/cf-release
 </pre>
+
 Navigate into the releases folder and pick a recent release then upload:
 
 <pre class="terminal">
@@ -366,7 +367,7 @@ properties:
     scim:
       users:
       - admin|eaa139af583c|scim.write,scim.read,openid,cloud_controller.admin
-      - services|eaa139af583c|scim.write,scim.read,openid,cloud_controller.admin</td>
+      - services|eaa139af583c|scim.write,scim.read,openid,cloud_controller.admin
 ~~~
 
 

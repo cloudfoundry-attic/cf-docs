@@ -28,7 +28,7 @@ touch microbosh.yml
 
 **Create Micro BOSH Deployment Manifest**
 
-Now let’s review what the contents of the microbosh.yml deployment manifest file should include. If you did not use the us-east-1a availability zone you will need to adajust that and we are using a small instance type for the micro bosh.  Be sure to replace "x.x.x.x" with the ip address you created in [Configuring AWS for Micro BOSH (Micro Inception)](/docs/running/deploying-cf/aws-ec2/configure_aws_micro_bosh.html) and make sture to replace the aws access credentials with your own.
+Now let’s review what the contents of the microbosh.yml deployment manifest file should include. If you did not use the us-east-1a availability zone you will need to adjust that and we are using a small instance type for the micro bosh.  Be sure to replace "x.x.x.x" with the ip address you created in [Configuring AWS for Micro BOSH (Micro Inception)](/docs/running/deploying-cf/aws-ec2/configure_aws_micro_bosh.html) and make sture to replace the aws access credentials with your own.
 
 ~~~yaml
 name: microbosh
@@ -69,16 +69,13 @@ apply_spec:
       address: x.x.x.x    #Change this to the allocated IP address from Step 2
 ~~~
 
-
-Note, Since this is a yml (YAML) file, spacing is extremely important, you’ll receive a syntax error when you get to the "Deploy Manifest" in two more sections.
-
 If you are using the sample manifest provided, here are the things to check:
 
 1. Make sure to update all of the instances of x.x.x.x IP with the appropriate elastic IP created.
 
-2. Add the AWS credentials under the aws section.
+2. Add the AWS credentials under the AWS section.
 
-3. Verify the aws region added in the manifest.
+3. Verify the AWS region added in the manifest.
 
 Save your changes to the file.
 
@@ -88,15 +85,15 @@ It is important to deploy the correct AWS image that is compatible with the vers
 
 To obtain the current ami, navigate to [http://bosh_artifacts.cfapps.io](http://bosh_artifacts.cfapps.io) and download the "light-bosh (aws xen ubuntu)" tarball file (.tar.gz). The light stemcell is just a wrapper pointing to a public ami. If you are not using us-east-1 as specified previously than there may not be a public ami available.
 
-![image alt text](/source/images/aws-ec2/image_14.png)
+![image alt text](/images/aws-ec2/image_14.png)
 
 This will download the tar file to you local computer.  Extract this file and open the file within named "stemcell.MF" in your text editor.
 
-![image alt text](/source/images/aws-ec2/image_15.png)
+![image alt text](/images/aws-ec2/image_15.png)
 
 This file contains the image name (AMI ID) for this version of the bosh-cli. You will need this AMI ID for the next section.
 
-![image alt text](/source/images/aws-ec2/image_16.png)
+![image alt text](/images/aws-ec2/image_16.png)
 
 ### Deploy Manifest
 
@@ -141,7 +138,7 @@ The default username and password are "admin" and “admin”.
 
 If the deployment ran successfully you will have a Micro BOSH VM deployed onto AWS.
 
-![image alt text](/source/images/aws-ec2/image_17.png)
+![image alt text](/images/aws-ec2/image_17.png)
 
 A few things to note in the screenshot above:
 

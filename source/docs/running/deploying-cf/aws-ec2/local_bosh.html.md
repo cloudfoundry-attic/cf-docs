@@ -1,4 +1,4 @@
-___
+---
 title: Preparing your local machine for Micro Bosh Deployment
 ---
 
@@ -63,10 +63,16 @@ For Fedora
 
 ### Install Gems for BOSH CLI
 
-Run the following command to Install the gems required to run bosh from the command line. This step can take a few minutes. If you'd like to speed this up a bit you can skip ri and rdoc with --no-ri --no-rdoc.
+Run the following command to Install the gems required to run bosh from the command line. This step can take a few minutes.
 
 <pre class="terminal">
-  gem install bosh_cli_plugin_micro --pre
+  gem install bosh_cli_plugin_micro --no-rdoc --no-ri
 </pre>
 
 Note: if the step above errors out referencing sqlite on aptitude based systems, execute "apt-get install sqlite-devel" then try the previous step again or otherwise ensure that sqlite development packages have been installed.
+
+Now run bosh status to confirm that we were successful
+
+<pre class="terminal">
+  bosh status
+</pre>
