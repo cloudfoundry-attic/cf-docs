@@ -2,6 +2,8 @@
 .breadcrumbs {
   float: left;
   margin-bottom: 10px;
+  width: 100%;
+  margin-left: 0;
 }
 
 .breadcrumbs ul {
@@ -299,7 +301,7 @@ td {
 }
 
 .column-left, .column-middle, .column-right {
-  width: 373px;
+  width: 343px;
 }
 
 .column-left li, .column-middle li, .column-right li {
@@ -326,7 +328,7 @@ td {
 
 .forkme {
   float: right;
-  margin: 10px -43px 0 0;
+  margin: 10px -48px 0 0;
 }
 
 .bg-columns {
@@ -401,7 +403,7 @@ td {
 }
 
 .quick-links > ul {
-  padding: 20px;
+  padding: 20px 20px 7px;
   list-style-type: none;
 }
 
@@ -410,8 +412,8 @@ td {
 }
 
 .content_inner {
-  padding: 45px 20px 20px 20px;
-  width: 1160px;
+  padding: 40px;
+  width: 1080px;
 }
 
 a#docs, .pale-blue-bg {
@@ -469,6 +471,36 @@ input[type="search-docs"]:focus {
   padding-left: 50px;
 }
 
+#orglogo {
+  margin: 0 auto;
+  width: 174px;
+  padding-top: 25px;
+}
 
+#orgheaderbg {
+  background: url(/images/bg-crowd.png);
+  background-position:center bottom;
+  background-repeat:no-repeat;
+  height: 164px;
+}
+
+#icon-home-li {
+  width: 50px;
+}
+
+#icon-home-link {
+  padding: 10px 15px 10px;
+}
+
+#organization_bar .navbar .nav>li#wiki a {
+  padding: 11px 60px 8px;
+}
+
+#organization_bar .navbar .nav>li#wiki a:hover {
+  padding: 11px 60px 8px;
+  border-radius: 0;
+  -moz-border-radius: 0;
+  -webkit-border-radius: 0;
+}
 
 
