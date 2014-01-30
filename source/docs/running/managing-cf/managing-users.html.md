@@ -4,6 +4,9 @@ title: Managing Users
 
 This document is a temporary description for Cloud Foundry operators and dev / ops professionals interested in managing users in a new Cloud Foundry installation. This process is unrefined, and will improve with direct cf user management in the near future.
 
+You may refer to [the UAA admin guide](https://github.com/cloudfoundry/uaa/blob/master/docs/Sysadmin-Guide.rst), [other UAA documentation](https://github.com/cloudfoundry/uaa/tree/master/docs) for additional details,
+or to the [UAA introduction](../architecture/uaa.html.html)
+
 ## <a id='creating-admin-users'></a> Creating Admin Users ##
 
 1. Refer to your deployment manifest for the uaa:admin:client_secret. Refer to this [manifest](../deploying-cf/vsphere/cloud-foundry-example-manifest.html) as an example.
