@@ -135,7 +135,7 @@ If the database has plans which are not found in the broker catalog, and there a
 <tr>
   <td>&nbsp;&nbsp;&nbsp;metadata</td>
   <td>object</td>
-  <td>A list of metadata for a service offering. For more information, see <a href="https://docs.google.com/a/gopivotal.com/document/d/19bfM4H1NL4Z4Qj1jYCF6czQnSzxmq96-iuVKHJ7EZ3M/">Service Metadata</a>.</td>
+  <td>A list of metadata for a service offering. For more information, see <a href="catalog-metadata.html">Catalog Metadata</a>.</td>
 </tr>
 <tr>
   <td>&nbsp;&nbsp;&nbsp;requires</td>
@@ -166,7 +166,7 @@ If the database has plans which are not found in the broker catalog, and there a
 <tr>
   <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;metadata</td>
   <td>object</td>
-  <td>A list of metadata for a service plan. For more information, see <a href="https://docs.google.com/a/gopivotal.com/document/d/19bfM4H1NL4Z4Qj1jYCF6czQnSzxmq96-iuVKHJ7EZ3M/">Service Metadata</a>.</td>
+  <td>A list of metadata for a service plan. For more information, see <a href="catalog-metadata.html">Catalog Metadata</a>.</td>
 </tr>
 </tbody>
 </table>
@@ -376,7 +376,7 @@ When a broker receives an unbind request from Cloud Controller, it should delete
 
 `DELETE /v2/service_instances/:instance_id/service_bindings/:id`
 
-The `:id` in the URL is the identifier of a previously created binding (the same `:id` passed in the bind request). The request has no body, because DELETE requests generally do not have bodies. 
+The `:id` in the URL is the identifier of a previously created binding (the same `:id` passed in the bind request). The request has no body, because DELETE requests generally do not have bodies.
 
 ##### Parameters #####
 
@@ -425,7 +425,7 @@ The `:id` in the URL is the identifier of a previously provisioned instance (the
 
 ##### Parameters #####
 
-The request provides these query string parameters as useful hints for brokers. 
+The request provides these query string parameters as useful hints for brokers.
 
 <table>
 <thead>

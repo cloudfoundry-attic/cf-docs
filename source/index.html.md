@@ -105,7 +105,7 @@ title: Welcome to Cloud Foundry Documentation
   <p>
   Deploy Cloud Foundry<br>
   <a href="docs/running/bosh/setup/index.html">Set Up BOSH</a><br>
-  <a href="docs/running/deploying-cf/ec2/index.html">Deploy  to AWS</a><br>
+  <a href="docs/running/deploying-cf/aws-ec2/index.html">Deploy to AWS</a><br>
   <a href="docs/running/deploying-cf/openstack/index.html">Deploy to OpenStack</a><br>
   <a href="docs/running/deploying-cf/vsphere/index.html">Deploy to vSphere</a><br>
   <a href="docs/running/deploying-cf/vcloud/deploying_to_vcloud_director.html">Deploy to vCloud Director</a><br>
@@ -138,5 +138,5 @@ title: Welcome to Cloud Foundry Documentation
 
 </div>
 
-For a look at what is planned - look at our [Roadmap](docs/roadmap.html).
+<p style='float:left'>For a look at what is planned - look at our <a href='docs/roadmap.html'>Roadmap</a>.</p>
 
