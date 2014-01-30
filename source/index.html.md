@@ -138,5 +138,5 @@ title: Welcome to Cloud Foundry Documentation
 
 </div>
 
-For a look at what is planned - look at our [Roadmap](docs/roadmap.html).
+<p style='float:left'>For a look at what is planned - look at our <a href='docs/roadmap.html'>Roadmap</a>.</p>
 
