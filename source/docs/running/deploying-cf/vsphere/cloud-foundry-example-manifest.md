@@ -2,6 +2,10 @@
 title: Cloud Foundry Example Manifest
 ---
 
+This is an example manifest. Usually such manifest are not manually crafted but rather "compiled" from templates, see [cf-release](https://github.com/cloudfoundry/cf-release) ```generate_deployment_manifest```
+
+Note that detailed documentation of job-related properties is available within [cf-release](https://github.com/cloudfoundry/cf-release) in the ```jobs/job_name/spec``` file in its ```properties``` section, such as [CC specs](https://github.com/cloudfoundry/cf-release/blob/master/jobs/cloud_controller_ng/spec)
+
 ~~~yaml
 ---
 name: your-deployment
