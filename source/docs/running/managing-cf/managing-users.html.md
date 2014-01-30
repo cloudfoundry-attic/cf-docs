@@ -19,6 +19,16 @@ $ uaac target uaa.[your-domain].com
 $ uaac token client get admin -s [admin-client-secret]
 </pre class="terminal">
 
+3. Check sufficient permissions for admin to create account, in particular scim.write, if not add this permission and renew token:
+<pre class="terminal">
+$ uaac contexts
+[...]
+  scope: password.write clients.write clients.read scim.read uaa.admin clients.secret
+$ uaac client update admin --authorities "password.write clients.write clients.read scim.read uaa.admin clients.secret scim.write"
+$ uaac token delete
+$ uaac token client get admin
+</pre class="terminal">
+
 4. Create an admin user and add them to the admin group:
 <pre class="terminal">
 $ uaac user add [admin-username] -p [admin-password] --emails [admin-user-email-address]
