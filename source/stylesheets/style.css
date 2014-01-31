@@ -81,6 +81,12 @@ pre {
   text-shadow: none;
 }
 
+pre.warning {
+  background-color: #EAFAFA;
+  font: inherit;
+  padding-bottom: 0px;
+}
+
 pre.terminal {
   background-color: #444;
   color: #fff;
