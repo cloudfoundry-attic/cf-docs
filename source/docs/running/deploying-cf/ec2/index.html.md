@@ -1,5 +1,5 @@
 ---
-title: Deploying Cloud Foundry on AWS
+title: Deploying Cloud Foundry on AWS with BOSH AWS Bootstrap
 ---
 
   <table style="width: 64%;"><tr><td>
@@ -108,7 +108,7 @@ User `hm' has been created
 Logged in as `hm'
 </pre>
 
-The command will prompt for a username and password. Choose a username and password that you are going to use later to access your micro bosh installation. 
+The command will prompt for a username and password. Choose a username and password that you are going to use later to access your micro bosh installation.
 
 After Micro BOSH has been deployed succesfully, you can check its status:
 
@@ -260,7 +260,7 @@ Replace placeholders with the approriate data:
 
 - `PLACEHOLDER-DOMAIN` - `BOSH_VPC_SUBDOMAIN.BOSH_VPC_DOMAIN` from the `bosh_environment` file above (hosted domain created in route 53).
 
-- `PLACEHOLDER-UAADB-PROPERTIES`, `PLACEHOLDER-CCDB-PROPERTIES` - copy these from `~/deployments/cf-example/aws_rds_receipt.yml` 
+- `PLACEHOLDER-UAADB-PROPERTIES`, `PLACEHOLDER-CCDB-PROPERTIES` - copy these from `~/deployments/cf-example/aws_rds_receipt.yml`
 
 Generate secure keys for the following placeholders:
 
@@ -318,7 +318,7 @@ Clone `cf-release` into a convenient location, e.g. `~/releases/cf-release`
 ~/releases$ git clone https://github.com/cloudfoundry/cf-release.git
 </pre>
 
-Update cf-release submodules. You can use helper script `update` in cf-release. 
+Update cf-release submodules. You can use helper script `update` in cf-release.
 
 <pre class="terminal">
 ~/releases$ cd cf-release
@@ -369,7 +369,7 @@ Deploy the uploaded Cloud Foundry release.
 ~/releases/cf-release$ bundle exec bosh deploy
 </pre>
 
-This process can take some time (2-3 hours), especially during its first run when all the jobs are compiled for the first time. If `bosh deploy` fails, it's *usually possible to rerun it again*. 
+This process can take some time (2-3 hours), especially during its first run when all the jobs are compiled for the first time. If `bosh deploy` fails, it's *usually possible to rerun it again*.
 
 To test Cloud Foundry installation test the API endpoint.
 
@@ -381,7 +381,7 @@ If that is successful it should return the information as json. Otherwise, check
 
 At this point it should be possible to target the install with [gcf](https://github.com/cloudfoundry/cli) and login as an administrator with the user name `admin` and the password `the_admin_pw` used in the deployiment manifest under uaa->scim->users. For more information about managing organizations, spaces, and users and applications go to the [gcf](https://github.com/cloudfoundry/cli) page.
 
-If you want to update your deploy of cf-release to reflect changes in the cf-release directory you can run `bosh create release && bosh upload release && bosh deploy` again. If you only have changes in your manifest you can just run `bosh deploy`. 
+If you want to update your deploy of cf-release to reflect changes in the cf-release directory you can run `bosh create release && bosh upload release && bosh deploy` again. If you only have changes in your manifest you can just run `bosh deploy`.
 
 ## <a id='deploy-cloudfoundry-services'></a>Deploy Cloud Foundry Services##
 
@@ -393,7 +393,7 @@ You also might be interested in checking out [community managed services release
   <table style="width: 70%;"><tr><td>
     **WARNING**: The command `bosh aws destroy` destroys all S3 buckets, all instances, **all everything** in your AWS account. Do not use this command unless everything in your AWS account, including stuff that has nothing to do with Cloud Foundry, is expendable.
   </td></tr></table>
-  
+
 You also want to cleanup any YAML artifacts that are no longer valid:
 
 <pre class="terminal">

@@ -9,9 +9,9 @@ This step will leverage the new Elastic IP created in [Configuring AWS for BOSH]
 
 1. Create Directory Structure
 
-2. Create Micro BOSH Deployment Manifest
+2. Create BOSH Deployment Manifest
 
-3. Locate the correct Micro BOSH Stemcell
+3. Locate the correct BOSH Stemcell
 
 4. Deploy Manifest
 
@@ -214,7 +214,7 @@ Save your changes to the file.
 
 ### Deploy Manifest
 
-Everything is now in place to use the deployment manifest you have created and deploy Micro BOSH to AWS (the first inception). Let’s now do this.
+Everything is now in place to use the deployment manifest you have created and deploy BOSH to AWS (the first inception). Let’s now do this.
 
 Enter the deployments folder you created earlier:
 
