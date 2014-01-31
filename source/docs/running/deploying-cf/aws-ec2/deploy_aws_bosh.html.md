@@ -267,5 +267,5 @@ Note a few things in the preceding screenshot:
 
 5. **23.21.249.15**- this was the Elastic IP address that we created and is the external IP address for the BOSH server
 
-###Go on to [Example apps deployed on CF](/docs/running/deploying-cf/aws-ec2/example_apps.html) or [Return to Index](/docs/running/deploying-cf/aws-ec2/index.html)
+###Go on to [Configuring AWS for CF](/docs/running/deploying-cf/aws-ec2/configure_aws_cf.html) or [Return to Index](/docs/running/deploying-cf/aws-ec2/index.html)
 
