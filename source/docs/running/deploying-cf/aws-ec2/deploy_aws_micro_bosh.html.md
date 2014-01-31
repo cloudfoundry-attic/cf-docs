@@ -28,7 +28,7 @@ touch microbosh.yml
 
 **Create Micro BOSH Deployment Manifest**
 
-Now let’s review what the contents of the microbosh.yml deployment manifest file should include. If you did not use the us-east-1a availability zone you will need to adjust that and we are using a small instance type for the micro bosh.  Be sure to replace "x.x.x.x" with the IP address you created in [Configuring AWS for Micro BOSH](/docs/running/deploying-cf/aws-ec2/configure_aws_micro_bosh.html) and make sture to replace the aws access credentials with your own.
+Now let’s review what the contents of the microbosh.yml deployment manifest file should include. If you did not use the us-east-1a availability zone you will need to adjust that and we are using a small instance type for the micro bosh.  Be sure to replace "x.x.x.x" with the IP address you created in [Configuring AWS for Micro BOSH](/docs/running/deploying-cf/aws-ec2/configure_aws_micro_bosh.html) and make sure to replace the aws access credentials with your own.
 
 ~~~yaml
 name: microbosh
@@ -121,7 +121,7 @@ Deploy the Micro BOSH AMI using the ami we retrieved from the stem cell config.
 bosh micro deploy ami-979dc6fe
 </pre>
 
-If the deployment failed clean it up before trying again. If you get errors regarding your access key signature double check your keys in microbosh.yml and try again. Many of the errors encountered at this stage will likely be related to having missed a step in configurig AWS or an error in microbosh.yml
+If the deployment failed clean it up before trying again with the command below otherwise do not execute the command. If you get errors regarding your access key signature double check your keys in microbosh.yml and try again. Many of the errors encountered at this stage will likely be related to having missed a step in configurig AWS or an error in microbosh.yml
 
 <pre class="terminal">
 bosh micro delete

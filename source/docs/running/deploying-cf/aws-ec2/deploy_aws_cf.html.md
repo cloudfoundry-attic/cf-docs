@@ -395,4 +395,4 @@ If you receive the following error, try to run "bosh deploy" again
 
 **Error 400007: `api/0' is not running after update**
 
-###Go on to [Configuring AWS for CF](/docs/running/deploying-cf/aws-ec2/configure_aws_cf.html) or [Return to Index](/docs/running/deploying-cf/aws-ec2/index.html)
+###Go on to [Example apps deployed on CF](/docs/running/deploying-cf/aws-ec2/example_apps.html) or [Return to Index](/docs/running/deploying-cf/aws-ec2/index.html)
