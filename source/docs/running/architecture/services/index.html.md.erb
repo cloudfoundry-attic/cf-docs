@@ -49,13 +49,13 @@ The following example service broker applications have been developed - these ar
 
 #### Ruby
 
-1. [GitHub repository service](https://github.com/cloudfoundry-samples/github-service-broker-ruby) - this is designed to be an easy-to-read example of a service broker, with complete documentation, and comes with a demo app that uses the service.  The broker can either be deployed as an application on CF or hosted anywhere. The service itself (GitHub) is separate from the broker.
-2. [MySQL database service](https://github.com/cloudfoundry/cf-mysql-release) - this broker and its accompanying MySQL server are designed to be deployed together as a [BOSH](https://github.com/cloudfoundry/bosh) release. BOSH is responsible for deployment and operation of all of the processes necessary for the service. The broker code can be found [here](https://github.com/cloudfoundry/cf-mysql-broker). 
+1. [GitHub repo service](https://github.com/cloudfoundry-samples/github-service-broker-ruby) - this is designed to be an easy-to-read example of a service broker, with complete documentation, and comes with a demo app that uses the service. The broker can be deployed as an application to any Cloud Foundry instance or hosted elsewhere. The service broker uses GitHub as the service back end.
+2. [MySQL database service](https://github.com/cloudfoundry/cf-mysql-release) - this broker and its accompanying MySQL server are designed to be deployed together as a [BOSH](https://github.com/cloudfoundry/bosh) release. BOSH is used to deploy or upgrade the release, monitors the health of running components, and restarts or recreates unhealthy VMs. The broker code alone can be found [here](https://github.com/cloudfoundry/cf-mysql-broker). 
 
 #### Java
 
-1. [Spring Service Broker](https://github.com/cloudfoundry-community/spring-service-broker) - this repo provides a template for building service brokers in Spring, and includes an example implementation for MongoDB.
-1. [MySQL Java Broker](https://github.com/cloudfoundry-community/cf-mysql-java-broker) - a Java port of the [Ruby MySQL broker](https://github.com/cloudfoundry/cf-mysql-broker) above.
+1. [Spring Service Broker](https://github.com/cloudfoundry-community/spring-service-broker) - this repo provides a template for building v2 service brokers in Spring, and includes an example implementation for MongoDB.
+1. [MySQL Java Broker](https://github.com/cloudfoundry-community/cf-mysql-java-broker) - a Java port of the Ruby-based [MySQL broker](https://github.com/cloudfoundry/cf-mysql-broker) above.
 
 ## <a id='user-provided'></a>User-provided Service Instances ##
 
