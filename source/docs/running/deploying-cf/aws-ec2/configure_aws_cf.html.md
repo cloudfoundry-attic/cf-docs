@@ -1,5 +1,5 @@
 ---
-title: Step 6 - Configuring AWS for CF
+title: Configuring AWS for CF
 ---
 
 ### Additional Elastic IPs
