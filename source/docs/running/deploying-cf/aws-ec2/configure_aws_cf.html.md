@@ -50,7 +50,7 @@ Add UDP ports:
 
 * 1-65535 (for security group VMs only)
 
-Click on "Inbound" tab, enter “22” into the “Port range:” box and click “Add Rule”.  Repeat this for ports 80 and 443.  To add TCP 1 - 65535, enter “1-66535” into the “Port range:” box and enter the name of the cf Security Group into the “Source:” box and click “Add Rule”.  To add UDP 1 - 65535, select “Custom UDP rule” from the “Create a new rule:” dropdown box, enter “1-66535” into the “Port range:” box and enter the name of the cf Security Group into the “Source:” box and click “Add Rule”.  When you are done, click the “Apply Rule Changes” button and the screen should look similar to the image below:
+Click on "Inbound" tab, enter “22” into the “Port range:” box and click “Add Rule”.  Repeat this for ports 80 and 443.  To add TCP 1 - 65535, enter “1-65535” into the “Port range:” box and enter the name of the cf Security Group into the “Source:” box and click “Add Rule”.  To add UDP 1 - 65535, select “Custom UDP rule” from the “Create a new rule:” dropdown box, enter “1-65535” into the “Port range:” box and enter the name of the cf Security Group into the “Source:” box and click “Add Rule”.  When you are done, click the “Apply Rule Changes” button and the screen should look similar to the image below:
 
 ![image alt text](/images/aws-ec2/image_32.png)
 
