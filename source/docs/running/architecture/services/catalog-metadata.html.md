@@ -65,7 +65,7 @@ command.
 | Broker API Field | Type | Description | CC API Field | Pivotal CLI | Pivotal Developer Console |
 |------------------|------|-------------|--------------|-------------|---------------------------|
 | name | CLI string | A short name for the service plan to be displayed in a catalog. | name | X | X |
-| description | string | A large description for the service plan to be displayed in a catalog. | description | X | X |
+| description | string | A description of the service plan to be displayed in a catalog. | description | | |
 | metadata.bullets | array-of-strings | Features of this plan, to be displayed in a bulleted-list | extra.bullets | | X |
 | metadata.costs | cost object | An array-of-objects that describes the costs of a service, in what currency, and the unit of measure. If there are multiple costs, all of them could be billed to the user (such as a monthly + usage costs at once).  Each object must provide the following keys:<br/>`amount: { usd: float }, unit: string `<br/>This indicates the cost in USD of the service plan, and how frequently the cost is occurred, such as “MONTHLY” or “per 1000 messages”. | extra.costs | | X |
 | metadata.displayName | string | Name of the plan to be display in graphical clients. | | | |
