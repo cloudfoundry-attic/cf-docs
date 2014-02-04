@@ -22,7 +22,7 @@ techniques on this page:
 ## Status of document
 
 This page is written to support the 
-[cf-services-contrib-release](https://github.com/cloudfoundry/cf-services-contrib-release) project, for the [v1 release](https://github.com/cloudfoundry/cf-services-contrib-release/releases/tag/v1). 
+[cf-services-contrib-release](https://github.com/cloudfoundry-community/cf-services-contrib-release) project, for the [v1 release](https://github.com/cloudfoundry-community/cf-services-contrib-release/releases/tag/v1). 
 Please consult the project for any newer versions that have not yet been 
 documented here.
 
@@ -61,10 +61,10 @@ One of the VMs will be running a shared PostgreSQL server that will be made
 available to the applications running on your Cloud Foundry. 
 PostgreSQL databases can be allocated within this shared server (via `cf 
 create-service`) and bound (via `cf bind-service`) to applications. 
-This VM will also be running a Cloud Foundry component, the `postgresql_node_ng` job template ([source](https://github.com/cloudfoundry/cf-release/tree/master/jobs/postgresql_node_ng)), this manages the PostgreSQL server on behalf of Cloud Foundry. 
+This VM will also be running a the `postgresql_node_ng` job template ([source](https://github.com/cloudfoundry-community/cf-services-contrib-release/tree/master/jobs/postgresql_node_ng)), this manages the PostgreSQL server on behalf of Cloud Foundry. 
 It connects to the rest of Cloud Foundry via a `postgresql_gateway`.
 
-The `postgresql_gateway` job ([source](https://github.com/cloudfoundry/cf-release/tree/master/jobs/postgresql_gateway)) runs on the second VM being added. 
+The `postgresql_gateway` job ([source](https://github.com/cloudfoundry-community/cf-services-contrib-release/tree/master/jobs/postgresql_gateway_ng)) runs on the second VM being added. 
 Each different type of service being included in a Cloud Foundry deployment 
 needs a dedicated gateway process.
 
@@ -90,8 +90,8 @@ $ bosh upload release releases/cf-services-contrib-1.yml
 
 ## Create a deployment file
 
-Download the [example deployment file](https://raw.github.com/cloudfoundry/cf-services-contrib-release/master/examples/dns-postgresql.yml) for running a PostgreSQL service. For other services, 
-see the example deployment file that [includes all services](https://raw.github.com/cloudfoundry/cf-services-contrib-release/master/examples/dns-all.yml).
+Download the [example deployment file](https://raw.github.com/cloudfoundry-community/cf-services-contrib-release/master/examples/dns-postgresql.yml) for running a PostgreSQL service. For other services, 
+see the example deployment file that [includes all services](https://raw.github.com/cloudfoundry-community/cf-services-contrib-release/master/examples/dns-all.yml).
 
 In the following sections we will review the deployment file and make the 
 following edits to your deployment file:
@@ -194,13 +194,13 @@ properties:
       - services|SERVICES_PASSWORD|scim.write,scim.read,openid,cloud_controller.admin
 </pre>
 
-In the [all services deployment file example](https://raw.github.com/cloudfoundry/cf-services-contrib-release/master/examples/dns-all.yml) you can see how all the service gateways can be run on 
+In the [all services deployment file example](https://raw.github.com/cloudfoundry-community/cf-services-contrib-release/master/examples/dns-all.yml) you can see how all the service gateways can be run on 
 the same `gateways` job instance.
 
 ### PostgreSQL service node
 
 PostgreSQL itself - the actual database that provides PostgreSQL to 
-applications - runs on a job instance running the [postgresql\_node\_ng](https://github.com/cloudfoundry/cf-services-contrib-release/tree/master/jobs/postgresql_node_ng) job template. 
+applications - runs on a job instance running the [postgresql\_node\_ng](https://github.com/cloudfoundry-community/cf-services-contrib-release/tree/master/jobs/postgresql_node_ng) job template. 
 Your deployment file describes this with the `postgresql_service_node` reproduced below.
 
 <pre>
