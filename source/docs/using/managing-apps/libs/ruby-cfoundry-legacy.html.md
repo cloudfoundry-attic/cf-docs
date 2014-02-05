@@ -1,6 +1,5 @@
 ---
-title: Using the CFoundry Ruby Gem to manage applications (Classic / Legacy
-Cloud Foundry)
+title: Using the CFoundry Ruby Gem to manage applications (Classic / Legacy Cloud Foundry)
 ---
 
 ## <a id='intro'></a>Introduction ##
@@ -41,8 +40,7 @@ client.services.collect { |x| x.description }
 
 ~~~
 
-## <a id='persist-authentication'></a>Persisting Authentication (Using cf 
-tokens) ##
+## <a id='persist-authentication'></a>Persisting Authentication (Using cf tokens) ##
 
 A far safer way of creating a cfoundry client object without potentially
 exposing your credentials in source code is to login using cf and then use the
@@ -71,10 +69,10 @@ before.
 
 ## <a id='services'></a>Services ##
 
-The Client class contains four service methods: services, service\_instances, 
+The Client class contains four service methods: services, service\_instances,
 service\_instance\_by\_name and service\_instance.
 
-The first method, 'services', returns a hash of all the available services on 
+The first method, 'services', returns a hash of all the available services on
 the targeted Cloud Foundry instance:
 
 ~~~ruby
@@ -103,7 +101,7 @@ pp client.services
   @version="2.0">]
 ~~~
 
-The 'service_instances' method returns the actual service instances currently 
+The 'service_instances' method returns the actual service instances currently
 provisioned on that account:
 
 ~~~ruby
@@ -138,7 +136,7 @@ service.create!
 ~~~
 ## <a id='runtimes-and-frameworks'></a>Runtimes and Frameworks ##
 
-Both runtimes and frameworks have a collection that can be used to reference 
+Both runtimes and frameworks have a collection that can be used to reference
 them:
 
 ~~~ruby
