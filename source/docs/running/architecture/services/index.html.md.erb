@@ -2,9 +2,11 @@
 title: Services
 description: Any type of add-on that can be provisioned alongside your application; for example, a database or an account on a third-party SaaS provider. 
 ---
-There are two ways in which Cloud Foundry enables developers to add services to their applications, [Managed Services](#managed) and [User-provided Service Instances](#user-provided). Managed Services have been integrated with Cloud Foundry via APIs and provision new service instances and credentials on demand. User-provided Service Instances are a mechanism to deliver credentials to applications for service instances which have been pre-provisioned outside of Cloud Foundry.
+There are two ways in which Cloud Foundry enables developers to add services to their applications, Managed Services and [User-provided Service Instances](../../../using/services/user-provided.html). Managed Services have been integrated with Cloud Foundry via APIs and enable end-users to provision new service instances and credentials on demand. User-provided Service Instances are a mechanism to deliver credentials to applications for service instances which have been pre-provisioned outside of Cloud Foundry.
 
-## <a id='managed'></a>Managed Services ##
+The documentation in this section pertains to building and integrating Managed Services with Cloud Foundry. 
+
+## <a id='managed-overview'></a>Overview ##
 
 Services are integrated with Cloud Foundry by implementing a documented API for which the cloud controller is the client; we call this the Service Broker API. This should not be confused with the cloud controller API, often used to refer to the version of Cloud Foundry itself; when one refers to "Cloud Foundry v2" they are referring to the version of the cloud controller API. The services API is versioned independently of the cloud controller API.
 
@@ -14,7 +16,7 @@ In general, service brokers advertise a catalog of service offerings and service
 
 <%= image_tag("../../../../images/managed-services.png", :width =>"977", :height =>"525", :style => 'background-color:#fff') %>
 
-### <a id='architecture'></a>Service Architecture ###
+## <a id='architecture'></a>Architecture ##
 
 How a service is implemented is up to the service provider/developer. Cloud Foundry only requires that the service provider implement the service broker API. A broker can be implemented as a separate application, or by adding the required http endpoints to an existing service.
 
@@ -25,40 +27,32 @@ Because Cloud Foundry only requires that a service implements the broker API in 
 * Broker (and optionally service) pushed as an application to Cloud Foundry user space
 * Entire service, including broker, deployed and maintained outside of Cloud Foundry by other means
 
-### <a id='api'></a>Service Broker API ###
+## <a id='developing'></a>Developing a Service Broker ##
 
-The current major version of Service Broker API is v2. Brokers which implement the v2 API are referred to as v2 brokers. All changes to the v2 API will be additive, no endpoints or fields will be removed until the next major version.
+### <a id='development-environment'></a>Development Environment ###
+
+You'll need a Cloud Foundry instance to deploy and test your service broker as you are developing it. You must have admin access to your CF instance. You may use any existing install of CF as long you have admin access to it. Otherwise, we recommend deploying a new CF development instance using [Bosh Lite](https://github.com/cloudfoundry/bosh-lite).
+
+### <a id='documentation'></a>Documentation ###
 
 * [v2 Service Broker API](api.html)
-
-Cloud Foundry currently supports both v2 brokers and v1 brokers, but support for v1 brokers will be removed from the next major version of cloud controller. Although there is no timeline for that release, the v1 broker API is considered deprecated. We recommend new brokers are implemented with the v2 Services API and existing brokers are upgraded. For reference, the v1 Service Broker API spec can be found [here](api-v1.html).
-
-
-### <a id='developing'></a>Developing a Service Broker ###
-1. **Development Environment** - You'll need a Cloud Foundry instance to deploy and test your service broker as you are developing it. You must have admin access to your CF instance. You may use any existing install of CF as long you have admin access to it. Otherwise, we recommend deploying a new CF development instance using [Bosh Lite](https://github.com/cloudfoundry/bosh-lite).
-2. **Documentation** - Read the following docs:
- * [v2 Service Broker API](api.html)
- * [Managing Service Brokers on CF](managing-service-brokers.html)
- * [Catalog Metadata](catalog-metadata.html)
- * [Binding Credentials](binding-credentials.html)
- * [Using Services](../../../using/services)
-    
-3. **Examples** - Refer to the example service brokers below as a starting point for developing your broker.
-
+* [Managing Service Brokers](managing-service-brokers.html)
+* [Access Control](access-control.html)
+* [Catalog Metadata](catalog-metadata.html)
+* [Binding Credentials](binding-credentials.html)
+* [Using Services](../../../using/services)
+ 
 ### <a id='examples'></a>Example Service Brokers ###
 
 The following example service broker applications have been developed - these are a great starting point if you are developing your own service broker.
 
 #### Ruby
 
-1. [GitHub repo service](https://github.com/cloudfoundry-samples/github-service-broker-ruby) - this is designed to be an easy-to-read example of a service broker, with complete documentation, and comes with a demo app that uses the service. The broker can be deployed as an application to any Cloud Foundry instance or hosted elsewhere. The service broker uses GitHub as the service back end.
-2. [MySQL database service](https://github.com/cloudfoundry/cf-mysql-release) - this broker and its accompanying MySQL server are designed to be deployed together as a [BOSH](https://github.com/cloudfoundry/bosh) release. BOSH is used to deploy or upgrade the release, monitors the health of running components, and restarts or recreates unhealthy VMs. The broker code alone can be found [here](https://github.com/cloudfoundry/cf-mysql-broker). 
+* [GitHub repo service](https://github.com/cloudfoundry-samples/github-service-broker-ruby) - this is designed to be an easy-to-read example of a service broker, with complete documentation, and comes with a demo app that uses the service. The broker can be deployed as an application to any Cloud Foundry instance or hosted elsewhere. The service broker uses GitHub as the service back end.
+* [MySQL database service](https://github.com/cloudfoundry/cf-mysql-release) - this broker and its accompanying MySQL server are designed to be deployed together as a [BOSH](https://github.com/cloudfoundry/bosh) release. BOSH is used to deploy or upgrade the release, monitors the health of running components, and restarts or recreates unhealthy VMs. The broker code alone can be found [here](https://github.com/cloudfoundry/cf-mysql-broker). 
 
 #### Java
 
-1. [Spring Service Broker](https://github.com/cloudfoundry-community/spring-service-broker) - this repo provides a template for building v2 service brokers in Spring, and includes an example implementation for MongoDB.
-1. [MySQL Java Broker](https://github.com/cloudfoundry-community/cf-mysql-java-broker) - a Java port of the Ruby-based [MySQL broker](https://github.com/cloudfoundry/cf-mysql-broker) above.
+* [Spring Service Broker](https://github.com/cloudfoundry-community/spring-service-broker) - this repo provides a template for building v2 service brokers in Spring, and includes an example implementation for MongoDB.
+* [MySQL Java Broker](https://github.com/cloudfoundry-community/cf-mysql-java-broker) - a Java port of the Ruby-based [MySQL broker](https://github.com/cloudfoundry/cf-mysql-broker) above.
 
-## <a id='user-provided'></a>User-provided Service Instances ##
-
-Both operators and developers frequently ask how applications pushed to their Cloud Foundry instances can bind with external services, such as Oracle, which they operate themselves or are outside of Cloud Foundry's control. [User-provided Service Instances](../../../using/services/user-provided.html) enable developers to use external services with their applications using familiar workflows. 
