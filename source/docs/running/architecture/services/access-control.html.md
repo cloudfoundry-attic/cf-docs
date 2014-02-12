@@ -2,9 +2,9 @@
 title: Access Control
 ---
 
-By default new service plans are private. This means that when adding a new broker, or adding a new plan to a broker's catalog and updating the broker in Cloud Foundry, the plans won't immediately be available to end users. This enables an admin to control which service plans are available to end users, and to manage limited availability. This is important as in many cases Cloud Foundry admins will not have operational control of service brokers as they may be deployed and managed by other service providers.  
+By default, new service plans are private. This means that when adding a new broker, or adding a new plan to a broker's catalog and updating the broker in Cloud Foundry, the plans won't immediately be available to end users. This enables an admin to control which service plans are available to end users, and to manage limited availability. This is important as in many cases Cloud Foundry admins will not have operational control of service brokers as they may be deployed and managed by other service providers.
 
-Currently access controls require using `cf curl`. Dedicated CLI commands are coming soon. These instructions assume use of the [go-based v6 CLI](https://github.com/cloudfoundry/cli). 
+Currently, access control requires using `cf curl`. Dedicated CLI commands are coming soon. These instructions assume use of the [go-based v6 CLI](https://github.com/cloudfoundry/cli).
 
 ## <a id='make-plans-public'></a>Make Plans Public ##
 
@@ -90,7 +90,7 @@ $ cf curl /v2/service_plans/1afd5050-664e-4be2-9389-6bf0c967c0c6 -X PUT -d '{"pu
 
 ## <a id='limited-availability'></a>Limited Availability ##
 
-To make a private plan available to a specific organization, we need the guid of the organization and of the service plan. The plan guid can be obtained with the same command as for [Make Plans Public](#make-plans-public). 
+To make a private plan available to a specific organization, we need the guid of the organization and of the service plan. The plan guid can be obtained with the same command as for [Make Plans Public](#make-plans-public).
 
 To get the organization guid run the following curl.
 
@@ -141,7 +141,7 @@ $ cf curl /v2/service_plan_visibilities -X POST -d '{"service_plan_guid":"1afd50
 }
 </pre>
 
-Members of the specified organization should now see the service plan in the list of available services when the organization is targeted. While another organization is targeted, the service plan will not be available. Users who are not members of the organization will never see the plan. See [Managing Services](../../../using/services/managing-services.html).   
+Members of the specified organization should now see the service plan in the list of available services when the organization is targeted. While another organization is targeted, the service plan will not be available. Users who are not members of the organization will never see the plan. See [Managing Services](../../../using/services/managing-services.html).
 
 ### <a id='delete-plan-visibility'></a>Disable Plan Visibility ###
 
