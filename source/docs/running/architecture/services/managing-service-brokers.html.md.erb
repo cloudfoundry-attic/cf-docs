@@ -2,84 +2,40 @@
 title: Managing Service Brokers
 ---
 
-This document describes how to use the `cf` or `gcf` command line tools to manage a Cloud Foundry [Service Broker](index.html). Service Brokers implement the [Service Broker API](api.html).
+This document describes how to use the [go-based v6 CLI](https://github.com/cloudfoundry/cli) to manage a Cloud Foundry [Service Broker](index.html). Service Brokers implement the [Service Broker API](api.html). 
 
-Once you've implemented the [Catalog endpoint](api.html#catalog-mgmt), you'll want to see whether your services and plans are available to end users. Two steps are required: 
+Once you've implemented the [Catalog endpoint](api.html#catalog-mgmt), you'll want to verify your services and plans are available to end users. Two steps are required: 
 
-1. registering your broker with cloud controller
-2. making plans public.
+1. [Register a Broker](#register-broker)
+2. [Make Plans Public](access-control.html#make-plans-public)
 
-In order to run any of the commands below, you must be authenticated as a cloud controller admin (via the `cf login` or `gcf login` command).
+In order to run any of the commands below, you must be authenticated with Cloud Foundry as an admin user.
 
-## <a id='add-broker'></a>Add a Broker ##
+## <a id='register-broker'></a>Register a Broker ##
 
 Registering a broker causes cloud controller to fetch and validate the catalog from your broker, and save the catalog to cloud controller database. The basic auth username and password which are provided when adding a broker are encrypted in cloud controller database, and used by the cloud controller to authenticate with the broker when making all API calls. Your service broker should validate the username and password sent in every request, otherwise anyone could curl your broker to delete service instances.
 
-With `cf`:
-
 <pre class="terminal">
-$ cf add-service-broker mybrokername --username someuser --password somethingsecure --url http://mybroker.example.com/
+$ cf create-service-broker mybrokername someuser somethingsecure http://mybroker.example.com/
 </pre>
 
-With `gcf`:
+### <a id='making-plans-public'></a>Make Plans Public ###
+New service plans are private by default. To make plans available to end users, see [Make Plans Public](access-control.html#make-plans-public). Instances of a private plan can not be provisioned until either the plan is made public or is made available to an organization.
 
-<pre class="terminal">
-$ gcf create-service-broker mybrokername someuser somethingsecure http://mybroker.example.com/
-</pre>
+### <a id='multiple-brokers'></a>Multiple Brokers, Services, Plans ###
 
-### <a id='list-services'></a>List Services ###
-
-New service plans are private by default. To make plans available to end users, see [Make Plans Public](#make-plans-public). **Note**: instances of private plans can not be provisioned until either the plans are made public or are the plans are made available to an organization.
-
-`cf` allows an admin to see service plans before they are available to end users. 
-
-<pre class="terminal">
-$ cf services --marketplace
-Getting services... OK
-
-service       	version   provider   plans    	description                                           
-my-service-name n/a       n/a        free-plan	My service description.
-</pre>
-
-`gcf` does not yet allow an admin to see service plans before they are available to end users. The following command will list service plans which are public or which have been made available to your targeted organization.
-
-<pre class="terminal">
-$ gcf m
-Getting services from marketplace in org scoen / space test as scoen@gopivotal.com...
-OK
-
-service          plans           description
-my-service-name  free-plan       My service description.
-</pre>
-
-For more information regarding end-user management of services, see [Managing Services](../../../using/services/managing-services.html)
-
-### <a id='multiple-brokers'></a>Multiple Brokers ###
-
-Multiple service brokers may be added to a Cloud Foundry instance, but the following constraints must be kept in mind:
+Many service brokers may be added to a Cloud Foundry instance, each offering many services and plans. The following constraints should be kept in mind:
 
 - It's not possible to have multiple brokers with the same name
-- It's not possible to have multiple brokers with the same URL
-- The service id and plan ids of each service advertised by the broker must be unique across Cloud Foundry (GUIDs should be used for these fields)
+- It's not possible to have multiple brokers with the same base URL
+- The service id and plan ids of each service advertised by the broker must be unique across Cloud Foundry (GUIDs are recommended for these fields)
 
 See [Possible Errors](#possible-errors) below for error messages and what do to when you see them.
 
 ## <a id='list-brokers'></a> List Service Brokers ##
 
-With `cf`:
-
 <pre class="terminal">
 $ cf service-brokers
-Getting service brokers... OK
-
-Name            URL
-my-service-name http://mybroker.example.com
-</pre>
-
-With `gcf`:
-
-<pre class="terminal">
-$ gcf service-brokers
 Getting service brokers as admin...
 OK
 
@@ -89,147 +45,56 @@ my-service-name http://mybroker.example.com
 
 ## <a id='update-broker'></a>Update a Broker ##
 
-Updating a broker is how to applying changes a broker author has made to cloud controller. Similar to adding a broker, update causes cloud controller to fetch and validate the catalog from a broker, and update the cloud controller database with any changes found in the catalog.
+Updating a broker is how to ingest changes a broker author has made into Cloud Foundry. Similar to adding a broker, update causes cloud controller to fetch the catalog from a broker, validate it, and update the cloud controller database with any changes found in the catalog.
 
-Update also provides a means to change the basic auth credentials cloud controller should use to authenticate with a broker, as well as the URL controller uses for the location of the broker's API endpoints.
-
-With `cf`:
+Update also provides a means to change the basic auth credentials cloud controller uses to authenticate with a broker, as well as the base URL of the broker's API endpoints.
 
 <pre class="terminal">
-$ cf update-service-broker mybrokername --username someuser --password somethingsecure --url http://mybroker.example.com/
-</pre>
-
-With `gcf`:
-
-<pre class="terminal">
-$ gcf update-service-broker mybrokername someuser somethingsecure http://mybroker.example.com/
+$ cf update-service-broker mybrokername someuser somethingsecure http://mybroker.example.com/
 </pre>
 
 ## <a id='rename-broker'></a>Rename a Broker ##
 
-A service broker can be renamed with the following commands. This name is used only by the Cloud Foundry operator to identify brokers, and has no relation to configuration of the broker itself.
-
-With `cf`:
+A service broker can be renamed with the following command. This name is used only by the Cloud Foundry operator to identify brokers, and has no relation to configuration of the broker itself.
 
 <pre class="terminal">
 $ cf update-service-broker mybrokername mynewbrokername
 </pre>
 
-With `gcf`:
+## <a id='remove-broker'></a>Remove a Broker ##
+
+Attempting to remove a service broker will fail if there are service instances for any service plan in the catalog. When planning to shut down or delete a broker, make sure that you remove all service instances before you shut it down. Failure to do so will leave [orphaned service instances](api.html#orphans).
 
 <pre class="terminal">
-$ gcf update-service-broker mybrokername mynewbrokername
+$ cf delete-service-broker mybrokername
 </pre>
 
 ## <a id='possible-errors'></a>Possible Errors ##
 
 If  incorrect basic auth credentials are provided:
 
-`cf` returns a unhelpful error: 
-
 <pre class="terminal">
-CFoundry::ServerError: 10001: The service broker API returned an error from http://github-broker.primo.cf-app.com/v2/catalog: 404 Not Found
-</pre>
-
-`gcf` provides a meaningful error:
-
-<pre class="terminal">
-Server error, status code: 500, error code: 10001, message: Authentication failed for the service broker API. Double-check that the username and password are correct: http://github-broker.primo.cf-app.com/v2/catalog
+Server error, status code: 500, error code: 10001, message: Authentication failed for the service broker API. Double-check that the username and password are correct: http://github-broker.a1-app.cf-app.com/v2/catalog
 </pre>
 
 If you receive the following errors, check your broker logs. You may have an internal error.
 
-`cf`:
-
 <pre class="terminal">
-CFoundry::ServerError: 10001: The service broker API returned an error from http://github-broker.primo.cf-app.com/v2/catalog: 500 Internal Server Error
-</pre>
+Server error, status code: 500, error code: 10001, message: The service broker response was not understood
 
-`gcf`:
+Server error, status code: 500, error code: 10001, message: The service broker API returned an error from http://github-broker.a1-app.cf-app.com/v2/catalog: 404 Not Found
 
-<pre class="terminal">
 Server error, status code: 500, error code: 10001, message: The service broker API returned an error from http://github-broker.primo.cf-app.com/v2/catalog: 500 Internal Server Error
 </pre>
 
-If your `unique_id`s for service and plan are not unique, you should get an error. Currently these errors aren't helpful, but it's a known issue and will be fixed soon.
-
-`cf`: 
+If your broker's catalog of services and plans violates validation of presence, uniqueness, and type, you will receive meaningful errors. 
 
 <pre class="terminal">
-CFoundry::InvalidRequest: 10004: The request is invalid
+Server error, status code: 502, error code: 270012, message: Service broker catalog is invalid:
+Service service-name-1
+  service id must be unique
+  service description is required
+  service "bindable" field must be a boolean, but has value "true"
+  Plan plan-name-1
+    plan metadata must be a hash, but has value [{"bullets"=>["bullet1", "bullet2"]}]
 </pre>
-
-`gcf`:
-
-<pre class="terminal">
-Server error, status code: 400, error code: 10004, message: The request is invalid
-</pre>
-
-
-## <a id='make-plans-public'></a>Make Plans Public ##
-
-By default new service plans are private. This means that when adding a new broker, or adding a new plan to an existing broker catalog and updating the broker, the plans won't immediately be available to end users. This provides the basis for controlling which service plans are available to end users, and to manage limited availability. This is important as in many cases Cloud Foundry admins will not have operational control of service brokers as they may be deployed and managed by other service providers.  
-
-
-Making a plan public currently involves a couple of curls but a CLI command is coming very soon (this command will be implemented in the [v6 Go-based CLI](../../../using/managing-apps/cf/go-cli.html) only). 
-
-The first step is to get the service plan guid.
-
-<pre class="terminal">
-$ cf services --marketplace --trace
-</pre>
-
-This will will return a JSON response which will include something like the following for each service.
-
-<pre class="terminal">
-        "service_plans": [
-          {
-            "metadata": {
-              "guid": "a01d462f-a4a4-4945-a008-3ff13c06f719",
-              "url": "/v2/service_plans/a01d462f-a4a4-4945-a008-3ff13c06f719",
-              "created_at": "2013-11-15T23:42:52+00:00",
-              "updated_at": "2013-11-22T18:57:46+00:00"
-            },
-            "entity": {
-              "name": "large",
-              "free": false,
-              "description": "Large Dummy",
-              "service_guid": "e629bb0a-fee7-4a6c-a4f1-9eeec7096c29",
-              "extra": "{\"cost\":20.0,\"bullets\":[]}",
-              "unique_id": "addonOffering_3365",
-              "public": false,
-              "service_url": "/v2/services/e629bb0a-fee7-4a6c-a4f1-9eeec7096c29",
-              "service_instances_url": "/v2/service_plans/a01d462f-a4a4-4945-a008-3ff13c06f719/service_instances"
-            }
-          },
-</pre>
-
-Now run the following curl using the service plan guid above.
-
-<pre class="terminal">
-$ service_plan="a01d462f-a4a4-4945-a008-3ff13c06f719"
-$ cf curl PUT /v2/service_plans/$service_plan -b '{"public":'true'}'
-</pre>
-
-To verify that the the plan was set to public, re-run this command and check the 'public' field:
-
-<pre class="terminal">
-$ cf services --marketplace --trace
-</pre>
-
-At this point you should see your service and plans in response to the commands described in [List Services](#list-services).
-
-## <a id='remove-broker'></a>Removing a Broker ##
-
-Attempting to remove a service broker will fail if there are service instances for any service plan in the catalog. When planning to shut down or delete a broker, make sure that you remove all service instances before you shut it down. Failure to do so will leave [orphaned service instances](api.html#orphans).
-
-With `cf`:
-<pre class="terminal">
-$ cf remove-service-broker mybrokername
-</pre>
-
-With `gcf`:
-<pre class="terminal">
-$ gcf delete-service-broker mybrokername
-</pre>
-
