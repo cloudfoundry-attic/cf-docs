@@ -22,19 +22,19 @@ The sections below show how to access an environment variable from a program. Th
 
 ### Java
 
-```
+```java
 System.getenv("VCAP_SERVICES");
 ```
 
 ### Ruby
 
-```
+```ruby
 ENV['VCAP_SERVICES']
 ```
 
 ### Node.js
 
-```
+```javascript
 process.env.VCAP_SERVICES
 ```
 
@@ -43,19 +43,19 @@ process.env.VCAP_SERVICES
 The subsections that follow describe the environment variables set by a DEA for an application at staging time.
 
 ### <a id='HOME'></a>HOME ###
-Root folder for the deployed application.  
+Root folder for the deployed application.
 
 `HOME=/home/vcap/app`
 
 ### <a id='HOME'></a>MEMORY_LIMIT ###
-The maximum amount of memory that each instance of the application can consume. This value is set as a result of the value you specify in an application manifest, or at the command line when pushing an application.   
+The maximum amount of memory that each instance of the application can consume. This value is set as a result of the value you specify in an application manifest, or at the command line when pushing an application.
 
-If an instance goes over the maximum limit, it will be restarted. If it has to be restarted too often, it will be terminated. 
+If an instance goes over the maximum limit, it will be restarted. If it has to be restarted too often, it will be terminated.
 
 `MEMORY_LIMIT=512m`
 
 ### <a id='PORT'></a>PORT ###
-The port on the DEA for communication with the application. The DEA allocates a port to the application during staging. For this reason, code that obtains or uses the application port should reference it using `PORT`. 
+The port on the DEA for communication with the application. The DEA allocates a port to the application during staging. For this reason, code that obtains or uses the application port should reference it using `PORT`.
 
 `PORT=61857`
 
@@ -86,19 +86,19 @@ This variable contains useful information about a deployed application. Results 
 
 
 |Attribute|Description |
-| --------- | --------- | 
+| --------- | --------- |
 |application_users, users | |
 |instance_id  |GUID that identifies the application. |
-|instance_index |Index number, relative to the DEA, of the instance. | 
-|application_version, version |GUID that identifies a version of the application that was pushed. Each time an application is pushed, this value is updated. | 
-|application_name, name |The name assigned to the application when it was pushed. | 
-|application_uris |The URI(s) assigned to the application.   | 
-|started_at, start |The last time the application was started. | 
-|started\_at\_timestamp |Timestamp for the last time the applicaton was started. | 
-|host |IP address of the application instance. | 
-|port |Port of the application instance. | 
-|limits  |The memory, disk, and number of files permitted to the instance. Memory and disk limits are supplied when the application is deployed, either on the command line or in the application manifest. The number of files allowed is operator-defined. | 
-|state_timestamp |The timestamp for the time at which the application achieved its current state.| 
+|instance_index |Index number, relative to the DEA, of the instance. |
+|application_version, version |GUID that identifies a version of the application that was pushed. Each time an application is pushed, this value is updated. |
+|application_name, name |The name assigned to the application when it was pushed. |
+|application_uris |The URI(s) assigned to the application.   |
+|started_at, start |The last time the application was started. |
+|started\_at\_timestamp |Timestamp for the last time the applicaton was started. |
+|host |IP address of the application instance. |
+|port |Port of the application instance. |
+|limits  |The memory, disk, and number of files permitted to the instance. Memory and disk limits are supplied when the application is deployed, either on the command line or in the application manifest. The number of files allowed is operator-defined. |
+|state_timestamp |The timestamp for the time at which the application achieved its current state.|
 
 ~~~
 
@@ -123,7 +123,7 @@ This is not yet implemented in V2.
 
 The port (on the network interface specified by `VCAP_CONSOLE_IP`) upon which application users can access the Rails console.
 
-`VCAP_CONSOLE_PORT=61858` 
+`VCAP_CONSOLE_PORT=61858`
 
 ### <a id='VCAP_SERVICES'></a>VCAP\_SERVICES ###
 
@@ -135,7 +135,7 @@ The key for each service in the JSON document is the same as the value of the "l
 
 
 |Attribute|Description |
-| --------- | --------- | 
+| --------- | --------- |
 |name|The name assigned to the service instance by the user when it was created |
 |label (v1 API)|The service name and service version (if there is no version attribute, the string "n/a" is used), separated by a dash character, for example "cleardb-n/a"|
 |label (v2 API)|The service name |
@@ -144,7 +144,7 @@ The key for each service in the JSON document is the same as the value of the "l
 
 
 
-The [v1](/docs/running/architecture/services/writing-service-v1.html) example below contains the JSON for the VCAP_SERVICES environment variable for bound instances of several services available in the [Pivotal Web Services](http://run.pivotal.io) Marketplace. 
+The [v1](/docs/running/architecture/services/writing-service-v1.html) example below contains the JSON for the VCAP_SERVICES environment variable for bound instances of several services available in the [Pivotal Web Services](http://run.pivotal.io) Marketplace.
 
 ~~~
 VCAP_SERVICES=
@@ -204,28 +204,6 @@ VCAP_SERVICES=
 }
 ~~~
 
-## <a id='java-buildpack'></a>Variables Defined by Java Buildpack ##
-
-The subsections that follow describe the environment variables set by the Java Buildpack for an application at staging time.
-
-### <a id='JAVA_HOME'></a>JAVA_HOME ###
-
-The location of JAVA on the container running the application.
-
-`JAVA_HOME=/home/vcap/app/.jdk`
-
-### <a id='JAVA_OPTS'></a>JAVA_OPTS ###
-
-The Java options to use when running the application. All values are used without modification when invoking the JVM. Can be configured in the Java buildpack’s `/config/javaopts.yml` file.
-
-`JAVA_OPTS=-Xmx512m -Xms512m -Dhttp.port=61857`
-
-### <a id='JAVA_TOOL_OPTIONS'></a>JAVA\_TOOL\_OPTIONS ###
-
-This environment variable defines Java options that are required to enable the Java buildpack to auto-configure services for a Java application that uses the Lift framework.
- 
-`JAVA_TOOL_OPTIONS=-Drun.mode=production`
-
 ## <a id='ruby-buildpack'></a>Variables Defined by Ruby Buildpack ##
 
 The subsections that follow describe the environment variables set by the Ruby buildpack for an application at staging time.
@@ -238,8 +216,8 @@ Location where Bundler installs binaries.
 
 ### <a id='BUNDLE_GEMFILE'></a>BUNDLE_GEMFILE ###
 
-Path to application’s gemfile. 
- 
+Path to application’s gemfile.
+
 `BUNDLE_GEMFILE:/home/vcap/app/Gemfile`
 
 ### <a id='BUNDLE_WITHOUT'></a>BUNDLE_WITHOUT ###
@@ -272,11 +250,11 @@ Location where gems can be found.
 
 ### <a id='RACK_ENV'></a>RACK_ENV ###
 This variable specifies the Rack deployment environment --- development, deployment, or none. This governs what middleware is loaded to run the application.
- 
+
 `RACK_ENV=production`
 
 ### <a id='RAILS_ENV'></a>RAILS_ENV ###
-This variable specifies the Rails deployment environment ---  development, test, or production.  This controls which of the environment-specific configuration files will govern how the application will be executed.  
+This variable specifies the Rails deployment environment ---  development, test, or production.  This controls which of the environment-specific configuration files will govern how the application will be executed.
 
 `RAILS_ENV=production`
 
@@ -288,7 +266,7 @@ This Ruby environment variable defines command-line options passed to Ruby inter
 ## <a id='node-buildpack'></a>Variables Defined by Node Buildpack ##
 
 ### <a id='BUILD_DIR'></a>BUILD_DIR ###
-Directory into which Node.js is copied each time a Node.js application is run. 
+Directory into which Node.js is copied each time a Node.js application is run.
 
 ### <a id='CACHE_DIR'></a>CACHE_DIR ###
 

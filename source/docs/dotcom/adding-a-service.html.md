@@ -4,7 +4,7 @@ title: Add a Service
 
 Cloud Foundry allows you to deploy applications without worrying about configuration headaches, making it faster and easier to build, test, deploy and scale your app.
 
-This guide walks you through binding and using services at run.pivotal.io. It assumes you have pushed an application to run.pivotal.io. If you haven't done, that, you might consider going through our guide, [Getting Started](getting-started.html). 
+This guide walks you through binding and using services at run.pivotal.io. It assumes you have pushed an application to run.pivotal.io. If you haven't done, that, you might consider going through our guide, [Getting Started](getting-started.html).
 
 ## <a id='intro'></a>Intro to Services ##
 
@@ -17,7 +17,7 @@ In order to use services with your application you will need to:
 1. [Update your application to use the service](#using)
 
 ### Services vs. Service Instances
-Services provision services instances. As an example, ClearDB is a service which provisions MySQL databases. Depending on the plan you select, you might get a database in a multi-tenant server, or a dedicated server. But not all services provide databases; a service may simply provision an account on their system for you. Whatever is provisioned for you we refer to as a service instance.  
+Services provision services instances. As an example, ClearDB is a service which provisions MySQL databases. Depending on the plan you select, you might get a database in a multi-tenant server, or a dedicated server. But not all services provide databases; a service may simply provision an account on their system for you. Whatever is provisioned for you we refer to as a service instance.
 
 ## <a id='create'></a>Creating Service Instances ##
 
@@ -47,7 +47,7 @@ Next you will be asked to select a plan. Service plans are a way for providers t
 2: boost: Best for light production or staging your applications
 3: shock: Designed for apps where you need real MySQL reliability, power and throughput.
 4: spark: Great for getting started and developing your apps.
-Which plan?> 
+Which plan?>
 </pre>
 
 Following this step, your service instance will be provisioned.
@@ -87,11 +87,16 @@ Binding cleardb-e2006 to myapp... OK
 
 Once you have a service instance created and bound to your app, you will need to configure your application to dynamically fetch the credentials for your service. These credentials are stored in the [VCAP_SERVICES environment variable](../using/deploying-apps/environment-variable.html#VCAP_SERVICES) and there are generally two methods for consuming credentials from there.
 
-* **Auto-configuration**: Some buildpacks create a service connection for you by creating additional environment variables, updating config files, or passing system parameters to the jvm. 
+* **Auto-configuration**: Some buildpacks create a service connection for you by creating additional environment variables, updating config files, or passing system parameters to the jvm.
 * **Manual**: [Parse the JSON yourself](../using/deploying-apps/environment-variable.html#app); helper libraries are available for some frameworks.
- 
-| Runtime               | Framework                   | Binding Strategy         |
-| :-------------        |:-------------               |:-------------            |
-| Java / JVM        | <li>[Spring](../using/services/spring-service-bindings.html) <li>[Grails](../using/services/grails-service-bindings.html) <li>[Lift](../using/services/lift-service-bindings.html) | Auto-configuration<br/>Manual |
-| Ruby            | <li>[Rack, Rails, or Sinatra](../using/services/ruby-service-bindings.html) |  [Limited auto-configuration support for Rails only](../using/services/ruby-service-bindings.html#auto-config)<br/>Manual | 
-| Javascript          | <li>[Node.js](../using/services/node-service-bindings.html) | Manual |
+
+| Runtime    | Framework  | Binding Strategy         |
+| :--------- |:---------- |:-------------            |
+| JVM / Java | <li>[Grails][g] <li>[Play Framework][p] <li>[Spring][s] | Auto-configuration<br/>Manual |
+| Ruby       | <li>[Rack, Rails, or Sinatra](../using/services/ruby-service-bindings.html) |  [Limited auto-configuration support for Rails only](../using/services/ruby-service-bindings.html#auto-config)<br/>Manual |
+| Javascript | <li>[Node.js](../using/services/node-service-bindings.html) | Manual |
+
+[g]: ../using/services/grails-service-bindings.html
+[p]: ../using/services/play-service-bindings.html
+[s]: ../using/services/spring-service-bindings.html
+
