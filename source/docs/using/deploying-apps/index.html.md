@@ -38,7 +38,7 @@ Cloud Foundry stages application using framework and and runtime-specific buildp
 | Runtime        | Framework                                                                             |
 | :------------- | :-------------                                                                        |
 | Javascript     | [Node.js](/docs/using/deploying-apps/javascript/index.html)                           |
-| Java / JVM     | [Java Spring, Grails, Scala Lift, and Play](/docs/using/deploying-apps/jvm/index.html)|
+| JVM            | [Grails, Groovy, Java, Play Framework, Spring Boot, and Servlet](/docs/using/deploying-apps/jvm/index.html)|
 | Ruby           | [Rack, Rails, or Sinatra](/docs/using/deploying-apps/ruby/index.html)                 |
 
 Cloud Foundry also supports custom buildpacks as described on [Custom Buildpacks](/docs/using/deploying-apps/buildpacks.html).  Some <a href="https://devcenter.heroku.com/articles/third-party-buildpacks">Heroku third party buildpacks</a> may work with Cloud Foundry, but your experience may vary. See https://github.com/cloudfoundry-community/cf-docs-contrib/wiki/Buildpacks for a list of community-developed buildpacks. To use a buildpack that is not built-in to Cloud Foundry, you specify the URL of the buildpack when you push an application, using the `--buildpack` qualifier.
@@ -59,7 +59,7 @@ For general intructions on how to push an application to the Pivotal CF hosted s
 
 There are three ways that Cloud Foundry can obtain the command to use to start an application; they are listed below in order of precedence.
 
-1. The value supplied with the `--command` qualifier (or in the application’s `manifest.yml` file). For example, `cf push --command '.java/bin/java myapp'`.
+1. The value supplied with the `--command` qualifier (or in the application’s `manifest.yml` file). For example, `cf push --command 'YourStartCommand'`.
 1. The value of the `web` key in the procfile, for the application, if it exists. A procfile is a text file named `Procfile`, in the root directory of your application, that lists the process types in an application, and associated start commands. For example, `web: YourStartCommand`
 1. The start command (if specified) for the “web” process type, in `default_process_types` section of the output from the buildpack's `bin/release` script.
 
@@ -102,9 +102,9 @@ To use a built-in service, you need to create a service instance and bind it to 
 
 For framework specific service information see:
 
+* [Service Bindings for Grails Applications](/docs/using/services/grails-service-bindings.html)
+* [Service Bindings for Play Framework Applications](/docs/using/services/play-framework-service-bindings.html)
 * [Service Bindings for Spring Applications](/docs/using/services/spring-service-bindings.html)
-* [Service Bindings for Grails Applications]((/docs/using/services/grails-service-bindings.html)
-* [Service Bindings for Lift Applications](/docs/using/services/lift-service-bindings.html)
 * [Service Bindings for Rack, Rails, or Sinatra Applications](/docs/using/services/ruby-service-bindings.html)
 * [Service Bindings for Node.js Applications](/docs/using/services/node-service-bindings.html)
 

@@ -40,7 +40,7 @@ title: Welcome to Cloud Foundry Documentation
   <a href="docs/using/deploying-apps/index.html">About Application Deployment</a><br>
   <a href="docs/using/deploying-apps/ruby/index.html">Deploy Rack, Rails, or Sinatra Applications</a><br>
   <a href="docs/using/deploying-apps/javascript/index.html">Deploy Node.js Applications</a><br>
-  <a href="docs/using/deploying-apps/jvm/index.html">Deploy Java, Groovy, or Scala Apps</a><br>
+  <a href="docs/using/deploying-apps/jvm/index.html">Deploy Grails, Groovy, Java, Play Framework, Spring Boot, and Servlet Applications</a><br>
   <a href="docs/using/deploying-apps/manifest.html">Application Manifests (manifest.yml)</a><br>
   <a href="docs/using/deploying-apps/buildpacks.html">Buildpacks</a><br>
   <a href="docs/using/deploying-apps/environment-variable.html">Cloud Foundry Environment Variables</a></br>

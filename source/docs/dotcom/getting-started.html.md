@@ -63,9 +63,9 @@ You can choose any of these spaces to deploy your application.
 
 These sample apps will help you quickly get a sense of what it is like to use Cloud Foundry.
 
-| Runtime        | Sample App                                                           | 
-| -------------- | -------------------------------------------------------------------- |
-| Java / JVM     | [Spring Music](https://github.com/cloudfoundry-samples/spring-music) |
+| Runtime    | Sample App                                                           |
+| ---------- | -------------------------------------------------------------------- |
+| JVM / JAVA | [Spring Music](https://github.com/cloudfoundry-samples/spring-music) |
 
 ### <a id='prepare-app'></a>Prepare Your Own Application for Deployment ###
 
@@ -78,7 +78,7 @@ Before you deploy, you need to decide on the answers to some questions:
 * **Name**: You can use any series of alpha-numeric characters without spaces as the name of your application.
 * **Instances**: The number of instances you want running.
 * **Memory Limit**: The maximum amount of memory that each instance of your application is allowed to consume. If an instance goes over the maximum limit, it will be restarted. If it has to be restarted too often, it will be terminated. So make sure you are generous in your memory limit.
-* **Start Command**: This is the command that Cloud Foundry will use to start each instance of your application. The start command is specific to your framework. 
+* **Start Command**: This is the command that Cloud Foundry will use to start each instance of your application. The start command is specific to your framework.
       * If you do not specify a start command when you push the application, Cloud Foundry will use the value of the `web` key in the `procfile` for the application, if it exists; failing that, Cloud Foundry will start the application using the  value of the buildpack's web attribute of `default_process_types`.
 * **URL and Domain**: `cf` will prompt you for both a URL and a domain. The URL is the subdomain for your application and it will be hosted at the primary domain you choose. The combination of the URL and domain must be globally unique.
 * **Services**: `cf` will ask you if you want to create and bind one or more services such as MySQL or Redis to your application. For the purposes of this guide, you can answer no when prompted to add a service. Services are addressed in the next guide, [Adding a Service](adding-a-service.html).
