@@ -8,6 +8,25 @@ This page will prepare you to deploy Node.js apps via the [getting started guide
 
 Cloud Foundry expects a `package.json` in your Node.js application. You can specify the version of Node.js you want to use in the `engine` node of your `package.json` file. As of July, 2013, Cloud Foundry uses 0.10.x as the default.
 
+Here is an example for your `package.json` file.
+~~~JSON
+{
+  "name": "default-nodejs-app",
+  "version": "0.0.1",
+  "author": "Your Name",
+  "dependencies": {
+    "express": "3.4.8",
+    "consolidate": "0.10.0",
+    "express": "3.4.8",
+    "swig": "1.3.2",
+  },
+  "engines": {
+    "node": "0.10.x",
+    "npm": "1.3.x"
+  }
+}
+~~~
+
 ## <a id='start'></a> Application start command ##
 
 Node.js applications require a start command, which is saved with other configurations in `manifest.yml`.
