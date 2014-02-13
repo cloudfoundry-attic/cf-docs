@@ -6,49 +6,28 @@ IronMQ is a reliable message queue service that lets you connect systems and bui
 
 ## <a id='managing'></a>Managing Services ##
 
-[Managing services from the command line](../../../using/services/managing-services.html)
-
-### Creating a Service Instance ##
-
-An instance of this service can be provisioned via the CLI with the following command:
-
-<pre class="terminal">
-  $ cf create-service ironmq
-</pre>
-
-### Binding Your Service Instance ##
-
-Bind the service instance to your app with the following command:
-
-<pre class="terminal">
-  $ cf bind-service
-</pre>
+To create and bind a service instance, see [Managing services from the command line](../../../using/services/managing-services.html).
 
 ## <a id='using'></a>Using Service Instances with your Application ##
 
-* Include this section only if your service is bindable. What is the format of the credentials stored in the VCAP_SERVICES environment variable? *
-
 See [Using Service Instances with your Application](../../adding-a-service.html#using) and [VCAP_SERVICES Environment Variable](../../../using/deploying-apps/environment-variable.html).
 
-Format of credentials in `VCAP_SERVICES` environment variable.
+Format of credentials in `VCAP_SERVICES` environment variable:
 
 ~~~xml
 {
-  service-foo-n/a: [
-  {
-  name: "service-foo-75efc",
-  label: "service-foo-n/a",
-  plan: "example-plan",
-  credentials: {
-  uri: dbtype://username:password@hostname:port/name
-  hostname: "foo.example.com"
-  port: "1234"
-  name: "asdfjasdf"
-  username: "QvsXMbJ2rK",
-  password: "HCDVOYluTv"
-}
-}
-]
+   ironmq-n/a: [
+      {
+         name: "ironmq",
+         label: "ironmq-n/a",
+         tags: [ ],
+         plan: "small",
+         credentials: {
+            project_id: "52fc1f640738fa0009000007",
+            token: "wskYhifzt1Nl2XjwhGAZ0jfXLDo"
+         }
+      }
+   ]
 }
 ~~~
 
@@ -56,7 +35,7 @@ Format of credentials in `VCAP_SERVICES` environment variable.
 
 IronMQ has clients for [a lot of languages][3], and you can always use [the REST API][4] (or write your own!).
 
-## Ruby
+### Ruby
 
 We’re going to need to install the Ruby gem, for development purposes:
 
@@ -90,7 +69,7 @@ p msg
 msg.delete # or @queue.delete(msg.id)
 ~~~
 
-## Java
+### Java
 
 We’re going to need to install [the jar file][5] for the official IronMQ Java library. If you’re using Maven, you can also add the `http://iron-io.github.com/maven/repository` repository as a dependency.
 
@@ -118,7 +97,7 @@ System.out.println(msg.getBody());
 queue.deleteMessage(msg);
 ~~~
 
-## Python
+### Python
 
 We’re going to have to install the [Python client library][6] for IronMQ. You can do this using `pip install iron_mq` or `easy_install iron_mq`.
 
@@ -142,7 +121,7 @@ print msg
 queue.delete(msg["messages"][0]["id"])
 ~~~
 
-## Clojure
+### Clojure
 
 We’re going to need to add the [IronMQ Clojure client][7] to your project.clj:
 
@@ -167,7 +146,7 @@ Use these to create a client that allows you to interact with your queues:
 (mq/delete-message client "my_queue" msg))
 ~~~
 
-## Node.js
+### Node.js
 
 We’re going to need to the [IronMQ Node.js client][8] to interact with our queues. You can get it using `npm install iron_mq` or by downloading the source from Github (though you’ll need `[iron_core_node]`[9], too).
 
@@ -202,9 +181,16 @@ console.log(body);
 
 To get into more advanced uses of IronMQ, you may want to check out the [API docs][4]
 
-## Support
+## <a id='support'></a>Support ##
 
 You’re also welcome to stop by the [Iron.io support chat room][12] and chat with Iron.io staff about issues. You can also find more resources at the [Iron.io Dev Center][13].
+
+  - [Dev Center](http:www.dev.iron.io)
+  - [Live Public Support](http://get.iron.io/chat)
+  - [Iron.io on GitHub](https://github.com/iron-io)
+  - [Frequently Asked Questions](http://dev.iron.io/faq)
+  - [Report an Issue](https://github.com/iron-io/issues/issues)
+
 
 ## <a id='sample-app'></a>Integrations ##
 
@@ -218,28 +204,20 @@ You’re also welcome to stop by the [Iron.io support chat room][12] and chat wi
     <li><a href="http://tech.pro/tutorial/1196/blacksmith-ironmq-client-library-fun-with-queues" target="_blank" >.NET Framework</a></li>
   </ul>
 
-  ## <a id='dashboard'></a>Dashboard (HUD) ##
+## <a id='dashboard'></a>Dashboard (HUD) ##
 
   You can view and analyze all your queues from the HUD...
 
   ![ironworkers on the hud][1]
 
-  ## View analytics and gain insight about your queues
+## <a id='analytics'></a>View analytics and gain insight about your queues
 
   ![ironmq analytics][2]
 
-  ## Share your projects with other people
+## <a id='share'></a>Share your projects with other people
 
   Each of your projects can be shared with coworkers and friends. It's easy and just takes a few seconds. They'll get an invite to signup for Iron.io for free and have automatic access to the project once completed.
   ![Sharing your Iron Worker Project][3]
-
-  ## <a id='support'></a>Support ##
-
-  - [Dev Center](http:www.dev.iron.io)
-  - [Live Public Support](http://get.iron.io/chat)
-  - [Iron.io on GitHub](https://github.com/iron-io)
-  - [Frequently Asked Questions](http://dev.iron.io/faq)
-  - [Report an Issue](https://github.com/iron-io/issues/issues)
 
 
   [1]: http://www.iron.io/assets/screenshots/home-scrnshot-mq-1.png
