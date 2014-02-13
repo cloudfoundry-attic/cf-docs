@@ -2,54 +2,44 @@
 title: Managing Services
 ---
 
+Documentation assumes use of the [v6 CLI](https://github.com/cloudfoundry/cli).
+
 ## <a id='viewing-services'></a> View Available Services ##
 
-After targeting and logging into Cloud Foundry using [cf](/docs/using/managing-apps/cf/index.html), you can view what services are available:
+After targeting and logging into Cloud Foundry, you can view what services are available to your targeted organization. Available services may differ between organizations and between Cloud Foundry marketplaces. 
 
 <pre class="terminal">
 $ cf services --marketplace
+Getting services from marketplace in org my-org / space test as me@example.com...
+OK
+
+service          plans                                                                 description
+blazemeter       basic1kmr, free-tier, hv40kmr, pp10kmr, pro5kmr                       The JMeter Load Testing Cloud
+cleardb          amp, boost, shock, spark                                              Highly available MySQL for your Apps.
+cloudamqp        bunny, lemur, panda, rabbit, tiger                                    Managed HA RabbitMQ servers in the cloud
+cloudforge       free, pro, standard                                                   Development Tools In The Cloud
+elephantsql      elephant, hippo, panda, turtle                                        PostgreSQL as a Service
+loadimpact       li100, li1000, li500, lifree                                          Cloud-based, on-demand website load testing
+memcachedcloud   100mb, 1gb, 2-5gb, 250mb, 25mb, 500mb, 5gb                            Enterprise-Class Memcached for Developers
+memcachier       dev                                                                   The easiest, most advanced memcache.
+mongolab         sandbox                                                               Fully-managed MongoDB-as-a-Service
+newrelic         standard                                                              Manage and monitor your apps
+rediscloud       100mb, 10gb, 1gb, 2-5gb, 250mb, 25mb, 500mb, 50gb, 5gb                Enterprise-Class Redis for Developers
+searchify        plus, pro, small                                                      Custom search you control
+searchly         advanced, business, enterprise, micro, professional, small, starter   Search Made Simple.
+sendgrid         bronze, free, gold, platinum, silver                                  Email Delivery. Simplified.
 </pre>
 
-This command displays a list of services that can be bound to your applications. The following is an example of those services on a private beta install of Cloud Foundry.
-
-<pre class="terminal">
-$ cf services --marketplace
-Getting services... OK
-
-service      version   provider        plans                        description                     
-mongodb      n/a       mongolab-dev    free, large, medium, small   Cloud hosted and managed MongoDB
-mongodb      2.2       core            200                          MongoDB NoSQL database          
-mysql        5.5       core            100, 200, cfinternal         MySQL database                  
-postgresql   9.2       core            200                          PostgreSQL database (vFabric)   
-rabbitmq     3.0       core            200                          RabbitMQ message queue          
-redis        2.6       core            200                          Redis key-value store            
-</pre>
-
-<i>Note: This is an example. These services may not be available on the Cloud Foundry service you target.</i>
+<i>Note: This is an example. These services may not be available on your Cloud Foundry marketplace you target.</i>
 
 ## <a id='create'></a>Create a Service Instance ##
 
 Use this command to create a service instance.
 
 <pre class="terminal">
-$ cf create-service
-1: mongodb n/a, via mongolab
-2: mongodb 2.2
-3: mysql 5.5
-4: postgresql 9.2
-5: rabbitmq 3.0
-6: redis 2.6
-7: redis n/a, via redistogo
-8: smtp n/a, via sendgrid
-What kind?> 3
-
-Name?> mysql-a0a77
-
-1: 100: Shared service instance, 10MB storage, 2 connections
-2: 200: Dedicated server, shared VM, 256MB memory, 2.5GB storage, 30 connections
-Which plan?> 2
-
-Creating service mysql-a0a77... OK
+$ cf create-service cleardb spark cleardb-test
+Creating service cleardb-test in org my-org / space test as me@example.com...
+OK
 </pre>
 
 ## <a id='user-provided'></a>Create a User-Provided Service Instance ##
@@ -60,36 +50,30 @@ User-provided service instances are service instances which have been provisione
 
 ## <a id='bind'></a>Bind a Service Instance ##
 
-Binding a service to your application adds credentials for the service instance to the [VCAP_SERVICES](../deploying-apps/environment-variable.html) environment variable. In most cases these credentials are unique to the binding; another app bound to the same service instance would receive different credentials. You may need to restart your application for it to recognize the change. 
-
-How your app leverages the contents of environment variables may depend on the framework you employ. Refer to the [Deploying Apps](/docs/using/deploying-apps/index.html) section for more information.
+Binding a service to your application adds credentials for the service instance to the [VCAP_SERVICES](../deploying-apps/environment-variable.html) environment variable. In most cases these credentials are unique to the binding; another app bound to the same service instance would receive different credentials.How your app leverages the contents of environment variables may depend on the framework you employ. Refer to the [Deploying Apps](/docs/using/deploying-apps/index.html) section for more information.
+ 
+* You must restart or in some cases re-push your application for the application to recognize changes to environment variables. 
+* Not all services support application binding. Many services provide value to the software development process and are not directly used by an application running on Cloud Foundry.
 
 You can bind an existing service to an existing application as follows:
 
 <pre class="terminal">
-$ cf bind-service
-1: my-app
-Which application?> 1
+$ cf bind-service my-app cleardb-test
+Binding service cleardb-test to my-app in org my-org / space test as me@example.com...
+OK
+TIP: Use 'gcf push' to ensure your env variable changes take effect
 
-1: mysql-a0a77
-Which service?> 1
-
-Binding mysql-a0a77 to my-app... OK
+$ cf restart my-app
 </pre>
 
 ## <a id='unbind'></a>Unbind a Service Instance ##
 
-Unbinding a service removes the credentials created for your application from the [VCAP_SERVICES](../deploying-apps/environment-variable.html) environment variable. You may need to restart your application for it to recognize the change. 
+Unbinding a service removes the credentials created for your application from the [VCAP_SERVICES](../deploying-apps/environment-variable.html) environment variable. You must restart or in some cases re-push your application for the application to recognize changes to environment variables. 
 
 <pre class="terminal">
-$ cf unbind-service
-1: my-app
-Which application?> 1
-
-1: mysql-a0a77
-Which service?> 1
-
-Unbinding mysql-a0a77 from my-app... OK
+$ cf unbind-service my-app cleardb-test
+Unbinding app my-app from service cleardb-test in org my-org / space test as me@example.com...
+OK
 </pre>
 
 ## <a id='delete'></a>Delete a Service Instance ##
@@ -97,11 +81,9 @@ Unbinding mysql-a0a77 from my-app... OK
 Deleting a service unprovisions the service instance and deletes *all data* along with the service instance. 
 
 <pre class="terminal">
-$ cf delete-service
-1: mysql-a0a77
-Which service?> 1
+$ cf delete-service cleardb-test
 
-Really delete mysql-a0a77?> y
-
-Deleting mysql-a0a77... OK
+Are you sure you want to delete the service cleardb-test ? y
+Deleting service cleardb-test in org my-org / space test as me@example.com...
+OK
 </pre>
