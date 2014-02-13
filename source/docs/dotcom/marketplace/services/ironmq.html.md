@@ -31,7 +31,7 @@ Format of credentials in `VCAP_SERVICES` environment variable:
 }
 ~~~
 
-## Language Support
+## <a id='language-support'></a>Language Support ##
 
 IronMQ has clients for [a lot of languages][3], and you can always use [the REST API][4] (or write your own!).
 

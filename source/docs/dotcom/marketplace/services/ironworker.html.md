@@ -6,60 +6,32 @@ IronWorker is a multi-language worker platform that runs tasks in the background
 
 ## <a id='managing'></a>Managing Services ##
 
-[Managing services from the command line](../../../using/services/managing-services.html)
-
-### Creating a Service Instance ##
-
-An instance of this service can be provisioned via the CLI with the following command:
-
-<pre class="terminal">
-$ cf create-service ironworker
-</pre>
-    
-### Binding Your Service Instance ##
-
-Bind the service instance to your app with the following command:
-    
-<pre class="terminal">
-$ cf bind-service 
-</pre>
+To create and bind a service instance, see [Managing services from the command line](../../../using/services/managing-services.html)
 
 ## <a id='using'></a>Using Service Instances with your Application ##
 
-* Include this section only if your service is bindable. What is the format of the credentials stored in the VCAP_SERVICES environment variable? *
-
 See [Using Service Instances with your Application](../../adding-a-service.html#using) and [VCAP_SERVICES Environment Variable](../../../using/deploying-apps/environment-variable.html).
 
-Format of credentials in `VCAP_SERVICES` environment variable.
+Format of credentials in `VCAP_SERVICES` environment variable:
 
 ~~~xml
 {
-  service-foo-n/a: [
-    {
-      name: "service-foo-75efc",
-      label: "service-foo-n/a",
-      plan: "example-plan",
-      credentials: {
-        uri: dbtype://username:password@hostname:port/name
-        hostname: "foo.example.com"
-        port: "1234"
-        name: "asdfjasdf"
-        username: "QvsXMbJ2rK",
-        password: "HCDVOYluTv"
+   ironworker-n/a: [
+      {
+         name: "ironworker-test",
+         label: "ironworker-n/a",
+         tags: [ ],
+         plan: "small",
+         credentials: {
+            project_id: "52fc1f720738fa0005000009",
+            token: "yWZKC5kfj521lfZH-jL-R2pyTw0"
+         }
       }
-    }
-  ]
+   ]
 }
 ~~~
 
-How to Get your Project ID and Token from Cloud Foundry
-
-Add those values to a file called `iron.json` in your app root directory and add iron.json to your .gitignore file.
-
-    {
-      "project_id": "123456789",
-      "token": "aslkdjflaksuilaks"
-    }
+## <a id='language-support'></a>Language Support ##
 
 ## Ruby
 
@@ -75,7 +47,7 @@ If you’re building for a Rails application or anything that uses Bundler, add 
 gem 'iron_worker_ng'
 ~~~
 
-## Create a worker
+### Create a worker ###
 
 First things first, let’s create a worker. Save the following code into a file called `hello_worker.rb`:
 
@@ -114,7 +86,7 @@ Or look at the log in HUD.
 
 Now it’s time to put your worker to work!
 
-## Queue up tasks for your worker from your application
+### Queue up tasks for your worker from your application ###
 
 Now that we know the worker runs and uploads from your machine. Simply add the following to your `config/environments/development.rb`:
 
@@ -141,15 +113,11 @@ Sample Apps in binary, dotnet, go, java, node, php, python, and ruby!
 
 [IronWorker Examples on GitHub](https://github.com/iron-io/iron_worker_examples)
 
-### Next steps
+## <a id='next-steps'></a>Next steps ##
 
-This is just the tip of the iceberg. IronWorker has a robust API that allows for a lot more interaction with your workers. You may want to try:
+This is just the tip of the iceberg. IronWorker has [a robust API](http://dev.iron.io/worker/) that allows for a lot more interaction with your workers. 
 
-You can also check out some example workers:
-
-  * We have a [full repository][6] of IronWorker examples for Rails on Github.
-
-### Troubleshooting
+## <a id='troubleshooting'></a>Troubleshooting ##
 
 When trying to troubleshoot a worker, the best first step is to try and run the worker locally. If the worker runs locally, it should run on the cloud. You can also access your worker logs through the Iron.io HUD. These logs will show you any errors thrown or debug messages you log while the worker is running.
 
@@ -161,14 +129,12 @@ You can view and analyze all your workers from the HUD...
 
 ![ironworkers on the hud][1]
   
-## Share your projects with other people
+## <a id='share'></a>Share your projects with other people ##
 
 Each of your projects can be shared with coworkers and friends. It's easy and just takes a few seconds. They'll get an invite to signup for Iron.io for free and have automatic access to the project once completed.
 ![Sharing your Iron Worker Project][2]
 
 ## <a id='support'></a>Support ##
-
-Provider Support Instructions
 
 - [Dev Center](http:www.dev.iron.io)
 - [Live Public Support](http://get.iron.io/chat)
