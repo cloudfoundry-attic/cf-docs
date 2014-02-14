@@ -1,54 +1,34 @@
 cf-docs
 ====
 
-This is the documentation for the Cloud Foundry open source project - including information about running and managing applications on Cloud Foundry, and setting up your own Cloud Foundry instance with BOSH.
+NOTICE: 
 
-This repository also feeds [cloudfoundry.github.com](http://cloudfoundry.github.com) using [Github Pages](http://pages.github.com/) and [Middleman](http://middlemanapp.com/).
+This repository is now deprecated. Please do not submit any new pull requests against it.
 
-If you have minor changes, you can contribute by forking this repository, modifying the files in `/source/docs`, and creating a GitHub pull request.
+We [announced a change to how the documentation is published](https://groups.google.com/a/cloudfoundry.org/d/msg/vcap-dev/QvuoqUKekuc/ae5ssUs2W_gJ) on the vcap-dev mailing list
+on February 3, 2014.
 
-If you want to contribute against the prioritized backlog of documentation needs, see the [Pivotal Tracker project for Cloud Foundry Documentation](https://www.pivotaltracker.com/projects/713283#).
+The new website for Cloud Foundry open source documentation is 
+[docs.cloudfoundry.org](http://docs.cloudfoundry.org).
 
-## Contributing docs
+There are new documentation repositories. 
 
-You can either contribute directly within Github or by cloning the repository to your local machine using git.
+For details on how documentation is now published, see the readme on 
+[the docs-book-cloudfoundry](https://github.com/cloudfoundry/docs-book-cloudfoundry)
+repo.
 
-## Viewing docs locally
+The open source documentation is now split across multiple repos:
 
-These docs are rendered using [middleman](https://github.com/middleman/middleman). To pull down the raw documentation project and view the docs on your local machine using middleman:
+* [Cloud Foundry Concepts](http://github.com/cloudfoundry/docs-cloudfoundry-concepts): a guide to the underlying concepts and architecture.
+* [Developer Guide](http://github.com/cloudfoundry/docs-dev-guide): step-by-step instructions and reference material for developers pushing applications to Cloud Foundry.
+* [Services](http://github.com/cloudfoundry/docs-services): information about extending Cloud Foundry with custom services, and the service broker API.
+* [Buildpacks](http://github.com/cloudfoundry/docs-buildpacks): a guide to developing your own buildpacks.
+* [Deploying Cloud Foundry](http://github.com/cloudfoundry/docs-deploying-cf): instructions for operators deploying Cloud Foundry on various IaaS (AWS, OpenStack, etc.) using BOSH
+* [Running Cloud Foundry](http://github.com/cloudfoundry/docs-running-cf): information for operators running Cloud Foundry.
+* [BOSH](http://github.com/cloudfoundry/docs-bosh): in-depth documentation on BOSH.
 
-```
-git clone https://github.com/cloudfoundry/cf-docs.git cloudfoundry-docs
-cd cloudfoundry-docs
-bundle
-bundle exec middleman server
-```
+For documentation relating to the Pivotal Web Services Marketplace, please see 
+[PWS Services](http://github.com/pivotal-cf/docs-pws-services)
 
-Then view [http://0.0.0.0:4567](http://0.0.0.0:4567) in your browser.
 
-## More help
-
-### Twitter
-
-* Follow the [@cloudfoundry](https://twitter.com/cloudfoundry) Twitter account for retweets of blogs and news from the world of Cloud Foundry
-* Search the [#cloudfoundry](https://twitter.com/search/realtime?q=%23cloudfoundry) hashtag to follow discussions about Cloud Foundry
-
-### Discussion Groups
-
-* [Using Cloud Foundry](http://stackoverflow.com/questions/tagged/cloudfoundry) (development-related questions)
-* [Running / Setting up Cloud Foundry](https://groups.google.com/a/cloudfoundry.org/forum/?fromgroups#!forum/vcap-dev)
-* [Using BOSH](https://groups.google.com/a/cloudfoundry.org/forum/?fromgroups#!forum/bosh-users)
-* [Running / Setting up BOSH](https://groups.google.com/a/cloudfoundry.org/forum/?fromgroups#!forum/bosh-dev)
-
-There is also a #cloudfoundry IRC channel on the Freenode network, but that may be less-frequently monitored by members of the core team.
-
-### Bugs
-
-When you are getting started with Cloud Foundry, and are still learning your way around the repositories, you can file bugs in each repo's Github Issue section.
-
-### Support
-
-Support issues that are particular to the Pivotal-hosted Cloud Foundry public PaaS available at http://run.pivotal.io can be filed at the address below.
-
-* [support.cloudfoundry.com](http://support.cloudfoundry.com)
 
