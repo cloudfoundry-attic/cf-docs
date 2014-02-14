@@ -24,12 +24,12 @@ Sometimes you may not be able to take advantage of Cloud Foundry's auto-reconfig
   <dependency>
       <groupId>org.springframework.cloud</groupId>
       <artifactId>cloudfoundry-connector</artifactId>
-      <version>1.0.2</version>
+      <version>0.9.5</version>
   </dependency>
   <dependency>
       <groupId>org.springframework.cloud</groupId>
       <artifactId>spring-service-connector</artifactId>
-      <version>1.0.2</version>
+      <version>0.9.5</version>
   </dependency>
 </dependencies>
 ```
