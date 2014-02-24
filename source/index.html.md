@@ -2,6 +2,8 @@
 title: Welcome to Cloud Foundry Documentation
 ---
 
+<div><font color="red">This site is obsolete. Please visit <a href="http://docs.cloudfoundry.org">docs.cloudfoundry.org</a></font></div>	
+
 <div class="column-left">
   <div class="column-title">
   <h4>Pivotal CF Hosted</h4>
