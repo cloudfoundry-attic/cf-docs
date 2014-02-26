@@ -55,6 +55,9 @@ command.
 | metadata.providerDisplayName | string | The name of the upstream entity providing the actual service | extra.providerDisplayName | | X |
 | metadata.documentationUrl | string | Link to documentation page for service | extra.documentationUrl | | X |
 | metadata.supportUrl | string | Link to support for the service | extra.supportUrl | | X |
+| dashboard_client.id | string | The name of the UAA client used to authenticate the user | | | |
+| dashboard_client.secret | string | The secret used by the client to authenticate with UAA | | | |
+| dashboard\_client.redirect\_uri | string | The URL to redirect back to once UAA has authenticated the user | | | |
 
 ## <a id='plan-metadata-fields'></a>Plan Metadata Fields ##
 
@@ -97,6 +100,11 @@ plans.
             "providerName":"84codes AB",
             "documentationUrl":"http://docs.cloudfoundry.com/docs/dotcom/marketplace/services/cloudamqp.html",
             "supportUrl":"http://www.cloudamqp.com/support.html"
+         },
+         "dashboard_client":{
+            "id": "p-mysql-client",
+            "secret": "p-mysql-secret",
+            "redirect_uri": "http://p-mysql.example.com/auth/create"
          },
          "plans":[
             {
