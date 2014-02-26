@@ -142,9 +142,9 @@ The key for each service in the JSON document is the same as the value of the "l
 |plan|The service plan selected when the service was created |
 |credentials|A JSON object containing the service-specific set of credentials needed to access the service instance. For example, for the cleardb service, this will include name, hostname, port, username, password, uri, and jdbcUrl|
 
+To see the value of VCAP\_SERVICES for an application pushed to Cloud Foundry, see [View Environment Variable Values](#view).
 
-
-The [v1](/docs/running/architecture/services/writing-service-v1.html) example below contains the JSON for the VCAP_SERVICES environment variable for bound instances of several services available in the [Pivotal Web Services](http://run.pivotal.io) Marketplace.
+The example below shows the value of VCAP_SERVICES in the [v1 format](../../running/architecture/services/api-v1.html) for bound instances of several services available in the [Pivotal Web Services](http://run.pivotal.io) Marketplace. 
 
 ~~~
 VCAP_SERVICES=
@@ -174,7 +174,7 @@ VCAP_SERVICES=
 }
 ~~~
 
-The [v2](/docs/running/architecture/services/api-v2.0.html) version of the same data would look like this:
+The [v2 format](../../running/architecture/services/api.html) of the same services would look like this:
 
 ~~~
 VCAP_SERVICES=

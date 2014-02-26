@@ -1,5 +1,5 @@
 ---
-title: Managing Services
+title: Managing Services with the CLI
 ---
 
 Documentation assumes use of the [v6 CLI](https://github.com/cloudfoundry/cli).
