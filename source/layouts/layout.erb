@@ -42,48 +42,20 @@
     <img id="bg" src="/images/bg-plain-x.jpg">
     <div id='non_footer'>
       <div id='content'>
-            <div class="text-center" id='orgheaderbg'>
-              <div id='orglogo'>
-                <img src="/images/logo_org.png">
-              </div>
-            </div>
-        <div class='container-full'>
-          <div id='organization_bar'>
-            <div class='navbar'>
-              <ul class='nav'>
-                <li id='icon-home-li'>
-                  <a id='icon-home-link' href='http://www.cloudfoundry.org'>
-                    <img id='icon-home' src='http://blog.cloudfoundry.com/wp-content/static/cforg/img/icon-home.png'>
-                  </a>
-                </li>
-                <li>
-                    <a id='about' href='http://www.cloudfoundry.org/about/index.html'>About</a>
-                </li>
-                <li>
-                    <a id='learn' href='http://www.cloudfoundry.org/learn/index.html'>Learn</a>
-                </li>
-                <li>
-                    <a id='docs' href='http://docs.cloudfoundry.com/'>Documentation</a>
-                </li>
-                <li>
-                    <a href='http://www.cloudfoundry.org/get-in/index.html'>Get Involved</a>
-                </li>
-                <li>
-                    <a href='http://blog.cloudfoundry.com'>Blog</a>
-                </li>
-                <li id="wiki">
-                    <a href='https://github.com/cloudfoundry-community/cf-docs-contrib/wiki' target='_blank'>Wiki</a>
-                </li>
-              </ul>
-            </div><!-- End of navbar -->
-          </div><!-- End of organization_bar -->
-          <div class='content_inner'>
-            <a class="forkme" href="http://github.com/cloudfoundry/cf-docs" target="_blank">
-              <img alt="Fork me on GitHub" src="/images/ribbon_forkme.png">
+        <div class="logo-main">
+          <div class="logo">
+            <a href="http://cloudfoundry.com">
+            <img alt="Cloud Foundry" src="http://blog.cloudfoundry.com/wp-content/static/cfcom/assets/images/logo-cloudfoundry.png">
             </a>
-            <form action='http://www.cloudfoundry.com/search' class='search-docs-form' method='get' onsubmit='return submitQuery()'>
-              <input autocomplete='off' class='search-docs-input' id='search-query' name='q' onfocus="this.placeholder = 'more:docs '" placeholder='' type='search-docs' value='more:docs '>
-            </form>
+          </div>
+          <div class="cta">
+            <a href="https://run.pivotal.io">
+            <img alt="Sign up for a Cloud Foundry Account" onclick="_gaq.push(['_trackEvent', 'Outbound Links', 'Click', 'Free Trial Button']);" src="http://blog.cloudfoundry.com/wp-content/static/cfcom/assets/images/signup_freetrial.png">
+            </a>
+          </div>
+        </div>
+        <div class='container-full'>
+          <div class='content_inner'>
             <br clear="left">
             <% unless current_page.url == "/" %>
               <div class="breadcrumbs">
@@ -94,7 +66,6 @@
                   <%= trail_nav %>
                 </ul>
               </div>
-			  <div><font color="red">This site is obsolete. Please visit <a href="http://docs.cloudfoundry.org">docs.cloudfoundry.org</a></font></div>
               <br clear="left">
 
               <%= quick_links %>
