@@ -47,6 +47,7 @@
 #   end
 # end
 
+
 require 'navigation'
 require 'quicklinks'
 
@@ -124,4 +125,57 @@ helpers do
     end
   end 
 
+end
+
+#Redirects
+require "sinatra"
+
+class BOSHRedir < Sinatra::Base
+  get "/" do
+    redirect to('http://docs.cloudfoundry.org/bosh')
+  end
+end
+
+map "/docs/running/bosh/index.html" do
+  run BOSHRedir
+end
+
+class ServicesRedir < Sinatra::Base
+  get "/" do
+    redirect to('http://docs.cloudfoundry.org/services/')
+  end
+end
+
+map "/docs/running/architecture/services" do
+  run ServicesRedir
+end
+
+class UsingServicesRedir < Sinatra::Base
+  get "/" do
+    redirect to('http://docs.cloudfoundry.org/devguide/services/')
+  end
+end
+
+map "/docs/using/services" do
+  run UsingServicesRedir
+end
+
+class ServicesAPIRedir < Sinatra::Base
+  get "/" do
+    redirect to('http://docs.cloudfoundry.org/services/api.html')
+  end
+end
+
+map "/docs/running/architecture/services/api.html" do
+  run ServicesAPIRedir
+end
+
+class DeployingCFRedir < Sinatra::Base
+  get "/*" do
+    redirect to('http://docs.cloudfoundry.org/deploying/')
+  end
+end
+
+map "/docs/running/deploying-cf/" do
+  run DeployingCFRedir
 end
