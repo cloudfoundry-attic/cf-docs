@@ -158,7 +158,7 @@ service_instance.space = client.spaces.first # <- assign the space the service i
 
 service_instance.create! # <- send the request to create it
 
-# if the create was succesful, it should return true.
+# if the create was successful, it should return true.
 
 ~~~
 ## <a id='runtimes-and-frameworks'></a>Runtimes and Frameworks ##

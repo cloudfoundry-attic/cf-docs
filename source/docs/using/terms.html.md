@@ -60,7 +60,7 @@ This page briefly describes a number of terms that are commonly used in Cloud Fo
 
 ## <a id='buildpack'></a> buildpack  ##
 
-> A buildpack is a set of scripts that Cloud Foundry runs on an application [package](#package) to create a [droplet](#droplet) that contains everthing the application needs to run. (This process is referred to as [staging](#staging).) A buildpack is specific to a particular framework or runtime environment. Cloud Foundry includes buildpacks for Ruby, Java, and Node.js; when you upload an application, Cloud Foundry examines the application artifacts to determine which buildpack to apply. Cloud Foundry can use remote buildpacks as well; you can specify the URL of the desired buildpack when running the `cf push` command.
+> A buildpack is a set of scripts that Cloud Foundry runs on an application [package](#package) to create a [droplet](#droplet) that contains everything the application needs to run. (This process is referred to as [staging](#staging).) A buildpack is specific to a particular framework or runtime environment. Cloud Foundry includes buildpacks for Ruby, Java, and Node.js; when you upload an application, Cloud Foundry examines the application artifacts to determine which buildpack to apply. Cloud Foundry can use remote buildpacks as well; you can specify the URL of the desired buildpack when running the `cf push` command.
 <br><br>
 > For more information, see [Introduction to Custom Buildpacks](../../using/deploying-apps/buildpacks.html).
 
@@ -86,7 +86,7 @@ This page briefly describes a number of terms that are commonly used in Cloud Fo
 > Cloud Controller (CC) is the Cloud Foundry component that orchestrates the processing performed by backend components, such as application staging and lifecycle management, and service provisioning and binding operations. Cloud Controller functions and features include:
 <br> <br>
 
-> - Maintainance of a database of information about applications, services, and configurable items such as organizations, spaces, users, and roles. 
+> - Maintenance of a database of information about applications, services, and configurable items such as organizations, spaces, users, and roles.
 
 > - Storage of application packages and droplets in the blobstore.
 

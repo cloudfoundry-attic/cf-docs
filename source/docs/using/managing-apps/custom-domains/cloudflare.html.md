@@ -49,7 +49,7 @@ When done, click **I've added all missing records, continue**.
 
 On the "Settings for \<YourDomain\>" page:
 
-*  **Choose a plan** --- Select "Pro" or "Business". Do not choose the free plan; you can only configure SSL for a domain if you have a paid CloudFlare plan. If you choose "Pro", CloudFlare will generate an SSL certificate for communications betwen browsers and the CloudFlare proxy. If you prefer to provide your own SSL certificate, choose "Business".
+*  **Choose a plan** --- Select "Pro" or "Business". Do not choose the free plan; you can only configure SSL for a domain if you have a paid CloudFlare plan. If you choose "Pro", CloudFlare will generate an SSL certificate for communications between browsers and the CloudFlare proxy. If you prefer to provide your own SSL certificate, choose "Business".
 *  **Performance** --- This configures a performance profile that sets the values of multiple performance-related options. You can choose any of the available options, and easily change it later. After completing this configuration process, follow the instructions in [Reviewing CloudFlare Configuration Options](#review) to understand the performance (and also security) options, and tailor your configuration, as desired. 
     * **CDN only (safest)** --- This is the default.  
     * **CDN + Basic Optimizations** 

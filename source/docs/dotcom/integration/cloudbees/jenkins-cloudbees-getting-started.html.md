@@ -34,7 +34,7 @@ If you have not already logged into CloudFoundry.com in the current browser sess
 
 ### Cloud Foundry authorization ###
 
-After sucessfully signing in, you will be asked to authorize CloudBees to access your CloudFoundry.com account:
+After successfully signing in, you will be asked to authorize CloudBees to access your CloudFoundry.com account:
 
 ![Cloud Foundry authorize page](dotcom/integration/cloudbees/cloudbees-page3.png)
 

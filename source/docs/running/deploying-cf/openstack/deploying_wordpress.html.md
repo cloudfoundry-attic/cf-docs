@@ -100,7 +100,7 @@ Adapt the `wordpress-openstack.yml` file to your environment settings. Search fo
 * The `director_uuid` option set the [Bosh Director](/docs/running/bosh/components/director.html) to use. We will use the Micro Bosh Director UUID. You can get it running the command `bosh status`.
 * The `instance_type` option set the OpenStack flavor used for the compilation vms (at the `compilation` section) and jobs vms (at the `resource_pools` section). The `flavor_name` **must** have ephemeral disk (check the [validate your OpenStack](validate_openstack.html#ephemeral) guide). 
 * The `security_groups` option set the security groups used by vms, and **must** be existing security groups. We will use the `microbosh_security_group` we created when we [deployed Micro Bosh](deploying_microbosh.html#openstack_security_groups) and the `wordpress_security_group` we created [previously](#openstack_security_groups).
-* The `allocated_floating_ip` allows us to associate a floating IP adress to the Wordpress webserver and **must** be a previously allocated floating ip (check the [prerequisites](#openstack_floating_ip) section).
+* The `allocated_floating_ip` allows us to associate a floating IP address to the Wordpress webserver and **must** be a previously allocated floating ip (check the [prerequisites](#openstack_floating_ip) section).
 
 If you are using the new [OpenStack Networking](http://www.openstack.org/software/openstack-networking/) component, you must also adapt the below settings:    
 

@@ -116,7 +116,7 @@ Adapt the `bosh-openstack.yml` file to your environment settings. Search for the
 
 * The `director_uuid` option set the [Bosh Director](/docs/running/bosh/components/director.html) to use. We will use the Micro Bosh Director UUID. You can get it running the command `bosh status`.
 * The `instance_type` option set the OpenStack flavor used for the compilation vms (at the `compilation` section) and jobs vms (at the `resource_pools` section). The `flavor_name` **must** have ephemeral disk (check the [validate your OpenStack](validate_openstack.html#ephemeral) guide). 
-* The `allocated_floating_ip_1` and `allocated_floating_ip_2` allows us to associate a floating IP adress to the Director and PowerDNS instances and **must** be a previously allocated floating ips (check the [prerequisites](#openstack_floating_ip) section).
+* The `allocated_floating_ip_1` and `allocated_floating_ip_2` allows us to associate a floating IP address to the Director and PowerDNS instances and **must** be a previously allocated floating ips (check the [prerequisites](#openstack_floating_ip) section).
 * The `dns.recursor` option set the IP address of the [recursor](http://en.wikipedia.org/wiki/Domain_Name_System#Recursive_and_caching_name_server) to query in case PowerDNS can't resolve a hostname. We will use the `microbosh_ip_address`.
 * The `auth_url` option set your [OpenStack identity](http://www.openstack.org/software/openstack-shared-services/) server.
 * The `username`, `api_key` and `tenant` options sets your OpenStack credentials.

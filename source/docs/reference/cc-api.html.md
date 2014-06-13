@@ -165,7 +165,7 @@ Response:
 
 #### Search/Filtering
 
-Searching and Filtering are peformed via the `q` query parameter.  The value of
+Searching and Filtering are performed via the `q` query parameter.  The value of
 the `q` parameter is a key value pair containing the resource attribute name
 and the query value, e.g: `GET /v2/foo_bars?q=name:some*` would return
 both records shown in the pagination example above.

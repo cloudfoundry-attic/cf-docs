@@ -121,7 +121,7 @@ service.version = '2.6' # <- if there are multiple versions of the same service,
 service.tier = 'free'
 service.create!
 
-# if the create was succesful, it should return true.
+# if the create was successful, it should return true.
 ~~~
 ## <a id='runtimes-and-frameworks'></a>Runtimes and Frameworks ##
 

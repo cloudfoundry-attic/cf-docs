@@ -34,7 +34,7 @@ To test it:
 $ ping something.[your domain]
 </pre>
 
-## Targetting with cf
+## Targeting with cf
 
 <pre class="terminal">
 $ cf target ccng.[your domain]

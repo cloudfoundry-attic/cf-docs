@@ -52,7 +52,7 @@ The goals for handling a flapping application are:
 - Reduce the overhead associated with restarting an application, particularly the overhead associated with moving application bits to the DEA.
 - Avoid IO spikes due to massive simultaneous restarts.
 
-To accomodate these conflicting requirements, the policy for handling a flapping instance is:
+To accommodate these conflicting requirements, the policy for handling a flapping instance is:
 
 - Initially restart the instance with a delay defined by `min_restart_delay`.
 - For each subsequent crash, double the delay up to the value of `max_restart_delay`.

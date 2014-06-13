@@ -117,7 +117,7 @@ network:
   vip: <allocated_floating_ip> # Optional
 ~~~        
 
-* The `vip` option is optional, and allows you to associate a floating IP adress to the Micro Bosh vm in case you want to access it from outside of the vm network. If set, `allocated_floating_ip` **must** be a previously allocated floating ip.
+* The `vip` option is optional, and allows you to associate a floating IP address to the Micro Bosh vm in case you want to access it from outside of the vm network. If set, `allocated_floating_ip` **must** be a previously allocated floating ip.
 
 If you are using the new [OpenStack Networking](http://www.openstack.org/software/openstack-networking/) component, adapt the network section with below settings:
 
@@ -131,7 +131,7 @@ network:
     net_id: <network_uuid>
 ~~~ 
 
-* The `vip` option is optional, and allows you to associate a floating IP adress to the Micro Bosh vm in case you want to access it from outside of the vm network. If set, `allocated_floating_ip` **must** be a previously allocated floating ip.
+* The `vip` option is optional, and allows you to associate a floating IP address to the Micro Bosh vm in case you want to access it from outside of the vm network. If set, `allocated_floating_ip` **must** be a previously allocated floating ip.
 * The `net_id` option sets the OpenStack network to use. `network_uuid` **must** be an existing Network UUID (you can list your OpenStack networks using the command `quantum net-list`).
 
 1. If you want to set the Micro Bosh IP address manually: 
@@ -145,7 +145,7 @@ network:
     net_id: <network_uuid>
 ~~~        
 
-* The `vip` option is optional, and allows you to associate a floating IP adress to the Micro Bosh vm in case you want to access it from outside of the vm network. If set, `allocated_floating_ip` **must** be a previously allocated floating ip.
+* The `vip` option is optional, and allows you to associate a floating IP address to the Micro Bosh vm in case you want to access it from outside of the vm network. If set, `allocated_floating_ip` **must** be a previously allocated floating ip.
 * The `ip` option sets the IP address to assign to the Micro BOSH vm. `static_ip` **must** be an IP address belowing to the IP range of one of the network subnets set in `net_id`.
 * The `net_id` option sets the OpenStack network to use. `network_uuid` **must** be an existing Network UUID (you can list your OpenStack networks using the command `quantum net-list`).
 

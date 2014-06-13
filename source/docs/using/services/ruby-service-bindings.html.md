@@ -14,7 +14,7 @@ There are several methods for configuring a Ruby application to connect to a ser
 
 * Auto-configuration -- You can auto-configure the application with the `cf-autoconfig` gem, if: (1) the application runs on the Rails framework, (2) the type of service bound to the application is PostgreSQL or MySQL, and (3) not more than one relational database service instance is bound to the application. For more information, see [Auto-Configure Connection with cf-autoconfig](#autoconfig).
 
-     **Note:** Auto-configuration for a Ruby on Rails database applicaiton overwrites the database connection information in the application's `database.yml` file -- if this is unacceptable, configure the service manually, rather than using auto-configuration.  
+     **Note:** Auto-configuration for a Ruby on Rails database application overwrites the database connection information in the application's `database.yml` file -- if this is unacceptable, configure the service manually, rather than using auto-configuration.
 
 
 ## <a id='prereq'></a>Prerequisites ##

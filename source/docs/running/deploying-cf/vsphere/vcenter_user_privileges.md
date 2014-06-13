@@ -107,7 +107,7 @@ title: Privileges for a vCenter User
 |                                             | host USB device                          |
 |                                             | memory                                   |
 |                                             | modify device settings                   |
-|                                             | query fault tolerance compatability      |
+|                                             | query fault tolerance compatibility      |
 |                                             | query unowned files                      |
 |                                             | raw device                               |
 |                                             | reload from path                         |

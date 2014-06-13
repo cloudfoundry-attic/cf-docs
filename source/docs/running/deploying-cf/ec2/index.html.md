@@ -113,7 +113,7 @@ User `hm' has been created
 Logged in as `hm'
 </pre>
 
-After Micro BOSH has been deployed succesfully, you can check its status:
+After Micro BOSH has been deployed successfully, you can check its status:
 
 <pre class="terminal">
 ~/cf$ bosh status

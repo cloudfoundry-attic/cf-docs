@@ -14,7 +14,7 @@ Micro Cloud Foundry is your own portable instance of Cloud Foundry, delivered as
 
 A prerequisite to running Micro Cloud Foundry is either VMWare Workstation, VMWare Player or VMWare Fusion, make sure you have one of these installed. Log in to [https://micro.cloudfoundry.com/](https://micro.cloudfoundry.com/) with your Cloud Foundry credentials, after clicking the "Get Micro Cloud Foundry" button. If you don't have an account yet, sign up [here](https://my.cloudfoundry.com/signup).
 
-Generate a domain token and then download the latest version of MCF. The download should be a zip file, decompress the archive to your prefered location and then open the .vmx file in your chosen virtual machine client. Start the virtual machine, once you have agreed to the terms of service select option one to configure.
+Generate a domain token and then download the latest version of MCF. The download should be a zip file, decompress the archive to your preferred location and then open the .vmx file in your chosen virtual machine client. Start the virtual machine, once you have agreed to the terms of service select option one to configure.
 
 The first thing to configure is the 'vcap' user password, this is the account used to run all the services on the VM. Next, select the network configuration type; DHCP or static. In most cases, DHCP is most appropriate, although you may wish to configure a static IP address in the absence of a DHCP service on your network. If an http proxy is also in use on the network, configure it at this point also.
 
@@ -43,7 +43,7 @@ Creating user... OK
 
 </pre>
 
-Creating this user first ensures an account with administrative priveleges on this instance of Micro Cloud Foundry. That account can proxy as other users and also manage users too.
+Creating this user first ensures an account with administrative privileges on this instance of Micro Cloud Foundry. That account can proxy as other users and also manage users too.
 
 ## <a id='mcf-default-config'></a>Micro Cloud Foundry Default Configuration ##
 

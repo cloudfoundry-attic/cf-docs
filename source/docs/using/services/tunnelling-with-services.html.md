@@ -58,7 +58,7 @@ Waiting for local tunnel to become available... OK
 Output file> mydb.sql
 </pre>
 
-The dump is successfully writen to mydb.sql. At this point the tunnel has closed. However, if option 1 - none is selected, the tunnel is held open indefinitely supplying the connection details:
+The dump is successfully written to mydb.sql. At this point the tunnel has closed. However, if option 1 - none is selected, the tunnel is held open indefinitely supplying the connection details:
 
 <pre class="terminal">
 $ cf tunnel mysql-a7cc7
