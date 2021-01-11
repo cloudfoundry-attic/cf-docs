@@ -79,7 +79,7 @@ GEM
       ffi (>= 0.5.0)
     rb-kqueue (0.2.0)
       ffi (>= 0.5.0)
-    redcarpet (2.2.2)
+    redcarpet (3.5.1)
     rouge (0.3.10)
       thor
     sass (3.2.10)
@@ -110,5 +110,5 @@ DEPENDENCIES
   middleman (~> 3.0)
   middleman-livereload
   middleman-syntax
-  redcarpet (~> 2.2.2)
+  redcarpet (~> 3.5.1)
   sinatra
